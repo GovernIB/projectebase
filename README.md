@@ -1,16 +1,11 @@
-# ![Logo](https://github.com/GovernIB/maven/raw/binaris/projectebase/icon.png) Projecte Base (projectebase)
+# ![Logo](https://github.com/GovernIB/maven/raw/binaris/projectebase/icon.png) Projecte Base 1.0 (projectebase-1.0)
 *Projecte Base - JBoss 7.2*
 
-
-***Versions***
-
-> - Versió Estable: No n'hi ha<br/>
-> - Versió en Desenvolupament: __projectebase-1.0.0__ (branca [projectebase-1.0](../../tree/projectebase-1.0))
 
 
 ***Documentació***
 
-[Documentació de branca estable](../../tree/projectebase-1.0/README.md#documentaci%C3%B3)
+[Documentació de branca estable](./doc)
 
 
 ***Descripció***
