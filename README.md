@@ -11,3 +11,8 @@
 ***Descripció***
 
 Es tracte d'un projecte d'exemple per JBoss 7.2 seguint l'estructura i estàndars definits a la CAIB
+
+
+***Binaris***
+- [](Open JDK 11 - Windows x64)
+- [](JBoss 7.2)
