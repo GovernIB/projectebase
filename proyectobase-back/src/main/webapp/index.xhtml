@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="template/template.xhtml">
+	<ui:define name="pageTitle">Inicio</ui:define>
+	<ui:define name="breadcrumb">
+		<p:menuitem value="Inicio" url="index.xhtml" />
+		<p:menuitem value="Inicio" disabled="true" />
+	</ui:define>
+	<ui:define name="content">
+		<h1>Prueba de JSF y Primefaces en Back Office</h1>
+		<h:form>
+			<h2>Editor de valores</h2>
+			<p:editor value="#{fooBackController.value}" />
+			<br></br>
+			<p:commandButton action="#{fooBackController.addValue}" update="table"
+				value="Añadir valor" />
+			<br></br>
+			<h2>Lista de valores</h2>
+			<p:dataTable id="table" value="#{fooBackController.values}"
+				var="fooEntity"
+				emptyMessage="No hay valores definidos">
+				<p:column headerText="Identificador">
+				<h:outputText value="#{fooEntity.id}"/>
+			</p:column>
+				<p:column headerText="Valor">
+				<h:outputText value="#{fooEntity.value}		"/>
+			</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,132 @@
+body {
+	color: #2a2a2a;
+	font: 11px Verdana;
+	margin: 0;
+	padding: 0;
+	background: url("../img/backimage.png") repeat scroll 0 0 transparent;
+	padding-bottom: 50px;
+}
+
+#footer_container {
+	border-bottom: 1px solid #AAAAAA;
+	border-top: 1px solid #AAAAAA;
+	color: #777;
+	padding: 7px 0;
+	text-align: center;
+	width: 100%;
+	background-color: #d3d4d4;
+	text-shadow: 1px 1px #FFFFFF;
+}
+
+#header {
+	height: 38px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-top: 6px;
+	opacity: 0.85;
+	background: #FF6400;
+	background: #FF6400 linear-gradient(top, rgba(0, 0, 0, 0.15),
+		rgba(0, 0, 0, 0) );
+	background: #FF6400
+		-webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.15)
+		), to(rgba(0, 0, 0, 0) ) );
+	background: #FF6400 -moz-linear-gradient(top, rgba(0, 0, 0, 0.15),
+		rgba(0, 0, 0, 0) );
+	color: #ffffff;
+	text-shadow: 1px 1px 1px #333333;
+}
+
+#content {
+	padding: 10px 25px 20px 25px;
+	background: #FFFFFF;
+}
+
+#title {
+	padding: 0px 20px 0px 20px;
+	background: #FFFFFF;
+}
+
+#container {
+	background: #FFFFFF;
+	min-height: 500px;
+}
+
+div.content_box {
+	background-color: #FFFFFF;
+	box-shadow: 0 5px 24px #888888;
+	margin: 0;
+	min-width: 1024px;
+	text-align: justify;
+	width: 100%;
+}
+
+.logo {
+	float: left;
+	width: 45%;
+	font: 30px Verdana;
+	font-weight: bold;
+	margin-top: 8px;
+}
+
+.top {
+	vertical-align: top;
+}
+
+h1 {
+	margin: 0px 0px 10px 0px;
+}
+
+.disconnect {
+    position: absolute;
+    right: 27px;
+    top: 69px;
+}
+
+.logoCAIB {
+	float: right;
+	width: 45%;
+	text-align: right;
+}
+
+a.button, span.button {
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #F5F5F5;
+	border-color: #B2B2B2 #C2C2C2 #C2C2C2 #B2B2B2;
+	border-style: solid;
+	border-width: 1px;
+	color: #444444;
+	cursor: pointer;
+	padding: 4px 10px;
+	text-decoration: none;
+	text-shadow: 0 1px 0 #FFF;
+	display: inline-block;
+}
+
+a.button:hover {
+	background: none repeat scroll 0 0 #eee9e9;
+	color: #2a2a2a;
+	border-color: #C2C2C2 #B2B2B2 #B2B2B2 #C2C2C2;
+}
+
+a.button:active {
+	background-color: #F5F5F5;
+	border-color: #DDDDDD #DEDEDE #DEDEDE #DDDDDD;
+	color: #666;
+}
+
+a.button img, span.button img {
+	border: medium none !important;
+	display: inline !important;
+	height: 12px;
+	margin: 0 5px -1px 0 !important;
+	padding: 0 !important;
+	width: 12px;
+}
+
+a {
+    outline: medium none;
+}

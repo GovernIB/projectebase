@@ -1,0 +1,22 @@
+<div xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	id="header">
+	<div class="logo">
+		Proyecto Base Front
+	</div>
+	<div class="logoCAIB">
+		<img src="img/logoCAIB.png" />
+	</div>
+	<span class="disconnect">
+		<p:commandLink id="user_button" 
+			action="#{sessionController.logout}"
+			type="button" 
+			ajax="false"
+			styleClass="button"
+			immediate="true">
+			<img src="img/user.png" alt="#{i18n.user}"/>
+			<h:outputText value="Desconectar"/>
+		</p:commandLink>
+	</span>
+</div>
