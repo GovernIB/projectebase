@@ -1,5 +1,5 @@
 # ![Logo](https://github.com/GovernIB/maven/raw/binaris/projectebase/icon.png) Projecte Base (projectebase)
-*Projecte Base - JBoss 7.2*
+*Projecte Base - JBoss 7.2 EAP*
 
 
 ***Versions***
@@ -15,4 +15,4 @@
 
 ***Descripció***
 
-Es tracte d'un projecte d'exemple per JBoss 7.2 seguint l'estructura i estàndars definits a la CAIB
+Es tracte d'un projecte d'exemple per JBoss 7.2 EAP seguint l'estructura i estàndars definits a la CAIB
