@@ -1,26 +1,26 @@
 package es.caib.proyectobase.front.controller;
 
-import java.util.List;
+import es.caib.proyectobase.entity.FooEntity;
+import es.caib.proyectobase.service.FooServiceInterface;
+import org.apache.log4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-
-import org.apache.log4j.Logger;
-
-import es.caib.proyectobase.entity.FooEntity;
-import es.caib.proyectobase.service.FooServiceInterface;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+import java.util.List;
 
 /**
  * Controlador de prueba para el frontal de la aplicacion de prueba
  * @author [u91310] Pedro Bauzá Mascaró 
  */
-@ManagedBean(name="fooFrontController")
+@Named(value="fooFrontController")
+@RequestScoped
 public class FooController {
 
 	private final static Logger LOGGER = Logger.getLogger(FooController.class);
 	
-	@EJB(name=FooServiceInterface.JNDI_NAME)
+	@EJB
 	FooServiceInterface fooService;
 	
 	private String value;

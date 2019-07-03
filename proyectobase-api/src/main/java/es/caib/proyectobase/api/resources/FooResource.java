@@ -1,5 +1,6 @@
 package es.caib.proyectobase.api.resources;
 
+import javax.ejb.EJB;
 import javax.naming.InitialContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -22,17 +23,8 @@ import io.swagger.annotations.ApiResponses;
 @Api(value="/foo", description="Foo resource")
 public class FooResource {
 
-    @SuppressWarnings("rawtypes")
-    private static FooServiceInterface getService() {
-        FooServiceInterface object = null;
-        try {
-//            object = (FooServiceInterface) new InitialContext().lookup("java:app/es.caib.proyectobase-proyectobase-ejb-0.0.1-SNAPSHOT/FooService");
-          object = (FooServiceInterface) new InitialContext().lookup("FooService/Local");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return object;
-    }
+    @EJB
+    private FooServiceInterface fooService;
 
     @GET
     @Path("/list")
@@ -44,7 +36,7 @@ public class FooResource {
     })
     public Response list() {
         try {
-            return Response.status(200).entity(getService().list()).build();
+            return Response.status(200).entity(fooService.list()).build();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,7 +59,7 @@ public class FooResource {
         try {
             FooEntity fooEntity = new FooEntity();
             fooEntity.setValue(value);
-            return Response.status(200).entity(getService().addFooEntity(fooEntity)).build();
+            return Response.status(200).entity(fooService.addFooEntity(fooEntity)).build();
         } catch (Exception e) {
             e.printStackTrace();
         }

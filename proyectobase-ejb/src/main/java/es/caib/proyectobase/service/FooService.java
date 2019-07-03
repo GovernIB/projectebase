@@ -3,7 +3,6 @@ package es.caib.proyectobase.service;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,10 +16,6 @@ import es.caib.proyectobase.entity.FooEntity;
  * @author [u91310] Pedro Bauzá Mascaró
  */
 @Stateless
-@LocalBean
-//@EJB(name="es.caib.proyectobase.service.FooService", beanInterface=FooServiceInterface.class)
-//@LocalBinding(jndiBinding="es.caib.proyectobase.service.FooService")
-//@Local
 //@RolesAllowed({"tothom", "PB_ADMIN"})
 public class FooService implements FooServiceInterface {
 

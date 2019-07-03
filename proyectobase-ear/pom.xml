@@ -87,6 +87,7 @@
 						<generateApplicationXml>true</generateApplicationXml>
 						<defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
 						<includeLibInApplicationXml>true</includeLibInApplicationXml>
+						<version>8</version>
 						<archive>
 							<manifestEntries>
 								<project-version>${project.version}</project-version>
