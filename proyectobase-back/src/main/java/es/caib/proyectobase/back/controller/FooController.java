@@ -2,11 +2,12 @@ package es.caib.proyectobase.back.controller;
 
 import es.caib.proyectobase.entity.FooEntity;
 import es.caib.proyectobase.service.FooServiceInterface;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
@@ -14,11 +15,12 @@ import java.util.List;
  * Controlador de prueba para el back office
  * @author [u91310] Pedro Bauzá Mascaró 
  */
-@Named(value="fooBackController")
+@Named("fooBackController")
 @RequestScoped
 public class FooController {
 
-	private final static Logger LOGGER = Logger.getLogger(FooController.class);
+	@Inject
+	private Logger log;
 
 	@EJB
 	FooServiceInterface fooService;
@@ -28,7 +30,7 @@ public class FooController {
 
 	@PostConstruct
 	public void init() {
-		LOGGER.info("Proxy a fooService "+this.fooService);
+		log.info("Proxy a fooService "+this.fooService);
 		this.value = this.fooService.getDefaultValue();
 	}
 
@@ -47,6 +49,7 @@ public class FooController {
 	}
 
 	public List<FooEntity> getValues() {
+		log.info("getValues()");
 		this.values = this.fooService.list();
 		return this.values;
 	}

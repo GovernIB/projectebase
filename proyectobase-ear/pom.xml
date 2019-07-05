@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -8,117 +9,115 @@
 	</parent>
 	<artifactId>proyectobase-ear</artifactId>
 	<packaging>ear</packaging>
+
 	<name>proyectobase-ear</name>
 	<description>Módulo EAR del Proyecto Base</description>
+
 	<properties>
 		<maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>es.caib.proyectobase</groupId>
 			<artifactId>proyectobase-ejb</artifactId>
-			<version>${modulo.version}</version>
+			<version>${project.version}</version>
 			<type>ejb</type>
 		</dependency>
 		<dependency>
 			<groupId>es.caib.proyectobase</groupId>
 			<artifactId>proyectobase-back</artifactId>
-			<version>${modulo.version}</version>
+			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>es.caib.proyectobase</groupId>
 			<artifactId>proyectobase-front</artifactId>
-			<version>${modulo.version}</version>
+			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>es.caib.proyectobase</groupId>
 			<artifactId>proyectobase-api</artifactId>
-			<version>${modulo.version}</version>
+			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
+		<!--
+		Tenir en compte a l'hora de incloure dependències només si és imprescindible i no està ja dins
+		un mòdul sobre el que es pugui establir una dependència als descriptors.
+		https://docs.jboss.org/author/display/AS72/Implicit+module+dependencies+for+deployments
+		-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
 	</dependencies>
+
 	<build>
 		<finalName>proyectobase</finalName>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
-					<artifactId>svn-revision-number-maven-plugin</artifactId>
-					<version>1.13</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>revision</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<entries>
-							<entry>
-								<prefix>svn</prefix> <!-- Crea la variable ${svn.revision} -->
-							</entry>
-						</entries>
-					</configuration>
-					<dependencies>
-						<!-- <dependency>
-							<groupId>org.tmatesoft.svnkit</groupId>
-							<artifactId>svnkit</artifactId>
-							<version>1.8.5</version>
-						</dependency>
-						<dependency>
-							<groupId>org.tmatesoft.sqljet</groupId>
-							<artifactId>sqljet</artifactId>
-							<version>1.1.9</version>
-						</dependency> -->
-						<dependency>
-							<groupId>com.h2database</groupId>
-							<artifactId>h2</artifactId>
-							<version>1.4.197</version>
-						</dependency>
-					</dependencies>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-ear-plugin</artifactId>
-					<version>${maven.ear.plugin.version}</version>
-					<configuration>
-						<generateApplicationXml>true</generateApplicationXml>
-						<defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
-						<includeLibInApplicationXml>true</includeLibInApplicationXml>
-						<version>8</version>
-						<archive>
-							<manifestEntries>
-								<project-version>${project.version}</project-version>
-								<project-buildtime>${maven.build.timestamp}</project-buildtime>
-								<svn-revision>${svn.revision}</svn-revision>
-							</manifestEntries>
-						</archive>
-						<modules>
-							<ejbModule>
-								<groupId>es.caib.proyectobase</groupId>
-								<artifactId>proyectobase-ejb</artifactId>
-							</ejbModule>
-							<webModule>
-								<groupId>es.caib.proyectobase</groupId>
-								<artifactId>proyectobase-back</artifactId>
-								<contextRoot>/proyectobaseback</contextRoot>
-							</webModule>
-							<webModule>
-								<groupId>es.caib.proyectobase</groupId>
-								<artifactId>proyectobase-front</artifactId>
-								<contextRoot>/proyectobasefront</contextRoot>
-							</webModule>
-							<webModule>
-								<groupId>es.caib.proyectobase</groupId>
-								<artifactId>proyectobase-api</artifactId>
-								<contextRoot>/proyectobase/api</contextRoot>
-							</webModule>
-						</modules>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+
+		<plugins>
+			<!-- Defineix la propietat buildNumber  -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>${maven.ear.plugin.version}</version>
+				<configuration>
+					<generateApplicationXml>true</generateApplicationXml>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<includeLibInApplicationXml>false</includeLibInApplicationXml>
+					<version>8</version>
+					<archive>
+						<manifestEntries>
+							<project-version>${project.version}</project-version>
+							<project-buildtime>${maven.build.timestamp}</project-buildtime>
+							<scm-revision>${buildNumber}</scm-revision>
+						</manifestEntries>
+					</archive>
+					<modules>
+						<ejbModule>
+							<groupId>es.caib.proyectobase</groupId>
+							<artifactId>proyectobase-ejb</artifactId>
+						</ejbModule>
+						<webModule>
+							<groupId>es.caib.proyectobase</groupId>
+							<artifactId>proyectobase-back</artifactId>
+							<contextRoot>/proyectobaseback</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>es.caib.proyectobase</groupId>
+							<artifactId>proyectobase-front</artifactId>
+							<contextRoot>/proyectobasefront</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>es.caib.proyectobase</groupId>
+							<artifactId>proyectobase-api</artifactId>
+							<contextRoot>/proyectobase/api</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+					<deployables>
+						<deployable>
+							<properties>
+								<name>${project.build.finalName}</name>
+							</properties>
+						</deployable>
+					</deployables>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>

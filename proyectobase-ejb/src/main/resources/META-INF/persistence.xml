@@ -3,20 +3,19 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
   version="2.2">
-	<!--
-	<persistence-unit name="proyectobasePU">
-		<jta-data-source>java:/es.caib.proyectobase.db</jta-data-source>
-		<class>es.caib.proyectobase.entity.FooEntity</class>
-		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-		</properties>
-	</persistence-unit>
- 	-->
-	<persistence-unit name="H2DS">
+	<!-- TODO: l'estàndard hauria de definir un nom per el name del persistence unit? -->
+	<persistence-unit name="proyectobasePU" transaction-type="JTA">
+
+		<!-- TODO canviar per nomenclatura estàndar: java:/es.caib.proyectobase.db -->
 		<jta-data-source>java:/H2DS</jta-data-source>
+
 		<class>es.caib.proyectobase.entity.FooEntity</class>
+
 		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<!-- Per les propietats estandard veure punt 8.2.1.9 de l'especificació JPA -->
+			<!-- TODO: Aquesta opció mai s'ha d'emprar en entorn que no sigui de proves -->
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+
 			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>

@@ -1,15 +1,14 @@
 package es.caib.proyectobase.service;
 
-import java.util.List;
+import es.caib.proyectobase.entity.FooEntity;
+import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.apache.log4j.Logger;
-
-import es.caib.proyectobase.entity.FooEntity;
+import java.util.List;
 
 /**
  * Servicio (EJB) para realizar inserciones y consultas de prueba en BBDD
@@ -19,16 +18,17 @@ import es.caib.proyectobase.entity.FooEntity;
 //@RolesAllowed({"tothom", "PB_ADMIN"})
 public class FooService implements FooServiceInterface {
 
-	private final static Logger LOGGER = Logger.getLogger(FooService.class);
+	@Inject
+	private Logger log;
 	
-	@PersistenceContext(unitName="H2DS")
+	@PersistenceContext
 	EntityManager entityManager;
 	
 	private String value = "Hola soy Proyecto Base!!!";
 
 	@PostConstruct
 	public void init() {
-		LOGGER.info("Proxy a entityManager: "+this.entityManager);
+		log.info("Proxy a entityManager: "+this.entityManager);
 	}
 	
 	public String getDefaultValue() {
@@ -45,8 +45,9 @@ public class FooService implements FooServiceInterface {
 		return true;
 	}
 
+	/* La clausula "select" és obligatoria. Punt 4.2.1 de l'especificació JPA. */
 	public List<FooEntity> list() {
-		return this.entityManager.createQuery("FROM FooEntity").getResultList();
+		return this.entityManager.createQuery("SELECT f FROM FooEntity f", FooEntity.class).getResultList();
 	}
 
 }

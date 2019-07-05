@@ -12,6 +12,14 @@
 	<artifactId>proyectobase-api</artifactId>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>es.caib.proyectobase</groupId>
 			<artifactId>proyectobase-ejb</artifactId>
@@ -20,17 +28,19 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>8.0</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<!-- Swagger -->
 		<dependency>
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-jaxrs</artifactId>
-			<version>1.5.0</version>
+			<version>${swagger.version}</version>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>proyectobase-api-${project.version}</finalName>
@@ -44,11 +54,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.plugin.version}</version>
-				<configuration>
-					<release>${java.version}</release>
-				</configuration>
-				<!-- <version>2.3.2</version> <configuration> <source>1.7</source> <target>1.7</target> 
-					</configuration> -->
 			</plugin>
 		</plugins>
 	</build>

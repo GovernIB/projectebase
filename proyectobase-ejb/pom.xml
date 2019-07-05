@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -7,31 +8,34 @@
 		<artifactId>proyectobase</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+
 	<artifactId>proyectobase-ejb</artifactId>
+	<packaging>jar</packaging>
 	<name>proyectobase-ejb</name>
 	<description>Módulo EJB del Proyecto Base</description>
+
 	<properties>
-		<version.template.file>../scripts/templates/Version.java.template</version.template.file>
-		<version.file>src/main/java/es/caib/proyectobase/Version.java</version.file>
+		<!--
+		Si volem emprar el maven.build.timestamp al filtres aquest no funciona correctament.
+		S'ha de redefinir la propietat. Veure: https://issues.apache.org/jira/browse/MASSEMBLY-603
+		 -->
+		<project.buildtime>${maven.build.timestamp}</project.buildtime>
 		<maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
 	</properties>
-	<repositories>
-		<repository>
-			<id>JBoss repository</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
+
 	<dependencies>
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>8.0</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -50,102 +54,44 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Per anotacions específiques de JBoss -->
+		<!-- Anotacions específiques de JBoss per WS -->
 		<dependency>
 			<groupId>org.jboss.ws</groupId>
-			<artifactId>jbossws-spi</artifactId>
-			<version>1.0.6.GA</version>
+			<artifactId>jbossws-api</artifactId>
+			<version>${jbossws-api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
+
 	<build>
-		<finalName>proyectobase-${project.version}</finalName>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
-					<artifactId>svn-revision-number-maven-plugin</artifactId>
-					<version>1.13</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>revision</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<entries>
-							<entry>
-								<prefix>svn</prefix> <!-- Crea la variable ${svn.revision} -->
-							</entry>
-						</entries>
-					</configuration>
-					<dependencies>
-						<!-- <dependency> <groupId>org.tmatesoft.svnkit</groupId> <artifactId>svnkit</artifactId> 
-							<version>1.8.5</version> </dependency> <dependency> <groupId>org.tmatesoft.sqljet</groupId> 
-							<artifactId>sqljet</artifactId> <version>1.1.9</version> </dependency> -->
-						<dependency>
-							<groupId>com.h2database</groupId>
-							<artifactId>h2</artifactId>
-							<version>1.4.197</version>
-						</dependency>
-					</dependencies>
-				</plugin>
-				<plugin>
-					<groupId>com.google.code.maven-replacer-plugin</groupId>
-					<artifactId>maven-replacer-plugin</artifactId>
-					<version>1.4.0</version>
-					<executions>
-						<execution>
-							<phase>process-sources</phase>
-							<goals>
-								<goal>replace</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<file>${version.template.file}</file>
-						<outputFile>${version.file}</outputFile>
-						<replacements>
-							<replacement>
-								<token>@project.version@</token>
-								<value>${project.version}</value>
-							</replacement>
-							<replacement>
-								<token>@project.buildtime@</token>
-								<value>${maven.build.timestamp}</value>
-							</replacement>
-							<replacement>
-								<token>@svn.revision@</token>
-								<value>${svn.revision}</value>
-							</replacement>
-							<replacement>
-								<token>@jdk.version@</token>
-								<value>${java.runtime.version}</value>
-							</replacement>
-						</replacements>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-ejb-plugin</artifactId>
-					<version>${maven.ejb.plugin.version}</version>
-					<configuration>
-						<ejbVersion>3.2</ejbVersion>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven.compiler.plugin.version}</version>
-					<configuration>
-						<release>${java.version}</release>
-					</configuration>
-					<!-- <version>2.3.2</version> <configuration> <source>1.7</source> <target>1.7</target> 
-						</configuration> -->
-				</plugin>
-			</plugins>
-		</pluginManagement>
+		<finalName>proyectobase-ejb-${project.version}</finalName>
+		<resources>
+			<!-- Activam filtre per fer substitucions al fitxer Version.properties -->
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>${maven.ejb.plugin.version}</version>
+				<configuration>
+					<ejbVersion>3.2</ejbVersion>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+			</plugin>
+		</plugins>
 	</build>
 </project>

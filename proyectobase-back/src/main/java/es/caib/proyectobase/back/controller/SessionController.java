@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author [u91310] Pedro Bauzá Mascaró 
  */
 @SessionScoped
-@Named(value="sessionController")
+@Named("sessionController")
 public class SessionController implements Serializable {
 
 	public void logout() throws IOException {

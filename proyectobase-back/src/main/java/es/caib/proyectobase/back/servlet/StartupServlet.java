@@ -1,23 +1,30 @@
 package es.caib.proyectobase.back.servlet;
 
-import javax.servlet.ServletException;
+import es.caib.proyectobase.Version;
+import org.slf4j.Logger;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.caib.proyectobase.Version;
-import org.apache.log4j.Logger;
-
+/**
+ * Servlet que inicialitza l'aplicació
+ * TODO: és més apropiat emprar un ServletContextListener per fer aquesta tasca que no tenir un servlet sense mapping
+ */
 public class StartupServlet extends HttpServlet {
 
-    /** Logger **/
-    private static final Logger LOGGER = Logger.getLogger(StartupServlet.class);
+    @Inject
+    private Version version;
 
-    public void init() throws ServletException {
-        LOGGER.info("Cargando la aplicación PROYECTOBASE versión "+ Version.VERSION+
-                " generada en "+Version.BUILDTIME);
+    @Inject
+    private Logger log;
+
+    public void init() {
+        log.info("Cargando la aplicación PROYECTOBASE versión "+ version.getVersion() +
+                " generada en "+ version.getBuildTime());
     }
 
-    protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException {}
+    protected void doGet( HttpServletRequest request, HttpServletResponse response ) {}
 
 }

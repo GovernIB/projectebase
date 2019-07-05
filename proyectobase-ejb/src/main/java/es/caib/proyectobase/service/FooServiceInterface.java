@@ -1,10 +1,9 @@
 package es.caib.proyectobase.service;
 
-import java.util.List;
+import es.caib.proyectobase.entity.FooEntity;
 
 import javax.ejb.Local;
-
-import es.caib.proyectobase.entity.FooEntity;
+import java.util.List;
 
 /**
  * Interface del servicio (EJB) FooService

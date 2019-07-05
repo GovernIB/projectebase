@@ -1,10 +1,55 @@
 package es.caib.proyectobase;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+import java.util.ResourceBundle;
+
 /**
-* Código autogenerado por la Version.java.template
-*/
-public final class Version {
-    public static final String VERSION="0.0.1-SNAPSHOT";
-    public static final String BUILDTIME="03/06/2019 06:44";
-    public static final String SVN_REVISION="3";
-    public static final String JDK_VERSION="11.0.2+9";
+ * Bean amb dades de la versió.
+ * Les agafa del fitxer Vesion.properties del mateix package.
+ *
+ * Els beans han de definir l'scope.
+ * Si no posam nom, el nom serà el nom de la classe amb la primera minúscula.
+ */
+@Named
+@ApplicationScoped
+public class Version {
+
+    private String version;
+    private String buildTime;
+    private String scmRevision;
+    private String jdkVersion;
+
+    /*
+     * Els Beans sempre han de definir un constructor buid o amb @Inject
+     */
+    protected Version() {
+    }
+
+    @PostConstruct
+    protected void init() {
+        /* Agafa fitxer Version.properties amb el mateix package */
+        ResourceBundle bundle = ResourceBundle.getBundle(this.getClass().getName());
+        version = bundle.getString("project.version");
+        buildTime = bundle.getString("project.buildtime");
+        scmRevision = bundle.getString("scm.revision");
+        jdkVersion = bundle.getString("jdk.version");
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public String getBuildTime() {
+        return buildTime;
+    }
+
+    public String getScmRevision() {
+        return scmRevision;
+    }
+
+    public String getJdkVersion() {
+        return jdkVersion;
+    }
 }

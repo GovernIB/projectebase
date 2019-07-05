@@ -1,6 +1,6 @@
 package es.caib.proyectobase.ws;
 
-import java.util.List;
+import es.caib.proyectobase.entity.FooEntity;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -8,8 +8,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
-
-import es.caib.proyectobase.entity.FooEntity;
+import java.util.List;
 
 @WebService
 @SOAPBinding(style = Style.RPC)

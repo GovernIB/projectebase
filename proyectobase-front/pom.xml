@@ -11,14 +11,7 @@
 	<packaging>war</packaging>
 	<name>proyectobase-front</name>
 	<description>Módulo Front del Proyecto Base</description>
-	<repositories>
-		<repository>
-			<id>prime-repo</id>
-			<name>PrimeFaces Maven Repository</name>
-			<url>http://repository.primefaces.org</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
+
 	<dependencies>
 
 		<dependency>
@@ -36,21 +29,22 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>${primefaces.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>ui-lightness</artifactId>
 			<version>${primefaces.ui.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
@@ -66,9 +60,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.plugin.version}</version>
-				<configuration>
-					<release>${java.version}</release>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
