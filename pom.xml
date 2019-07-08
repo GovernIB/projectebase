@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>es.caib.proyectobase</groupId>
-	<artifactId>proyectobase</artifactId>
+	<groupId>es.caib.projectebase</groupId>
+	<artifactId>projectebase</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>proyectobase</name>
-	<description>Proyecto Base JSF2+EJB3+JPA+Primefaces</description>
+	<name>Projecte Base</name>
+	<description>Projecte Base Java EE 8 amb Primefaces</description>
 
 	<!-- Referència al sistema de control de versions, ja sigui GIT, SVN, CVS...
 	    permetrà al plugin buildnumber-maven-plugin agafar la revisió/versió -->
@@ -50,11 +50,11 @@
 	</properties>
 
 	<modules>
-		<module>proyectobase-ejb</module>
-		<module>proyectobase-back</module>
-		<module>proyectobase-front</module>
-		<module>proyectobase-api</module>
-		<module>proyectobase-ear</module>
+		<module>projectebase-ejb</module>
+		<module>projectebase-back</module>
+		<module>projectebase-front</module>
+		<module>projectebase-api</module>
+		<module>projectebase-ear</module>
 	</modules>
 
 	<build>
@@ -119,7 +119,7 @@
 							-->
 							<properties>
                                 <cargo.hostname>localhost</cargo.hostname>
-                                <cargo.port.offset>100</cargo.port.offset>
+                                <cargo.port.offset>0</cargo.port.offset>
 								<cargo.remote.username>admin</cargo.remote.username>
 								<cargo.remote.password>admin</cargo.remote.password>
 							</properties>
