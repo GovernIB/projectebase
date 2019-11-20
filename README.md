@@ -16,3 +16,8 @@ Es tracte d'un projecte d'exemple per JBoss 7.2 EAP seguint l'estructura i està
 ***Binaris***
 - [](Open JDK 11 - Windows x64)
 - [](JBoss 7.2)
+
+
+***Maven Artifact Exemple***
+
+[Enllaç cap al Generador de Maven Artifact Exemple](https://governib.github.io/maven/maven/es/caib/projectebase/archetype/projectebase-archetype/1.0.0/generadordecomanda.html)
