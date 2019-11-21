@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd" name="projectebasearchetype"
+    xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <requiredProperties>
+    <requiredProperty key="prefix">
+      <validationRegex>^[a-z][a-z][a-z]$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="prefixuppercase">
+      <validationRegex>[A-Z][A-Z][A-Z]</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="perfilWS">
+      <validationRegex>^(true|false)$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="perfilBack">
+      <validationRegex>^(true|false)$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="projectname">
+      <validationRegex>^([A-Za-z0-9])+$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="projectnameuppercase">
+      <validationRegex>^([A-Z0-9])+$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="packagepath">
+    </requiredProperty>
+  </requiredProperties>
+
+  <fileSets>
+     <fileSet filtered="true" encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>scripts/bbdd/genappbase.sql</include>
+        <include>scripts/templates/Versio.java.template</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>prefix-es-__prefixcaib__.txt</include>
+        <include>config.properties</include>
+        <include>compile.bat</include>
+        <include>compile.sh</include>
+        <include>__projectname__.genapp</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+  <modules>
+    <module id="${rootArtifactId}-model" dir="model" name="${rootArtifactId}-model">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-jpa" dir="jpa" name="${rootArtifactId}-jpa">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-ejb" dir="ejb" name="${rootArtifactId}-ejb">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.xml</include>
+            <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-logic" dir="logic" name="${rootArtifactId}-logic">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.xml</include>
+            <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-persistence" dir="persistence" name="${rootArtifactId}-persistence">
+      <modules>
+        <module id="${rootArtifactId}-persistence-jta" dir="jta" name="${rootArtifactId}-persistence-jta">
+          <fileSets>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+        <module id="${rootArtifactId}-persistence-resourcelocal" dir="reslocal" name="${rootArtifactId}-persistence-resourcelocal">
+          <fileSets>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+      </modules>
+    </module>
+    <module id="${rootArtifactId}-utils" dir="utils" name="${rootArtifactId}-utils">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-ws" dir="ws" name="${rootArtifactId}-ws">
+      <modules>
+        <module id="${rootArtifactId}-ws-server" dir="__rootArtifactId___server" name="${rootArtifactId}-ws-server">
+          <fileSets>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+        <module id="${rootArtifactId}-ws-api" dir="__rootArtifactId___api" name="${rootArtifactId}-ws-api">
+          <fileSets>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.properties</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/test/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory>bindings</directory>
+              <includes>
+                <include>**/*.xjc</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>dependency-reduced-pom.xml</include>
+                <include>test.properties</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>regenerateapi.bat</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+      </modules>
+    </module>
+    <module id="${rootArtifactId}-back" dir="back" name="${rootArtifactId}-back">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/webapp</directory>
+          <includes>
+            <include>**/*.txt</include>
+            <include>**/*.jsp</include>
+            <include>**/*.xml</include>
+            <include>**/*.html</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>src/main/webapp</directory>
+          <includes>
+            <include>**/*.jpg</include>
+            <include>**/*.htm</include>
+            <include>**/*.css</include>
+            <include>**/*.swf</include>
+            <include>**/*.gif</include>
+            <include>**/*.png</include>
+            <include>**/*.js</include>
+            <include>**/*.jar</include>
+            <include>**/*.tld</include>
+            <include>**/*.db</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-ear" dir="ear" name="${rootArtifactId}-ear">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/application</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-scripts" dir="scripts" name="${rootArtifactId}-scripts">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>development</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>sqlgenerator</directory>
+          <includes>
+            <include>**/*.xml</include>
+            <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>datasources</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>config</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>development</directory>
+          <includes>
+            <include>**/*.sql</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>sqlgenerator</directory>
+          <includes>
+            <include>**/*.bat</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>templates</directory>
+          <includes>
+            <include>**/*.template</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>bbdd</directory>
+          <includes>
+            <include>**/*.sql</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+  </modules>
+</archetype-descriptor>
