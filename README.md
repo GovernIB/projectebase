@@ -20,7 +20,4 @@ Es tracte d'un projecte d'exemple per JBoss 7.2 EAP seguint l'estructura i està
 
 ***Maven Artifact Exemple***
 
-[Enllaç cap al Generador de Maven Artifact Exemple](https://governib.github.io/maven/maven/es/caib/projectebase/archetype/projectebase-archetype/1.0.0/generadordecomanda.html)
-
-
-[probba](http://htmlpreview.github.com/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0/maven-archetype-genapp/2_archetypemaven/generadordecomanda.html)
+[Enllaç cap al Generador de Maven Artifact Exemple](http://htmlpreview.github.com/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0/maven-archetype-genapp/2_archetypemaven/generadordecomanda.html)
