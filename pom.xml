@@ -39,7 +39,6 @@
 		<module>projectebase-jpa</module>
 		<module>projectebase-ejb</module>
 		<module>projectebase-back</module>
-		<module>projectebase-front</module>
 		<module>projectebase-api</module>
 		<module>projectebase-ear</module>
 	</modules>
@@ -181,7 +180,7 @@
 							-->
 							<properties>
                                 <cargo.hostname>localhost</cargo.hostname>
-                                <cargo.port.offset>100</cargo.port.offset>
+                                <cargo.port.offset>0</cargo.port.offset>
 								<cargo.remote.username>admin</cargo.remote.username>
 								<cargo.remote.password>admin</cargo.remote.password>
 							</properties>
@@ -194,6 +193,50 @@
 
 			</plugins>
 		</pluginManagement>
+
+		<plugins>
+			<!--
+                Gestió de versions de dependències/plugins
+                Veure: https://www.mojohaus.org/versions-maven-plugin/
+            -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+			<!--
+                Gestió de requisits del build
+                Veure: https://maven.apache.org/enforcer/enforcer-rules/index.html
+            -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M2</version>
+				<configuration>
+					<rules>
+						<!-- Fixam mínim Maven 3.6 i Java 11 -->
+						<requireMavenVersion>
+							<version>3.6</version>
+						</requireMavenVersion>
+						<requireJavaVersion>
+							<version>11</version>
+						</requireJavaVersion>
+						<!-- Per detectar problemes de dependències -->
+						<banDuplicatePomDependencyVersions />
+						<dependencyConvergence />
+						<reactorModuleConvergence />
+					</rules>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
 	</build>
 
 	<repositories>

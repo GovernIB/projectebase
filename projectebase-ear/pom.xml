@@ -32,12 +32,6 @@
 		</dependency>
 		<dependency>
 			<groupId>es.caib.projectebase</groupId>
-			<artifactId>projectebase-front</artifactId>
-			<version>${project.version}</version>
-			<type>war</type>
-		</dependency>
-		<dependency>
-			<groupId>es.caib.projectebase</groupId>
 			<artifactId>projectebase-api</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
@@ -96,17 +90,12 @@
 						<webModule>
 							<groupId>es.caib.projectebase</groupId>
 							<artifactId>projectebase-back</artifactId>
-							<contextRoot>/projectebaseback</contextRoot>
-						</webModule>
-						<webModule>
-							<groupId>es.caib.projectebase</groupId>
-							<artifactId>projectebase-front</artifactId>
-							<contextRoot>/projectebasefront</contextRoot>
+							<contextRoot>/pbback</contextRoot>
 						</webModule>
 						<webModule>
 							<groupId>es.caib.projectebase</groupId>
 							<artifactId>projectebase-api</artifactId>
-							<contextRoot>/projectebase/api</contextRoot>
+							<contextRoot>/pbapi</contextRoot>
 						</webModule>
 					</modules>
 				</configuration>
