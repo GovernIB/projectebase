@@ -1,4 +1,4 @@
-*Estudi de Maven ArcheType emprant com a Base GenApp*
+# Estudi de Maven ArcheType emprant com a base GenApp
 
 En un futur el codi aqui utilitzat s'utilitzarà per generar una plantilla pel projecte base per JBoss 7.2 i OpenJDK 11.
 
