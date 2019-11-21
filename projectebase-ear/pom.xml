@@ -17,6 +17,7 @@
 	</properties>
 
 	<dependencies>
+		<!-- Mòduls que van dins l'application.xml -->
 		<dependency>
 			<groupId>es.caib.projectebase</groupId>
 			<artifactId>projectebase-ejb</artifactId>
@@ -40,6 +41,12 @@
 			<artifactId>projectebase-api</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
+		</dependency>
+		<!-- Mòduls que van dins el lib/ -->
+		<dependency>
+			<groupId>es.caib.projectebase</groupId>
+			<artifactId>projectebase-jpa</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<!--
 		Tenir en compte a l'hora de incloure dependències només si és imprescindible i no està ja dins
@@ -67,7 +74,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
-				<version>${maven.ear.plugin.version}</version>
 				<configuration>
 					<generateApplicationXml>true</generateApplicationXml>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>

@@ -13,37 +13,38 @@
 	<name>Projecte Base: Back</name>
 
 	<dependencies>
+		<dependency>
+			<groupId>es.caib.projectebase</groupId>
+			<artifactId>projectebase-jpa</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>es.caib.projectebase</groupId>
+			<artifactId>projectebase-ejb</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>8.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-ejb</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>${primefaces.version}</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>ui-lightness</artifactId>
-            <version>${primefaces.ui.version}</version>
         </dependency>
 
 	</dependencies>
@@ -53,12 +54,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>${maven.war.plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>

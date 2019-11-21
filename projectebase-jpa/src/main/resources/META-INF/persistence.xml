@@ -12,7 +12,7 @@
 		-->
 		<jta-data-source>java:/H2DS</jta-data-source>
 
-		<class>es.caib.projectebase.entity.FooEntity</class>
+		<class>es.caib.projectebase.jpa.FooEntity</class>
 
 		<properties>
 			<!-- Per les propietats estandard veure punt 8.2.1.9 de l'especificació JPA -->

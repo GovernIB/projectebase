@@ -23,43 +23,25 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>es.caib.projectebase</groupId>
+			<artifactId>projectebase-jpa</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>8.0</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- A diferència del JDK 8, el JDK 11 ja no inclou l'api JAXB ni JAX-WS, que en qualsevol cas si que ha d'estar
-		disponible al servidor perquè JAVA EE 8 requereix JAXB 2.2 i JAX-WS 2.2 -->
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>${jaxb.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.ws</groupId>
-			<artifactId>jaxws-rt</artifactId>
-			<version>${jaxws.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Anotacions específiques de JBoss per WS -->
-		<dependency>
-			<groupId>org.jboss.ws</groupId>
-			<artifactId>jbossws-api</artifactId>
-			<version>${jbossws-api.version}</version>
-			<scope>provided</scope>
-		</dependency>
 
 	</dependencies>
 
@@ -81,15 +63,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ejb-plugin</artifactId>
-				<version>${maven.ejb.plugin.version}</version>
 				<configuration>
 					<ejbVersion>3.2</ejbVersion>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
