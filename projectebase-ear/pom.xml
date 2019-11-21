@@ -67,7 +67,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
-				<version>${maven.ear.plugin.version}</version>
 				<configuration>
 					<generateApplicationXml>true</generateApplicationXml>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>

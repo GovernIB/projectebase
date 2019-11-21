@@ -6,8 +6,4 @@
 
 	<display-name>Projecte Base API</display-name>
 
-	<welcome-file-list>
-		<welcome-file>apidoc.jsp</welcome-file>
-	</welcome-file-list>
-
 </web-app>
