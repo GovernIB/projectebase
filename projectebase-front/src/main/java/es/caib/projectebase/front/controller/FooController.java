@@ -1,14 +1,15 @@
 package es.caib.projectebase.front.controller;
 
-import es.caib.projectebase.entity.FooEntity;
+import es.caib.projectebase.jpa.FooEntity;
 import es.caib.projectebase.service.FooServiceInterface;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,8 +17,8 @@ import java.util.List;
  * @author [u91310] Pedro Bauzá Mascaró 
  */
 @Named("fooFrontController")
-@RequestScoped
-public class FooController {
+@ViewScoped
+public class FooController implements Serializable {
 
 	@Inject
 	private Logger log;
@@ -27,13 +28,19 @@ public class FooController {
 	
 	private String value;
 	private List<FooEntity> values;
-	
+
 	@PostConstruct
 	public void init() {
 		log.info("Proxy a fooService "+this.fooService);
-		this.value = this.fooService.getDefaultValue();
+		value = this.fooService.getDefaultValue();
+		loadValues();
 	}
-	
+
+	private void loadValues() {
+		log.info("Load values");
+		values = this.fooService.list();
+	}
+
 	public String getValue() {
 		return this.value;
 	}
@@ -41,21 +48,15 @@ public class FooController {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
+
 	public void addValue() {
 		FooEntity foo = new FooEntity();
-		foo.setValue(this.value);
+		foo.setValue(value);
 		this.fooService.addFooEntity(foo);
+		loadValues();
 	}
 
 	public List<FooEntity> getValues() {
-		if (fooService != null) {
-		  this.values = this.fooService.list();
-		  return this.values;
-		}
-		
-		throw new Error("HOLAAAAAAAAA");
+		return this.values;
 	}
-	
-	
 }

@@ -1,6 +1,6 @@
 package es.caib.projectebase.service;
 
-import es.caib.projectebase.entity.FooEntity;
+import es.caib.projectebase.jpa.FooEntity;
 
 import javax.ejb.Local;
 import java.util.List;

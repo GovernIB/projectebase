@@ -13,17 +13,22 @@
 	<name>Projecte Base: Back</name>
 
 	<dependencies>
+		<dependency>
+			<groupId>es.caib.projectebase</groupId>
+			<artifactId>projectebase-jpa</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>es.caib.projectebase</groupId>
+			<artifactId>projectebase-ejb</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-ejb</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
 

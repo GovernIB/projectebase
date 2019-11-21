@@ -1,7 +1,6 @@
 package es.caib.projectebase;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.util.ResourceBundle;
 
@@ -13,7 +12,6 @@ import java.util.ResourceBundle;
  * Si no posam nom, el nom serà el nom de la classe amb la primera minúscula.
  */
 @Named
-@ApplicationScoped
 public class Version {
 
     private String version;

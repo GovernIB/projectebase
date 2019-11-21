@@ -1,6 +1,6 @@
 package es.caib.projectebase.api.resources;
 
-import es.caib.projectebase.entity.FooEntity;
+import es.caib.projectebase.jpa.FooEntity;
 import es.caib.projectebase.service.FooServiceInterface;
 
 import javax.ejb.EJB;

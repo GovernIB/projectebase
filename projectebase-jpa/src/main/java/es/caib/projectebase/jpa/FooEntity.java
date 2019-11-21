@@ -1,4 +1,4 @@
-package es.caib.projectebase.entity;
+package es.caib.projectebase.jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

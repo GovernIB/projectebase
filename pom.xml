@@ -36,6 +36,7 @@
 	</properties>
 
 	<modules>
+		<module>projectebase-jpa</module>
 		<module>projectebase-ejb</module>
 		<module>projectebase-back</module>
 		<module>projectebase-front</module>
