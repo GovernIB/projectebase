@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<server>
+  <mbean code="org.jboss.varia.property.SystemPropertiesService" name="jboss:type=Service,name=projectebasearchetypeSystemProperties">
+    <attribute name="Properties">
+	  <!-- Propietat que indica als projectes que activins les caracteristiques
+      especials requerides en l'entorn de la CAIB (Govern Balear) si es true -->
+	  org.fundaciobit.projectebase.archetype.iscaib=false
+	
+	
+      # Dialecte de Hibernate
+      org.fundaciobit.projectebase.archetype.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+      # org.fundaciobit.projectebase.archetype.hibernate.dialect=org.hibernate.dialect.MySQLDialect      
+      # org.fundaciobit.projectebase.archetype.hibernate.dialect=org.hibernate.dialect.DB2Dialect
+      # org.fundaciobit.projectebase.archetype.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+      # org.fundaciobit.projectebase.archetype.hibernate.dialect=net.sf.hibernate.dialect.Oracle9Dialect
+      # org.fundaciobit.projectebase.archetype.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+      # org.fundaciobit.projectebase.archetype.hibernate.query.substitutions=true 1, false 0
+
+      <!-- Directori on es guardaran tots els fitxers de ProjecteBaseArchetype-->
+      org.fundaciobit.projectebase.archetype.filesdirectory=c:\\tmp\\projectebasearchetypefiles
+      <!-- Accés HTTP a l'aplicació (Important que sigui http, no https)  -->
+      org.fundaciobit.projectebase.archetype.url=http://localhost:8080/projectebasearchetype
+      org.fundaciobit.projectebase.archetype.email.from=projectebasearchetype@projectebasearchetype.org
+      org.fundaciobit.projectebase.archetype.defaultlanguage=ca
+      org.fundaciobit.projectebase.archetype.development=false
+      <!-- Tamany màxim de pujada de fitxers en bytes. No definit significa sense límit -->
+      org.fundaciobit.projectebase.archetype.maxuploadsizeinbytes=
+      <!-- Tamany màxim del fitxer PDF una vegada se li han afegit els annexes i taula de firmes. No definit significa sense límit -->
+      org.fundaciobit.projectebase.archetype.maxfitxeradaptatsizeinbytes=
+      <!-- Clau per encriptar l'identificador del fitxers a descarregar (IMPORTANT tamany de 16 caràcters) -->
+      org.fundaciobit.projectebase.archetype.encryptkey=1234567890123456
+      org.fundaciobit.projectebase.archetype.name=ProjecteBaseArchetype
+    </attribute>
+  </mbean>
+</server>

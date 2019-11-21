@@ -1,0 +1,115 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>${package}</groupId>
+  <artifactId>${parentArtifactId}-sqlgenerator</artifactId>
+  <packaging>jar</packaging>
+
+  <name>${projectname} - Scripts - SQL Generator</name>
+
+  <parent>
+    <groupId>${package}</groupId>
+    <artifactId>${parentArtifactId}-scripts</artifactId>
+    <version>${version}</version>
+  </parent>
+
+
+  <properties>	
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${parentArtifactId}-model</artifactId>
+      <version>${symbol_dollar}{project.version}</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${parentArtifactId}-jpa</artifactId>
+      <version>${symbol_dollar}{project.version}</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${parentArtifactId}-persistence-jta</artifactId>
+      <version>${symbol_dollar}{project.version}</version>
+      <type>jar</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.fundaciobit.genapp</groupId>
+      <artifactId>genapp-gen</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>persistence-api</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>3.3.2.GA</version>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.14</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.5.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.5.4</version>			 
+    </dependency>
+
+  </dependencies>
+
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.3.2</version>
+      </plugin>
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+  </build>
+
+</project>

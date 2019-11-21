@@ -1,0 +1,38 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8" ?>
+<server>
+  <mbean code="org.jboss.varia.property.SystemPropertiesService" name="jboss:type=Service,name=${parentArtifactId}SystemProperties">
+    <attribute name="Properties">
+	  <!-- Propietat que indica als projectes que activins les caracteristiques
+      especials requerides en l'entorn de la CAIB (Govern Balear) si es true -->
+	  ${package}.iscaib=false
+	
+	
+      ${symbol_pound} Dialecte de Hibernate
+      ${package}.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+      ${symbol_pound} ${package}.hibernate.dialect=org.hibernate.dialect.MySQLDialect      
+      ${symbol_pound} ${package}.hibernate.dialect=org.hibernate.dialect.DB2Dialect
+      ${symbol_pound} ${package}.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+      ${symbol_pound} ${package}.hibernate.dialect=net.sf.hibernate.dialect.Oracle9Dialect
+      ${symbol_pound} ${package}.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+      ${symbol_pound} ${package}.hibernate.query.substitutions=true 1, false 0
+
+      <!-- Directori on es guardaran tots els fitxers de ${projectname}-->
+      ${package}.filesdirectory=c:${symbol_escape}${symbol_escape}tmp${symbol_escape}${symbol_escape}${parentArtifactId}files
+      <!-- Accés HTTP a l'aplicació (Important que sigui http, no https)  -->
+      ${package}.url=http://localhost:8080/${parentArtifactId}
+      ${package}.email.from=${parentArtifactId}@${parentArtifactId}.org
+      ${package}.defaultlanguage=ca
+      ${package}.development=false
+      <!-- Tamany màxim de pujada de fitxers en bytes. No definit significa sense límit -->
+      ${package}.maxuploadsizeinbytes=
+      <!-- Tamany màxim del fitxer PDF una vegada se li han afegit els annexes i taula de firmes. No definit significa sense límit -->
+      ${package}.maxfitxeradaptatsizeinbytes=
+      <!-- Clau per encriptar l'identificador del fitxers a descarregar (IMPORTANT tamany de 16 caràcters) -->
+      ${package}.encryptkey=1234567890123456
+      ${package}.name=${projectname}
+    </attribute>
+  </mbean>
+</server>

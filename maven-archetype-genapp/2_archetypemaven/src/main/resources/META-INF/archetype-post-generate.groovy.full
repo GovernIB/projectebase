@@ -1,0 +1,100 @@
+
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+
+import java.util.regex.Pattern
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
+import groovy.io.FileType
+
+
+
+// helper methods
+/*
+def removeModule(pomFile, module) {
+  def pattern = Pattern.compile("\\s*<module>" + Pattern.quote(module) + "</module>", Pattern.MULTILINE)
+  def pomContent = pomFile.getText("UTF-8")
+  pomContent = pomContent.replaceAll(pattern, "")
+  pomFile.newWriter("UTF-8").withWriter { w -> w << pomContent  }
+}
+
+
+
+
+*/
+
+
+println "artifactId: " + artifactId
+println "request: " + request
+println "archetypeArtifactId: " + request.getArchetypeArtifactId()
+println "archetypeGroupId: " + request.getArchetypeGroupId()
+println "archetypeVersion: " + request.getArchetypeVersion()
+println "archetypeName: " + request.getArchetypeName()
+println "artifactId: " + request.getArtifactId()
+println "groupId: " + request.getGroupId()
+println "version: " + request.getVersion()
+
+
+Properties properties = request.properties
+
+String prefixcaib = properties.get("prefixcaib")
+println "PrefixCAIB: " + prefixcaib
+
+String perfilX = properties.get("perfilX")
+println "perfilX: " + perfilX
+
+
+
+String rootDir = new File(request.getOutputDirectory() + "/" + request.getArtifactId())
+println "rootDir: " + rootDir
+
+/*
+
+
+
+
+def javaPackage = properties.get("package")
+println "Package: " + javaPackage
+
+
+
+*/
+
+
+ 
+
+/*
+
+Path projectPath = Paths.get(request.outputDirectory, request.artifactId)
+
+Path buildGradlePath = projectPath.resolve("build.gradle")
+
+Files.deleteIfExists buildGradlePath
+
+Properties properties = request.properties
+
+String liferayVersion = properties.get("liferayVersion")
+
+if (liferayVersion.startsWith("7.1") || liferayVersion.startsWith("7.2")) {
+	Path configPath = projectPath.resolve("src/main/resources/configuration")
+
+	String cxfConfig =
+		"com.liferay.portal.remote.cxf.common.configuration." +
+			"CXFEndpointPublisherConfiguration-cxf.properties";
+
+	Path cxfConfigPath = configPath.resolve(cxfConfig)
+
+	Files.deleteIfExists cxfConfigPath
+
+	String restExtenderConfig =
+		"com.liferay.portal.remote.rest.extender.configuration." +
+			"RestExtenderConfiguration-rest.properties";
+
+	Path restExtenderConfigPath = configPath.resolve(restExtenderConfig)
+
+	Files.deleteIfExists restExtenderConfigPath
+
+	Files.deleteIfExists configPath
+}
+*/
