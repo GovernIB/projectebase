@@ -1,24 +1,32 @@
 package es.caib.projectebase.back.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * Backing Bean para controlar la sesión del usuario
- * @author [u91310] Pedro Bauzá Mascaró 
+ * Bean per controlar la sessió d'usuari
+ * @author areus
  */
 @SessionScoped
 @Named("sessionController")
+@SuppressWarnings("CdiInjectionPointsInspection")
 public class SessionController implements Serializable {
 
-	public void logout() throws IOException {
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+	private static final Logger log = LoggerFactory.getLogger(SessionController.class);
+
+	@Inject
+	private ExternalContext externalContext;
+
+	public String logout() {
+		log.info("logout");
         externalContext.invalidateSession();
-		externalContext.redirect("index.xhtml");
+		return "index?faces-redirect=true";
 	}
 
 }

@@ -2,6 +2,8 @@ package es.caib.projectebase.back.controller;
 
 import es.caib.projectebase.jpa.UnitatOrganica;
 import es.caib.projectebase.service.UnitatOrganicaService;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +13,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Controlador de Unitats Organiques
@@ -27,26 +30,29 @@ public class UnitatOrganicaController implements Serializable {
 
 	// PROPIETATS + GETTERS/SETTERS
 	private UnitatOrganica current;
-	private List<UnitatOrganica> values;
+	private LazyDataModel<UnitatOrganica> lazyModel;
 
 	public UnitatOrganica getCurrent() {
 		return current;
 	}
 
-	public List<UnitatOrganica> getValues() {
-		return values;
+	public LazyDataModel<UnitatOrganica> getLazyModel() {
+		return lazyModel;
 	}
 
 	@PostConstruct
 	public void init() {
 		log.info("init");
 		current = new UnitatOrganica();
-		loadValues();
-	}
-
-	private void loadValues() {
-		log.info("loadValues");
-		values = unitatOrganicaService.findAll();
+		lazyModel = new LazyDataModel<>() {
+			@Override
+			public List<UnitatOrganica> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+											 Map<String, Object> filters) {
+				setRowCount((int) unitatOrganicaService.countAll());
+				//TODO implementar ordenació i filtres
+				return unitatOrganicaService.findAllPaged(first, pageSize);
+			}
+		};
 	}
 
 	// ACCIONS
@@ -64,12 +70,12 @@ public class UnitatOrganicaController implements Serializable {
 			unitatOrganicaService.create(current);
 		}
 		current = new UnitatOrganica();
-		loadValues();
 	}
 
 	public void delete(Long id) {
 		log.info("delete");
 		unitatOrganicaService.deleteById(id);
-		loadValues();
 	}
+
+
 }

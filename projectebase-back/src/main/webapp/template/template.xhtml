@@ -39,7 +39,12 @@
 			<ui:include src="messages.xhtml" />
 			<div class="row">
 				<div id="menu" class="col-3">
-					menú
+					<h:form>
+						<p:menu>
+							<p:menuitem value="Inici" outcome="index" />
+							<p:menuitem value="Unitats Organiques" outcome="unitatOrganica" />
+						</p:menu>
+					</h:form>
 				</div>
 				<div id="content" class="col-9">
 					<ui:insert name="content" />

@@ -3,6 +3,9 @@ package es.caib.projectebase.service;
 import es.caib.projectebase.jpa.UnitatOrganica;
 
 import javax.ejb.Local;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
 /**
@@ -11,6 +14,8 @@ import java.util.List;
  */
 @Local
 public interface UnitatOrganicaService {
+
+	void bulkCreate(@NotNull List<UnitatOrganica> unitats);
 
 	UnitatOrganica create(UnitatOrganica unitatOrganica);
 
@@ -21,4 +26,8 @@ public interface UnitatOrganicaService {
 	UnitatOrganica findById(Long id);
 
 	List<UnitatOrganica> findAll();
+
+	List<UnitatOrganica> findAllPaged(@PositiveOrZero int first, @Positive int pageSize);
+
+	long countAll();
 }
