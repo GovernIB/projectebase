@@ -1,17 +1,17 @@
 package es.caib.projectebase;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.util.ResourceBundle;
 
 /**
  * Bean amb dades de la versió.
  * Les agafa del fitxer Vesion.properties del mateix package.
- *
- * Els beans han de definir l'scope.
- * Si no posam nom, el nom serà el nom de la classe amb la primera minúscula.
+ * @author areus
  */
 @Named
+@ApplicationScoped
 public class Version {
 
     private String version;

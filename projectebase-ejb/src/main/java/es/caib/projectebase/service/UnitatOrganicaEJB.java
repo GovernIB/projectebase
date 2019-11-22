@@ -10,12 +10,12 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * Servei EJB per gestionar {@link UnitatOrganica}
+ * Servei EJB per gestionar {@link UnitatOrganica}.
+ * Li aplicam l'interceptor @Logged, per tant, totes les cridades es loguejeran.
  * @author areus
  */
 @Logged
 @Stateless
-//@RolesAllowed({"tothom", "PB_ADMIN"})
 public class UnitatOrganicaEJB implements UnitatOrganicaService {
 
 	@PersistenceContext
