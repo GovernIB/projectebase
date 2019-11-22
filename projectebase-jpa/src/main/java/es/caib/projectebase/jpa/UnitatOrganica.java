@@ -3,8 +3,10 @@ package es.caib.projectebase.jpa;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -32,13 +34,18 @@ public class UnitatOrganica implements Serializable {
 	@Column(name="ID", nullable = false, length = 19)
 	private Long id;
 
-	@NotNull @Size(min=9,max=9)
+	@NotEmpty @Size(min=9,max=9)
 	@Column(name = "CODIDIR3", nullable = false, length = 9)
 	private String codiDir3;
 
 	@NotEmpty @Size(max=50)
 	@Column(name = "NOM", nullable = false, length = 50)
 	private String nom;
+
+	@NotNull @PastOrPresent
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATACREACIO", nullable = false)
+	private Date dataCreacio;
 
 	public Long getId() {
 		return id;
@@ -62,6 +69,14 @@ public class UnitatOrganica implements Serializable {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public Date getDataCreacio() {
+		return dataCreacio;
+	}
+
+	public void setDataCreacio(Date dataCreacio) {
+		this.dataCreacio = dataCreacio;
 	}
 
 	/*

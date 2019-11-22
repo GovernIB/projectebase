@@ -33,11 +33,37 @@
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
+    <!-- Per defecte és GMT. Com que solem estar a GMT+1 convé indicar que agafi del sistema -->
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+	<!-- Interpretar els input text buids com a null -->
+	<context-param>
+		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+		<param-value>true</param-value>
+	</context-param>
 
+	<!--
+		Opcions de configuració de Primefaces
+		Veure: https://primefaces.github.io/primefaces/7_0/#/gettingstarted/configuration
+	-->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>ui-lightness</param-value>
+		<param-value>bootstrap</param-value>
 	</context-param>
+	<context-param>
+		<param-name>primefaces.TRANSFORM_METADATA</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!--
+		Primefaces s'integra amb les error-page.
+		Veure: https://primefaces.github.io/primefaces/7_0/#/core/errorhandling?id=error-pages
+	-->
+	<error-page>
+		<location>/error/defaultError.xhtml</location>
+	</error-page>
 
 	<!-- <security-constraint>
 		<web-resource-collection>

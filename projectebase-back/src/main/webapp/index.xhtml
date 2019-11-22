@@ -1,14 +1,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:p="http://primefaces.org/ui">
-<ui:composition template="template/template.xhtml">
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/template/template.xhtml">
+
 	<ui:define name="pageTitle">Inicio</ui:define>
+
 	<ui:define name="breadcrumb">
 		<p:menuitem value="Inicio" url="index.xhtml" />
 		<p:menuitem value="Inicio" disabled="true" />
 	</ui:define>
+
 	<ui:define name="content">
+
 		<h1>Prova de JSF+Primefaces en BackOffice</h1>
 			<h:form id="form">
 				<h2>Editor d'Unitats Organiques</h2>
@@ -16,7 +22,7 @@
 				<h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
 
 					<p:outputLabel for="id" value="Id" />
-					<p:inputText id="id" value="#{unitatOrganicaController.current.id}" readonly="true" />
+					<p:inputText id="id" value="#{unitatOrganicaController.current.id}" readonly="true" disabled="true" />
 					<h:message for="id" errorStyle="color: red" />
 
 					<p:outputLabel for="codiDir3" value="Codi DIR3" />
@@ -26,6 +32,11 @@
 					<p:outputLabel for="nom" value="Nom" />
 					<p:inputText id="nom" value="#{unitatOrganicaController.current.nom}" />
 					<h:message for="nom" errorStyle="color: red" />
+
+					<p:outputLabel for="dataCreacio" value="Data creació" />
+					<p:datePicker id="dataCreacio" value="#{unitatOrganicaController.current.dataCreacio}"
+								  pattern="dd-MM-yyyy" />
+					<h:message for="dataCreacio" errorStyle="color: red" />
 
 				</h:panelGrid>
 
@@ -48,6 +59,11 @@
 					<p:column headerText="Nom">
 						<h:outputText value="#{unitatOrganica.nom}" />
 					</p:column>
+					<p:column headerText="Data creació">
+						<h:outputText value="#{unitatOrganica.dataCreacio}">
+							<f:convertDateTime pattern="dd-MM-yyyy"/>
+						</h:outputText>
+					</p:column>
 					<p:column headerText="Accions">
 						<p:commandButton value="Editar" action="#{unitatOrganicaController.loadCurent(unitatOrganica.id)}"
 										 update="form" />
@@ -56,6 +72,7 @@
 					</p:column>
 				</p:dataTable>
 			</h:form>
+
 	</ui:define>
 </ui:composition>
 </html>

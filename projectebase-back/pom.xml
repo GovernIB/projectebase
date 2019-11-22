@@ -44,7 +44,7 @@
         </dependency>
         <dependency>
             <groupId>org.primefaces.themes</groupId>
-            <artifactId>ui-lightness</artifactId>
+            <artifactId>bootstrap</artifactId>
         </dependency>
 
 	</dependencies>
