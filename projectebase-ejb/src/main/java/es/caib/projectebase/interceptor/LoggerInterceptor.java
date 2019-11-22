@@ -1,8 +1,8 @@
 package es.caib.projectebase.interceptor;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
@@ -16,8 +16,7 @@ import java.util.Arrays;
 @Interceptor
 public class LoggerInterceptor {
 
-    @Inject
-    private Logger log;
+    private static final Logger log = LoggerFactory.getLogger(LoggerInterceptor.class);
 
     /**
      * Intercepta un mètode de negoci i fa un log a l'inici i al final.

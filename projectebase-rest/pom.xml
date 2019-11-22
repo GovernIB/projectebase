@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>projectebase-api</artifactId>
+	<artifactId>projectebase-rest</artifactId>
 	<packaging>war</packaging>
 	<name>Projecte Base: API REST</name>
 

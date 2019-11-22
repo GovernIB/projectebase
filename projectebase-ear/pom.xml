@@ -32,7 +32,7 @@
 		</dependency>
 		<dependency>
 			<groupId>es.caib.projectebase</groupId>
-			<artifactId>projectebase-api</artifactId>
+			<artifactId>projectebase-rest</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
@@ -94,8 +94,8 @@
 						</webModule>
 						<webModule>
 							<groupId>es.caib.projectebase</groupId>
-							<artifactId>projectebase-api</artifactId>
-							<contextRoot>/pbapi</contextRoot>
+							<artifactId>projectebase-rest</artifactId>
+							<contextRoot>/pbrest</contextRoot>
 						</webModule>
 					</modules>
 				</configuration>

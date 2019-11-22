@@ -39,7 +39,7 @@
 		<module>projectebase-jpa</module>
 		<module>projectebase-ejb</module>
 		<module>projectebase-back</module>
-		<module>projectebase-api</module>
+		<module>projectebase-rest</module>
 		<module>projectebase-ear</module>
 	</modules>
 

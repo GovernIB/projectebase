@@ -3,11 +3,11 @@ package es.caib.projectebase.back.controller;
 import es.caib.projectebase.jpa.UnitatOrganica;
 import es.caib.projectebase.service.UnitatOrganicaService;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -20,8 +20,7 @@ import java.util.List;
 @ViewScoped
 public class UnitatOrganicaController implements Serializable {
 
-	@Inject
-	private Logger log;
+	private static final Logger log = LoggerFactory.getLogger(UnitatOrganicaController.class);
 
 	@EJB
 	UnitatOrganicaService unitatOrganicaService;
