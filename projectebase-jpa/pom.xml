@@ -12,6 +12,7 @@
 
     <artifactId>projectebase-jpa</artifactId>
     <packaging>jar</packaging>
+    <name>Projecte Base: JPA</name>
 
     <dependencies>
         <dependency>

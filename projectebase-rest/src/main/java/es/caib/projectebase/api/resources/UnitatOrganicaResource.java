@@ -11,6 +11,10 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * Recurs REST per accedir a Unitats Organiques
+ * @author areus
+ */
 @Path("unitatorganica")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -19,6 +23,12 @@ public class UnitatOrganicaResource {
     @EJB
     private UnitatOrganicaService unitatOrganicaService;
 
+    /**
+     * Obté una Unitat orgàncica
+     * @param id identificador
+     * @return Resposta amb status 200 i la informació de la Unitat orgànica o
+     * un resposta amb estatus 404 si l'identificador no existeix.
+     */
     @GET
     @Path("{id}")
     public Response get(@PathParam("id") Long id) {
