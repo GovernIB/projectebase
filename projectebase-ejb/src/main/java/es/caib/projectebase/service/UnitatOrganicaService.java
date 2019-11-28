@@ -10,24 +10,25 @@ import java.util.List;
 
 /**
  * Interfície del servei per gestionar {@link UnitatOrganica}
+ *
  * @author areus
  */
 @Local
 public interface UnitatOrganicaService {
 
-	void bulkCreate(@NotNull List<UnitatOrganica> unitats);
+    void bulkCreate(@NotNull List<UnitatOrganica> unitats);
 
-	UnitatOrganica create(UnitatOrganica unitatOrganica);
+    UnitatOrganica create(UnitatOrganica unitatOrganica);
 
-	UnitatOrganica update(UnitatOrganica unitatOrganica);
+    UnitatOrganica update(UnitatOrganica unitatOrganica);
 
-	void deleteById(Long id);
+    void deleteById(Long id);
 
-	UnitatOrganica findById(Long id);
+    UnitatOrganica findById(Long id);
 
-	List<UnitatOrganica> findAll();
+    List<UnitatOrganica> findAll();
 
-	List<UnitatOrganica> findAllPaged(@PositiveOrZero int first, @Positive int pageSize);
+    List<UnitatOrganica> findAllPaged(@PositiveOrZero int first, @Positive int pageSize);
 
-	long countAll();
+    long countAll();
 }

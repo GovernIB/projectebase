@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 /**
  * Interceptor per loguejar les cridades als mètodes de la classe interceptada.
+ *
  * @author areus
  */
 @Logged
@@ -20,6 +21,7 @@ public class LoggerInterceptor {
 
     /**
      * Intercepta un mètode de negoci i fa un log a l'inici i al final.
+     *
      * @param context Contexte d'invocació.
      * @return El resultat del mètode interceptar.
      * @throws Exception Llança la mateixa excepció que el mètode invocat.

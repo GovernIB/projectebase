@@ -1,79 +1,80 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	  xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:p="http://primefaces.org/ui"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/template/template.xhtml">
 
-	<ui:define name="pageTitle">Gestió d'unitats orgàniques</ui:define>
+    <ui:define name="pageTitle">Gestió d'unitats orgàniques</ui:define>
 
-	<ui:define name="breadcrumb">
-		<p:menuitem value="Inicio" outcome="index" />
-		<p:menuitem value="Unitat Orgànica" disabled="true" />
-	</ui:define>
+    <ui:define name="breadcrumb">
+        <p:menuitem value="Inicio" outcome="index"/>
+        <p:menuitem value="Unitat Orgànica" disabled="true"/>
+    </ui:define>
 
-	<ui:define name="content">
+    <ui:define name="content">
 
-		<h1>Gestió d'unitats orgàniques</h1>
-			<h:form id="form">
-				<h2>Editor d'Unitats Organiques</h2>
+        <h1>Gestió d'unitats orgàniques</h1>
+        <h:form id="form">
+            <h2>Editor d'Unitats Organiques</h2>
 
-				<h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
+            <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
 
-					<p:outputLabel for="id" value="Id" />
-					<p:inputText id="id" value="#{unitatOrganicaController.current.id}" readonly="true" disabled="true" />
-					<h:message for="id" errorStyle="color: red" />
+                <p:outputLabel for="id" value="Id"/>
+                <p:inputText id="id" value="#{unitatOrganicaController.current.id}" readonly="true" disabled="true"/>
+                <h:message for="id" errorStyle="color: red"/>
 
-					<p:outputLabel for="codiDir3" value="Codi DIR3" />
-					<p:inputText id="codiDir3" value="#{unitatOrganicaController.current.codiDir3}" />
-					<h:message for="codiDir3" errorStyle="color: red" />
+                <p:outputLabel for="codiDir3" value="Codi DIR3"/>
+                <p:inputText id="codiDir3" value="#{unitatOrganicaController.current.codiDir3}"/>
+                <h:message for="codiDir3" errorStyle="color: red"/>
 
-					<p:outputLabel for="nom" value="Nom" />
-					<p:inputText id="nom" value="#{unitatOrganicaController.current.nom}" />
-					<h:message for="nom" errorStyle="color: red" />
+                <p:outputLabel for="nom" value="Nom"/>
+                <p:inputText id="nom" value="#{unitatOrganicaController.current.nom}"/>
+                <h:message for="nom" errorStyle="color: red"/>
 
-					<p:outputLabel for="dataCreacio" value="Data creació" />
-					<p:datePicker id="dataCreacio" value="#{unitatOrganicaController.current.dataCreacio}"
-								  pattern="dd-MM-yyyy" />
-					<h:message for="dataCreacio" errorStyle="color: red" />
+                <p:outputLabel for="dataCreacio" value="Data creació"/>
+                <p:datePicker id="dataCreacio" value="#{unitatOrganicaController.current.dataCreacio}"
+                              pattern="dd-MM-yyyy"/>
+                <h:message for="dataCreacio" errorStyle="color: red"/>
 
-				</h:panelGrid>
+            </h:panelGrid>
 
-				<br />
-				<p:commandButton id="saveOrUpdateButton" action="#{unitatOrganicaController.saveOrUpdate}" update="table,form"
-					value="Guardar" />
-				<br />
-			</h:form>
+            <br/>
+            <p:commandButton id="saveOrUpdateButton" action="#{unitatOrganicaController.saveOrUpdate}"
+                             update="table,form"
+                             value="Guardar"/>
+            <br/>
+        </h:form>
 
-			<h2>Llista d'Unitats Orgàniques</h2>
-			<h:form prependId="false">
-				<p:dataTable id="table" value="#{unitatOrganicaController.lazyModel}" var="unitatOrganica"
-					 paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
-					 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
-					<p:column headerText="Id">
-						<h:outputText value="#{unitatOrganica.id}"/>
-					</p:column>
-					<p:column headerText="Codi DIR3">
-						<h:outputText value="#{unitatOrganica.codiDir3}" />
-					</p:column>
-					<p:column headerText="Nom">
-						<h:outputText value="#{unitatOrganica.nom}" />
-					</p:column>
-					<p:column headerText="Data creació">
-						<h:outputText value="#{unitatOrganica.dataCreacio}">
-							<f:convertDateTime pattern="dd-MM-yyyy"/>
-						</h:outputText>
-					</p:column>
-					<p:column headerText="Accions">
-						<p:commandButton value="Editar" action="#{unitatOrganicaController.loadCurent(unitatOrganica.id)}"
-										 update="form" />
-						<p:commandButton value="Eliminar" action="#{unitatOrganicaController.delete(unitatOrganica.id)}"
-										 update="table" />
-					</p:column>
-				</p:dataTable>
-			</h:form>
+        <h2>Llista d'Unitats Orgàniques</h2>
+        <h:form prependId="false">
+            <p:dataTable id="table" value="#{unitatOrganicaController.lazyModel}" var="unitatOrganica"
+                         paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{unitatOrganica.id}"/>
+                </p:column>
+                <p:column headerText="Codi DIR3">
+                    <h:outputText value="#{unitatOrganica.codiDir3}"/>
+                </p:column>
+                <p:column headerText="Nom">
+                    <h:outputText value="#{unitatOrganica.nom}"/>
+                </p:column>
+                <p:column headerText="Data creació">
+                    <h:outputText value="#{unitatOrganica.dataCreacio}">
+                        <f:convertDateTime pattern="dd-MM-yyyy"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Accions">
+                    <p:commandButton value="Editar" action="#{unitatOrganicaController.loadCurent(unitatOrganica.id)}"
+                                     update="form"/>
+                    <p:commandButton value="Eliminar" action="#{unitatOrganicaController.delete(unitatOrganica.id)}"
+                                     update="table"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
 
-	</ui:define>
+    </ui:define>
 </ui:composition>
 </html>

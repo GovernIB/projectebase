@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	  xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
 <!--
 Veure
@@ -9,20 +9,22 @@ Veure
 -->
 <ui:composition template="/template/template.xhtml">
 
-	<ui:define name="pageTitle">Error</ui:define>
+    <ui:define name="pageTitle">Error</ui:define>
 
-	<ui:define name="breadcrumb">
-		<p:menuitem value="Inicio" url="index.xhtml" />
-		<p:menuitem value="Error" disabled="true" />
-	</ui:define>
+    <ui:define name="breadcrumb">
+        <p:menuitem value="Inicio" url="index.xhtml"/>
+        <p:menuitem value="Error" disabled="true"/>
+    </ui:define>
 
-	<ui:define name="content">
+    <ui:define name="content">
 
-		<h1>Error</h1>
-		<h2>Message: <h:outputText value="#{pfExceptionHandler.message}" /></h2>
-		<pre>
-			<h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false" />
+        <h1>Error</h1>
+        <h2>Message:
+            <h:outputText value="#{pfExceptionHandler.message}"/>
+        </h2>
+        <pre>
+			<h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false"/>
 		</pre>
-	</ui:define>
+    </ui:define>
 </ui:composition>
 </html>

@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 /**
  * Bean per controlar la sessió d'usuari
+ *
  * @author areus
  */
 @SessionScoped
@@ -18,15 +19,15 @@ import java.io.Serializable;
 @SuppressWarnings("CdiInjectionPointsInspection")
 public class SessionController implements Serializable {
 
-	private static final Logger log = LoggerFactory.getLogger(SessionController.class);
+    private static final Logger log = LoggerFactory.getLogger(SessionController.class);
 
-	@Inject
-	private ExternalContext externalContext;
+    @Inject
+    private ExternalContext externalContext;
 
-	public String logout() {
-		log.info("logout");
+    public String logout() {
+        log.info("logout");
         externalContext.invalidateSession();
-		return "index?faces-redirect=true";
-	}
+        return "index?faces-redirect=true";
+    }
 
 }

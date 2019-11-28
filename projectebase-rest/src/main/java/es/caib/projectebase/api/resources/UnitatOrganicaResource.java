@@ -5,7 +5,12 @@ import es.caib.projectebase.service.UnitatOrganicaService;
 
 import javax.ejb.EJB;
 import javax.validation.Valid;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -13,6 +18,7 @@ import java.util.List;
 
 /**
  * Recurs REST per accedir a Unitats Organiques
+ *
  * @author areus
  */
 @Path("unitatorganica")
@@ -25,6 +31,7 @@ public class UnitatOrganicaResource {
 
     /**
      * Obté una Unitat orgàncica
+     *
      * @param id identificador
      * @return Resposta amb status 200 i la informació de la Unitat orgànica o
      * un resposta amb estatus 404 si l'identificador no existeix.
@@ -43,7 +50,7 @@ public class UnitatOrganicaResource {
     @POST
     public Response create(@Valid UnitatOrganica unitatOrganica) {
         unitatOrganicaService.create(unitatOrganica);
-        return Response.created(URI.create("unitatOrganica/"+ unitatOrganica.getId())).build();
+        return Response.created(URI.create("unitatOrganica/" + unitatOrganica.getId())).build();
     }
 
     @GET

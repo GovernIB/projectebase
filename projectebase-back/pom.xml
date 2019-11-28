@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>es.caib.projectebase</groupId>
-		<artifactId>projectebase</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>es.caib.projectebase</groupId>
+        <artifactId>projectebase</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
 
-	<artifactId>projectebase-back</artifactId>
-	<packaging>war</packaging>
-	<name>Projecte Base: Back</name>
+    <artifactId>projectebase-back</artifactId>
+    <packaging>war</packaging>
+    <name>Projecte Base: Back</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>es.caib.projectebase</groupId>
-			<artifactId>projectebase-jpa</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>es.caib.projectebase</groupId>
-			<artifactId>projectebase-ejb</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-jpa</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-ejb</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>javax</groupId>
@@ -32,13 +32,13 @@
             <scope>provided</scope>
         </dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-		<dependency>
+        <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
         </dependency>
@@ -47,14 +47,14 @@
             <artifactId>bootstrap</artifactId>
         </dependency>
 
-	</dependencies>
-	<build>
-		<finalName>${project.artifactId}-${project.version}</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+    </dependencies>
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

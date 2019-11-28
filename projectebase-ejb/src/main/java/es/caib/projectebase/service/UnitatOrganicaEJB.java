@@ -15,14 +15,15 @@ import java.util.List;
 /**
  * Servei EJB per gestionar {@link UnitatOrganica}.
  * Li aplicam l'interceptor @Logged, per tant, totes les cridades es loguejeran.
+ *
  * @author areus
  */
 @Logged
 @Stateless
 public class UnitatOrganicaEJB implements UnitatOrganicaService {
 
-	@PersistenceContext
-	EntityManager entityManager;
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Override
     public void bulkCreate(@NotNull List<UnitatOrganica> unitats) {

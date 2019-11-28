@@ -1,24 +1,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	  xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 <ui:component>
-	<div id="header">
-		<div class="titol">
-			<h1>Projecte Base Back</h1>
-		</div>
-		<div class="logo">
-			<h:graphicImage url="/img/logoCAIB.png"/>
-		</div>
-		<div class="disconnect">
-			<h:form>
-				<p:commandButton id="user_button"
-					action="#{sessionController.logout}"
-					ajax="false"
-					immediate="true"
-					value="Desconectar"/>
-			</h:form>
-		</div>
-	</div>
+    <div id="header">
+        <div class="titol">
+            <h1>Projecte Base Back</h1>
+        </div>
+        <div class="logo">
+            <h:graphicImage url="/img/logoCAIB.png"/>
+        </div>
+        <div class="disconnect">
+            <h:form>
+                <p:commandButton id="user_button"
+                                 action="#{sessionController.logout}"
+                                 ajax="false"
+                                 immediate="true"
+                                 value="Desconectar"/>
+            </h:form>
+        </div>
+    </div>
 </ui:component>
 </html>

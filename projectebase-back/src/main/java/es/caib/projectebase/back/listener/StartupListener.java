@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * Executat a l'inici del desplegament de l'aplicació web, així com en l'aturada.
+ *
  * @author areus
  */
 @WebListener
@@ -33,8 +34,8 @@ public class StartupListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        log.info("Aplicació PROJECTEBASE versión: "+ version.getVersion() +
-                " generada en "+ version.getBuildTime());
+        log.info("Aplicació PROJECTEBASE versión: " + version.getVersion() +
+                " generada en " + version.getBuildTime());
 
         log.info("Iniciant la creació d'unitats organiques");
         DecimalFormat format = new DecimalFormat("00000000");

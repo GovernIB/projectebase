@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 /**
  * Bean amb dades de la versió.
  * Les agafa del fitxer Vesion.properties del mateix package.
+ *
  * @author areus
  */
 @Named
