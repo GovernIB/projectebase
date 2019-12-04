@@ -35,12 +35,12 @@ public class StartupListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         log.info("Aplicació PROJECTEBASE versión: " + version.getVersion() +
-                " generada en " + version.getBuildTime());
+                " generada " + version.getBuildTime());
 
         log.info("Iniciant la creació d'unitats organiques");
         DecimalFormat format = new DecimalFormat("00000000");
-        List<UnitatOrganica> list = new ArrayList<>(1000);
-        for (int i = 0; i < 1000; i++) {
+        List<UnitatOrganica> list = new ArrayList<>(30);
+        for (int i = 0; i < 30; i++) {
             UnitatOrganica uo = new UnitatOrganica();
             String codiDir3 = "A" + format.format(i);
             uo.setCodiDir3(codiDir3);

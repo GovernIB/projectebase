@@ -11,7 +11,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>javax.ws.rs.core.Application</servlet-name>
-        <url-pattern>/resources/*</url-pattern>
+        <url-pattern>/services/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

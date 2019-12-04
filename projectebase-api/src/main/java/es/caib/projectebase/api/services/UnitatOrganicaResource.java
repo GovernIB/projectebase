@@ -1,4 +1,4 @@
-package es.caib.projectebase.api.resources;
+package es.caib.projectebase.api.services;
 
 import es.caib.projectebase.jpa.UnitatOrganica;
 import es.caib.projectebase.service.UnitatOrganicaService;

@@ -5,11 +5,8 @@
              version="2.2">
     <!-- TODO: l'estàndard hauria de definir un nom per el name del persistence unit? -->
     <persistence-unit name="projectebasePU" transaction-type="JTA">
-        <!--
-        TODO canviar per nomenclatura estàndar:
-         per exemple: jdbc/es.caib.projectebase.db
-        -->
-        <jta-data-source>java:/H2DS</jta-data-source>
+
+        <jta-data-source>java:/jdbc/projectebaseDS</jta-data-source>
 
         <class>es.caib.projectebase.jpa.UnitatOrganica</class>
 
