@@ -1,0 +1,8 @@
+
+1. Els camps marcats com a @Temporal(TemporalType.DATE) per modelar dates concretes (sense informació de dia i hora)
+falla la serialització a JSON.  Es tracta d'un bug de la implementació de JSON-B (Yasson) que du JBoss 7.2.0.
+A versió 7.2.1 ja està solucionat.
+    - Error a Yasson a versions prèvies a la 1.0.2 (JBoss 7.2.0 du la 1.0.1)
+        https://github.com/eclipse-ee4j/yasson/issues/68
+    - Issue de JBoss d'actualització a Yasson 1.0.2 aplicat a la versió 7.2.1
+        https://issues.jboss.org/browse/JBEAP-16025

@@ -51,9 +51,11 @@ public class UnitatOrganica implements Serializable {
     @Column(name = "NOM", nullable = false, length = 50)
     private String nom;
 
-    @NotNull
-    @PastOrPresent
-    @Temporal(TemporalType.DATE)
+    /*
+    TODO: Tendria més sentit un TemporalType.DATE per indicar un dia (sense hora concreta), veure issues.txt
+     */
+    @NotNull @PastOrPresent
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATACREACIO", nullable = false)
     private Date dataCreacio;
 

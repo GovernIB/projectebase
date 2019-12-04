@@ -5,7 +5,7 @@ Requisits compilació:
 
 Requisits execució:
  - JBoss 7.2 / Wildfly 13 o superior
- - Definir dins el servidor el Datasource amb nom "jdbc/projectebaseDS"
+ - Definir dins el servidor el Datasource amb nom "jdbc/projectebaseDS" cap a una BDD buida
  - Definir variable entorn JBOSS_HOME
 
 Compilació:
@@ -26,7 +26,8 @@ Exemple:
  Recompilar l'aplicació i redeployar sobre un JBoss ja arrancat:
    mvn install cargo:redeploy
 
-Provar aplicació de backoffice:
+Provar backoffice:
  - http://localhost:8080/projectebaseback/
 
-
+Provar api REST
+ - curl http://localhost:8080/projectebase/api/services/unitatorganica/all
