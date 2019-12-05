@@ -49,6 +49,11 @@
 
         <h2>Llista d'Unitats Orgàniques</h2>
         <h:form prependId="false">
+            <p:confirmDialog global="true">
+                <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+            </p:confirmDialog>
+
             <p:dataTable id="table" value="#{unitatOrganicaController.lazyModel}" var="unitatOrganica"
                          paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
@@ -70,7 +75,9 @@
                     <p:commandButton value="Editar" action="#{unitatOrganicaController.loadCurent(unitatOrganica.id)}"
                                      update="form"/>
                     <p:commandButton value="Eliminar" action="#{unitatOrganicaController.delete(unitatOrganica.id)}"
-                                     update="table,messages"/>
+                                     update="table,messages">
+                        <p:confirm message="Està segur de borrar el registre #{unitatOrganica.codiDir3}?" />
+                    </p:commandButton>
                 </p:column>
             </p:dataTable>
         </h:form>
