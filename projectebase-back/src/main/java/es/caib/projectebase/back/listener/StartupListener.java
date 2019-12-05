@@ -37,7 +37,8 @@ public class StartupListener implements ServletContextListener {
         log.info("Aplicació PROJECTEBASE versión: " + version.getVersion() +
                 " generada " + version.getBuildTime());
 
-        log.info("Iniciant la creació d'unitats organiques");
+        // TODO emplenat de dades de prova. Millor realitzar-ho a través d'un script SQL
+        log.info("Iniciant la creació d'unitats organiques de prova");
         DecimalFormat format = new DecimalFormat("00000000");
         List<UnitatOrganica> list = new ArrayList<>(30);
         for (int i = 0; i < 30; i++) {
