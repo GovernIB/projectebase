@@ -5,6 +5,14 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
         version="2.3">
 
+    <application>
+        <locale-config>
+            <default-locale>ca</default-locale>
+            <supported-locale>es</supported-locale>
+            <supported-locale>ca</supported-locale>
+        </locale-config>
+    </application>
+
     <!--
     Necessari per la gestió d'errors a Primefaces. Veure:
      https://primefaces.github.io/primefaces/7_0/#/core/errorhandling?id=error-handling

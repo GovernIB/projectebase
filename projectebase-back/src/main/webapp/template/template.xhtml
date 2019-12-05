@@ -4,7 +4,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="#{sessionController.language}"
+      lang="#{sessionController.language}"
+><!--
+segons https://www.w3.org/International/questions/qa-html-language-declarations
+s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
+-->
 <h:head>
     <title>
         <ui:insert name="pageTitle">Títol per defecte</ui:insert>
@@ -26,7 +32,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </h:head>
 <h:body>
-    <f:view>
+    <!--
+    Si no fixam el locale amb f:view sempre agafarà el valor que correspon al navegador que millor encaixa
+    amb els default/supported locales. Veure 2.5.2.1 de l'especificació JSF
+    -->
+    <f:view locale="#{sessionController.language}">
         <div id="container-fluid">
             <ui:include src="header.xhtml"/>
             <div id="breadcrumb">
