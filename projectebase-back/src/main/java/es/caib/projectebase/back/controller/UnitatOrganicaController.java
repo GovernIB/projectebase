@@ -9,7 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +28,9 @@ import java.util.Map;
 public class UnitatOrganicaController implements Serializable {
 
     private static final Logger log = LoggerFactory.getLogger(UnitatOrganicaController.class);
+
+    @Inject
+    private FacesContext context;
 
     @EJB
     UnitatOrganicaService unitatOrganicaService;
@@ -67,8 +73,10 @@ public class UnitatOrganicaController implements Serializable {
         log.info("saveOrUpdate");
         if (current.getId() != null) {
             unitatOrganicaService.update(current);
+            context.addMessage(null, new FacesMessage("Actualització correcte"));
         } else {
             unitatOrganicaService.create(current);
+            context.addMessage(null, new FacesMessage("Creació correcte"));
         }
         current = new UnitatOrganica();
     }
@@ -76,6 +84,7 @@ public class UnitatOrganicaController implements Serializable {
     public void delete(Long id) {
         log.info("delete");
         unitatOrganicaService.deleteById(id);
+        context.addMessage(null, new FacesMessage("Registre borrat"));
     }
 
 

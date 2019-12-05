@@ -42,7 +42,7 @@
 
             <br/>
             <p:commandButton id="saveOrUpdateButton" action="#{unitatOrganicaController.saveOrUpdate}"
-                             update="table,form"
+                             update="table,form,messages"
                              value="Guardar"/>
             <br/>
         </h:form>
@@ -70,7 +70,7 @@
                     <p:commandButton value="Editar" action="#{unitatOrganicaController.loadCurent(unitatOrganica.id)}"
                                      update="form"/>
                     <p:commandButton value="Eliminar" action="#{unitatOrganicaController.delete(unitatOrganica.id)}"
-                                     update="table"/>
+                                     update="table,messages"/>
                 </p:column>
             </p:dataTable>
         </h:form>
