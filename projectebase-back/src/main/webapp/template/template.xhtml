@@ -10,8 +10,8 @@
         <ui:insert name="pageTitle">Títol per defecte</ui:insert>
     </title>
     <link rel="stylesheet" type="text/css"
-          href="${facesContext.externalContext.requestContextPath}/css/bootstrap.min.css"/>
-    <script src="${facesContext.externalContext.requestContextPath}/js/bootstrap.min.js"
+          href="#{request.contextPath}/css/bootstrap.min.css"/>
+    <script src="#{request.contextPath}/js/bootstrap.min.js"
             type="text/javascript"></script>
     <style type="text/css">
 		#header, footer {
@@ -45,8 +45,8 @@
                 <div id="menu" class="col-3">
                     <h:form>
                         <p:menu>
-                            <p:menuitem value="Inici" url="index.xhtml"/>
-                            <p:menuitem value="Unitats Organiques" url="unitatOrganica.xhtml"/>
+                            <p:menuitem value="Inici" outcome="/index" />
+                            <p:menuitem value="Unitats Organiques" outcome="/unitatOrganica" />
                         </p:menu>
                     </h:form>
                 </div>

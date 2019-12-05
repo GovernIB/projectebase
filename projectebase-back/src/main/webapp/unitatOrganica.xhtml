@@ -9,7 +9,7 @@
     <ui:define name="pageTitle">Gestió d'unitats orgàniques</ui:define>
 
     <ui:define name="breadcrumb">
-        <p:menuitem value="Inicio" outcome="index"/>
+        <p:menuitem value="Inicio" outcome="/index"/>
         <p:menuitem value="Unitat Orgànica" disabled="true"/>
     </ui:define>
 
@@ -63,7 +63,7 @@
                 </p:column>
                 <p:column headerText="Data creació">
                     <h:outputText value="#{unitatOrganica.dataCreacio}">
-                        <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        <f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="Accions">
