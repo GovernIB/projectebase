@@ -30,4 +30,9 @@ Provar backoffice:
  - http://localhost:8080/projectebaseback/
 
 Provar api REST
- - curl http://localhost:8080/projectebase/api/services/unitatorganica/all
+ Llistar les unitats orgàniques:
+   - curl http://localhost:8080/projectebase/api/services/unitatorganica/all
+ Obtenir la unitat orànica amb ideficador 1:
+   - curl http://localhost:8080/projectebase/api/services/unitatorganica/1
+ Crear una nova unitat orgànica:
+   - curl -i -X POST -H "Content-Type: application/json" -d "{\"codiDir3\":\"A99999999\",\"dataCreacio\":\"2019-12-01\",\"nom\":\"Unitat XXX\"}" http://localhost:8080/projectebase/api/services/unitatorganica

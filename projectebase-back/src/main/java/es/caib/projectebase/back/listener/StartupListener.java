@@ -12,8 +12,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,7 +45,7 @@ public class StartupListener implements ServletContextListener {
             String codiDir3 = "A" + format.format(i);
             uo.setCodiDir3(codiDir3);
             uo.setNom("Unitat " + i);
-            uo.setDataCreacio(new Date());
+            uo.setDataCreacio(LocalDate.now());
             list.add(uo);
         }
         unitatOrganicaService.bulkCreate(list);

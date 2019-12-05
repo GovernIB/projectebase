@@ -1,5 +1,6 @@
 package es.caib.projectebase.jpa;
 
+import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,15 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -51,13 +50,14 @@ public class UnitatOrganica implements Serializable {
     @Column(name = "NOM", nullable = false, length = 50)
     private String nom;
 
-    /*
-    TODO: Tendria més sentit un TemporalType.DATE per indicar un dia (sense hora concreta), veure issues.txt
+    /**
+     * Dia de creació. Ha de ser el dia d'avui o un dia passat (no pot ser futor).
+     * En la serialitzacio/deserialització JSON s'empra el format dd-mm-aaaa
      */
     @NotNull @PastOrPresent
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATACREACIO", nullable = false)
-    private Date dataCreacio;
+    @JsonbDateFormat("dd-MM-yyyy")
+    private LocalDate dataCreacio;
 
     public Long getId() {
         return id;
@@ -83,11 +83,11 @@ public class UnitatOrganica implements Serializable {
         this.nom = nom;
     }
 
-    public Date getDataCreacio() {
+    public LocalDate getDataCreacio() {
         return dataCreacio;
     }
 
-    public void setDataCreacio(Date dataCreacio) {
+    public void setDataCreacio(LocalDate dataCreacio) {
         this.dataCreacio = dataCreacio;
     }
 
