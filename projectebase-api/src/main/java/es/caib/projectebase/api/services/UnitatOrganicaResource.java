@@ -2,6 +2,11 @@ package es.caib.projectebase.api.services;
 
 import es.caib.projectebase.jpa.UnitatOrganica;
 import es.caib.projectebase.service.UnitatOrganicaService;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import javax.ejb.EJB;
 import javax.validation.Valid;
@@ -38,7 +43,13 @@ public class UnitatOrganicaResource {
      */
     @GET
     @Path("{id}")
-    public Response get(@PathParam("id") Long id) {
+    @Operation(summary = "Obté una unitat orgànica")
+    @APIResponse(description = "La unitat orgànica",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(implementation = UnitatOrganica.class)))
+    @APIResponse(responseCode = "404", description = "Unitat orgànica no trobada")
+    public Response get(@Parameter(description = "L'identificador de la unitat", required = true)
+                            @PathParam("id") Long id) {
         UnitatOrganica unitatOrganica = unitatOrganicaService.findById(id);
         if (unitatOrganica != null) {
             return Response.ok(unitatOrganica).build();
@@ -48,6 +59,8 @@ public class UnitatOrganicaResource {
     }
 
     @POST
+    @Operation(summary = "Crea una nova unitat orgànica")
+    @APIResponse(responseCode="201", description = "L'enllaç a la unitat orgànica creada")
     public Response create(@Valid UnitatOrganica unitatOrganica) {
         unitatOrganicaService.create(unitatOrganica);
         return Response.created(URI.create("unitatOrganica/" + unitatOrganica.getId())).build();

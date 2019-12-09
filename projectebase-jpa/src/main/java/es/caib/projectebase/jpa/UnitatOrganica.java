@@ -12,6 +12,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -35,24 +36,34 @@ public class UnitatOrganica implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Camp identificador generat per una seqüència.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uo-sequence")
     @Column(name = "ID", nullable = false, length = 19)
     private Long id;
 
-    @NotEmpty
-    @Size(min = 9, max = 9)
+    /**
+     * Codi DIR3 que identifica la únicat orgànica. És únic, i per tant una clau natural.
+     * Ha de seguir el patró d'una lletra seguida de 8 dígits.
+     */
+    @NotNull
+    @Pattern(regexp="[A-Z][0-9]{8}")
     @Column(name = "CODIDIR3", nullable = false, length = 9)
     private String codiDir3;
 
+    /**
+     * Nom de la únitat orgànica. Ha de ser una cadena no buida, de màxim 50 caràcters.
+     */
     @NotEmpty
     @Size(max = 50)
     @Column(name = "NOM", nullable = false, length = 50)
     private String nom;
 
     /**
-     * Dia de creació. Ha de ser el dia d'avui o un dia passat (no pot ser futor).
-     * En la serialitzacio/deserialització JSON s'empra el format dd-mm-aaaa
+     * Dia de creació. Ha de ser el dia d'avui o un dia passat (no pot ser futur).
+     * En la serialitzacio/deserialització JSON s'empra el format dd-mm-aaaa.
      */
     @NotNull @PastOrPresent
     @Column(name = "DATACREACIO", nullable = false)

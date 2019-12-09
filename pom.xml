@@ -136,6 +136,25 @@
                     <version>3.8.2</version>
                 </plugin>
 
+                <!-- Altres plugins generals -->
+                <plugin>
+                    <groupId>com.googlecode.maven-download-plugin</groupId>
+                    <artifactId>download-maven-plugin</artifactId>
+                    <version>1.4.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.code.maven-replacer-plugin</groupId>
+                    <artifactId>replacer</artifactId>
+                    <version>1.5.3</version>
+                </plugin>
+
+                <!-- Pluguin per generar informació OpenAPI de apis REST -->
+                <plugin>
+                    <groupId>org.apache.geronimo</groupId>
+                    <artifactId>geronimo-openapi-maven-plugin</artifactId>
+                    <version>1.0.11</version>
+                </plugin>
+
                 <!-- Plugin per generar la propietat ${buildNumber} amb la versió/revisió de GIT o SVN o CVS... -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -162,37 +181,12 @@
                     </configuration>
                 </plugin>
 
-                <!-- Plugin per permetre desplegar l'aplicació a un sevidor d'aplicacions local
-                ús: https://codehaus-cargo.github.io/cargo/Maven2+plugin.html
-                configuració: https://codehaus-cargo.github.io/cargo/Maven2+Plugin+Reference+Guide.html
-                 -->
+                <!-- Plugin per permetre desplegar l'aplicació a un sevidor d'aplicacions local -->
                 <plugin>
                     <groupId>org.codehaus.cargo</groupId>
                     <artifactId>cargo-maven2-plugin</artifactId>
                     <version>1.7.7</version>
                     <configuration>
-                        <container>
-                            <!-- El plugin cargo empra la configuració wildfly13x pel JBoss EAP 7.2 -->
-                            <containerId>wildfly13x</containerId>
-                            <type>installed</type>
-                            <home>${env.JBOSS_HOME}</home>
-                        </container>
-                        <configuration>
-                            <!-- Empra la configuració existent del servidor d'aplicacions. -->
-                            <type>existing</type>
-                            <home>${env.JBOSS_HOME}/standalone</home>
-                            <!--
-                            Si volem arrancar el jboss amb cargo:start i amb una configuració copiada de l'original,
-                            fixar el <type> a standalone i llevar el <home>
-                            <type>standalone</type>
-                            -->
-                            <properties>
-                                <cargo.hostname>localhost</cargo.hostname>
-                                <cargo.port.offset>0</cargo.port.offset>
-                                <cargo.remote.username>admin</cargo.remote.username>
-                                <cargo.remote.password>admin</cargo.remote.password>
-                            </properties>
-                        </configuration>
                         <!-- Desactivar el plugin a nivell general. Només estarà activat als mòduls que
                          volem que es despleguin, com l'EAR -->
                         <skip>true</skip>
