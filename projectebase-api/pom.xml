@@ -45,7 +45,6 @@
         <dependency>
             <groupId>org.eclipse.microprofile.openapi</groupId>
             <artifactId>microprofile-openapi-api</artifactId>
-            <version>1.0.1</version>
             <scope>provided</scope>
         </dependency>
 
