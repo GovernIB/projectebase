@@ -29,10 +29,10 @@
         <maven.test.skip>true</maven.test.skip>
 
         <!-- Versions de les llibreries emprades dins els mòduls -->
-        <javaee-api.version>8.0</javaee-api.version>
+        <javaee-api.version>8.0.1</javaee-api.version>
         <mp-openapi.version>1.0.1</mp-openapi.version>
         <jaxb-api.version>2.2.12</jaxb-api.version>
-        <slf4j.version>1.7.26</slf4j.version>
+        <slf4j.version>1.7.29</slf4j.version>
         <primefaces.version>7.0</primefaces.version>
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
     </properties>
@@ -216,8 +216,9 @@
                     <allowAnyUpdates>false</allowAnyUpdates>
                     <allowSnapshots>false</allowSnapshots>
                     <allowMajorUpdates>false</allowMajorUpdates>
-                    <allowIncrementalUpdates>false</allowIncrementalUpdates>
-                    <allowMinorUpdates>true</allowMinorUpdates>
+                    <allowMinorUpdates>false</allowMinorUpdates>
+                    <allowIncrementalUpdates>true</allowIncrementalUpdates>
+                    <rulesUri>file:///${session.executionRootDirectory}/version-ruleset.xml</rulesUri>
                 </configuration>
             </plugin>
             <!--
@@ -227,7 +228,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M2</version>
+                <version>3.0.0-M3</version>
                 <configuration>
                     <rules>
                         <!-- Fixam mínim Maven 3.6 i Java 11 -->
