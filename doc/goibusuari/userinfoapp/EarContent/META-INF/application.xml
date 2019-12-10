@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd" id="Application_ID" version="7">
+  <display-name>goibusuari</display-name>
+  <module>
+    <web>
+      <web-uri>userinfo.war</web-uri>
+      <context-root>goibusuari</context-root>
+    </web>
+  </module>
+  <module>
+    <ejb>userinfologic.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>rest.war</web-uri>
+      <context-root>goibwstest</context-root>
+    </web>
+  </module>
+</application>

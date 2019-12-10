@@ -8,3 +8,6 @@ target/
 # Fitxers de projecte de IntelliJ IDEA
 *.iml
 .idea/
+/doc/goibusuari/rest/build
+/doc/goibusuari/userinfo/build
+/doc/goibusuari/userinfologic/build
