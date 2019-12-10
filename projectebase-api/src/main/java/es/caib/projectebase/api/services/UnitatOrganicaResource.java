@@ -7,6 +7,7 @@ import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import javax.ejb.EJB;
@@ -69,7 +70,12 @@ public class UnitatOrganicaResource {
     @POST
     @Operation(summary = "Crea una nova unitat orgànica")
     @APIResponse(responseCode = "201", description = "L'enllaç a la unitat orgànica creada")
-    public Response create(@Valid UnitatOrganica unitatOrganica) {
+    public Response create(
+            @RequestBody(
+                    description = "Nova unitat orgànica",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UnitatOrganica.class)))
+            @Valid UnitatOrganica unitatOrganica) {
         unitatOrganicaService.create(unitatOrganica);
         return Response.created(URI.create("unitatOrganica/" + unitatOrganica.getId())).build();
     }
