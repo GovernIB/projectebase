@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>es.caib.projectebase</groupId>
     <artifactId>projectebase</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
     <name>Projecte Base</name>
     <description>Projecte Base Java EE 8 amb Primefaces</description>
 
@@ -21,11 +22,7 @@
         <!-- Propietats que afecten els plugins -->
         <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <!--
-        No fer els tests per defecte.
-        https://maven.apache.org/surefire/maven-failsafe-plugin/examples/skipping-tests.html
-        -->
+        <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
 
         <!-- Versions de les llibreries emprades dins els mòduls -->
@@ -82,7 +79,6 @@
                 <artifactId>bootstrap</artifactId>
                 <version>${primefaces.theme.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -142,7 +138,6 @@
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.8.2</version>
                 </plugin>
-
                 <!-- Altres plugins generals -->
                 <plugin>
                     <groupId>com.googlecode.maven-download-plugin</groupId>
@@ -154,14 +149,12 @@
                     <artifactId>replacer</artifactId>
                     <version>1.5.3</version>
                 </plugin>
-
                 <!-- Pluguin per generar informació OpenAPI de apis REST -->
                 <plugin>
                     <groupId>org.apache.geronimo</groupId>
                     <artifactId>geronimo-openapi-maven-plugin</artifactId>
                     <version>1.0.11</version>
                 </plugin>
-
                 <!-- Plugin per generar la propietat ${buildNumber} amb la versió/revisió de GIT o SVN o CVS... -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -187,19 +180,16 @@
                         <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
                     </configuration>
                 </plugin>
-
                 <!-- Plugin per permetre desplegar l'aplicació a un sevidor d'aplicacions local -->
                 <plugin>
                     <groupId>org.codehaus.cargo</groupId>
                     <artifactId>cargo-maven2-plugin</artifactId>
                     <version>1.7.7</version>
                     <configuration>
-                        <!-- Desactivar el plugin a nivell general. Només estarà activat als mòduls que
-                         volem que es despleguin, com l'EAR -->
+                        <!-- Només estarà activat als mòduls que volem que es despleguin, com l'EAR -->
                         <skip>true</skip>
                     </configuration>
                 </plugin>
-
             </plugins>
         </pluginManagement>
 
@@ -253,7 +243,6 @@
                 </executions>
             </plugin>
         </plugins>
-
     </build>
 
     <repositories>

@@ -10,19 +10,28 @@ import javax.ws.rs.core.Application;
 
 /**
  * Configuració de l'aplicació JAX-RS. Es pot fer mitjançant aquesta subclasse de {@link Application} o
- * mitjançant la configuració a web.xml.
+ * mitjançant la configuració a web.xml. Fer-ho amb una subclasse permet posar-hi anotacions de OpenApi.
+ * Aquí fixam un únic servidor, amb el contextpath. Hi podríem posar diverses URL on es pot accedir al servei.
+ *
+ * @author areus
  */
 @ApplicationPath("/services")
-@Server(url="http://localhost:8080/projectebase/api")
+@Server(url="/projectebase/api")
 public class ProjectebaseApplication extends Application {
 
-    private static final Logger log = LoggerFactory.getLogger(ProjectebaseApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ProjectebaseApplication.class);
 
+    /**
+     * Les aplicacions JAX-RS necessiten un constructor buid.
+     */
     public ProjectebaseApplication() {
     }
 
+    /**
+     * Podem introduir tasques a realitzar per la inicialització de l'API REST.
+     */
     @PostConstruct
     private void init() {
-        log.info("Iniciant API REST");
+        LOG.info("Iniciant API REST");
     }
 }

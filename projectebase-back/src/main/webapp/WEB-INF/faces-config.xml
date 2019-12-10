@@ -6,6 +6,9 @@
         version="2.3">
 
     <application>
+        <!--
+        Configuració de l'idioma per defecte, i llista d'idiomes soportats.
+        -->
         <locale-config>
             <default-locale>ca</default-locale>
             <supported-locale>es</supported-locale>

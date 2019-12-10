@@ -17,7 +17,7 @@ import java.util.Arrays;
 @Interceptor
 public class LoggerInterceptor {
 
-    private static final Logger log = LoggerFactory.getLogger(LoggerInterceptor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LoggerInterceptor.class);
 
     /**
      * Intercepta un mètode de negoci i fa un log a l'inici i al final.
@@ -31,10 +31,10 @@ public class LoggerInterceptor {
         final String simpleName = context.getTarget().getClass().getSimpleName();
         final String methodName = simpleName + "." + context.getMethod().getName();
         final String callMessage = methodName + Arrays.toString(context.getParameters());
-        log.info(callMessage);
+        LOG.info(callMessage);
         Object result = context.proceed();
         final String returnMessage = methodName + " return(" + result + ")";
-        log.info(returnMessage);
+        LOG.info(returnMessage);
         return result;
     }
 }

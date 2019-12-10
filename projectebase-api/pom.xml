@@ -15,14 +15,13 @@
     <description>API REST de Projecte Base</description>
 
     <dependencies>
-
+        <!-- Altres mòduls del projecte -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-jpa</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-ejb</artifactId>
@@ -42,12 +41,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Anotacions de documentació de openapi -->
         <dependency>
             <groupId>org.eclipse.microprofile.openapi</groupId>
             <artifactId>microprofile-openapi-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -57,7 +56,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
             </plugin>
-
             <!-- Genera el descriptor openapi.json de forma estàtica per posar-lo a l'arrel del WAR -->
             <plugin>
                 <groupId>org.apache.geronimo</groupId>

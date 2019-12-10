@@ -3,6 +3,7 @@ package es.caib.projectebase.api.services;
 import es.caib.projectebase.jpa.UnitatOrganica;
 import es.caib.projectebase.service.UnitatOrganicaService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
@@ -22,7 +23,7 @@ import java.net.URI;
 import java.util.List;
 
 /**
- * Recurs REST per accedir a Unitats Organiques
+ * Recurs REST per accedir a Unitats Organiques.
  *
  * @author areus
  */
@@ -35,8 +36,7 @@ public class UnitatOrganicaResource {
     private UnitatOrganicaService unitatOrganicaService;
 
     /**
-     * Obté una Unitat orgàncica
-     *
+     * Obté una Unitat orgàncica.
      * @param id identificador
      * @return Resposta amb status 200 i la informació de la Unitat orgànica o
      * un resposta amb estatus 404 si l'identificador no existeix.
@@ -44,7 +44,8 @@ public class UnitatOrganicaResource {
     @GET
     @Path("{id}")
     @Operation(summary = "Obté una unitat orgànica")
-    @APIResponse(description = "La unitat orgànica",
+    @APIResponse(responseCode = "200",
+            description = "La unitat orgànica",
             content = @Content(mediaType = "application/json",
             schema = @Schema(implementation = UnitatOrganica.class)))
     @APIResponse(responseCode = "404", description = "Unitat orgànica no trobada")
@@ -58,6 +59,11 @@ public class UnitatOrganicaResource {
         }
     }
 
+    /**
+     * Crea una nova unitat orgànica.
+     * @param unitatOrganica la nova unitat orgànica a crear.
+     * @return Un codi 201 amb la localització de la unitat orgància creada.
+     */
     @POST
     @Operation(summary = "Crea una nova unitat orgànica")
     @APIResponse(responseCode="201", description = "L'enllaç a la unitat orgànica creada")
@@ -66,8 +72,18 @@ public class UnitatOrganicaResource {
         return Response.created(URI.create("unitatOrganica/" + unitatOrganica.getId())).build();
     }
 
+    /**
+     * Retorna totes les unitats orgàniques.
+     * @return Un codi 200 amb totes les unitats orgàniques.
+     */
     @GET
     @Path("all")
+    @Operation(summary = "Retorna una llista de totes les unitats orgàniques")
+    @APIResponse(
+            responseCode = "200",
+            description = "Llista d'unitats orgàniques",
+            content = @Content(mediaType = "application/json",
+                    schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganica.class)))
     public Response getAll() {
         List<UnitatOrganica> all = unitatOrganicaService.findAll();
         return Response.ok().entity(all).build();

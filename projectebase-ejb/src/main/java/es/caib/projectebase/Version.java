@@ -6,7 +6,7 @@ import javax.inject.Named;
 import java.util.ResourceBundle;
 
 /**
- * Bean amb dades de la versió.
+ * Bean amb dades de la versió. Serà el mateix per tothom per tant el definim dins l'scope d'aplicació.
  * Les agafa del fitxer Vesion.properties del mateix package.
  *
  * @author areus
@@ -20,12 +20,9 @@ public class Version {
     private String scmRevision;
     private String jdkVersion;
 
-    /*
-     * Els Beans sempre han de definir un constructor buid o amb @Inject
+    /**
+     * Inicialitza el bean amb els valors de Version.properties
      */
-    protected Version() {
-    }
-
     @PostConstruct
     protected void init() {
         /* Agafa fitxer Version.properties amb el mateix package */
@@ -36,18 +33,22 @@ public class Version {
         jdkVersion = bundle.getString("jdk.version");
     }
 
+    /** Obté la versió del projecte */
     public String getVersion() {
         return version;
     }
 
+    /** Obté el moment de compilació del projecte */
     public String getBuildTime() {
         return buildTime;
     }
 
+    /** Obté la revisió del sistema de control de versions */
     public String getScmRevision() {
         return scmRevision;
     }
 
+    /** Obté el JDK amb el que es va compilar el projecte */
     public String getJdkVersion() {
         return jdkVersion;
     }

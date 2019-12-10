@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Servei EJB per gestionar {@link UnitatOrganica}.
- * Li aplicam l'interceptor @Logged, per tant, totes les cridades es loguejeran.
+ * Li aplicam l'interceptor {@link Logged}, per tant, totes les cridades es loguejeran.
  *
  * @author areus
  */
@@ -23,7 +23,7 @@ import java.util.List;
 public class UnitatOrganicaEJB implements UnitatOrganicaService {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Override
     public void bulkCreate(@NotNull List<UnitatOrganica> unitats) {

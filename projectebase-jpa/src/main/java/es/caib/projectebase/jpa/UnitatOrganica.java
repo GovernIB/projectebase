@@ -19,11 +19,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * Representació d'una unitat orgànica.
- * Requisits de les classes persistents:
- * L'etiqueta Entity, constructor buid. Ni la classe ni els seus mètodes o camps poden ser final. Si les hem de passar
- * com a paràmetres detached ha d'implementar serializable (i per tant també és recomanable el serialVersionUID).
- * Els camps persistents han de ser private protected o package-private i només es poden accedir mitjançant els mètodes
+ * Representació d'una unitat orgànica. Sempre convé definir-les serializable, per si hi mantenim referències dins
+ * coses serializables. A nivell de classe definim la seqüència que emprarem, i les claus úniques.
  *
  * @author areus
  */
@@ -103,11 +100,11 @@ public class UnitatOrganica implements Serializable {
     }
 
 	/*
-      La implementació de equals i hashCode s'hauria de fer sempre que es pugui amb una clau natural, o en cas que
-      no n'hi hagi amb l'id, però comparant-ho només si no és null, i retornant un valor fix al hashCode per evitar
-      que canvii després de cridar persist.
-      Veure: https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html
-      Apartat: 2.5.7. Implementing equals() and hashCode()
+    La implementació de equals i hashCode s'hauria de fer sempre que es pugui amb una clau natural, o en cas que
+    no n'hi hagi amb l'id, però comparant-ho només si no és null, i retornant un valor fix al hashCode per evitar
+    que canvii després de cridar persist.
+    Veure: https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html
+    Apartat: 2.5.7. Implementing equals() and hashCode()
     */
 
     @Override
@@ -124,6 +121,10 @@ public class UnitatOrganica implements Serializable {
     public int hashCode() {
         return Objects.hash(codiDir3);
     }
+
+    /*
+    La implementació de toString, amb les dades bàsiques permet fer logs més bons de seguir.
+     */
 
     @Override
     public String toString() {

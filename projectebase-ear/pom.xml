@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -11,8 +12,10 @@
     <artifactId>projectebase-ear</artifactId>
     <packaging>ear</packaging>
     <name>Projecte Base: EAR</name>
+    <description>Arxiu d'aplicació EAR de Projete Base</description>
 
     <properties>
+        <!-- Format del timestamp -->
         <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
     </properties>
 
@@ -56,14 +59,12 @@
     <build>
         <!-- El nom del EAR sempre és el nom del projecte d'acord amb un 4.2 de l'Estàndard CAIB -->
         <finalName>${project.parent.artifactId}</finalName>
-
         <plugins>
             <!-- Defineix la propietat buildNumber  -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
@@ -99,8 +100,8 @@
                     </modules>
                 </configuration>
             </plugin>
-
             <!--
+                Per arrencar/desplegar automàticament l'aplicació.
                 Documentació ús: https://codehaus-cargo.github.io/cargo/Maven2+plugin.html
                 configuració: https://codehaus-cargo.github.io/cargo/Maven2+Plugin+Reference+Guide.html
             -->
@@ -122,7 +123,6 @@
                         <!--
                         Si volem arrancar el jboss amb cargo:start i amb una configuració copiada de l'original,
                         fixar el <type> a standalone i llevar el <home>
-                        <type>standalone</type>
                         -->
                         <properties>
                             <cargo.hostname>localhost</cargo.hostname>
@@ -142,4 +142,19 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!-- Garantir que es fixa la variable d'entorn JBOSS_HOME -->
+        <profile>
+            <id>fix JBOSS_HOME</id>
+            <activation>
+                <property>
+                    <name>!env.JBOSS_HOME</name>
+                </property>
+            </activation>
+            <properties>
+                <env.JBOSS_HOME>HA DE FIXAR LA VARIABLE D'ENTORN JBOSS_HOME</env.JBOSS_HOME>
+            </properties>
+        </profile>
+    </profiles>
 </project>

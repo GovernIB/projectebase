@@ -10,11 +10,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Necessari per poder emprat LocalDate amb el component datePicker
+ * Necessari per poder emprar {@link LocalDate} dins JSF i amb el component {@link DatePicker} de Primefaces.
+ * Emprarà el patró definit al component si hi és, i sinó el patró <code>dd-MM-yyyy</code>.
+ *
+ * @author areus
  */
 @FacesConverter(forClass = LocalDate.class)
 public class LocalDateConverter implements Converter {
 
+    /** Obté un LocalDate a partir d'un String */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(extractPattern(component));
@@ -25,6 +29,7 @@ public class LocalDateConverter implements Converter {
         }
     }
 
+    /** Obté un String a partir d'un LocalDate */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value == null || (value instanceof String && ((String) value).isEmpty())) {
@@ -41,6 +46,6 @@ public class LocalDateConverter implements Converter {
             return datePicker.getPattern();
         }
 
-        return null;
+        return "dd-MM-yyyy";
     }
 }

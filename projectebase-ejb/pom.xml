@@ -12,17 +12,19 @@
     <artifactId>projectebase-ejb</artifactId>
     <packaging>jar</packaging>
     <name>Projecte Base: EJB</name>
+    <description>Mòdul EJB de Projecte Base</description>
 
     <properties>
         <!--
-        Si volem emprar el maven.build.timestamp al filtres aquest no funciona correctament.
-        S'ha de redefinir la propietat. Veure: https://issues.apache.org/jira/browse/MASSEMBLY-603
+        Si volem emprar el maven.build.timestamp al filtres s'ha de "redefinir" la propietat.
+        Veure: https://issues.apache.org/jira/browse/MASSEMBLY-603
          -->
         <project.buildtime>${maven.build.timestamp}</project.buildtime>
         <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
     </properties>
 
     <dependencies>
+        <!-- Altres mòduls del projecte -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-jpa</artifactId>

@@ -15,7 +15,7 @@ import java.util.Locale;
 
 /**
  * Proporcina les opcions d'idioma. Atès que són les mateixes sempre per tots els usuaris
- * ho ficam com un bean d'aplicació comú
+ * ho ficam com un bean a l'scope d'aplicació perquè només es carregui una vegada.
  *
  * @author areus
  */
@@ -23,20 +23,24 @@ import java.util.Locale;
 @ApplicationScoped
 public class LanguageController {
 
-    private static final Logger log = LoggerFactory.getLogger(LanguageController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LanguageController.class);
 
     @Inject
     private FacesContext context;
 
     private List<String> languages;
 
+    /** Obté la llista d'idiomes disponibles */
     public List<String> getLanguages() {
         return languages;
     }
 
+    /**
+     * Dins l'inialització és quan carregam la llista d'idiomes.
+     */
     @PostConstruct
     private void init() {
-        log.info("Inicialitzat idiomes disponibles");
+        LOG.info("Inicialitzat idiomes disponibles");
         languages = new ArrayList<>();
         Iterator<Locale> it = context.getApplication().getSupportedLocales();
         while (it.hasNext()) {

@@ -24,7 +24,7 @@ import java.util.List;
 @WebListener
 public class StartupListener implements ServletContextListener {
 
-    private Logger log = LoggerFactory.getLogger(StartupListener.class);
+    private Logger LOG = LoggerFactory.getLogger(StartupListener.class);
 
     @Inject
     private Version version;
@@ -32,13 +32,17 @@ public class StartupListener implements ServletContextListener {
     @EJB
     private UnitatOrganicaService unitatOrganicaService;
 
+    /**
+     * Executat quan s'inicialitza el contexte web. Treu un missatge amb la versió als logs.
+     * @param sce Informació de l'esdeveniment de context.
+     */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        log.info("Aplicació PROJECTEBASE versión: " + version.getVersion() +
+        LOG.info("Aplicació PROJECTEBASE versión: " + version.getVersion() +
                 " generada " + version.getBuildTime());
 
         // TODO emplenat de dades de prova. Millor realitzar-ho a través d'un script SQL
-        log.info("Iniciant la creació d'unitats organiques de prova");
+        LOG.info("Iniciant la creació d'unitats organiques de prova");
         DecimalFormat format = new DecimalFormat("00000000");
         List<UnitatOrganica> list = new ArrayList<>(30);
         for (int i = 0; i < 30; i++) {
@@ -52,8 +56,12 @@ public class StartupListener implements ServletContextListener {
         unitatOrganicaService.bulkCreate(list);
     }
 
+    /**
+     * Executat quan es destrueix el contexte web.
+     * @param sce Informació de l'esdeveniment de context.
+     */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        log.info("Aturant aplicació PROJECTEBASE");
+        LOG.info("Aturant aplicació PROJECTEBASE");
     }
 }
