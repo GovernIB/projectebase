@@ -8,3 +8,5 @@ target/
 # Fitxers de projecte de IntelliJ IDEA
 *.iml
 .idea/
+# Fitxers de projecte de Netbeans
+nb-configuration.xml
