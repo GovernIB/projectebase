@@ -41,12 +41,16 @@ public class UnitatOrganicaController implements Serializable {
     private UnitatOrganica current;
     private LazyDataModel<UnitatOrganica> lazyModel;
 
-    /** Obté la unitat orgànica que s'està editant */
+    /**
+     * Obté la unitat orgànica que s'està editant
+     */
     public UnitatOrganica getCurrent() {
         return current;
     }
 
-    /** Obté el model de dades per la taula d'unitats orgàniques */
+    /**
+     * Obté el model de dades per la taula d'unitats orgàniques
+     */
     public LazyDataModel<UnitatOrganica> getLazyModel() {
         return lazyModel;
     }
@@ -73,6 +77,7 @@ public class UnitatOrganicaController implements Serializable {
 
     /**
      * Carrega la unitat orgànica per editar.
+     *
      * @param id identificador de l'unitat orgànica
      */
     public void loadCurent(Long id) {
@@ -97,6 +102,7 @@ public class UnitatOrganicaController implements Serializable {
 
     /**
      * Esborra l'unitat orgància amb l'identificador indicat.
+     *
      * @param id identificador de l'unitat orgànica
      */
     public void delete(Long id) {

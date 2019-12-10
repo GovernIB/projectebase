@@ -34,12 +34,16 @@ public class SessionController implements Serializable {
 
     private String language;
 
-    /** Obté l'idioma de l'usuari */
+    /**
+     * Obté l'idioma de l'usuari
+     */
     public String getLanguage() {
         return language;
     }
 
-    /** Fixa l'idioma de l'usuari */
+    /**
+     * Fixa l'idioma de l'usuari
+     */
     public void setLanguage(String language) {
         this.language = language;
     }
@@ -58,6 +62,7 @@ public class SessionController implements Serializable {
 
     /**
      * Invalida la sessió d'usuari i redirecciona a la pàgina principal.
+     *
      * @return navegació cap a la pàgina principal
      */
     public String logout() {

@@ -46,7 +46,7 @@ public class UnitatOrganica implements Serializable {
      * Ha de seguir el patró d'una lletra seguida de 8 dígits.
      */
     @NotNull
-    @Pattern(regexp="[A-Z][0-9]{8}")
+    @Pattern(regexp = "[A-Z][0-9]{8}")
     @Column(name = "CODIDIR3", nullable = false, length = 9)
     private String codiDir3;
 
@@ -62,7 +62,8 @@ public class UnitatOrganica implements Serializable {
      * Dia de creació. Ha de ser el dia d'avui o un dia passat (no pot ser futur).
      * En la serialitzacio/deserialització JSON s'empra el format dd-mm-aaaa.
      */
-    @NotNull @PastOrPresent
+    @NotNull
+    @PastOrPresent
     @Column(name = "DATACREACIO", nullable = false)
     @JsonbDateFormat("dd-MM-yyyy")
     private LocalDate dataCreacio;

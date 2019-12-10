@@ -33,22 +33,30 @@ public class Version {
         jdkVersion = bundle.getString("jdk.version");
     }
 
-    /** Obté la versió del projecte */
+    /**
+     * Obté la versió del projecte
+     */
     public String getVersion() {
         return version;
     }
 
-    /** Obté el moment de compilació del projecte */
+    /**
+     * Obté el moment de compilació del projecte
+     */
     public String getBuildTime() {
         return buildTime;
     }
 
-    /** Obté la revisió del sistema de control de versions */
+    /**
+     * Obté la revisió del sistema de control de versions
+     */
     public String getScmRevision() {
         return scmRevision;
     }
 
-    /** Obté el JDK amb el que es va compilar el projecte */
+    /**
+     * Obté el JDK amb el que es va compilar el projecte
+     */
     public String getJdkVersion() {
         return jdkVersion;
     }

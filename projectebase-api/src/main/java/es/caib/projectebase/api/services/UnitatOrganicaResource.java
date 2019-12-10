@@ -37,6 +37,7 @@ public class UnitatOrganicaResource {
 
     /**
      * Obté una Unitat orgàncica.
+     *
      * @param id identificador
      * @return Resposta amb status 200 i la informació de la Unitat orgànica o
      * un resposta amb estatus 404 si l'identificador no existeix.
@@ -47,10 +48,10 @@ public class UnitatOrganicaResource {
     @APIResponse(responseCode = "200",
             description = "La unitat orgànica",
             content = @Content(mediaType = "application/json",
-            schema = @Schema(implementation = UnitatOrganica.class)))
+                    schema = @Schema(implementation = UnitatOrganica.class)))
     @APIResponse(responseCode = "404", description = "Unitat orgànica no trobada")
     public Response get(@Parameter(description = "L'identificador de la unitat", required = true)
-                            @PathParam("id") Long id) {
+                        @PathParam("id") Long id) {
         UnitatOrganica unitatOrganica = unitatOrganicaService.findById(id);
         if (unitatOrganica != null) {
             return Response.ok(unitatOrganica).build();
@@ -61,12 +62,13 @@ public class UnitatOrganicaResource {
 
     /**
      * Crea una nova unitat orgànica.
+     *
      * @param unitatOrganica la nova unitat orgànica a crear.
      * @return Un codi 201 amb la localització de la unitat orgància creada.
      */
     @POST
     @Operation(summary = "Crea una nova unitat orgànica")
-    @APIResponse(responseCode="201", description = "L'enllaç a la unitat orgànica creada")
+    @APIResponse(responseCode = "201", description = "L'enllaç a la unitat orgànica creada")
     public Response create(@Valid UnitatOrganica unitatOrganica) {
         unitatOrganicaService.create(unitatOrganica);
         return Response.created(URI.create("unitatOrganica/" + unitatOrganica.getId())).build();
@@ -74,6 +76,7 @@ public class UnitatOrganicaResource {
 
     /**
      * Retorna totes les unitats orgàniques.
+     *
      * @return Un codi 200 amb totes les unitats orgàniques.
      */
     @GET

@@ -30,7 +30,9 @@ public class LanguageController {
 
     private List<String> languages;
 
-    /** Obté la llista d'idiomes disponibles */
+    /**
+     * Obté la llista d'idiomes disponibles
+     */
     public List<String> getLanguages() {
         return languages;
     }

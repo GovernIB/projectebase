@@ -18,7 +18,9 @@ import java.time.format.DateTimeFormatter;
 @FacesConverter(forClass = LocalDate.class)
 public class LocalDateConverter implements Converter {
 
-    /** Obté un LocalDate a partir d'un String */
+    /**
+     * Obté un LocalDate a partir d'un String
+     */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(extractPattern(component));
@@ -29,7 +31,9 @@ public class LocalDateConverter implements Converter {
         }
     }
 
-    /** Obté un String a partir d'un LocalDate */
+    /**
+     * Obté un String a partir d'un LocalDate
+     */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value == null || (value instanceof String && ((String) value).isEmpty())) {

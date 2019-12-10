@@ -34,6 +34,7 @@ public class StartupListener implements ServletContextListener {
 
     /**
      * Executat quan s'inicialitza el contexte web. Treu un missatge amb la versió als logs.
+     *
      * @param sce Informació de l'esdeveniment de context.
      */
     @Override
@@ -58,6 +59,7 @@ public class StartupListener implements ServletContextListener {
 
     /**
      * Executat quan es destrueix el contexte web.
+     *
      * @param sce Informació de l'esdeveniment de context.
      */
     @Override

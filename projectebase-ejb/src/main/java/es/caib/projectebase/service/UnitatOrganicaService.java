@@ -18,12 +18,14 @@ public interface UnitatOrganicaService {
 
     /**
      * Crea una llista d'unitats orgàniques
+     *
      * @param unitats llista d'unitats orgàniques
      */
     void bulkCreate(@NotNull List<UnitatOrganica> unitats);
 
     /**
      * Crea una unitat orgànica.
+     *
      * @param unitatOrganica unitat orgànica
      * @return la unitat orgànica creada.
      */
@@ -31,6 +33,7 @@ public interface UnitatOrganicaService {
 
     /**
      * Actualitza una unitat orgànica.
+     *
      * @param unitatOrganica unitat orgànica
      * @return la unitat orgànica actualitzada
      */
@@ -38,12 +41,14 @@ public interface UnitatOrganicaService {
 
     /**
      * Esborra la unitat orgànica amb l'identificador indicat.
+     *
      * @param id Identificador de la unitat orgànica.
      */
     void deleteById(Long id);
 
     /**
      * Obté la unitat orgànica amb l'identificador indicat.
+     *
      * @param id identificador de la unitat orgànica.
      * @return la unitat orgànica o <code>null</code> si no n'hi ha cap amb l'id indicat.
      */
@@ -51,13 +56,15 @@ public interface UnitatOrganicaService {
 
     /**
      * Obté una llista de totes les unitats orgàniques.
+     *
      * @return llista d'unitats orgàniques.
      */
     List<UnitatOrganica> findAll();
 
     /**
      * Obté una llista de les unitats orgàniques per paginacions.
-     * @param first el número d'ordre de la primera unitat orgànica a tornar. La primera és 0.
+     *
+     * @param first    el número d'ordre de la primera unitat orgànica a tornar. La primera és 0.
      * @param pageSize el nombre màxim d'unitats orgàniques a tornar.
      * @return llista d'unitats orgàniques.
      */
@@ -65,6 +72,7 @@ public interface UnitatOrganicaService {
 
     /**
      * Retorna el nombre total d'unitats orgàniques.
+     *
      * @return nombre d'unitats orgàniques.
      */
     long countAll();

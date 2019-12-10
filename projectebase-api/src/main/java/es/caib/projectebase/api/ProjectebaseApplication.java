@@ -16,7 +16,7 @@ import javax.ws.rs.core.Application;
  * @author areus
  */
 @ApplicationPath("/services")
-@Server(url="/projectebase/api")
+@Server(url = "/projectebase/api")
 public class ProjectebaseApplication extends Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProjectebaseApplication.class);
