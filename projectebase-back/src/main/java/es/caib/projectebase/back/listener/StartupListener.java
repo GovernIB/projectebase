@@ -24,7 +24,7 @@ import java.util.List;
 @WebListener
 public class StartupListener implements ServletContextListener {
 
-    private Logger LOG = LoggerFactory.getLogger(StartupListener.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StartupListener.class);
 
     @Inject
     private Version version;
