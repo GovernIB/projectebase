@@ -19,7 +19,6 @@ import java.io.Serializable;
  */
 @Named("sessionController")
 @SessionScoped
-@SuppressWarnings("CdiInjectionPointsInspection")
 public class SessionController implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(SessionController.class);

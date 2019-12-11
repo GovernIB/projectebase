@@ -39,8 +39,8 @@ public class StartupListener implements ServletContextListener {
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        LOG.info("Aplicació PROJECTEBASE versión: " + version.getVersion() +
-                " generada " + version.getBuildTime());
+        LOG.info("WebApp ${project_name}. Version: " + version.getVersion() +
+                " " + version.getBuildTime());
 
         // TODO emplenat de dades de prova. Millor realitzar-ho a través d'un script SQL
         LOG.info("Iniciant la creació d'unitats organiques de prova");
@@ -64,6 +64,6 @@ public class StartupListener implements ServletContextListener {
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        LOG.info("Aturant aplicació PROJECTEBASE");
+        LOG.info("Aturant aplicació ${project_name}");
     }
 }

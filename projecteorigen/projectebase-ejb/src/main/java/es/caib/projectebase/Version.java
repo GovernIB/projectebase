@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
  * Les agafa del fitxer Vesion.properties del mateix package.
  *
  * @author areus
+ * @author anadal
  */
 @Named
 @ApplicationScoped
@@ -19,6 +20,7 @@ public class Version {
     private String buildTime;
     private String scmRevision;
     private String jdkVersion;
+    
 
     /**
      * Inicialitza el bean amb els valors de Version.properties
@@ -60,4 +62,14 @@ public class Version {
     public String getJdkVersion() {
         return jdkVersion;
     }
+
+    /**
+     * Obté el nom del projecte
+     * @return
+     */
+    public String getProjectName() {
+      // No modificar el nom !!!! 
+      return "${projectname}";
+    }
+    
 }
