@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--
+Pàgina per edició d'unitats orgàniques.
+-->
+<ui:composition template="/template/template.xhtml">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <!-- Al principi de la vista, es fixarà el paràmetre rebut dins
+            l'id, i amb l'acció load el carregarem. -->
+            <f:viewParam name="id" value="#{editUnitatOrganica.current.id}" />
+            <f:viewAction action="#{editUnitatOrganica.load}" />
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="pageTitle">Editar unitat orgànica</ui:define>
+
+    <ui:define name="breadcrumb">
+        <p:menuitem value="Inicio" outcome="/index"/>
+        <p:menuitem value="Unitats Orgàniques" outcome="/listUnitatOrganica" />
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h1>Editar unitat orgànica</h1>
+        <h:form id="form">
+            <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
+
+                <p:outputLabel for="id" value="Id" />
+                <p:inputText id="id" value="#{editUnitatOrganica.current.id}" readonly="true" />
+                <!-- els camps readonly no es processen, per tant pot perdre l'id, per això el ficam a un hidden -->
+                <h:inputHidden value="#{editUnitatOrganica.current.id}" />
+
+                <p:outputLabel for="codiDir3" value="Codi DIR3"/>
+                <p:inputText id="codiDir3" value="#{editUnitatOrganica.current.codiDir3}"/>
+                <h:message for="codiDir3" errorStyle="color: red"/>
+
+                <p:outputLabel for="nom" value="Nom"/>
+                <p:inputText id="nom" value="#{editUnitatOrganica.current.nom}"/>
+                <h:message for="nom" errorStyle="color: red"/>
+
+                <p:outputLabel for="dataCreacio" value="Data creació"/>
+                <p:datePicker id="dataCreacio" value="#{editUnitatOrganica.current.dataCreacio}"
+                              pattern="dd-MM-yyyy"/>
+                <h:message for="dataCreacio" errorStyle="color: red"/>
+
+                <p:commandButton id="saveOrUpdateButton" action="#{editUnitatOrganica.saveOrUpdate}"
+                                 process="@form" update="@form" value="Guardar"/>
+
+                <p:linkButton value="Tornar" outcome="/listUnitatOrganica" />
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>
