@@ -19,34 +19,26 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Controlador de Unitats Organiques. El definim a l'scope de view perquè a nivell de request es reconstruiria
- * per cada petició AJAX. Amb view es manté mentre no es canvii de pàgina.
+ * Controlador pels llistats d'Unitats Organiques. El definim a l'scope de view perquè a nivell de request es
+ * reconstruiria per cada petició AJAX, com ara amb la paginació. Amb view es manté mentre no es canvii de vista.
  *
  * @author areus
  */
-@Named("unitatOrganicaController")
+@Named("listUnitatOrganica")
 @ViewScoped
-public class UnitatOrganicaController implements Serializable {
+public class ListUnitatOrganicaController implements Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UnitatOrganicaController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ListUnitatOrganicaController.class);
 
     @Inject
     private FacesContext context;
 
     @EJB
-    UnitatOrganicaService unitatOrganicaService;
+    private UnitatOrganicaService unitatOrganicaService;
 
     // PROPIETATS + GETTERS/SETTERS
 
-    private UnitatOrganica current;
     private LazyDataModel<UnitatOrganica> lazyModel;
-
-    /**
-     * Obté la unitat orgànica que s'està editant
-     */
-    public UnitatOrganica getCurrent() {
-        return current;
-    }
 
     /**
      * Obté el model de dades per la taula d'unitats orgàniques
@@ -61,7 +53,6 @@ public class UnitatOrganicaController implements Serializable {
     @PostConstruct
     public void init() {
         LOG.info("init");
-        current = new UnitatOrganica();
         lazyModel = new LazyDataModel<>() {
             @Override
             public List<UnitatOrganica> load(int first, int pageSize, String sortField, SortOrder sortOrder,
@@ -76,32 +67,7 @@ public class UnitatOrganicaController implements Serializable {
     // ACCIONS
 
     /**
-     * Carrega la unitat orgànica per editar.
-     *
-     * @param id identificador de l'unitat orgànica
-     */
-    public void loadCurent(Long id) {
-        LOG.info("loadCurrent");
-        current = unitatOrganicaService.findById(id);
-    }
-
-    /**
-     * Crea o actualitza la unitat orgànica que s'està editant.
-     */
-    public void saveOrUpdate() {
-        LOG.info("saveOrUpdate");
-        if (current.getId() != null) {
-            unitatOrganicaService.update(current);
-            context.addMessage(null, new FacesMessage("Actualització correcte"));
-        } else {
-            unitatOrganicaService.create(current);
-            context.addMessage(null, new FacesMessage("Creació correcte"));
-        }
-        current = new UnitatOrganica();
-    }
-
-    /**
-     * Esborra l'unitat orgància amb l'identificador indicat.
+     * Esborra l'unitat orgànica amb l'identificador indicat.
      *
      * @param id identificador de l'unitat orgànica
      */
