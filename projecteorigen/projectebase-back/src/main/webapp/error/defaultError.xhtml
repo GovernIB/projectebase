@@ -11,17 +11,12 @@ Veure
 
     <ui:define name="pageTitle">Error</ui:define>
 
-    <ui:define name="breadcrumb">
-        <p:menuitem value="Inicio" outcome="/index"/>
-        <p:menuitem value="Error" disabled="true"/>
-    </ui:define>
-
     <ui:define name="content">
 
-        <h1>Error</h1>
-        <h2>Message:
-            <h:outputText value="#{pfExceptionHandler.message}"/>
-        </h2>
+        <span class="h5 card-title border-bottom verde">Error</span>
+
+        <!-- Cerca -->
+        <p class="card-text mb-5 lh15"><h:outputText value="#{pfExceptionHandler.message}"/></p>
         <pre>
 			<h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false"/>
 		</pre>

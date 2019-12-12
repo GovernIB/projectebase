@@ -6,7 +6,7 @@
 body {
 	padding-top: 4.5rem;
 	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
-	color: #333; 
+	color: #333;
 	background-color: #eaeaea;
 }
 a{
@@ -16,7 +16,7 @@ a:hover{
 	color: #000;
 	text-decoration: none;
 }
-.p-3carpeta{
+.p-3aplicacio{
 	padding: 3.5rem 1rem!important;
 }
 .verde{
@@ -27,7 +27,7 @@ a:hover{
 	background-color: #fff !important;
 }
 .colorVerd{
-    background-color: #265d3c;
+	background-color: #265d3c;
 	margin-left: 5px;
 }
 .colorVerd:hover:enabled{
@@ -36,14 +36,14 @@ a:hover{
 .desactivat{
 	cursor: not-allowed !important;
 }
-.btn-primary.carpeta-btn {
+.btn-primary.aplicacio-btn {
 	background-color: #4dba79;
 	border-color: #4dba79;
 	border: none !important;
 }
-.btn-primary.carpeta-btn:hover,
-.btn-primary.carpeta-btn:focus,
-.btn-primary.carpeta-btn:active{
+.btn-primary.aplicacio-btn:hover,
+.btn-primary.aplicacio-btn:focus,
+.btn-primary.aplicacio-btn:active{
 	background-color: #000 !important;
 	border: none #000 !important;
 	outline: none !important;
@@ -54,6 +54,14 @@ a:hover{
 }
 .clickable-row{
 	cursor: pointer;
+}
+.col-center{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+.label-projecte{
+	padding-top: 6px;
 }
 /* FI Estils generals */
 
@@ -80,140 +88,140 @@ a:hover{
 
 /* APLICA QUAN WIDTH MENOR DE 992px */
 @media only screen and (max-width: 992px) {
-.botoCurt{
-	display: none;
-}
-.mobil{
-	float: left !important;
-}
-.container {
-	max-width: initial !important;
-}
+	.botoCurt{
+		display: none;
+	}
+	.mobil{
+		float: left !important;
+	}
+	.container {
+		max-width: initial !important;
+	}
 }
 /* FI*/
 
 /* APLICA QUAN WIDTH MENOR DE 768px */
 @media only screen and (max-width : 767px) {
-.colorVerd{
-	background-color: #4DBA79 !important;
-	margin-left: 0px !important;
-}
-.colorVerd:hover{
-	background-color: #4DBA79 !important;
-}
-.mobil li a:hover{
-	background-color: #4DBA79 !important;
-}
-.peuResponsive{
-	display: list-item !important;
-	list-style: none !important;
-}
-.elementPeuResponsive{
-	max-width: 100% !important;
-	text-align: center !important;
-	justify-content: center !important;
-}
-.llevarMobil{
-	display: none;
-}
-.botoCurt{
-	display: inline;
-}
-.navbar-nav.mobil {
-	width: 100%;
-}
-.dropdown-menu {
-	float: none;
-	padding: 0;
-}
-a.nav-link.mobil:hover {
-	color: #000 !important;
-}
-a.dropdown-item.mobil:hover {
-	color: #4dba79 !important;
-	background-color: #FFF !important;
-}
-.p-3carpeta{
-	padding-bottom: 1rem !important;
-}
-.subtitolMay {
-	font-size: 0.8rem !important;
-}
-.marg0 {
-	border: 0px !important;
-}
+	.colorVerd{
+		background-color: #4DBA79 !important;
+		margin-left: 0px !important;
+	}
+	.colorVerd:hover{
+		background-color: #4DBA79 !important;
+	}
+	.mobil li a:hover{
+		background-color: #4DBA79 !important;
+	}
+	.peuResponsive{
+		display: list-item !important;
+		list-style: none !important;
+	}
+	.elementPeuResponsive{
+		max-width: 100% !important;
+		text-align: center !important;
+		justify-content: center !important;
+	}
+	.llevarMobil{
+		display: none;
+	}
+	.botoCurt{
+		display: inline;
+	}
+	.navbar-nav.mobil {
+		width: 100%;
+	}
+	.dropdown-menu {
+		float: none;
+		padding: 0;
+	}
+	a.nav-link.mobil:hover {
+		color: #000 !important;
+	}
+	a.dropdown-item.mobil:hover {
+		color: #4dba79 !important;
+		background-color: #FFF !important;
+	}
+	.p-3aplicacio{
+		padding-bottom: 1rem !important;
+	}
+	.subtitolMay {
+		font-size: 0.8rem !important;
+	}
+	.marg0 {
+		border: 0px !important;
+	}
 }
 /* FI */
 
 /* APLICA QUAN WIDTH MENOR DE 480px */
 @media only screen and (min-width : 401px) and (max-width : 480px) {
-body {
-	padding-top: 4rem !important;
-}
-.logoGovern {
-	margin-right: 10px !important;
-	margin-left: 10px !important;
-}
-.imatgeGovern{
-	width: 45px !important;
-}
-.navbar-toggler {
-	padding: 0.25rem !important;
-	font-size: 1rem !important;
-}
-.desactivarMobil{
-	display: none !important;
-}
-.peuResponsive{
-	display: list-item !important;
-}
-.breadcrumb{
-	padding: 1rem 1rem 0.5rem 1rem !important;
-	border-radius: 0 !important;
-}
-.containerPeu{
-	margin-left: 0 !important;
-	margin-right: 0 !important;
-}
+	body {
+		padding-top: 4rem !important;
+	}
+	.logoGovern {
+		margin-right: 10px !important;
+		margin-left: 10px !important;
+	}
+	.imatgeGovern{
+		width: 45px !important;
+	}
+	.navbar-toggler {
+		padding: 0.25rem !important;
+		font-size: 1rem !important;
+	}
+	.desactivarMobil{
+		display: none !important;
+	}
+	.peuResponsive{
+		display: list-item !important;
+	}
+	.breadcrumb{
+		padding: 1rem 1rem 0.5rem 1rem !important;
+		border-radius: 0 !important;
+	}
+	.containerPeu{
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
 }
 /* FI */
 
 /* APLICA QUAN WIDTH MENOR DE 400px */
 @media only screen and (min-width : 200px) and (max-width : 400px) {
-body {
-	padding-top: 4rem !important;
-}
-.logoGovern {
-	margin-right: 5px !important;
-	margin-left: 5px !important;
-}
-.imatgeGovern{
-	width: 40px !important;
-}
-.navbar-brand {
-	font-size: 1rem !important; 
-}
-.dadesSuport{
-	padding-left: 30px !important;
-	line-height: 1.5 !important;
-}
-.dadesSuport li{
-	list-style: circle !important;
-}
-.navbar-nav.mobil {
-	padding-left: 20px !important;
-}
-.navbar-toggler {
-	padding: 0.25rem !important;
-	font-size: 1rem !important;
-}
-.desactivarMobil{
-	display: none !important;
-}
-.breadcrumb{
-	padding: .35rem 0.6rem !important;
-	border-radius: 0 !important;
-}
+	body {
+		padding-top: 4rem !important;
+	}
+	.logoGovern {
+		margin-right: 5px !important;
+		margin-left: 5px !important;
+	}
+	.imatgeGovern{
+		width: 40px !important;
+	}
+	.navbar-brand {
+		font-size: 1rem !important;
+	}
+	.dadesSuport{
+		padding-left: 30px !important;
+		line-height: 1.5 !important;
+	}
+	.dadesSuport li{
+		list-style: circle !important;
+	}
+	.navbar-nav.mobil {
+		padding-left: 20px !important;
+	}
+	.navbar-toggler {
+		padding: 0.25rem !important;
+		font-size: 1rem !important;
+	}
+	.desactivarMobil{
+		display: none !important;
+	}
+	.breadcrumb{
+		padding: .35rem 0.6rem !important;
+		border-radius: 0 !important;
+	}
 }
 /* FI */
 
@@ -351,13 +359,13 @@ a.dropdown-item.mobil:hover{
 .dadesSuport li{
 	list-style: circle;
 }
-.dades a { 
-	color: #4dba79; 
+.dades a {
+	color: #4dba79;
 }
 .dades a:hover,
-.dades a:focus { 
-	color: #000; 
-	background-color: transparent; 
+.dades a:focus {
+	color: #000;
+	background-color: transparent;
 	text-decoration: none;
 }
 /* FI Suport */
@@ -366,9 +374,9 @@ a.dropdown-item.mobil:hover{
 .opcionsPeu li::before {
 	content: "\0000a0\0000a0|\0000a0\0000a0";
 }
-.opcionsPeu li:first-child::before { 
-	content: ""; 
-	}
+.opcionsPeu li:first-child::before {
+	content: "";
+}
 a.linkPeu:hover,
 a.linkPeu:focus,
 a.linkPeu:active {

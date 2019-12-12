@@ -11,7 +11,19 @@ Peu de pàgina
 
             <!-- Esquerra -->
             <div class="col-4 pt-2 elementPeuResponsive">
-                <strong class="text-uppercase font-weight-bold h6">© GOVERN DE LES ILLES BALEARS</strong>
+                <strong class="text-uppercase font-weight-bold h6">#{version.projectName} &#169; GOVERN DE LES ILLES BALEARS</strong>
+                <br/>
+                Versió:
+                <h:outputText value="#{version.version}"/>
+                <br/>
+                Build :
+                <h:outputText value="#{version.buildTime}"/>
+                <br/>
+                JDK:
+                <h:outputText value="#{version.jdkVersion}"/>
+                <br/>
+                Revisió:
+                <h:outputText value="#{version.scmRevision}"/>
             </div>
 
             <!-- Centro -->
@@ -20,7 +32,6 @@ Peu de pàgina
                     <li><a href="" class="text-dark linkPeu">Mapa web</a></li>
                     <li><a href="" class="text-dark linkPeu" target="_blank">LOPD</a></li>
                     <li><a href="avisLegal" class="text-dark linkPeu" target="_blank">Avís legal</a></li>
-
                 </ul>
             </div>
 
@@ -120,21 +131,5 @@ Peu de pàgina
             </div>
         </div>
     </footer>
-    <!--
-    <footer class="container-fluid text-center">
-        #{version.projectname} &#169; Govern de les Illes Balears<br/>
-        Versió:
-        <h:outputText value="#{version.version}"/>
-        <br/>
-        Build :
-        <h:outputText value="#{version.buildTime}"/>
-        <br/>
-        JDK:
-        <h:outputText value="#{version.jdkVersion}"/>
-        <br/>
-        Revisió:
-        <h:outputText value="#{version.scmRevision}"/>
-    </footer>
-    -->
 </ui:component>
 </html>
