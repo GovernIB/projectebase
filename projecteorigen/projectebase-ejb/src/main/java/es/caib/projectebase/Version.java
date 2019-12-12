@@ -20,7 +20,7 @@ public class Version {
     private String buildTime;
     private String scmRevision;
     private String jdkVersion;
-    
+    private String projectName;
 
     /**
      * Inicialitza el bean amb els valors de Version.properties
@@ -33,6 +33,7 @@ public class Version {
         buildTime = bundle.getString("project.buildtime");
         scmRevision = bundle.getString("scm.revision");
         jdkVersion = bundle.getString("jdk.version");
+        projectName = bundle.getString("project.name");
     }
 
     /**
@@ -65,11 +66,8 @@ public class Version {
 
     /**
      * Obté el nom del projecte
-     * @return
      */
     public String getProjectName() {
-      // No modificar el nom !!!! 
-      return "${projectname}";
+      return projectName;
     }
-    
 }
