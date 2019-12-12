@@ -11,7 +11,7 @@
 
     <artifactId>projectebase-back</artifactId>
     <packaging>war</packaging>
-    <name>ProjecteBase: Back</name>
+    <name>ProjecteBase - Back</name>
     <description>Backoffice de ProjecteBase, amb JSF+Primefaces</description>
 
     <dependencies>

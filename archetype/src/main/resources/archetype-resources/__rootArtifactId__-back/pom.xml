@@ -9,7 +9,7 @@
 
     <artifactId>${artifactId}</artifactId>
     <packaging>war</packaging>
-    <name>${projectname}: Back</name>
+    <name>${projectname} - Back</name>
     <description>Backoffice de ${projectname}, amb JSF+Primefaces</description>
 
     <dependencies>

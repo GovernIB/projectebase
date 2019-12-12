@@ -9,7 +9,7 @@
 
     <artifactId>${artifactId}</artifactId>
     <packaging>ear</packaging>
-    <name>${projectname}: EAR</name>
+    <name>${projectname} - EAR</name>
     <description>Arxiu d'aplicació EAR de ${projectname}</description>
 
     <properties>

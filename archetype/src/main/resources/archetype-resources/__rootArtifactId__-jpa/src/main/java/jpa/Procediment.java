@@ -27,9 +27,9 @@ import java.util.Objects;
  * @author areus
  */
 @Entity
-@SequenceGenerator(name = "procediment-sequence", sequenceName = "PBS_PROCEDIMENT_SEQ", allocationSize = 1)
-@Table(name = "PBS_PROCEDIMENT",
-        uniqueConstraints = {@UniqueConstraint(name = "PBS_PROCEDIMENT_CODISIR_UK", columnNames = "CODISIR")}
+@SequenceGenerator(name = "procediment-sequence", sequenceName = "${prefixuppercase}_PROCEDIMENT_SEQ", allocationSize = 1)
+@Table(name = "${prefixuppercase}_PROCEDIMENT",
+        uniqueConstraints = {@UniqueConstraint(name = "${prefixuppercase}_PROCEDIMENT_CODISIR_UK", columnNames = "CODISIR")}
 )
 public class Procediment implements Serializable {
 
@@ -60,7 +60,7 @@ public class Procediment implements Serializable {
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UNITATORGANICAID", nullable = false,
-            foreignKey = @ForeignKey(name = "PBS_PROCEDIMENT_UNITATORGANICA_FK"))
+            foreignKey = @ForeignKey(name = "${prefixuppercase}_PROCEDIMENT_UNITATORGANICA_FK"))
     private UnitatOrganica unitatOrganica;
 
     public Long getId() {

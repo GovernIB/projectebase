@@ -8,6 +8,7 @@
   <packaging>maven-archetype</packaging>
 
   <name>projectebase-archetype</name>
+  <description>Plantilla de ProjecteBase per Java EE 8, JBOSS 7.2 i JDK 11</description>
 
   <build>
     <extensions>
@@ -28,6 +29,5 @@
     </pluginManagement>
   </build>
 
-  <description>Plantilla de ProjecteBase per Java EE 8, JBOSS 7.2 i JDK 11</description>
 
 </project>
