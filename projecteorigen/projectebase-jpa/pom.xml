@@ -6,13 +6,13 @@
     <parent>
         <artifactId>projectebase</artifactId>
         <groupId>es.caib.projectebase</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>projectebase-jpa</artifactId>
     <packaging>jar</packaging>
-    <name>Projecte Base: JPA</name>
-    <description>Model de dades JPA de Projecte Base</description>
+    <name>${projectname}: JPA</name>
+    <description>Model de dades JPA de ${projectname}</description>
 
     <dependencies>
         <dependency>

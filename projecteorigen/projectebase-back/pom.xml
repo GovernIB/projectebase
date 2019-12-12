@@ -6,13 +6,13 @@
     <parent>
         <groupId>es.caib.projectebase</groupId>
         <artifactId>projectebase</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>projectebase-back</artifactId>
     <packaging>war</packaging>
-    <name>Projecte Base: Back</name>
-    <description>Backoffice de Projecte Base, amb JSF+Primefaces</description>
+    <name>${projectname}: Back</name>
+    <description>Backoffice de ${projectname}, amb JSF+Primefaces</description>
 
     <dependencies>
         <!-- Altres mòduls del projecte -->

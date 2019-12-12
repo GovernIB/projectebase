@@ -6,13 +6,13 @@
     <parent>
         <groupId>es.caib.projectebase</groupId>
         <artifactId>projectebase</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>projectebase-ear</artifactId>
     <packaging>ear</packaging>
-    <name>Projecte Base: EAR</name>
-    <description>Arxiu d'aplicació EAR de Projete Base</description>
+    <name>${projectname}: EAR</name>
+    <description>Arxiu d'aplicació EAR de ${projectname}</description>
 
     <properties>
         <!-- Format del timestamp -->
