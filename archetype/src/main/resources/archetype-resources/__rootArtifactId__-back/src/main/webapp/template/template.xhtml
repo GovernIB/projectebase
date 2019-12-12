@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -14,24 +13,17 @@ Segons https://www.w3.org/International/questions/qa-html-language-declarations
 s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
 -->
 <h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>
         <ui:insert name="pageTitle">Títol per defecte</ui:insert>
     </title>
-    <link rel="stylesheet" type="text/css"
-          href="#{request.contextPath}/css/bootstrap.min.css"/>
-    <script src="#{request.contextPath}/js/bootstrap.min.js"
-            type="text/javascript"></script>
-    <style type="text/css">
-		#header, footer {
-			background-color: #C30045;
-			color: #ffffff;
-		}
-		footer {
-			padding-top: 20px;
-		}
-
-    </style>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="#{request.contextPath}/img/GOIB_fav.png" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/open-iconic-bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/styles.css" />
+    <script src="#{request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
 </h:head>
 <h:body>
     <!--
@@ -39,43 +31,144 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
     amb els default/supported locales. Veure 2.5.2.1 de l'especificació JSF
     -->
     <f:view locale="#{sessionController.language}">
-
         <!-- Espai perquè les pàgines que emprin el template defineixin els seus viewParam i viewAction -->
         <ui:insert name="metadata" />
 
-        <div id="container-fluid">
-            <ui:include src="header.xhtml"/>
-            <div id="breadcrumb">
-                <h:form>
-                    <p:breadCrumb>
-                        <ui:insert name="breadcrumb">
-                            <div style="background-color: navy; width: 100%; color: white">
-                                <h:outputText value="No se ha definido miga de pan"/>
+        <header>
+            <!-- Header -->
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark bg-aplicacio">
+
+                <button class="navbar-toggler botoMobil" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Logo i nom aplicació -->
+                <div class="navbar-brand menuGovern">
+                    <div class="logoGovern">
+                        <a class="mr-auto" href=""><img src="#{request.contextPath}/img/STT_logo2.png" class="imatgeGovern" alt="Govern Balear"/></a>
+                    </div>
+
+                    <div>
+                        <h1 class="titol">Projecte Base</h1>
+                    </div>
+                    <div>
+                        <div>
+                            <strong class="subtitol llevarMobil">Sub: </strong>
+                            <span class="subtitolMay">Subtítol</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- FI Logo i nom aplicació -->
+
+                <!-- Botons -->
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                    <ul class="navbar-nav mobil">
+
+                        <li class="nav-item colorVerd">
+                            <a class="nav-link mobil" title="Informació d'accessibilitat" href="/accesibilidad"><img src="#{request.contextPath}/img/ico_accessibilitat.svg" class="iconoCapsalera" title="Informació d'accessibilitat" alt="Informació d'accessibilitat"/><p class="mb-0 float-right botoCurt">Accessibilitat</p></a>
+                        </li>
+
+                        <li class="nav-item dropdown colorVerd">
+                            <a class="nav-link dropdown mobil" title="Idioma" href="#" id="idiomas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-caret-bottom float-right flechaSubmenu" title="" aria-hidden="true"></span><p class="mb-0 float-right botoCurt">Idioma</p><span class="oi oi-globe" title="Idioma" aria-hidden="true"></span></a>
+                            <div class="dropdown-menu dropdown-menu-right marg0 minW0" aria-labelledby="idiomas">
+                                <a class="dropdown-item mobil" href="lang=es" hreflang="es" xml:lang="es" lang="es">Castellà</a>
+                                <a class="dropdown-item mobil desactivat" href="lang=ca" hreflang="ca" xml:lang="ca" lang="ca">Català</a>
                             </div>
-                        </ui:insert>
-                    </p:breadCrumb>
-                </h:form>
+                        </li>
+
+                        <li class="nav-item colorVerd">
+                            <h:form>
+                                <p:commandLink action="#{sessionController.logout}"
+                                                 ajax="false" immediate="true" styleClass="nav-link mobil" title="Sortir">
+                                    <span class="oi oi-power-standby" title="Sortir" aria-hidden="true"></span>
+                                    <p class="mb-0 float-right botoCurt">Sortir</p>
+                                </p:commandLink>
+                            </h:form>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- FI Botons -->
+            </nav>
+            <!-- FI Header -->
+        </header>
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="miga">
+            <div class="migaDiv">
+                <ol class="breadcrumb" id="migaPan">
+                    <li class="breadcrumb-item active"><a href="">Inici</a></li>
+                    <li class="breadcrumb-item active">No se ha definido miga de pan</li>
+                </ol>
             </div>
-            <p:growl id="messages"
-                     globalOnly="true"
-                     showDetail="true"
-                     life="5000"
-                     escape="false"/>
-            <div class="row">
-                <div id="menu" class="col-3">
-                    <h:form>
-                        <p:menu>
-                            <p:menuitem value="Inici" outcome="/index" />
-                            <p:menuitem value="Unitats Organiques" outcome="/listUnitatOrganica" />
-                        </p:menu>
-                    </h:form>
+        </nav>
+        <!-- FI Breadcrumb -->
+
+        <p:growl id="messages"
+                 globalOnly="true"
+                 showDetail="true"
+                 life="5000"
+                 escape="false"/>
+
+        <!-- Content -->
+        <div class="container p-3carpeta">
+            <div class="my-3 p-3 bg-white rounded box-shadow">
+
+                <!-- Contingut -->
+                <div class="card mb-12 border-0">
+                    <ui:insert name="content" />
                 </div>
-                <div id="content" class="col-9">
-                    <ui:insert name="content"/>
-                </div>
+                <!-- FI Contingut -->
             </div>
         </div>
+        <!-- FI Content -->
+
+        <!-- Contacte -->
+        <div class="infoContacte">
+            <strong>Necessita ajuda?</strong>
+            <!--
+            <strong>Necessita ajuda? </strong>Contacti amb l'
+            <button type="button" class="btn btn-suport" data-toggle="modal" data-target="#modalContacto">
+                equip de suport
+            </button>
+            -->
+
+            <!-- Modal
+            <div class="modal fade" id="modalContacto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="modal-title h2" id="exampleModalLongTitle"><span class="oi oi-info" title="" aria-hidden="true"></span> Ajuda</span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row col-12 dadesSuport">
+                                <div class="row col-12">Si necessita ajuda, pot:</div>
+                                <ul class="dades">
+                                    <li>
+                                        Enviar un correu a <a href="mailto:otae@fundaciobit.org" target="_blank">xxx@xxx.xx</a>
+                                    </li>
+                                    <li>
+                                        Crida al telèfon <a href="tel:971784940">971 784 940</a>.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tanca</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+        </div>
+        <!-- FI Contacte -->
+
         <ui:include src="footer.xhtml"/>
+
     </f:view>
 </h:body>
 </html>
