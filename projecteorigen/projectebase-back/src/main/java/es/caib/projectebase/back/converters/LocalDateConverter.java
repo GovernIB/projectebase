@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
  * @author areus
  */
 @FacesConverter(forClass = LocalDate.class)
-public class LocalDateConverter implements Converter {
+public class LocalDateConverter implements Converter<Object> {
 
     /**
      * Obté un LocalDate a partir d'un String

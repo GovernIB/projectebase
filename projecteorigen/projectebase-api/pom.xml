@@ -6,13 +6,13 @@
     <parent>
         <artifactId>projectebase</artifactId>
         <groupId>es.caib.projectebase</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>projectebase-api</artifactId>
     <packaging>war</packaging>
-    <name>Projecte Base: API REST</name>
-    <description>API REST de Projecte Base</description>
+    <name>${projectname}: API REST</name>
+    <description>API REST de ${projectname}</description>
 
     <dependencies>
         <!-- Altres mòduls del projecte -->
@@ -67,7 +67,7 @@
                             <goal>openapi.json</goal>
                         </goals>
                         <configuration>
-                            <application>es.caib.projectebase.api.ProjectebaseApplication</application>
+                            <application>es.caib.projectebase.api.SampleApplication</application>
                             <endpointClasses>
                                 <endpointClass>es.caib.projectebase.api.services.UnitatOrganicaResource</endpointClass>
                             </endpointClasses>

@@ -6,13 +6,13 @@
     <parent>
         <groupId>es.caib.projectebase</groupId>
         <artifactId>projectebase</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>projectebase-ejb</artifactId>
     <packaging>jar</packaging>
-    <name>Projecte Base: EJB</name>
-    <description>Mòdul EJB de Projecte Base</description>
+    <name>${projectname}: EJB</name>
+    <description>Mòdul EJB de ${projectname}</description>
 
     <properties>
         <!--

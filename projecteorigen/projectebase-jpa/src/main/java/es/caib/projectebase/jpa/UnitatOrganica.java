@@ -46,7 +46,7 @@ public class UnitatOrganica implements Serializable {
      * Ha de seguir el patró d'una lletra seguida de 8 dígits. Ficam un missatge de validació personalitzat.
      */
     @NotNull
-    @Pattern(regexp = "[A-Z][0-9]{8}", message = "{es.caib.projectebase.jpa.UnitatOrganica.codidir3.Pattern.message}")
+    @Pattern(regexp = "[A-Z][0-9]{8}", message = "{jpa.UnitatOrganica.codidir3.Pattern.message}")
     @Column(name = "CODIDIR3", nullable = false, length = 9)
     private String codiDir3;
 
