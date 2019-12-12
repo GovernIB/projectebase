@@ -10,5 +10,3 @@ target/
 .idea/
 # Fitxers de projecte de Netbeans
 nb-configuration.xml
-# Fitxers de compilació d'eclipse
-build/
