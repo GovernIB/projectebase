@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-11-openjdk-amd64">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/home/u104531/software/jboss-eap-7.2/modules/system/add-ons/keycloak/org/keycloak/keycloak-core/main/keycloak-core-4.8.3.Final-redhat-00001.jar"/>
+	<classpathentry kind="lib" path="/home/u104531/software/jboss-eap-7.2/modules/system/layers/base/org/glassfish/javax/json/main/javax.json-1.1.2.redhat-1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss EAP 7.x Runtime"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

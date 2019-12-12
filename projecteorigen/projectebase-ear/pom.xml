@@ -11,8 +11,8 @@
 
     <artifactId>projectebase-ear</artifactId>
     <packaging>ear</packaging>
-    <name>${projectname}: EAR</name>
-    <description>Arxiu d'aplicació EAR de ${projectname}</description>
+    <name>ProjecteBase: EAR</name>
+    <description>Arxiu d'aplicació EAR de ProjecteBase</description>
 
     <properties>
         <!-- Format del timestamp -->
@@ -60,11 +60,6 @@
         <!-- El nom del EAR sempre és el nom del projecte d'acord amb un 4.2 de l'Estàndard CAIB -->
         <finalName>${project.parent.artifactId}</finalName>
         <plugins>
-            <!-- Defineix la propietat buildNumber  -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
@@ -156,5 +151,19 @@
                 <env.JBOSS_HOME>HA DE FIXAR LA VARIABLE D'ENTORN JBOSS_HOME</env.JBOSS_HOME>
             </properties>
         </profile>
+
+        <profile>
+          <id>revisionnumber</id>
+          <build>
+            <plugins>
+                <!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+          </build>
+        </profile>
+
     </profiles>
 </project>

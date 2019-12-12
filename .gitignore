@@ -1,3 +1,8 @@
 /doc/goibusuari/userinfologic/build
 /doc/goibusuari/rest/build
 /doc/goibusuari/userinfo/build
+/archetype/target
+/doc/goibusuari/rest/.settings
+/doc/goibusuari/userinfo/.settings
+/doc/goibusuari/userinfologic/.settings
+/doc/goibusuari/userinfoapp/.settings

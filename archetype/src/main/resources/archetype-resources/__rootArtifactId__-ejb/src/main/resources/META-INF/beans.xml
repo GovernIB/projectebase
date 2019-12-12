@@ -1,3 +1,6 @@
+#set( $symbol_pount = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://xmlns.jcp.org/xml/ns/javaee"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -6,7 +9,7 @@ http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd" bean-discovery-mode="all" vers
 
     <!-- Tots els interceptors i decorators s'han de llistar explicitament dins els beans -->
     <interceptors>
-        <class>${package}.interceptor.LoggerInterceptor</class>
+        <class>${symbol_dollar}{package}.interceptor.LoggerInterceptor</class>
     </interceptors>
 
 </beans>

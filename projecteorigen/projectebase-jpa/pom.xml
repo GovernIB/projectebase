@@ -11,8 +11,8 @@
 
     <artifactId>projectebase-jpa</artifactId>
     <packaging>jar</packaging>
-    <name>${projectname}: JPA</name>
-    <description>Model de dades JPA de ${projectname}</description>
+    <name>ProjecteBase: JPA</name>
+    <description>Model de dades JPA de ProjecteBase</description>
 
     <dependencies>
         <dependency>

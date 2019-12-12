@@ -11,8 +11,8 @@
 
     <artifactId>projectebase-back</artifactId>
     <packaging>war</packaging>
-    <name>${projectname}: Back</name>
-    <description>Backoffice de ${projectname}, amb JSF+Primefaces</description>
+    <name>ProjecteBase: Back</name>
+    <description>Backoffice de ProjecteBase, amb JSF+Primefaces</description>
 
     <dependencies>
         <!-- Altres mòduls del projecte -->

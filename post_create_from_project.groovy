@@ -31,6 +31,51 @@ def replaceText(file, search, replace) {
     file.newWriter("UTF-8").withWriter { w -> w << pomContent }
 }
 
+def replaceProperties(file) {
+  escapeFile(file); 
+  onlyReplaceProperties(file);
+}
+  
+def onlyReplaceProperties(file) {
+  String search = "es\\.caib\\.projectebase";
+  String replace = "\\\$\\{package\\}";
+  replaceText(file, search, replace);
+  
+  search = "projectebase";
+  replace = "\\\$\\{artifactId\\}";
+  replaceText(file, search, replace);
+  
+  search = "ProjecteBase";
+  replace = "\\\$\\{projectname\\}";
+  replaceText(file, search, replace);
+  
+  search = "PROJECTEBASE";
+  replace = "\\\$\\{projectnameuppercase\\}";
+  replaceText(file, search, replace);
+  
+}
+
+def escapeFile(file) {    
+    def content = file.getText("UTF-8")
+    
+    if (content.indexOf("symbol_dollar") != -1
+      || content.indexOf("symbol_pound") != -1
+      || content.indexOf("symbol_escape") != -1) {
+      return;
+    }
+    
+    content = content.replaceAll("\\\$", "\\\$\\{symbol_dollar\\}");
+    content = content.replaceAll("\\\\", "\\\$\\{symbol_escape\\}");
+    content = content.replaceAll("#",    "\\\$\\{symbol_pound\\}");
+    
+    content = "#set( \$symbol_dollar = '\$' )" + "\r\n" + content;
+    content = "#set( \$symbol_escape = '\\' )" + "\r\n" + content;
+    content = "#set( \$symbol_pount = '#' )" + "\r\n" + content;
+    
+    file.newWriter("UTF-8").withWriter { w -> w << content }
+}
+
+
 def checkProperty(regex, value, property) {    
   if (!Pattern.matches(regex, value)) {
     throw new Exception("\n\nERROR: El valor de la propietat '" + property + "'(" 
@@ -39,35 +84,34 @@ def checkProperty(regex, value, property) {
 }
 
 
-
 println 'Inici'
 
-
 File rootDir = new File(".")
-println " + Directori Generacio: " + rootDir
+println " + Directori Generacio: " + rootDir.getAbsolutePath()
 
 File baseProject = new File(rootDir, "./archetype/src/main/resources/archetype-resources/");
 
 // EJB   
 File beans = new File(baseProject, "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml");
-String search = "es\\.caib\\.projectebase";
-String replace = "\\\$\\{package\\}";
-replaceText(beans, search, replace);
+replaceProperties(beans);
 
-// JPA
+// JPA - persistence
 File persistence = new File(baseProject, "./__rootArtifactId__-jpa/src/main/resources/META-INF/persistence.xml");
-search = "es\\.caib\\.projectebase";
-replace = "\\\$\\{package\\}";
-replaceText(persistence, search, replace);
-search = "projectebase";
-replace = "\\\$\\{artifactId\\}";
-replaceText(persistence, search, replace);
+replaceProperties(persistence);
 
-// API REST
-File apirest = new File(baseProject, "./__rootArtifactId__-api/pom.xml");
-search = "es\\.caib\\.projectebase";
-replace = "\\\$\\{package\\}";
-replaceText(apirest, search, replace);
 
+// DIRECTORI ARREL
+def rootFiles = [ "compile.bat" , "compile.sh",  "novaversio.bat", "novaversio.sh" ];
+for(String rootFile : rootFiles) {
+  replaceProperties(new File(baseProject, rootFile));
+}
+
+// POMS
+def moduleFolders = [ "", "__rootArtifactId__-api", "__rootArtifactId__-back", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-jpa"];
+
+for(String moduleDir : moduleFolders) {
+  File tmp = new File(baseProject, moduleDir);
+  onlyReplaceProperties(new File(tmp, "pom.xml"));
+}
 
 println 'Final'

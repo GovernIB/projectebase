@@ -11,8 +11,8 @@
 
     <artifactId>projectebase-api</artifactId>
     <packaging>war</packaging>
-    <name>${projectname}: API REST</name>
-    <description>API REST de ${projectname}</description>
+    <name>ProjecteBase: API REST</name>
+    <description>API REST de ProjecteBase</description>
 
     <dependencies>
         <!-- Altres mòduls del projecte -->

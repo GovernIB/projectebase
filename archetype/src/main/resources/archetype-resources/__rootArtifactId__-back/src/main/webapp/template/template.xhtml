@@ -39,6 +39,10 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
     amb els default/supported locales. Veure 2.5.2.1 de l'especificació JSF
     -->
     <f:view locale="#{sessionController.language}">
+
+        <!-- Espai perquè les pàgines que emprin el template defineixin els seus viewParam i viewAction -->
+        <ui:insert name="metadata" />
+
         <div id="container-fluid">
             <ui:include src="header.xhtml"/>
             <div id="breadcrumb">
@@ -62,7 +66,7 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                     <h:form>
                         <p:menu>
                             <p:menuitem value="Inici" outcome="/index" />
-                            <p:menuitem value="Unitats Organiques" outcome="/unitatOrganica" />
+                            <p:menuitem value="Unitats Organiques" outcome="/listUnitatOrganica" />
                         </p:menu>
                     </h:form>
                 </div>
