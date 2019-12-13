@@ -106,6 +106,12 @@ for(String rootFile : rootFiles) {
   replaceProperties(new File(baseProject, rootFile));
 }
 
+// DIRECTORI DOC
+def docFiles = [ "./doc/readme.txt" ];
+for(String docFile : docFiles) {
+  replaceProperties(new File(baseProject, docFile));
+}
+
 // COMMONS - model i utilitats
 def commonsFiles = [ "./__rootArtifactId__-commons/src/main/java/commons/utils/Constants.java",
        "./__rootArtifactId__-commons/src/main/java/commons/utils/Configuration.java" ];
