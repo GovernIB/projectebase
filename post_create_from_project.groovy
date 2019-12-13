@@ -52,7 +52,14 @@ def onlyReplaceProperties(file) {
   search = "PROJECTEBASE";
   replace = "\\\$\\{projectnameuppercase\\}";
   replaceText(file, search, replace);
+
+  search = "PBS";
+  replace = "\\\$\\{prefixuppercase\\}";
+  replaceText(file, search, replace);
   
+  search = "pbs";
+  replace = "\\\$\\{prefix\\}";
+  replaceText(file, search, replace);
 }
 
 def escapeFile(file) {    
@@ -87,17 +94,10 @@ def checkProperty(regex, value, property) {
 println 'Inici'
 
 File rootDir = new File(".")
-println " + Directori Generacio: " + rootDir.getAbsolutePath()
 
 File baseProject = new File(rootDir, "./archetype/src/main/resources/archetype-resources/");
 
-// EJB   
-File beans = new File(baseProject, "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml");
-replaceProperties(beans);
-
-// JPA - persistence
-File persistence = new File(baseProject, "./__rootArtifactId__-jpa/src/main/resources/META-INF/persistence.xml");
-replaceProperties(persistence);
+println " + Directori Generacio: " + baseProject.getAbsolutePath()
 
 
 // DIRECTORI ARREL
@@ -106,8 +106,29 @@ for(String rootFile : rootFiles) {
   replaceProperties(new File(baseProject, rootFile));
 }
 
+// COMMONS - model i utilitats
+def commonsFiles = [ "./__rootArtifactId__-commons/src/main/java/commons/utils/Constants.java",
+       "./__rootArtifactId__-commons/src/main/java/commons/utils/Configuration.java" ];
+for(String commonFile : commonsFiles) {
+  replaceProperties(new File(baseProject, commonFile));
+}
+
+
+// JPA - persistence
+def jpaFiles = [ "./__rootArtifactId__-jpa/src/main/resources/META-INF/persistence.xml",
+    "./__rootArtifactId__-jpa/src/main/java/jpa/Procediment.java",
+    "./__rootArtifactId__-jpa/src/main/java/jpa/UnitatOrganica.java" ];
+for(String jpaFile : jpaFiles) {
+  replaceProperties(new File(baseProject, jpaFile));
+}
+
+
+// EJB   
+File beans = new File(baseProject, "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml");
+replaceProperties(beans);
+
 // POMS
-def moduleFolders = [ "", "__rootArtifactId__-api", "__rootArtifactId__-back", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-jpa"];
+def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-rest", "__rootArtifactId__-back", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-jpa"];
 
 for(String moduleDir : moduleFolders) {
   File tmp = new File(baseProject, moduleDir);

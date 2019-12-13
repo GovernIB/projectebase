@@ -11,7 +11,7 @@
 
     <artifactId>projectebase-ear</artifactId>
     <packaging>ear</packaging>
-    <name>ProjecteBase: EAR</name>
+    <name>ProjecteBase - EAR</name>
     <description>Arxiu d'aplicació EAR de ProjecteBase</description>
 
     <properties>

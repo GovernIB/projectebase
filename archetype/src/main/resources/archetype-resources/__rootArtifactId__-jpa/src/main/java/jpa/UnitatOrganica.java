@@ -28,9 +28,9 @@ import java.util.Objects;
  * @author areus
  */
 @Entity
-@SequenceGenerator(name = "uo-sequence", sequenceName = "PBS_UNITATORGANICA_SEQ", allocationSize = 1)
-@Table(name = "PBS_UNITATORGANICA",
-        uniqueConstraints = {@UniqueConstraint(name = "PBS_UNITATORGANICA_CODIDIR3_UK", columnNames = "CODIDIR3")}
+@SequenceGenerator(name = "uo-sequence", sequenceName = "${prefixuppercase}_UNITATORGANICA_SEQ", allocationSize = 1)
+@Table(name = "${prefixuppercase}_UNITATORGANICA",
+        uniqueConstraints = {@UniqueConstraint(name = "${prefixuppercase}_UNITATORGANICA_CODIDIR3_UK", columnNames = "CODIDIR3")}
 )
 public class UnitatOrganica implements Serializable {
 

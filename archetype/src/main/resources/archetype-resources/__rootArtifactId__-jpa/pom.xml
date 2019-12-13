@@ -9,7 +9,7 @@
 
     <artifactId>${artifactId}</artifactId>
     <packaging>jar</packaging>
-    <name>${projectname}: JPA</name>
+    <name>${projectname} - JPA</name>
     <description>Model de dades JPA de ${projectname}</description>
 
     <dependencies>
