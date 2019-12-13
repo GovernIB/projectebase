@@ -16,17 +16,10 @@ Pàgina amb el llistat d'unitats orgàniques.
     </ui:define>
 
     <ui:define name="content">
-
-        <h1>Llistat d'unitats orgàniques</h1>
-
-        <h:form prependId="false">
-            <p:confirmDialog global="true">
-                <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-            </p:confirmDialog>
-
+        <h:form>
             <p:dataTable id="table" value="#{listUnitatOrganica.lazyModel}" var="unitatOrganica"
                          paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
+                         paginatorPosition="bottom"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
                 <p:column headerText="Id">
                     <h:outputText value="#{unitatOrganica.id}"/>
@@ -43,17 +36,18 @@ Pàgina amb el llistat d'unitats orgàniques.
                     </h:outputText>
                 </p:column>
                 <p:column headerText="Accions">
-                    <p:linkButton value="Editar" outcome="/editUnitatOrganica">
+                    <h:button value="Editar" outcome="/editUnitatOrganica"
+                              styleClass="btn btn-primary aplicacio-btn">
                         <f:param name="id" value="#{unitatOrganica.id}" />
-                    </p:linkButton>
-                    <p:commandButton value="Eliminar" action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
-                                     update="table,messages">
-                        <p:confirm message="Està segur de borrar el registre #{unitatOrganica.codiDir3}?" />
-                    </p:commandButton>
+                    </h:button>
+                    <h:commandButton value="Eliminar" action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
+                                     onclick="return confirm('Està segur de borrar el registre #{unitatOrganica.codiDir3}?')"
+                                     styleClass="btn btn-danger aplicacio-btn">
+                        <f:ajax render="messages table" />
+                    </h:commandButton>
                 </p:column>
             </p:dataTable>
         </h:form>
-
     </ui:define>
 </ui:composition>
 </html>

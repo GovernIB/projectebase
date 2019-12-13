@@ -49,6 +49,20 @@ a:hover{
 	outline: none !important;
 	box-shadow: none !important;
 }
+.btn-danger.aplicacio-btn {
+	background-color: #dc3545;
+	border-color: #dc3545;
+	border: none !important;
+}
+.btn-danger.aplicacio-btn:hover,
+.btn-danger.aplicacio-btn:focus,
+.btn-danger.aplicacio-btn:active{
+	background-color: #000 !important;
+	border: none #000 !important;
+	outline: none !important;
+	box-shadow: none !important;
+}
+
 .lh15{
 	line-height:1.5
 }
@@ -469,3 +483,9 @@ a.iconoXarxes{
 	display: flow-root;
 }
 /* FI Capsa Box */
+
+/* Específics per primefaces */
+.ui-growl {
+	top: 100px;
+	left: 20px;
+}

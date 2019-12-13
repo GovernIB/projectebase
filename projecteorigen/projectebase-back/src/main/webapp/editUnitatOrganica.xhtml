@@ -21,15 +21,10 @@ Pàgina per edició d'unitats orgàniques.
 
     <ui:define name="content">
 
-        <span class="h5 card-title border-bottom verde">Editar unitat orgànica</span>
-
-        <h1>Editar unitat orgànica</h1>
-
         <h:form id="form">
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="id" value="Id" />
                     <h:outputLabel for="id" value="Id" styleClass="label-projecte" />
                 </ui:define>
                 <ui:define name="input">
@@ -68,20 +63,22 @@ Pàgina per edició d'unitats orgàniques.
                 </ui:define>
                 <ui:define name="input">
                     <p:datePicker id="dataCreacio" value="#{editUnitatOrganica.current.dataCreacio}"
-                                  pattern="dd-MM-yyyy"/>
+                                  pattern="dd-MM-yyyy" styleClass="form-control form-control-sm" />
                     <h:message for="dataCreacio" errorStyle="color: red"/>
                 </ui:define>
             </ui:decorate>
 
-            <div class="row">
-                <div class="col-md-2 col-center pt-3 pl-0 pr-0">
-                    <p:commandButton id="saveOrUpdateButton" action="#{editUnitatOrganica.saveOrUpdate}"
+            <ui:decorate template="/template/buttons.xhtml">
+                <ui:define name="buttons">
+                    <h:commandButton id="saveOrUpdateButton" action="#{editUnitatOrganica.saveOrUpdate}"
                                      styleClass="btn btn-primary aplicacio-btn"
-                                     process="@form" update="@form" value="Guardar"/>
-                    <p:linkButton value="Tornar" outcome="/listUnitatOrganica"
-                                  styleClass="btn btn-secondary float-right" />
-                </div>
-            </div>
+                                     value="Guardar">
+                        <f:ajax execute="@form" render="@form" />
+                    </h:commandButton>
+                    <h:button value="Tornar" outcome="/listUnitatOrganica"
+                              styleClass="btn btn-secondary float-right" />
+                </ui:define>
+            </ui:decorate>
 
         </h:form>
 
