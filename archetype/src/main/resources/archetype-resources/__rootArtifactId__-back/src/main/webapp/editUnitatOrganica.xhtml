@@ -17,7 +17,7 @@ Pàgina per edició d'unitats orgàniques.
         </f:metadata>
     </ui:define>
 
-    <ui:define name="pageTitle">Editar unitat orgànica</ui:define>
+    <ui:define name="pageTitle">#{editUnitatOrganica.create ? labels.newUnitatOrganica_title : labels.editUnitatOrganica_title}</ui:define>
 
     <ui:define name="content">
 
@@ -25,7 +25,7 @@ Pàgina per edició d'unitats orgàniques.
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <h:outputLabel for="id" value="Id" styleClass="label-projecte" />
+                    <h:outputLabel for="id" value="#{labels.unitatOrganica_id}" styleClass="label-projecte" />
                 </ui:define>
                 <ui:define name="input">
                     <h:inputText id="id" value="#{editUnitatOrganica.current.id}" readonly="true"
@@ -37,7 +37,7 @@ Pàgina per edició d'unitats orgàniques.
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <h:outputLabel for="codiDir3" value="Codi DIR3" styleClass="label-projecte" />
+                    <h:outputLabel for="codiDir3" value="#{labels.unitatOrganica_codiDir3}" styleClass="label-projecte" />
                 </ui:define>
                 <ui:define name="input">
                     <h:inputText id="codiDir3" value="#{editUnitatOrganica.current.codiDir3}"
@@ -48,7 +48,7 @@ Pàgina per edició d'unitats orgàniques.
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <h:outputLabel for="nom" value="Nom" styleClass="label-projecte" />
+                    <h:outputLabel for="nom" value="#{labels.unitatOrganica_nom}" styleClass="label-projecte" />
                 </ui:define>
                 <ui:define name="input">
                     <h:inputText id="nom" value="#{editUnitatOrganica.current.nom}"
@@ -59,7 +59,7 @@ Pàgina per edició d'unitats orgàniques.
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <h:outputLabel for="dataCreacio" value="Data creació" styleClass="label-projecte" />
+                    <h:outputLabel for="dataCreacio" value="#{labels.unitatOrganica_dataCreacio}" styleClass="label-projecte" />
                 </ui:define>
                 <ui:define name="input">
                     <p:datePicker id="dataCreacio" value="#{editUnitatOrganica.current.dataCreacio}"
@@ -72,10 +72,10 @@ Pàgina per edició d'unitats orgàniques.
                 <ui:define name="buttons">
                     <h:commandButton id="saveOrUpdateButton" action="#{editUnitatOrganica.saveOrUpdate}"
                                      styleClass="btn btn-primary aplicacio-btn"
-                                     value="Guardar">
+                                     value="#{labels.button_guardar}">
                         <f:ajax execute="@form" render="@form" />
                     </h:commandButton>
-                    <h:button value="Tornar" outcome="/listUnitatOrganica"
+                    <h:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica"
                               styleClass="btn btn-secondary float-right" />
                 </ui:define>
             </ui:decorate>

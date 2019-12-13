@@ -41,7 +41,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Les llibreries de primefaces les necessitam incloure dins el WAR -->
+        <!-- Les llibreries de primefaces i omnifaces les necessitam incloure dins el WAR -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
@@ -49,6 +49,10 @@
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
         </dependency>
     </dependencies>
     

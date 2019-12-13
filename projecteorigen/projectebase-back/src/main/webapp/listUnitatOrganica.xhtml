@@ -2,18 +2,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--
 Pàgina amb el llistat d'unitats orgàniques.
 -->
 <ui:composition template="/template/template.xhtml">
 
-    <ui:define name="pageTitle">Llistat d'unitats orgàniques</ui:define>
-
-    <ui:define name="breadcrumb">
-        <p:menuitem value="Inicio" outcome="/index"/>
-        <p:menuitem value="Unitats Orgàniques" disabled="true" />
-    </ui:define>
+    <ui:define name="pageTitle">#{labels.listUnitatOrganica_title}</ui:define>
 
     <ui:define name="content">
         <h:form>
@@ -21,27 +17,35 @@ Pàgina amb el llistat d'unitats orgàniques.
                          paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
                          paginatorPosition="bottom"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
-                <p:column headerText="Id">
+                <p:column>
+                    <f:facet name="header">#{labels.unitatOrganica_id}</f:facet>
                     <h:outputText value="#{unitatOrganica.id}"/>
                 </p:column>
-                <p:column headerText="Codi DIR3">
+                <p:column>
+                    <f:facet name="header">#{labels.unitatOrganica_codiDir3}</f:facet>
                     <h:outputText value="#{unitatOrganica.codiDir3}"/>
                 </p:column>
-                <p:column headerText="Nom">
+                <p:column>
+                    <f:facet name="header">#{labels.unitatOrganica_nom}</f:facet>
                     <h:outputText value="#{unitatOrganica.nom}"/>
                 </p:column>
-                <p:column headerText="Data creació">
+                <p:column>
+                    <f:facet name="header">#{labels.unitatOrganica_dataCreacio}</f:facet>
                     <h:outputText value="#{unitatOrganica.dataCreacio}">
                         <f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
                     </h:outputText>
                 </p:column>
-                <p:column headerText="Accions">
-                    <h:button value="Editar" outcome="/editUnitatOrganica"
+                <p:column>
+                    <f:facet name="header">#{labels.button_accions}</f:facet>
+                    <h:button value="#{labels.button_editar}" outcome="/editUnitatOrganica"
                               styleClass="btn btn-primary aplicacio-btn">
                         <f:param name="id" value="#{unitatOrganica.id}" />
                     </h:button>
-                    <h:commandButton value="Eliminar" action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
-                                     onclick="return confirm('Està segur de borrar el registre #{unitatOrganica.codiDir3}?')"
+                    <o:outputFormat value="#{labels.confirm_eliminar}" var="confirmMessage">
+                        <f:param value="#{unitatOrganica.codiDir3}"/>
+                    </o:outputFormat>
+                    <h:commandButton value="#{labels.button_eliminar}" action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
+                                     onclick="return confirm('#{confirmMessage}')"
                                      styleClass="btn btn-danger aplicacio-btn">
                         <f:ajax render="messages table" />
                     </h:commandButton>

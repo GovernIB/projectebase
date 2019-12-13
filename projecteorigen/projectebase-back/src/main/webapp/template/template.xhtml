@@ -66,11 +66,21 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                     <ul class="navbar-nav mobil">
 
                         <li class="nav-item colorVerd">
-                            <a class="nav-link mobil" title="#{labels.accessibilitat_title}" href="/accesibilidad"><img src="#{request.contextPath}/img/ico_accessibilitat.svg" class="iconoCapsalera" title="#{labels.accessibilitat_title}" alt="#{labels.accessibilitat_title}"/><p class="mb-0 float-right botoCurt">#{labels.accessibilitat_link}</p></a>
+                            <h:link styleClass="nav-link mobil" title="#{labels.accessibilitat_title}" outcome="/accessibilitat">
+                                <img src="#{request.contextPath}/img/ico_accessibilitat.svg" class="iconoCapsalera" title="#{labels.accessibilitat_title}" alt="#{labels.accessibilitat_title}"/><p class="mb-0 float-right botoCurt">#{labels.accessibilitat_link}</p>
+                            </h:link>
                         </li>
 
                         <li class="nav-item dropdown colorVerd">
-                            <a class="nav-link dropdown mobil" title="#{labels.idioma_link}" href="#" id="idiomas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-caret-bottom float-right flechaSubmenu" title="" aria-hidden="true"></span><p class="mb-0 float-right botoCurt">Idioma</p><span class="oi oi-globe" title="#{labels.idioma_link}" aria-hidden="true"></span></a>
+                            <a class="nav-link dropdown mobil" title="#{labels.gestionar_link}" href="#" id="gestionar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-caret-bottom float-right flechaSubmenu" title="" aria-hidden="true"></span><p class="mb-0 float-right botoCurt">#{labels.gestionar_link}</p><span class="oi oi-briefcase" title="#{labels.gestionar_link}" aria-hidden="true"></span></a>
+                            <div class="dropdown-menu dropdown-menu-right marg0 minW0" aria-labelledby="gestionar">
+                                <h:link styleClass="dropdown-item mobil" outcome="/listUnitatOrganica" value="#{labels.listUnitatOrganica_link}" />
+                                <h:link styleClass="dropdown-item mobil" outcome="/editUnitatOrganica" value="#{labels.newUnitatOrganica_link}" />
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown colorVerd">
+                            <a class="nav-link dropdown mobil" title="#{labels.idioma_link}" href="#" id="idiomas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-caret-bottom float-right flechaSubmenu" title="" aria-hidden="true"></span><p class="mb-0 float-right botoCurt">#{labels.idioma_link}</p><span class="oi oi-globe" title="#{labels.idioma_link}" aria-hidden="true"></span></a>
                             <div class="dropdown-menu dropdown-menu-right marg0 minW0" aria-labelledby="idiomas">
                                 <h:form>
                                     <ui:repeat value="#{languageController.languages}" var="lang">
