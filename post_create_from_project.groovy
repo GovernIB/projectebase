@@ -116,10 +116,18 @@ for(String commonFile : commonsFiles) {
 
 // JPA - persistence
 def jpaFiles = [ "./__rootArtifactId__-jpa/src/main/resources/META-INF/persistence.xml",
+    "./__rootArtifactId__-jpa/src/test/resources/META-INF/persistence.xml",
     "./__rootArtifactId__-jpa/src/main/java/jpa/Procediment.java",
     "./__rootArtifactId__-jpa/src/main/java/jpa/UnitatOrganica.java" ];
 for(String jpaFile : jpaFiles) {
   replaceProperties(new File(baseProject, jpaFile));
+}
+
+// Back - web
+def backFiles = [ "./__rootArtifactId__-back/src/main/webapp/WEB-INF/faces-config.xml"
+    ];
+for(String backFile : backFiles) {
+  replaceProperties(new File(baseProject, backFile));
 }
 
 

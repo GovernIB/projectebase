@@ -1,3 +1,6 @@
+#set( $symbol_pount = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config
         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -14,11 +17,15 @@
             <supported-locale>es</supported-locale>
             <supported-locale>ca</supported-locale>
         </locale-config>
+        <resource-bundle>
+            <base-name>${package}.back.Labels</base-name>
+            <var>labels</var>
+        </resource-bundle>
     </application>
 
     <!--
     Necessari per la gestió d'errors a Primefaces. Veure:
-     https://primefaces.github.io/primefaces/7_0/#/core/errorhandling?id=error-handling
+     https://primefaces.github.io/primefaces/7_0/${symbol_pound}/core/errorhandling?id=error-handling
     -->
     <application>
         <el-resolver>
