@@ -26,12 +26,16 @@ public abstract class PaginationHelper<E extends Serializable> {
         return pageSize;
     }
 
-    int getPageFirstItem() {
+    public int getPageFirstItem() {
         return page*pageSize;
     }
 
     void setCount(int count) {
         this.count = count;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     public List<E> getModel() {

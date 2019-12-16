@@ -98,6 +98,7 @@ public class ListUnitatOrganicaController implements Serializable {
     public void delete(Long id) {
         LOG.info("delete");
         unitatOrganicaService.deleteById(id);
+        pagination.updateModel();
         context.addMessage(null, new FacesMessage("Registre borrat"));
     }
 }
