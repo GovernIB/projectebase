@@ -1,0 +1,161 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--
+Pàgina amb el llistat d'unitats orgàniques.
+-->
+<ui:composition template="/template/template.xhtml">
+
+    <ui:define name="pageTitle">#{labels.listUnitatOrganica_title}</ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <!--
+                <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="dataTables_length" id="dataTable_paginate_length">
+                <label>Mostrar
+                    <select name="dataTable_paginate_length" aria-controls="dataTable_paginate" class="custom-select custom-select-sm form-control form-control-sm">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select> registres
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div id="dataTable_paginate_filter" class="dataTables_filter">
+                <label>Cercar:
+                    <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable_paginate">
+                </label>
+            </div>
+        </div>
+    </div>
+
+            -->
+            <div class="dataTables_wrapper">
+                <div class="dataTables_length" id="dataTable_paginate_length">
+                    <label>Mostrar
+                        <h:selectOneMenu id="pageSize" value="#{listUnitatOrganica.pagination.pageSize}"
+                                         a:aria-controls="dataTable_paginate"
+                                         styleClass="custom-select custom-select-sm form-control form-control-sm">
+                            <f:selectItem itemValue="10" />
+                            <f:selectItem itemValue="20" />
+                            <f:selectItem itemValue="50" />
+                            <f:selectItem itemValue="100" />
+                            <f:ajax render="@form" />
+                        </h:selectOneMenu> registres
+                    </label>
+                </div>
+                <div id="dataTable_paginate_filter" class="dataTables_filter">
+                    <label>Cercar
+                        <h:inputText value="#{listUnitatOrganica.cerca}" a:type="search"
+                                     styleClass="form-control form-control-sm"
+                                     a:aria-controls="dataTable_paginate" />
+                    </label>
+                </div>
+            </div>
+
+
+            <!--
+            <table id="dataTable_paginate" class="table table-striped table-bordered table-hover" style="width:100%">
+							<thead class="table-success">
+							<tr>
+								<th>Camp1</th>
+								<th>Camp2</th>
+								<th>Camp3</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr class="clickable-row" data-target="_blank" data-href="">
+									<td>Nom del primer registre</td>
+									<td>info camp 1</td>
+									<td>info camp 2</td>
+								</tr>
+
+								<tr class="clickable-row" data-target="_blank" data-href="">
+									<td>Nom del segon registre</td>
+									<td>info camp 1</td>
+									<td>info camp 2</td>
+								</tr>
+							</tbody>
+						</table>
+						-->
+
+            <h:dataTable id="dataTable_paginate"
+                         styleClass="table table-striped table-bordered table-hover"
+                         headerClass="table-success"
+                         rowClass="clickable-row"
+                         value="#{listUnitatOrganica.pagination.model}" var="unitatOrganica">
+                <h:column>
+                    <f:facet name="header">#{labels.unitatOrganica_id}</f:facet>
+                    <h:outputText value="#{unitatOrganica.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{labels.unitatOrganica_codiDir3}</f:facet>
+                    <h:outputText value="#{unitatOrganica.codiDir3}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{labels.unitatOrganica_nom}</f:facet>
+                    <h:outputText value="#{unitatOrganica.nom}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{labels.unitatOrganica_dataCreacio}</f:facet>
+                    <h:outputText value="#{unitatOrganica.dataCreacio}">
+                        <f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{labels.button_accions}</f:facet>
+                    <h:button value="#{labels.button_editar}" outcome="/editUnitatOrganica"
+                              styleClass="btn btn-primary aplicacio-btn">
+                        <f:param name="id" value="#{unitatOrganica.id}" />
+                    </h:button>
+                    <o:outputFormat value="#{labels.confirm_eliminar}" var="confirmMessage">
+                        <f:param value="#{unitatOrganica.codiDir3}"/>
+                    </o:outputFormat>
+                    <h:commandButton value="#{labels.button_eliminar}" action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
+                                     onclick="return confirm('#{confirmMessage}')"
+                                     styleClass="btn btn-danger aplicacio-btn">
+                        <f:ajax render="messages @form" />
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+
+            <!--
+<div class="row">
+    <div class="col-sm-12 col-md-5">
+        <div class="dataTables_info" id="dataTable_paginate_info" role="status" aria-live="polite">
+            Mostrant registres del 1 al 10 d'un total de 15 registres
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate_paginate">
+            <ul class="pagination">
+                <li class="paginate_button page-item previous disabled" id="dataTable_paginate_previous">
+                    <a href="#" aria-controls="dataTable_paginate" data-dt-idx="0" tabindex="0" class="page-link">Anterior</a>
+                </li>
+                <li class="paginate_button page-item active">
+                    <a href="#" aria-controls="dataTable_paginate" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                </li>
+                <li class="paginate_button page-item ">
+                    <a href="#" aria-controls="dataTable_paginate" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+                </li>
+                <li class="paginate_button page-item next" id="dataTable_paginate_next">
+                    <a href="#" aria-controls="dataTable_paginate" data-dt-idx="3" tabindex="0" class="page-link">Següent</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+-->
+
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
