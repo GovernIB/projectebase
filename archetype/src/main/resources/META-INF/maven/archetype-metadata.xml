@@ -2,6 +2,35 @@
 <archetype-descriptor xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd" name="projectebase"
     xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    
+    <requiredProperties>
+    <requiredProperty key="prefix">
+      <validationRegex>^[a-z][a-z][a-z]$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="prefixuppercase">
+      <validationRegex>[A-Z][A-Z][A-Z]</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="perfilWS">
+      <validationRegex>^(true|false)$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="perfilBack">
+      <validationRegex>^(true|false)$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="projectname">
+      <validationRegex>^([A-Za-z0-9])+$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="projectnameuppercase">
+      <validationRegex>^([A-Z0-9])+$</validationRegex>
+    </requiredProperty>
+    <requiredProperty key="packagepath">
+    </requiredProperty>
+    <requiredProperty key="inversepackage">
+    </requiredProperty>
+  </requiredProperties>
+
+    
+    
+    
   <fileSets>
     <fileSet filtered="true" encoding="UTF-8">
       <directory>doc</directory>
@@ -106,6 +135,62 @@
           </includes>
         </fileSet>
       </fileSets>
+    </module>
+    <module id="${rootArtifactId}-ws" dir="__rootArtifactId__-ws" name="${rootArtifactId}-ws">
+      <modules>
+        <module id="${rootArtifactId}-ws-server" dir="__rootArtifactId___ws_server" name="${rootArtifactId}-ws-server">
+          <fileSets>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.xml</include>
+                <include>**/*.properties</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+        <module id="${rootArtifactId}-ws-api" dir="__rootArtifactId___ws_api" name="${rootArtifactId}-ws-api">
+          <fileSets>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.properties</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/test/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory>bindings</directory>
+              <includes>
+                <include>**/*.xjc</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>regenerateapi.bat</include>
+                <include>test.properties</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+      </modules>
     </module>
     <module id="${rootArtifactId}-ear" dir="__rootArtifactId__-ear" name="${rootArtifactId}-ear">
       <fileSets>

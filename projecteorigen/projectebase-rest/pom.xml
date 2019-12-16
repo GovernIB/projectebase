@@ -9,9 +9,9 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>projectebase-api</artifactId>
+    <artifactId>projectebase-rest</artifactId>
     <packaging>war</packaging>
-    <name>ProjecteBase - API REST</name>
+    <name>ProjecteBase - REST - API </name>
     <description>API REST de ProjecteBase</description>
 
     <dependencies>

@@ -1,0 +1,31 @@
+
+
+
+
++ Emprar el següent sistema de LOG
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <scope>provided</scope>
+      </dependency>
+      
+      
+      
+      import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+public class XXXX {
+
+  protected final Logger log = LoggerFactory.getLogger(getClass());
+  
+  //  o
+  
+  
+  protected static final Logger log = LoggerFactory.getLogger(XXXX.class);
+  
+  }
+      
+      
+      

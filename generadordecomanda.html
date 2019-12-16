@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca"  lang="ca">
+  <head>
+    <meta charset="utf-8">
+      <script>
+
+  function projectnameChange() {
+
+      var projectname = document.getElementById("projectname").value;
+      var pbase = document.getElementById("packagebase").value;
+      var prefix = document.getElementById("prefix").value;
+      var version = document.getElementById("version").value;
+      var perfilWS = document.getElementById("generarws").checked;
+      var perfilBack = document.getElementById("generarback").checked;
+
+
+
+
+     var projectnamelowercase = projectname.toLowerCase();
+     var projectnameuppercase = projectname.toUpperCase();
+
+     var packageStr = pbase + "." + projectnamelowercase;
+     document.getElementById("package").value= packageStr;
+     document.getElementById("artifactid").value= projectnamelowercase;
+     document.getElementById("groupid").value= packageStr;
+
+     var packagepath = packageStr.replace('.','/');
+     while(packagepath.indexOf(".") != -1) {       
+       packagepath = packagepath.replace('.','/');
+     }
+
+     var inversepackage;
+     {
+        var arr = packageStr.split(".");
+        arr.reverse();
+        inversepackage = arr.join(".");
+     }
+
+
+  var gen = "mvn archetype:generate -B -DarchetypeGroupId=es.caib.projectebase.archetype"
+    + " -DarchetypeArtifactId=projectebase-archetype -DarchetypeVersion=1.0.0"
+    + " -Dpackage=" + packageStr + " -Dpackagepath=" +packagepath 
+    + " -Dinversepackage=" + inversepackage 
+    + " -DgroupId=" + packageStr + " -DartifactId=" + projectnamelowercase
+    + " -Dversion=" + version + " -Dprojectname=" + projectname
+    + " -Dprojectnameuppercase=" + projectnameuppercase + " -Dprefix=" + prefix
+    + " -Dprefixuppercase=" + prefix.toUpperCase() 
+    + " -DperfilWS=" + perfilWS  + " -DperfilBack=" + perfilBack;
+
+
+    document.getElementById("maven").value= gen;
+   }
+
+
+      </script>
+
+    </head>
+    <body>
+      <h2 style="color: #5e9ca0;margin:0px">Generador de Projectes per CAIB</h2>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr style="vertical-align:top">   
+  <td >  
+      <h3 style="color: #2e6c80;">Dades Configurables:</h3>
+      <table border="0" >
+        <tbody>
+          <tr>
+            <td style="width: 130px;">Nom del Projecte:&nbsp;</td>
+            <td style="width: 402px;">
+              <input size=60  id="projectname" type="text" value="ProjecteBaseExemple" onkeyup="projectnameChange()" />
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 130px;">Package Base</td>
+            <td style="width: 402px;">
+              <input size=60  id="packagebase" type="text" value="es.caib" onkeyup="projectnameChange()" />
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 130px;">Prefix (3 char)</td>
+            <td style="width: 402px;">
+              <input size=60  id="prefix" type="text" value="pbe" onkeyup="projectnameChange()" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="width: 130px;">Version</td>
+            <td style="width: 402px;">
+              <input size=60  id="version" type="text" value="1.0.0" onkeyup="projectnameChange()"  />
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 130px;">Generar Back</td>
+            <td style="width: 402px;">
+              <input size=60  id="generarback" checked="checked" type="checkbox" onchange="projectnameChange()" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="width: 130px;">Generar WS</td>
+            <td style="width: 402px;">
+              <input size=60  id="generarws" checked="checked" type="checkbox" onchange="projectnameChange()" />
+            </td>
+          </tr>
+
+        </table>
+</td>
+<td style="background-color:#F0F0F0">
+&nbsp;
+</td>
+<td>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+
+        <h3 style="color: #2e6c80;">Dades Generades (només lectura)</h3>
+        <table  border="0"  >
+          <tbody>
+            <tr>
+              <td style="width: 130px;">Package</td>
+              <td style="width: 402px;">
+                <input size=60  id="package" readonly="readonly" type="text" value="es.caib.projectebase" />
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 130px;">Artifact ID</td>
+              <td style="width: 402px;">
+                <input size=60  id="artifactid" readonly="readonly" type="text" value="projectebase" />
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 130px;">Group ID</td>
+              <td style="width: 402px;">
+                <input size=60  id="groupid" readonly="readonly" type="text" value="es.caib.projectebase" />
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        
+</td>
+</tr>
+</table>
+<hr/>
+        <p style="color:#FF0000";>
+          <b>Requereix afegir el següent codi a dins [HOME]/.m2/settings.xml</b>
+        </p>
+        <textarea id="profile" readonly="readonly" style="color:#ff0000;" cols="80" readonly="readonly" rows="15" >
+          <profiles>
+            <profile>
+              <id>repositorigovernib</id>
+              <repositories>
+                <repository>
+                  <id>github-governib-maven</id>
+                  <name>GitHub GovernIB Maven Repository</name>
+                  <url>https://governib.github.io/maven/maven/</url>
+                </repository>
+              </repositories>
+            </profile>
+          </profiles>
+          <activeProfiles>
+            <activeProfile>repositorigovernib</activeProfile>
+          </activeProfiles>
+        </textarea>
+
+<hr/>
+
+        <h2 style="color: #2e6c80;">Comanda a Executar per generar el projecte:</h2>
+
+        <textarea id="maven" cols="110" readonly="readonly" rows="6"></textarea>
+
+      <script>
+   projectnameChange();
+      </script>
+
+
+
+    </body>
+  </html>
+  

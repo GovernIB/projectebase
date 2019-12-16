@@ -9,7 +9,7 @@
 
     <artifactId>${artifactId}</artifactId>
     <packaging>war</packaging>
-    <name>${projectname} - API REST</name>
+    <name>${projectname} - REST - API</name>
     <description>API REST de ${projectname}</description>
 
     <dependencies>
