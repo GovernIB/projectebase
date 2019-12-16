@@ -12,7 +12,7 @@
   <description>ProjecteBase Java EE 8 i JBOSS 7.2</description>
 
   <!-- Referència al sistema de control de versions, ja sigui GIT, SVN, CVS...
-        permetrà al plugin buildnumber-maven-plugin agafar la revisió/versió -->
+          permetrà al plugin buildnumber-maven-plugin agafar la revisió/versió -->
   <scm>
     <connection>scm:git:https://github.com/GovernIB/projectebase.git</connection>
     <url>https://github.com/GovernIB/projectebase</url>
@@ -33,9 +33,10 @@
 
     <primefaces.version>7.0</primefaces.version>
     <primefaces.theme.version>1.0.10</primefaces.theme.version>
+    <omnifaces.version>3.4.1</omnifaces.version>
 
     <cxf.version>3.3.3</cxf.version>
-    
+
     <junit.version>4.8.2</junit.version>
 
   </properties>
@@ -50,15 +51,9 @@
     <module>projectebase-ear</module>    
   </modules>
 
+
   <dependencyManagement>
     <dependencies>
-
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-      </dependency>
-
       <dependency>
         <groupId>javax</groupId>
         <artifactId>javaee-api</artifactId>
@@ -93,6 +88,16 @@
         <groupId>org.primefaces.themes</groupId>
         <artifactId>bootstrap</artifactId>
         <version>${primefaces.theme.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.omnifaces</groupId>
+        <artifactId>omnifaces</artifactId>
+        <version>${omnifaces.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -185,13 +190,13 @@
           </executions>
           <configuration>
             <!--
-            Veure https://www.mojohaus.org/buildnumber-maven-plugin/usage.html
-            si volem que falli si s'intenta compilar i hi ha canvis no pujats o hi ha canvis no davallats.
-            S'hauria de crear un profile per quan es fa una release s'activin.
-            Sinó val més que estiguin a false (per defecte):
-            <doCheck>true</doCheck>
-            <doUpdate>true</doUpdate>
-            -->
+                Veure https://www.mojohaus.org/buildnumber-maven-plugin/usage.html
+                si volem que falli si s'intenta compilar i hi ha canvis no pujats o hi ha canvis no davallats.
+                S'hauria de crear un profile per quan es fa una release s'activin.
+                Sinó val més que estiguin a false (per defecte):
+                <doCheck>true</doCheck>
+                <doUpdate>true</doUpdate>
+                -->
             <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
           </configuration>
         </plugin>
@@ -210,9 +215,9 @@
 
     <plugins>
       <!--
-        Gestió de versions de dependències/plugins
-        Veure: https://www.mojohaus.org/versions-maven-plugin/
-      -->
+            Gestió de versions de dependències/plugins
+            Veure: https://www.mojohaus.org/versions-maven-plugin/
+            -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
@@ -227,9 +232,9 @@
         </configuration>
       </plugin>
       <!--
-                Gestió de requisits del build
-                Veure: https://maven.apache.org/enforcer/enforcer-rules/index.html
-            -->
+                      Gestió de requisits del build
+                      Veure: https://maven.apache.org/enforcer/enforcer-rules/index.html
+                  -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -283,6 +288,61 @@
           </plugins>
         </pluginManagement>
       </build>
+    </profile>
+
+    <!-- Profile per l'execució dels tests -->
+    <profile>
+      <id>doTests</id>
+      <properties>
+        <maven.test.skip>false</maven.test.skip>
+      </properties>
+      <dependencies>
+        <!-- Dependència comuna a tots els mòduls en l'execució de tests -->
+        <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter</artifactId>
+          <version>5.5.2</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <dependencyManagement>
+        <dependencies>
+          <!-- Driver JDBC a emprar durant els tests -->
+          <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.8</version>
+            <scope>test</scope>
+          </dependency>
+          <!-- Implementació de JPA a emprar durant els tests -->
+          <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.3.12.Final</version>
+            <scope>test</scope>
+          </dependency>
+          <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.3.2.Final</version>
+            <scope>test</scope>
+          </dependency>
+          <!-- Implementació de BeanValidation a emprar durant els tests -->
+          <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.17.Final</version>
+            <scope>test</scope>
+          </dependency>
+          <!-- Implementació de EL requerida per BeanValidation a emprar durant els tests -->
+          <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>3.0.1-b11</version>
+            <scope>test</scope>
+          </dependency>
+        </dependencies>
+      </dependencyManagement>
     </profile>
   </profiles>
 

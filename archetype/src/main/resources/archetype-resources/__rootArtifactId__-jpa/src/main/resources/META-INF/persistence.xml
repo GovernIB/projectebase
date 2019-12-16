@@ -10,6 +10,7 @@
         <jta-data-source>java:/jdbc/${artifactId}DS</jta-data-source>
         <!-- Llista de classes persistents -->
         <class>${package}.jpa.UnitatOrganica</class>
+        <class>${package}.jpa.Procediment</class>
         <!-- Activar cache només per aquelles entitats on volguem expressament -->
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
         <!-- Sempre activar la validació de les propietats -->

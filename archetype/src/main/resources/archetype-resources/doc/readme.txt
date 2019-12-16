@@ -1,3 +1,6 @@
+#set( $symbol_pount = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
 
 Requisits compilació:
  - Maven 3.6
@@ -40,7 +43,7 @@ Provar api REST
  Obtenir la unitat orànica amb ideficador 1:
    - curl http://localhost:8080/${artifactId}/api/services/unitatorganica/1
  Crear una nova unitat orgànica:
-   - curl -i -X POST -H "Content-Type: application/json" -d "{\"codiDir3\":\"A99999999\",\"dataCreacio\":\"01-12-2019\",\"nom\":\"Unitat XXX\"}" http://localhost:8080/${artifactId}/api/services/unitatorganica
+   - curl -i -X POST -H "Content-Type: application/json" -d "{${symbol_escape}"codiDir3${symbol_escape}":${symbol_escape}"A99999999${symbol_escape}",${symbol_escape}"dataCreacio${symbol_escape}":${symbol_escape}"01-12-2019${symbol_escape}",${symbol_escape}"nom${symbol_escape}":${symbol_escape}"Unitat XXX${symbol_escape}"}" http://localhost:8080/${artifactId}/api/services/unitatorganica
  Si s'ha compilat amb el profile swagger-ui:
    - http://localhost:8080/${artifactId}/api
 

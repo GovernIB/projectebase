@@ -118,6 +118,12 @@ for(String rootFile : rootFiles) {
   replaceProperties(new File(baseProject, rootFile));
 }
 
+// DIRECTORI DOC
+def docFiles = [ "./doc/readme.txt" ];
+for(String docFile : docFiles) {
+  replaceProperties(new File(baseProject, docFile));
+}
+
 // COMMONS - model i utilitats
 def commonsFiles = [ "./__rootArtifactId__-commons/src/main/java/commons/utils/Constants.java",
        "./__rootArtifactId__-commons/src/main/java/commons/utils/Configuration.java" ];
@@ -127,10 +133,19 @@ for(String commonFile : commonsFiles) {
 
 // JPA - persistence
 def jpaFiles = [ "./__rootArtifactId__-jpa/src/main/resources/META-INF/persistence.xml",
+    "./__rootArtifactId__-jpa/src/test/resources/META-INF/persistence.xml",
     "./__rootArtifactId__-jpa/src/main/java/jpa/Procediment.java",
     "./__rootArtifactId__-jpa/src/main/java/jpa/UnitatOrganica.java" ];
 for(String jpaFile : jpaFiles) {
   replaceProperties(new File(baseProject, jpaFile));
+}
+
+
+// Back - web
+def backFiles = [ "./__rootArtifactId__-back/src/main/webapp/WEB-INF/faces-config.xml"
+    ];
+for(String backFile : backFiles) {
+  replaceProperties(new File(baseProject, backFile));
 }
 
 // EJB   
