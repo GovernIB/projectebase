@@ -41,13 +41,29 @@ public class ListUnitatOrganicaController implements Serializable {
 
     // PROPIETATS + GETTERS/SETTERS
 
+    private PaginationHelper<UnitatOrganica> pagination;
+
+    private String cerca;
+
     private LazyDataModel<UnitatOrganica> lazyModel;
 
     /**
-     * Obté el model de dades per la taula d'unitats orgàniques
+     * Obté el unitats de dades per la taula d'unitats orgàniques
      */
     public LazyDataModel<UnitatOrganica> getLazyModel() {
         return lazyModel;
+    }
+
+    public PaginationHelper<UnitatOrganica> getPagination() {
+        return pagination;
+    }
+
+    public String getCerca() {
+        return cerca;
+    }
+
+    public void setCerca(String cerca) {
+        this.cerca = cerca;
     }
 
     /**
@@ -65,6 +81,14 @@ public class ListUnitatOrganicaController implements Serializable {
                 return unitatOrganicaService.findAllPaged(first, pageSize);
             }
         };
+        pagination = new PaginationHelper<>() {
+            @Override
+            protected void updateModel() {
+                setCount((int) unitatOrganicaService.countAll());
+                //TODO implementar ordenació i filtres
+                setModel(unitatOrganicaService.findAllPaged(this.getPageFirstItem(), this.getPageSize()));
+            }
+        };
     }
 
     // ACCIONS
@@ -77,6 +101,7 @@ public class ListUnitatOrganicaController implements Serializable {
     public void delete(Long id) {
         LOG.info("delete");
         unitatOrganicaService.deleteById(id);
+        pagination.updateModel();
         context.addMessage(null, new FacesMessage("Registre borrat"));
     }
 }
