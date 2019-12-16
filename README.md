@@ -18,6 +18,9 @@ Es tracte d'un projecte d'exemple per JBoss 7.2 EAP seguint l'estructura i està
 - [](JBoss 7.2)
 
 
-***Maven Artifact Exemple***
+***Generador de Projectes***
 
-[Enllaç cap al Generador de Maven Artifact Exemple](./maven-archetype-genapp)
+Pitjar sobre el següent enllaç per generar un projecte: [Generador de Projectes](http://htmlpreview.github.io/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0/generadordecomanda.html)
+
+
+
