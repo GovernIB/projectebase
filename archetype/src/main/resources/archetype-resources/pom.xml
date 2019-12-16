@@ -28,12 +28,25 @@
     <mp-openapi.version>1.0.1</mp-openapi.version>
     <jaxb-api.version>2.2.12</jaxb-api.version>
     <slf4j.version>1.7.29</slf4j.version>
+
     <primefaces.version>7.0</primefaces.version>
     <primefaces.theme.version>1.0.10</primefaces.theme.version>
+
+    <cxf.version>3.3.3</cxf.version>
+    
+    <junit.version>4.8.2</junit.version>
+
   </properties>
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+      </dependency>
+
       <dependency>
         <groupId>javax</groupId>
         <artifactId>javaee-api</artifactId>
@@ -160,13 +173,13 @@
           </executions>
           <configuration>
             <!--
-                        Veure https://www.mojohaus.org/buildnumber-maven-plugin/usage.html
-                        si volem que falli si s'intenta compilar i hi ha canvis no pujats o hi ha canvis no davallats.
-                        S'hauria de crear un profile per quan es fa una release s'activin.
-                        Sinó val més que estiguin a false (per defecte):
-                        <doCheck>true</doCheck>
-                        <doUpdate>true</doUpdate>
-                        -->
+            Veure https://www.mojohaus.org/buildnumber-maven-plugin/usage.html
+            si volem que falli si s'intenta compilar i hi ha canvis no pujats o hi ha canvis no davallats.
+            S'hauria de crear un profile per quan es fa una release s'activin.
+            Sinó val més que estiguin a false (per defecte):
+            <doCheck>true</doCheck>
+            <doUpdate>true</doUpdate>
+            -->
             <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
           </configuration>
         </plugin>
@@ -185,9 +198,9 @@
 
     <plugins>
       <!--
-                Gestió de versions de dependències/plugins
-                Veure: https://www.mojohaus.org/versions-maven-plugin/
-            -->
+        Gestió de versions de dependències/plugins
+        Veure: https://www.mojohaus.org/versions-maven-plugin/
+      -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>

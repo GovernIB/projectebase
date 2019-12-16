@@ -9,7 +9,7 @@ http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd" bean-discovery-mode="all" vers
 
     <!-- Tots els interceptors i decorators s'han de llistar explicitament dins els beans -->
     <interceptors>
-        <class>${symbol_dollar}{package}.interceptor.LoggerInterceptor</class>
+        <class>${package}.interceptor.LoggerInterceptor</class>
     </interceptors>
 
 </beans>

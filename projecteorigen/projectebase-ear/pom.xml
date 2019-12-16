@@ -35,7 +35,7 @@
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-api</artifactId>
+            <artifactId>projectebase-rest</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>
@@ -54,6 +54,19 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
+        
+        <!-- WS START -->  
+        <!-- WS de ${projectname} -->
+        <!--  http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorld -->
+        <!--  http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorldWithSecurity -->
+        <!--  ... -->
+        <dependency>
+          <groupId>es.caib.projectebase</groupId>
+          <artifactId>projectebase-ws-server</artifactId>
+          <version>${project.version}</version>
+          <type>ejb</type>
+        </dependency>
+        <!-- WS END -->
     </dependencies>
 
     <build>
@@ -89,9 +102,16 @@
                         </webModule>
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
-                            <artifactId>projectebase-api</artifactId>
-                            <contextRoot>/projectebase/api</contextRoot>
+                            <artifactId>projectebase-rest</artifactId>
+                            <contextRoot>/projectebase/rest</contextRoot>
                         </webModule>
+                        <!-- WS START -->
+                        <ejbModule>
+                          <groupId>es.caib.projectebase</groupId>
+                          <artifactId>projectebase-ws-server</artifactId>
+                          <!-- XYZ ZZZ Aqui ha d'anar contextRoot -->
+                        </ejbModule>
+                        <!-- WS END -->
                     </modules>
                 </configuration>
             </plugin>

@@ -60,6 +60,10 @@ def onlyReplaceProperties(file) {
   search = "pbs";
   replace = "\\\$\\{prefix\\}";
   replaceText(file, search, replace);
+
+  search = "projectebase\\.caib\\.es";
+  replace = "\\\$\\{inversepackage\\}";
+  replaceText(file, search, replace);
 }
 
 def escapeFile(file) {    
@@ -100,6 +104,14 @@ File baseProject = new File(rootDir, "./archetype/src/main/resources/archetype-r
 println " + Directori Generacio: " + baseProject.getAbsolutePath()
 
 
+// POMS
+def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-rest", "__rootArtifactId__-back", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-jpa", "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
+
+for(String moduleDir : moduleFolders) {
+  File tmp = new File(baseProject, moduleDir);
+  onlyReplaceProperties(new File(tmp, "pom.xml"));
+}
+
 // DIRECTORI ARREL
 def rootFiles = [ "compile.bat" , "compile.sh",  "novaversio.bat", "novaversio.sh" ];
 for(String rootFile : rootFiles) {
@@ -113,7 +125,6 @@ for(String commonFile : commonsFiles) {
   replaceProperties(new File(baseProject, commonFile));
 }
 
-
 // JPA - persistence
 def jpaFiles = [ "./__rootArtifactId__-jpa/src/main/resources/META-INF/persistence.xml",
     "./__rootArtifactId__-jpa/src/main/java/jpa/Procediment.java",
@@ -122,17 +133,35 @@ for(String jpaFile : jpaFiles) {
   replaceProperties(new File(baseProject, jpaFile));
 }
 
-
 // EJB   
 File beans = new File(baseProject, "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml");
 replaceProperties(beans);
 
-// POMS
-def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-rest", "__rootArtifactId__-back", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-jpa"];
 
-for(String moduleDir : moduleFolders) {
-  File tmp = new File(baseProject, moduleDir);
-  onlyReplaceProperties(new File(tmp, "pom.xml"));
+// WS
+def wsFiles = [ "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/v1/impl/HelloWorldWsImpl.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/v1/impl/HelloWorldWithSecurityWsImpl.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/I18NLogicUtils.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/WsInInterceptor.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/AuthenticatedBaseWsImpl.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsValidationErrors.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsI18NException.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsFieldValidationError.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/HelloWorldWsService.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/test/java/ws/v1/test/HelloWorldTest.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/HelloWorldWithSecurityWs.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/HelloWorldWithSecurityWsService.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/HelloWorldWs.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/ObjectFactory.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/package-info.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsI18NError.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsI18NTranslation.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsValidationException.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/test.properties"
+ ];
+for(String wsFile : wsFiles) {
+  onlyReplaceProperties(new File(baseProject, wsFile));
 }
+
 
 println 'Final'

@@ -33,7 +33,7 @@
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-api</artifactId>
+            <artifactId>${rootArtifactId}-rest</artifactId>
             <version>${version}</version>
             <type>war</type>
         </dependency>
@@ -52,6 +52,19 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
+        
+        <!-- WS START -->  
+        <!-- WS de ${projectname} -->
+        <!--  http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorld -->
+        <!--  http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorldWithSecurity -->
+        <!--  ... -->
+        <dependency>
+          <groupId>${groupId}</groupId>
+          <artifactId>${rootArtifactId}-ws-server</artifactId>
+          <version>${version}</version>
+          <type>ejb</type>
+        </dependency>
+        <!-- WS END -->
     </dependencies>
 
     <build>
@@ -87,9 +100,16 @@
                         </webModule>
                         <webModule>
                             <groupId>${groupId}</groupId>
-                            <artifactId>${rootArtifactId}-api</artifactId>
-                            <contextRoot>/${rootArtifactId}/api</contextRoot>
+                            <artifactId>${rootArtifactId}-rest</artifactId>
+                            <contextRoot>/${rootArtifactId}/rest</contextRoot>
                         </webModule>
+                        <!-- WS START -->
+                        <ejbModule>
+                          <groupId>${groupId}</groupId>
+                          <artifactId>${rootArtifactId}-ws-server</artifactId>
+                          <!-- XYZ ZZZ Aqui ha d'anar contextRoot -->
+                        </ejbModule>
+                        <!-- WS END -->
                     </modules>
                 </configuration>
             </plugin>

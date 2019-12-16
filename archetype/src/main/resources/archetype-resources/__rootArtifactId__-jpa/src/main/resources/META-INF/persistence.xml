@@ -6,10 +6,10 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
-    <persistence-unit name="${symbol_dollar}{artifactId}PU" transaction-type="JTA">
-        <jta-data-source>java:/jdbc/${symbol_dollar}{artifactId}DS</jta-data-source>
+    <persistence-unit name="${artifactId}PU" transaction-type="JTA">
+        <jta-data-source>java:/jdbc/${artifactId}DS</jta-data-source>
         <!-- Llista de classes persistents -->
-        <class>${symbol_dollar}{package}.jpa.UnitatOrganica</class>
+        <class>${package}.jpa.UnitatOrganica</class>
         <!-- Activar cache només per aquelles entitats on volguem expressament -->
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
         <!-- Sempre activar la validació de les propietats -->

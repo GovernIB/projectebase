@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>es.caib.projectebase</groupId>
+  <artifactId>projectebase-ws</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <parent>
+    <groupId>es.caib.projectebase</groupId>
+    <artifactId>projectebase</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <name>ProjecteBase - WS</name>
+  <repositories>
+    <repository>
+      <id>maven-nuxeo</id>
+      <name>Maven Nuxeo Repository</name>
+      <url>https://maven.nuxeo.org/nexus/content/groups/public/</url>
+      <layout>default</layout>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <updatePolicy>never</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+  <modules>
+    <module>projectebase_ws_server</module>
+    <module>projectebase_ws_api</module>
+  </modules>
+</project>

@@ -15,25 +15,87 @@
     AA- genera l'archetype (plantilla) a partir del projecte funcional (projecteorigen)
     BB- Copia els resultats de la generació a archetype\src\main\resources\archetype-resources
     CC- En una segona passada, executa el fitxer "post_create_from_project.groovy" que fa substitucions de les constants del punt (XXX) que no s'han substituït en el punt AA.
+    
+    NOTA:  necessitau un ./m2/???/usersetting.xml (XYZ ZZZ)
 
-* Per comprovar que no s'ha colat res, anar a .\archetype\src\main\resources\archetype-resources i executar les següents comandes:
+* Per comprovar que no s'ha colat res:
+
+  (A) anar a .\archetype\src\main\resources\archetype-resources i executar les següents comandes:
 
      > grep -iR "projectebase" .
      > grep -iR "projecte base" .
+     > grep -iR "projecte" .
      > grep -R "PBS" .
      > grep -iR "pbs_" .
+   
+   (B) Si no apareix res en les cerques podem ppasar dels punts següent i anar a (KKK)
+   (C)  Si en algun d'aquests punts apareix alguna cosa en la cerca, llavors s'ha d'editar el fitxer post_create_from_project.groovy i afegir les substitucions oportunes als fitxers 
+     
+   (D)  Executar mvn org.codehaus.gmaven:groovy-maven-plugin:2.1.1:execute  -Dsource=post_create_from_project.groovy
+   
+   (E) Anar al punt (A)
      
      
-* Anar a archetype i executar "mvn clean install"
-    
+* (KKK) Anar a archetype i executar "mvn clean install"
+   
      
      
-* EL pas anterior compila l'artifact i genera un projecte de prova amb les propietats del fitxer "archetype\src\test\resources\projects\basic\archetype.properties". El projecte generat el podeu trobar a  archetype\target\test-classes\projects\basic\project\projectebaseexemple.
+* El pas anterior compila l'artifact i genera un projecte de prova amb les propietats del fitxer "archetype\src\test\resources\projects\basic\archetype.properties". El projecte generat el podeu trobar a  archetype\target\test-classes\projects\basic\project\projectebaseexemple.
    Anar a aquest directori i executar "mvn clean install" per comproar que s'ha generat correctament a partir de la plantilla.
-     
-     
-     
+
+
+
+
+
+
+
+<< FALTA NOVA PROPIETAT >>
+
+(1) Afegir la propietat a \archetype\src\test\resources\projects\basic\archetype.properties
+
+(2) Afegir la propietat a \archetype\src\main\resources\META-INF\maven\archetype-metadata.xml
+
+(3) Adaptar el generadordecomanda.html per a que afegeixi a propietat a la comanda (podrà ser generada o un nou camp d'entrada )
+
+(4) Modificar el mètode onlyReplaceProperties del fitxer post_create_artifact_from_projecteorigen.groovy per afegir la substitucio del valor actual pel nom de la propietat.
+
+
+
+
+
 
      <<< FALTA NOU MODUL >>>
+     
+         (1) Afegir entrades a \archetype\src\main\resources\META-INF\maven\archetype-metadata.xml (el tros a copiar elpodem obtenir de projecteorigen\target\generated-sources\archetype\src\main\resources\META-INF\maven\archetype-metadata.xml) 
+         
+        (2) Si és opcional llavors s'ha afegir una entrada a  .\archetype\src\main\resources\META-INF\archetype-post-generate.groovy del tipus
+        ------------------------------
+        // perfilWS
+String perfilWS = properties.get("perfilWS");
+        
+        if (perfilWS.equals("false")) {
+  println " + Eliminant modul de WS ..."
+  // Llevar WS
+  removeModule('ws', rootDir)
+  // Llevar Ws de EAR pom
+  def pomEar = new File(rootDir, "./ear/pom.xml")
+  removeTextBetweenTwoStrings(pomEar, "<!-- WS START -->", "<!-- WS END -->");
+}
+        
+        ---------------------------------
+     
+        (3) Adaptar generadordecomanda.html si fos necessari
 
      << FALTA NOVA CLASSE >>>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
