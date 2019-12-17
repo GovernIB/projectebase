@@ -48,100 +48,99 @@
     document.getElementById("maven").value= gen;
    }
 
-
       </script>
 
     </head>
     <body>
-      <h2 style="padding:5px; margin:4px">Generador de Projectes</h2>
+      <h2 style="margin:4px">Generador de Projectes</h2>
+
+      <h3 style="color: #2e6c80; margin:10px;">(1) Requereix tenir instal·lada una versió de openjdk 11.</h3>
+      <h3 style="color: #2e6c80; margin:10px;">(2) Requereix tenir instal·lada una versió de maven 3.6 o major.</h3>
+      <h3 style="color: #2e6c80; margin:10px;">(3) Introduir les dades del Projecte:</h3>
+
       <table border="0" cellspacing="0" cellpadding="0">
         <tr style="vertical-align:top">   
-          <td >  
-            <h3 style="color: #2e6c80;">(1) Introduir les dades del Projecte:</h3>
-            <table border="0" >
+          <td width="50%">  
+            
+            <table border="0">
               <tbody>
                 <tr>
-                  <td style="width: 130px;">Nom del Projecte:&nbsp;</td>
-                  <td style="width: 402px;">
-                    <input size=60  id="projectname" type="text" value="ProjecteBaseExemple" onkeyup="projectnameChange()" />
+                  <td>Nom del Projecte:&nbsp;</td>
+                  <td>
+                    <input size=35  id="projectname" type="text" value="ProjecteBaseExemple" onkeyup="projectnameChange()" />
                   </td>
                 </tr>
                 <tr>
-                  <td style="width: 130px;">Package Base</td>
-                  <td style="width: 402px;">
-                    <input size=60  id="packagebase" type="text" value="es.caib" onkeyup="projectnameChange()" />
+                  <td>Package Base</td>
+                  <td>
+                    <input size=35  id="packagebase" type="text" value="es.caib" onkeyup="projectnameChange()" />
                   </td>
                 </tr>
                 <tr>
-                  <td style="width: 130px;">Prefix (3 char)</td>
-                  <td style="width: 402px;">
-                    <input size=60  id="prefix" type="text" value="pbe" onkeyup="projectnameChange()" />
-                  </td>
-                </tr>
-
-                <tr>
-                  <td style="width: 130px;">Version</td>
-                  <td style="width: 402px;">
-                    <input size=60  id="version" type="text" value="1.0.0" onkeyup="projectnameChange()"  />
-                  </td>
-                </tr>
-                <tr>
-                  <td style="width: 130px;">Generar Back</td>
-                  <td style="width: 402px;">
-                    <input size=60  id="generarback" checked="checked" type="checkbox" onchange="projectnameChange()" />
+                  <td >Prefix (3 char)</td>
+                  <td >
+                    <input size=35  id="prefix" type="text" value="pbe" onkeyup="projectnameChange()" />
                   </td>
                 </tr>
 
                 <tr>
-                  <td style="width: 130px;">Generar WS</td>
-                  <td style="width: 402px;">
-                    <input size=60  id="generarws" checked="checked" type="checkbox" onchange="projectnameChange()" />
+                  <td>Version</td>
+                  <td>
+                    <input size=35  id="version" type="text" value="1.0.0" onkeyup="projectnameChange()"  />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Generar Back</td>
+                  <td>
+                    <input size=35  id="generarback" checked="checked" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Generar WS</td>
+                  <td>
+                    <input size=35  id="generarws" checked="checked" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
 
               </table>
+              
+           </td>
+           <td>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+           </td>
+           <td>
 
-
-
-              <h4 style="color: #2e6c80;">Dades Generades (només lectura)</h4>
+              <h4 style="color: #2e6c80;margin:4px">Dades Generades (només lectura)</h4>
               <table  border="0"  >
                 <tbody>
                   <tr>
-                    <td style="width: 130px;">Package</td>
-                    <td style="width: 402px;">
-                      <input size=60  id="package" readonly="readonly" type="text" value="es.caib.projectebase" />
+                    <td >Package</td>
+                    <td>
+                      <input size=35  id="package" readonly="readonly" type="text" value="es.caib.projectebase" />
                     </td>
                   </tr>
                   <tr>
-                    <td style="width: 130px;">Artifact ID</td>
-                    <td style="width: 402px;">
-                      <input size=60  id="artifactid" readonly="readonly" type="text" value="projectebase" />
+                    <td >Artifact ID</td>
+                    <td >
+                      <input size=35  id="artifactid" readonly="readonly" type="text" value="projectebase" />
                     </td>
                   </tr>
                   <tr>
-                    <td style="width: 130px;">Group ID</td>
-                    <td style="width: 402px;">
-                      <input size=60  id="groupid" readonly="readonly" type="text" value="es.caib.projectebase" />
+                    <td >Group ID</td>
+                    <td>
+                      <input size=35  id="groupid" readonly="readonly" type="text" value="es.caib.projectebase" />
                     </td>
                   </tr>
 
                 </tbody>
               </table>
 
+            </td>
+          </tr>
+        </table>
 
-            </td>
-            <td>
-&nbsp;&nbsp;&nbsp;
-            </td>
-            <td style="background-color:#E0E0E0">
-&nbsp;
-            </td>
-            <td>
-&nbsp;&nbsp;&nbsp;
-            </td>
-            <td>
-<h3 style="color: #2e6c80;">(2) Requereix tenir instal·lada una versió de maven 3.6 o major</h3>
-<h3 style="color: #2e6c80;">(3) Crear un fitxer [HOME]/.m2/settings.xml amb el següent contingut: </h3>
+<h3 style="color: #2e6c80;margin:10px;">(4) Crear un fitxer [HOME]/.m2/settings.xml (si no existeix) i afegir-li el següent contingut (bloc &lt;profiles&gt; i bloc &lt;activeProfile&gt;):</h3>
               <textarea id="profile" readonly="readonly" style="color:#ff0000;" cols="80" readonly="readonly" rows="17" >
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -165,12 +164,7 @@
 </settings>
               </textarea>
 
-            </td>
-          </tr>
-        </table>
-        <hr/>
-
-        <h3 style="color: #2e6c80;">(4) Obrir una consola i executar la següent comanda per generar el projecte:</h3>
+        <h3 style="color: #2e6c80;margin:10px;">(5) Obrir una consola i executar la següent comanda per generar el projecte:</h3>
 
         <textarea id="maven" cols="100" readonly="readonly" rows="8"> </textarea>
 
