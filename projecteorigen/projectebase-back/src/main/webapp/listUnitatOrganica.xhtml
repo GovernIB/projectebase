@@ -1,8 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:o="http://omnifaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--
 Pàgina amb el llistat d'unitats orgàniques.
@@ -13,29 +14,64 @@ Pàgina amb el llistat d'unitats orgàniques.
 
     <ui:define name="content">
         <h:form>
-            <p:dataTable id="table" value="#{listUnitatOrganica.lazyModel}" var="unitatOrganica"
-                         paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
-                         paginatorPosition="bottom"
-                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
-                <p:column>
+            <div class="row dataTables_wrapper">
+                <div class="col-sm-12 col-md-6">
+                    <div class="dataTables_length" id="dataTable_paginate_length">
+                        <label>#{labels.dataTable_mostrar}
+                            <h:selectOneMenu id="pageSize" value="#{listUnitatOrganica.pagination.pageSize}"
+                                             a:aria-controls="dataTable_paginate"
+                                             styleClass="custom-select custom-select-sm form-control form-control-sm">
+                                <f:selectItem itemValue="10" />
+                                <f:selectItem itemValue="20" />
+                                <f:selectItem itemValue="50" />
+                                <f:selectItem itemValue="100" />
+                                <f:ajax render="@form" />
+                            </h:selectOneMenu> #{labels.dataTable_registres}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div id="dataTable_paginate_filter" class="dataTables_filter">
+                        <label>#{labels.dataTable_cercar}
+                            <h:inputText value="#{listUnitatOrganica.cerca}" a:type="search"
+                                         styleClass="form-control form-control-sm"
+                                         a:aria-controls="dataTable_paginate" />
+                            <!-- El següent botó no es mostra, però és el que s'executa quan es pitja "enter" dins
+                             l'input de cerca -->
+                            <h:commandButton action="#{listUnitatOrganica.pagination.updateModel}" value="#"
+                                             style="display: none;">
+                                <f:ajax execute="@form" render="@form" />
+                            </h:commandButton>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <h:dataTable id="dataTable_paginate"
+                         styleClass="table table-striped table-bordered table-hover"
+                         headerClass="table-success"
+                         rowClass="clickable-row"
+                         style="width: 100%;"
+                         value="#{listUnitatOrganica.pagination.model}" var="unitatOrganica">
+                <h:column>
                     <f:facet name="header">#{labels.unitatOrganica_id}</f:facet>
                     <h:outputText value="#{unitatOrganica.id}"/>
-                </p:column>
-                <p:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">#{labels.unitatOrganica_codiDir3}</f:facet>
                     <h:outputText value="#{unitatOrganica.codiDir3}"/>
-                </p:column>
-                <p:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">#{labels.unitatOrganica_nom}</f:facet>
                     <h:outputText value="#{unitatOrganica.nom}"/>
-                </p:column>
-                <p:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">#{labels.unitatOrganica_dataCreacio}</f:facet>
                     <h:outputText value="#{unitatOrganica.dataCreacio}">
                         <f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
                     </h:outputText>
-                </p:column>
-                <p:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">#{labels.button_accions}</f:facet>
                     <h:button value="#{labels.button_editar}" outcome="/editUnitatOrganica"
                               styleClass="btn btn-primary aplicacio-btn">
@@ -47,10 +83,55 @@ Pàgina amb el llistat d'unitats orgàniques.
                     <h:commandButton value="#{labels.button_eliminar}" action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
                                      onclick="return confirm('#{confirmMessage}')"
                                      styleClass="btn btn-danger aplicacio-btn">
-                        <f:ajax render="messages table" />
+                        <f:ajax render="messages @form" />
                     </h:commandButton>
-                </p:column>
-            </p:dataTable>
+                </h:column>
+            </h:dataTable>
+
+            <c:if test="#{not empty listUnitatOrganica.pagination.model}">
+                <div class="row dataTables_wrapper">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info" id="dataTable_paginate_info" role="status" aria-live="polite">
+                            <h:outputFormat value="#{labels.dataTable_nombreRegistres}">
+                                <f:param value="#{listUnitatOrganica.pagination.pageFirstItem + 1}"/>
+                                <f:param value="#{listUnitatOrganica.pagination.pageFirstItem + listUnitatOrganica.pagination.model.size()}"/>
+                                <f:param value="#{listUnitatOrganica.pagination.count}"/>
+                            </h:outputFormat>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button page-item previous #{listUnitatOrganica.pagination.hasPreviousPage?'':'disabled'}"
+                                    id="dataTable_paginate_previous">
+                                    <h:commandLink action="#{listUnitatOrganica.pagination.previousPage}"
+                                                   a:aria-controls="dataTable_paginate"
+                                                   a:data-dt-idx="#{listUnitatOrganica.pagination.page - 1}"
+                                                   styleClass="page-link"
+                                                   value="#{labels.button_anterior}" />
+                                </li>
+                                <c:forEach begin="0" end="#{listUnitatOrganica.pagination.maxPage}" var="page">
+                                    <li class="paginate_button page-item #{listUnitatOrganica.pagination.page != page?'':'active'}">
+                                        <h:commandLink action="#{listUnitatOrganica.pagination.gotoPage(page)}"
+                                                       a:aria-controls="dataTable_paginate"
+                                                       a:data-dt-idx="#{page}"
+                                                       styleClass="page-link"
+                                                       value="#{page+1}" />
+                                    </li>
+                                </c:forEach>
+                                <li class="paginate_button page-item next #{listUnitatOrganica.pagination.hasNextPage?'':'disabled'}"
+                                    id="dataTable_paginate_next">
+                                    <h:commandLink action="#{listUnitatOrganica.pagination.nextPage}"
+                                                   a:aria-controls="dataTable_paginate"
+                                                   a:data-dt-idx="#{listUnitatOrganica.pagination.page + 1}"
+                                                   styleClass="page-link"
+                                                   value="#{labels.button_seguent}" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
         </h:form>
     </ui:define>
 </ui:composition>

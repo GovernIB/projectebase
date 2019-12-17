@@ -7,6 +7,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -73,5 +76,48 @@ public class UnitatOrganicaEJB implements UnitatOrganicaService {
         TypedQuery<Long> query = entityManager.createQuery(
                 "select count(uo) from UnitatOrganica uo", Long.class);
         return query.getSingleResult();
+    }
+
+    @Override
+    public List<UnitatOrganica> findFilteredPaged(String filter, @PositiveOrZero int first, @Positive int pageSize) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<UnitatOrganica> cq = cb.createQuery(UnitatOrganica.class);
+        final Root<UnitatOrganica> root = cq.from(UnitatOrganica.class);
+        cq.select(root);
+        applyFilter(filter, cq, root);
+
+        TypedQuery<UnitatOrganica> query = entityManager.createQuery(cq);
+        query.setFirstResult(first);
+        query.setMaxResults(pageSize);
+        return query.getResultList();
+    }
+
+    @Override
+    public long countFiltered(String filter) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        final Root<UnitatOrganica> root = cq.from(UnitatOrganica.class);
+        cq.select(cb.count(root));
+        applyFilter(filter, cq, root);
+
+        TypedQuery<Long> query = entityManager.createQuery(cq);
+        return query.getSingleResult();
+    }
+
+    /**
+     * Modifica l'objecte CriteriaQuery afegint el filtratge dels camps codiDir3 i nom.
+     * @param filter Cadena a cercar dins el camps codiDir3 i nom.
+     * @param cq query on aplicar el filtre.
+     * @param root objecte emprant al from del select d'on s'agafen els camps codiDir3 i nom.
+     */
+    private void applyFilter(String filter, CriteriaQuery cq, Root<UnitatOrganica> root) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        if (filter != null && !filter.isEmpty()) {
+            String filterExpression = "%" + filter.toLowerCase() + "%";
+            cq.where(
+                    cb.or(
+                            cb.like(cb.lower(root.get("codiDir3")), filterExpression),
+                            cb.like(cb.lower(root.get("nom")), filterExpression)));
+        }
     }
 }

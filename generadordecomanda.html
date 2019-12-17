@@ -33,11 +33,11 @@
         inversepackage = arr.join(".");
      }
 
-
-  var gen = "mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate"
+  // org.apache.maven.plugins:maven-archetype-plugin:2.4:generate
+  var gen = "mvn archetype:generate"
     + " -B -DarchetypeGroupId=es.caib.projectebase"
     + " -DarchetypeArtifactId=projectebase-archetype -DarchetypeVersion=1.0.0"
-    + " -DarchetypeRepository=https://governib.github.io/maven/maven"
+    //+ " -DarchetypeRepository=https://governib.github.io/maven/maven"
     + " -Dpackage=" + packageStr + " -Dpackagepath=" +packagepath 
     + " -Dinversepackage=" + inversepackage 
     + " -DgroupId=" + packageStr + " -DartifactId=" + projectnamelowercase
