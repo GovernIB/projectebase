@@ -109,7 +109,6 @@
                         <ejbModule>
                           <groupId>es.caib.projectebase</groupId>
                           <artifactId>projectebase-ws-server</artifactId>
-                          <!-- XYZ ZZZ Aqui ha d'anar contextRoot -->
                         </ejbModule>
                         <!-- WS END -->
                     </modules>

@@ -14,7 +14,7 @@ if %errorlevel% EQU 0 (
 	  @echo on
 	  echo --------- COPIANT EAR ---------
 
-	  xcopy /Y ear${symbol_escape}target${symbol_escape}${artifactId}.ear %${projectnameuppercase}_DEPLOY_DIR%
+	  xcopy /Y ${artifactId}-ear${symbol_escape}target${symbol_escape}${artifactId}.ear %${projectnameuppercase}_DEPLOY_DIR%
 
 	) ELSE (
 	  echo  =================================================================

@@ -18,7 +18,7 @@ if [ $? == 0 ]; then
   
     echo on
     echo --------- COPIANT EAR ---------
-    cp ./ear/target/projectebase.ear PROJECTEBASE_DEPLOY_DIR
+    cp ./projectebase-ear/target/projectebase.ear $PROJECTEBASE_DEPLOY_DIR
 
   fi
 fi
