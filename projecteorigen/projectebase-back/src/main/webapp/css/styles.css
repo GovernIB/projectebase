@@ -484,6 +484,19 @@ a.iconoXarxes{
 }
 /* FI Capsa Box */
 
+/* Per paginació */
+.page-link{
+	color: #4dba79;
+}
+.page-item.active .page-link {
+	background-color: #4dba79;
+	border-color: #4dba79;
+}
+.page-link:focus, .page-link:hover {
+	color: #000;
+}
+
+
 /* Específics per primefaces */
 .ui-growl {
 	top: 100px;
