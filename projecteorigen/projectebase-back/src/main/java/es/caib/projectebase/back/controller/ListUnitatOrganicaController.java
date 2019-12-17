@@ -2,8 +2,6 @@ package es.caib.projectebase.back.controller;
 
 import es.caib.projectebase.jpa.UnitatOrganica;
 import es.caib.projectebase.service.UnitatOrganicaService;
-import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,8 +13,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Controlador pels llistats d'Unitats Organiques. El definim a l'scope de view perquè a nivell de request es
@@ -38,18 +34,11 @@ public class ListUnitatOrganicaController implements Serializable {
 
     // PROPIETATS + GETTERS/SETTERS
 
+    /** Objecte que manté l'estat i les dades paginades */
     private PaginationHelper<UnitatOrganica> pagination;
 
+    /** Cadena de cerca */
     private String cerca;
-
-    private LazyDataModel<UnitatOrganica> lazyModel;
-
-    /**
-     * Obté el unitats de dades per la taula d'unitats orgàniques
-     */
-    public LazyDataModel<UnitatOrganica> getLazyModel() {
-        return lazyModel;
-    }
 
     public PaginationHelper<UnitatOrganica> getPagination() {
         return pagination;
@@ -69,21 +58,16 @@ public class ListUnitatOrganicaController implements Serializable {
     @PostConstruct
     public void init() {
         LOG.info("init");
-        lazyModel = new LazyDataModel<>() {
-            @Override
-            public List<UnitatOrganica> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-                                             Map<String, Object> filters) {
-                setRowCount((int) unitatOrganicaService.countAll());
-                //TODO implementar ordenació i filtres
-                return unitatOrganicaService.findAllPaged(first, pageSize);
-            }
-        };
+        /*
+        Crea un objecte paginació implementant el mètode per actualitzar el model perquè agafi les dades
+         filtrades i paginades.
+         */
         pagination = new PaginationHelper<>() {
             @Override
-            protected void updateModel() {
-                setCount((int) unitatOrganicaService.countAll());
-                //TODO implementar ordenació i filtres
-                setModel(unitatOrganicaService.findAllPaged(this.getPageFirstItem(), this.getPageSize()));
+            public void updateModel() {
+                setCount((int) unitatOrganicaService.countFiltered(cerca));
+                //TODO implementar ordenació
+                setModel(unitatOrganicaService.findFilteredPaged(cerca, this.getPageFirstItem(), this.getPageSize()));
             }
         };
     }
@@ -98,6 +82,7 @@ public class ListUnitatOrganicaController implements Serializable {
     public void delete(Long id) {
         LOG.info("delete");
         unitatOrganicaService.deleteById(id);
+        // Actualitza les dades paginades
         pagination.updateModel();
         context.addMessage(null, new FacesMessage("Registre borrat"));
     }
