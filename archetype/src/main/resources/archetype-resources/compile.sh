@@ -21,7 +21,7 @@ if [ ${symbol_dollar}? == 0 ]; then
   
     echo on
     echo --------- COPIANT EAR ---------
-    cp ./ear/target/${artifactId}.ear ${projectnameuppercase}_DEPLOY_DIR
+    cp ./${artifactId}-ear/target/${artifactId}.ear ${symbol_dollar}${projectnameuppercase}_DEPLOY_DIR
 
   fi
 fi

@@ -11,7 +11,7 @@ if %errorlevel% EQU 0 (
 	  @echo on
 	  echo --------- COPIANT EAR ---------
 
-	  xcopy /Y ear\target\projectebase.ear %PROJECTEBASE_DEPLOY_DIR%
+	  xcopy /Y projectebase-ear\target\projectebase.ear %PROJECTEBASE_DEPLOY_DIR%
 
 	) ELSE (
 	  echo  =================================================================

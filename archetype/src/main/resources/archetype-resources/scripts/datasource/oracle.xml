@@ -1,0 +1,8 @@
+<datasource jndi-name="java:jboss/datasources/projectebaseDS" pool-name="projectebaseDS" enabled="true" use-java-context="true">
+	<connection-url>jdbc:oracle:thin://localhost:1523/projectebase</connection-url>
+	<driver>oracle</driver>
+	<security>
+		<user-name>projectebase</user-name>
+		<password>projectebase</password>
+	</security>
+</datasource>

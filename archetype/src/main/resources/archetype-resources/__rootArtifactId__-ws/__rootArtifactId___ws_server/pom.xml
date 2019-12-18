@@ -40,6 +40,9 @@
       </plugin>
 
     </plugins>
+    
+    <finalName>${artifactId}-ws-server</finalName>
+    
   </build>
 
   <dependencies>
@@ -106,24 +109,20 @@
       <groupId>${groupId}</groupId>
       <artifactId>${rootArtifactId}-ejb</artifactId>
       <version>${version}</version>
-      <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>2.2</version>
-      <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.fundaciobit.genapp</groupId>
       <artifactId>genapp-core</artifactId>
       <version>1.0</version>
-      <scope>provided</scope>
     </dependency>
 
   </dependencies>
-
 
 </project>

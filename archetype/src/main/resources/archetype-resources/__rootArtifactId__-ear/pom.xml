@@ -107,7 +107,6 @@
                         <ejbModule>
                           <groupId>${groupId}</groupId>
                           <artifactId>${rootArtifactId}-ws-server</artifactId>
-                          <!-- XYZ ZZZ Aqui ha d'anar contextRoot -->
                         </ejbModule>
                         <!-- WS END -->
                     </modules>

@@ -33,8 +33,10 @@
         inversepackage = arr.join(".");
      }
 
-
-  var gen = "mvn archetype:generate -B -DarchetypeGroupId=es.caib.projectebase"
+  // org.apache.maven.plugins:maven-archetype-plugin:2.4:generate
+  //+ " -DarchetypeRepository=https://governib.github.io/maven/maven"
+  var gen = "mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.2:generate"
+    + " -B -DarchetypeGroupId=es.caib.projectebase"
     + " -DarchetypeArtifactId=projectebase-archetype -DarchetypeVersion=1.0.0"
     + " -Dpackage=" + packageStr + " -Dpackagepath=" +packagepath 
     + " -Dinversepackage=" + inversepackage 
@@ -43,7 +45,6 @@
     + " -Dprojectnameuppercase=" + projectnameuppercase + " -Dprefix=" + prefix
     + " -Dprefixuppercase=" + prefix.toUpperCase() 
     + " -DperfilWS=" + perfilWS  + " -DperfilBack=" + perfilBack;
-
 
     document.getElementById("maven").value= gen;
    }
@@ -99,7 +100,7 @@
                 <tr>
                   <td>Generar WS</td>
                   <td>
-                    <input size=35  id="generarws" checked="checked" type="checkbox" onchange="projectnameChange()" />
+                    <input size=35  id="generarws" checked="unchecked" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
 
@@ -139,7 +140,7 @@
             </td>
           </tr>
         </table>
-
+<!--
 <h3 style="color: #2e6c80;margin:10px;">(4) Crear un fitxer [HOME]/.m2/settings.xml (si no existeix) i afegir-li el següent contingut (bloc &lt;profiles&gt; i bloc &lt;activeProfile&gt;):</h3>
               <textarea id="profile" readonly="readonly" style="color:#ff0000;" cols="80" readonly="readonly" rows="17" >
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -163,9 +164,15 @@
   </activeProfiles>
 </settings>
               </textarea>
+-->
+        <h3 style="color: #2e6c80;margin:10px;">(4) Obrir una consola i executar les següents comandes per generar el projecte:</h3>
+        <h5>(4.1) La següent comanda serveix per descarregar l'archetype del repositori maven del GovernIB (Només cal executar-ho una vegada)</h5>
+        
+        <textarea id="download" cols="100" readonly="readonly" rows="3">
+mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B -DarchetypeGroupId=es.caib.projectebase -DarchetypeArtifactId=projectebase-archetype -DarchetypeVersion=1.0.0 -DarchetypeRepository=https://governib.github.io/maven/maven 
+        </textarea>
 
-        <h3 style="color: #2e6c80;margin:10px;">(5) Obrir una consola i executar la següent comanda per generar el projecte:</h3>
-
+        <h5>(4.2) Comanda que genera el projecte</h5>
         <textarea id="maven" cols="100" readonly="readonly" rows="8"> </textarea>
 
         <script>

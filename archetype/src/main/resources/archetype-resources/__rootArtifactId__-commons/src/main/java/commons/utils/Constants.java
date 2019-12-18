@@ -13,7 +13,7 @@ public interface Constants {
 
   public static final String ${projectnameuppercase}ARCHETYPE_PROPERTY_BASE = "${package}.";
 
-  public static final String SECURITY_DOMAIN = "seycon";
+  public static final String SECURITY_DOMAIN = "caib";
   
   public static final String ${prefixuppercase}_ADMIN = "${prefixuppercase}_ADMIN";
 
