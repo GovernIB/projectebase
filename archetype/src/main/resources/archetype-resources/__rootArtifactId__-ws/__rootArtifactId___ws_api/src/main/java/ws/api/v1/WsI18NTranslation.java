@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="args" type="{http://impl.v1.ws.${artifactId}.caib.es/}wsI18NArgument" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="args" type="{http://impl.v1.ws.${rootArtifactId}.caib.es/}wsI18NArgument" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

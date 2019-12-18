@@ -41,7 +41,7 @@
 
     </plugins>
     
-    <finalName>${artifactId}-ws-server</finalName>
+    <finalName>${rootArtifactId}-ws-server</finalName>
     
   </build>
 

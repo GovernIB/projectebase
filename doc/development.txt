@@ -1,5 +1,5 @@
 
-* Fer canvis al projecteorigen
+(1) Fer canvis al projecteorigen
    (XXX) - Les constants de traducció són: 
         package=es.caib.projectebase
         groupId=es.caib.projectebase
@@ -11,14 +11,14 @@
         prefix=pbs
 
 
-* Executar  1_archetype_create_from_project.bat
+(2) Executar  1_archetype_create_from_project.bat
     AA- genera l'archetype (plantilla) a partir del projecte funcional (projecteorigen)
     BB- Copia els resultats de la generació a archetype\src\main\resources\archetype-resources
     CC- En una segona passada, executa el fitxer "post_create_from_project.groovy" que fa substitucions de les constants del punt (XXX) que no s'han substituït en el punt AA.
     
     NOTA:  necessitau un ./m2/???/usersetting.xml (XYZ ZZZ)
 
-* Per comprovar que no s'ha colat res:
+(3) Per comprovar que no s'ha colat res:
 
   (A) anar a .\archetype\src\main\resources\archetype-resources i executar les següents comandes:
 
@@ -36,13 +36,15 @@
    (E) Anar al punt (A)
      
      
-* (KKK) Anar a archetype i executar "mvn clean install"
+(4) (KKK) Anar a archetype i executar "mvn clean install"
    
      
      
-* El pas anterior compila l'artifact i genera un projecte de prova amb les propietats del fitxer "archetype\src\test\resources\projects\basic\archetype.properties". El projecte generat el podeu trobar a  archetype\target\test-classes\projects\basic\project\projectebaseexemple.
+(5) El pas anterior compila l'artifact i genera un projecte de prova amb les propietats del fitxer "archetype\src\test\resources\projects\basic\archetype.properties". El projecte generat el podeu trobar a  archetype\target\test-classes\projects\basic\project\projectebaseexemple.
    Anar a aquest directori i executar "mvn clean install" per comproar que s'ha generat correctament a partir de la plantilla.
 
+(6) Anar al directori /generat i executar "projectebase.bat". 
+    fer doble click sobre compare_projecteorigen_i_projectegenerat.WinMerge (s'ha de tenir instal3lat WinMerge)
 
 
 

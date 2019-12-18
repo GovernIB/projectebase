@@ -1,8 +1,11 @@
-<datasource jndi-name="java:jboss/datasources/projectebaseDS" pool-name="projectebaseDS" enabled="true" use-java-context="true">
-	<connection-url>jdbc:oracle:thin://localhost:1523/projectebase</connection-url>
+#set( $symbol_pount = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
+<datasource jndi-name="java:jboss/datasources/${rootArtifactId}DS" pool-name="${rootArtifactId}DS" enabled="true" use-java-context="true">
+	<connection-url>jdbc:oracle:thin://localhost:1523/${rootArtifactId}</connection-url>
 	<driver>oracle</driver>
 	<security>
-		<user-name>projectebase</user-name>
-		<password>projectebase</password>
+		<user-name>${rootArtifactId}</user-name>
+		<password>${rootArtifactId}</password>
 	</security>
 </datasource>

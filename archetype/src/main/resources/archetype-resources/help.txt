@@ -2,14 +2,14 @@
 -------------------------------- OPCIONS ---------------------------------
 
 -Pbuild           Nomes emprar en desenvolupament. Sistema manual de 
-                  revisions. Marca una nova data de revisió.
+                  revisions. Marca una nova data de revisiÃ³.
 
 -Psqlgen          XYZ ZZZ Genera scripts SQL dins /scripts/sqlgenerator.
                   Mes informacio a /scripts/sqlgenerator/readme.txt
 
--Pswagger-ui      Inclou l'interfície d'usuari Swagger dins el mòdul d'API REST
+-Pswagger-ui      Inclou l'interfÃ­cie d'usuari Swagger dins el mÃ²dul d'API REST
 
--Previsionnumber  Inclou el numero de la darrera revisió pujada al repositori
+-Previsionnumber  Inclou el numero de la darrera revisiÃ³ pujada al repositori
                   de Versions-
 
 clean             Neteja els projectes abans de compilar.

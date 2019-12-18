@@ -9,4 +9,5 @@
 /maven-archetype-genapp/3_generat/projectebase
 /archetype/check.bat
 /archetype/test.bat
-/generat
+
+/generat/projectebase

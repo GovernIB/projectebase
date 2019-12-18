@@ -13,9 +13,9 @@ import org.jboss.wsf.spi.annotation.WebContext;
 import es.caib.projectebase.ws.utils.BaseWsImpl;
 
 /**
- * 
+ *
  * @author anadal
- * 
+ *
  */
 @Stateless(name= HelloWorldWsImpl.NAME + "Ejb")
 @SOAPBinding(style = SOAPBinding.Style.RPC)

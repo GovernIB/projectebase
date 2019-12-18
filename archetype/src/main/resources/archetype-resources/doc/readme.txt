@@ -10,12 +10,12 @@ Requisits compilació:
 
 Requisits execució:
  - JBoss 7.2 / Wildfly 13 o superior
- - Definir dins el servidor el Datasource amb nom "jdbc/${artifactId}DS" cap a una BDD buida
+ - Definir dins el servidor el Datasource amb nom "jdbc/${rootArtifactId}DS" cap a una BDD buida
  - Definir variable entorn JBOSS_HOME
 
 Compilació:
  mvn clean install
-L'aplicació generada es troba dins ${artifactId}-ear/target/${artifactId}.ear
+L'aplicació generada es troba dins ${rootArtifactId}-ear/target/${rootArtifactId}.ear
 
 Deploy/redeploy/undeploy aplicació sobre el servidor:
  mvn cargo:deploy / cargo:redeploy / cargo:undeploy
@@ -35,15 +35,15 @@ Exemple:
    mvn install cargo:redeploy
 
 Provar backoffice:
- - http://localhost:8080/${artifactId}back/
+ - http://localhost:8080/${rootArtifactId}back/
 
 Provar api REST
  Llistar les unitats orgàniques:
-   - curl http://localhost:8080/${artifactId}/api/services/unitatorganica/all
+   - curl http://localhost:8080/${rootArtifactId}/api/services/unitatorganica/all
  Obtenir la unitat orànica amb ideficador 1:
-   - curl http://localhost:8080/${artifactId}/api/services/unitatorganica/1
+   - curl http://localhost:8080/${rootArtifactId}/api/services/unitatorganica/1
  Crear una nova unitat orgànica:
-   - curl -i -X POST -H "Content-Type: application/json" -d "{${symbol_escape}"codiDir3${symbol_escape}":${symbol_escape}"A99999999${symbol_escape}",${symbol_escape}"dataCreacio${symbol_escape}":${symbol_escape}"01-12-2019${symbol_escape}",${symbol_escape}"nom${symbol_escape}":${symbol_escape}"Unitat XXX${symbol_escape}"}" http://localhost:8080/${artifactId}/api/services/unitatorganica
+   - curl -i -X POST -H "Content-Type: application/json" -d "{${symbol_escape}"codiDir3${symbol_escape}":${symbol_escape}"A99999999${symbol_escape}",${symbol_escape}"dataCreacio${symbol_escape}":${symbol_escape}"01-12-2019${symbol_escape}",${symbol_escape}"nom${symbol_escape}":${symbol_escape}"Unitat XXX${symbol_escape}"}" http://localhost:8080/${rootArtifactId}/api/services/unitatorganica
  Si s'ha compilat amb el profile swagger-ui:
-   - http://localhost:8080/${artifactId}/api
+   - http://localhost:8080/${rootArtifactId}/api
 

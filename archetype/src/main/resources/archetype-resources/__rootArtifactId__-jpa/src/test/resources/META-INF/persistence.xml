@@ -16,10 +16,10 @@
         <!-- Sempre activar la validació de les propietats -->
         <validation-mode>CALLBACK</validation-mode>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/${artifactId}" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/${rootArtifactId}" />
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.user" value="${artifactId}"/>
-            <property name="javax.persistence.jdbc.password" value="${artifactId}"/>
+            <property name="javax.persistence.jdbc.user" value="${rootArtifactId}"/>
+            <property name="javax.persistence.jdbc.password" value="${rootArtifactId}"/>
 
             <!-- Per les propietats estandard veure punt 8.2.1.9 de l'especificació JPA -->
             <!-- Recrea automàticament la BDD. Aquesta opció MAI s'ha d'emprar en entorn que no sigui de proves -->

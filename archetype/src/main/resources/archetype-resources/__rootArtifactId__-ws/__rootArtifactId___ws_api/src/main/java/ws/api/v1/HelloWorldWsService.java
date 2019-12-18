@@ -26,12 +26,12 @@ import javax.xml.ws.Service;
 
 @WebServiceClient(name = "HelloWorldWsService", 
                   wsdlLocation = "http://localhost:8080/${artifactId}/ws/v1/HelloWorld?wsdl",
-                  targetNamespace = "http://impl.v1.ws.${artifactId}.caib.es/") 
+                  targetNamespace = "http://impl.v1.ws.${rootArtifactId}.caib.es/") 
 public class HelloWorldWsService extends Service {
 
     public final static URL WSDL_LOCATION;
-    public final static QName SERVICE = new QName("http://impl.v1.ws.${artifactId}.caib.es/", "HelloWorldWsService");
-    public final static QName HelloWorldWs = new QName("http://impl.v1.ws.${artifactId}.caib.es/", "HelloWorldWs");
+    public final static QName SERVICE = new QName("http://impl.v1.ws.${rootArtifactId}.caib.es/", "HelloWorldWsService");
+    public final static QName HelloWorldWs = new QName("http://impl.v1.ws.${rootArtifactId}.caib.es/", "HelloWorldWs");
     static {
         URL url = null;
         try {

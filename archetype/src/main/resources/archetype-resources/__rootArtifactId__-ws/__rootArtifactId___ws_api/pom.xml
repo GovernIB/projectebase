@@ -66,7 +66,7 @@
                   <outputFile>${basedir}/src/main/resources/wsdl/${projectname}HelloWorld.wsdl</outputFile>
                   <argline>-s ${basedir}/code -portname ${projectname}HelloWorldWs
                     -address
-                    http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorld</argline>
+                    http://localhost:8080/${rootArtifactId}/ws/v1/${projectname}HelloWorld</argline>
                 </configuration>
                 <goals>
                   <goal>java2ws</goal>
@@ -85,7 +85,7 @@
                   <outputFile>${basedir}/src/main/resources/wsdl/${projectname}HelloWorldWithSecurity.wsdl</outputFile>
                   <argline>-s ${basedir}/code -portname
                     ${projectname}HelloWorldWithSecurityWs -address
-                    http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorldWithSecurity</argline>
+                    http://localhost:8080/${rootArtifactId}/ws/v1/${projectname}HelloWorldWithSecurity</argline>
                 </configuration>
                 <goals>
                   <goal>java2ws</goal>
@@ -123,7 +123,7 @@
                   <wsdls>
                     <wsdl>${basedir}/src/main/resources/wsdl/${projectname}HelloWorld.wsdl</wsdl>
                   </wsdls>
-                  <wsdlLocation>http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorld?wsdl</wsdlLocation>
+                  <wsdlLocation>http://localhost:8080/${rootArtifactId}/ws/v1/${projectname}HelloWorld?wsdl</wsdlLocation>
                   <argLine>-n</argLine>
                 </configuration>
               </execution>
@@ -137,7 +137,7 @@
                   <wsdls>
                     <wsdl>${basedir}/src/main/resources/wsdl/${projectname}HelloWorldWithSecurity.wsdl</wsdl>
                   </wsdls>
-                  <wsdlLocation>http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorldWithSecurity?wsdl</wsdlLocation>
+                  <wsdlLocation>http://localhost:8080/${rootArtifactId}/ws/v1/${projectname}HelloWorldWithSecurity?wsdl</wsdlLocation>
                   <argLine>-n</argLine>
                 </configuration>
               </execution>

@@ -14,7 +14,7 @@ import javax.xml.ws.WebFault;
  * 
  */
 
-@WebFault(name = "WsI18NError", targetNamespace = "http://impl.v1.ws.${artifactId}.caib.es/")
+@WebFault(name = "WsI18NError", targetNamespace = "http://impl.v1.ws.${rootArtifactId}.caib.es/")
 public class WsI18NException extends Exception {
     public static final long serialVersionUID = 20140704084846L;
     

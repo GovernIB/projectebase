@@ -1,6 +1,7 @@
 //evaluate(new File("./projectebaseutils.groovy"))
 import static groovy.io.FileType.*
 import java.nio.file.Path
+import java.nio.file.Files
 import java.util.regex.Pattern
 
 //GroovyShell shell = new GroovyShell()
@@ -31,19 +32,25 @@ def replaceText(file, search, replace) {
     file.newWriter("UTF-8").withWriter { w -> w << pomContent }
 }
 
-def replaceProperties(file) {
+def replaceProperties(file, isRoot) {
   escapeFile(file); 
-  onlyReplaceProperties(file);
+  onlyReplaceProperties(file, isRoot);
 }
   
-def onlyReplaceProperties(file) {
+def onlyReplaceProperties(file, isRoot) {
   String search = "es\\.caib\\.projectebase";
   String replace = "\\\$\\{package\\}";
   replaceText(file, search, replace);
   
-  search = "projectebase";
-  replace = "\\\$\\{artifactId\\}";
-  replaceText(file, search, replace);
+  if (isRoot) {
+    search = "projectebase";
+    replace = "\\\$\\{artifactId\\}";
+    replaceText(file, search, replace);
+  } else {
+    search = "projectebase";
+    replace = "\\\$\\{rootArtifactId\\}";
+    replaceText(file, search, replace);
+  }  
   
   search = "ProjecteBase";
   replace = "\\\$\\{projectname\\}";
@@ -105,30 +112,35 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 
 
 // POMS
-def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-rest", "__rootArtifactId__-back", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-jpa", "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
+def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-rest", "__rootArtifactId__-back",
+     "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-jpa", "__rootArtifactId__-ws",
+     "__rootArtifactId__-ws/__rootArtifactId___ws_server", 
+     "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
 
 for(String moduleDir : moduleFolders) {
   File tmp = new File(baseProject, moduleDir);
-  onlyReplaceProperties(new File(tmp, "pom.xml"));
+  onlyReplaceProperties(new File(tmp, "pom.xml"), false);
 }
 
 // DIRECTORI ARREL
-def rootFiles = [ "compile.bat" , "compile.sh",  "novaversio.bat", "novaversio.sh" ];
+def rootFiles = [ "compile.sh",  "novaversio.bat", "novaversio.sh" ];
 for(String rootFile : rootFiles) {
-  replaceProperties(new File(baseProject, rootFile));
+  onlyReplaceProperties(new File(baseProject, rootFile), true);
 }
+// compile.bat es un cas especial ja que té un \ abans de $
+replaceProperties(new File(baseProject, "compile.bat"), true);
 
 // DIRECTORI DOC
 def docFiles = [ "./doc/readme.txt" ];
 for(String docFile : docFiles) {
-  replaceProperties(new File(baseProject, docFile));
+  replaceProperties(new File(baseProject, docFile), false);
 }
 
 // COMMONS - model i utilitats
 def commonsFiles = [ "./__rootArtifactId__-commons/src/main/java/commons/utils/Constants.java",
        "./__rootArtifactId__-commons/src/main/java/commons/utils/Configuration.java" ];
 for(String commonFile : commonsFiles) {
-  replaceProperties(new File(baseProject, commonFile));
+  replaceProperties(new File(baseProject, commonFile), false);
 }
 
 // JPA - persistence
@@ -137,20 +149,22 @@ def jpaFiles = [ "./__rootArtifactId__-jpa/src/main/resources/META-INF/persisten
     "./__rootArtifactId__-jpa/src/main/java/jpa/Procediment.java",
     "./__rootArtifactId__-jpa/src/main/java/jpa/UnitatOrganica.java" ];
 for(String jpaFile : jpaFiles) {
-  replaceProperties(new File(baseProject, jpaFile));
+  replaceProperties(new File(baseProject, jpaFile), false);
 }
 
 
 // Back - web
-def backFiles = [ "./__rootArtifactId__-back/src/main/webapp/WEB-INF/faces-config.xml"
-    ];
+def backFiles = [
+   "./__rootArtifactId__-back/src/main/webapp/WEB-INF/faces-config.xml",
+   "./__rootArtifactId__-back/src/main/webapp/WEB-INF/web.xml"
+  ];
 for(String backFile : backFiles) {
-  replaceProperties(new File(baseProject, backFile));
+  replaceProperties(new File(baseProject, backFile), false);
 }
 
 // EJB   
 File beans = new File(baseProject, "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml");
-replaceProperties(beans);
+replaceProperties(beans, false);
 
 
 // WS
@@ -175,8 +189,24 @@ def wsFiles = [ "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/j
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/test.properties"
  ];
 for(String wsFile : wsFiles) {
-  onlyReplaceProperties(new File(baseProject, wsFile));
+  onlyReplaceProperties(new File(baseProject, wsFile), false);
 }
+
+// SCRIPTS
+def scriptsFiles = [ 
+   "./scripts/datasource/oracle.xml",
+   "./scripts/datasource/postgresql.xml" 
+  ];
+for(String scriptFile : scriptsFiles) {
+  replaceProperties(new File(baseProject, scriptFile), false);
+}
+
+// .gitignore
+File sourceFile = new File(rootDir, "projecteorigen/.gitignore");
+Path sourcePath = sourceFile.toPath();
+File destFile = new File(baseProject, ".gitignore");
+Path destPath = destFile.toPath();
+Files.copy( sourcePath, destPath );
 
 
 println 'Final'

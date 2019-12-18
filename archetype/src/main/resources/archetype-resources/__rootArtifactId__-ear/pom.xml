@@ -55,8 +55,8 @@
         
         <!-- WS START -->  
         <!-- WS de ${projectname} -->
-        <!--  http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorld -->
-        <!--  http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorldWithSecurity -->
+        <!--  http://localhost:8080/${rootArtifactId}-ws-server/ws/v1/${projectname}HelloWorld -->
+        <!--  http://localhost:8080/${rootArtifactId}-ws-server/ws/v1/${projectname}HelloWorldWithSecurity -->
         <!--  ... -->
         <dependency>
           <groupId>${groupId}</groupId>

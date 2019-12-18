@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>es.caib.projectebase</groupId>
@@ -24,26 +22,26 @@
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-ejb</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.0</version>
             <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-back</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.0</version>
             <type>war</type>
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-rest</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.0</version>
             <type>war</type>
         </dependency>
         <!-- Mòduls que van dins el lib/ -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-jpa</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.0</version>
         </dependency>
         <!--
         Tenir en compte a l'hora de incloure dependències només si és imprescindible i no està ja dins
@@ -56,14 +54,14 @@
         </dependency>
         
         <!-- WS START -->  
-        <!-- WS de ${projectname} -->
-        <!--  http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorld -->
-        <!--  http://localhost:8080/${artifactId}/ws/v1/${projectname}HelloWorldWithSecurity -->
+        <!-- WS de ProjecteBase -->
+        <!--  http://localhost:8080/projectebase-ws-server/ws/v1/ProjecteBaseHelloWorld -->
+        <!--  http://localhost:8080/projectebase-ws-server/ws/v1/ProjecteBaseHelloWorldWithSecurity -->
         <!--  ... -->
         <dependency>
           <groupId>es.caib.projectebase</groupId>
           <artifactId>projectebase-ws-server</artifactId>
-          <version>${project.version}</version>
+          <version>1.0.0</version>
           <type>ejb</type>
         </dependency>
         <!-- WS END -->

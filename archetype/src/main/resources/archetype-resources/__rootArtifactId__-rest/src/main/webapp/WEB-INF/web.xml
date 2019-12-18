@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <display-name>${projectname}: API REST</display-name>
+    <display-name>ProjecteBase: API REST</display-name>
 
     <!-- Alternativa la definició d'una classe Application -->
     <!--

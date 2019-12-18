@@ -27,8 +27,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _WsValidationErrors_QNAME = new QName("http://impl.v1.ws.${artifactId}.caib.es/", "WsValidationErrors");
-    private final static QName _WsI18NError_QNAME = new QName("http://impl.v1.ws.${artifactId}.caib.es/", "WsI18NError");
+    private final static QName _WsValidationErrors_QNAME = new QName("http://impl.v1.ws.${rootArtifactId}.caib.es/", "WsValidationErrors");
+    private final static QName _WsI18NError_QNAME = new QName("http://impl.v1.ws.${rootArtifactId}.caib.es/", "WsI18NError");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: ${package}.ws.api.v1
@@ -89,7 +89,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link WsValidationErrors }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://impl.v1.ws.${artifactId}.caib.es/", name = "WsValidationErrors")
+    @XmlElementDecl(namespace = "http://impl.v1.ws.${rootArtifactId}.caib.es/", name = "WsValidationErrors")
     public JAXBElement<WsValidationErrors> createWsValidationErrors(WsValidationErrors value) {
         return new JAXBElement<WsValidationErrors>(_WsValidationErrors_QNAME, WsValidationErrors.class, null, value);
     }
@@ -98,7 +98,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link WsI18NError }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://impl.v1.ws.${artifactId}.caib.es/", name = "WsI18NError")
+    @XmlElementDecl(namespace = "http://impl.v1.ws.${rootArtifactId}.caib.es/", name = "WsI18NError")
     public JAXBElement<WsI18NError> createWsI18NError(WsI18NError value) {
         return new JAXBElement<WsI18NError>(_WsI18NError_QNAME, WsI18NError.class, null, value);
     }

@@ -1,3 +1,6 @@
+#set( $symbol_pount = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -46,7 +49,7 @@
 
     <!--
         Opcions de configuració de Primefaces
-        Veure: https://primefaces.github.io/primefaces/7_0/#/gettingstarted/configuration
+        Veure: https://primefaces.github.io/primefaces/7_0/${symbol_pound}/gettingstarted/configuration
     -->
     <context-param>
         <param-name>primefaces.THEME</param-name>
@@ -59,7 +62,7 @@
 
     <!--
         Primefaces s'integra amb les error-page.
-        Veure: https://primefaces.github.io/primefaces/7_0/#/core/errorhandling?id=error-pages
+        Veure: https://primefaces.github.io/primefaces/7_0/${symbol_pound}/core/errorhandling?id=error-pages
     -->
     <error-page>
         <location>/error/defaultError.xhtml</location>

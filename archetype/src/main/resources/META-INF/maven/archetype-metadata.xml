@@ -16,6 +16,9 @@
     <requiredProperty key="perfilBack">
       <validationRegex>^(true|false)$</validationRegex>
     </requiredProperty>
+    <requiredProperty key="perfilBatSh">
+      <validationRegex>^(true|false)$</validationRegex>
+    </requiredProperty>
     <requiredProperty key="projectname">
       <validationRegex>^([A-Za-z0-9])+$</validationRegex>
     </requiredProperty>
@@ -28,9 +31,7 @@
     </requiredProperty>
   </requiredProperties>
 
-    
-    
-    
+
   <fileSets>
     <fileSet filtered="true" encoding="UTF-8">
       <directory>doc</directory>
@@ -39,15 +40,32 @@
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
+      <directory>scripts/datasource</directory>
+      <includes>
+        <include>**/*.txt</include>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>.gitignore</include>
+        <include>version-ruleset.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
       <directory></directory>
       <includes>
         <include>compile.bat</include>
         <include>compile.sh</include>
+        <include>help.bat</include>
+        <include>help.sh</include>
         <include>help.txt</include>
         <include>novaversio.bat</include>
         <include>novaversio.sh</include>
       </includes>
     </fileSet>
+
   </fileSets>
   <modules>
     <module id="${rootArtifactId}-commons" dir="__rootArtifactId__-commons" name="${rootArtifactId}-commons">
@@ -72,7 +90,24 @@
           <directory>src/main/resources</directory>
           <includes>
             <include>**/*.xml</include>
-            <!-- <include>**/*.properties</include> -->
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/ValidationMessages.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/test/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/test/resources/META-INF</directory>
+          <includes>
+            <include>**/*.xml</include>
           </includes>
         </fileSet>
       </fileSets>
@@ -103,19 +138,38 @@
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/webapp</directory>
+          <directory>src/main/resources</directory>
           <includes>
-            <include>**/*.xml</include>
-            <include>**/*.xhtml</include>
+            <include>**/*.properties</include>
           </includes>
         </fileSet>
         <fileSet encoding="UTF-8">
+           <directory> src/main/webapp </directory>
+           <includes>
+             <include>**/*.css</include>
+             <include>**/*.js</include>
+             <include>**/*.map</include>
+             <include>**/*.ttf</include>
+             <include>**/*.svg</include>
+             <include>**/*.png</include>
+             <include>**/*.otf</include>
+             <include>**/*.woff</include>
+             <include>**/*.woff2</include>
+             <include>**/*.eot</include>
+             <include>**/beans.xml</include>
+           </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/webapp</directory>
           <includes>
-            <include>**/*.css</include>
-            <include>**/*.png</include>
-            <include>**/*.js</include>
-            <include>**/*.map</include>
+            <include>**/*.xhtml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/webapp/WEB-INF</directory>
+          <includes>
+            <include>faces-config.xml</include>
+            <include>web.xml</include>
           </includes>
         </fileSet>
       </fileSets>
@@ -157,6 +211,12 @@
         </module>
         <module id="${rootArtifactId}-ws-api" dir="__rootArtifactId___ws_api" name="${rootArtifactId}-ws-api">
           <fileSets>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>test.properties</include>
+              </includes>
+            </fileSet>
             <fileSet filtered="true" packaged="true" encoding="UTF-8">
               <directory>src/main/java</directory>
               <includes>

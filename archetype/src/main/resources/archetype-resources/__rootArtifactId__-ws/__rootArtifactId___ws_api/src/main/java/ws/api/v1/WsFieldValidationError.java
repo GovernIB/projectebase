@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="label" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="field" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="translation" type="{http://impl.v1.ws.${artifactId}.caib.es/}wsI18NTranslation"/>
+ *         &lt;element name="translation" type="{http://impl.v1.ws.${rootArtifactId}.caib.es/}wsI18NTranslation"/>
  *         &lt;element name="error" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>

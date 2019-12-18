@@ -13,7 +13,7 @@ import org.fundaciobit.genapp.common.i18n.I18NCommonUtils;
 public class I18NLogicUtils extends I18NCommonUtils {
 
   static {
-    BUNDLES = new String[] { "${artifactId}_genapp", "genapp" };
+    BUNDLES = new String[] { "${rootArtifactId}_genapp", "genapp" };
   }
 
 }

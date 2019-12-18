@@ -16,19 +16,19 @@ import javax.jws.soap.SOAPBinding;
  * 
  */
  
-@WebService(targetNamespace = "http://impl.v1.ws.${artifactId}.caib.es/", name = "HelloWorldWs")
+@WebService(targetNamespace = "http://impl.v1.ws.${rootArtifactId}.caib.es/", name = "HelloWorldWs")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface HelloWorldWs {
 
-    @WebResult(name = "return", targetNamespace = "http://impl.v1.ws.${artifactId}.caib.es/", partName = "return")
+    @WebResult(name = "return", targetNamespace = "http://impl.v1.ws.${rootArtifactId}.caib.es/", partName = "return")
     @WebMethod
     public int getVersionWs();
 
-    @WebResult(name = "return", targetNamespace = "http://impl.v1.ws.${artifactId}.caib.es/", partName = "return")
+    @WebResult(name = "return", targetNamespace = "http://impl.v1.ws.${rootArtifactId}.caib.es/", partName = "return")
     @WebMethod
     public java.lang.String getVersion();
 
-    @WebResult(name = "return", targetNamespace = "http://impl.v1.ws.${artifactId}.caib.es/", partName = "return")
+    @WebResult(name = "return", targetNamespace = "http://impl.v1.ws.${rootArtifactId}.caib.es/", partName = "return")
     @WebMethod
     public java.lang.String echo(
         @WebParam(partName = "echo", name = "echo")

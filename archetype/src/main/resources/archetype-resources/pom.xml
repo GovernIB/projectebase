@@ -12,8 +12,8 @@
   <!-- Referència al sistema de control de versions, ja sigui GIT, SVN, CVS...
           permetrà al plugin buildnumber-maven-plugin agafar la revisió/versió -->
   <scm>
-    <connection>scm:git:https://github.com/GovernIB/${artifactId}.git</connection>
-    <url>https://github.com/GovernIB/${artifactId}</url>
+    <connection>scm:git:https://github.com/GovernIB/${rootArtifactId}.git</connection>
+    <url>https://github.com/GovernIB/${rootArtifactId}</url>
   </scm>
 
   <properties>
@@ -38,6 +38,7 @@
     <junit.version>4.8.2</junit.version>
 
   </properties>
+
 
 
   <dependencyManagement>

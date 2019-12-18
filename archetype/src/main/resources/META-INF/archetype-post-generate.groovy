@@ -2,6 +2,34 @@ import static groovy.io.FileType.*
 import groovy.io.FileType
 import java.nio.file.Path
 import java.util.regex.Pattern
+import java.io.*
+
+def dos2unix(file) {    
+      def content = file.getText("UTF-8")
+
+      FileWriter fileWriter = new FileWriter(file);
+			BufferedWriter fwr = new BufferedWriter( fileWriter );
+			//FileReader frdr = new FileReader(file);
+      StringReader frdr = new StringReader(content);
+      
+      
+			BufferedReader buff = new BufferedReader( frdr );
+			int bt = buff.read();
+			char c = (char)bt;
+			while(bt != -1)
+			{
+				//System.out.print("Char " + c + " = ");
+				//System.out.println((int)c);
+				if (bt != 13 )
+					fwr.write(c);
+				bt = buff.read();
+				c = (char)bt;
+			}
+			//fwr.write(c);
+			//if( c != '\n' ) fwr.write('\n');
+			fwr.close();
+			frdr.close()
+}
 
 def removeModule(module, rootDir) {
     assert new File(rootDir, module).deleteDir()
@@ -58,6 +86,11 @@ String perfilBack = properties.get("perfilBack");
 println " + perfilBack: " + perfilBack;
 checkProperty("^(true|false)\$", perfilBack, "perfilBack");
 
+// perfilBatSh
+String perfilBatSh = properties.get("perfilBatSh");
+println " + perfilBatSh: " + perfilBatSh;
+checkProperty("^(true|false)\$", perfilBatSh, "perfilBatSh");
+
 // projectname
 String projectname= properties.get("projectname");
 println " + projectname: " + projectname
@@ -72,18 +105,16 @@ checkProperty("^([A-Z0-9])+\$", projectnameuppercase, "projectnameuppercase");
 String rootDir = new File(request.getOutputDirectory() + "/" + request.getArtifactId())
 println " + Directori Generació: " + rootDir
 
-
-
+/*
 def list = []
-
 def dir = new File(request.getOutputDirectory() + "/" + request.getArtifactId())
 dir.eachFileRecurse (FileType.FILES) { file ->
   list << file
 }
-
 list.each {
   println "     - " + it.path
 }
+*/
 
 
 if (perfilWS.equals("false")) {
@@ -94,6 +125,21 @@ if (perfilWS.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- WS START -->", "<!-- WS END -->");
 }
+
+if (perfilBatSh.equals("false")) {
+  new File(rootDir, "compile.bat").delete();
+  new File(rootDir, "compile.sh").delete();
+  new File(rootDir, "novaversio.bat").delete();
+  new File(rootDir, "novaversio.sh").delete();
+} else {
+  
+  // DOS TO UNIX
+  def dos2unixFiles = [ "compile.sh",  "help.sh", "novaversio.sh" ];
+  for(String dos2unixFile : dos2unixFiles) {
+    dos2unix(new File(rootDir, dos2unixFile));
+  }
+}
+
 
 println ""
 println ""
