@@ -57,4 +57,13 @@ public class ProcedimentEJB implements ProcedimentService {
         query.setParameter("unitatOrganicaId", unitatOrganicaId);
         return query.getResultList();
     }
+
+    @Override
+    public Long countAllByUnitatOrganica(Long unitatOrganicaId) {
+        TypedQuery<Long> query = entityManager.createQuery(
+                "select count(p) from Procediment p where p.unitatOrganica.id = :unitatOrganicaId",
+                Long.class);
+        query.setParameter("unitatOrganicaId", unitatOrganicaId);
+        return query.getSingleResult();
+    }
 }

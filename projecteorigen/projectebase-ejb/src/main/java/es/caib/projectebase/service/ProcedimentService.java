@@ -6,7 +6,7 @@ import javax.ejb.Local;
 import java.util.List;
 
 /**
- * Interfície del servei per gestionar {@link es.caib.projectebase.jpa.Procediment}
+ * Interfície del servei per gestionar {@link Procediment}
  *
  * @author areus
  */
@@ -52,4 +52,11 @@ public interface ProcedimentService {
      * @return llista de procediments de la unitat orgànica.
      */
     List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId);
+
+    /**
+     * Obté el nombre de procediments d'una unitat orgànica
+     * @param unitatOrganicaId identificador de la unitat orgànica.
+     * @return
+     */
+    Long countAllByUnitatOrganica(Long unitatOrganicaId);
 }

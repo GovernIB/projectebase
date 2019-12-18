@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
@@ -29,7 +30,7 @@ import java.util.Objects;
 @Entity
 @SequenceGenerator(name = "procediment-sequence", sequenceName = "${prefixuppercase}_PROCEDIMENT_SEQ", allocationSize = 1)
 @Table(name = "${prefixuppercase}_PROCEDIMENT",
-        uniqueConstraints = {@UniqueConstraint(name = "${prefixuppercase}_PROCEDIMENT_CODISIR_UK", columnNames = "CODISIR")}
+        uniqueConstraints = {@UniqueConstraint(name = "${prefixuppercase}_PROCEDIMENT_CODISIA_UK", columnNames = "CODISIA")}
 )
 public class Procediment implements Serializable {
 
@@ -42,10 +43,12 @@ public class Procediment implements Serializable {
 
     /**
      * Codi SIR que identifica el procediment. És únic, i per tant una clau natural.
+     * Ha de ser un nombre de entre 6 i 8 dígits.
      */
     @NotNull
-    @Column(name = "CODISIR", nullable = false, length = 9)
-    private String codiSir;
+    @Pattern(regexp = "[0-9]{6,8}", message = "{jpa.Procediment.codiSia.Pattern.message}")
+    @Column(name = "CODISIA", nullable = false, length = 8)
+    private String codiSia;
 
     /**
      * Nom del procediment.
@@ -71,12 +74,12 @@ public class Procediment implements Serializable {
         this.id = id;
     }
 
-    public String getCodiSir() {
-        return codiSir;
+    public String getCodiSia() {
+        return codiSia;
     }
 
-    public void setCodiSir(String codiSir) {
-        this.codiSir = codiSir;
+    public void setCodiSia(String codiSia) {
+        this.codiSia = codiSia;
     }
 
     public String getNom() {
@@ -102,19 +105,19 @@ public class Procediment implements Serializable {
             return false;
         }
         Procediment procediment = (Procediment) o;
-        return codiSir.equals(procediment.codiSir);
+        return codiSia.equals(procediment.codiSia);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codiSir);
+        return Objects.hash(codiSia);
     }
 
     @Override
     public String toString() {
         return "Procediment{" +
                 "id=" + id +
-                ", codiSir='" + codiSir + '${symbol_escape}'' +
+                ", codiSia='" + codiSia + '${symbol_escape}'' +
                 '}';
     }
 }

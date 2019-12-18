@@ -6,8 +6,13 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
+<<<<<<< HEAD
     <persistence-unit name="${rootArtifactId}PU" transaction-type="JTA">
         <jta-data-source>java:/jdbc/${rootArtifactId}DS</jta-data-source>
+=======
+    <persistence-unit name="${artifactId}PU" transaction-type="JTA">
+        <jta-data-source>java:jboss/datasources/${artifactId}DS</jta-data-source>
+>>>>>>> 7d23a036638ccfcaecbcb666f5d31232f1dc00b9
         <!-- Llista de classes persistents -->
         <class>${package}.jpa.UnitatOrganica</class>
         <class>${package}.jpa.Procediment</class>

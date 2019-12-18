@@ -46,10 +46,10 @@ public class UnitatOrganica implements Serializable {
 
     /**
      * Codi DIR3 que identifica la únicat orgànica. És únic, i per tant una clau natural.
-     * Ha de seguir el patró d'una lletra seguida de 8 dígits. Ficam un missatge de validació personalitzat.
+     * Ha de seguir el patró d'una lletra (A, E, I, J, L, U) seguida de 8 dígits. Ficam un missatge de validació personalitzat.
      */
     @NotNull
-    @Pattern(regexp = "[A-Z][0-9]{8}", message = "{jpa.UnitatOrganica.codidir3.Pattern.message}")
+    @Pattern(regexp = "[AEIJLU][0-9]{8}", message = "{jpa.UnitatOrganica.codidir3.Pattern.message}")
     @Column(name = "CODIDIR3", nullable = false, length = 9)
     private String codiDir3;
 
