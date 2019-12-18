@@ -7,8 +7,8 @@ Requisits compilació:
 
 Requisits execució:
  - JBoss 7.2 / Wildfly 13 o superior
- - Definir dins el servidor el Datasource amb nom "jdbc/projectebaseDS" cap a una BDD buida
- - Definir variable entorn JBOSS_HOME
+ - Definir dins el servidor el Datasource amb nom JNDI "java:jboss/datasources/projectebaseDS" cap a una BDD buida
+ - Definir la variable entorn JBOSS_HOME
 
 Compilació:
  mvn clean install
