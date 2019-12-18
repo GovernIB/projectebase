@@ -1,6 +1,8 @@
 package es.caib.projectebase.api.services;
 
+import es.caib.projectebase.jpa.Procediment;
 import es.caib.projectebase.jpa.UnitatOrganica;
+import es.caib.projectebase.service.ProcedimentService;
 import es.caib.projectebase.service.UnitatOrganicaService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
@@ -35,6 +37,9 @@ public class UnitatOrganicaResource {
 
     @EJB
     private UnitatOrganicaService unitatOrganicaService;
+
+    @EJB
+    private ProcedimentService procedimentService;
 
     /**
      * Obté una Unitat orgàncica.
@@ -78,6 +83,29 @@ public class UnitatOrganicaResource {
             @Valid UnitatOrganica unitatOrganica) {
         unitatOrganicaService.create(unitatOrganica);
         return Response.created(URI.create("unitatOrganica/" + unitatOrganica.getId())).build();
+    }
+
+    /**
+     * Crea un nou procediment dependent de la unitat orgànica.
+     *
+     * @param id identificador de la unitat orgànica de la que dependrà el procediment.
+     * @param procediment la nova unitat orgànica a crear.
+     * @return Un codi 200 si el procediment es crea correctament.
+     */
+    @Path("{id}/procediment")
+    @POST
+    @Operation(summary = "Crea un nou procediment associat a la unitat orgànica")
+    @APIResponse(responseCode = "200", description = "Procediment creat correctament")
+    public Response createProcediment(
+            @Parameter(description = "L'identificador de la unitat", required = true)
+            @PathParam("id") Long id,
+            @RequestBody(
+                    description = "Nou procediment",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Procediment.class)))
+            @Valid Procediment procediment) {
+        procedimentService.create(procediment, id);
+        return Response.ok().build();
     }
 
     /**
