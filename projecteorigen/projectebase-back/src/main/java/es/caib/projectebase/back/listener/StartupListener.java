@@ -1,13 +1,12 @@
 package es.caib.projectebase.back.listener;
 
-import es.caib.projectebase.Version;
+import es.caib.projectebase.commons.utils.Version;
 import es.caib.projectebase.jpa.UnitatOrganica;
 import es.caib.projectebase.service.UnitatOrganicaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -26,21 +25,22 @@ public class StartupListener implements ServletContextListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(StartupListener.class);
 
-    @Inject
-    private Version version;
-
     @EJB
     private UnitatOrganicaService unitatOrganicaService;
 
     /**
      * Executat quan s'inicialitza el contexte web. Treu un missatge amb la versió als logs.
      *
-     * @param sce Informació de l'esdeveniment de context.
+     * @param sce
+     *            Informació de l'esdeveniment de context.
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        LOG.info("WebApp ${project_name}. Version: " + version.getVersion() +
-                " " + version.getBuildTime());
+
+        Version version = Version.getVersionInstance();
+        LOG.info("\nWebApp " + version.getProjectName() + ":" + "\n  + Version: "
+                + version.getVersion() + "\n  + BuildTime: " + version.getBuildTime()
+                + "\n  + Revision: " + version.getScmRevision());
 
         // TODO emplenat de dades de prova. Millor realitzar-ho a través d'un script SQL
         LOG.info("Iniciant la creació d'unitats organiques de prova");
@@ -60,7 +60,8 @@ public class StartupListener implements ServletContextListener {
     /**
      * Executat quan es destrueix el contexte web.
      *
-     * @param sce Informació de l'esdeveniment de context.
+     * @param sce
+     *            Informació de l'esdeveniment de context.
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {

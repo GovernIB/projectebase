@@ -18,7 +18,7 @@
             <supported-locale>ca</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>${package}.back.Labels</base-name>
+            <base-name>${rootArtifactId}.back.Labels</base-name>
             <var>labels</var>
         </resource-bundle>
     </application>
@@ -37,4 +37,11 @@
             org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
         </exception-handler-factory>
     </factory>
+    
+    <managed-bean>
+        <managed-bean-name>Version</managed-bean-name>
+        <managed-bean-class>${package}.commons.utils.Version</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
 </faces-config>

@@ -9,11 +9,17 @@
 
     <artifactId>${artifactId}</artifactId>
     <packaging>war</packaging>
-    <name>${projectname} - Back</name>
+    <name>${projectname} - BACK</name>
     <description>Backoffice de ${projectname}, amb JSF+Primefaces</description>
 
     <dependencies>
         <!-- Altres mòduls del projecte -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-commons</artifactId>
+            <version>${version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-jpa</artifactId>

@@ -27,6 +27,7 @@
      > grep -iR "projecte" .
      > grep -R "PBS" .
      > grep -iR "pbs_" .
+     > find . | grep caib
    
    (B) Si no apareix res en les cerques podem ppasar dels punts següent i anar a (KKK)
    (C)  Si en algun d'aquests punts apareix alguna cosa en la cerca, llavors s'ha d'editar el fitxer post_create_from_project.groovy i afegir les substitucions oportunes als fitxers 

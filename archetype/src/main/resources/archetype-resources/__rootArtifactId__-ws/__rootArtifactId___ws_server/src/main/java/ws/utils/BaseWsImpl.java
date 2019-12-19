@@ -8,7 +8,7 @@ import javax.jws.WebMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ${package}.Version;
+import ${package}.commons.utils.Version;
 import ${package}.commons.utils.Constants;
 
 /**
@@ -29,7 +29,7 @@ public class BaseWsImpl implements Constants {
   
   @WebMethod
   public String getVersion() {
-    return new Version().getVersion();
+    return Version.getVersionInstance().getVersion();
   }
 
 

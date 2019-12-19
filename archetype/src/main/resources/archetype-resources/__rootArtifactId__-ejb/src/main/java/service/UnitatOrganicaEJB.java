@@ -113,7 +113,7 @@ public class UnitatOrganicaEJB implements UnitatOrganicaService {
      * @param cq query on aplicar el filtre.
      * @param root objecte emprant al from del select d'on s'agafen els camps codiDir3 i nom.
      */
-    private void applyFilter(String filter, CriteriaQuery cq, Root<UnitatOrganica> root) {
+    private void applyFilter(String filter, CriteriaQuery<?> cq, Root<UnitatOrganica> root) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         if (filter != null && !filter.isEmpty()) {
             String filterExpression = "%" + filter.toLowerCase() + "%";

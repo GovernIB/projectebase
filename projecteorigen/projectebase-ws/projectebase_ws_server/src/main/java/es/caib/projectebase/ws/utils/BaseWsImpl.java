@@ -5,7 +5,7 @@ import javax.jws.WebMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import es.caib.projectebase.Version;
+import es.caib.projectebase.commons.utils.Version;
 import es.caib.projectebase.commons.utils.Constants;
 
 /**
@@ -26,7 +26,7 @@ public class BaseWsImpl implements Constants {
   
   @WebMethod
   public String getVersion() {
-    return new Version().getVersion();
+    return Version.getVersionInstance().getVersion();
   }
 
 
