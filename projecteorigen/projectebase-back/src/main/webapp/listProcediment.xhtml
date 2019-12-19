@@ -1,9 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:o="http://omnifaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--
 Pàgina amb el llistat de procediments d'una unitat administrativa.
@@ -13,8 +10,8 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
     <ui:define name="metadata">
         <f:metadata>
             <!-- Al principi de la vista, es fixarà el paràmetre rebut dins
-            l'id, i amb l'acció load carregarem les dades. El posam required perquè és obligatori -->
-            <f:viewParam name="id" value="#{listProcediment.unitatOrganica.id}" required="true" />
+            i amb l'acció load carregarem les dades. El posam required perquè és obligatori -->
+            <f:viewParam name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}" required="true" />
             <f:viewAction action="#{listProcediment.load}" />
         </f:metadata>
     </ui:define>
