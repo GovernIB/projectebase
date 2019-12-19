@@ -79,7 +79,7 @@ Pàgina amb el llistat d'unitats orgàniques.
                     </h:button>
                     <h:button value="#{labels.listProcediment_link}" outcome="/listProcediment"
                               styleClass="btn btn-primary aplicacio-btn">
-                        <f:param name="id" value="#{unitatOrganica.id}" />
+                        <f:param name="unitatOrganicaId" value="#{unitatOrganica.id}" />
                     </h:button>
                     <o:outputFormat value="#{labels.confirm_eliminar}" var="confirmMessage">
                         <f:param value="#{unitatOrganica.codiDir3}"/>

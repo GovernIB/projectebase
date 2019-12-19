@@ -24,6 +24,14 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
     </ui:define>
 
     <ui:define name="content">
+
+        <p>
+            <h:button value="#{labels.newProcediment_link}" outcome="/editProcediment"
+                      styleClass="btn btn-primary aplicacio-btn">
+                <f:param name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}" />
+            </h:button>
+        </p>
+
         <h:form>
 
             <h:dataTable id="dataTable_paginate"

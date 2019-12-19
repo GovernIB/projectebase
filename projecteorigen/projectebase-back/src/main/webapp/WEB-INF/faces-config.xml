@@ -34,4 +34,10 @@
             org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
         </exception-handler-factory>
     </factory>
+
+    <lifecycle>
+        <phase-listener>
+            es.caib.projectebase.back.listener.LoggingPhaseListener
+        </phase-listener>
+    </lifecycle>
 </faces-config>

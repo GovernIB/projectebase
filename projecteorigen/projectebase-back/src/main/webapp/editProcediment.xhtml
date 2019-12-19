@@ -9,27 +9,24 @@ Pàgina per editar procediments
 
     <ui:define name="metadata">
         <f:metadata>
+            <f:viewParam name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}" />
             <f:viewParam name="id" value="#{editProcediment.procediment.id}" />
-            <f:viewParam name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}" required="true" />
             <f:viewAction action="#{editProcediment.load}" />
         </f:metadata>
     </ui:define>
 
-    <ui:define name="pageTitle">#{editProcediment.create ? labels.newProcediment_title : labels.editProcediment_title}</ui:define>
+    <ui:define name="pageTitle">
+        <h:outputFormat value="#{editProcediment.create ? labels.newProcediment_title : labels.editProcediment_title}">
+            <f:param value="#{editProcediment.unitatOrganica.nom}" />
+            <f:param value="#{editProcediment.unitatOrganica.codiDir3}" />
+        </h:outputFormat>
+    </ui:define>
 
     <ui:define name="content">
 
         <h:form id="form">
-
-            <ui:decorate template="/template/field.xhtml">
-                <ui:define name="label">
-                    <h:outputLabel for="unitatOrganicaId" value="#{labels.procediment_unitatOrganicaId}" styleClass="label-projecte" />
-                </ui:define>
-                <ui:define name="input">
-                    <h:inputText id="unitatOrganicaId" value="#{editProcediment.procediment.unitatOrganica.id}" readonly="true"
-                                 styleClass="form-control form-control-sm" />
-                </ui:define>
-            </ui:decorate>
+            <!-- Els paràmetres de la vista s'han de mantenir, perquè sinó, després d'una validació es perden -->
+            <input type="hidden" name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}" />
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
@@ -72,8 +69,10 @@ Pàgina per editar procediments
                                      value="#{labels.button_guardar}">
                         <f:ajax execute="@form" render="@form" />
                     </h:commandButton>
-                    <h:button value="#{labels.button_tornar}" outcome="/listProcediment?includeViewParams=true"
-                              styleClass="btn btn-secondary float-right" />
+                    <h:button value="#{labels.button_tornar}" outcome="/listProcediment"
+                              styleClass="btn btn-secondary float-right">
+                        <f:param name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}" />
+                    </h:button>
                 </ui:define>
             </ui:decorate>
 
