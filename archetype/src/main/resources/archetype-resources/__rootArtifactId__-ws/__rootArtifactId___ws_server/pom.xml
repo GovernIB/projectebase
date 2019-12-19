@@ -14,7 +14,7 @@
     <version>${version}</version>
   </parent>
 
-  <name>${projectname} - WS - Server</name>
+  <name>${projectname} - WS - SERVER</name>
 
   <build>
     <plugins>

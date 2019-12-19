@@ -15,7 +15,7 @@
             <supported-locale>ca</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>es.caib.projectebase.back.Labels</base-name>
+            <base-name>projectebase.back.Labels</base-name>
             <var>labels</var>
         </resource-bundle>
     </application>
@@ -34,4 +34,11 @@
             org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
         </exception-handler-factory>
     </factory>
+    
+    <managed-bean>
+        <managed-bean-name>Version</managed-bean-name>
+        <managed-bean-class>es.caib.projectebase.commons.utils.Version</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
 </faces-config>

@@ -9,11 +9,17 @@
 
     <artifactId>projectebase-back</artifactId>
     <packaging>war</packaging>
-    <name>ProjecteBase - Back</name>
+    <name>ProjecteBase - BACK</name>
     <description>Backoffice de ProjecteBase, amb JSF+Primefaces</description>
 
     <dependencies>
         <!-- Altres mòduls del projecte -->
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-commons</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-jpa</artifactId>

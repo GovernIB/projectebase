@@ -166,6 +166,13 @@ for(String backFile : backFiles) {
 File beans = new File(baseProject, "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml");
 replaceProperties(beans, false);
 
+// REST
+def restFiles = [
+   "./__rootArtifactId__-rest/src/main/webapp/WEB-INF/web.xml"
+  ];
+for(String restFile : restFiles) {
+  replaceProperties(new File(baseProject, restFile), false);
+}
 
 // WS
 def wsFiles = [ "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/v1/impl/HelloWorldWsImpl.java",
