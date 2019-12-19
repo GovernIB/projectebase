@@ -1,5 +1,6 @@
 package es.caib.projectebase.ws.utils;
 
+import javax.inject.Inject;
 import javax.jws.WebMethod;
 
 import org.slf4j.Logger;
@@ -23,10 +24,12 @@ public class BaseWsImpl implements Constants {
   // -------------------------------------------------------------------
   // -------------------------------------------------------------------
 
+  @Inject
+  private Version version;
   
   @WebMethod
   public String getVersion() {
-    return Version.getVersionInstance().getVersion();
+    return version.getVersion();
   }
 
 

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -25,6 +26,9 @@ public class StartupListener implements ServletContextListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(StartupListener.class);
 
+    @Inject
+    private Version version;
+
     @EJB
     private UnitatOrganicaService unitatOrganicaService;
 
@@ -36,8 +40,6 @@ public class StartupListener implements ServletContextListener {
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-
-        Version version = Version.getVersionInstance();
         LOG.info("\nWebApp " + version.getProjectName() + ":" + "\n  + Version: "
                 + version.getVersion() + "\n  + BuildTime: " + version.getBuildTime()
                 + "\n  + Revision: " + version.getScmRevision());

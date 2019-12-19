@@ -3,6 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package}.commons.utils;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import java.util.ResourceBundle;
 
 /**
@@ -12,9 +15,9 @@ import java.util.ResourceBundle;
  * @author areus
  * @author anadal
  */
+@Named
+@ApplicationScoped
 public class Version {
-
-  private static Version versionInstance = null;
 
   private String version;
   private String buildTime;
@@ -25,7 +28,8 @@ public class Version {
   /**
    * Inicialitza el bean amb els valors de Version.properties
    */
-  public Version() {
+  @PostConstruct
+  protected void init() {
       /* Agafa fitxer Version.properties amb el mateix package */
     ResourceBundle bundle = ResourceBundle.getBundle("${parentArtifactId}.version.Version");
     version = bundle.getString("project.version");
@@ -33,13 +37,6 @@ public class Version {
     scmRevision = bundle.getString("scm.revision");
     jdkVersion = bundle.getString("jdk.version");
     projectName = bundle.getString("project.name");
-  }
-
-  public static Version getVersionInstance() {
-    if (versionInstance == null) {
-      versionInstance = new Version();
-    }
-    return versionInstance;
   }
 
   /**

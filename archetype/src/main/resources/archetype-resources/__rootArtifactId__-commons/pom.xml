@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>  
-    <version>${version}</version>
-    <packaging>jar</packaging>
-
     <parent>
         <groupId>${groupId}</groupId>
         <artifactId>${rootArtifactId}</artifactId>
         <version>${version}</version>
     </parent>
 
+    <artifactId>${artifactId}</artifactId>
+    <packaging>jar</packaging>
     <name>${projectname} - COMMONS</name>
+    <description>Mòdul de classes i recursos comuns ${projectname}</description>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--
         Si volem emprar el maven.build.timestamp al filtres s'ha de "redefinir" la propietat.
         Veure: https://issues.apache.org/jira/browse/MASSEMBLY-603
@@ -25,8 +21,16 @@
         <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
     </properties>
 
-    <build>
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <resources>
             <!-- Activam filtre per fer substitucions al fitxer Version.properties -->
             <resource>
@@ -34,23 +38,6 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-
-        <plugins>
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>auto-clean</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-        </plugins>
-
     </build>
 
     <profiles>

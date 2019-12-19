@@ -37,11 +37,11 @@
             org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
         </exception-handler-factory>
     </factory>
-    
-    <managed-bean>
-        <managed-bean-name>Version</managed-bean-name>
-        <managed-bean-class>${package}.commons.utils.Version</managed-bean-class>
-        <managed-bean-scope>application</managed-bean-scope>
-    </managed-bean>
+
+    <lifecycle>
+        <phase-listener>
+            ${package}.back.listener.LoggingPhaseListener
+        </phase-listener>
+    </lifecycle>
 
 </faces-config>

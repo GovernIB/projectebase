@@ -41,10 +41,4 @@
         </phase-listener>
     </lifecycle>
 
-    <managed-bean>
-        <managed-bean-name>Version</managed-bean-name>
-        <managed-bean-class>es.caib.projectebase.commons.utils.Version</managed-bean-class>
-        <managed-bean-scope>application</managed-bean-scope>
-    </managed-bean>
-
 </faces-config>

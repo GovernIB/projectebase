@@ -12,10 +12,6 @@
   <name>${projectname} - EJB</name>
   <description>Mòdul EJB de ${projectname}</description>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
   <dependencies>
     <!-- Altres mòduls del projecte -->
     <dependency>
