@@ -187,6 +187,8 @@
                 <doUpdate>true</doUpdate>
                 -->
             <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+            <!-- Longitut màxima de la revisió -->
+            <shortRevisionLength>8</shortRevisionLength>
           </configuration>
         </plugin>
         <!-- Plugin per permetre desplegar l'aplicació a un sevidor d'aplicacions local -->
