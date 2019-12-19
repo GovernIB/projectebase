@@ -1,14 +1,9 @@
 package es.caib.projectebase.jpa.test;
 
 import es.caib.projectebase.jpa.UnitatOrganica;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
@@ -19,16 +14,7 @@ import java.util.List;
  *
  * @author areus
  */
-class TestUnitatOrganica {
-
-    private static EntityManagerFactory emf;
-    private static EntityManager em;
-
-    @BeforeAll
-    static void init() {
-        emf = Persistence.createEntityManagerFactory("testPU");
-        em = emf.createEntityManager();
-    }
+class TestUnitatOrganica extends JPATest {
 
     @Test
     void testCreacioUnitatOrganica() {
@@ -64,12 +50,5 @@ class TestUnitatOrganica {
         // Comprovam que el nombre de validacions que han fallat són 3
         ConstraintViolationException cvException = (ConstraintViolationException) exception.getCause();
         Assertions.assertEquals(3, cvException.getConstraintViolations().size());
-    }
-
-    @AfterAll
-    static void tearDown(){
-        em.clear();
-        em.close();
-        emf.close();
     }
 }
