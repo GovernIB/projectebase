@@ -6,16 +6,18 @@ import org.slf4j.LoggerFactory;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
- * Interceptor per loguejar les cridades als mètodes de la classe interceptada.
+ * Interceptor per loguejar les cridades als mètodes de la classe interceptada. El feim serializable perquè
+ * es pugui aplicar a classes que perquè estiguin a un determinat scope hagin de ser serializables.
  *
  * @author areus
  */
 @Logged
 @Interceptor
-public class LoggerInterceptor {
+public class LoggerInterceptor implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoggerInterceptor.class);
 
