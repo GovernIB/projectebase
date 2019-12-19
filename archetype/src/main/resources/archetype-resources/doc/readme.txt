@@ -10,13 +10,8 @@ Requisits compilació:
 
 Requisits execució:
  - JBoss 7.2 / Wildfly 13 o superior
-<<<<<<< HEAD
- - Definir dins el servidor el Datasource amb nom "jdbc/${rootArtifactId}DS" cap a una BDD buida
- - Definir variable entorn JBOSS_HOME
-=======
- - Definir dins el servidor el Datasource amb nom JNDI "java:jboss/datasources/${artifactId}DS" cap a una BDD buida
+ - Definir dins el servidor el Datasource amb nom JNDI "java:jboss/datasources/${rootArtifactId}DS" cap a una BDD buida
  - Definir la variable entorn JBOSS_HOME
->>>>>>> 7d23a036638ccfcaecbcb666f5d31232f1dc00b9
 
 Compilació:
  mvn clean install

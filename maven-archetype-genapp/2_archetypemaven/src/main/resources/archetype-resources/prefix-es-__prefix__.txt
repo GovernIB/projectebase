@@ -1,7 +1,0 @@
-El package és ${package}
-La version és ${version}
-El groupId és ${groupId}
-El artifactId és ${artifactId}
-
-El prefix és ${prefix}
-El nom del Projecte és ${projectname}
