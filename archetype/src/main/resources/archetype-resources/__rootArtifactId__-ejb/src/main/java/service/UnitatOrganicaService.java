@@ -82,9 +82,9 @@ public interface UnitatOrganicaService {
 
     /**
      * Obté una llista de les unitats orgàniques filtrades per una cadena de caràcters per paginacions.
-     * La cadena de filtre es cerca dins els camps codiDir3 i nom.
+     * La cadena de filtre es cerca dins els camps de tipus string: codiDir3 i nom.
      *
-     * @param filter   cadena de caràcters que es cercarà dins codiDir3 i dins nom.
+     * @param filter   cadena de caràcters que es cercarà dins els camps de tipus string: codiDir3 i nom.
      * @param first    el número d'ordre de la primera unitat orgànica a tornar. La primera és 0.
      * @param pageSize el nombre màxim d'unitats orgàniques a tornar.
      * @return llista d'unitats orgàniques que compleixen el filtre.
@@ -93,9 +93,9 @@ public interface UnitatOrganicaService {
 
     /**
      * Retorna el nombre total d'unitats orgàniques que compleixen el filtre indicat.
-     * La cadena de filtre es cerca dins els camps codiDir3 i nom.
+     * La cadena de filtre es cerca dins els camps de tipus string: codiDir3 i nom.
      *
-     * @param filter cadena de caràcters que es cercarà dins codiDir3 i dins nom.
+     * @param filter   cadena de caràcters que es cercarà dins els camps de tipus string: codiDir3 i nom.
      * @return nombre d'unitats orgàniques que compleixen el filtre.
      */
     long countFiltered(String filter);

@@ -59,7 +59,25 @@ public interface ProcedimentService {
     /**
      * Obté el nombre de procediments d'una unitat orgànica
      * @param unitatOrganicaId identificador de la unitat orgànica.
-     * @return
+     * @return nombre de procediments relacionats amb la unitat orgànica
      */
     Long countAllByUnitatOrganica(Long unitatOrganicaId);
+
+    /**
+     * Obté una llista dels procediments d'una unitat orgànica que compleixen un filtre.
+     * La cadena de filtre es cerca dins els camps de tipus string: codiSia i nom.
+     *
+     * @param unitatOrganicaId identificador de la unitat orgànica.
+     * @param filter cadena de caràcters que es cercarà dins els camps de tipus string: codiSia i nom.
+     * @return llista de procediments de la unitat orgànica que compleixen el filtre.
+     */
+    List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId, String filter);
+
+    /**
+     * Obté el nombre de procediments d'una unitat orgànica que compleixein un filtre.
+     * @param unitatOrganicaId identificador de la unitat orgànica.
+     * @param filter cadena de caràcters que es cercarà dins els camps de tipus string: codiSia i nom.
+     * @return nombre de procediments relacionats amb la unitat orgànica que compleixen el filtre.
+     */
+    Long countAllByUnitatOrganica(Long unitatOrganicaId, String filter);
 }

@@ -6,11 +6,11 @@ package ${package}.service;
 import ${package}.interceptor.Logged;
 import ${package}.jpa.Procediment;
 import ${package}.jpa.UnitatOrganica;
+import ${package}.jpa.dao.ProcedimentDAO;
+import ${package}.jpa.dao.UnitatOrganicaDAO;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -23,47 +23,52 @@ import java.util.List;
 @Stateless
 public class ProcedimentEJB implements ProcedimentService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Inject
+    private ProcedimentDAO procedimentDAO;
+
+    @Inject
+    private UnitatOrganicaDAO unitatOrganicaDAO;
 
     @Override
     public Procediment create(Procediment procediment, Long unitatOrganicaId) {
-        UnitatOrganica unitatOrganica = entityManager.getReference(UnitatOrganica.class, unitatOrganicaId);
+        UnitatOrganica unitatOrganica = unitatOrganicaDAO.getReference(unitatOrganicaId);
         procediment.setUnitatOrganica(unitatOrganica);
-        entityManager.persist(procediment);
+        procedimentDAO.create(procediment);
         return procediment;
     }
 
     @Override
     public Procediment update(Procediment procediment) {
-        return entityManager.merge(procediment);
+        return procedimentDAO.update(procediment);
     }
 
     @Override
     public void deleteById(Long id) {
-        Procediment procediment = entityManager.getReference(Procediment.class, id);
-        entityManager.remove(procediment);
+        procedimentDAO.deleteById(id);
     }
 
     @Override
     public Procediment findById(Long id) {
-        return entityManager.find(Procediment.class, id);
+        return procedimentDAO.findById(id);
     }
 
     @Override
     public List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId) {
-        TypedQuery<Procediment> query = entityManager.createQuery(
-                "select p from Procediment p where p.unitatOrganica.id = :unitatOrganicaId", Procediment.class);
-        query.setParameter("unitatOrganicaId", unitatOrganicaId);
-        return query.getResultList();
+        return procedimentDAO.findAllByUnitatOrganica(unitatOrganicaId);
     }
 
     @Override
     public Long countAllByUnitatOrganica(Long unitatOrganicaId) {
-        TypedQuery<Long> query = entityManager.createQuery(
-                "select count(p) from Procediment p where p.unitatOrganica.id = :unitatOrganicaId",
-                Long.class);
-        query.setParameter("unitatOrganicaId", unitatOrganicaId);
-        return query.getSingleResult();
+        return procedimentDAO.countAllByUnitatOrganica(unitatOrganicaId);
+    }
+
+    @Override
+    public List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId, String filter) {
+        return procedimentDAO.findAllByUnitatOrganica(unitatOrganicaId, filter);
+    }
+
+    @Override
+    public Long countAllByUnitatOrganica(Long unitatOrganicaId, String filter) {
+        return procedimentDAO.countAllByUnitatOrganica(unitatOrganicaId, filter);
     }
 }
