@@ -22,55 +22,55 @@ import java.util.List;
 public class UnitatOrganicaEJB implements UnitatOrganicaService {
 
     @Inject
-    private UnitatOrganicaDAO dao;
+    private UnitatOrganicaDAO unitatOrganicaDAO;
 
     @Override
     public void bulkCreate(@NotNull List<UnitatOrganica> unitats) {
-        unitats.forEach(dao::create);
+        unitats.forEach(unitatOrganicaDAO::create);
     }
 
     @Override
     public UnitatOrganica create(UnitatOrganica unitatOrganica) {
-        return dao.create(unitatOrganica);
+        return unitatOrganicaDAO.create(unitatOrganica);
     }
 
     @Override
     public UnitatOrganica update(UnitatOrganica unitatOrganica) {
-        return dao.update(unitatOrganica);
+        return unitatOrganicaDAO.update(unitatOrganica);
     }
 
     @Override
     public void deleteById(Long id) {
-        dao.deleteById(id);
+        unitatOrganicaDAO.deleteById(id);
     }
 
     @Override
     public UnitatOrganica findById(Long id) {
-        return dao.findById(id);
+        return unitatOrganicaDAO.findById(id);
     }
 
     @Override
     public List<UnitatOrganica> findAll() {
-        return dao.findAll();
+        return unitatOrganicaDAO.findAll();
     }
 
     @Override
     public List<UnitatOrganica> findAll(@PositiveOrZero int first, @Positive int pageSize) {
-        return dao.findAll(first, pageSize);
+        return unitatOrganicaDAO.findAll(first, pageSize);
     }
 
     @Override
     public long countAll() {
-        return dao.countAll();
+        return unitatOrganicaDAO.countAll();
     }
 
     @Override
     public List<UnitatOrganica> findFiltered(String filter, @PositiveOrZero int first, @Positive int pageSize) {
-        return dao.findFiltered(filter, first, pageSize);
+        return unitatOrganicaDAO.findFiltered(filter, first, pageSize);
     }
 
     @Override
     public long countFiltered(String filter) {
-        return dao.countFiltered(filter);
+        return unitatOrganicaDAO.countFiltered(filter);
     }
 }

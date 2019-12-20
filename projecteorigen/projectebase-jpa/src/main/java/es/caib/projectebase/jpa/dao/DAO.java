@@ -43,6 +43,15 @@ public interface DAO<K, E> {
     void deleteById(K id);
 
     /**
+     * Obté una entitat en forma de referència, per tant sense carregar les seves dades.
+     * Emprat bàsicament per fixar claus foranes.
+     *
+     * @param id Identificador de l'entitat a carregar.
+     * @return L'entitat en forma de referència.
+     */
+    E getReference(K id);
+
+    /**
      * Carrega una entitat pel seu identificador.
      *
      * @param id Identificador de l'entitat a carregar.
@@ -62,7 +71,7 @@ public interface DAO<K, E> {
      *
      * @param firstResult índex del primer resultat.
      * @param size        nombre màxim de resultats.
-     * @return llista de totes les entitats.
+     * @return llista d'entitats.
      */
     List<E> findAll(@PositiveOrZero int firstResult, @Positive int size);
 
