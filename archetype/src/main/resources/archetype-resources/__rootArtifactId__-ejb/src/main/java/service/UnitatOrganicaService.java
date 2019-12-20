@@ -71,7 +71,7 @@ public interface UnitatOrganicaService {
      * @param pageSize el nombre màxim d'unitats orgàniques a tornar.
      * @return llista d'unitats orgàniques.
      */
-    List<UnitatOrganica> findAllPaged(@PositiveOrZero int first, @Positive int pageSize);
+    List<UnitatOrganica> findAll(@PositiveOrZero int first, @Positive int pageSize);
 
     /**
      * Retorna el nombre total d'unitats orgàniques.
@@ -89,7 +89,7 @@ public interface UnitatOrganicaService {
      * @param pageSize el nombre màxim d'unitats orgàniques a tornar.
      * @return llista d'unitats orgàniques que compleixen el filtre.
      */
-    List<UnitatOrganica> findFilteredPaged(String filter, @PositiveOrZero int first, @Positive int pageSize);
+    List<UnitatOrganica> findFiltered(String filter, @PositiveOrZero int first, @Positive int pageSize);
 
     /**
      * Retorna el nombre total d'unitats orgàniques que compleixen el filtre indicat.

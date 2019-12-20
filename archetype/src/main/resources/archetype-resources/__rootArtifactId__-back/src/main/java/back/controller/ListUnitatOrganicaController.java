@@ -70,7 +70,7 @@ public class ListUnitatOrganicaController implements Serializable {
             public void updateModel() {
                 setCount((int) unitatOrganicaService.countFiltered(cerca));
                 //TODO implementar ordenació
-                setModel(unitatOrganicaService.findFilteredPaged(cerca, this.getPageFirstItem(), this.getPageSize()));
+                setModel(unitatOrganicaService.findFiltered(cerca, this.getPageFirstItem(), this.getPageSize()));
             }
         };
     }
