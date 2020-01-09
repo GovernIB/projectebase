@@ -33,7 +33,7 @@
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-rest</artifactId>
+            <artifactId>${rootArtifactId}-api</artifactId>
             <version>${version}</version>
             <type>war</type>
         </dependency>
@@ -100,8 +100,8 @@
                         </webModule>
                         <webModule>
                             <groupId>${groupId}</groupId>
-                            <artifactId>${rootArtifactId}-rest</artifactId>
-                            <contextRoot>/${rootArtifactId}/rest</contextRoot>
+                            <artifactId>${rootArtifactId}-api</artifactId>
+                            <contextRoot>/${rootArtifactId}/api</contextRoot>
                         </webModule>
                         <!-- WS START -->
                         <ejbModule>

@@ -68,6 +68,7 @@
                             <application>${package}.api.SampleApplication</application>
                             <endpointClasses>
                                 <endpointClass>${package}.api.services.UnitatOrganicaResource</endpointClass>
+                                <endpointClass>${package}.api.services.ProcedimentResource</endpointClass>
                             </endpointClasses>
                             <output>${project.build.directory}/${project.build.finalName}/openapi.json</output>
                             <info>

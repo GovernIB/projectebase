@@ -3,9 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.api.services;
 
-import ${package}.jpa.Procediment;
 import ${package}.jpa.UnitatOrganica;
-import ${package}.service.ProcedimentService;
 import ${package}.service.UnitatOrganicaService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
@@ -18,8 +16,10 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import javax.ejb.EJB;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -33,7 +33,7 @@ import java.util.List;
  *
  * @author areus
  */
-@Path("unitatorganica")
+@Path("unitats")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UnitatOrganicaResource {
@@ -41,8 +41,22 @@ public class UnitatOrganicaResource {
     @EJB
     private UnitatOrganicaService unitatOrganicaService;
 
-    @EJB
-    private ProcedimentService procedimentService;
+    /**
+     * Retorna totes les unitats orgàniques.
+     *
+     * @return Un codi 200 amb totes les unitats orgàniques.
+     */
+    @GET
+    @Operation(summary = "Retorna una llista de totes les unitats orgàniques")
+    @APIResponse(
+            responseCode = "200",
+            description = "Llista d'unitats orgàniques",
+            content = @Content(mediaType = "application/json",
+                    schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganica.class)))
+    public Response getAll() {
+        List<UnitatOrganica> all = unitatOrganicaService.findAll();
+        return Response.ok().entity(all).build();
+    }
 
     /**
      * Obté una Unitat orgàncica.
@@ -85,47 +99,42 @@ public class UnitatOrganicaResource {
                             schema = @Schema(implementation = UnitatOrganica.class)))
             @Valid UnitatOrganica unitatOrganica) {
         unitatOrganicaService.create(unitatOrganica);
-        return Response.created(URI.create("unitatOrganica/" + unitatOrganica.getId())).build();
+        return Response.created(URI.create("unitats/" + unitatOrganica.getId())).build();
     }
 
     /**
-     * Crea un nou procediment dependent de la unitat orgànica.
+     * Actualitza una unitat orgànica.
      *
-     * @param id identificador de la unitat orgànica de la que dependrà el procediment.
-     * @param procediment la nova unitat orgànica a crear.
-     * @return Un codi 200 si el procediment es crea correctament.
+     * @param unitatOrganica la unitat orgànica a actualitzar.
+     * @return Un codi 200
      */
-    @Path("{id}/procediment")
-    @POST
-    @Operation(summary = "Crea un nou procediment associat a la unitat orgànica")
-    @APIResponse(responseCode = "200", description = "Procediment creat correctament")
-    public Response createProcediment(
-            @Parameter(description = "L'identificador de la unitat", required = true)
-            @PathParam("id") Long id,
+    @PUT
+    @Operation(summary = "Actualitza una unitat orgànica")
+    @APIResponse(responseCode = "200", description = "La modificació s'ha realitzat correctament")
+    public Response update(
             @RequestBody(
-                    description = "Nou procediment",
+                    description = "Unitat orgànica",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Procediment.class)))
-            @Valid Procediment procediment) {
-        procedimentService.create(procediment, id);
+                            schema = @Schema(implementation = UnitatOrganica.class)))
+            @Valid UnitatOrganica unitatOrganica) {
+        unitatOrganicaService.update(unitatOrganica);
         return Response.ok().build();
     }
 
     /**
-     * Retorna totes les unitats orgàniques.
+     * Esborra una unitat orgànica
      *
-     * @return Un codi 200 amb totes les unitats orgàniques.
+     * @param id identificador
+     * @return Resposta amb status 200 que indica que l'operaicó ha tengut èxit.
      */
-    @GET
-    @Path("all")
-    @Operation(summary = "Retorna una llista de totes les unitats orgàniques")
-    @APIResponse(
-            responseCode = "200",
-            description = "Llista d'unitats orgàniques",
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganica.class)))
-    public Response getAll() {
-        List<UnitatOrganica> all = unitatOrganicaService.findAll();
-        return Response.ok().entity(all).build();
+    @DELETE
+    @Path("{id}")
+    @Operation(summary = "Esborra una unitat orgànica")
+    @APIResponse(responseCode = "200", description = "La unitat s'ha esborrat correctament")
+    @APIResponse(responseCode = "404", description = "Unitat orgànica no trobada")
+    public Response delete(@Parameter(description = "L'identificador de la unitat", required = true)
+                        @PathParam("id") Long id) {
+        unitatOrganicaService.deleteById(id);
+        return Response.ok().build();
     }
 }

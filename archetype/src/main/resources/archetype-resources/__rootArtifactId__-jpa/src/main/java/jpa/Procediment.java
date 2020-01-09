@@ -3,6 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.jpa;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,11 +60,13 @@ public class Procediment implements Serializable {
     private String nom;
 
     /**
-     * La unitat orgànica responsable del procediment.
+     * La unitat orgànica responsable del procediment. Marcam com a transient per JSON per evitar que es
+     * seralitzi/deserialitzi.
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UNITATORGANICAID", nullable = false,
             foreignKey = @ForeignKey(name = "${prefixuppercase}_PROCEDIMENT_UNITATORGANICA_FK"))
+    @JsonbTransient
     private UnitatOrganica unitatOrganica;
 
     public Long getId() {
