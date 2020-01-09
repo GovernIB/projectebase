@@ -2,7 +2,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <!--
 Pàgina per edició d'unitats orgàniques.
 -->
@@ -70,11 +71,22 @@ Pàgina per edició d'unitats orgàniques.
 
             <ui:decorate template="/template/buttons.xhtml">
                 <ui:define name="buttons">
+
+                   <c:if test="#{not editUnitatOrganica.create}">
+                   <h:commandButton id="testError" action="#{editUnitatOrganica.testError}"
+                                    style ="paddig-right:5px;"
+                                    styleClass="btn btn-danger float-left"
+                                     value="#{labels.button_testError}">
+                        <f:ajax execute="@form" render="@form" />
+                    </h:commandButton>
+                    </c:if>
+                    
                     <h:commandButton id="saveOrUpdateButton" action="#{editUnitatOrganica.saveOrUpdate}"
                                      styleClass="btn btn-primary aplicacio-btn"
                                      value="#{labels.button_guardar}">
                         <f:ajax execute="@form" render="@form" />
                     </h:commandButton>
+                    
                     <h:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica"
                               styleClass="btn btn-secondary float-right" />
                 </ui:define>

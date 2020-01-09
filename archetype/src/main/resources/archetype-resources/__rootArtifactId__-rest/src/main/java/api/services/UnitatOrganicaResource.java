@@ -5,8 +5,11 @@ package ${package}.api.services;
 
 import ${package}.jpa.Procediment;
 import ${package}.jpa.UnitatOrganica;
-import ${package}.service.ProcedimentService;
-import ${package}.service.UnitatOrganicaService;
+import ${package}.commons.i18n.I18NException;
+import ${package}.ejb.ProcedimentService;
+import ${package}.ejb.UnitatOrganicaService;
+import ${package}.ejb.utils.I18NTranslatorEjb;
+
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -25,13 +28,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import java.net.URI;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Recurs REST per accedir a Unitats Organiques.
  *
  * @author areus
+ * @author anadal
  */
 @Path("unitatorganica")
 @Produces(MediaType.APPLICATION_JSON)
@@ -107,8 +113,16 @@ public class UnitatOrganicaResource {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Procediment.class)))
             @Valid Procediment procediment) {
-        procedimentService.create(procediment, id);
-        return Response.ok().build();
+        try {
+            procedimentService.create(procediment, id);
+            return Response.ok().build();
+        } catch (I18NException e) {
+            Locale loc = new Locale("ca");
+            String msg = I18NTranslatorEjb.tradueix(e, loc);
+            // Internal Server Error
+            return Response.status(500, msg ).build();
+        }
+        
     }
 
     /**

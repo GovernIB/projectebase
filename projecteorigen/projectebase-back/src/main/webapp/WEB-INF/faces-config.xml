@@ -15,7 +15,19 @@
             <supported-locale>ca</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>projectebase.back.Labels</base-name>
+            <base-name>ValidationMessages</base-name>            
+            <var>ValidationMessages</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>jpa.LabelsJPA</base-name>            
+            <var>labelsJPA</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>ejb.LabelsEJB</base-name>
+            <var>labelsEJB</var>
+        </resource-bundle>
+        <resource-bundle>           
+            <base-name>back.LabelsBack</base-name>
             <var>labels</var>
         </resource-bundle>
     </application>
@@ -29,11 +41,13 @@
             org.primefaces.application.exceptionhandler.PrimeExceptionHandlerELResolver
         </el-resolver>
     </application>
+
     <factory>
         <exception-handler-factory>
             org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
         </exception-handler-factory>
     </factory>
+
 
     <lifecycle>
         <phase-listener>

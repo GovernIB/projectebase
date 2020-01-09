@@ -1,8 +1,9 @@
 package es.caib.projectebase.back.listener;
 
 import es.caib.projectebase.commons.utils.Version;
+import es.caib.projectebase.ejb.UnitatOrganicaService;
 import es.caib.projectebase.jpa.UnitatOrganica;
-import es.caib.projectebase.service.UnitatOrganicaService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

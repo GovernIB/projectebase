@@ -14,11 +14,11 @@ import org.jboss.wsf.spi.annotation.WebContext;
 
 import javax.validation.constraints.Null;
 
-import org.fundaciobit.genapp.common.ws.WsI18NException;
-import org.fundaciobit.genapp.common.ws.WsValidationException;
 
 import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.ws.utils.AuthenticatedBaseWsImpl;
+import es.caib.projectebase.ws.utils.WsI18NException;
+import es.caib.projectebase.ws.utils.WsValidationException;
 
 /**
  * 

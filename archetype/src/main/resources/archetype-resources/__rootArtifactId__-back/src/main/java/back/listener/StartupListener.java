@@ -4,8 +4,9 @@
 package ${package}.back.listener;
 
 import ${package}.commons.utils.Version;
+import ${package}.ejb.UnitatOrganicaService;
 import ${package}.jpa.UnitatOrganica;
-import ${package}.service.UnitatOrganicaService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

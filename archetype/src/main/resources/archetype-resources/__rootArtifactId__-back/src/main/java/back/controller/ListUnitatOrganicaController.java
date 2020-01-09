@@ -3,8 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.controller;
 
+import ${package}.ejb.UnitatOrganicaService;
 import ${package}.jpa.UnitatOrganica;
-import ${package}.service.UnitatOrganicaService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

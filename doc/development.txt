@@ -1,22 +1,24 @@
 
 (1) Fer canvis al projecteorigen
    (XXX) - Les constants de traducció són: 
-        package=es.caib.projectebase
-        groupId=es.caib.projectebase
-        artifactId=projectebase
-        version=1.0.0
-        projectname=ProjecteBase
-        projectnameuppercase=PROJECTEBASE
-        prefixuppercase=PBS
-        prefix=pbs
+package=org.fundaciobit.aixoesunexemple
+packagepath=org/fundaciobit/aixoesunexemple
+inversepackage=aixoesunexemple.fundaciobit.org
+groupId=es.caib.aixoesunexemple
+artifactId=aixoesunexemple
+version=2.3.4
+projectname=AixoEsUnExemple
+projectnameuppercase=AIXOESUNEXEMPLE
+prefix=exe
+prefixuppercase=EXE
 
 
-(2) Executar  1_archetype_create_from_project.bat
+(2) Executar  regenerate_artifact_from_projecteorigen.bat
     AA- genera l'archetype (plantilla) a partir del projecte funcional (projecteorigen)
     BB- Copia els resultats de la generació a archetype\src\main\resources\archetype-resources
     CC- En una segona passada, executa el fitxer "post_create_from_project.groovy" que fa substitucions de les constants del punt (XXX) que no s'han substituït en el punt AA.
     
-    NOTA:  necessitau un ./m2/???/usersetting.xml (XYZ ZZZ)
+    NOTA:  necessitau un ./m2/usersetting.xml (XYZ ZZZ)
 
 (3) Per comprovar que no s'ha colat res:
 

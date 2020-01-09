@@ -79,6 +79,7 @@
         <fileSet encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
+            <include>**/*.xml</include>
             <include>**/*.properties</include>
           </includes>
         </fileSet>
@@ -101,7 +102,13 @@
         <fileSet encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
-            <include>**/ValidationMessages.properties</include>
+            <include>**/ValidationMessages*.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>src/main/resources/jpa</directory>
+          <includes>
+            <include>**/*.properties</include>
           </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">

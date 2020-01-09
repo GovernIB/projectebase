@@ -3,10 +3,11 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.controller;
 
+import ${package}.ejb.ProcedimentService;
+import ${package}.ejb.UnitatOrganicaService;
 import ${package}.jpa.Procediment;
 import ${package}.jpa.UnitatOrganica;
-import ${package}.service.ProcedimentService;
-import ${package}.service.UnitatOrganicaService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,7 @@ import java.util.List;
 @ViewScoped
 public class ListProcedimentController implements Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ListProcedimentController.class);
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @EJB
     UnitatOrganicaService unitatOrganicaService;
@@ -56,7 +57,7 @@ public class ListProcedimentController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        LOG.info("init");
+        log.info("init");
         unitatOrganica = new UnitatOrganica();
     }
 
@@ -66,7 +67,7 @@ public class ListProcedimentController implements Serializable {
      * Carrega la unitat orgànica i els procediments.
      */
     public void load() {
-        LOG.info("load");
+        log.info("load");
         unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId());
         procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
     }
