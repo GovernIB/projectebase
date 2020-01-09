@@ -5,12 +5,10 @@ package ${package}.ejb;
 
 import ${package}.commons.i18n.I18NException;
 import ${package}.jpa.Procediment;
-import ${package}.jpa.dao.IProcedimentManager;
+import ${package}.jpa.dao.IProcedimentDAO;
 
 import javax.ejb.Local;
 
-
-import java.util.List;
 
 /**
  * Interfície del servei per gestionar {@link Procediment}
@@ -19,8 +17,9 @@ import java.util.List;
  * @author anadal
  */
 @Local
-public interface ProcedimentService extends IProcedimentManager {
+public interface ProcedimentService extends IProcedimentDAO {
 
+    
     /**
      * Crea un procediment depenent d'una unitat orgànica.
      *
@@ -31,22 +30,6 @@ public interface ProcedimentService extends IProcedimentManager {
      * @return El procediment creat.
      */
     Procediment create(Procediment procediment, Long unitatOrganicaId) throws I18NException;
-
-    /**
-     * Obté una llista de tots els procediments d'una unitat orgànica.
-     *
-     * @param unitatOrganicaId
-     *            identificador de la unitat orgànica.
-     * @return llista de procediments de la unitat orgànica.
-     */
-    List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId);
-
-    /**
-     * Obté el nombre de procediments d'una unitat orgànica
-     * 
-     * @param unitatOrganicaId
-     *            identificador de la unitat orgànica.
-     * @return
-     */
-    Long countAllByUnitatOrganica(Long unitatOrganicaId);
+    
+    
 }

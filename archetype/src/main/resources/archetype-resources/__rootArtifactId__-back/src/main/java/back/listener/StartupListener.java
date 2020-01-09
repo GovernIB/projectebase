@@ -3,8 +3,11 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.listener;
 
+import ${package}.commons.i18n.I18NException;
+import ${package}.commons.utils.Configuration;
 import ${package}.commons.utils.Version;
 import ${package}.ejb.UnitatOrganicaService;
+import ${package}.ejb.utils.I18NTranslatorEjb;
 import ${package}.jpa.UnitatOrganica;
 
 import org.slf4j.Logger;
@@ -19,6 +22,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Executat a l'inici del desplegament de l'aplicació web, així com en l'aturada.
@@ -28,7 +32,7 @@ import java.util.List;
 @WebListener
 public class StartupListener implements ServletContextListener {
 
-    private static final Logger LOG = LoggerFactory.getLogger(StartupListener.class);
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Inject
     private Version version;
@@ -44,12 +48,12 @@ public class StartupListener implements ServletContextListener {
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        LOG.info("${symbol_escape}nWebApp " + version.getProjectName() + ":" + "${symbol_escape}n  + Version: "
+        log.info("${symbol_escape}nWebApp " + version.getProjectName() + ":" + "${symbol_escape}n  + Version: "
                 + version.getVersion() + "${symbol_escape}n  + BuildTime: " + version.getBuildTime()
                 + "${symbol_escape}n  + Revision: " + version.getScmRevision());
 
         // TODO emplenat de dades de prova. Millor realitzar-ho a través d'un script SQL
-        LOG.info("Iniciant la creació d'unitats organiques de prova");
+        log.info("Iniciant la creació d'unitats organiques de prova");
         DecimalFormat format = new DecimalFormat("00000000");
         List<UnitatOrganica> list = new ArrayList<>(30);
         for (int i = 0; i < 30; i++) {
@@ -60,7 +64,12 @@ public class StartupListener implements ServletContextListener {
             uo.setDataCreacio(LocalDate.now());
             list.add(uo);
         }
-        unitatOrganicaService.bulkCreate(list);
+        try {
+            unitatOrganicaService.bulkCreate(list);
+        } catch (I18NException e) {
+            String msg = I18NTranslatorEjb.tradueix(e, new Locale(Configuration.getDefaultLanguage()));
+            throw new RuntimeException(msg);
+        }
     }
 
     /**
@@ -71,6 +80,6 @@ public class StartupListener implements ServletContextListener {
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        LOG.info("Aturant aplicació ${symbol_dollar}{project_name}");
+        log.info("Aturant aplicació ${symbol_dollar}{project_name}");
     }
 }

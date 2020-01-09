@@ -92,14 +92,23 @@ public class EditUnitatOrganicaController implements Serializable {
      */
     public String saveOrUpdate() {
         log.info("saveOrUpdate");
-        if (isCreate()) {
-            unitatOrganicaService.create(current);
-            // Creació correcta
-            context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.creaciocorrecta")));
-        } else {
-            unitatOrganicaService.update(current);
-            // Actualització correcta
-            context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.actualitzaciocorrecta")));
+        try {
+          if (isCreate()) {
+              unitatOrganicaService.create(current);
+              // Creació correcta
+              context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.creaciocorrecta")));
+          } else {
+              unitatOrganicaService.update(current);
+              // Actualització correcta
+              context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.actualitzaciocorrecta")));
+          }
+        } catch (I18NException i18ne) {
+
+            String msgError = I18NTranslatorBack.tradueix(i18ne);
+
+            log.error("\nError saveOrUpdate() => " + msgError + "\n"); 
+
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
         }
         // Els missatges no aguanten una redirecció ja que no es la mateixa petició
         // amb l'objecte flash podem assegurar que es guardin fins la visualització
@@ -151,6 +160,7 @@ public class EditUnitatOrganicaController implements Serializable {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
             
             // Redireccionam cap a l'unitat orgànica que estam editant
+            flash.setKeepMessages(true);
             return "/editUnitatOrganica?faces-redirect=true&includeViewParams=true";
         }
 

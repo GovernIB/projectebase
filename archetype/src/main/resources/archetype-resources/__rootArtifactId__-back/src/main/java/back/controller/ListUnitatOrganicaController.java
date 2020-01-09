@@ -3,7 +3,10 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.controller;
 
+import ${package}.commons.i18n.I18NException;
+import ${package}.commons.utils.Configuration;
 import ${package}.ejb.UnitatOrganicaService;
+import ${package}.ejb.utils.I18NTranslatorEjb;
 import ${package}.jpa.UnitatOrganica;
 
 import org.slf4j.Logger;
@@ -17,6 +20,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Locale;
 
 /**
  * Controlador pels llistats d'Unitats Organiques. El definim a l'scope de view perquè a nivell de request es
@@ -28,7 +32,7 @@ import java.io.Serializable;
 @ViewScoped
 public class ListUnitatOrganicaController implements Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ListUnitatOrganicaController.class);
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Inject
     private FacesContext context;
@@ -61,7 +65,7 @@ public class ListUnitatOrganicaController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        LOG.info("init");
+        log.info("init");
         /*
         Crea un objecte paginació implementant el mètode per actualitzar el model perquè agafi les dades
          filtrades i paginades.
@@ -69,9 +73,16 @@ public class ListUnitatOrganicaController implements Serializable {
         pagination = new PaginationHelper<>() {
             @Override
             public void updateModel() {
-                setCount((int) unitatOrganicaService.countFiltered(cerca));
+                setCount((int) unitatOrganicaService.countFilter(cerca));
                 //TODO implementar ordenació
-                setModel(unitatOrganicaService.findFilteredPaged(cerca, this.getPageFirstItem(), this.getPageSize()));
+                try {
+                    setModel(unitatOrganicaService.selectAll(cerca, this.getPageFirstItem(), this.getPageSize()));
+                } catch (I18NException e) {
+                    String msg = I18NTranslatorEjb.tradueix(e, new Locale(Configuration.getDefaultLanguage()));
+                    log.error("Error en updateModel() => " + msg);
+                    throw new RuntimeException(msg);
+                }
+                
             }
         };
     }
@@ -84,7 +95,7 @@ public class ListUnitatOrganicaController implements Serializable {
      * @param id identificador de l'unitat orgànica
      */
     public void delete(Long id) {
-        LOG.info("delete");
+        log.info("delete");
         unitatOrganicaService.deleteById(id);
         // Actualitza les dades paginades
         pagination.updateModel();
