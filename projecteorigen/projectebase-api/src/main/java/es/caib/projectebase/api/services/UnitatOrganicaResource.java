@@ -1,7 +1,8 @@
 package es.caib.projectebase.api.services;
 
+import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.ejb.UnitatOrganicaService;
 import es.caib.projectebase.jpa.UnitatOrganica;
-import es.caib.projectebase.service.UnitatOrganicaService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -50,8 +51,8 @@ public class UnitatOrganicaResource {
             description = "Llista d'unitats orgàniques",
             content = @Content(mediaType = "application/json",
                     schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganica.class)))
-    public Response getAll() {
-        List<UnitatOrganica> all = unitatOrganicaService.findAll();
+    public Response getAll() throws I18NException {
+        List<UnitatOrganica> all = unitatOrganicaService.selectAll();
         return Response.ok().entity(all).build();
     }
 
@@ -94,7 +95,7 @@ public class UnitatOrganicaResource {
                     description = "Nova unitat orgànica",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UnitatOrganica.class)))
-            @Valid UnitatOrganica unitatOrganica) {
+            @Valid UnitatOrganica unitatOrganica) throws I18NException {
         unitatOrganicaService.create(unitatOrganica);
         return Response.created(URI.create("unitats/" + unitatOrganica.getId())).build();
     }
@@ -113,7 +114,7 @@ public class UnitatOrganicaResource {
                     description = "Unitat orgànica",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UnitatOrganica.class)))
-            @Valid UnitatOrganica unitatOrganica) {
+            @Valid UnitatOrganica unitatOrganica) throws I18NException {
         unitatOrganicaService.update(unitatOrganica);
         return Response.ok().build();
     }

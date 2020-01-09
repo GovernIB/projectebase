@@ -16,7 +16,7 @@ import java.util.Arrays;
  *
  * @author areus
  */
-//@Logged
+@Logged
 @Interceptor
 public class LoggerInterceptor implements Serializable {
 
