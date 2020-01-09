@@ -1,9 +1,13 @@
 package es.caib.projectebase.back.controller;
 
+import es.caib.projectebase.back.utils.I18NTranslatorBack;
+import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.ejb.ProcedimentService;
+import es.caib.projectebase.ejb.UnitatOrganicaService;
 import es.caib.projectebase.jpa.Procediment;
 import es.caib.projectebase.jpa.UnitatOrganica;
-import es.caib.projectebase.service.ProcedimentService;
-import es.caib.projectebase.service.UnitatOrganicaService;
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,12 +27,13 @@ import java.io.Serializable;
  * de vista.
  *
  * @author areus
+ * @author anadal
  */
 @Named("editProcediment")
 @ViewScoped
 public class EditProcedimentController implements Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(EditProcedimentController.class);
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Inject
     private FacesContext context;
@@ -75,7 +80,7 @@ public class EditProcedimentController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        LOG.info("init");
+        log.info("init");
         procediment = new Procediment();
         unitatOrganica = new UnitatOrganica();
     }
@@ -86,7 +91,7 @@ public class EditProcedimentController implements Serializable {
      * Carrega el procediment i la unitat orgància per editar.
      */
     public void load() {
-        LOG.info("load");
+        log.info("load");
         if (procediment.getId() != null) {
             procediment = procedimentService.findById(procediment.getId());
         }
@@ -101,13 +106,30 @@ public class EditProcedimentController implements Serializable {
      * @return navegació cap al llistat d'unitats orgàniques.
      */
     public String saveOrUpdate() {
-        LOG.info("saveOrUpdate");
+        log.info("saveOrUpdate");
         if (isCreate()) {
-            procedimentService.create(procediment, unitatOrganica.getId());
-            context.addMessage(null, new FacesMessage("Creació correcte"));
+            try {
+                procedimentService.create(procediment, unitatOrganica.getId());
+                context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.creaciocorrecta")));
+            } catch (I18NException i18ne) {
+
+                String msgError = I18NTranslatorBack.tradueix(i18ne);
+                log.error("\nError Creació => " + msgError + "\n"); 
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
+
+            }
+            
         } else {
-            procedimentService.update(procediment);
-            context.addMessage(null, new FacesMessage("Actualització correcte"));
+            try {
+                procedimentService.update(procediment);
+                context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.actualitzaciocorrecta")));
+            } catch (I18NException i18ne) {
+                String msgError = I18NTranslatorBack.tradueix(i18ne);
+                log.error("\nError Actualitzacio => " + msgError + "\n"); 
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
+            }
+            
+         
         }
         // Els missatges no aguanten una redirecció ja que no es la mateixa petició
         // amb l'objecte flash podem assegurar que es guardin fins la visualització

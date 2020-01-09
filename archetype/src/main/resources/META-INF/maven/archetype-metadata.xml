@@ -4,32 +4,34 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     
     <requiredProperties>
-    <requiredProperty key="prefix">
-      <validationRegex>^[a-z][a-z][a-z]$</validationRegex>
-    </requiredProperty>
-    <requiredProperty key="prefixuppercase">
-      <validationRegex>[A-Z][A-Z][A-Z]</validationRegex>
-    </requiredProperty>
-    <requiredProperty key="perfilWS">
-      <validationRegex>^(true|false)$</validationRegex>
-    </requiredProperty>
-    <requiredProperty key="perfilBack">
-      <validationRegex>^(true|false)$</validationRegex>
-    </requiredProperty>
-    <requiredProperty key="perfilBatSh">
-      <validationRegex>^(true|false)$</validationRegex>
-    </requiredProperty>
-    <requiredProperty key="projectname">
-      <validationRegex>^([A-Za-z0-9])+$</validationRegex>
-    </requiredProperty>
-    <requiredProperty key="projectnameuppercase">
-      <validationRegex>^([A-Z0-9])+$</validationRegex>
-    </requiredProperty>
-    <requiredProperty key="packagepath">
-    </requiredProperty>
-    <requiredProperty key="inversepackage">
-    </requiredProperty>
-  </requiredProperties>
+        <requiredProperty key="prefix">
+          <validationRegex>^[a-z][a-z][a-z]$</validationRegex>
+        </requiredProperty>
+        <requiredProperty key="prefixuppercase">
+          <validationRegex>[A-Z][A-Z][A-Z]</validationRegex>
+        </requiredProperty>
+        <requiredProperty key="perfilWS">
+          <validationRegex>^(true|false)$</validationRegex>
+          <defaultValue>false</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="perfilBack">
+          <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
+        <requiredProperty key="perfilBatSh">
+          <validationRegex>^(true|false)$</validationRegex>
+          <defaultValue>false</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="projectname">
+          <validationRegex>^([A-Za-z0-9])+$</validationRegex>
+        </requiredProperty>
+        <requiredProperty key="projectnameuppercase">
+          <validationRegex>^([A-Z0-9])+$</validationRegex>
+        </requiredProperty>
+        <requiredProperty key="packagepath">
+        </requiredProperty>
+        <requiredProperty key="inversepackage">
+        </requiredProperty>
+    </requiredProperties>
 
 
   <fileSets>
@@ -79,6 +81,7 @@
         <fileSet encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
+            <include>**/*.xml</include>
             <include>**/*.properties</include>
           </includes>
         </fileSet>
@@ -101,7 +104,13 @@
         <fileSet encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
-            <include>**/ValidationMessages.properties</include>
+            <include>**/ValidationMessages*.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>src/main/resources/jpa</directory>
+          <includes>
+            <include>**/*.properties</include>
           </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">

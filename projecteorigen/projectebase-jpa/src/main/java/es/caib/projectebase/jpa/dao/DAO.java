@@ -2,83 +2,123 @@ package es.caib.projectebase.jpa.dao;
 
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
+
+import java.io.Serializable;
 import java.util.List;
+
+import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.commons.query.OrderBy;
 
 /**
  * Defineix les operacions dels Data Access Object per una entitat.
+ * 
+ * 
+ * @param <PK>
+ *            Tipus de la clau primària de l'entitat.
+ * @param <E>
+ *            Tipus de l'entitat.
+ *
+ * @author anadal
  * @author areus
- * @param <K> Tipus de la clau primària de l'entitat.
- * @param <E> Tipus de l'entitat.
  */
-public interface DAO<K, E> {
+public interface DAO<E extends Serializable, PK> {
 
     /**
-     * Crea una nova entitat.
+     * Crea un item
      *
-     * @param entity Entitat a guardar.
-     * @return l'entitat de guardar-la
+     * @return El item creat.
      */
-    E create(E entity);
-
+    public E create(E item) throws I18NException;
+    
     /**
-     * Actualitza una entitat.
+     * Crea N items
      *
-     * @param entity Entitat a actualitzar.
-     * @return l'entitat actualitzada.
+     * @return El item creat.
      */
-    E update(E entity);
+    public void bulkCreate(List<E> entities) throws I18NException;
 
     /**
-     * Esborra una entitat.
+     * Actualitza un item.
      *
-     * @param entity l'entitat a esborrar.
      */
-    void delete(E entity);
+    public E update(E item) throws I18NException;
 
     /**
-     * Esborra una entitat pel seu identificador.
+     * Esborra un item a partir de l'identificador indicat.
      *
-     * @param id Identificador de l'entitat a esborrar.
+     * @param id
+     *            Identificador del entity
      */
-    void deleteById(K id);
+    public void deleteById(PK id);
 
     /**
-     * Obté una entitat en forma de referència, per tant sense carregar les seves dades.
-     * Emprat bàsicament per fixar claus foranes.
-     *
-     * @param id Identificador de l'entitat a carregar.
-     * @return L'entitat en forma de referència.
+     * Esborra una entitat
+     * 
+     * @param entity
      */
-    E getReference(K id);
+    public void delete(E entity);
 
     /**
-     * Carrega una entitat pel seu identificador.
+     * Obté un entity amb l'identificador indicat.
      *
-     * @param id Identificador de l'entitat a carregar.
-     * @return l'entitat que es correspon a l'identificador o null si no existeix.
+     * @param id
+     *            identificador del entity.
+     * @return El entity o <code>null</code> si id és null o no n'hi ha cap entitat amb l'id
+     *         indicat.
      */
-    E findById(K id);
+    public E findById(PK id);
 
     /**
-     * Carrega totes les entitats.
-     *
-     * @return llista de totes les entitats.
+     * Obté el total d'entrades de la bbdd
+     * 
+     * @return
+     * @throws Exception
      */
-    List<E> findAll();
-
+    public Long countAll();
+    
     /**
-     * Carrega un subconjunt de les entitats.
+     * Retorna el nombre total d'entitats que compleixen el filtre indicat.
+     * La cadena de filtre es cerca dins tots els camps de tipus String de l'entitat.
      *
-     * @param firstResult índex del primer resultat.
-     * @param size        nombre màxim de resultats.
+     * @param filter   cadena de caràcters que es cercarà dins els camps de tipus string.
+     * @return nombre d'entitats que compleixen el filtre.
+     */
+    public long countFilter(String filter);
+    
+    /**
+     * Obte totes les entrades de la bbdd
+     * 
+     * @return
+     * @throws Exception
+     */
+    public List<E> selectAll(OrderBy... orderBy) throws I18NException;
+
+    
+    public List<E> selectAll(String filter, OrderBy... orderBy) throws I18NException;
+    
+    /**
+     *
+     * @param firstResult
+     *            índex del primer resultat.
+     * @param size
+     *            nombre màxim de resultats.
      * @return llista d'entitats.
      */
-    List<E> findAll(@PositiveOrZero int firstResult, @Positive int size);
+    public List<E> selectAll(@PositiveOrZero int first, @Positive int pageSize, OrderBy... orderBy)
+            throws I18NException;
+    
+    
+    public List<E> selectAll(String filter, @PositiveOrZero int first, @Positive int pageSize, OrderBy... orderBy)
+            throws I18NException;
 
     /**
-     * Retorna el nombre d'entitats.
+     * Obté una entitat en forma de referència, per tant sense carregar les seves dades. Emprat
+     * bàsicament per fixar claus foranes.
      *
-     * @return Nombre d'entitats.
+     * @param id
+     *            Identificador de l'entitat a carregar.
+     * @return L'entitat en forma de referència.
      */
-    long countAll();
+    public E getReference(PK id);
+
 }

@@ -7,17 +7,19 @@ package ${package}.ws.api.v1;
 import java.sql.Date;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
+import ${package}.ws.api.v1.utils.WsSqlDateAdapter;
+
 public class Adapter2
     extends XmlAdapter<String, Date>
 {
 
 
     public Date unmarshal(String value) {
-        return (org.fundaciobit.genapp.common.ws.WsSqlDateAdapter.parseDate(value));
+        return (WsSqlDateAdapter.parseDate(value));
     }
 
     public String marshal(Date value) {
-        return (org.fundaciobit.genapp.common.ws.WsSqlDateAdapter.printDate(value));
+        return (WsSqlDateAdapter.printDate(value));
     }
 
 }

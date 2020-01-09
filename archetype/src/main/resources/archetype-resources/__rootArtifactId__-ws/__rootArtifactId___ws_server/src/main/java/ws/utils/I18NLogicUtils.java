@@ -3,17 +3,17 @@
 #set( $symbol_escape = '\' )
 package ${package}.ws.utils;
 
-import org.fundaciobit.genapp.common.i18n.I18NCommonUtils;
+import ${package}.commons.i18n.I18NTranslator;
+import ${package}.ejb.utils.I18NTranslatorEjb;
 
 /**
- * 
+ *
  * @author anadal
  * 
  */
-public class I18NLogicUtils extends I18NCommonUtils {
+public class I18NLogicUtils extends I18NTranslatorEjb {
 
-  static {
-    BUNDLES = new String[] { "${rootArtifactId}_genapp", "genapp" };
-  }
+    public static final I18NTranslator translator = new I18NTranslator(
+            new String[] { "ValidationMessages", "jpa.LabelsJPA", "ejb.LabelsEJB", "${rootArtifactId}_genapp", "genapp" });
 
 }

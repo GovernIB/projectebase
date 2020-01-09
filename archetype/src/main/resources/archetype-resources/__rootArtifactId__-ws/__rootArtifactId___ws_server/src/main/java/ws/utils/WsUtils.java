@@ -12,21 +12,14 @@ import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
 
-import org.fundaciobit.genapp.common.i18n.I18NArgument;
-import org.fundaciobit.genapp.common.i18n.I18NArgumentCode;
-import org.fundaciobit.genapp.common.i18n.I18NFieldError;
-import org.fundaciobit.genapp.common.i18n.I18NTranslation;
-import org.fundaciobit.genapp.common.i18n.I18NValidationException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.fundaciobit.genapp.common.ws.WsI18NArgument;
-import org.fundaciobit.genapp.common.ws.WsI18NTranslation;
-import org.fundaciobit.genapp.common.ws.WsValidationException;
-import org.fundaciobit.genapp.common.ws.WsFieldValidationError;
-
-import org.fundaciobit.genapp.common.query.Field;
+import ${package}.commons.i18n.I18NArgument;
+import ${package}.commons.i18n.I18NArgumentCode;
+import ${package}.commons.i18n.I18NFieldError;
+import ${package}.commons.i18n.I18NTranslation;
+import ${package}.commons.i18n.I18NValidationException;
 
 
 /**
@@ -52,16 +45,16 @@ public class WsUtils {
       String code = trans.getCode();
       String[] args = I18NLogicUtils.tradueixArguments(locale, trans.getArgs());
       String error = I18NLogicUtils.tradueix(locale, code, args);
-      Field<?> field = fe.getField();
-      String fieldLabel = I18NLogicUtils.tradueix(locale, field.fullName);
+      String field = fe.getField();
+      String fieldLabel = "camp " + field; // I18NLogicUtils.tradueix(locale, field.fullName);
 
-      list.add(new WsFieldValidationError(field.javaName, fieldLabel,
+      list.add(new WsFieldValidationError(field, fieldLabel,
           error, convertToWsTranslation(trans)));
 
       if (str.length() != 0) {
         str.append("${symbol_escape}n");
       }
-      str.append(fieldLabel + "(" + field.javaName + "): " + error);
+      str.append(fieldLabel + "(" + field + "): " + error);
 
     }
 

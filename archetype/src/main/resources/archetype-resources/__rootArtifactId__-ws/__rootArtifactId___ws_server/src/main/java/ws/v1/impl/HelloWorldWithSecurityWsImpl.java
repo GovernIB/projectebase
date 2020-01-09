@@ -17,11 +17,11 @@ import org.jboss.wsf.spi.annotation.WebContext;
 
 import javax.validation.constraints.Null;
 
-import org.fundaciobit.genapp.common.ws.WsI18NException;
-import org.fundaciobit.genapp.common.ws.WsValidationException;
 
 import ${package}.commons.utils.Constants;
 import ${package}.ws.utils.AuthenticatedBaseWsImpl;
+import ${package}.ws.utils.WsI18NException;
+import ${package}.ws.utils.WsValidationException;
 
 /**
  * 

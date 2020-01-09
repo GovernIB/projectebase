@@ -1,212 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>es.caib.projectebase</groupId>
-  <artifactId>projectebase-ws-api</artifactId>
-  <version>1.0.0</version>
-  <packaging>jar</packaging>
-
-  <parent>
     <groupId>es.caib.projectebase</groupId>
-    <artifactId>projectebase-ws</artifactId>
+    <artifactId>projectebase-ws-api</artifactId>
     <version>1.0.0</version>
-  </parent>
+    <packaging>jar</packaging>
 
-  <name>ProjecteBase - WS - API</name>
+    <parent>
+        <groupId>es.caib.projectebase</groupId>
+        <artifactId>projectebase-ws</artifactId>
+        <version>1.0.0</version>
+    </parent>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <name>ProjecteBase - WS - API</name>
 
-  <build>
-  </build>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-  <profiles>
-    <profile>
-      <id>regenerateapi</id>
-      <activation>
-        <property>
-          <name>regenerateapi</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
+    <build>
+    </build>
 
-          <plugin>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-java2ws-plugin</artifactId>
-            <version>${cxf.version}</version>
-            <dependencies>
-              <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-frontend-jaxws</artifactId>
-                <version>${cxf.version}</version>
-              </dependency>
+    <profiles>
+        <profile>
+            <id>regenerateapi</id>
+            <activation>
+                <property>
+                    <name>regenerateapi</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
 
-              <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-frontend-simple</artifactId>
-                <version>${cxf.version}</version>
-              </dependency>
-            </dependencies>
+                    <plugin>
+                        <groupId>org.apache.cxf</groupId>
+                        <artifactId>cxf-java2ws-plugin</artifactId>
+                        <version>${cxf.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.cxf</groupId>
+                                <artifactId>cxf-rt-frontend-jaxws</artifactId>
+                                <version>${cxf.version}</version>
+                            </dependency>
 
-            <executions>
+                            <dependency>
+                                <groupId>org.apache.cxf</groupId>
+                                <artifactId>cxf-rt-frontend-simple</artifactId>
+                                <version>${cxf.version}</version>
+                            </dependency>
+                        </dependencies>
 
-              <execution>
-                <id>generate-wsdl-ProjecteBaseHelloWorldWs</id>
-                <phase>generate-sources</phase>
-                <configuration>
-                  <className>es.caib.projectebase.ws.v1.impl.ProjecteBaseHelloWorldWsImpl</className>
-                  <genWsdl>true</genWsdl>
-                  <verbose>true</verbose>
-                  <frontend>jaxws</frontend>
-                  <databinding>jaxb</databinding>
-                  <outputFile>${basedir}/src/main/resources/wsdl/ProjecteBaseHelloWorld.wsdl</outputFile>
-                  <argline>-s ${basedir}/code -portname ProjecteBaseHelloWorldWs
-                    -address
-                    http://localhost:8080/projectebase/ws/v1/ProjecteBaseHelloWorld</argline>
-                </configuration>
-                <goals>
-                  <goal>java2ws</goal>
-                </goals>
-              </execution>
+                        <executions>
 
-              <execution>
-                <id>generate-wsdl-ProjecteBaseHelloWorldWithSecurityWs</id>
-                <phase>generate-sources</phase>
-                <configuration>
-                  <className>es.caib.projectebase.ws.v1.impl.ProjecteBaseHelloWorldWithSecurityWsImpl</className>
-                  <genWsdl>true</genWsdl>
-                  <verbose>true</verbose>
-                  <frontend>jaxws</frontend>
-                  <databinding>jaxb</databinding>
-                  <outputFile>${basedir}/src/main/resources/wsdl/ProjecteBaseHelloWorldWithSecurity.wsdl</outputFile>
-                  <argline>-s ${basedir}/code -portname
-                    ProjecteBaseHelloWorldWithSecurityWs -address
-                    http://localhost:8080/projectebase/ws/v1/ProjecteBaseHelloWorldWithSecurity</argline>
-                </configuration>
-                <goals>
-                  <goal>java2ws</goal>
-                </goals>
-              </execution>
+                            <execution>
+                                <id>generate-wsdl-ProjecteBaseHelloWorldWs</id>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <className>es.caib.projectebase.ws.v1.impl.ProjecteBaseHelloWorldWsImpl</className>
+                                    <genWsdl>true</genWsdl>
+                                    <verbose>true</verbose>
+                                    <frontend>jaxws</frontend>
+                                    <databinding>jaxb</databinding>
+                                    <outputFile>${basedir}/src/main/resources/wsdl/ProjecteBaseHelloWorld.wsdl</outputFile>
+                                    <argline>-s ${basedir}/code -portname
+                                        ProjecteBaseHelloWorldWs
+                                        -address
+                                        http://localhost:8080/projectebase/ws/v1/ProjecteBaseHelloWorld</argline>
+                                </configuration>
+                                <goals>
+                                    <goal>java2ws</goal>
+                                </goals>
+                            </execution>
 
-              <!-- ADD HERE MORE WS -->
+                            <execution>
+                                <id>generate-wsdl-ProjecteBaseHelloWorldWithSecurityWs</id>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <className>es.caib.projectebase.ws.v1.impl.ProjecteBaseHelloWorldWithSecurityWsImpl</className>
+                                    <genWsdl>true</genWsdl>
+                                    <verbose>true</verbose>
+                                    <frontend>jaxws</frontend>
+                                    <databinding>jaxb</databinding>
+                                    <outputFile>${basedir}/src/main/resources/wsdl/ProjecteBaseHelloWorldWithSecurity.wsdl</outputFile>
+                                    <argline>-s ${basedir}/code -portname
+                                        ProjecteBaseHelloWorldWithSecurityWs -address
+                                        http://localhost:8080/projectebase/ws/v1/ProjecteBaseHelloWorldWithSecurity</argline>
+                                </configuration>
+                                <goals>
+                                    <goal>java2ws</goal>
+                                </goals>
+                            </execution>
 
-
-            </executions>
-          </plugin>
-
-
-          <plugin>
-            <groupId>org.jboss.ws.plugins</groupId>
-            <artifactId>maven-jaxws-tools-plugin</artifactId>
-            <version>1.1.1.Final</version>
-            <configuration>
-              <verbose>true</verbose>
-              <goalPrefix>wsconsume</goalPrefix>
-              <extension>true</extension>
-              <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-              <targetPackage>es.caib.projectebase.ws.api.v1</targetPackage>
-              <bindingFiles>
-                <bindingFile>${basedir}/bindings/bindings.xjc</bindingFile>
-              </bindingFiles>
-            </configuration>
-            <executions>
-              <execution>
-                <id>WSDL to Java API ProjecteBaseHelloWorld</id>
-                <goals>
-                  <goal>wsconsume</goal>
-                </goals>
-                <configuration>
-                  <wsdls>
-                    <wsdl>${basedir}/src/main/resources/wsdl/ProjecteBaseHelloWorld.wsdl</wsdl>
-                  </wsdls>
-                  <wsdlLocation>http://localhost:8080/projectebase/ws/v1/ProjecteBaseHelloWorld?wsdl</wsdlLocation>
-                  <argLine>-n</argLine>
-                </configuration>
-              </execution>
-
-              <execution>
-                <id>WSDL to Java API ProjecteBaseHelloWorldWithSecurity</id>
-                <goals>
-                  <goal>wsconsume</goal>
-                </goals>
-                <configuration>
-                  <wsdls>
-                    <wsdl>${basedir}/src/main/resources/wsdl/ProjecteBaseHelloWorldWithSecurity.wsdl</wsdl>
-                  </wsdls>
-                  <wsdlLocation>http://localhost:8080/projectebase/ws/v1/ProjecteBaseHelloWorldWithSecurity?wsdl</wsdlLocation>
-                  <argLine>-n</argLine>
-                </configuration>
-              </execution>
+                            <!-- ADD HERE MORE WS -->
 
 
-              <!-- ADD HERE MORE WSDL -->
+                        </executions>
+                    </plugin>
 
 
-            </executions>
-          </plugin>
+                    <plugin>
+                        <groupId>org.jboss.ws.plugins</groupId>
+                        <artifactId>maven-jaxws-tools-plugin</artifactId>
+                        <version>1.1.1.Final</version>
+                        <configuration>
+                            <verbose>true</verbose>
+                            <goalPrefix>wsconsume</goalPrefix>
+                            <extension>true</extension>
+                            <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+                            <targetPackage>es.caib.projectebase.ws.api.v1</targetPackage>
+                            <bindingFiles>
+                                <bindingFile>${basedir}/bindings/bindings.xjc</bindingFile>
+                            </bindingFiles>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>WSDL to Java API ProjecteBaseHelloWorld</id>
+                                <goals>
+                                    <goal>wsconsume</goal>
+                                </goals>
+                                <configuration>
+                                    <wsdls>
+                                        <wsdl>${basedir}/src/main/resources/wsdl/ProjecteBaseHelloWorld.wsdl</wsdl>
+                                    </wsdls>
+                                    <wsdlLocation>http://localhost:8080/projectebase/ws/v1/ProjecteBaseHelloWorld?wsdl</wsdlLocation>
+                                    <argLine>-n</argLine>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>WSDL to Java API ProjecteBaseHelloWorldWithSecurity</id>
+                                <goals>
+                                    <goal>wsconsume</goal>
+                                </goals>
+                                <configuration>
+                                    <wsdls>
+                                        <wsdl>${basedir}/src/main/resources/wsdl/ProjecteBaseHelloWorldWithSecurity.wsdl</wsdl>
+                                    </wsdls>
+                                    <wsdlLocation>http://localhost:8080/projectebase/ws/v1/ProjecteBaseHelloWorldWithSecurity?wsdl</wsdlLocation>
+                                    <argLine>-n</argLine>
+                                </configuration>
+                            </execution>
 
 
-        </plugins>
-
-      </build>
-    </profile>
-  </profiles>
-
-  <repositories>
-    <repository>
-      <id>java.net-m2</id>
-      <name>java.net - Maven 2</name>
-      <url>https://repository.jboss.org/nexus/content/repositories/java.net-m2</url>
-    </repository>
-  </repositories>
-
-  <dependencies>
-
-    <dependency>
-      <groupId>javax.xml.ws</groupId>
-      <artifactId>jaxws-api</artifactId>
-      <version>2.2.12</version>
-    </dependency>
+                            <!-- ADD HERE MORE WSDL -->
 
 
-    <dependency>
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-    </dependency>
+                        </executions>
+                    </plugin>
 
 
-    <dependency>
-      <groupId>javax.jws</groupId>
-      <artifactId>javax.jws-api</artifactId>
-      <version>1.1</version>
-    </dependency>
+                </plugins>
 
+            </build>
+        </profile>
+    </profiles>
 
+    <repositories>
+        <repository>
+            <id>java.net-m2</id>
+            <name>java.net - Maven 2</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/java.net-m2</url>
+        </repository>
+    </repositories>
 
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.2</version>
-      <scope>test</scope>
-    </dependency>
+    <dependencies>
 
-    <dependency>
-      <groupId>org.fundaciobit.genapp</groupId>
-      <artifactId>genapp-core</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-    </dependency>
+        <dependency>
+            <groupId>javax.xml.ws</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>2.2.12</version>
+        </dependency>
 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
 
-  </dependencies>
+        <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>javax.jws-api</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
 </project>

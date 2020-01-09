@@ -2,19 +2,29 @@ package es.caib.projectebase.jpa.test;
 
 import es.caib.projectebase.jpa.Procediment;
 import es.caib.projectebase.jpa.UnitatOrganica;
+
+import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
+import org.hibernate.validator.resourceloading.AggregateResourceBundleLocator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.PersistenceException;
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Tests amb {@link Procediment}.
  *
  * @author areus
+ * @author anadal
  */
 class TestProcediment extends JPATest {
 
@@ -76,7 +86,7 @@ class TestProcediment extends JPATest {
         em.persist(procediment);
 
         // Comprovam que el commit llança una excepció de persistencia.
-        var exception = Assertions.assertThrows(PersistenceException.class,  () -> em.getTransaction().commit());
+        var exception = Assertions.assertThrows(PersistenceException.class, () -> em.getTransaction().commit());
 
         // Comprovam que l'excepció ha estat causada per la validació
         Assertions.assertTrue(exception.getCause() instanceof ConstraintViolationException);
@@ -85,4 +95,59 @@ class TestProcediment extends JPATest {
         ConstraintViolationException cvException = (ConstraintViolationException) exception.getCause();
         Assertions.assertEquals(2, cvException.getConstraintViolations().size());
     }
+
+    @Test
+    public void validation() {
+
+        System.out.println(" \n\n ENTRA  \n\n");
+
+        Procediment procediment = new Procediment();
+        procediment.setCodiSia("12345"); // pattern incorrecte
+        procediment.setNom(""); // nom no pot ser buid
+
+        UnitatOrganica unitatOrganica = em.getReference(UnitatOrganica.class, unitatId);
+        procediment.setUnitatOrganica(unitatOrganica);
+
+        em.getTransaction().begin();
+        em.persist(procediment);
+
+        // Comprovam que el commit llança una excepció de persistencia.
+        var exception = Assertions.assertThrows(PersistenceException.class, () -> em.getTransaction().commit());
+
+        System.out.println(" \n\n ABANS DE STACKTRACE  \n\n");
+
+        // exception.getCause().printStackTrace();
+
+        // Comprovam que l'excepció ha estat causada per la validació
+        Assertions.assertTrue(exception.getCause() instanceof ConstraintViolationException);
+
+        ConstraintViolationException cve = (ConstraintViolationException) exception.getCause();
+
+        for (ConstraintViolation<?> cv : cve.getConstraintViolations()) {
+
+            System.out.println(" ================================ ");
+
+            System.out.println("MESSAGE: " + cv.getMessage());
+            System.out.println("   CODE: " + cv.getMessageTemplate());
+
+        }
+
+        Validator validator2 = Validation.byDefaultProvider().configure()
+                .messageInterpolator(new ResourceBundleMessageInterpolator(
+                        new AggregateResourceBundleLocator(Arrays.asList("projectebase.jpa.ValidationMessages"))))
+                .buildValidatorFactory().getValidator();
+
+        Set<ConstraintViolation<Procediment>> constraints = validator2.validate(procediment);
+
+        for (ConstraintViolation<?> cv : constraints) {
+
+            System.out.println(" ================================ ");
+
+            System.out.println("MESSAGE22: " + cv.getMessage());
+            System.out.println("   CODE22: " + cv.getMessageTemplate());
+
+        }
+
+    }
+
 }

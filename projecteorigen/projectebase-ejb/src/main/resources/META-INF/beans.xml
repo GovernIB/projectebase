@@ -6,7 +6,7 @@ http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd" bean-discovery-mode="all" vers
 
     <!-- Tots els interceptors i decorators s'han de llistar explicitament dins els beans -->
     <interceptors>
-        <class>es.caib.projectebase.interceptor.LoggerInterceptor</class>
+        <class>es.caib.projectebase.ejb.interceptor.LoggerInterceptor</class>
     </interceptors>
 
 </beans>

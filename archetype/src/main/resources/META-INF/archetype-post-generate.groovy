@@ -131,6 +131,9 @@ if (perfilBatSh.equals("false")) {
   new File(rootDir, "compile.sh").delete();
   new File(rootDir, "novaversio.bat").delete();
   new File(rootDir, "novaversio.sh").delete();
+  new File(rootDir, "help.bat").delete();
+  new File(rootDir, "help.sh").delete();
+  new File(rootDir, "help.txt").delete();
 } else {
   
   // DOS TO UNIX

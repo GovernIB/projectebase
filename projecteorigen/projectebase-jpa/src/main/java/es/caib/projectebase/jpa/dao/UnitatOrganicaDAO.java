@@ -7,17 +7,31 @@ import es.caib.projectebase.jpa.UnitatOrganica;
  *
  * @author areus
  */
-public class UnitatOrganicaDAO extends GenericJpaDAO<Long, UnitatOrganica> {
+public class UnitatOrganicaDAO extends AbstractDAO<UnitatOrganica, Long> implements IUnitatOrganicaDAO {
 
-    /**
-     * Constructor per defecte.
-     */
-    public UnitatOrganicaDAO() {
-        super(UnitatOrganica.class);
+    @Override
+    public String getJPATableName() {
+        return "UnitatOrganica";
     }
+
+    @Override
+    public Class<UnitatOrganica> getJPAClass() {
+        return UnitatOrganica.class;
+    }
+
+    @Override
+    public Long getJPAPrimaryKey(UnitatOrganica entity) {
+        if (entity == null) {
+            return null;
+        } else {
+            return entity.getId();
+        }
+    }
+
 
     // MÈTODES ESPECÍFICS PER UNITATS ORGÀNIQUES
 
     // ....
-
+   
+    
 }

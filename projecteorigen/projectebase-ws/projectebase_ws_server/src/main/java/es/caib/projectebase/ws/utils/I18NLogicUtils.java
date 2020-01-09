@@ -1,16 +1,16 @@
 package es.caib.projectebase.ws.utils;
 
-import org.fundaciobit.genapp.common.i18n.I18NCommonUtils;
+import es.caib.projectebase.commons.i18n.I18NTranslator;
+import es.caib.projectebase.ejb.utils.I18NTranslatorEjb;
 
 /**
- * 
+ *
  * @author anadal
  * 
  */
-public class I18NLogicUtils extends I18NCommonUtils {
+public class I18NLogicUtils extends I18NTranslatorEjb {
 
-  static {
-    BUNDLES = new String[] { "projectebase_genapp", "genapp" };
-  }
+    public static final I18NTranslator translator = new I18NTranslator(
+            new String[] { "ValidationMessages", "jpa.LabelsJPA", "ejb.LabelsEJB", "projectebase_genapp", "genapp" });
 
 }

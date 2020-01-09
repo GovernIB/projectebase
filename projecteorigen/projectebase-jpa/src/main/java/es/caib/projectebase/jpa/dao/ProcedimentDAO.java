@@ -13,14 +13,8 @@ import java.util.List;
  *
  * @author areus
  */
-public class ProcedimentDAO extends GenericJpaDAO<Long, Procediment> {
+public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IProcedimentDAO {
 
-    /**
-     * Constructor per defecte.
-     */
-    public ProcedimentDAO() {
-        super(Procediment.class);
-    }
 
     // MÈTODES ESPECÍFICS PER PROCEDIMENTS
 
@@ -91,4 +85,25 @@ public class ProcedimentDAO extends GenericJpaDAO<Long, Procediment> {
         TypedQuery<Long> query = entityManager.createQuery(cq);
         return query.getSingleResult();
     }
+    
+    
+    @Override
+    public String getJPATableName() {
+        return "Procediment";
+    }
+
+    @Override
+    public Class<Procediment> getJPAClass() {
+        return Procediment.class;
+    }
+
+    @Override
+    public Long getJPAPrimaryKey(Procediment entity) {
+        if (entity == null) {
+            return null;
+        } else {
+            return entity.getId();
+        }
+    } 
+    
 }
