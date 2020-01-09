@@ -17,4 +17,9 @@
     </servlet-mapping>
     -->
 
+    <context-param>
+        <param-name>supportedLocales</param-name>
+        <param-value>ca,es</param-value>
+    </context-param>
+
 </web-app>

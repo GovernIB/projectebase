@@ -3,8 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package}.api.services;
 
+import ${package}.commons.i18n.I18NException;
+import ${package}.ejb.ProcedimentService;
 import ${package}.jpa.Procediment;
-import ${package}.service.ProcedimentService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.links.Link;
@@ -109,7 +110,7 @@ public class ProcedimentResource {
                             schema = @Schema(implementation = Procediment.class)))
             @Valid Procediment procediment,
             @Parameter(description = "L'identificador de la unitat", required = true)
-            @QueryParam("unitatId") Long unitatId) {
+            @QueryParam("unitatId") Long unitatId) throws I18NException {
         procedimentService.create(procediment, unitatId);
         return Response.created(URI.create("procediments/" + procediment.getId())).build();
     }
@@ -128,7 +129,7 @@ public class ProcedimentResource {
                     description = "Procediment",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Procediment.class)))
-            @Valid Procediment procediment) {
+            @Valid Procediment procediment) throws I18NException {
         procedimentService.update(procediment);
         return Response.ok().build();
     }
