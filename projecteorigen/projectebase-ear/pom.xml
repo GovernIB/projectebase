@@ -33,7 +33,7 @@
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-rest</artifactId>
+            <artifactId>projectebase-api</artifactId>
             <version>1.0.0</version>
             <type>war</type>
         </dependency>
@@ -100,8 +100,8 @@
                         </webModule>
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
-                            <artifactId>projectebase-rest</artifactId>
-                            <contextRoot>/projectebase/rest</contextRoot>
+                            <artifactId>projectebase-api</artifactId>
+                            <contextRoot>/projectebase/api</contextRoot>
                         </webModule>
                         <!-- WS START -->
                         <ejbModule>

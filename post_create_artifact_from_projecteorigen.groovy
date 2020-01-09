@@ -112,7 +112,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 
 
 // POMS
-def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-rest", "__rootArtifactId__-back",
+def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
      "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-jpa", "__rootArtifactId__-ws",
      "__rootArtifactId__-ws/__rootArtifactId___ws_server", 
      "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
@@ -168,7 +168,7 @@ replaceProperties(beans, false);
 
 // REST
 def restFiles = [
-   "./__rootArtifactId__-rest/src/main/webapp/WEB-INF/web.xml"
+   "./__rootArtifactId__-api/src/main/webapp/WEB-INF/web.xml"
   ];
 for(String restFile : restFiles) {
   replaceProperties(new File(baseProject, restFile), false);
