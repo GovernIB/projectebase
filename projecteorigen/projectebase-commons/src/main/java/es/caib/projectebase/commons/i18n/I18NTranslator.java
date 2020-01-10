@@ -35,15 +35,15 @@ public class I18NTranslator {
         this.bundlesNames = bundlesNames;
     }
 
-    public String tradueix(boolean useCodeIfNotExist, Locale loc, String code, String... args) {
-        return tradueix(useCodeIfNotExist ? code : null, loc, code, args);
+    public String translate(boolean useCodeIfNotExist, Locale loc, String code, String... args) {
+        return translate(useCodeIfNotExist ? code : null, loc, code, args);
     }
 
-    public String tradueix(Locale loc, String code, String... args) {
-        return tradueix(null, loc, code, args);
+    public String translate(Locale loc, String code, String... args) {
+        return translate(null, loc, code, args);
     }
 
-    public String tradueix(String valueIfNotExist, Locale loc, String code, String... args) {
+    public String translate(String valueIfNotExist, Locale loc, String code, String... args) {
 
         // Cache de resource bundle
         String msg = null;
@@ -119,16 +119,16 @@ public class I18NTranslator {
         }
     }
 
-    public String tradueix(I18NValidationException ve, Locale locale) {
+    public String translate(I18NValidationException ve, Locale locale) {
         StringBuffer str = new StringBuffer();
 
         for (I18NFieldError fe : ve.getFieldErrorList()) {
             I18NTranslation trans = fe.getTranslation();
             String code = trans.getCode();
-            String[] args = tradueixArguments(locale, trans.getArgs());
-            String error = tradueix(locale, code, args);
+            String[] args = translateArguments(locale, trans.getArgs());
+            String error = translate(locale, code, args);
             String field = fe.getField();
-            String fieldLabel = tradueix(locale, field);
+            String fieldLabel = translate(locale, field);
 
             if (str.length() != 0) {
                 str.append("\n");
@@ -139,11 +139,11 @@ public class I18NTranslator {
         return str.toString();
     }
 
-    public String tradueix(I18NException e, Locale locale) {
-        return tradueix(locale, e.getMessage(), tradueixArguments(locale, e.getTraduccio().getArgs()));
+    public String translate(I18NException e, Locale locale) {
+        return translate(locale, e.getMessage(), translateArguments(locale, e.getTraduccio().getArgs()));
     }
 
-    public String[] tradueixArguments(Locale locale, I18NArgument... args) {
+    public String[] translateArguments(Locale locale, I18NArgument... args) {
         if (args == null || args.length == 0) {
             return null;
         }
@@ -151,7 +151,7 @@ public class I18NTranslator {
         for (int i = 0; i < args.length; i++) {
             if (args[i] != null) {
                 if (args[i] instanceof I18NArgumentCode) {
-                    traduits[i] = tradueix(locale, args[i].getValue());
+                    traduits[i] = translate(locale, args[i].getValue());
                 } else {
                     traduits[i] = args[i].getValue();
                 }

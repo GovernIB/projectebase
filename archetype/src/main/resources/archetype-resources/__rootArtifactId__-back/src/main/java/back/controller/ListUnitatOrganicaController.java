@@ -78,7 +78,7 @@ public class ListUnitatOrganicaController implements Serializable {
                 try {
                     setModel(unitatOrganicaService.selectAll(cerca, this.getPageFirstItem(), this.getPageSize()));
                 } catch (I18NException e) {
-                    String msg = I18NTranslatorEjb.tradueix(e, new Locale(Configuration.getDefaultLanguage()));
+                    String msg = I18NTranslatorEjb.translate(e, new Locale(Configuration.getDefaultLanguage()));
                     log.error("Error en updateModel() => " + msg);
                     throw new RuntimeException(msg);
                 }

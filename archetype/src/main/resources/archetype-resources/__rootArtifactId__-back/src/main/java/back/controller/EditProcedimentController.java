@@ -113,10 +113,10 @@ public class EditProcedimentController implements Serializable {
         if (isCreate()) {
             try {
                 procedimentService.create(procediment, unitatOrganica.getId());
-                context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.creaciocorrecta")));
+                context.addMessage(null, new FacesMessage(I18NTranslatorBack.translate("msg.creaciocorrecta")));
             } catch (I18NException i18ne) {
 
-                String msgError = I18NTranslatorBack.tradueix(i18ne);
+                String msgError = I18NTranslatorBack.translate(i18ne);
                 log.error("${symbol_escape}nError Creació => " + msgError + "${symbol_escape}n"); 
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
 
@@ -125,9 +125,9 @@ public class EditProcedimentController implements Serializable {
         } else {
             try {
                 procedimentService.update(procediment);
-                context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.actualitzaciocorrecta")));
+                context.addMessage(null, new FacesMessage(I18NTranslatorBack.translate("msg.actualitzaciocorrecta")));
             } catch (I18NException i18ne) {
-                String msgError = I18NTranslatorBack.tradueix(i18ne);
+                String msgError = I18NTranslatorBack.translate(i18ne);
                 log.error("${symbol_escape}nError Actualitzacio => " + msgError + "${symbol_escape}n"); 
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
             }
