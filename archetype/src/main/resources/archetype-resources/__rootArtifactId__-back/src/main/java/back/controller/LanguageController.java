@@ -51,5 +51,6 @@ public class LanguageController {
         while (it.hasNext()) {
             languages.add(it.next().toLanguageTag());
         }
+        LOG.info("Idiomes disponibles: " + languages);
     }
 }

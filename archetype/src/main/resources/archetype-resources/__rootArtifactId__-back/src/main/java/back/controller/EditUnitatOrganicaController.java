@@ -71,7 +71,7 @@ public class EditUnitatOrganicaController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        log.info("init");
+        log.debug("init");
         current = new UnitatOrganica();
     }
 
@@ -81,7 +81,7 @@ public class EditUnitatOrganicaController implements Serializable {
      * Carrega la unitat orgànica per editar.
      */
     public void load() {
-        log.info("load");
+        log.debug("load");
         if (current.getId() != null) {
             current = unitatOrganicaService.findById(current.getId());
         }
@@ -94,7 +94,7 @@ public class EditUnitatOrganicaController implements Serializable {
      * @return navegació cap al llistat d'unitats orgàniques.
      */
     public String saveOrUpdate() {
-        log.info("saveOrUpdate");
+        log.debug("saveOrUpdate");
         try {
           if (isCreate()) {
               unitatOrganicaService.create(current);
