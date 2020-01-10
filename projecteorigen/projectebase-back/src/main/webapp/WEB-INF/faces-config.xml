@@ -50,9 +50,15 @@
 
 
     <lifecycle>
+        <!--
+        Classe que genera un missatge de debug cada vegada que s'inicia i acaba una fase JSF.
+        Descomentar només si cal per debuggar errors a l'entorn de desenvolupament.
+        -->
+        <!--
         <phase-listener>
             es.caib.projectebase.back.listener.LoggingPhaseListener
         </phase-listener>
+        -->
     </lifecycle>
 
 </faces-config>

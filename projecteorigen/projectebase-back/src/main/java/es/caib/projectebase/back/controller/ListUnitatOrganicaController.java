@@ -62,7 +62,7 @@ public class ListUnitatOrganicaController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        log.info("init");
+        log.debug("init");
         /*
         Crea un objecte paginació implementant el mètode per actualitzar el model perquè agafi les dades
          filtrades i paginades.
@@ -92,7 +92,7 @@ public class ListUnitatOrganicaController implements Serializable {
      * @param id identificador de l'unitat orgànica
      */
     public void delete(Long id) {
-        log.info("delete");
+        log.debug("delete");
         unitatOrganicaService.deleteById(id);
         // Actualitza les dades paginades
         pagination.updateModel();

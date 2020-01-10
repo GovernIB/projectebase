@@ -54,7 +54,7 @@ public class ListProcedimentController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        log.info("init");
+        log.debug("init");
         unitatOrganica = new UnitatOrganica();
     }
 
@@ -64,7 +64,7 @@ public class ListProcedimentController implements Serializable {
      * Carrega la unitat orgànica i els procediments.
      */
     public void load() {
-        log.info("load");
+        log.debug("load");
         unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId());
         procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
     }
