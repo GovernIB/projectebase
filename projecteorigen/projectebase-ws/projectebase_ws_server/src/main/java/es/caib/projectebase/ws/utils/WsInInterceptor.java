@@ -96,7 +96,7 @@ public class WsInInterceptor extends AbstractPhaseInterceptor<Message> {
 
       if (usuariAplicacio == null) {
         // TODO Traduccio
-        // LogicI18NUtils.tradueix(loc, code, args)
+        // LogicI18NUtils.translate(loc, code, args)
         final String msg = "L´usuari aplicació " + userapp
             + " està autenticat en el domini de seguretat,"
             + " però no esta donat d'alta dins la WebApp.";
@@ -149,7 +149,7 @@ public class WsInInterceptor extends AbstractPhaseInterceptor<Message> {
         log.error("WsInInterceptor::handleFault() - CAUSE.I18NException");
 
         I18NException i18n = (I18NException) cause;
-        String msg = I18NLogicUtils.tradueix(i18n, new Locale(language));
+        String msg = I18NTranslatorWS.translate(i18n, new Locale(language));
         message.setContent(Exception.class,
             // new WsI18NException(i18n.getTraduccio(), msg, cause));
             new WsI18NException(WsUtils.convertToWsTranslation(i18n.getTraduccio()), msg,

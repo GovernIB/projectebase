@@ -40,10 +40,10 @@ public class WsUtils {
     for (I18NFieldError fe : ve.getFieldErrorList()) {
       I18NTranslation trans = fe.getTranslation();
       String code = trans.getCode();
-      String[] args = I18NLogicUtils.tradueixArguments(locale, trans.getArgs());
-      String error = I18NLogicUtils.tradueix(locale, code, args);
+      String[] args = I18NTranslatorWS.translateArguments(locale, trans.getArgs());
+      String error = I18NTranslatorWS.translate(locale, code, args);
       String field = fe.getField();
-      String fieldLabel = "camp " + field; // I18NLogicUtils.tradueix(locale, field.fullName);
+      String fieldLabel = "Camp " + field; // TODO I18NTranslatorWS.translate(locale, field.fullName);
 
       list.add(new WsFieldValidationError(field, fieldLabel,
           error, convertToWsTranslation(trans)));

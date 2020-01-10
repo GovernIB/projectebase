@@ -70,7 +70,7 @@ public class I18NExceptionMapper implements ExceptionMapper<I18NException> {
         }
         LOG.error("Emprant locale: " + locale);
 
-        String msg = I18NTranslatorRest.tradueix(e, locale);
+        String msg = I18NTranslatorRest.translate(e, locale);
         return Response.status(Response.Status.BAD_REQUEST).entity(msg).build();
     }
 }

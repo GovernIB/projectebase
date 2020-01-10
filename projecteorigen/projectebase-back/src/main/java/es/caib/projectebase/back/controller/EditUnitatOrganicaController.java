@@ -96,15 +96,15 @@ public class EditUnitatOrganicaController implements Serializable {
           if (isCreate()) {
               unitatOrganicaService.create(current);
               // Creació correcta
-              context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.creaciocorrecta")));
+              context.addMessage(null, new FacesMessage(I18NTranslatorBack.translate("msg.creaciocorrecta")));
           } else {
               unitatOrganicaService.update(current);
               // Actualització correcta
-              context.addMessage(null, new FacesMessage(I18NTranslatorBack.tradueix("msg.actualitzaciocorrecta")));
+              context.addMessage(null, new FacesMessage(I18NTranslatorBack.translate("msg.actualitzaciocorrecta")));
           }
         } catch (I18NException i18ne) {
 
-            String msgError = I18NTranslatorBack.tradueix(i18ne);
+            String msgError = I18NTranslatorBack.translate(i18ne);
 
             log.error("\nError saveOrUpdate() => " + msgError + "\n"); 
 
@@ -137,7 +137,7 @@ public class EditUnitatOrganicaController implements Serializable {
               for (String label : labels) {
                   try {
                   log.info("Traduccio[" + label + "] => |"
-                          + I18NTranslatorBack.tradueix(label) + "|");
+                          + I18NTranslatorBack.translate(label) + "|");
                 } catch (Throwable th) {
                     log.error("NO TROB TRADUCCIO PER [" + label + "] => " + th.getMessage(), th);
                 }
@@ -153,7 +153,7 @@ public class EditUnitatOrganicaController implements Serializable {
             unitatOrganicaService.testTranslationError();
         } catch (I18NException i18ne) {
 
-            String msgError = I18NTranslatorBack.tradueix(i18ne);
+            String msgError = I18NTranslatorBack.translate(i18ne);
 
             log.error("\nError cridant a testTranslationError() => " + msgError + "\n"); 
 
