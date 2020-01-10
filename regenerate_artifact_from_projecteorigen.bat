@@ -3,7 +3,7 @@ cd projecteorigen
 
 call mvn clean
 
-call mvn archetype:create-from-project -Darchetype.properties=..\archetype.properties
+call mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.2:create-from-project -Darchetype.properties=..\archetype.properties
 
 IF /I "%ERRORLEVEL%" EQU "0" (
   cd ..
