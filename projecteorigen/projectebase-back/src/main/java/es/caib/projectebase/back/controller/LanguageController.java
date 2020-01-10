@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Proporcina les opcions d'idioma. Atès que són les mateixes sempre per tots els usuaris
+ * Proporciona les opcions d'idioma. Atès que són les mateixes sempre per tots els usuaris
  * ho ficam com un bean a l'scope d'aplicació perquè només es carregui una vegada.
  *
  * @author areus
