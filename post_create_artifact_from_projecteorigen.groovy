@@ -177,7 +177,7 @@ for(String restFile : restFiles) {
 // WS
 def wsFiles = [ "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/v1/impl/HelloWorldWsImpl.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/v1/impl/HelloWorldWithSecurityWsImpl.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/I18NLogicUtils.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/I18NTranslatorWS.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/WsInInterceptor.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/AuthenticatedBaseWsImpl.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsValidationErrors.java",

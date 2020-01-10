@@ -42,7 +42,7 @@ public class UnitatOrganicaEJB extends UnitatOrganicaDAO implements UnitatOrgani
 
             for (String label : labels) {
                 log.info("Traduccio{" + locale.getLanguage() + "}[" + label + "] => |"
-                        + I18NTranslatorEjb.tradueix(locale, label) + "|");
+                        + I18NTranslatorEjb.translate(locale, label) + "|");
             }
         }
 

@@ -67,7 +67,7 @@ public class StartupListener implements ServletContextListener {
         try {
             unitatOrganicaService.bulkCreate(list);
         } catch (I18NException e) {
-            String msg = I18NTranslatorEjb.tradueix(e, new Locale(Configuration.getDefaultLanguage()));
+            String msg = I18NTranslatorEjb.translate(e, new Locale(Configuration.getDefaultLanguage()));
             throw new RuntimeException(msg);
         }
     }
