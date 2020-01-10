@@ -31,7 +31,6 @@
 
     <primefaces.version>7.0</primefaces.version>
     <primefaces.theme.version>1.0.10</primefaces.theme.version>
-    <omnifaces.version>3.4.1</omnifaces.version>
 
     <cxf.version>3.3.3</cxf.version>
 
@@ -75,11 +74,6 @@
         <groupId>org.primefaces.themes</groupId>
         <artifactId>bootstrap</artifactId>
         <version>${primefaces.theme.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.omnifaces</groupId>
-        <artifactId>omnifaces</artifactId>
-        <version>${omnifaces.version}</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
