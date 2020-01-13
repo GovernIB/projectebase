@@ -4,11 +4,13 @@
 package ${package}.ejb;
 
 import ${package}.commons.i18n.I18NException;
+import ${package}.commons.utils.Constants;
 import ${package}.ejb.interceptor.Logged;
 import ${package}.jpa.Procediment;
 import ${package}.jpa.UnitatOrganica;
 import ${package}.jpa.dao.ProcedimentDAO;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 
 
@@ -21,6 +23,7 @@ import javax.ejb.Stateless;
  */
 @Logged
 @Stateless
+@RolesAllowed(Constants.${prefixuppercase}_ADMIN)
 public class ProcedimentEJB extends ProcedimentDAO implements ProcedimentService {
 
     @Override

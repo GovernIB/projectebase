@@ -1,5 +1,6 @@
 package es.caib.projectebase.jpa.dao;
 
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import es.caib.projectebase.commons.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +39,7 @@ import es.caib.projectebase.commons.query.OrderType;
  * @author areus
  * @author anadal
  */
+@RolesAllowed(Constants.PBS_ADMIN)
 public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, PK> {
 
     public final Logger log = LoggerFactory.getLogger(this.getClass());

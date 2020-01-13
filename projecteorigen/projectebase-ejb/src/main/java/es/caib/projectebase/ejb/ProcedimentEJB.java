@@ -1,11 +1,13 @@
 package es.caib.projectebase.ejb;
 
 import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.ejb.interceptor.Logged;
 import es.caib.projectebase.jpa.Procediment;
 import es.caib.projectebase.jpa.UnitatOrganica;
 import es.caib.projectebase.jpa.dao.ProcedimentDAO;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 
 
@@ -18,6 +20,7 @@ import javax.ejb.Stateless;
  */
 @Logged
 @Stateless
+@RolesAllowed(Constants.PBS_ADMIN)
 public class ProcedimentEJB extends ProcedimentDAO implements ProcedimentService {
 
     @Override

@@ -141,6 +141,8 @@ for(String commonFile : commonsFiles) {
 // JPA - persistence
 def jpaFiles = [ "./__rootArtifactId__-jpa/src/main/resources/META-INF/persistence.xml",
     "./__rootArtifactId__-jpa/src/test/resources/META-INF/persistence.xml",
+    "./__rootArtifactId__-jpa/src/main/java/jpa/dao/AbstractDAO.java",
+    "./__rootArtifactId__-jpa/src/main/java/jpa/dao/ProcedimentDAO.java",
     "./__rootArtifactId__-jpa/src/main/java/jpa/Procediment.java",
     "./__rootArtifactId__-jpa/src/main/java/jpa/UnitatOrganica.java" ];
 for(String jpaFile : jpaFiles) {
@@ -158,8 +160,13 @@ for(String backFile : backFiles) {
 }
 
 // EJB   
-File beans = new File(baseProject, "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml");
-replaceProperties(beans, false);
+def ejbFiles = [ "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml",
+    "./__rootArtifactId__-ejb/src/main/java/ejb/utils/InitDataServiceEJB.java",
+    "./__rootArtifactId__-ejb/src/main/java/ejb/ProcedimentEJB.java",
+    "./__rootArtifactId__-ejb/src/main/java/ejb/UnitatOrganicaEJB.java" ];
+for(String ejbFile : ejbFiles) {
+  replaceProperties(new File(baseProject, ejbFile), false);
+}
 
 // REST
 def restFiles = [

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
@@ -19,6 +20,9 @@ public class StartupServiceEJB {
 
     private static final Logger LOG = LoggerFactory.getLogger(StartupServiceEJB.class);
 
+    @EJB
+    private InitDataServiceEJB initDataService;
+
     /**
      * Executat a l'inici de l'aplicació.
      */
@@ -27,6 +31,8 @@ public class StartupServiceEJB {
         // Aquí es podrien llegir les opcions de configuració, i comprovar que tots els paràmetres necessaris hi són,
         // o fixar els valors per defecte pels que no hi siguin, programar timers no persistents, ...
         LOG.info("Inici del mòdul EJB");
+
+        initDataService.initializeData();
     }
 
     /**

@@ -7,16 +7,14 @@ package ${package}.commons.utils;
 /**
  *
  * @author anadal
- *
+ * @author areus
  */
 public interface Constants {
 
-  public static final String ${projectnameuppercase}ARCHETYPE_PROPERTY_BASE = "${package}.";
-
-  public static final String SECURITY_DOMAIN = "caib";
+  String ${projectnameuppercase}ARCHETYPE_PROPERTY_BASE = "${package}.";
   
-  public static final String ${prefixuppercase}_ADMIN = "${prefixuppercase}_ADMIN";
+  String ${prefixuppercase}_ADMIN = "${prefixuppercase}_ADMIN";
 
-  public static final String ${prefixuppercase}_USER = "${prefixuppercase}_USER";
+  String ${prefixuppercase}_USER = "${prefixuppercase}_USER";
 
 }
