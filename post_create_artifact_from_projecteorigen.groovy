@@ -123,18 +123,13 @@ for(String moduleDir : moduleFolders) {
 }
 
 // DIRECTORI ARREL
-def rootFiles = [ "compile.sh",  "novaversio.bat", "novaversio.sh" ];
+def rootFiles = [ "compile.sh",  "novaversio.bat", "novaversio.sh", "README.md" ];
 for(String rootFile : rootFiles) {
   onlyReplaceProperties(new File(baseProject, rootFile), true);
 }
 // compile.bat es un cas especial ja que té un \ abans de $
 replaceProperties(new File(baseProject, "compile.bat"), true);
 
-// DIRECTORI DOC
-def docFiles = [ "./doc/readme.txt" ];
-for(String docFile : docFiles) {
-  replaceProperties(new File(baseProject, docFile), false);
-}
 
 // COMMONS - model i utilitats
 def commonsFiles = [ "./__rootArtifactId__-commons/src/main/java/commons/utils/Constants.java",

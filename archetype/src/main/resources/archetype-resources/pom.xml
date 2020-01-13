@@ -63,12 +63,12 @@
                 <artifactId>bootstrap</artifactId>
                 <version>${primefaces.theme.version}</version>
             </dependency>
-             <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
-<dependency>
-    <groupId>javax.xml.bind</groupId>
-    <artifactId>jaxb-api</artifactId>
-    <version>${jaxb-api.version}</version>
-</dependency>
+            <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb-api.version}</version>
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
