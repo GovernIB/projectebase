@@ -3,8 +3,10 @@
 #set( $symbol_escape = '\' )
 package ${package}.jpa.dao;
 
+import ${package}.commons.utils.Constants;
 import ${package}.jpa.Procediment;
 
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -16,6 +18,7 @@ import java.util.List;
  *
  * @author areus
  */
+@RolesAllowed(Constants.${prefixuppercase}_ADMIN)
 public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IProcedimentDAO {
 
 

@@ -26,12 +26,6 @@ import java.util.Locale;
 public class UnitatOrganicaEJB extends UnitatOrganicaDAO implements UnitatOrganicaService {
 
     @Override
-    @RolesAllowed(Constants.PBS_ADMIN)
-    public void bulkCreate(List<UnitatOrganica> entities) throws I18NException {
-        super.bulkCreate(entities);
-    }
-
-    @Override
     public void testTranslationError() throws I18NException {
 
         Locale[] locales = new Locale[] { new Locale("es"), new Locale("en") };

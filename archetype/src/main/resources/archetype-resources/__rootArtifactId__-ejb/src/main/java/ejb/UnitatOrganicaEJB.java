@@ -6,12 +6,15 @@ package ${package}.ejb;
 import ${package}.commons.i18n.I18NArgumentCode;
 import ${package}.commons.i18n.I18NArgumentString;
 import ${package}.commons.i18n.I18NException;
+import ${package}.commons.utils.Constants;
 import ${package}.ejb.interceptor.Logged;
 import ${package}.ejb.utils.I18NTranslatorEjb;
 import ${package}.jpa.UnitatOrganica;
 import ${package}.jpa.dao.UnitatOrganicaDAO;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -22,9 +25,9 @@ import java.util.Locale;
  */
 @Logged
 @Stateless
+@RolesAllowed(Constants.${prefixuppercase}_ADMIN)
 public class UnitatOrganicaEJB extends UnitatOrganicaDAO implements UnitatOrganicaService {
 
-    
     @Override
     public void testTranslationError() throws I18NException {
 
