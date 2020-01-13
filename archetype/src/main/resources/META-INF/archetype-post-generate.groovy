@@ -3,6 +3,8 @@ import groovy.io.FileType
 import java.nio.file.Path
 import java.util.regex.Pattern
 import java.io.*
+import javax.xml.transform.*;
+import javax.xml.transform.stream.*;
 
 def dos2unix(file) {    
       def content = file.getText("UTF-8")
@@ -56,6 +58,61 @@ def checkProperty(regex, value, property) {
   }
 }
 
+
+def cleanEmptylines(String pomContent) {
+
+    String LS = "\\r\\n";
+
+    String[] lines = [
+       "                                                                ",
+       "                                                ",
+       "                              ", 
+       "                ",
+       "              ",
+       "            ",
+       "          ",
+       "        ",
+       "      ",
+       "    ",
+       "  "
+    ];
+    for (String line : lines) {
+        String search=line + LS;
+        String replace="";
+        pomContent = pomContent.replaceAll(search, replace)
+    }
+    
+    return pomContent;
+}
+
+
+def cleanPom(file) {
+
+    def pomContent = file.getText("UTF-8");
+
+    pomContent = cleanEmptylines(pomContent)
+    
+    StringReader  reader = new StringReader(pomContent);
+    StreamSource xmlInput = new StreamSource(reader);
+
+    StringWriter stringWriter = new StringWriter();
+    StreamResult xmlOutput = new StreamResult(stringWriter);
+    TransformerFactory transformerFactory = TransformerFactory.newInstance();
+    transformerFactory.setAttribute("indent-number", 4);
+    Transformer transformer = transformerFactory.newTransformer(); 
+    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+    transformer.transform(xmlInput, xmlOutput);
+    pomContent = xmlOutput.getWriter().toString();
+
+    //pomContent = cleanEmptylines(pomContent)  
+
+    pomContent = pomContent.replaceAll("(?m)^[ \t]*\r?\n", "");    
+    
+    pomContent = pomContent.replaceAll("><project ", ">" + System.lineSeparator() + "<project "); 
+
+    file.newWriter("UTF-8").withWriter { w -> w << pomContent }
+    
+}
 
 println ""
 println " -------   POST GENERATE GROOVY -------"
@@ -124,6 +181,9 @@ if (perfilWS.equals("false")) {
   // Llevar Ws de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- WS START -->", "<!-- WS END -->");
+} else {
+    
+  cleanPom(new File(new File(rootDir, artifactId + "-ws"), "pom.xml"));
 }
 
 if (perfilBatSh.equals("false")) {
@@ -142,6 +202,9 @@ if (perfilBatSh.equals("false")) {
     dos2unix(new File(rootDir, dos2unixFile));
   }
 }
+
+// Solucionar Bug de Archetype-maven (Afegeix linies buides al pom.xml arrel #27)
+cleanPom(new File(rootDir, "pom.xml"));
 
 
 println ""
