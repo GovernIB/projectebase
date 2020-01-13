@@ -1,7 +1,9 @@
 package es.caib.projectebase.jpa.dao;
 
+import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.jpa.Procediment;
 
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -13,6 +15,7 @@ import java.util.List;
  *
  * @author areus
  */
+@RolesAllowed(Constants.PBS_ADMIN)
 public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IProcedimentDAO {
 
 

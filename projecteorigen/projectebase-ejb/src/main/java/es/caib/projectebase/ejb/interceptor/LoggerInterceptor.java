@@ -27,7 +27,7 @@ public class LoggerInterceptor implements Serializable {
      *
      * @param context Contexte d'invocació.
      * @return El resultat del mètode interceptar.
-     * @throws Throwable Llança la mateixa excepció que el mètode invocat.
+     * @throws Exception Llança la mateixa excepció que el mètode invocat.
      */
     @AroundInvoke
     public Object logCall(InvocationContext context) throws Exception {

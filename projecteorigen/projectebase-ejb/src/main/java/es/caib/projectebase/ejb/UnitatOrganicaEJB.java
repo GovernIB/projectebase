@@ -3,12 +3,15 @@ package es.caib.projectebase.ejb;
 import es.caib.projectebase.commons.i18n.I18NArgumentCode;
 import es.caib.projectebase.commons.i18n.I18NArgumentString;
 import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.ejb.interceptor.Logged;
 import es.caib.projectebase.ejb.utils.I18NTranslatorEjb;
 import es.caib.projectebase.jpa.UnitatOrganica;
 import es.caib.projectebase.jpa.dao.UnitatOrganicaDAO;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -19,9 +22,15 @@ import java.util.Locale;
  */
 @Logged
 @Stateless
+@RolesAllowed(Constants.PBS_ADMIN)
 public class UnitatOrganicaEJB extends UnitatOrganicaDAO implements UnitatOrganicaService {
 
-    
+    @Override
+    @RolesAllowed(Constants.PBS_ADMIN)
+    public void bulkCreate(List<UnitatOrganica> entities) throws I18NException {
+        super.bulkCreate(entities);
+    }
+
     @Override
     public void testTranslationError() throws I18NException {
 
