@@ -63,11 +63,12 @@
                 <artifactId>bootstrap</artifactId>
                 <version>${primefaces.theme.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.omnifaces</groupId>
-                <artifactId>omnifaces</artifactId>
-                <version>${omnifaces.version}</version>
-            </dependency>
+             <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
+<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>${jaxb-api.version}</version>
+</dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -163,7 +164,7 @@
                     </executions>
                     <configuration>
                         <!--
-                Veure https://www.mojohaus.org/buildnumber-maven-plugin/usage.html
+                 Veure https://www.mojohaus.org/buildnumber-maven-plugin/usage.html
                 si volem que falli si s'intenta compilar i hi ha canvis no pujats o hi ha canvis no davallats.
                 S'hauria de crear un profile per quan es fa una release s'activin.
                 Sinó val més que estiguin a false (per defecte):

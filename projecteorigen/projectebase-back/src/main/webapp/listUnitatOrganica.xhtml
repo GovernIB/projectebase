@@ -2,7 +2,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:o="http://omnifaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--
@@ -81,11 +80,8 @@ Pàgina amb el llistat d'unitats orgàniques.
                               styleClass="btn btn-primary aplicacio-btn">
                         <f:param name="unitatOrganicaId" value="#{unitatOrganica.id}" />
                     </h:button>
-                    <o:outputFormat value="#{labels.confirm_eliminar}" var="confirmMessage">
-                        <f:param value="#{unitatOrganica.codiDir3}"/>
-                    </o:outputFormat>
                     <h:commandButton value="#{labels.button_eliminar}" action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
-                                     onclick="return confirm('#{confirmMessage}')"
+                                     onclick="return confirm('#{labels.confirm_eliminar}')"
                                      styleClass="btn btn-danger aplicacio-btn">
                         <f:ajax render="messages @form" />
                     </h:commandButton>
