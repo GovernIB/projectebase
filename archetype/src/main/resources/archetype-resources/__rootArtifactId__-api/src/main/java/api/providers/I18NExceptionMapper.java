@@ -53,7 +53,7 @@ public class I18NExceptionMapper implements ExceptionMapper<I18NException> {
 
     @Override
     public Response toResponse(I18NException e) {
-        LOG.error("Rebuda una I18NException de la capa EJB: " + e.getMessage());
+        LOG.error("Rebuda una I18NException: " + e.getMessage());
 
         Locale locale = supportedLocales.isEmpty() ? Locale.getDefault() : supportedLocales.get(0);
         String lang = request.getParameter("lang");
@@ -71,9 +71,11 @@ public class I18NExceptionMapper implements ExceptionMapper<I18NException> {
                 }
             }
         }
-        LOG.error("Emprant locale: " + locale);
 
         String msg = I18NTranslatorRest.translate(e, locale);
-        return Response.status(Response.Status.BAD_REQUEST).entity(msg).build();
+        return Response.status(Response.Status.BAD_REQUEST)
+                .entity(msg)
+                .language(locale)
+                .build();
     }
 }
