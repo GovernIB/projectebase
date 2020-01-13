@@ -33,16 +33,16 @@ public class LoggerInterceptor implements Serializable {
      * @throws Throwable Llança la mateixa excepció que el mètode invocat.
      */
     @AroundInvoke
-    public Object logCall(InvocationContext context) throws Throwable {
+    public Object logCall(InvocationContext context) throws Exception {
         final String simpleName = context.getTarget().getClass().getSimpleName();
         final String methodName = simpleName + "." + context.getMethod().getName();
         final String callMessage = methodName + Arrays.toString(context.getParameters());
-        log.info(callMessage);
+        log.debug(callMessage);
 
         Object result = context.proceed();
         
         final String returnMessage = methodName + " return(" + result + ")";
-        log.info(returnMessage);
+        log.debug(returnMessage);
         return result;
     }
 }

@@ -83,7 +83,7 @@ public class EditProcedimentController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        log.info("init");
+        log.debug("init");
         procediment = new Procediment();
         unitatOrganica = new UnitatOrganica();
     }
@@ -94,7 +94,7 @@ public class EditProcedimentController implements Serializable {
      * Carrega el procediment i la unitat orgància per editar.
      */
     public void load() {
-        log.info("load");
+        log.debug("load");
         if (procediment.getId() != null) {
             procediment = procedimentService.findById(procediment.getId());
         }
@@ -109,7 +109,7 @@ public class EditProcedimentController implements Serializable {
      * @return navegació cap al llistat d'unitats orgàniques.
      */
     public String saveOrUpdate() {
-        log.info("saveOrUpdate");
+        log.debug("saveOrUpdate");
         if (isCreate()) {
             try {
                 procedimentService.create(procediment, unitatOrganica.getId());

@@ -58,7 +58,7 @@ public class SessionController implements Serializable {
      */
     @PostConstruct
     private void init() {
-        LOG.info("Inicialitzant sessió");
+        LOG.debug("Inicialitzant sessió");
         language = context.getViewRoot().getLocale().getLanguage();
     }
 
@@ -68,7 +68,7 @@ public class SessionController implements Serializable {
      * @return navegació cap a la pàgina principal
      */
     public String logout() {
-        LOG.info("logout");
+        LOG.debug("logout");
         externalContext.invalidateSession();
         return "/index?faces-redirect=true";
     }

@@ -23,7 +23,7 @@ public class LoggingPhaseListener implements PhaseListener {
      */
     @Override
     public void afterPhase(PhaseEvent phaseEvent) {
-        LOG.info("Acabant: " + phaseEvent.getPhaseId().getName());
+        LOG.debug("Acabant: " + phaseEvent.getPhaseId().getName());
     }
 
     /**
@@ -32,7 +32,7 @@ public class LoggingPhaseListener implements PhaseListener {
      */
     @Override
     public void beforePhase(PhaseEvent phaseEvent) {
-        LOG.info("Iniciant: " + phaseEvent.getPhaseId().getName());
+        LOG.debug("Iniciant: " + phaseEvent.getPhaseId().getName());
     }
 
     /**
