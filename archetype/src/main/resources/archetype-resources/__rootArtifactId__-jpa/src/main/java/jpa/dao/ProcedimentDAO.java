@@ -6,6 +6,7 @@ package ${package}.jpa.dao;
 import ${package}.commons.utils.Constants;
 import ${package}.jpa.Procediment;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -30,6 +31,7 @@ public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IP
      * @param unitatOrganicaId identificador de la unitat orgànica.
      * @return llista de procediments de la unitat orgànica.
      */
+    @PermitAll
     public List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId) {
         return findAllByUnitatOrganica(unitatOrganicaId, null);
     }
@@ -39,6 +41,7 @@ public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IP
      * @param unitatOrganicaId identificador de la unitat orgànica.
      * @return nombre de procediments relacionats amb la unitat orgànica
      */
+    @PermitAll
     public Long countAllByUnitatOrganica(Long unitatOrganicaId) {
         return countAllByUnitatOrganica(unitatOrganicaId, null);
     }
@@ -52,6 +55,7 @@ public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IP
      * @param filter cadena de caràcters que es cercarà dins els camps de tipus string: codiSia i nom.
      * @return llista de procediments de la unitat orgànica que compleixen el filtre.
      */
+    @PermitAll
     public List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId, String filter) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Procediment> cq = cb.createQuery(Procediment.class);
@@ -76,6 +80,7 @@ public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IP
      * @param filter cadena de caràcters que es cercarà dins els camps de tipus string: codiSia i nom.
      * @return nombre de procediments relacionats amb la unitat orgànica que compleixen el filtre.
      */
+    @PermitAll
     public Long countAllByUnitatOrganica(Long unitatOrganicaId, String filter) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
