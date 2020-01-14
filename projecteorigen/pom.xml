@@ -26,7 +26,6 @@
         <slf4j.version>1.7.29</slf4j.version>
         <primefaces.version>7.0</primefaces.version>
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
-        <omnifaces.version>3.4.1</omnifaces.version>
         <cxf.version>3.3.3</cxf.version>
         <junit.version>4.8.2</junit.version>
     </properties>
@@ -62,12 +61,6 @@
                 <groupId>org.primefaces.themes</groupId>
                 <artifactId>bootstrap</artifactId>
                 <version>${primefaces.theme.version}</version>
-            </dependency>
-            <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
-            <dependency>
-                <groupId>javax.xml.bind</groupId>
-                <artifactId>jaxb-api</artifactId>
-                <version>${jaxb-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
