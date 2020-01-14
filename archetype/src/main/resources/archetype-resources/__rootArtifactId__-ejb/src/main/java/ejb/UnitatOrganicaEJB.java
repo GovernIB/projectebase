@@ -14,7 +14,6 @@ import ${package}.jpa.dao.UnitatOrganicaDAO;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
-import java.util.List;
 import java.util.Locale;
 
 /**

@@ -1,6 +1,7 @@
 import static groovy.io.FileType.*
 import groovy.io.FileType
 import java.nio.file.Path
+import java.nio.file.Files
 import java.util.regex.Pattern
 import java.io.*
 import javax.xml.transform.*;
@@ -31,6 +32,39 @@ def dos2unix(file) {
 			//if( c != '\n' ) fwr.write('\n');
 			fwr.close();
 			frdr.close()
+}
+
+
+
+def unix2dos(file) {    
+    def content = file.getText("UTF-8")
+
+    FileWriter fileWriter = new FileWriter(file);
+    BufferedWriter fwr = new BufferedWriter( fileWriter );
+    StringReader frdr = new StringReader(content);
+
+    BufferedReader buff = new BufferedReader( frdr );
+    int bt = buff.read();
+    char c = (char)bt;
+    int last = c;
+    while(bt != -1)
+    {
+        //System.out.print("Char " + c + " = ");
+        //System.out.println((int)c);
+        if (bt == 10 ) { // 
+          if (last != 13) { // /r
+            fwr.write('\r');
+          }
+        }
+        fwr.write(c);         
+
+        last = bt;
+        bt = buff.read();        
+        c = (char)bt;
+    }
+    
+    fwr.close();
+    frdr.close()
 }
 
 def removeModule(module, rootDir) {
@@ -112,7 +146,26 @@ def cleanPom(file) {
 
     file.newWriter("UTF-8").withWriter { w -> w << pomContent }
     
+    
 }
+
+
+def copyGitIgnore(rootDir) {
+
+
+URL url = this.class.classLoader.getResource('/archetype-resources/.gitignore');
+println "RESOURCE => " + url; 
+
+/*
+
+   String gitignore = this.getClass().getResource('archetype-resources/.gitignore').text
+   
+   File file = new File(rootDir, ".gitignore");
+
+   file.newWriter("UTF-8").withWriter { w -> w << gitignore }   
+*/
+}
+
 
 println ""
 println " -------   POST GENERATE GROOVY -------"
@@ -205,7 +258,15 @@ if (perfilBatSh.equals("false")) {
 
 // Solucionar Bug de Archetype-maven (Afegeix linies buides al pom.xml arrel #27)
 cleanPom(new File(rootDir, "pom.xml"));
+unix2dos(new File(rootDir, "pom.xml"));
 
+
+// .gitignore
+File sourceFile = new File(rootDir, "gitignore");
+Path sourcePath = sourceFile.toPath();
+File destFile = new File(rootDir, ".gitignore");
+Path destPath = destFile.toPath();
+Files.move( sourcePath, destPath );
 
 println ""
 println ""

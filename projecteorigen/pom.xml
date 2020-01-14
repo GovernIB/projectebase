@@ -149,7 +149,7 @@
                     <artifactId>geronimo-openapi-maven-plugin</artifactId>
                     <version>1.0.11</version>
                 </plugin>
-                <!-- Plugin per generar la propietat ${buildNumber} amb la versió/revisió de GIT o SVN o CVS... -->
+                <!-- Plugin per generar la propietat ${buildNumber} amb la versio/revisio de GIT o SVN o CVS... -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>buildnumber-maven-plugin</artifactId>
@@ -163,14 +163,12 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <!--
-                 Veure https://www.mojohaus.org/buildnumber-maven-plugin/usage.html
-                si volem que falli si s'intenta compilar i hi ha canvis no pujats o hi ha canvis no davallats.
-                S'hauria de crear un profile per quan es fa una release s'activin.
-                Sinó val més que estiguin a false (per defecte):
-                <doCheck>true</doCheck>
-                <doUpdate>true</doUpdate>
-                -->
+                        <!-- Veure https://www.mojohaus.org/buildnumber-maven-plugin/usage.html -->
+                        <!-- si volem que falli si s'intenta compilar i hi ha canvis no pujats o hi ha canvis no davallats. -->
+                        <!-- S'hauria de crear un profile per quan es fa una release s'activin. -->
+                        <!-- Sinó val més que estiguin a false (per defecte): -->
+                        <!-- <doCheck>true</doCheck> -->
+                        <!--  <doUpdate>true</doUpdate> -->
                         <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
                         <!-- Longitut màxima de la revisió -->
                         <shortRevisionLength>8</shortRevisionLength>
@@ -189,10 +187,8 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <!--
-            Gestió de versions de dependències/plugins
-            Veure: https://www.mojohaus.org/versions-maven-plugin/
-            -->
+            <!-- Gestió de versions de dependències/plugins -->
+            <!-- Veure: https://www.mojohaus.org/versions-maven-plugin/ -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
@@ -206,10 +202,8 @@
                     <rulesUri>file:///${session.executionRootDirectory}/version-ruleset.xml</rulesUri>
                 </configuration>
             </plugin>
-            <!--
-                      Gestió de requisits del build
-                      Veure: https://maven.apache.org/enforcer/enforcer-rules/index.html
-                  -->
+            <!-- Gestió de requisits del build -->
+            <!-- Veure: https://maven.apache.org/enforcer/enforcer-rules/index.html -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -236,6 +230,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
         </plugins>
     </build>

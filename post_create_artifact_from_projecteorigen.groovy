@@ -213,7 +213,7 @@ for(String scriptFile : scriptsFiles) {
 // .gitignore
 File sourceFile = new File(rootDir, "projecteorigen/.gitignore");
 Path sourcePath = sourceFile.toPath();
-File destFile = new File(baseProject, ".gitignore");
+File destFile = new File(baseProject, "gitignore");
 Path destPath = destFile.toPath();
 Files.copy( sourcePath, destPath );
 
