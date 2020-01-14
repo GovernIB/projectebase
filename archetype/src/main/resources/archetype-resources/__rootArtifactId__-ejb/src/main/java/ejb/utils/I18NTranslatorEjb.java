@@ -3,12 +3,12 @@
 #set( $symbol_escape = '\' )
 package ${package}.ejb.utils;
 
-import java.util.Locale;
-
 import ${package}.commons.i18n.I18NArgument;
 import ${package}.commons.i18n.I18NException;
 import ${package}.commons.i18n.I18NTranslator;
 import ${package}.commons.i18n.I18NValidationException;
+
+import java.util.Locale;
 
 /**
  * 

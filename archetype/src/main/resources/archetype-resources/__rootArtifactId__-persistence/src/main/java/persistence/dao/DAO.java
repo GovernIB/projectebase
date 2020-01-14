@@ -3,14 +3,13 @@
 #set( $symbol_escape = '\' )
 package ${package}.persistence.dao;
 
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
-
-import java.io.Serializable;
-import java.util.List;
-
 import ${package}.commons.i18n.I18NException;
 import ${package}.commons.query.OrderBy;
+
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Defineix les operacions dels Data Access Object per una entitat.

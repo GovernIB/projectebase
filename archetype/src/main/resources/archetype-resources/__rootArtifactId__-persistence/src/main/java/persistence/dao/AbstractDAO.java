@@ -3,6 +3,14 @@
 #set( $symbol_escape = '\' )
 package ${package}.persistence.dao;
 
+import ${package}.commons.i18n.I18NArgumentString;
+import ${package}.commons.i18n.I18NException;
+import ${package}.commons.query.OrderBy;
+import ${package}.commons.query.OrderType;
+import ${package}.commons.utils.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
@@ -18,20 +26,10 @@ import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import ${package}.commons.utils.Constants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import ${package}.commons.i18n.I18NArgumentString;
-import ${package}.commons.i18n.I18NException;
-import ${package}.commons.query.OrderBy;
-import ${package}.commons.query.OrderType;
 
 /**
  * /**

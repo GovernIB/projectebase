@@ -3,6 +3,18 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.utils;
 
+import ${package}.commons.i18n.I18NArgument;
+import ${package}.commons.i18n.I18NArgumentCode;
+import ${package}.commons.i18n.I18NException;
+import ${package}.commons.i18n.I18NFieldError;
+import ${package}.commons.i18n.I18NTranslation;
+import ${package}.commons.i18n.I18NValidationException;
+import ${package}.commons.i18n.MultipleResourceBundle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,20 +23,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import ${package}.commons.i18n.I18NArgument;
-import ${package}.commons.i18n.I18NArgumentCode;
-import ${package}.commons.i18n.I18NException;
-import ${package}.commons.i18n.I18NFieldError;
-import ${package}.commons.i18n.I18NTranslation;
-import ${package}.commons.i18n.I18NValidationException;
-import ${package}.commons.i18n.MultipleResourceBundle;
 
 /**
  * 

@@ -7,7 +7,6 @@ import ${package}.ejb.ProcedimentService;
 import ${package}.ejb.UnitatOrganicaService;
 import ${package}.persistence.Procediment;
 import ${package}.persistence.UnitatOrganica;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
