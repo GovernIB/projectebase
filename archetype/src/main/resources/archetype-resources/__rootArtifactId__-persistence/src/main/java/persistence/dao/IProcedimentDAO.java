@@ -3,9 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package}.persistence.dao;
 
-import java.util.List;
-
 import ${package}.persistence.Procediment;
+
+import java.util.List;
 
 
 /**

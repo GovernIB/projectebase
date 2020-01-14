@@ -7,7 +7,6 @@ import ${package}.back.utils.I18NTranslatorBack;
 import ${package}.commons.i18n.I18NException;
 import ${package}.ejb.UnitatOrganicaService;
 import ${package}.persistence.UnitatOrganica;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +18,6 @@ import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import java.io.Serializable;
 
 /**
