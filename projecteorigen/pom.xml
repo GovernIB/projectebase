@@ -273,7 +273,7 @@
     </repositories>
     <modules>
         <module>projectebase-commons</module>
-        <module>projectebase-jpa</module>
+        <module>projectebase-persistence</module>
         <module>projectebase-ejb</module>
         <module>projectebase-back</module>
         <module>projectebase-api</module>

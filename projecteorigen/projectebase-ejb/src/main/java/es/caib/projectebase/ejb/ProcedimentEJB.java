@@ -3,9 +3,9 @@ package es.caib.projectebase.ejb;
 import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.ejb.interceptor.Logged;
-import es.caib.projectebase.jpa.Procediment;
-import es.caib.projectebase.jpa.UnitatOrganica;
-import es.caib.projectebase.jpa.dao.ProcedimentDAO;
+import es.caib.projectebase.persistence.Procediment;
+import es.caib.projectebase.persistence.UnitatOrganica;
+import es.caib.projectebase.persistence.dao.ProcedimentDAO;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;

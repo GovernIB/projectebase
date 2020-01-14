@@ -1,8 +1,8 @@
 package es.caib.projectebase.ejb;
 
 import es.caib.projectebase.commons.i18n.I18NException;
-import es.caib.projectebase.jpa.Procediment;
-import es.caib.projectebase.jpa.dao.IProcedimentDAO;
+import es.caib.projectebase.persistence.Procediment;
+import es.caib.projectebase.persistence.dao.IProcedimentDAO;
 
 import javax.ejb.Local;
 

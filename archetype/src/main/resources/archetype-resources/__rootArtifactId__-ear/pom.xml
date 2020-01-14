@@ -40,7 +40,7 @@
         <!-- Mòduls que van dins el lib/ -->
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-jpa</artifactId>
+            <artifactId>${rootArtifactId}-persistence</artifactId>
             <version>${version}</version>
         </dependency>
         <!--

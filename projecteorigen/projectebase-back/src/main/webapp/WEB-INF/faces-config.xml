@@ -19,8 +19,8 @@
             <var>ValidationMessages</var>
         </resource-bundle>
         <resource-bundle>
-            <base-name>jpa.LabelsJPA</base-name>            
-            <var>labelsJPA</var>
+            <base-name>persistence.LabelsPersistence</base-name>
+            <var>labelsPersistence</var>
         </resource-bundle>
         <resource-bundle>
             <base-name>ejb.LabelsEJB</base-name>

@@ -41,7 +41,7 @@
         <!-- Mòduls que van dins el lib/ -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-jpa</artifactId>
+            <artifactId>projectebase-persistence</artifactId>
             <version>1.0.0</version>
         </dependency>
         <!--

@@ -9,12 +9,11 @@ import ${package}.commons.i18n.I18NException;
 import ${package}.commons.utils.Constants;
 import ${package}.ejb.interceptor.Logged;
 import ${package}.ejb.utils.I18NTranslatorEjb;
-import ${package}.jpa.UnitatOrganica;
-import ${package}.jpa.dao.UnitatOrganicaDAO;
+import ${package}.persistence.UnitatOrganica;
+import ${package}.persistence.dao.UnitatOrganicaDAO;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -34,7 +33,7 @@ public class UnitatOrganicaEJB extends UnitatOrganicaDAO implements UnitatOrgani
         Locale[] locales = new Locale[] { new Locale("es"), new Locale("en") };
 
         String[] labels = { "example.error", // EJB
-                "error.query", // JPA
+                "error.query", // persistence
                 "javax.validation.constraints.Size.message" // ValidationMessages.properties
         };
 

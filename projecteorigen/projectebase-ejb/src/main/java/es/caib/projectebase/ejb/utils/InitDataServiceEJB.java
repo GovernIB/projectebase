@@ -4,15 +4,13 @@ import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.utils.Configuration;
 import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.ejb.UnitatOrganicaService;
-import es.caib.projectebase.jpa.UnitatOrganica;
+import es.caib.projectebase.persistence.UnitatOrganica;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.annotation.security.RunAs;
 import javax.ejb.EJB;
-import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import java.text.DecimalFormat;
 import java.time.LocalDate;

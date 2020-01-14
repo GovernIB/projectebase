@@ -6,9 +6,9 @@ package ${package}.ejb;
 import ${package}.commons.i18n.I18NException;
 import ${package}.commons.utils.Constants;
 import ${package}.ejb.interceptor.Logged;
-import ${package}.jpa.Procediment;
-import ${package}.jpa.UnitatOrganica;
-import ${package}.jpa.dao.ProcedimentDAO;
+import ${package}.persistence.Procediment;
+import ${package}.persistence.UnitatOrganica;
+import ${package}.persistence.dao.ProcedimentDAO;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;

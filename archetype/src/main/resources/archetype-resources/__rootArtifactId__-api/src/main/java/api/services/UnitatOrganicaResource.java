@@ -5,7 +5,7 @@ package ${package}.api.services;
 
 import ${package}.commons.i18n.I18NException;
 import ${package}.ejb.UnitatOrganicaService;
-import ${package}.jpa.UnitatOrganica;
+import ${package}.persistence.UnitatOrganica;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;

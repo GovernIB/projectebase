@@ -4,8 +4,8 @@
 package ${package}.ejb;
 
 import ${package}.commons.i18n.I18NException;
-import ${package}.jpa.Procediment;
-import ${package}.jpa.dao.IProcedimentDAO;
+import ${package}.persistence.Procediment;
+import ${package}.persistence.dao.IProcedimentDAO;
 
 import javax.ejb.Local;
 

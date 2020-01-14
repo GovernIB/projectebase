@@ -88,7 +88,7 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="${rootArtifactId}-jpa" dir="__rootArtifactId__-jpa" name="${rootArtifactId}-jpa">
+    <module id="${rootArtifactId}-persistence" dir="__rootArtifactId__-persistence" name="${rootArtifactId}-persistence">
       <fileSets>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
           <directory>src/main/java</directory>
@@ -109,7 +109,7 @@
           </includes>
         </fileSet>
         <fileSet encoding="UTF-8">
-          <directory>src/main/resources/jpa</directory>
+          <directory>src/main/resources/persistence</directory>
           <includes>
             <include>**/*.properties</include>
           </includes>

@@ -7,8 +7,8 @@ import ${package}.back.utils.I18NTranslatorBack;
 import ${package}.commons.i18n.I18NException;
 import ${package}.ejb.ProcedimentService;
 import ${package}.ejb.UnitatOrganicaService;
-import ${package}.jpa.Procediment;
-import ${package}.jpa.UnitatOrganica;
+import ${package}.persistence.Procediment;
+import ${package}.persistence.UnitatOrganica;
 
 
 import org.slf4j.Logger;

@@ -6,7 +6,7 @@ package ${package}.back.controller;
 import ${package}.back.utils.I18NTranslatorBack;
 import ${package}.commons.i18n.I18NException;
 import ${package}.ejb.UnitatOrganicaService;
-import ${package}.jpa.UnitatOrganica;
+import ${package}.persistence.UnitatOrganica;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -129,7 +129,7 @@ public class EditUnitatOrganicaController implements Serializable {
 
         {
             String[] labels = { "example.error", // EJB
-                    "error.query", // JPA
+                    "error.query", // persistence
                     "javax.validation.constraints.Size.message", // ValidationMessages.properties
                     "accessibilitat_title" // BACK
             };

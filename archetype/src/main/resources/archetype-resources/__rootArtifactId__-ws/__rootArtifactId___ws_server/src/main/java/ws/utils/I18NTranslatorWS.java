@@ -14,6 +14,6 @@ import ${package}.ejb.utils.I18NTranslatorEjb;
 public class I18NTranslatorWS extends I18NTranslatorEjb {
 
     public static final I18NTranslator translator = new I18NTranslator(
-            new String[] { "ValidationMessages", "jpa.LabelsJPA", "ejb.LabelsEJB", "${rootArtifactId}_genapp", "genapp" });
+            new String[] { "ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB", "${rootArtifactId}_genapp", "genapp" });
 
 }

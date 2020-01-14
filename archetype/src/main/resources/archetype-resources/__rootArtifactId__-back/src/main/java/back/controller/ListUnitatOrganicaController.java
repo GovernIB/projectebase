@@ -7,7 +7,7 @@ import ${package}.commons.i18n.I18NException;
 import ${package}.commons.utils.Configuration;
 import ${package}.ejb.UnitatOrganicaService;
 import ${package}.ejb.utils.I18NTranslatorEjb;
-import ${package}.jpa.UnitatOrganica;
+import ${package}.persistence.UnitatOrganica;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

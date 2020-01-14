@@ -7,15 +7,13 @@ import ${package}.commons.i18n.I18NException;
 import ${package}.commons.utils.Configuration;
 import ${package}.commons.utils.Constants;
 import ${package}.ejb.UnitatOrganicaService;
-import ${package}.jpa.UnitatOrganica;
+import ${package}.persistence.UnitatOrganica;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.annotation.security.RunAs;
 import javax.ejb.EJB;
-import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import java.text.DecimalFormat;
 import java.time.LocalDate;

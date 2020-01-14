@@ -46,7 +46,7 @@ public final class I18NTranslatorBack { // extends I18NCommonUtils {
             FacesContext context = FacesContext.getCurrentInstance();
 
             // Identificadors de ResourceBundles que es troben a faces-config.xml
-            String[] names = new String[] { "ValidationMessages", "labelsJPA", "labelsEJB", "labels" };
+            String[] names = new String[] { "ValidationMessages", "labelsPersistence", "labelsEJB", "labels" };
 
             List<ResourceBundle> bundles = new ArrayList<ResourceBundle>();
             for (String name : names) {

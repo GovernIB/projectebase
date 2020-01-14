@@ -113,7 +113,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 
 // POMS
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
-     "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-jpa", "__rootArtifactId__-ws",
+     "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence", "__rootArtifactId__-ws",
      "__rootArtifactId__-ws/__rootArtifactId___ws_server", 
      "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
 
@@ -139,11 +139,11 @@ for(String commonFile : commonsFiles) {
 }
 
 // JPA - persistence
-def jpaFiles = [ "./__rootArtifactId__-jpa/src/main/resources/META-INF/persistence.xml",
-    "./__rootArtifactId__-jpa/src/main/java/jpa/dao/AbstractDAO.java",
-    "./__rootArtifactId__-jpa/src/main/java/jpa/dao/ProcedimentDAO.java",
-    "./__rootArtifactId__-jpa/src/main/java/jpa/Procediment.java",
-    "./__rootArtifactId__-jpa/src/main/java/jpa/UnitatOrganica.java" ];
+def jpaFiles = [ "./__rootArtifactId__-persistence/src/main/resources/META-INF/persistence.xml",
+    "./__rootArtifactId__-persistence/src/main/java/persistence/dao/AbstractDAO.java",
+    "./__rootArtifactId__-persistence/src/main/java/persistence/dao/ProcedimentDAO.java",
+    "./__rootArtifactId__-persistence/src/main/java/persistence/Procediment.java",
+    "./__rootArtifactId__-persistence/src/main/java/persistence/UnitatOrganica.java" ];
 for(String jpaFile : jpaFiles) {
   replaceProperties(new File(baseProject, jpaFile), false);
 }

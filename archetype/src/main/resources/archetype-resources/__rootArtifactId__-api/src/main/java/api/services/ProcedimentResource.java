@@ -5,7 +5,7 @@ package ${package}.api.services;
 
 import ${package}.commons.i18n.I18NException;
 import ${package}.ejb.ProcedimentService;
-import ${package}.jpa.Procediment;
+import ${package}.persistence.Procediment;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.links.Link;

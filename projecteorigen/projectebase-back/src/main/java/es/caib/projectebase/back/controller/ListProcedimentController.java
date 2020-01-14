@@ -2,9 +2,8 @@ package es.caib.projectebase.back.controller;
 
 import es.caib.projectebase.ejb.ProcedimentService;
 import es.caib.projectebase.ejb.UnitatOrganicaService;
-import es.caib.projectebase.jpa.Procediment;
-import es.caib.projectebase.jpa.UnitatOrganica;
-
+import es.caib.projectebase.persistence.Procediment;
+import es.caib.projectebase.persistence.UnitatOrganica;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

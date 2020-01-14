@@ -1,5 +1,17 @@
 package es.caib.projectebase.back.utils;
 
+import es.caib.projectebase.commons.i18n.I18NArgument;
+import es.caib.projectebase.commons.i18n.I18NArgumentCode;
+import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.commons.i18n.I18NFieldError;
+import es.caib.projectebase.commons.i18n.I18NTranslation;
+import es.caib.projectebase.commons.i18n.I18NValidationException;
+import es.caib.projectebase.commons.i18n.MultipleResourceBundle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,20 +20,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import es.caib.projectebase.commons.i18n.I18NArgument;
-import es.caib.projectebase.commons.i18n.I18NArgumentCode;
-import es.caib.projectebase.commons.i18n.I18NException;
-import es.caib.projectebase.commons.i18n.I18NFieldError;
-import es.caib.projectebase.commons.i18n.I18NTranslation;
-import es.caib.projectebase.commons.i18n.I18NValidationException;
-import es.caib.projectebase.commons.i18n.MultipleResourceBundle;
 
 /**
  * 
@@ -43,7 +41,7 @@ public final class I18NTranslatorBack { // extends I18NCommonUtils {
             FacesContext context = FacesContext.getCurrentInstance();
 
             // Identificadors de ResourceBundles que es troben a faces-config.xml
-            String[] names = new String[] { "ValidationMessages", "labelsJPA", "labelsEJB", "labels" };
+            String[] names = new String[] { "ValidationMessages", "labelsPersistence", "labelsEJB", "labels" };
 
             List<ResourceBundle> bundles = new ArrayList<ResourceBundle>();
             for (String name : names) {

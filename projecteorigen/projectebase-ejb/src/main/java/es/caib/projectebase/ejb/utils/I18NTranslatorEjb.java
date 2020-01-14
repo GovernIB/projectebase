@@ -1,11 +1,11 @@
 package es.caib.projectebase.ejb.utils;
 
-import java.util.Locale;
-
 import es.caib.projectebase.commons.i18n.I18NArgument;
 import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.i18n.I18NTranslator;
 import es.caib.projectebase.commons.i18n.I18NValidationException;
+
+import java.util.Locale;
 
 /**
  * 
@@ -15,7 +15,7 @@ import es.caib.projectebase.commons.i18n.I18NValidationException;
 public class I18NTranslatorEjb {
 
     public static final I18NTranslator translator = new I18NTranslator(
-            new String[] { "ValidationMessages", "jpa.LabelsJPA", "ejb.LabelsEJB" });
+            new String[] { "ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB" });
 
     public static String translate(boolean useCodeIfNotExist, Locale loc, String code, String... args) {
         return translator.translate(useCodeIfNotExist, loc, code, args);

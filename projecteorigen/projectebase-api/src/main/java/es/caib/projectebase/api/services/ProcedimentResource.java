@@ -2,7 +2,7 @@ package es.caib.projectebase.api.services;
 
 import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.ejb.ProcedimentService;
-import es.caib.projectebase.jpa.Procediment;
+import es.caib.projectebase.persistence.Procediment;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.links.Link;

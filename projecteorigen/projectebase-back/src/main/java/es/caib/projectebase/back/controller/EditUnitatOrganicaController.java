@@ -3,8 +3,7 @@ package es.caib.projectebase.back.controller;
 import es.caib.projectebase.back.utils.I18NTranslatorBack;
 import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.ejb.UnitatOrganicaService;
-import es.caib.projectebase.jpa.UnitatOrganica;
-
+import es.caib.projectebase.persistence.UnitatOrganica;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +15,6 @@ import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import java.io.Serializable;
 
 /**
@@ -126,7 +124,7 @@ public class EditUnitatOrganicaController implements Serializable {
 
         {
             String[] labels = { "example.error", // EJB
-                    "error.query", // JPA
+                    "error.query", // persistence
                     "javax.validation.constraints.Size.message", // ValidationMessages.properties
                     "accessibilitat_title" // BACK
             };

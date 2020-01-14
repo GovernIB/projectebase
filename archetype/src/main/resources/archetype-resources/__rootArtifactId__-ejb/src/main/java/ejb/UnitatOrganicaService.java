@@ -4,8 +4,8 @@
 package ${package}.ejb;
 
 import ${package}.commons.i18n.I18NException;
-import ${package}.jpa.UnitatOrganica;
-import ${package}.jpa.dao.IUnitatOrganicaDAO;
+import ${package}.persistence.UnitatOrganica;
+import ${package}.persistence.dao.IUnitatOrganicaDAO;
 
 import javax.ejb.Local;
 
