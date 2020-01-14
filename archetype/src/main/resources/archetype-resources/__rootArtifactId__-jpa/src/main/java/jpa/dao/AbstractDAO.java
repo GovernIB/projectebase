@@ -3,6 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.jpa.dao;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -106,11 +107,13 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
     }
 
     @Override
+    @PermitAll
     public E findById(PK id) {
         return id == null ? null : (E) entityManager.find(getJPAClass(), id);
     }
 
     @Override
+    @PermitAll
     public Long countAll() {
         TypedQuery<Long> query = entityManager.createQuery("select count(p) from " + getJPATableName(), Long.class);
         return query.getSingleResult();
@@ -125,6 +128,7 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
      * @return nombre d'entitats que compleixen el filtre.
      */
     @Override
+    @PermitAll
     public long countFilter(String filter) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -143,11 +147,13 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
      * @throws Exception
      */
     @Override
+    @PermitAll
     public List<E> selectAll(OrderBy... orderBy) throws I18NException {
         return select(null, null, null, orderBy);
     }
-    
-    
+
+    @Override
+    @PermitAll
     public List<E> selectAll(String filter, OrderBy... orderBy) throws I18NException {
         return select(filter, null, null, orderBy);
     }
@@ -159,6 +165,7 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
      * @return
      */
     @Override
+    @PermitAll
     public List<E> selectAll(@PositiveOrZero int first, @Positive int pageSize, OrderBy... orderBy)
             throws I18NException {
         return select(null, first, pageSize, orderBy);
@@ -171,6 +178,7 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
      * @return
      */
     @Override
+    @PermitAll
     public List<E> selectAll(String filter, @PositiveOrZero int first, @Positive int pageSize, OrderBy... orderBy)
             throws I18NException {
         return select(filter, first, pageSize, orderBy);
