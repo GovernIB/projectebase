@@ -50,14 +50,14 @@
     </fileSet>
     <fileSet encoding="UTF-8">
       <directory></directory>
-      <includes>
-        <include>.gitignore</include>
+      <includes>        
         <include>version-ruleset.xml</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
       <directory></directory>
       <includes>
+        <include>gitignore</include>
         <include>compile.bat</include>
         <include>compile.sh</include>
         <include>help.bat</include>
