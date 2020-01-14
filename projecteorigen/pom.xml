@@ -255,60 +255,6 @@
                 </pluginManagement>
             </build>
         </profile>
-        <!-- Profile per l'execució dels tests -->
-        <profile>
-            <id>doTests</id>
-            <properties>
-                <maven.test.skip>false</maven.test.skip>
-            </properties>
-            <dependencies>
-                <!-- Dependència comuna a tots els mòduls en l'execució de tests -->
-                <dependency>
-                    <groupId>org.junit.jupiter</groupId>
-                    <artifactId>junit-jupiter</artifactId>
-                    <version>5.5.2</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <dependencyManagement>
-                <dependencies>
-                    <!-- Driver JDBC a emprar durant els tests -->
-                    <dependency>
-                        <groupId>org.postgresql</groupId>
-                        <artifactId>postgresql</artifactId>
-                        <version>42.2.8</version>
-                        <scope>test</scope>
-                    </dependency>
-                    <!-- Implementació de JPA a emprar durant els tests -->
-                    <dependency>
-                        <groupId>org.hibernate</groupId>
-                        <artifactId>hibernate-core</artifactId>
-                        <version>5.3.12.Final</version>
-                        <scope>test</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jboss.logging</groupId>
-                        <artifactId>jboss-logging</artifactId>
-                        <version>3.3.2.Final</version>
-                        <scope>test</scope>
-                    </dependency>
-                    <!-- Implementació de BeanValidation a emprar durant els tests -->
-                    <dependency>
-                        <groupId>org.hibernate.validator</groupId>
-                        <artifactId>hibernate-validator</artifactId>
-                        <version>6.0.17.Final</version>
-                        <scope>test</scope>
-                    </dependency>
-                    <!-- Implementació de EL requerida per BeanValidation a emprar durant els tests -->
-                    <dependency>
-                        <groupId>org.glassfish</groupId>
-                        <artifactId>javax.el</artifactId>
-                        <version>3.0.1-b11</version>
-                        <scope>test</scope>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-        </profile>
     </profiles>
     <repositories>
         <!-- Les llibreries de Primefaces no estan definides als repositoris centrals -->

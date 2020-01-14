@@ -1,52 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>es.caib.projectebase</groupId>
-    <artifactId>projectebase</artifactId>
-    <version>1.0.0</version>
-  </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>es.caib.projectebase</groupId>
+        <artifactId>projectebase</artifactId>
+        <version>1.0.0</version>
+    </parent>
 
-  <artifactId>projectebase-ejb</artifactId>
-  <packaging>jar</packaging>
-  <name>ProjecteBase - EJB</name>
-  <description>Mòdul EJB de ProjecteBase</description>
+    <artifactId>projectebase-ejb</artifactId>
+    <packaging>jar</packaging>
+    <name>ProjecteBase - EJB</name>
+    <description>Mòdul EJB de ProjecteBase</description>
 
-  <dependencies>
-    <!-- Altres mòduls del projecte -->
-    <dependency>
-      <groupId>es.caib.projectebase</groupId>
-      <artifactId>projectebase-jpa</artifactId>
-      <version>1.0.0</version>
-      <scope>provided</scope>
-    </dependency>
+    <dependencies>
+        <!-- Altres mòduls del projecte -->
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-jpa</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <finalName>${project.artifactId}-${project.version}</finalName>
-
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-ejb-plugin</artifactId>
-        <configuration>
-          <ejbVersion>3.2</ejbVersion>
-        </configuration>
-      </plugin>
-    </plugins>
-
-  </build>
-
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <configuration>
+                    <ejbVersion>3.2</ejbVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>projectebase</artifactId>
@@ -13,60 +14,23 @@
     <description>Model de dades JPA de ProjecteBase</description>
 
     <dependencies>
-    
         <dependency>
            <artifactId>projectebase-commons</artifactId>
            <groupId>es.caib.projectebase</groupId>
            <version>1.0.0</version>
         </dependency>
-    
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
     </build>
-
-    <profiles>
-        <profile>
-            <id>doTests</id>
-            <dependencies>
-                <!-- Driver JDBC a emprar durant els tests -->
-                <dependency>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>postgresql</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <!-- Implementació de JPA a emprar durant els tests -->
-                <dependency>
-                    <groupId>org.hibernate</groupId>
-                    <artifactId>hibernate-core</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <!-- Implementació de BeanValidation a emprar durant els tests -->
-                <dependency>
-                    <groupId>org.hibernate.validator</groupId>
-                    <artifactId>hibernate-validator</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <!-- Implementació de EL requerida per BeanValidation a emprar durant 
-                    els tests -->
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.el</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
 </project>
