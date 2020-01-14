@@ -14,12 +14,12 @@ public abstract class PaginationHelper<E extends Serializable> {
     /**
      * Tamany de pàgina. Per defecte, 10.
      */
-    private int pageSize = 10;
+    private Integer pageSize = 10;
 
     /**
      * Nombre de pàgina actual. La primera és 0.
      */
-    private int page = 0;
+    private Integer page = 0;
 
     /**
      * Nombre de registres total.
@@ -42,7 +42,7 @@ public abstract class PaginationHelper<E extends Serializable> {
      * Fixa el tamany de pàgina. Provoca que es pasi a la primera pàgina i s'actualitzi el model si el tamany canvia.
      * @param pageSize nou tamany de pàgina
      */
-    public void setPageSize(int pageSize) {
+    public void setPageSize(Integer pageSize) {
         if (pageSize != this.pageSize) {
             this.pageSize = pageSize;
             this.page = 0;
@@ -53,7 +53,7 @@ public abstract class PaginationHelper<E extends Serializable> {
     /**
      * Obté el tamany de pàgina actual.
      */
-    public int getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
@@ -61,7 +61,7 @@ public abstract class PaginationHelper<E extends Serializable> {
      * Obté el número d'índex de la pàgina actual. La primera és 0.
      * @return número d'índex de la pàgina actual.
      */
-    public int getPage() {
+    public Integer getPage() {
         return page;
     }
 
