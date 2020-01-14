@@ -10,7 +10,7 @@
 
 ***Documentació***
 
-[Documentació de branca estable](../../tree/projectebase-1.0/README.md#documentaci%C3%B3)
+[Documentació de branca en desenvolupament](../../tree/projectebase-1.0/README.md#documentaci%C3%B3)
 
 
 ***Descripció***
