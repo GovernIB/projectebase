@@ -22,18 +22,15 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
-        
     </dependencies>
 
     <build>
@@ -61,5 +58,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>

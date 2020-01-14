@@ -38,14 +38,12 @@
             <artifactId>javaee-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Les llibreries de primefaces i omnifaces les necessitam incloure dins el WAR -->
+        <!-- Les llibreries de primefaces les necessitam incloure dins el WAR -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>

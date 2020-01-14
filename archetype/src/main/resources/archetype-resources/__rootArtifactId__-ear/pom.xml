@@ -168,7 +168,6 @@
                 <env.JBOSS_HOME>HA DE FIXAR LA VARIABLE D'ENTORN JBOSS_HOME</env.JBOSS_HOME>
             </properties>
         </profile>
-
         <profile>
           <id>revisionnumber</id>
           <build>
@@ -181,6 +180,5 @@
             </plugins>
           </build>
         </profile>
-
     </profiles>
 </project>
