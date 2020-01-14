@@ -23,7 +23,7 @@
         <javaee-api.version>8.0.1</javaee-api.version>
         <mp-openapi.version>1.0.1</mp-openapi.version>
         <jaxb-api.version>2.2.12</jaxb-api.version>
-        <slf4j.version>1.7.29</slf4j.version>
+        <slf4j.version>1.7.30</slf4j.version>
         <primefaces.version>7.0</primefaces.version>
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
         <cxf.version>3.3.3</cxf.version>
@@ -95,11 +95,11 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M3</version>
+                    <version>3.0.0-M4</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>3.0.0-M3</version>
+                    <version>3.0.0-M4</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -115,7 +115,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-ear-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.0.2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
@@ -211,7 +211,7 @@
                     <rules>
                         <!-- Fixam mínim Maven 3.6 i Java 11 -->
                         <requireMavenVersion>
-                            <version>3.6</version>
+                            <version>3.6.1</version>
                         </requireMavenVersion>
                         <requireJavaVersion>
                             <version>11</version>
