@@ -1,0 +1,30 @@
+
+
+
+Les tasques següents resumeixen les feines a realitzar pel tancament d'una versió:
+
+
+* Revisar si generadordecomanda.html conté la versió que s'ha d'alliberar
+* Revisar si el Readme.md mostra la versió correcta
+* Fer deploy de archetype: 
+           - cd archetype
+           - mvn deploy
+* Provar generació:
+     - Esborrar el archetype i projecteorigen del .m2 
+     - Obrir generador des de github, configurar-lo amb els parametres de projecteorigen i copiar/executar comanda a dins d'una consola. Alt+a
+     - Comparar el projecte generat amb el projecteorigen
+
+* Crear el tag dins de github.com (seguir les normes de versionat)
+
+* Modificar el Readme.md del mastre de projectebase per a que:
+     - L'apartat del generador apunti al generadordecomanda.html
+     - Modificar la versió de l'apartat del generador
+     
+     
+
+PREPARAR NOVA VERSIÓ 
+
+* Executar "novaversio.bat <versio>" per actualitzar la versió de l'archetype i pom arrel
+* Actualitzar la versió que apareix al fitxer generadordecomanda.html
+
+
