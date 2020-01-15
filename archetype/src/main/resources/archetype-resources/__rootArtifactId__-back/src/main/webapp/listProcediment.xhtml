@@ -24,16 +24,13 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
     </ui:define>
 
     <ui:define name="content">
-
         <p>
             <h:button value="#{labels.newProcediment_link}" outcome="/editProcediment"
                       styleClass="btn btn-primary aplicacio-btn">
                 <f:param name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}" />
             </h:button>
         </p>
-
         <h:form>
-
             <h:dataTable id="dataTable_paginate"
                          styleClass="table table-striped table-bordered table-hover"
                          headerClass="table-success"
@@ -52,8 +49,20 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
                     <f:facet name="header">#{labels.procediment_nom}</f:facet>
                     <h:outputText value="#{procediment.nom}"/>
                 </h:column>
+                <h:column>
+                    <f:facet name="header">#{labels.button_accions}</f:facet>
+                    <h:button value="#{labels.button_editar}" outcome="/editProcediment"
+                              styleClass="btn btn-primary aplicacio-btn">
+                        <f:param name="id" value="#{procediment.id}" />
+                        <f:param name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}" />
+                    </h:button>
+                    <h:commandButton value="#{labels.button_eliminar}" action="#{listProcediment.delete(procediment.id)}"
+                                     onclick="return confirm('#{labels.confirm_eliminar}')"
+                                     styleClass="btn btn-danger aplicacio-btn">
+                        <f:ajax render="messages @form" />
+                    </h:commandButton>
+                </h:column>
             </h:dataTable>
-
         </h:form>
     </ui:define>
 </ui:composition>
