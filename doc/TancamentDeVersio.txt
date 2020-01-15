@@ -25,7 +25,9 @@ Les tasques següents resumeixen les feines a realitzar pel tancament d'una vers
 
 PREPARAR NOVA VERSIÓ 
 
-* Executar "novaversio.bat <versio>" per actualitzar la versió de l'archetype i pom arrel
+* Incrementar la versió del pm.xml arrel i del pom.xml del directori archetype
 * Actualitzar la versió que apareix al fitxer generadordecomanda.html
+* Actualitzar la versió de la propietat -DarchetypeVersion del fitxer [ProjecteBase]\generat\projectebase.bat
+* Actualitzar versió que apareix al Readme.md
 
 
