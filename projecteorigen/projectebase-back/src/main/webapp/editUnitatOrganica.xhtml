@@ -15,6 +15,7 @@ Pàgina per edició d'unitats orgàniques.
             l'id, i amb l'acció load el carregarem. -->
             <f:viewParam name="id" value="#{editUnitatOrganica.current.id}" />
             <f:viewAction action="#{editUnitatOrganica.load}" />
+            <f:importConstants type="es.caib.projectebase.persistence.EstatPublicacio" var="estats" />
         </f:metadata>
     </ui:define>
 
@@ -66,6 +67,18 @@ Pàgina per edició d'unitats orgàniques.
                     <p:datePicker id="dataCreacio" value="#{editUnitatOrganica.current.dataCreacio}"
                                   pattern="dd-MM-yyyy" inputStyleClass="form-control form-control-sm" />
                     <h:message for="dataCreacio" errorStyle="color: red"/>
+                </ui:define>
+            </ui:decorate>
+
+            <ui:decorate template="/template/field.xhtml">
+                <ui:define name="label">
+                    <h:outputLabel for="estat" value="#{labels.unitatOrganica_estat}" styleClass="label-projecte" />
+                </ui:define>
+                <ui:define name="input">
+                    <h:selectOneMenu id="estat" value="#{editUnitatOrganica.current.estat}">
+                        <f:selectItems value="#{estats.values()}" var="estat" />
+                    </h:selectOneMenu>
+                    <h:message for="estat" errorStyle="color: red"/>
                 </ui:define>
             </ui:decorate>
 
