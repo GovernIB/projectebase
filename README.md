@@ -4,13 +4,13 @@
 
 ***Versions***
 
-> - Versió Estable: No n'hi ha<br/>
-> - Versió en Desenvolupament: __projectebase-1.0.0__ (branca [projectebase-1.0](../../tree/projectebase-1.0))
+> - Versió Estable: (Prerelease) projectebase-v1.0.0 ([Tag v1.0.0](https://github.com/GovernIB/projectebase/blob/projectebase-1.0.0-prerelease/README.md))<br/>
+> - Versió en Desenvolupament: __projectebase-v1.0.1__ (branca [projectebase-1.0](../../tree/projectebase-1.0))
 
 
 ***Documentació***
 
-[Documentació de branca en desenvolupament](../../tree/projectebase-1.0/README.md#documentaci%C3%B3)
+[Documentació de tag v1.0.0-prerelease](../../tree/projectebase-1.0.0-prerelease/README.md#documentaci%C3%B3)
 
 
 ***Descripció***
