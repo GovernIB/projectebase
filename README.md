@@ -17,6 +17,7 @@
 
 Es tracte d'un projecte d'exemple per JBoss 7.2 EAP seguint l'estructura i estàndars definits a la CAIB
 
-***Generador de Projectes v1.0.0 (Versió Estable) XYZ ZZZ***
+***Generador de Projectes v1.0.0 (Versió Estable)***
 
-Pitjar sobre el següent enllaç per generar un projecte: [Generador de Projectes](http://htmlpreview.github.io/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0/generadordecomanda.html)
+Pitjar sobre el següent enllaç per generar un projecte: [Generador de Projectes](http://htmlpreview.github.io/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0.0-prerelease/generadordecomanda.html)
+
