@@ -6,6 +6,7 @@ Les tasques següents resumeixen les feines a realitzar pel tancament d'una vers
 
 * Revisar si generadordecomanda.html conté la versió que s'ha d'alliberar
 * Revisar si el Readme.md mostra la versió correcta
+* fer pull i revisar tot el proces tal i com es descriu a /doc/development.txt
 * Fer deploy de archetype: 
            - cd archetype
            - mvn deploy

@@ -18,7 +18,7 @@ Es tracte d'un projecte d'exemple per JBoss 7.2 EAP seguint l'estructura i està
 - [](JBoss 7.2)
 
 
-***Generador de Projectes***
+***Generador de Projectes 1.0.0 Prerelease***
 
 Pitjar sobre el següent enllaç per generar un projecte: [Generador de Projectes](http://htmlpreview.github.io/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0/generadordecomanda.html)
 
