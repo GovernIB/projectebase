@@ -9,7 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +29,9 @@ import java.util.List;
 public class ListProcedimentController implements Serializable {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    @Inject
+    private FacesContext context;
 
     @EJB
     UnitatOrganicaService unitatOrganicaService;
@@ -66,5 +72,18 @@ public class ListProcedimentController implements Serializable {
         log.debug("load");
         unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId());
         procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
+    }
+
+    /**
+     * Esborra el proceidment l'identificador indicat.
+     *
+     * @param id identificador de del procediment.
+     */
+    public void delete(Long id) {
+        log.debug("delete");
+        procedimentService.deleteById(id);
+        // Actualitza les dades
+        procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
+        context.addMessage(null, new FacesMessage("Registre borrat"));
     }
 }
