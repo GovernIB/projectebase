@@ -71,6 +71,10 @@ Pàgina amb el llistat d'unitats orgàniques.
                     </h:outputText>
                 </h:column>
                 <h:column>
+                    <f:facet name="header">#{labels.unitatOrganica_estat}</f:facet>
+                    <h:outputText value="#{unitatOrganica.estat}"/>
+                </h:column>
+                <h:column>
                     <f:facet name="header">#{labels.button_accions}</f:facet>
                     <h:button value="#{labels.button_editar}" outcome="/editUnitatOrganica"
                               styleClass="btn btn-primary aplicacio-btn">

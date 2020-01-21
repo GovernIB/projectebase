@@ -7,6 +7,7 @@ import ${package}.commons.i18n.I18NException;
 import ${package}.commons.utils.Configuration;
 import ${package}.commons.utils.Constants;
 import ${package}.ejb.UnitatOrganicaService;
+import ${package}.persistence.EstatPublicacio;
 import ${package}.persistence.UnitatOrganica;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,6 +54,7 @@ public class InitDataServiceEJB {
             uo.setCodiDir3(codiDir3);
             uo.setNom("Unitat " + i);
             uo.setDataCreacio(LocalDate.now());
+            uo.setEstat(EstatPublicacio.ACTIU);
             list.add(uo);
         }
         try {

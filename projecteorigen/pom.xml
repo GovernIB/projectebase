@@ -278,6 +278,7 @@
         <module>projectebase-persistence</module>
         <module>projectebase-ejb</module>
         <module>projectebase-back</module>
+        <module>projectebase-front</module>
         <module>projectebase-api</module>
         <module>projectebase-ws</module>
         <module>projectebase-ear</module>

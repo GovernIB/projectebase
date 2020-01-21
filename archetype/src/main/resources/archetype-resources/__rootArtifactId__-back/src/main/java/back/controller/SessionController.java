@@ -8,10 +8,13 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.ExternalContext;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 
 /**
@@ -27,7 +30,7 @@ public class SessionController implements Serializable {
     private static final Logger LOG = LoggerFactory.getLogger(SessionController.class);
 
     @Inject
-    private ExternalContext externalContext;
+    private Flash flash;
 
     @Inject
     private FacesContext context;
@@ -69,7 +72,13 @@ public class SessionController implements Serializable {
      */
     public String logout() {
         LOG.debug("logout");
-        externalContext.invalidateSession();
+        try {
+            ((HttpServletRequest) context.getExternalContext().getRequest()).logout();
+        } catch (ServletException e) {
+            LOG.error("Error durant el logout", e);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+            flash.setKeepMessages(true);
+        }
         return "/index?faces-redirect=true";
     }
 

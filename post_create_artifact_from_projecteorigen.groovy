@@ -113,9 +113,9 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 
 // POMS
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
-     "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence", "__rootArtifactId__-ws",
-     "__rootArtifactId__-ws/__rootArtifactId___ws_server", 
-     "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
+     "__rootArtifactId__-front", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
+	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", 
+	 "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
 
 for(String moduleDir : moduleFolders) {
   File tmp = new File(baseProject, moduleDir);
@@ -152,10 +152,19 @@ for(String jpaFile : jpaFiles) {
 // Back - web
 def backFiles = [
    "./__rootArtifactId__-back/src/main/webapp/WEB-INF/faces-config.xml",
-   "./__rootArtifactId__-back/src/main/webapp/WEB-INF/web.xml"
+   "./__rootArtifactId__-back/src/main/webapp/WEB-INF/web.xml",
+   "./__rootArtifactId__-back/src/main/webapp/editUnitatOrganica.xhtml"
   ];
 for(String backFile : backFiles) {
   replaceProperties(new File(baseProject, backFile), false);
+}
+
+// Front - web
+def frontFiles = [
+   "./__rootArtifactId__-front/src/main/webapp/WEB-INF/web.xml"
+  ];
+for(String frontFile : frontFiles) {
+  replaceProperties(new File(baseProject, frontFile), false);
 }
 
 // EJB   

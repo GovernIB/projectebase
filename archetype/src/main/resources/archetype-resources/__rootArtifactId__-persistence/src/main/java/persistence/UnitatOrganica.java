@@ -6,6 +6,7 @@ package ${package}.persistence;
 import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,8 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+
+import static javax.persistence.EnumType.ORDINAL;
 
 /**
  * Representació d'una unitat orgànica. Sempre convé definir-les serializable, per si hi mantenim referències dins
@@ -71,6 +74,16 @@ public class UnitatOrganica implements Serializable {
     @JsonbDateFormat("dd-MM-yyyy")
     private LocalDate dataCreacio;
 
+    /**
+     * Representa l'estat de publicació. S'emmagatzema a base de dades com un nombre, en funció de l'ordre en que
+     * està definida l'enumeració {@link EstatPublicacio}, això vol dir que canviar d'ordre els valors de l'enumeració
+     * fa que els valors de base de dades facin referència a altres valors.
+     */
+    @NotNull
+    @Enumerated(ORDINAL)
+    @Column(name = "ESTAT", nullable = false)
+    private EstatPublicacio estat;
+
     public Long getId() {
         return id;
     }
@@ -103,7 +116,15 @@ public class UnitatOrganica implements Serializable {
         this.dataCreacio = dataCreacio;
     }
 
-	/*
+    public EstatPublicacio getEstat() {
+        return estat;
+    }
+
+    public void setEstat(EstatPublicacio estat) {
+        this.estat = estat;
+    }
+
+    /*
     La implementació de equals i hashCode s'hauria de fer sempre que es pugui amb una clau natural, o en cas que
     no n'hi hagi amb l'id, però comparant-ho només si no és null, i retornant un valor fix al hashCode per evitar
     que canvii després de cridar persist.

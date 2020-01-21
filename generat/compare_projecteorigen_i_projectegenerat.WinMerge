@@ -2,8 +2,8 @@
 
 <project>
    <paths>
-      <left>D:\dades\dades\CarpetesPersonals\ProjecteBase\projectebase\projecteorigen\</left>
-      <right>D:\dades\dades\CarpetesPersonals\ProjecteBase\projectebase\generat\projectebase\</right>
+      <left>..\projecteorigen\</left>
+      <right>.\projectebase\</right>
       <filter>Eclipse</filter>
       <subfolders>1</subfolders>
       <left-readonly>0</left-readonly>
