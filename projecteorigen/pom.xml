@@ -112,6 +112,9 @@
                 <plugin>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.2.3</version>
+                    <configuration>
+                        <useCache>true</useCache>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-ear-plugin</artifactId>

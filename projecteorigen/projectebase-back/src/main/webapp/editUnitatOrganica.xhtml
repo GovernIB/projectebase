@@ -23,14 +23,12 @@ Pàgina per edició d'unitats orgàniques.
     <ui:define name="content">
 
         <h:form id="form">
-
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="id" value="#{labels.unitatOrganica_id}" styleClass="label-projecte" />
+                    <p:outputLabel for="id" value="#{labels.unitatOrganica_id}" />
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="id" value="#{editUnitatOrganica.current.id}" readonly="true"
-                                 styleClass="form-control form-control-sm" />
+                    <p:inputText id="id" value="#{editUnitatOrganica.current.id}" readonly="true" />
                     <!-- els camps readonly no es processen, per tant pot perdre l'id, per això el ficam a un hidden -->
                     <h:inputHidden value="#{editUnitatOrganica.current.id}" />
                 </ui:define>
@@ -38,43 +36,41 @@ Pàgina per edició d'unitats orgàniques.
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="codiDir3" value="#{labels.unitatOrganica_codiDir3}" styleClass="label-projecte" />
+                    <p:outputLabel for="codiDir3" value="#{labels.unitatOrganica_codiDir3}" />
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="codiDir3" value="#{editUnitatOrganica.current.codiDir3}"
-                                 styleClass="form-control form-control-sm" />
+                    <p:inputText id="codiDir3" value="#{editUnitatOrganica.current.codiDir3}" />
                     <p:message for="codiDir3" errorStyle="color: red"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="nom" value="#{labels.unitatOrganica_nom}" styleClass="label-projecte" />
+                    <p:outputLabel for="nom" value="#{labels.unitatOrganica_nom}" />
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="nom" value="#{editUnitatOrganica.current.nom}"
-                                 styleClass="form-control form-control-sm" />
+                    <p:inputText id="nom" value="#{editUnitatOrganica.current.nom}" />
                     <p:message for="nom" errorStyle="color: red"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="dataCreacio" value="#{labels.unitatOrganica_dataCreacio}" styleClass="label-projecte" />
+                    <p:outputLabel for="dataCreacio" value="#{labels.unitatOrganica_dataCreacio}" />
                 </ui:define>
                 <ui:define name="input">
                     <p:datePicker id="dataCreacio" value="#{editUnitatOrganica.current.dataCreacio}"
-                                  pattern="dd-MM-yyyy" inputStyleClass="form-control form-control-sm" />
+                                  pattern="dd-MM-yyyy" />
                     <p:message for="dataCreacio" errorStyle="color: red"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="estat" value="#{labels.unitatOrganica_estat}" styleClass="label-projecte" />
+                    <p:outputLabel for="estat" value="#{labels.unitatOrganica_estat}" />
                 </ui:define>
                 <ui:define name="input">
-                    <p:selectOneMenu id="estat" value="#{editUnitatOrganica.current.estat}" effect="none">
+                    <p:selectOneMenu id="estat" value="#{editUnitatOrganica.current.estat}">
                         <f:selectItems value="#{estats.values()}" var="estat" />
                     </p:selectOneMenu>
                     <p:message for="estat" errorStyle="color: red"/>
@@ -83,23 +79,13 @@ Pàgina per edició d'unitats orgàniques.
 
             <ui:decorate template="/template/buttons.xhtml">
                 <ui:define name="buttons">
-
-                    <p:commandButton id="testError" action="#{editUnitatOrganica.testError}"
-                                     style = "padding-right: 5px;"
-                                     styleClass="btn btn-danger float-left"
-                                     value="#{labels.button_testError}" rendered="#{not editUnitatOrganica.create}"
-                                     process="@form" update="@form" />
-
                     <p:commandButton id="saveOrUpdateButton" action="#{editUnitatOrganica.saveOrUpdate}"
-                                     styleClass="btn btn-primary aplicacio-btn"
                                      value="#{labels.button_guardar}"
                                      process="@form" update="@form" />
-
                     <p:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica"
-                              styleClass="btn btn-secondary float-right" />
+                              styleClass="float-right"/>
                 </ui:define>
             </ui:decorate>
-
         </h:form>
 
     </ui:define>

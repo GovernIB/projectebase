@@ -31,11 +31,10 @@ Pàgina per editar procediments
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="id" value="#{labels.procediment_id}" styleClass="label-projecte" />
+                    <p:outputLabel for="id" value="#{labels.procediment_id}" />
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="id" value="#{editProcediment.procediment.id}" readonly="true"
-                                 styleClass="form-control form-control-sm" />
+                    <p:inputText id="id" value="#{editProcediment.procediment.id}" readonly="true" />
                     <!-- els camps readonly no es processen, per tant pot perdre l'id, per això el ficam a un hidden -->
                     <h:inputHidden value="#{editProcediment.procediment.id}" />
                 </ui:define>
@@ -43,22 +42,20 @@ Pàgina per editar procediments
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="codiDir3" value="#{labels.procediment_codiSia}" styleClass="label-projecte" />
+                    <p:outputLabel for="codiDir3" value="#{labels.procediment_codiSia}" />
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="codiDir3" value="#{editProcediment.procediment.codiSia}"
-                                 styleClass="form-control form-control-sm" />
+                    <p:inputText id="codiDir3" value="#{editProcediment.procediment.codiSia}" />
                     <p:message for="codiDir3" errorStyle="color: red"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="nom" value="#{labels.procediment_nom}" styleClass="label-projecte" />
+                    <p:outputLabel for="nom" value="#{labels.procediment_nom}" />
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="nom" value="#{editProcediment.procediment.nom}"
-                                 styleClass="form-control form-control-sm" />
+                    <p:inputText id="nom" value="#{editProcediment.procediment.nom}" />
                     <p:message for="nom" errorStyle="color: red"/>
                 </ui:define>
             </ui:decorate>
@@ -66,11 +63,9 @@ Pàgina per editar procediments
             <ui:decorate template="/template/buttons.xhtml">
                 <ui:define name="buttons">
                     <p:commandButton id="saveOrUpdateButton" action="#{editProcediment.saveOrUpdate}"
-                                     styleClass="btn btn-primary aplicacio-btn"
                                      value="#{labels.button_guardar}"
                                      process="@form" update="@form" />
-                    <p:button value="#{labels.button_tornar}" outcome="/listProcediment"
-                              styleClass="btn btn-secondary float-right">
+                    <p:button value="#{labels.button_tornar}" outcome="/listProcediment" styleClass="float-right">
                         <f:param name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}" />
                     </p:button>
                 </ui:define>

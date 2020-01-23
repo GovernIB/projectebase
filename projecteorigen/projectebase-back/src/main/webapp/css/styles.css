@@ -74,9 +74,6 @@ a:hover{
 	margin-left: auto;
 	margin-right: auto;
 }
-.label-projecte{
-	padding-top: 6px;
-}
 /* FI Estils generals */
 
 /* Motlla de pa */
@@ -496,9 +493,14 @@ a.iconoXarxes{
 	color: #000;
 }
 
-
 /* Específics per primefaces */
 .ui-growl {
 	top: 100px;
 	left: 20px;
+}
+.ui-outputlabel {
+	padding-top: 6px;
+}
+.ui-widget {
+	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
 }

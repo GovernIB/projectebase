@@ -7,7 +7,6 @@
 Pàgina amb el llistat de procediments d'una unitat administrativa.
 -->
 <ui:composition template="/template/template.xhtml">
-
     <ui:define name="metadata">
         <f:metadata>
             <!-- Al principi de la vista, es fixarà el paràmetre rebut dins
@@ -26,16 +25,13 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
 
     <ui:define name="content">
         <p>
-            <p:button value="#{labels.newProcediment_link}" outcome="/editProcediment"
-                      styleClass="btn btn-primary aplicacio-btn">
+            <p:button value="#{labels.newProcediment_link}" outcome="/editProcediment">
                 <f:param name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}" />
             </p:button>
+            <p:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica" />
         </p>
         <h:form>
             <p:dataTable id="dataTable_paginate"
-                         styleClass="table table-striped table-bordered table-hover"
-                         headerClass="table-success"
-                         rowClass="clickable-row"
                          style="width: 100%;"
                          value="#{listProcediment.procediments}" var="procediment">
                 <p:column>
@@ -51,16 +47,17 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
                     <h:outputText value="#{procediment.nom}"/>
                 </p:column>
                 <p:column>
-                    <f:facet name="header">#{labels.button_accions}</f:facet>
-                    <p:button value="#{labels.button_editar}" outcome="/editProcediment"
-                              styleClass="btn btn-primary aplicacio-btn">
-                        <f:param name="id" value="#{procediment.id}" />
-                        <f:param name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}" />
-                    </p:button>
-                    <p:commandButton value="#{labels.button_eliminar}" action="#{listProcediment.delete(procediment.id)}"
-                                     onclick="return confirm('#{labels.confirm_eliminar}')"
-                                     styleClass="btn btn-danger aplicacio-btn"
-                                     update="messages @form" />
+                    <f:facet name="header"> </f:facet>
+                    <p:menuButton value="#{labels.button_opcions}">
+                        <p:menuitem value="#{labels.button_editar}" outcome="/editProcediment">
+                            <f:param name="id" value="#{procediment.id}" />
+                            <f:param name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}" />
+                        </p:menuitem>
+                        <p:menuitem value="#{labels.button_eliminar}" action="#{listProcediment.delete(procediment.id)}"
+                                    update="messages @form">
+                            <p:confirm message="#{labels.confirm_eliminar}" />
+                        </p:menuitem>
+                    </p:menuButton>
                 </p:column>
             </p:dataTable>
         </h:form>
