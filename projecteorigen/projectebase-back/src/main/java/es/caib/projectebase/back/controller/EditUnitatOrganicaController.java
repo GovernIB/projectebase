@@ -11,7 +11,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,9 +31,6 @@ public class EditUnitatOrganicaController implements Serializable {
 
     @Inject
     private FacesContext context;
-
-    @Inject
-    private Flash flash;
 
     @EJB
     UnitatOrganicaService unitatOrganicaService;
@@ -110,7 +106,7 @@ public class EditUnitatOrganicaController implements Serializable {
         }
         // Els missatges no aguanten una redirecció ja que no es la mateixa petició
         // amb l'objecte flash podem assegurar que es guardin fins la visualització
-        flash.setKeepMessages(true);
+        context.getExternalContext().getFlash().setKeepMessages(true);
         // Redireccionam cap al llistat d'unitats orgàniques
         return "/listUnitatOrganica?faces-redirect=true";
     }
@@ -158,13 +154,13 @@ public class EditUnitatOrganicaController implements Serializable {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
             
             // Redireccionam cap a l'unitat orgànica que estam editant
-            flash.setKeepMessages(true);
+            context.getExternalContext().getFlash().setKeepMessages(true);
             return "/editUnitatOrganica?faces-redirect=true&includeViewParams=true";
         }
 
         // Els missatges no aguanten una redirecció ja que no es la mateixa petició
         // amb l'objecte flash podem assegurar que es guardin fins la visualització
-        flash.setKeepMessages(true);
+        context.getExternalContext().getFlash().setKeepMessages(true);
         return "/listUnitatOrganica?faces-redirect=true";
 
     }
