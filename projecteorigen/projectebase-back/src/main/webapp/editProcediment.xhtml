@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--
 Pàgina per editar procediments
@@ -30,10 +31,10 @@ Pàgina per editar procediments
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <h:outputLabel for="id" value="#{labels.procediment_id}" styleClass="label-projecte" />
+                    <p:outputLabel for="id" value="#{labels.procediment_id}" styleClass="label-projecte" />
                 </ui:define>
                 <ui:define name="input">
-                    <h:inputText id="id" value="#{editProcediment.procediment.id}" readonly="true"
+                    <p:inputText id="id" value="#{editProcediment.procediment.id}" readonly="true"
                                  styleClass="form-control form-control-sm" />
                     <!-- els camps readonly no es processen, per tant pot perdre l'id, per això el ficam a un hidden -->
                     <h:inputHidden value="#{editProcediment.procediment.id}" />
@@ -42,37 +43,36 @@ Pàgina per editar procediments
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <h:outputLabel for="codiDir3" value="#{labels.procediment_codiSia}" styleClass="label-projecte" />
+                    <p:outputLabel for="codiDir3" value="#{labels.procediment_codiSia}" styleClass="label-projecte" />
                 </ui:define>
                 <ui:define name="input">
-                    <h:inputText id="codiDir3" value="#{editProcediment.procediment.codiSia}"
+                    <p:inputText id="codiDir3" value="#{editProcediment.procediment.codiSia}"
                                  styleClass="form-control form-control-sm" />
-                    <h:message for="codiDir3" errorStyle="color: red"/>
+                    <p:message for="codiDir3" errorStyle="color: red"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <h:outputLabel for="nom" value="#{labels.procediment_nom}" styleClass="label-projecte" />
+                    <p:outputLabel for="nom" value="#{labels.procediment_nom}" styleClass="label-projecte" />
                 </ui:define>
                 <ui:define name="input">
-                    <h:inputText id="nom" value="#{editProcediment.procediment.nom}"
+                    <p:inputText id="nom" value="#{editProcediment.procediment.nom}"
                                  styleClass="form-control form-control-sm" />
-                    <h:message for="nom" errorStyle="color: red"/>
+                    <p:message for="nom" errorStyle="color: red"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/buttons.xhtml">
                 <ui:define name="buttons">
-                    <h:commandButton id="saveOrUpdateButton" action="#{editProcediment.saveOrUpdate}"
+                    <p:commandButton id="saveOrUpdateButton" action="#{editProcediment.saveOrUpdate}"
                                      styleClass="btn btn-primary aplicacio-btn"
-                                     value="#{labels.button_guardar}">
-                        <f:ajax execute="@form" render="@form" />
-                    </h:commandButton>
-                    <h:button value="#{labels.button_tornar}" outcome="/listProcediment"
+                                     value="#{labels.button_guardar}"
+                                     process="@form" update="@form" />
+                    <p:button value="#{labels.button_tornar}" outcome="/listProcediment"
                               styleClass="btn btn-secondary float-right">
                         <f:param name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}" />
-                    </h:button>
+                    </p:button>
                 </ui:define>
             </ui:decorate>
 

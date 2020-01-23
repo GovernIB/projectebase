@@ -49,12 +49,13 @@
         Veure: https://primefaces.github.io/primefaces/7_0/#/gettingstarted/configuration
     -->
     <context-param>
-        <param-name>primefaces.THEME</param-name>
-        <param-value>bootstrap</param-value>
-    </context-param>
-    <context-param>
         <param-name>primefaces.TRANSFORM_METADATA</param-name>
         <param-value>true</param-value>
+    </context-param>
+    <!-- El tema ha de coincidir amb la dependència inclosa dins el WAR. Per no emprar-ne cap posar el valor none -->
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>bootstrap</param-value>
     </context-param>
 
     <!--
