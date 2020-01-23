@@ -16,7 +16,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -38,9 +37,6 @@ public class EditProcedimentController implements Serializable {
 
     @Inject
     private FacesContext context;
-
-    @Inject
-    private Flash flash;
 
     @EJB
     ProcedimentService procedimentService;
@@ -134,7 +130,7 @@ public class EditProcedimentController implements Serializable {
         }
         // Els missatges no aguanten una redirecció ja que no es la mateixa petició
         // amb l'objecte flash podem assegurar que es guardin fins la visualització
-        flash.setKeepMessages(true);
+        context.getExternalContext().getFlash().setKeepMessages(true);
 
         // Redireccionam cap al llistat de procediments, mantenint l'identificador de unitat orgànica
         return "/listProcediment?faces-redirect=true&includeViewParams=true";

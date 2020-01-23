@@ -1,14 +1,14 @@
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--
 Peu de pàgina
 -->
 <ui:component>
     <footer id="footer">
         <div class="row mr-auto ml-3 mr-3 peuResponsive">
-
             <!-- Esquerra -->
             <div class="col-4 pt-2 elementPeuResponsive">
                 <strong class="text-uppercase font-weight-bold h6">#{version.projectName} &#169; GOVERN DE LES ILLES BALEARS</strong>
@@ -25,7 +25,6 @@ Peu de pàgina
                 Revisió:
                 <h:outputText value="#{version.scmRevision}"/>
             </div>
-
             <!-- Centro -->
             <div class="col-4 text-center pt-2 text-decoration-none bg-transparent text-uppercase p-2 opcionsPeu elementPeuResponsive">
                 <ul class="list-unstyled d-inline-flex justify-content-center mb-0">
@@ -34,13 +33,10 @@ Peu de pàgina
                     <li><a href="" class="text-dark linkPeu" target="_blank">Avís legal</a></li>
                 </ul>
             </div>
-
             <!-- Dreta -->
             <div class="col-4 text-right d-inline-flex justify-content-end elementPeuResponsive">
-
                 <p class="mr-3 pt-2 quitarTablet">Segueix-nos:</p>
                 <ul class="list-unstyled d-inline-flex">
-
                     <li>
                         <a class="iconoXarxes botonRed logo-youtube" href="https://www.youtube.com/user/CanalIllesBalears" title="YouTube">
                             <svg viewBox="0 0 90 90" xml:space="preserve">
@@ -74,7 +70,6 @@ Peu de pàgina
 							</svg>
                             <span class="d-none">YouTube</span>
                         </a>
-
                         <a class="iconoXarxes botonRed logo-instagram" href="https://www.instagram.com/goib" title="Instagram">
                             <svg viewBox="0 0 169.063 169.063" xml:space="preserve">
 								<title>Instagram</title>
@@ -94,7 +89,6 @@ Peu de pàgina
                             <span class="d-none">Instagram</span>
                         </a>
                     </li>
-
                     <li class="pl-1">
                         <a class="iconoXarxes botonRed logo-twitter" href="http://www.twitter.com/goib">
                             <svg viewBox="0 0 430.117 430.117" xml:space="preserve" >
@@ -114,7 +108,6 @@ Peu de pàgina
 							</svg>
                             <span class="d-none">Twitter</span>
                         </a>
-
                         <a href="https://www.facebook.com/GovernIllesBalears/" class="iconoXarxes botonRed logo-facebook" title="Facebook" target="_blank">
                             <svg viewBox="0 0 430.113 430.114" xml:space="preserve">
 								<title>Facebook</title>

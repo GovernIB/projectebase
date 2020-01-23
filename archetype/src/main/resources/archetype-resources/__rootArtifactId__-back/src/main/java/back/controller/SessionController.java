@@ -10,7 +10,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
@@ -28,9 +27,6 @@ import java.io.Serializable;
 public class SessionController implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(SessionController.class);
-
-    @Inject
-    private Flash flash;
 
     @Inject
     private FacesContext context;
@@ -62,7 +58,7 @@ public class SessionController implements Serializable {
     @PostConstruct
     private void init() {
         LOG.debug("Inicialitzant sessió");
-        language = context.getViewRoot().getLocale().getLanguage();
+        language = context.getViewRoot().getLocale().toLanguageTag();
     }
 
     /**
@@ -77,7 +73,7 @@ public class SessionController implements Serializable {
         } catch (ServletException e) {
             LOG.error("Error durant el logout", e);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
-            flash.setKeepMessages(true);
+            context.getExternalContext().getFlash().setKeepMessages(true);
         }
         return "/index?faces-redirect=true";
     }
