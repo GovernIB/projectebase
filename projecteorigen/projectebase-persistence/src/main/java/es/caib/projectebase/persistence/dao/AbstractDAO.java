@@ -109,8 +109,12 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
 
     @Override
     @PermitAll
-    public Long countAll() {
-        TypedQuery<Long> query = entityManager.createQuery("select count(p) from " + getJPATableName(), Long.class);
+    public long countAll() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        final Root<E> root = cq.from(getJPAClass());
+        cq.select(cb.count(root));
+        TypedQuery<Long> query = entityManager.createQuery(cq);
         return query.getSingleResult();
     }
     

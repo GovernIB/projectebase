@@ -73,7 +73,7 @@ public interface DAO<E extends Serializable, PK> {
      * @return
      * @throws Exception
      */
-    public Long countAll();
+    public long countAll();
     
     /**
      * Retorna el nombre total d'entitats que compleixen el filtre indicat.
