@@ -136,7 +136,7 @@
                     <!-- Inclou el swagger-ui dins el war -->
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
-                        <configuration combine.self="override">
+                        <configuration>
                             <webResources>
                                 <resource>
                                     <directory>${project.build.directory}/swagger-ui-${swagger-ui.version}/dist</directory>
