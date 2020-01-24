@@ -16,8 +16,6 @@ import java.util.List;
  */
 public interface IProcedimentDAO extends DAO<Procediment, Long> {
 
-
-
     /**
      * Obté una llista de tots els procediments d'una unitat orgànica.
      *
@@ -32,7 +30,7 @@ public interface IProcedimentDAO extends DAO<Procediment, Long> {
      * 
      * @param unitatOrganicaId
      *            identificador de la unitat orgànica.
-     * @return
+     * @return nombre de procediments de la unitat orgànica
      */
     Long countAllByUnitatOrganica(Long unitatOrganicaId);
     

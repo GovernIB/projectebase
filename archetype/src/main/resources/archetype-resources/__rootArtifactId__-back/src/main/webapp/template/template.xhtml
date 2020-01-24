@@ -41,14 +41,17 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                 <!-- Header -->
                 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark bg-aplicacio">
 
-                    <button class="navbar-toggler botoMobil" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler botoMobil" type="button" data-toggle="collapse"
+                            data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                            aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
                     <!-- Logo i nom aplicació -->
                     <div class="navbar-brand menuGovern">
                         <div class="logoGovern">
-                            <a class="mr-auto" href=""><img src="#{request.contextPath}/img/STT_logo2.png" class="imatgeGovern" alt="Govern de les Illes Balears"/></a>
+                            <a class="mr-auto" href=""><img src="#{request.contextPath}/img/STT_logo2.png"
+                                                            class="imatgeGovern" alt="Govern de les Illes Balears"/></a>
                         </div>
 
                         <div>
@@ -69,35 +72,55 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                         <ul class="navbar-nav mobil">
 
                             <li class="nav-item colorVerd">
-                                <h:link styleClass="nav-link mobil" title="#{labels.accessibilitat_title}" outcome="/accessibilitat">
-                                    <img src="#{request.contextPath}/img/ico_accessibilitat.svg" class="iconoCapsalera" title="#{labels.accessibilitat_title}" alt="#{labels.accessibilitat_title}"/><p class="mb-0 float-right botoCurt">#{labels.accessibilitat_link}</p>
-                                </h:link>
+                                <p:link styleClass="nav-link mobil" title="#{labels.accessibilitat_title}"
+                                        outcome="/accessibilitat">
+                                    <img src="#{request.contextPath}/img/ico_accessibilitat.svg" class="iconoCapsalera"
+                                         title="#{labels.accessibilitat_title}" alt="#{labels.accessibilitat_title}"/>
+                                    <p class="mb-0 float-right botoCurt">#{labels.accessibilitat_link}</p>
+                                </p:link>
                             </li>
 
                             <li class="nav-item dropdown colorVerd">
-                                <a class="nav-link dropdown mobil" title="#{labels.gestionar_link}" href="#" id="gestionar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-caret-bottom float-right flechaSubmenu" title="" aria-hidden="true"></span><p class="mb-0 float-right botoCurt">#{labels.gestionar_link}</p><span class="oi oi-briefcase" title="#{labels.gestionar_link}" aria-hidden="true"></span></a>
+                                <a class="nav-link dropdown mobil" title="#{labels.gestionar_link}" href="#"
+                                   id="gestionar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="oi oi-caret-bottom float-right flechaSubmenu" title=""
+                                          aria-hidden="true"></span>
+                                    <p class="mb-0 float-right botoCurt">#{labels.gestionar_link}</p>
+                                    <span class="oi oi-briefcase" title="#{labels.gestionar_link}"
+                                          aria-hidden="true"></span></a>
                                 <div class="dropdown-menu dropdown-menu-right marg0 minW0" aria-labelledby="gestionar">
-                                    <h:link styleClass="dropdown-item mobil" outcome="/listUnitatOrganica" value="#{labels.listUnitatOrganica_link}" />
-                                    <h:link styleClass="dropdown-item mobil" outcome="/editUnitatOrganica" value="#{labels.newUnitatOrganica_link}" />
+                                    <p:link styleClass="dropdown-item mobil" outcome="/listUnitatOrganica"
+                                            value="#{labels.listUnitatOrganica_link}" />
+                                    <p:link styleClass="dropdown-item mobil" outcome="/editUnitatOrganica"
+                                            value="#{labels.newUnitatOrganica_link}" />
                                 </div>
                             </li>
 
                             <li class="nav-item dropdown colorVerd">
-                                <a class="nav-link dropdown mobil" title="#{labels.idioma_link}" href="#" id="idiomas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-caret-bottom float-right flechaSubmenu" title="" aria-hidden="true"></span><p class="mb-0 float-right botoCurt">#{labels.idioma_link}</p><span class="oi oi-globe" title="#{labels.idioma_link}" aria-hidden="true"></span></a>
+                                <a class="nav-link dropdown mobil" title="#{labels.idioma_link}" href="#" id="idiomas"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="oi oi-caret-bottom float-right flechaSubmenu" title=""
+                                          aria-hidden="true"></span>
+                                    <p class="mb-0 float-right botoCurt">#{labels.idioma_link}</p>
+                                    <span class="oi oi-globe" title="#{labels.idioma_link}" aria-hidden="true"></span>
+                                </a>
                                 <div class="dropdown-menu dropdown-menu-right marg0 minW0" aria-labelledby="idiomas">
-                                    <ui:repeat value="#{languageController.languages}" var="lang">
-                                        <h:commandLink styleClass="dropdown-item mobil" hreflang="#{lang}"
-                                                       action="#{sessionController.setLanguage(lang)}" value="#{labels['idioma_link_' += lang]}">
+                                    <p:repeat value="#{languageController.languages}" var="lang">
+                                        <p:commandLink styleClass="dropdown-item mobil" hreflang="#{lang}"
+                                                       action="#{sessionController.setLanguage(lang)}"
+                                                       value="#{labels['idioma_link_' += lang]}">
                                             <f:ajax render="@all" />
-                                        </h:commandLink>
-                                    </ui:repeat>
+                                        </p:commandLink>
+                                    </p:repeat>
                                 </div>
                             </li>
 
                             <li class="nav-item colorVerd">
                                 <p:commandLink action="#{sessionController.logout}"
-                                                 ajax="false" immediate="true" styleClass="nav-link mobil" title="#{labels.sortir_link}">
-                                    <span class="oi oi-power-standby" title="#{labels.sortir_link}" aria-hidden="true"></span>
+                                               ajax="false" immediate="true" styleClass="nav-link mobil"
+                                               title="#{labels.sortir_link}">
+                                    <span class="oi oi-power-standby" title="#{labels.sortir_link}"
+                                          aria-hidden="true"></span>
                                     <p class="mb-0 float-right botoCurt">#{labels.sortir_link}</p>
                                 </p:commandLink>
                             </li>
@@ -116,8 +139,10 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                      escape="false"/>
 
             <p:confirmDialog global="true">
-                <p:commandButton value="#{labels.button_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-                <p:commandButton value="#{labels.button_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                <p:commandButton value="#{labels.button_si}" type="button" styleClass="ui-confirmdialog-yes"
+                                 icon="ui-icon-check"/>
+                <p:commandButton value="#{labels.button_no}" type="button" styleClass="ui-confirmdialog-no"
+                                 icon="ui-icon-close"/>
             </p:confirmDialog>
 
         </h:form>
@@ -162,11 +187,13 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
             -->
 
             <!-- Modal
-            <div class="modal fade" id="modalContacto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="modalContacto" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <span class="modal-title h2" id="exampleModalLongTitle"><span class="oi oi-info" title="" aria-hidden="true"></span> Ajuda</span>
+                            <span class="modal-title h2" id="exampleModalLongTitle"><span class="oi oi-info" title=""
+                                  aria-hidden="true"></span> Ajuda</span>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

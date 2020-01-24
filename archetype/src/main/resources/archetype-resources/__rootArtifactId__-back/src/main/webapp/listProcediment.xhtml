@@ -31,9 +31,8 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
             <p:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica" />
         </p>
         <h:form>
-            <p:dataTable id="dataTable_paginate"
-                         style="width: 100%;"
-                         value="#{listProcediment.procediments}" var="procediment">
+            <p:dataTable id="dataTable" value="#{listProcediment.procediments}" var="procediment"
+                         emptyMessage="#{labels.dataTable_emptyMessage}">
                 <p:column>
                     <f:facet name="header">#{labels.procediment_id}</f:facet>
                     <h:outputText value="#{procediment.id}"/>

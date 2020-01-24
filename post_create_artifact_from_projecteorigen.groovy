@@ -153,7 +153,8 @@ for(String jpaFile : jpaFiles) {
 def backFiles = [
    "./__rootArtifactId__-back/src/main/webapp/WEB-INF/faces-config.xml",
    "./__rootArtifactId__-back/src/main/webapp/WEB-INF/web.xml",
-   "./__rootArtifactId__-back/src/main/webapp/editUnitatOrganica.xhtml"
+   "./__rootArtifactId__-back/src/main/webapp/editUnitatOrganica.xhtml",
+   "./__rootArtifactId__-back/src/main/webapp/listUnitatOrganica.xhtml"
   ];
 for(String backFile : backFiles) {
   replaceProperties(new File(baseProject, backFile), false);

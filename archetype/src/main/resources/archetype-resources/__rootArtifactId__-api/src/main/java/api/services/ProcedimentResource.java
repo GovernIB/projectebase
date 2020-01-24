@@ -145,7 +145,7 @@ public class ProcedimentResource {
     @Operation(summary = "Esborra un procediment")
     @APIResponse(responseCode = "200", description = "El procediment s'ha esborrat correctament")
     public Response delete(@Parameter(description = "L'identificador del procediment", required = true)
-                        @PathParam("id") Long id) {
+                        @PathParam("id") Long id) throws I18NException {
         procedimentService.deleteById(id);
         return Response.ok().build();
     }

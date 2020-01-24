@@ -3,6 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.controller;
 
+import ${package}.commons.i18n.I18NException;
 import ${package}.ejb.ProcedimentService;
 import ${package}.ejb.UnitatOrganicaService;
 import ${package}.persistence.Procediment;
@@ -84,9 +85,14 @@ public class ListProcedimentController implements Serializable {
      */
     public void delete(Long id) {
         log.debug("delete");
-        procedimentService.deleteById(id);
-        // Actualitza les dades
-        procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
-        context.addMessage(null, new FacesMessage("Registre borrat"));
+        try {
+            procedimentService.deleteById(id);
+            context.addMessage(null, new FacesMessage("Registre borrat"));
+            // Actualitza les dades
+            procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
+        } catch (I18NException e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+        }
+
     }
 }
