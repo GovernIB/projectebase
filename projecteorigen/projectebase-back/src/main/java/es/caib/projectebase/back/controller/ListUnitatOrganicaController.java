@@ -1,9 +1,13 @@
 package es.caib.projectebase.back.controller;
 
 import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.commons.query.OrderBy;
+import es.caib.projectebase.commons.query.OrderType;
 import es.caib.projectebase.ejb.UnitatOrganicaService;
+import es.caib.projectebase.persistence.EstatPublicacio;
 import es.caib.projectebase.persistence.UnitatOrganica;
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,12 +16,16 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Controlador pels llistats d'Unitats Organiques. El definim a l'scope de view perquè a nivell de request es
@@ -61,13 +69,33 @@ public class ListUnitatOrganicaController implements Serializable {
             per qualsevol circumstància (filtres, ordenació, canvi de pàgina ...)
             */
             @Override
-            public List<UnitatOrganica> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+            public List<UnitatOrganica> load(int first, int pageSize, List<SortMeta> multiSortMeta,
                                              Map<String, Object> filters) {
+                log.info("lazyModel.load");
+                log.info("first: " + first);
+                log.info("pageSize: " + pageSize);
+                log.info("multiSortMeta: " + multiSortMeta);
+                log.info("filters: " + filters);
                 try {
                     // Es necessari indicar el nombre de registres cada vegada que es carrega el model per si ha variat
-                    setRowCount((int) unitatOrganicaService.countAll());
-                    //TODO implementar ordenació i filtres
-                    return unitatOrganicaService.selectAll(first, pageSize);
+                    setRowCount((int) unitatOrganicaService.countFiltered(filters));
+                    //TODO implementar filtres
+
+                    // Transformam les classes específiques de Primefaces per representar l'ordenació cap a la nostra
+                    // implementació amb la que funciona a la capa de serveis.
+                    OrderBy[] orderByArray = new OrderBy[0];
+                    if (multiSortMeta != null && !multiSortMeta.isEmpty()) {
+                        List<OrderBy> orderByList = new ArrayList<>(multiSortMeta.size());
+                        for (SortMeta sortMeta : multiSortMeta) {
+                            OrderType orderType = (sortMeta.getSortOrder() == SortOrder.ASCENDING) ?
+                                    OrderType.ASC : OrderType.DESC;
+                            orderByList.add(new OrderBy(sortMeta.getSortField(), orderType));
+                        }
+                        orderByArray = orderByList.toArray(new OrderBy[0]);
+                    }
+
+                    return unitatOrganicaService.findFiltered(filters, first, pageSize, orderByArray);
+
                 } catch (I18NException e) {
                     throw new RuntimeException(e);
                 }
@@ -84,7 +112,11 @@ public class ListUnitatOrganicaController implements Serializable {
      */
     public void delete(Long id) {
         log.debug("delete");
-        unitatOrganicaService.deleteById(id);
-        context.addMessage(null, new FacesMessage("Registre borrat", ""));
+        try {
+            unitatOrganicaService.deleteById(id);
+            context.addMessage(null, new FacesMessage("Registre borrat", ""));
+        } catch (I18NException e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+        }
     }
 }

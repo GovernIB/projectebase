@@ -1,5 +1,6 @@
 package es.caib.projectebase.back.controller;
 
+import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.ejb.ProcedimentService;
 import es.caib.projectebase.ejb.UnitatOrganicaService;
 import es.caib.projectebase.persistence.Procediment;
@@ -81,9 +82,14 @@ public class ListProcedimentController implements Serializable {
      */
     public void delete(Long id) {
         log.debug("delete");
-        procedimentService.deleteById(id);
-        // Actualitza les dades
-        procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
-        context.addMessage(null, new FacesMessage("Registre borrat"));
+        try {
+            procedimentService.deleteById(id);
+            context.addMessage(null, new FacesMessage("Registre borrat"));
+            // Actualitza les dades
+            procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
+        } catch (I18NException e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+        }
+
     }
 }

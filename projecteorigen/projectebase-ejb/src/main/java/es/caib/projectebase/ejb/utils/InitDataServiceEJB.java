@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * EJB amb mètodes per inicialitzar les dades. Definim que s'executa amb un run-as
@@ -44,13 +45,14 @@ public class InitDataServiceEJB {
     public void initializeData() {
         LOG.info("Iniciant la creació d'unitats organiques de prova");
         DecimalFormat format = new DecimalFormat("00000000");
+        Random random = new Random(1L);
         List<UnitatOrganica> list = new ArrayList<>(30);
         for (int i = 0; i < 30; i++) {
             UnitatOrganica uo = new UnitatOrganica();
             String codiDir3 = "A" + format.format(i);
             uo.setCodiDir3(codiDir3);
             uo.setNom("Unitat " + i);
-            uo.setDataCreacio(LocalDate.now());
+            uo.setDataCreacio(LocalDate.now().minusDays(random.nextInt(60)));
             uo.setEstat(EstatPublicacio.ACTIU);
             list.add(uo);
         }

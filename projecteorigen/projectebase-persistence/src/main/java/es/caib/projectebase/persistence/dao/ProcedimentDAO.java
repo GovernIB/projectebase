@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.Map;
 
 /**
  * DAO per gestionar {@link Procediment}.
@@ -49,11 +50,11 @@ public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IP
      * Si filter és <code>null</code> no aplica cap filtre.
      *
      * @param unitatOrganicaId identificador de la unitat orgànica.
-     * @param filter cadena de caràcters que es cercarà dins els camps de tipus string: codiSia i nom.
+     * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
      * @return llista de procediments de la unitat orgànica que compleixen el filtre.
      */
     @PermitAll
-    public List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId, String filter) {
+    public List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId, Map<String, Object> filters) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Procediment> cq = cb.createQuery(Procediment.class);
         final Root<Procediment> root = cq.from(Procediment.class);
@@ -61,7 +62,7 @@ public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IP
         cq.where(
                 cb.and(
                         cb.equal(root.get("unitatOrganica").get("id"), unitatOrganicaId),
-                        getFilterPredicate(root, filter)
+                        getFilterPredicate(root, filters)
                 )
         );
 
@@ -74,11 +75,11 @@ public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IP
      * Si filter és <code>null</code> no aplica cap filtre.
      *
      * @param unitatOrganicaId identificador de la unitat orgànica.
-     * @param filter cadena de caràcters que es cercarà dins els camps de tipus string: codiSia i nom.
+     * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
      * @return nombre de procediments relacionats amb la unitat orgànica que compleixen el filtre.
      */
     @PermitAll
-    public Long countAllByUnitatOrganica(Long unitatOrganicaId, String filter) {
+    public long countAllByUnitatOrganica(Long unitatOrganicaId, Map<String, Object> filters) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         final Root<Procediment> root = cq.from(Procediment.class);
@@ -86,32 +87,11 @@ public class ProcedimentDAO extends AbstractDAO<Procediment, Long> implements IP
         cq.where(
                 cb.and(
                         cb.equal(root.get("unitatOrganica").get("id"), unitatOrganicaId),
-                        getFilterPredicate(root, filter)
+                        getFilterPredicate(root, filters)
                 )
         );
 
         TypedQuery<Long> query = entityManager.createQuery(cq);
         return query.getSingleResult();
     }
-    
-    
-    @Override
-    public String getJPATableName() {
-        return "Procediment";
-    }
-
-    @Override
-    public Class<Procediment> getJPAClass() {
-        return Procediment.class;
-    }
-
-    @Override
-    public Long getJPAPrimaryKey(Procediment entity) {
-        if (entity == null) {
-            return null;
-        } else {
-            return entity.getId();
-        }
-    } 
-    
 }

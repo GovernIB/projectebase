@@ -8,34 +8,46 @@ Pàgina amb el llistat d'unitats orgàniques.
 -->
 <ui:composition template="/template/template.xhtml">
 
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:importConstants type="es.caib.projectebase.persistence.EstatPublicacio" var="estats" />
+        </f:metadata>
+    </ui:define>
+
     <ui:define name="pageTitle">#{labels.listUnitatOrganica_title}</ui:define>
 
     <ui:define name="content">
         <h:form>
-            <p:dataTable id="table" value="#{listUnitatOrganica.lazyModel}" var="unitatOrganica"
+            <p:dataTable id="dataTable" value="#{listUnitatOrganica.lazyModel}" var="unitatOrganica" sortMode="multiple"
                          paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
-                         paginatorPosition="bottom"
+                         paginatorPosition="bottom" filterDelay="100" widgetVar="unitatsTable"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
                 <p:column>
                     <f:facet name="header">#{labels.unitatOrganica_id}</f:facet>
                     <h:outputText value="#{unitatOrganica.id}"/>
                 </p:column>
-                <p:column>
+                <p:column filterBy="#{unitatOrganica.codiDir3}" sortBy="#{unitatOrganica.codiDir3}">
                     <f:facet name="header">#{labels.unitatOrganica_codiDir3}</f:facet>
                     <h:outputText value="#{unitatOrganica.codiDir3}"/>
                 </p:column>
-                <p:column>
+                <p:column filterBy="#{unitatOrganica.nom}" sortBy="#{unitatOrganica.nom}">
                     <f:facet name="header">#{labels.unitatOrganica_nom}</f:facet>
                     <h:outputText value="#{unitatOrganica.nom}"/>
                 </p:column>
-                <p:column>
+                <p:column sortBy="#{unitatOrganica.dataCreacio}" >
                     <f:facet name="header">#{labels.unitatOrganica_dataCreacio}</f:facet>
                     <h:outputText value="#{unitatOrganica.dataCreacio}">
                         <f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
                     </h:outputText>
                 </p:column>
-                <p:column>
+                <p:column filterBy="#{unitatOrganica.estat}"> <!-- filterOptions="#{listUnitatOrganica.estatItems}" -->
                     <f:facet name="header">#{labels.unitatOrganica_estat}</f:facet>
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('unitatsTable').filter()" required="false">
+                            <f:selectItem itemLabel="----" itemValue="" />
+                            <f:selectItems value="#{estats.values()}" />
+                        </p:selectOneMenu>
+                    </f:facet>
                     <h:outputText value="#{unitatOrganica.estat}"/>
                 </p:column>
                 <p:column>

@@ -52,7 +52,7 @@ public class UnitatOrganicaResource {
             content = @Content(mediaType = "application/json",
                     schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganica.class)))
     public Response getAll() throws I18NException {
-        List<UnitatOrganica> all = unitatOrganicaService.selectAll();
+        List<UnitatOrganica> all = unitatOrganicaService.findAll();
         return Response.ok().entity(all).build();
     }
 
@@ -131,7 +131,7 @@ public class UnitatOrganicaResource {
     @APIResponse(responseCode = "200", description = "La unitat s'ha esborrat correctament")
     @APIResponse(responseCode = "404", description = "Unitat orgànica no trobada")
     public Response delete(@Parameter(description = "L'identificador de la unitat", required = true)
-                        @PathParam("id") Long id) {
+                        @PathParam("id") Long id) throws I18NException {
         unitatOrganicaService.deleteById(id);
         return Response.ok().build();
     }
