@@ -20,8 +20,9 @@ Pàgina amb el llistat d'unitats orgàniques.
         <h:form>
             <p:dataTable id="dataTable" value="#{listUnitatOrganica.lazyModel}" var="unitatOrganica" sortMode="multiple"
                          paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
-                         paginatorPosition="bottom" filterDelay="100" widgetVar="unitatsTable"
-                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
+                         paginatorPosition="bottom" filterDelay="300" widgetVar="unitatsTable"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+                          {NextPageLink} {LastPageLink}">
                 <p:column>
                     <f:facet name="header">#{labels.unitatOrganica_id}</f:facet>
                     <h:outputText value="#{unitatOrganica.id}"/>
@@ -40,7 +41,7 @@ Pàgina amb el llistat d'unitats orgàniques.
                         <f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
                     </h:outputText>
                 </p:column>
-                <p:column filterBy="#{unitatOrganica.estat}"> <!-- filterOptions="#{listUnitatOrganica.estatItems}" -->
+                <p:column filterBy="#{unitatOrganica.estat}">
                     <f:facet name="header">#{labels.unitatOrganica_estat}</f:facet>
                     <f:facet name="filter">
                         <p:selectOneMenu onchange="PF('unitatsTable').filter()" required="false">
@@ -59,7 +60,8 @@ Pàgina amb el llistat d'unitats orgàniques.
                         <p:menuitem value="#{labels.listProcediment_link}" outcome="/listProcediment">
                             <f:param name="unitatOrganicaId" value="#{unitatOrganica.id}" />
                         </p:menuitem>
-                        <p:menuitem value="#{labels.button_eliminar}" action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
+                        <p:menuitem value="#{labels.button_eliminar}"
+                                    action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
                                     update="messages @form">
                             <p:confirm message="#{labels.confirm_eliminar}" />
                         </p:menuitem>
