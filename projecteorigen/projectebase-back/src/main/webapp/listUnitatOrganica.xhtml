@@ -21,8 +21,10 @@ Pàgina amb el llistat d'unitats orgàniques.
             <p:dataTable id="dataTable" value="#{listUnitatOrganica.lazyModel}" var="unitatOrganica" sortMode="multiple"
                          paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
                          paginatorPosition="bottom" filterDelay="300" widgetVar="unitatsTable"
+                         paginatorAlwaysVisible="false"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport}
-                          {NextPageLink} {LastPageLink}">
+                          {NextPageLink} {LastPageLink}"
+                         emptyMessage="#{labels.dataTable_emptyMessage}">
                 <p:column>
                     <f:facet name="header">#{labels.unitatOrganica_id}</f:facet>
                     <h:outputText value="#{unitatOrganica.id}"/>
