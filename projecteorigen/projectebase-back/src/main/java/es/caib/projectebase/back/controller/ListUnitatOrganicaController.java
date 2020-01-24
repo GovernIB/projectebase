@@ -4,7 +4,6 @@ import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.query.OrderBy;
 import es.caib.projectebase.commons.query.OrderType;
 import es.caib.projectebase.ejb.UnitatOrganicaService;
-import es.caib.projectebase.persistence.EstatPublicacio;
 import es.caib.projectebase.persistence.UnitatOrganica;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
@@ -16,16 +15,13 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Controlador pels llistats d'Unitats Organiques. El definim a l'scope de view perquè a nivell de request es
@@ -71,15 +67,9 @@ public class ListUnitatOrganicaController implements Serializable {
             @Override
             public List<UnitatOrganica> load(int first, int pageSize, List<SortMeta> multiSortMeta,
                                              Map<String, Object> filters) {
-                log.info("lazyModel.load");
-                log.info("first: " + first);
-                log.info("pageSize: " + pageSize);
-                log.info("multiSortMeta: " + multiSortMeta);
-                log.info("filters: " + filters);
                 try {
                     // Es necessari indicar el nombre de registres cada vegada que es carrega el model per si ha variat
                     setRowCount((int) unitatOrganicaService.countFiltered(filters));
-                    //TODO implementar filtres
 
                     // Transformam les classes específiques de Primefaces per representar l'ordenació cap a la nostra
                     // implementació amb la que funciona a la capa de serveis.
