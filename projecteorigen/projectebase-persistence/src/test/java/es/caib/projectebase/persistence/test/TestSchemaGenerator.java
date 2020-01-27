@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import javax.persistence.Persistence;
 import java.util.Collections;
-import java.util.Map;
 
 /**
  * Test per realitzar la generació de l'schema de base de dades.
