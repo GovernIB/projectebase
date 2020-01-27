@@ -8,6 +8,7 @@ import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
@@ -28,7 +29,14 @@ import java.util.Objects;
 @Entity
 @SequenceGenerator(name = "procediment-sequence", sequenceName = "PBS_PROCEDIMENT_SEQ", allocationSize = 1)
 @Table(name = "PBS_PROCEDIMENT",
-        uniqueConstraints = {@UniqueConstraint(name = "PBS_PROCEDIMENT_CODISIA_UK", columnNames = "CODISIA")}
+        uniqueConstraints = {
+            @UniqueConstraint(name = "PBS_PROCEDIMENT_CODISIA_UK", columnNames = "CODISIA")
+        },
+        indexes = {
+            @Index(name= "PBS_PROCEDIMENT_PK_I", columnList = "ID"),
+            @Index(name= "PBS_PROCEDIMENT_CODISIA_UK_I", columnList = "CODISIA"),
+            @Index(name= "PBS_PROCEDIMENT_UNITAT_FK_I", columnList = "UNITATORGANICAID")
+        }
 )
 public class Procediment implements Serializable {
 
@@ -62,7 +70,7 @@ public class Procediment implements Serializable {
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UNITATORGANICAID", nullable = false,
-            foreignKey = @ForeignKey(name = "PBS_PROCEDIMENT_UNITATORGANICA_FK"))
+            foreignKey = @ForeignKey(name = "PBS_PROCEDIMENT_UNITAT_FK"))
     @JsonbTransient
     private UnitatOrganica unitatOrganica;
 

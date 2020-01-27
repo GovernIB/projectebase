@@ -5,7 +5,6 @@
              version="2.2">
     <persistence-unit name="testPU" transaction-type="RESOURCE_LOCAL">
 
-
         <!-- Llista de classes persistents -->
         <class>es.caib.projectebase.persistence.UnitatOrganica</class>
         <class>es.caib.projectebase.persistence.Procediment</class>
