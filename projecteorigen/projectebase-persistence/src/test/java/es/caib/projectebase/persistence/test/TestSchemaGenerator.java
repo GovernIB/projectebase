@@ -7,12 +7,17 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * Test per provar la generació de l'schema de base de dades.
+ * Test per realitzar la generació de l'schema de base de dades.
  */
 public class TestSchemaGenerator {
 
+    /**
+     * A partir del persistence.xml definit a test genera l'schema de base de dades.
+     */
     @Test
     public void testCreateSchema() {
+        // Les propietats per la generació es poden indicar dins el persistence.xml o es poden
+        // passar dins el Map.
         Persistence.generateSchema("testPU", Collections.emptyMap());
     }
 }
