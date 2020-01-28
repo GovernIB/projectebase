@@ -27,13 +27,6 @@ public interface DAO<E extends Serializable, PK> {
      * @return El entity creat.
      */
     E create(@NotNull E entity) throws I18NException;
-    
-    /**
-     * Crea N entities.
-     *
-     * @param entities els entities a crear.
-     */
-    void bulkCreate(List<@NotNull E> entities) throws I18NException;
 
     /**
      * Actualitza un entity.

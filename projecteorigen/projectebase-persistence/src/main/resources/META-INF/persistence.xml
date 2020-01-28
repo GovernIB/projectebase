@@ -5,17 +5,23 @@
              version="2.2">
     <persistence-unit name="projectebasePU" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/projectebaseDS</jta-data-source>
+
         <!-- Llista de classes persistents -->
         <class>es.caib.projectebase.persistence.UnitatOrganica</class>
         <class>es.caib.projectebase.persistence.Procediment</class>
+
         <!-- Activar cache només per aquelles entitats on volguem expressament -->
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
         <!-- Sempre activar la validació de les propietats -->
         <validation-mode>CALLBACK</validation-mode>
+
         <properties>
             <!-- Per les propietats estandard veure punt 8.2.1.9 de l'especificació JPA -->
 
-            <!-- Recrea automàticament la BDD. Aquesta opció MAI s'ha d'emprar en entorn que no sigui de proves
+            <!--
+            Recrea automàticament la BDD. Aquesta opció MAI s'ha d'emprar en entorn que no sigui de proves
+            -->
+            <!--
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
             -->
 
@@ -23,6 +29,16 @@
             Propietats específiques de Hibernate
             https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#configurations
             -->
+            <!--
+            Normalment Hibernate obté el dialecte correcte a partir de les metadades de la connexió.
+            Per mor d'un bug a Hibernate 5.3.x, amb versions d'Oracle superiors a la 12 (18 o 19), no ho resòl bé.
+                https://github.com/hibernate/hibernate-orm/pull/3018
+            Cal fixar la següent propietat
+            -->
+            <!--
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
+            -->
+
             <!-- Afecta molt al rendiment. A entorn de producció, sempre a false -->
             <property name="hibernate.show_sql" value="true"/>
         </properties>

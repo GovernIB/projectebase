@@ -78,15 +78,6 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
     }
 
     @Override
-    public void bulkCreate(List<@NotNull E> entities) throws I18NException {
-        if (entities != null) {
-            for (E entity : entities) {
-                create(entity);
-            }
-        }
-    }
-
-    @Override
     public E update(@NotNull E entity) throws I18NException {
         try {
             return entityManager.merge(entity);
