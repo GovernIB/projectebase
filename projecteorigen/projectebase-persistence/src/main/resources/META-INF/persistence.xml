@@ -14,8 +14,11 @@
         <validation-mode>CALLBACK</validation-mode>
         <properties>
             <!-- Per les propietats estandard veure punt 8.2.1.9 de l'especificació JPA -->
-            <!-- Recrea automàticament la BDD. Aquesta opció MAI s'ha d'emprar en entorn que no sigui de proves -->
+
+            <!-- Recrea automàticament la BDD. Aquesta opció MAI s'ha d'emprar en entorn que no sigui de proves
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            -->
+
             <!--
             Propietats específiques de Hibernate
             https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#configurations
