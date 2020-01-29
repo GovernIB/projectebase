@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -33,7 +34,13 @@ import static javax.persistence.EnumType.ORDINAL;
 @Entity
 @SequenceGenerator(name = "uo-sequence", sequenceName = "${prefixuppercase}_UNITATORGANICA_SEQ", allocationSize = 1)
 @Table(name = "${prefixuppercase}_UNITATORGANICA",
-        uniqueConstraints = {@UniqueConstraint(name = "${prefixuppercase}_UNITATORGANICA_CODIDIR3_UK", columnNames = "CODIDIR3")}
+        uniqueConstraints = {
+            @UniqueConstraint(name = "${prefixuppercase}_UNITAT_CODIDIR3_UK", columnNames = "CODIDIR3")
+        },
+        indexes = {
+            @Index(name= "${prefixuppercase}_UNITAT_PK_I", columnList = "ID"),
+            @Index(name= "${prefixuppercase}_UNITAT_CODIDIR3_UK_I", columnList = "CODIDIR3")
+        }
 )
 public class UnitatOrganica implements Serializable {
 

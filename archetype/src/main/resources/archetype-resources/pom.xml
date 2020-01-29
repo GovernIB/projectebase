@@ -28,6 +28,8 @@
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
         <cxf.version>3.3.3</cxf.version>
         <junit.version>4.8.2</junit.version>
+        <hibernate.version>5.3.15.Final</hibernate.version>
+        <jboss-logging.version>3.3.2.Final</jboss-logging.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -62,10 +64,25 @@
                 <artifactId>bootstrap</artifactId>
                 <version>${primefaces.theme.version}</version>
             </dependency>
+
+            <!-- Dependències de test -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.logging</groupId>
+                <artifactId>jboss-logging</artifactId>
+                <version>${jboss-logging.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
