@@ -28,7 +28,7 @@ SELECT ${prefix}_procediment_seq.NEXTVAL FROM dual;
 ALTER SEQUENCE ${prefix}_procediment_seq INCREMENT BY 1;
 
 -- Actualitzar seqüència dels procediments
-ALTER SEQUENCE ${prefix}_unitatorganica_seq INCREMENT BY 30;
+ALTER SEQUENCE ${prefix}_unitatorganica_seq INCREMENT BY 12;
 SELECT ${prefix}_unitatorganica_seq.NEXTVAL FROM dual;
 ALTER SEQUENCE ${prefix}_unitatorganica_seq INCREMENT BY 1;
 

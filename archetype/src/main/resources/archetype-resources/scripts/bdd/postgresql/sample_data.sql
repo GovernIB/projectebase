@@ -23,7 +23,7 @@ INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (3
 INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (4, '000004', 'Procediment 4', 3);
 
 -- Actualitzar seqüència de les unitats orgàniques
-SELECT pg_catalog.setval('${prefix}_unitatorganica_seq', 30, true);
+SELECT pg_catalog.setval('${prefix}_unitatorganica_seq', 12, true);
 -- Actualitzar seqüència dels procediments
 SELECT pg_catalog.setval('${prefix}_procediment_seq', 4, true);
 

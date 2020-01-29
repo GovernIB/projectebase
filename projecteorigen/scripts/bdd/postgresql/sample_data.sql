@@ -20,7 +20,7 @@ INSERT INTO pbs_procediment (id, codisia, nom, unitatorganicaid) VALUES (3, '000
 INSERT INTO pbs_procediment (id, codisia, nom, unitatorganicaid) VALUES (4, '000004', 'Procediment 4', 3);
 
 -- Actualitzar seqüència de les unitats orgàniques
-SELECT pg_catalog.setval('pbs_unitatorganica_seq', 30, true);
+SELECT pg_catalog.setval('pbs_unitatorganica_seq', 12, true);
 -- Actualitzar seqüència dels procediments
 SELECT pg_catalog.setval('pbs_procediment_seq', 4, true);
 

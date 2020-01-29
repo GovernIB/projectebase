@@ -25,7 +25,7 @@ SELECT pbs_procediment_seq.NEXTVAL FROM dual;
 ALTER SEQUENCE pbs_procediment_seq INCREMENT BY 1;
 
 -- Actualitzar seqüència dels procediments
-ALTER SEQUENCE pbs_unitatorganica_seq INCREMENT BY 30;
+ALTER SEQUENCE pbs_unitatorganica_seq INCREMENT BY 12;
 SELECT pbs_unitatorganica_seq.NEXTVAL FROM dual;
 ALTER SEQUENCE pbs_unitatorganica_seq INCREMENT BY 1;
 
