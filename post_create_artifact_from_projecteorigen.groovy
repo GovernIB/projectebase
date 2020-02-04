@@ -115,7 +115,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
      "__rootArtifactId__-front", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
 	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", 
-	 "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
+	 "__rootArtifactId__-ws/__rootArtifactId___ws_api", "scripts", "scripts/sqlgenerator"];
 
 for(String moduleDir : moduleFolders) {
   File tmp = new File(baseProject, moduleDir);
@@ -212,7 +212,7 @@ for(String wsFile : wsFiles) {
 }
 
 // SCRIPTS
-def scriptsFiles = [ 
+def scriptsFiles = [
    "./scripts/datasource/oracle.xml",
    "./scripts/datasource/postgresql.xml", 
    "./scripts/bdd/oracle/create_schema.sql",
@@ -220,7 +220,8 @@ def scriptsFiles = [
    "./scripts/bdd/oracle/drop_schema.sql",
    "./scripts/bdd/postgresql/create_schema.sql",
    "./scripts/bdd/postgresql/sample_data.sql",
-   "./scripts/bdd/postgresql/drop_schema.sql"
+   "./scripts/bdd/postgresql/drop_schema.sql",
+   "./scripts/sqlgenerator/gensql.bat"
   ];
 for(String scriptFile : scriptsFiles) {
   replaceProperties(new File(baseProject, scriptFile), false);

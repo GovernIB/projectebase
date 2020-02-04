@@ -238,7 +238,9 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
 
         List<Predicate> predicateList = new ArrayList<>();
         for (String attributeName : filters.keySet()) {
+            @SuppressWarnings("rawtypes")
             Path attributePath = root.get(attributeName);
+            @SuppressWarnings("rawtypes")
             Class bindableJavaType = attributePath.getModel().getBindableJavaType();
             Object attributeValue = filters.get(attributeName);
 
@@ -252,6 +254,7 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
                 );
             // Quan és una enumeració, però rebem un String, hem de convertir el valor que rebem a enumeració
             } else if (bindableJavaType.isEnum() && (attributeValue instanceof String)) {
+                @SuppressWarnings("rawtypes")
                 Enum enumValue = Enum.valueOf(bindableJavaType, (String) attributeValue);
                 predicateList.add(cb.equal(attributePath, enumValue));
             // En qualsevol altre cas, feim directament l'equal

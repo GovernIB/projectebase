@@ -1,29 +1,38 @@
-
-
+ABANS DE TANCAR UNA VERSIO
+==========================
 
 Les tasques següents resumeixen les feines a realitzar pel tancament d'una versió:
 
+(1) Generar scripts de Base de Dades: 
+     - Anar a projecteorigen\scripts\sqlgenerator
+     - Executar la comanda "gensql.bat org.hibernate.dialect.PostgreSQL82Dialect" i copiar els fitxers 
+       create_schema.sql i drop_schema.sql al directori projecteorigen\scripts\bdd\postgresql.
+     - Executar la comanda "gensql.bat org.hibernate.dialect.Oracle10gDialect" i copiar els fitxers 
+       create_schema.sql, create_schema_caib.sql i drop_schema.sql al directori projecteorigen\scripts\bdd\oracle.
 
-* Revisar si generadordecomanda.html conté la versió que s'ha d'alliberar
-* Revisar si el Readme.md mostra la versió correcta
-* fer pull i revisar tot el proces tal i com es descriu a /doc/development.txt
-* Fer deploy de archetype: 
+(2) Seguir les passes del fitxer de doc/development.txt
+
+(3) Revisar si generadordecomanda.html conté la versió que s'ha d'alliberar
+
+(4) Revisar si el Readme.md mostra la versió correcta
+
+(5) Fer deploy de archetype: 
            - cd archetype
            - mvn deploy
-* Provar generació:
+
+(6) Provar generació:
      - Esborrar el archetype i projecteorigen del .m2 
      - Obrir generador des de github, configurar-lo amb els parametres de projecteorigen i copiar/executar comanda a dins d'una consola. Alt+a
      - Comparar el projecte generat amb el projecteorigen
 
-* Crear el tag dins de github.com (seguir les normes de versionat)
+(7) Crear el tag dins de github.com (seguir les normes de versionat)
 
-* Modificar el Readme.md del mastre de projectebase per a que:
+(8) Modificar el Readme.md del mastre de projectebase per a que:
      - L'apartat del generador apunti al generadordecomanda.html
      - Modificar la versió de l'apartat del generador
-     
-     
 
-PREPARAR NOVA VERSIÓ 
+PREPARAR NOVA VERSIÓ
+====================
 
 * Incrementar la versió del pm.xml arrel i del pom.xml del directori archetype
 * Actualitzar la versió que apareix al fitxer generadordecomanda.html (Títol i parametre -DarchetypeVersion)

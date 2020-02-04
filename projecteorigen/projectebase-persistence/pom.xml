@@ -9,7 +9,7 @@
 
     <artifactId>projectebase-persistence</artifactId>
     <packaging>jar</packaging>
-    <name>ProjecteBase - Persistence</name>
+    <name>ProjecteBase - PERSISTENCE</name>
     <description>Capa de persistència de ProjecteBase</description>
 
     <dependencies>

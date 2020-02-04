@@ -9,7 +9,7 @@
 
     <artifactId>${artifactId}</artifactId>
     <packaging>jar</packaging>
-    <name>${projectname} - Persistence</name>
+    <name>${projectname} - PERSISTENCE</name>
     <description>Capa de persistència de ${projectname}</description>
 
     <dependencies>

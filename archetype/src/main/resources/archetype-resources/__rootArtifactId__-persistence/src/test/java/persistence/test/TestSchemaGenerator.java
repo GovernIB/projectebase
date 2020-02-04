@@ -20,6 +20,6 @@ public class TestSchemaGenerator {
     public void testCreateSchema() {
         // Les propietats per la generació es poden indicar dins el persistence.xml o es poden
         // passar dins el Map.
-        Persistence.generateSchema("testPU", Collections.emptyMap());
+        Persistence.generateSchema("${parentArtifactId}PU", Collections.emptyMap());
     }
 }

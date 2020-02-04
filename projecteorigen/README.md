@@ -3,8 +3,8 @@
 
 ***Versions***
 
-> - Versió Estable: Tag [__projectebase-1.0.0__](RELATIVE URL TO TAG) (branca [projectebase-1.1](RELATIVE URL TO BRANCH))<br/>
-> - Versió en Desenvolupament: __projectebase-1.0.0__ (branca [projectebase-1.0](../../tree/projectebase-1.0))
+> - Versió Estable: Tag [__projectebase-1.0.1__](RELATIVE URL TO TAG) (branca [projectebase-1.1](RELATIVE URL TO BRANCH))<br/>
+> - Versió en Desenvolupament: __projectebase-1.0.1__ (branca [projectebase-1.0](../../tree/projectebase-1.0))
 
 
 ***Documentació***

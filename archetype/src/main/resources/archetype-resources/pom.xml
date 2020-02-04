@@ -64,7 +64,6 @@
                 <artifactId>bootstrap</artifactId>
                 <version>${primefaces.theme.version}</version>
             </dependency>
-
             <!-- Dependències de test -->
             <dependency>
                 <groupId>junit</groupId>
