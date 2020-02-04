@@ -3,8 +3,8 @@
 
 ***Versions***
 
-> - Versió Estable: Tag [__${artifactId}-1.0.0__](RELATIVE URL TO TAG) (branca [${artifactId}-1.1](RELATIVE URL TO BRANCH))<br/>
-> - Versió en Desenvolupament: __${artifactId}-1.0.0__ (branca [${artifactId}-1.0](../../tree/${artifactId}-1.0))
+> - Versió Estable: Tag [__${artifactId}-1.0.1__](RELATIVE URL TO TAG) (branca [${artifactId}-1.1](RELATIVE URL TO BRANCH))<br/>
+> - Versió en Desenvolupament: __${artifactId}-1.0.1__ (branca [${artifactId}-1.0](../../tree/${artifactId}-1.0))
 
 
 ***Documentació***

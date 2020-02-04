@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
  * @author anadal
  * 
  */
-public final class I18NTranslatorFront { // extends I18NCommonUtils {
+public final class I18NTranslatorFront { 
 
 
     private static final Logger log = LoggerFactory.getLogger(I18NTranslatorFront.class);
