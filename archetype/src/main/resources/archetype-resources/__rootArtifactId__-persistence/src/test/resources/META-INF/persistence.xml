@@ -1,3 +1,6 @@
+#set( $symbol_pount = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,8 +12,8 @@
     <persistence-unit name="testPU" transaction-type="RESOURCE_LOCAL">
 
         <!-- Llista de classes persistents -->
-        <class>es.caib.projectebase.persistence.UnitatOrganica</class>
-        <class>es.caib.projectebase.persistence.Procediment</class>
+        <class>${package}.persistence.UnitatOrganica</class>
+        <class>${package}.persistence.Procediment</class>
 
         <!-- Desactivar cache -->
         <shared-cache-mode>NONE</shared-cache-mode>
@@ -27,7 +30,7 @@
 
             <!--
             Propietats específiques de Hibernate
-            https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#configurations
+            https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html${symbol_pound}configurations
             -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
@@ -39,7 +42,7 @@
             Postgresql:    org.hibernate.dialect.PostgreSQL95Dialect
             Oracle:        org.hibernate.dialect.Oracle12cDialect
             -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
 
         </properties>
     </persistence-unit>

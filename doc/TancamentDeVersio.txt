@@ -1,10 +1,18 @@
 
-
+ABANS DE TANCAR UNA VERSIO
+==========================
 
 Les tasques següents resumeixen les feines a realitzar pel tancament d'una versió:
 
+(1) Generar scripts de Base de Dades: 
+     - Anar a projecteorigen\scripts\sqlgenerator
+     - Executar la comanda "gensql.bat org.hibernate.dialect.PostgreSQL82Dialect" i copiar els fitxers 
+       create_schema.sql i drop_schema.sql al directori projecteorigen\scripts\bdd\postgresql.
+     - Executar la comanda "gensql.bat org.hibernate.dialect.Oracle10gDialect" i copiar els fitxers 
+       create_schema.sql, create_schema_caib.sql i drop_schema.sql al directori projecteorigen\scripts\bdd\oracle.
+(2) Seguir les passes del fitxer development.txt
 
-* Revisar si generadordecomanda.html conté la versió que s'ha d'alliberar
+(3) Revisar si generadordecomanda.html conté la versió que s'ha d'alliberar
 * Revisar si el Readme.md mostra la versió correcta
 * fer pull i revisar tot el proces tal i com es descriu a /doc/development.txt
 * Fer deploy de archetype: 
@@ -21,9 +29,10 @@ Les tasques següents resumeixen les feines a realitzar pel tancament d'una vers
      - L'apartat del generador apunti al generadordecomanda.html
      - Modificar la versió de l'apartat del generador
      
-     
 
-PREPARAR NOVA VERSIÓ 
+
+PREPARAR NOVA VERSIÓ
+====================
 
 * Incrementar la versió del pm.xml arrel i del pom.xml del directori archetype
 * Actualitzar la versió que apareix al fitxer generadordecomanda.html (Títol i parametre -DarchetypeVersion)

@@ -3,7 +3,7 @@
 	<driver>oracle</driver>
 	<new-connection-sql>BEGIN EXECUTE IMMEDIATE 'ALTER SESSION SET CURRENT_SCHEMA = projectebase'; END;</new-connection-sql>
 	<security>
-		<user-name>projectebase</user-name>
-		<password>projectebase</password>
+		<user-name>www_projectebase</user-name>
+		<password>www_projectebase</password>
 	</security>
 </datasource>

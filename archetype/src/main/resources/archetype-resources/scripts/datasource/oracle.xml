@@ -6,7 +6,7 @@
 	<driver>oracle</driver>
 	<new-connection-sql>BEGIN EXECUTE IMMEDIATE 'ALTER SESSION SET CURRENT_SCHEMA = ${rootArtifactId}'; END;</new-connection-sql>
 	<security>
-		<user-name>${rootArtifactId}</user-name>
-		<password>${rootArtifactId}</password>
+		<user-name>www_${rootArtifactId}</user-name>
+		<password>www_${rootArtifactId}</password>
 	</security>
 </datasource>

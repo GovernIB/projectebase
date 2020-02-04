@@ -84,7 +84,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration/>
             </plugin>
         </plugins>
     </build>

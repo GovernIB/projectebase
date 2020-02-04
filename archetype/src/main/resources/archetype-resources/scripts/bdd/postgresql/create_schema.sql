@@ -1,42 +1,38 @@
+#set( $symbol_pount = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
+create sequence ${prefixuppercase}_PROCEDIMENT_SEQ start 1 increment 1;
+create sequence ${prefixuppercase}_UNITATORGANICA_SEQ start 1 increment 1;
 
--- Es recomana crear un schema amb el mateix nom d'usuari:
---   CREATE SCHEMA projectebase AUTHORIZATION projectebase;
--- Veure: https://www.postgresql.org/docs/10/ddl-schemas.html
+    create table ${prefixuppercase}_PROCEDIMENT (
+       ID int8 not null,
+        CODISIA varchar(8) not null,
+        NOM varchar(50) not null,
+        UNITATORGANICAID int8 not null,
+        primary key (ID)
+    );
 
-create sequence PBS_PROCEDIMENT_SEQ start 1 increment 1;
-create sequence PBS_UNITATORGANICA_SEQ start 1 increment 1;
+    create table ${prefixuppercase}_UNITATORGANICA (
+       ID int8 not null,
+        CODIDIR3 varchar(9) not null,
+        DATACREACIO date not null,
+        ESTAT int4 not null,
+        NOM varchar(50) not null,
+        primary key (ID)
+    );
+create index ${prefixuppercase}_PROCEDIMENT_PK_I on ${prefixuppercase}_PROCEDIMENT (ID);
+create index ${prefixuppercase}_PROCEDIMENT_CODISIA_UK_I on ${prefixuppercase}_PROCEDIMENT (CODISIA);
+create index ${prefixuppercase}_PROCEDIMENT_UNITAT_FK_I on ${prefixuppercase}_PROCEDIMENT (UNITATORGANICAID);
 
-create table PBS_PROCEDIMENT (
-    ID int8 not null,
-    CODISIA varchar(8) not null,
-    NOM varchar(50) not null,
-    UNITATORGANICAID int8 not null,
-    constraint PBS_PROCEDIMENT_PK primary key (ID)
-);
+    alter table ${prefixuppercase}_PROCEDIMENT 
+       add constraint ${prefixuppercase}_PROCEDIMENT_CODISIA_UK unique (CODISIA);
+create index ${prefixuppercase}_UNITAT_PK_I on ${prefixuppercase}_UNITATORGANICA (ID);
+create index ${prefixuppercase}_UNITAT_CODIDIR3_UK_I on ${prefixuppercase}_UNITATORGANICA (CODIDIR3);
 
-create table PBS_UNITATORGANICA (
-    ID int8 not null,
-    CODIDIR3 varchar(9) not null,
-    DATACREACIO date not null,
-    ESTAT int4 not null,
-    NOM varchar(50) not null,
-    constraint PBS_UNITAT_PK primary key (ID)
-);
+    alter table ${prefixuppercase}_UNITATORGANICA 
+       add constraint ${prefixuppercase}_UNITAT_CODIDIR3_UK unique (CODIDIR3);
 
-create index PBS_PROCEDIMENT_PK_I on PBS_PROCEDIMENT (ID);
-create index PBS_PROCEDIMENT_CODISIA_UK_I on PBS_PROCEDIMENT (CODISIA);
-create index PBS_PROCEDIMENT_UNITAT_FK_I on PBS_PROCEDIMENT (UNITATORGANICAID);
-
-alter table if exists PBS_PROCEDIMENT
-   add constraint PBS_PROCEDIMENT_CODISIA_UK unique (CODISIA);
-
-create index PBS_UNITAT_PK_I on PBS_UNITATORGANICA (ID);
-create index PBS_UNITAT_CODIDIR3_UK_I on PBS_UNITATORGANICA (CODIDIR3);
-
-alter table if exists PBS_UNITATORGANICA
-   add constraint PBS_UNITAT_CODIDIR3_UK unique (CODIDIR3);
-
-alter table if exists PBS_PROCEDIMENT
-   add constraint PBS_PROCEDIMENT_UNITAT_FK
-   foreign key (UNITATORGANICAID)
-   references PBS_UNITATORGANICA;
+    alter table ${prefixuppercase}_PROCEDIMENT 
+       add constraint ${prefixuppercase}_PROCEDIMENT_UNITAT_FK 
+       foreign key (UNITATORGANICAID) 
+       references ${prefixuppercase}_UNITATORGANICA;

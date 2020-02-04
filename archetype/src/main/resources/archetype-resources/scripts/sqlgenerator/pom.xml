@@ -7,7 +7,7 @@
     <version>${version}</version>
     <packaging>jar</packaging>
 
-    <name>ProjecteBase - SCRIPTS - SQL GENERATOR</name>
+    <name>${projectname} - SCRIPTS - SQL GENERATOR</name>
 
     <parent>
         <groupId>${groupId}</groupId>

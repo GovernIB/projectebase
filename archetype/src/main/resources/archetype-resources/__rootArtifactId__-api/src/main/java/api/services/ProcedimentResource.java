@@ -75,7 +75,7 @@ public class ProcedimentResource {
     @Path("{id}")
     @Operation(summary = "Obté un procediment")
     @APIResponse(responseCode = "200",
-            description = "El procediment",
+            description = "Procediment",
             content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = Procediment.class)),
             links = @Link(name = "unitat", description = "Enllaç a la unitat orgància del procediment")
@@ -105,7 +105,7 @@ public class ProcedimentResource {
     @APIResponse(responseCode = "201", description = "L'enllaç al procediment creat")
     public Response create(
             @RequestBody(
-                    description = "Nou procediment",
+                    description = "Procediment",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Procediment.class)))
             @Valid Procediment procediment,
@@ -116,22 +116,35 @@ public class ProcedimentResource {
     }
 
     /**
-     * Actualitza un procediment
+     * Actualitza un procediment. Carrega el procediment indicat per l'identificador i l'actualitza
+     * amb els camps rebuts.
      *
-     * @param procediment el procediment a actualitzar
-     * @return Un codi 200
+     * @param procediment dades a actualitzar del procediment.
+     * @param id Identificador del procediment a actualitzar.
+     * @return Un codi 200 si la modificació va bé, 404 si el procediment indicat per l'id no existeix.
      */
     @PUT
+    @Path("{id}")
     @Operation(summary = "Actualitza un procediment")
     @APIResponse(responseCode = "200", description = "La modificació s'ha realitzat correctament")
+    @APIResponse(responseCode = "404", description = "Procediment no trobat")
     public Response update(
             @RequestBody(
                     description = "Procediment",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Procediment.class)))
-            @Valid Procediment procediment) throws I18NException {
-        procedimentService.update(procediment);
-        return Response.ok().build();
+            @Valid Procediment procediment,
+            @Parameter(description = "L'identificador del procediment", required = true)
+            @PathParam("id") Long id) throws I18NException {
+        Procediment procedimentActual = procedimentService.findById(id);
+        if (procedimentActual == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            procedimentActual.setCodiSia(procediment.getCodiSia());
+            procedimentActual.setNom(procediment.getNom());
+            procedimentService.update(procedimentActual);
+            return Response.ok().build();
+        }
     }
 
     /**

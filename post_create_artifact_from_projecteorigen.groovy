@@ -115,7 +115,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
      "__rootArtifactId__-front", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
 	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", 
-	 "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
+	 "__rootArtifactId__-ws/__rootArtifactId___ws_api", "scripts", "scripts/sqlgenerator"];
 
 for(String moduleDir : moduleFolders) {
   File tmp = new File(baseProject, moduleDir);
@@ -140,10 +140,12 @@ for(String commonFile : commonsFiles) {
 
 // JPA - persistence
 def jpaFiles = [ "./__rootArtifactId__-persistence/src/main/resources/META-INF/persistence.xml",
+	"./__rootArtifactId__-persistence/src/test/resources/META-INF/persistence.xml",
     "./__rootArtifactId__-persistence/src/main/java/persistence/dao/AbstractDAO.java",
     "./__rootArtifactId__-persistence/src/main/java/persistence/dao/ProcedimentDAO.java",
     "./__rootArtifactId__-persistence/src/main/java/persistence/Procediment.java",
-    "./__rootArtifactId__-persistence/src/main/java/persistence/UnitatOrganica.java" ];
+    "./__rootArtifactId__-persistence/src/main/java/persistence/UnitatOrganica.java" 
+	];
 for(String jpaFile : jpaFiles) {
   replaceProperties(new File(baseProject, jpaFile), false);
 }
@@ -170,7 +172,6 @@ for(String frontFile : frontFiles) {
 
 // EJB   
 def ejbFiles = [ "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml",
-  // XYZ ZZZ  "./__rootArtifactId__-ejb/src/main/java/ejb/utils/InitDataServiceEJB.java",
     "./__rootArtifactId__-ejb/src/main/java/ejb/ProcedimentEJB.java",
     "./__rootArtifactId__-ejb/src/main/java/ejb/UnitatOrganicaEJB.java" ];
 for(String ejbFile : ejbFiles) {
@@ -211,9 +212,16 @@ for(String wsFile : wsFiles) {
 }
 
 // SCRIPTS
-def scriptsFiles = [ 
+def scriptsFiles = [
    "./scripts/datasource/oracle.xml",
-   "./scripts/datasource/postgresql.xml" 
+   "./scripts/datasource/postgresql.xml", 
+   "./scripts/bdd/oracle/create_schema.sql",
+   "./scripts/bdd/oracle/sample_data.sql",
+   "./scripts/bdd/oracle/drop_schema.sql",
+   "./scripts/bdd/postgresql/create_schema.sql",
+   "./scripts/bdd/postgresql/sample_data.sql",
+   "./scripts/bdd/postgresql/drop_schema.sql",
+   "./scripts/sqlgenerator/gensql.bat"
   ];
 for(String scriptFile : scriptsFiles) {
   replaceProperties(new File(baseProject, scriptFile), false);

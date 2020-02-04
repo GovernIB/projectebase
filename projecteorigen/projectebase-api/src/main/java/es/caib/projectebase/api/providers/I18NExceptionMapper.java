@@ -50,8 +50,6 @@ public class I18NExceptionMapper implements ExceptionMapper<I18NException> {
 
     @Override
     public Response toResponse(I18NException e) {
-        LOG.error("Rebuda una I18NException: " + e.getMessage());
-
         Locale locale = supportedLocales.isEmpty() ? Locale.getDefault() : supportedLocales.get(0);
         String lang = request.getParameter("lang");
         if (lang != null && !lang.isEmpty()) {
@@ -70,6 +68,8 @@ public class I18NExceptionMapper implements ExceptionMapper<I18NException> {
         }
 
         String msg = I18NTranslatorRest.translate(e, locale);
+        LOG.error("Rebuda una I18NException: " + msg);
+
         return Response.status(Response.Status.BAD_REQUEST)
                 .entity(msg)
                 .language(locale)

@@ -70,7 +70,7 @@ public class UnitatOrganicaResource {
     @Path("{id}")
     @Operation(summary = "Obté una unitat orgànica")
     @APIResponse(responseCode = "200",
-            description = "La unitat orgànica",
+            description = "Unitat orgànica",
             content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = UnitatOrganica.class)))
     @APIResponse(responseCode = "404", description = "Unitat orgànica no trobada")
@@ -95,7 +95,7 @@ public class UnitatOrganicaResource {
     @APIResponse(responseCode = "201", description = "L'enllaç a la unitat orgànica creada")
     public Response create(
             @RequestBody(
-                    description = "Nova unitat orgànica",
+                    description = "Unitat orgànica",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UnitatOrganica.class)))
             @Valid UnitatOrganica unitatOrganica) throws I18NException {
@@ -104,26 +104,42 @@ public class UnitatOrganicaResource {
     }
 
     /**
-     * Actualitza una unitat orgànica.
+     * Actualitza una unitat orgànica. Carrega la unitat orgànica indicada per l'identificador i l'actualitza
+     * amb els camps rebuts.
      *
-     * @param unitatOrganica la unitat orgànica a actualitzar.
-     * @return Un codi 200
+     * @param unitatOrganica dades de la unitat orgànica a actualitzar.
+     * @param id Identificador de la unitat orgància a actualitzar.
+     * @return Un codi 200 si la modificació va bé, 404 si la unidad indicada per l'id no existeix.
      */
     @PUT
+    @Path("{id}")
     @Operation(summary = "Actualitza una unitat orgànica")
     @APIResponse(responseCode = "200", description = "La modificació s'ha realitzat correctament")
+    @APIResponse(responseCode = "404", description = "La unitat orgànica que es vol modificar no existeix.")
     public Response update(
             @RequestBody(
                     description = "Unitat orgànica",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UnitatOrganica.class)))
-            @Valid UnitatOrganica unitatOrganica) throws I18NException {
-        unitatOrganicaService.update(unitatOrganica);
-        return Response.ok().build();
+            @Valid UnitatOrganica unitatOrganica,
+            @Parameter(description = "L'identificador de la unitat", required = true)
+            @PathParam("id") Long id) throws I18NException {
+
+        UnitatOrganica unitatActual = unitatOrganicaService.findById(id);
+        if (unitatActual == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            unitatActual.setNom(unitatOrganica.getNom());
+            unitatActual.setCodiDir3(unitatOrganica.getCodiDir3());
+            unitatActual.setEstat(unitatOrganica.getEstat());
+            unitatActual.setDataCreacio(unitatOrganica.getDataCreacio());
+            unitatOrganicaService.update(unitatActual);
+            return Response.ok().build();
+        }
     }
 
     /**
-     * Esborra una unitat orgànica
+     * Esborra una unitat orgànica.
      *
      * @param id identificador
      * @return Resposta amb status 200 que indica que l'operaicó ha tengut èxit.

@@ -100,9 +100,9 @@ public class SqlGenerator {
 
 
             SchemaGenerator gen = new SchemaGenerator(packagesToScan);
-            File schemaFile = new File(projectName + "_create_schema.sql");
+            File schemaFile = new File("create_schema.sql");
             {
-                File dropFile = new File(projectName + "_drop_schema.sql");
+                File dropFile = new File("drop_schema.sql");
                 File[] files = new File[] { schemaFile, dropFile };
                 Action[] actions = { Action.CREATE, Action.DROP };
                 gen.generate(dialect, files, actions);
