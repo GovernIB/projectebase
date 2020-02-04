@@ -170,7 +170,7 @@ for(String frontFile : frontFiles) {
 
 // EJB   
 def ejbFiles = [ "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml",
-    "./__rootArtifactId__-ejb/src/main/java/ejb/utils/InitDataServiceEJB.java",
+  // XYZ ZZZ  "./__rootArtifactId__-ejb/src/main/java/ejb/utils/InitDataServiceEJB.java",
     "./__rootArtifactId__-ejb/src/main/java/ejb/ProcedimentEJB.java",
     "./__rootArtifactId__-ejb/src/main/java/ejb/UnitatOrganicaEJB.java" ];
 for(String ejbFile : ejbFiles) {

@@ -237,6 +237,7 @@ if (perfilWS.equals("false")) {
 } else {
     
   cleanPom(new File(new File(rootDir, artifactId + "-ws"), "pom.xml"));
+  cleanPom(new File(new File(rootDir, "scripts"), "pom.xml"));
 }
 
 if (perfilBatSh.equals("false")) {

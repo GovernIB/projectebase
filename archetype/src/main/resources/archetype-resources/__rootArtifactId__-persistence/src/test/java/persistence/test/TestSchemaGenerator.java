@@ -1,4 +1,7 @@
-package es.caib.projectebase.persistence.test;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.persistence.test;
 
 import org.junit.Test;
 
@@ -17,6 +20,6 @@ public class TestSchemaGenerator {
     public void testCreateSchema() {
         // Les propietats per la generació es poden indicar dins el persistence.xml o es poden
         // passar dins el Map.
-        Persistence.generateSchema("projectebasePU", Collections.emptyMap());
+        Persistence.generateSchema("${parentArtifactId}PU", Collections.emptyMap());
     }
 }

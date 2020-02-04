@@ -9,6 +9,7 @@
 
     <artifactId>${artifactId}</artifactId>
     <packaging>jar</packaging>
+    <version>${version}</version>
     <name>${projectname} - EJB</name>
     <description>Mòdul EJB de ${projectname}</description>
 

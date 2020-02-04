@@ -64,7 +64,6 @@
                 <artifactId>bootstrap</artifactId>
                 <version>${primefaces.theme.version}</version>
             </dependency>
-
             <!-- Dependències de test -->
             <dependency>
                 <groupId>junit</groupId>
@@ -294,5 +293,6 @@
         <module>projectebase-api</module>
         <module>projectebase-ws</module>
         <module>projectebase-ear</module>
+        <module>scripts</module>
     </modules>
 </project>

@@ -9,6 +9,7 @@
 
     <artifactId>projectebase-ejb</artifactId>
     <packaging>jar</packaging>
+    <version>1.0.0</version>
     <name>ProjecteBase - EJB</name>
     <description>Mòdul EJB de ProjecteBase</description>
 
