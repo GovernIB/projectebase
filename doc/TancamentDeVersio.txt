@@ -3,12 +3,7 @@ ABANS DE TANCAR UNA VERSIO
 
 Les tasques següents resumeixen les feines a realitzar pel tancament d'una versió:
 
-(1) Generar scripts de Base de Dades: 
-     - Anar a projecteorigen\scripts\sqlgenerator
-     - Executar la comanda "gensql.bat org.hibernate.dialect.PostgreSQL82Dialect" i copiar els fitxers 
-       create_schema.sql i drop_schema.sql al directori projecteorigen\scripts\bdd\postgresql.
-     - Executar la comanda "gensql.bat org.hibernate.dialect.Oracle10gDialect" i copiar els fitxers 
-       create_schema.sql, create_schema_caib.sql i drop_schema.sql al directori projecteorigen\scripts\bdd\oracle.
+(1) Revisar si scripts SQL estan correctes
 
 (2) Seguir les passes del fitxer de doc/development.txt
 
