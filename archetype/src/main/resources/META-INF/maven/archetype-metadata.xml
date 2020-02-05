@@ -17,6 +17,9 @@
         <requiredProperty key="perfilBack">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
+        <requiredProperty key="perfilFront">
+          <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
         <requiredProperty key="perfilBatSh">
           <validationRegex>^(true|false)$</validationRegex>
           <defaultValue>false</defaultValue>

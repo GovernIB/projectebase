@@ -196,6 +196,12 @@ String perfilBack = properties.get("perfilBack");
 println " + perfilBack: " + perfilBack;
 checkProperty("^(true|false)\$", perfilBack, "perfilBack");
 
+// -DperfilBack=true
+// perfilFront
+String perfilFront = properties.get("perfilFront");
+println " + perfilFront: " + perfilFront;
+checkProperty("^(true|false)\$", perfilFront, "perfilFront");
+
 // perfilBatSh
 String perfilBatSh = properties.get("perfilBatSh");
 println " + perfilBatSh: " + perfilBatSh;
@@ -260,7 +266,6 @@ if (perfilBatSh.equals("false")) {
 cleanPom(new File(rootDir, "pom.xml"));
 unix2dos(new File(rootDir, "pom.xml"));
 
-
 // .gitignore
 File sourceFile = new File(rootDir, "gitignore");
 Path sourcePath = sourceFile.toPath();
@@ -271,6 +276,23 @@ Files.move( sourcePath, destPath );
 println ""
 println ""
 
-// TODO Falta per perfilBack
+// PerfilBack
+if (perfilBack.equals("false")) {
+  println " + Eliminant Modul Back ..."
+  // Llevar directori
+  removeModule(artifactId +'-back', rootDir)
+  // Llevar Ws de EAR pom
+  def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
+  removeTextBetweenTwoStrings(pomEar, "<!-- BACK START -->", "<!-- BACK END -->");
+}
 
+// PerfilFront
+if (perfilFront.equals("false")) {
+  println " + Eliminant Modul Front ..."
+  // Llevar directori
+  removeModule(artifactId +'-front', rootDir)
+  // Llevar Ws de EAR pom
+  def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
+  removeTextBetweenTwoStrings(pomEar, "<!-- FRONT START -->", "<!-- FRONT END -->");
+}
 

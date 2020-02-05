@@ -43,6 +43,11 @@
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <!-- Les llibreries de primefaces les necessitam incloure dins el WAR -->
         <dependency>
             <groupId>org.primefaces</groupId>
