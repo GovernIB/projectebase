@@ -17,6 +17,9 @@
         <requiredProperty key="perfilBack">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
+        <requiredProperty key="perfilFront">
+          <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
         <requiredProperty key="perfilBatSh">
           <validationRegex>^(true|false)$</validationRegex>
           <defaultValue>false</defaultValue>
@@ -61,7 +64,26 @@
         <include>README.md</include>
       </includes>
     </fileSet>
-
+    <fileSet filtered="true" encoding="UTF-8">
+          <directory>scripts/datasource</directory>
+          <includes>
+            <include>**/*.txt</include>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>scripts/bdd/postgresql</directory>
+          <includes>
+            <include>**/*.sql</include>
+            <include>**/*.txt</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>scripts/bdd/oracle</directory>
+          <includes>
+            <include>**/*.sql</include>
+          </includes>
+        </fileSet>
   </fileSets>
   <modules>
     <module id="${rootArtifactId}-commons" dir="__rootArtifactId__-commons" name="${rootArtifactId}-commons">
@@ -316,48 +338,6 @@
           </includes>
         </fileSet>
       </fileSets>
-    </module>
-    <module id="${rootArtifactId}-scripts" dir="scripts" name="${rootArtifactId}-scripts">
-      <fileSets>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>datasource</directory>
-          <includes>
-            <include>**/*.txt</include>
-            <include>**/*.xml</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>bdd/postgresql</directory>
-          <includes>
-            <include>**/*.sql</include>
-            <include>**/*.txt</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>bdd/oracle</directory>
-          <includes>
-            <include>**/*.sql</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-      <modules>
-        <module id="${rootArtifactId}-sqlgenerator" dir="sqlgenerator" name="${rootArtifactId}-sqlgenerator">
-          <fileSets>
-            <fileSet filtered="true" packaged="true" encoding="UTF-8">
-              <directory>src/main/java</directory>
-              <includes>
-                <include>**/*.java</include>
-              </includes>
-            </fileSet>
-            <fileSet filtered="true" encoding="UTF-8">
-              <directory></directory>
-              <includes>
-                <include>gensql.bat</include>
-              </includes>
-            </fileSet>
-          </fileSets>
-        </module>
-      </modules>
     </module>
   </modules>
 </archetype-descriptor>

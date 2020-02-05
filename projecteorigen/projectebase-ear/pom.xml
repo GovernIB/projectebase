@@ -25,18 +25,22 @@
             <version>1.0.0</version>
             <type>ejb</type>
         </dependency>
+        <!-- BACK START -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-back</artifactId>
             <version>1.0.0</version>
             <type>war</type>
         </dependency>
+        <!-- BACK END -->
+        <!-- FRONT START -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-front</artifactId>
             <version>1.0.0</version>
             <type>war</type>
         </dependency>
+        <!-- FRONT END -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-api</artifactId>
@@ -99,16 +103,20 @@
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-ejb</artifactId>
                         </ejbModule>
+                        <!-- BACK START -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-back</artifactId>
                             <contextRoot>/projectebaseback</contextRoot>
                         </webModule>
+                        <!-- BACK END -->
+                        <!-- FRONT START -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-front</artifactId>
                             <contextRoot>/projectebasefront</contextRoot>
                         </webModule>
+                        <!-- FRONT END -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-api</artifactId>

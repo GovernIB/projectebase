@@ -41,6 +41,7 @@
      var version = document.getElementById("version").value;
      var perfilWS = document.getElementById("generarws").checked;
      var perfilBack = document.getElementById("generarback").checked;
+     var perfilFront = document.getElementById("generarfront").checked;
      var perfilBatSh = document.getElementById("generarbatsh").checked;
 
      var projectnamelowercase = projectname.toLowerCase();
@@ -76,6 +77,7 @@
       + " -Dprojectnameuppercase=" + projectnameuppercase + " -Dprefix=" + prefix
       + " -Dprefixuppercase=" + prefix.toUpperCase() 
       + " -DperfilBack=" + perfilBack
+      + " -DperfilFront=" + perfilFront
       + ((perfilWS == true)?" -DperfilWS=true": "")
       + ((perfilBatSh == true)?" -DperfilBatSh=true": "");
 
@@ -127,6 +129,12 @@
                   <td>Generar Back</td>
                   <td>
                     <input size=35  id="generarback" checked="true" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Generar Front</td>
+                  <td>
+                    <input size=35  id="generarfront" checked="true" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
 

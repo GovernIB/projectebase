@@ -25,18 +25,22 @@
             <version>${version}</version>
             <type>ejb</type>
         </dependency>
+        <!-- BACK START -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-back</artifactId>
             <version>${version}</version>
             <type>war</type>
         </dependency>
+        <!-- BACK END -->
+        <!-- FRONT START -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-front</artifactId>
             <version>${version}</version>
             <type>war</type>
         </dependency>
+        <!-- FRONT END -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-api</artifactId>
@@ -99,16 +103,20 @@
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-ejb</artifactId>
                         </ejbModule>
+                        <!-- BACK START -->
                         <webModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-back</artifactId>
                             <contextRoot>/${rootArtifactId}back</contextRoot>
                         </webModule>
+                        <!-- BACK END -->
+                        <!-- FRONT START -->
                         <webModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-front</artifactId>
                             <contextRoot>/${rootArtifactId}front</contextRoot>
                         </webModule>
+                        <!-- FRONT END -->
                         <webModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-api</artifactId>
