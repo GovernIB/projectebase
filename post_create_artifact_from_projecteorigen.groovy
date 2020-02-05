@@ -156,7 +156,8 @@ def backFiles = [
    "./__rootArtifactId__-back/src/main/webapp/WEB-INF/faces-config.xml",
    "./__rootArtifactId__-back/src/main/webapp/WEB-INF/web.xml",
    "./__rootArtifactId__-back/src/main/webapp/editUnitatOrganica.xhtml",
-   "./__rootArtifactId__-back/src/main/webapp/listUnitatOrganica.xhtml"
+   "./__rootArtifactId__-back/src/main/webapp/listUnitatOrganica.xhtml",
+   "./__rootArtifactId__-back/src/main/java/back/PrincipalInfoServlet.java"
   ];
 for(String backFile : backFiles) {
   replaceProperties(new File(baseProject, backFile), false);
@@ -216,11 +217,13 @@ def scriptsFiles = [
    "./scripts/datasource/oracle.xml",
    "./scripts/datasource/postgresql.xml", 
    "./scripts/bdd/oracle/create_schema.sql",
+   "./scripts/bdd/oracle/create_schema_caib.sql",
    "./scripts/bdd/oracle/sample_data.sql",
    "./scripts/bdd/oracle/drop_schema.sql",
    "./scripts/bdd/postgresql/create_schema.sql",
    "./scripts/bdd/postgresql/sample_data.sql",
-   "./scripts/bdd/postgresql/drop_schema.sql"
+   "./scripts/bdd/postgresql/drop_schema.sql",
+   "./scripts/bdd/postgresql/readme.txt"
   ];
 for(String scriptFile : scriptsFiles) {
   replaceProperties(new File(baseProject, scriptFile), false);

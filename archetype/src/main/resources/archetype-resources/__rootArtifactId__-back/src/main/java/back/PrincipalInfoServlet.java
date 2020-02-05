@@ -43,10 +43,10 @@ public class PrincipalInfoServlet extends HttpServlet {
         Principal principal = request.getUserPrincipal();
         writer.println("request.userPrincipal.name = " + principal.getName());
         writer.println("request.userPrincipal.class = " + principal.getClass());
-        writer.println("request.isUserInRole(" + Constants.PBS_ADMIN + ") = "
-                + request.isUserInRole(Constants.PBS_ADMIN));
-        writer.println("request.isUserInRole(" + Constants.PBS_USER + ") = "
-                + request.isUserInRole(Constants.PBS_USER));
+        writer.println("request.isUserInRole(" + Constants.${prefixuppercase}_ADMIN + ") = "
+                + request.isUserInRole(Constants.${prefixuppercase}_ADMIN));
+        writer.println("request.isUserInRole(" + Constants.${prefixuppercase}_USER + ") = "
+                + request.isUserInRole(Constants.${prefixuppercase}_USER));
 
         // API especificació JACC - JSR 115
         try {

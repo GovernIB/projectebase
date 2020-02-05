@@ -20,6 +20,7 @@
     </servlet-mapping>
     -->
 
+    <!-- Paràmetre que indica els locales soportats -->
     <context-param>
         <param-name>supportedLocales</param-name>
         <param-value>ca,es</param-value>
