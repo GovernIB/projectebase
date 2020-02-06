@@ -45,7 +45,7 @@ public class UnitatOrganicaResource {
      * @return Un codi 200 amb totes les unitats orgàniques.
      */
     @GET
-    @Operation(summary = "Retorna una llista de totes les unitats orgàniques")
+    @Operation(operationId = "getAllUnitats", summary = "Retorna una llista de totes les unitats orgàniques")
     @APIResponse(
             responseCode = "200",
             description = "Llista d'unitats orgàniques",
@@ -65,7 +65,7 @@ public class UnitatOrganicaResource {
      */
     @GET
     @Path("{id}")
-    @Operation(summary = "Obté una unitat orgànica")
+    @Operation(operationId = "getUnitat", summary = "Obté una unitat orgànica")
     @APIResponse(responseCode = "200",
             description = "Unitat orgànica",
             content = @Content(mediaType = "application/json",
@@ -88,7 +88,7 @@ public class UnitatOrganicaResource {
      * @return Un codi 201 amb la localització de la unitat orgància creada.
      */
     @POST
-    @Operation(summary = "Crea una nova unitat orgànica")
+    @Operation(operationId = "createUnitat", summary = "Crea una nova unitat orgànica")
     @APIResponse(responseCode = "201", description = "L'enllaç a la unitat orgànica creada")
     public Response create(
             @RequestBody(
@@ -110,7 +110,7 @@ public class UnitatOrganicaResource {
      */
     @PUT
     @Path("{id}")
-    @Operation(summary = "Actualitza una unitat orgànica")
+    @Operation(operationId = "updateUnitat", summary = "Actualitza una unitat orgànica")
     @APIResponse(responseCode = "200", description = "La modificació s'ha realitzat correctament")
     @APIResponse(responseCode = "404", description = "La unitat orgànica que es vol modificar no existeix.")
     public Response update(
@@ -143,7 +143,7 @@ public class UnitatOrganicaResource {
      */
     @DELETE
     @Path("{id}")
-    @Operation(summary = "Esborra una unitat orgànica")
+    @Operation(operationId = "deleteUnitat", summary = "Esborra una unitat orgànica")
     @APIResponse(responseCode = "200", description = "La unitat s'ha esborrat correctament")
     @APIResponse(responseCode = "404", description = "Unitat orgànica no trobada")
     public Response delete(@Parameter(description = "L'identificador de la unitat", required = true)

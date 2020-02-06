@@ -63,7 +63,7 @@
                             <goal>openapi.json</goal>
                         </goals>
                         <configuration>
-                            <application>es.caib.projectebase.api.SampleApplication</application>
+                            <application>es.caib.projectebase.api.ApiRestConfiguration</application>
                             <endpointClasses>
                                 <endpointClass>es.caib.projectebase.api.services.UnitatOrganicaResource</endpointClass>
                                 <endpointClass>es.caib.projectebase.api.services.ProcedimentResource</endpointClass>
@@ -147,5 +147,6 @@
                 </plugins>
             </build>
         </profile>
+
     </profiles>
 </project>

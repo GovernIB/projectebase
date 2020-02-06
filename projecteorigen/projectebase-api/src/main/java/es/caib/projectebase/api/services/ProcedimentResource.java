@@ -48,7 +48,7 @@ public class ProcedimentResource {
      * @return Un codi 200 amb tots els procediments
      */
     @GET
-    @Operation(summary = "Retorna una llista de tots els procediments")
+    @Operation(operationId = "getProcedimentsByUnitat", summary = "Retorna una llista de tots els procediments")
     @APIResponse(
             responseCode = "200",
             description = "Llista de procediments",
@@ -70,7 +70,7 @@ public class ProcedimentResource {
      */
     @GET
     @Path("{id}")
-    @Operation(summary = "Obté un procediment")
+    @Operation(operationId = "getProcediment", summary = "Obté un procediment")
     @APIResponse(responseCode = "200",
             description = "Procediment",
             content = @Content(mediaType = "application/json",
@@ -98,7 +98,7 @@ public class ProcedimentResource {
      * @return Un codi 201 amb la localització del procediment creat.
      */
     @POST
-    @Operation(summary = "Crea un nou procediment associat a la unitat orgànica")
+    @Operation(operationId = "createProcediment", summary = "Crea un nou procediment associat a la unitat orgànica")
     @APIResponse(responseCode = "201", description = "L'enllaç al procediment creat")
     public Response create(
             @RequestBody(
@@ -122,7 +122,7 @@ public class ProcedimentResource {
      */
     @PUT
     @Path("{id}")
-    @Operation(summary = "Actualitza un procediment")
+    @Operation(operationId = "updateProcediment", summary = "Actualitza un procediment")
     @APIResponse(responseCode = "200", description = "La modificació s'ha realitzat correctament")
     @APIResponse(responseCode = "404", description = "Procediment no trobat")
     public Response update(
@@ -152,7 +152,7 @@ public class ProcedimentResource {
      */
     @DELETE
     @Path("{id}")
-    @Operation(summary = "Esborra un procediment")
+    @Operation(operationId = "deleteProcediment", summary = "Esborra un procediment")
     @APIResponse(responseCode = "200", description = "El procediment s'ha esborrat correctament")
     public Response delete(@Parameter(description = "L'identificador del procediment", required = true)
                         @PathParam("id") Long id) throws I18NException {

@@ -17,14 +17,14 @@ import javax.ws.rs.core.Application;
  */
 @ApplicationPath("/services")
 @Server(url = "/projectebase/api")
-public class SampleApplication extends Application {
+public class ApiRestConfiguration extends Application {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SampleApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ApiRestConfiguration.class);
 
     /**
      * Les aplicacions JAX-RS necessiten un constructor buid.
      */
-    public SampleApplication() {
+    public ApiRestConfiguration() {
     }
 
     /**
