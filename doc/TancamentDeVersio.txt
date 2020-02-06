@@ -22,7 +22,7 @@ Les tasques següents resumeixen les feines a realitzar pel tancament d'una vers
 
 (7) Crear el tag dins de github.com (seguir les normes de versionat)
 
-(8) Modificar el Readme.md del mastre de projectebase per a que:
+(8) Modificar el Readme.md del master de projectebase per a que:
      - L'apartat del generador apunti al generadordecomanda.html
      - Modificar la versió de l'apartat del generador
 
