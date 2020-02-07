@@ -1,4 +1,4 @@
-package es.caib.projectebase.api.providers;
+package es.caib.projectebase.api.filters;
 
 import javax.annotation.Priority;
 import javax.ws.rs.container.ContainerRequestContext;

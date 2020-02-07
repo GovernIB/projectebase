@@ -19,7 +19,7 @@
 
     <!-- Paràmetre que indica els locales soportats -->
     <context-param>
-        <param-name>supportedLocales</param-name>
+        <param-name>es.caib.projectebase.api.supportedLocales</param-name>
         <param-value>ca,es</param-value>
     </context-param>
 

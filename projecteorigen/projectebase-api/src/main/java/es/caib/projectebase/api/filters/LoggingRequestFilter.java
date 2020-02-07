@@ -1,4 +1,4 @@
-package es.caib.projectebase.api.providers;
+package es.caib.projectebase.api.filters;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

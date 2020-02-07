@@ -5,6 +5,7 @@ import es.caib.projectebase.ejb.ProcedimentService;
 import es.caib.projectebase.persistence.Procediment;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.headers.Header;
 import org.eclipse.microprofile.openapi.annotations.links.Link;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -77,7 +78,7 @@ public class ProcedimentResource {
                     schema = @Schema(implementation = Procediment.class)),
             links = @Link(name = "unitat", description = "Enllaç a la unitat orgància del procediment")
     )
-    @APIResponse(responseCode = "404", description = "Procediment no trobat")
+    @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response get(@Parameter(description = "L'identificador del procediment", required = true)
                         @PathParam("id") Long id) {
         Procediment procediment = procedimentService.findById(id);
@@ -99,7 +100,8 @@ public class ProcedimentResource {
      */
     @POST
     @Operation(operationId = "createProcediment", summary = "Crea un nou procediment associat a la unitat orgànica")
-    @APIResponse(responseCode = "201", description = "L'enllaç al procediment creat")
+    @APIResponse(responseCode = "201", description = "Recurs creat",
+            headers = @Header(name = "location", description = "Enllaç al nou recurs"))
     public Response create(
             @RequestBody(
                     description = "Procediment",
@@ -123,8 +125,8 @@ public class ProcedimentResource {
     @PUT
     @Path("{id}")
     @Operation(operationId = "updateProcediment", summary = "Actualitza un procediment")
-    @APIResponse(responseCode = "200", description = "La modificació s'ha realitzat correctament")
-    @APIResponse(responseCode = "404", description = "Procediment no trobat")
+    @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
+    @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response update(
             @RequestBody(
                     description = "Procediment",
@@ -140,7 +142,7 @@ public class ProcedimentResource {
             procedimentActual.setCodiSia(procediment.getCodiSia());
             procedimentActual.setNom(procediment.getNom());
             procedimentService.update(procedimentActual);
-            return Response.ok().build();
+            return Response.noContent().build();
         }
     }
 
@@ -153,10 +155,15 @@ public class ProcedimentResource {
     @DELETE
     @Path("{id}")
     @Operation(operationId = "deleteProcediment", summary = "Esborra un procediment")
-    @APIResponse(responseCode = "200", description = "El procediment s'ha esborrat correctament")
+    @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
+    @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response delete(@Parameter(description = "L'identificador del procediment", required = true)
                         @PathParam("id") Long id) throws I18NException {
-        procedimentService.deleteById(id);
-        return Response.ok().build();
+        if (procedimentService.findById(id) == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            procedimentService.deleteById(id);
+            return Response.noContent().build();
+        }
     }
 }
