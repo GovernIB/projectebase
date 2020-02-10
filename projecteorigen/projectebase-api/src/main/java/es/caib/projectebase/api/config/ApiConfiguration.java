@@ -19,7 +19,7 @@ import javax.ws.rs.core.Application;
  * Aquí fixam la informació general d'OpenAPI, la ubicació del servidor (o servidors) que bàsicament és el
  * contextpath, els sistemes d'autenticació admesos....
  *
- * Al package services i a les classes amb els endpoints dels recursos.
+ * Al package services hi ha les classes amb els endpoints dels recursos.
  *  Segueix les convencions més comunes de les apis REST, es pot trobar una bona descripció aquí:
  *     https://restfulapi.net/http-methods/
  *  Els mètodes de consulta GET, retornen un 200 amb la informació o 404 si no es troba.

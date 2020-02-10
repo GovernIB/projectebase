@@ -10,7 +10,10 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 /**
- * Mapeja la responsa a una excepció de validació.
+ * Mapeja una excepció processant la petició en una resposta HTTP.
+ * Aquest tipus d'excepció és produeix quan el format de la petició no és correcte, com ara
+ * una cadena JSON invàlida.
+ * La resposta retornada serà un codi 400, ja que és un error del client.
  *
  * @author areus
  */

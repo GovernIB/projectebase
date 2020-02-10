@@ -15,6 +15,8 @@ import java.util.Locale;
 
 /**
  * Permet mapejar a una respota comuna a les excepcions de tipus I18NException.
+ * Són bàsicament excepcions a la lògica de l'aplicació, i per tant enviarem un error
+ * 400 al client.
  *
  * @author areus
  */

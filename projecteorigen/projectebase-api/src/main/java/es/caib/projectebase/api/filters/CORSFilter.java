@@ -16,6 +16,8 @@ import javax.ws.rs.ext.Provider;
  * Veure: https://www.html5rocks.com/en/tutorials/cors/
  * Activam {@link PreMatching} perquè cal capturar les cridades amb el mètode OPTIONS quen no corresponen a cap resource
  * Amb la prioritat 200 asseguram que s'executa després del logging, però abans que qualsevol altre.
+ *
+ * @author areus
  */
 @Provider
 @PreMatching
@@ -34,7 +36,7 @@ public class CORSFilter implements ContainerRequestFilter, ContainerResponseFilt
     }
 
     /**
-     * Estableix les capçaleres necessaries de CORS
+     * Estableix les capçaleres necessaries de CORS a la resposta.
      */
     @Override
     public void filter(ContainerRequestContext request, ContainerResponseContext response) {

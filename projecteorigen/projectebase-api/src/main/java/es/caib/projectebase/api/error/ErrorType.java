@@ -1,7 +1,8 @@
 package es.caib.projectebase.api.error;
 
 /**
- * Tipus possibles d'error
+ * Tipus possibles d'error. Emprat dins {@link ErrorBean} per enviar la informació d'un
+ * error del client.
  *
  * @author areus
  */

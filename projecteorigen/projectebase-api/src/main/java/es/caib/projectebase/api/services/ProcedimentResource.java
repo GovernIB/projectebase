@@ -120,7 +120,7 @@ public class ProcedimentResource {
      *
      * @param procediment dades a actualitzar del procediment.
      * @param id Identificador del procediment a actualitzar.
-     * @return Un codi 200 si la modificació va bé, 404 si el procediment indicat per l'id no existeix.
+     * @return Resposta amb status 204 si l'operació té èxit, o 404 si el recurs amb l'id indicat no existeix.
      */
     @PUT
     @Path("{id}")
@@ -150,7 +150,7 @@ public class ProcedimentResource {
      * Esborra un procediment
      *
      * @param id identificador
-     * @return Resposta amb status 200 que indica que l'operació ha tengut èxit.
+     * @return Resposta amb status 204 si l'operació té èxit, o 404 si el recurs amb l'id indicat no existeix.
      */
     @DELETE
     @Path("{id}")

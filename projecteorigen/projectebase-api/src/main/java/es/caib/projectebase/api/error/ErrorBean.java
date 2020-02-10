@@ -1,7 +1,7 @@
 package es.caib.projectebase.api.error;
 
 /**
- * Bean per modelar un error a l'API REST
+ * Bean per modelar un error de client a l'API REST
  *
  * @author areus
  */

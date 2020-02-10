@@ -68,8 +68,8 @@ public class LocaleRequestFilter implements ContainerRequestFilter , ContainerRe
                 locale = langLocale;
             }
         } else {
-            List<Locale> acceptableLangauges = request.getAcceptableLanguages();
-            for (Locale acceptableLocale : acceptableLangauges) {
+            List<Locale> acceptableLanguages = request.getAcceptableLanguages();
+            for (Locale acceptableLocale : acceptableLanguages) {
                 if (supportedLocales.contains(acceptableLocale)) {
                     locale = acceptableLocale;
                     break;

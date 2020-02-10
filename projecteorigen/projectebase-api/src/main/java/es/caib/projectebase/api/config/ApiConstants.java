@@ -1,14 +1,14 @@
 package es.caib.projectebase.api.config;
 
 /**
- * Constnats emprades a l'API REST
+ * Constants emprades a l'API REST
  *
  * @author areus
  */
 public interface ApiConstants {
 
     /**
-     * Propietat del request per emmagatzmar el locale actual de la petició.
+     * Propietat del request per emmagatzemar el locale actual de la petició.
      */
     String REQUEST_LOCALE = "es.caib.projectebase.api.requestLocale";
 

@@ -10,7 +10,8 @@ import javax.ws.rs.ext.Provider;
 
 /**
  * Permet mapejar a una respota qualsevol excepció unchecked.
- * Evita que els detalls de l'excepció arribin al client.
+ * Envia un codi d'error 500 i evita que els detalls de l'excepció arribin al client,
+ * ja que un error de sistema l'ha de mirar l'administrador.
  *
  * @author areus
  */
