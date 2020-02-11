@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -88,18 +89,14 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
     }
 
     @Override
-    public void delete(@NotNull E entity) throws I18NException {
+    public void delete(@NotNull PK id) throws I18NException {
         try {
+            E entity = getReference(id);
             entityManager.remove(entity);
-        } catch (Throwable e) {
-            //entity.error.deleting=Error desconegut esborrant un objecte de tipus {0}: {1}
-            throw new I18NException("entity.error.deleting", entityClass.getName(), e.getMessage());
+        } catch (EntityNotFoundException e) {
+            //entity.error.notexists=L´objecte de tipus {0} amb identificador {1} no existeix a la base de dades
+            throw new I18NException("entity.error.notexists", entityClass.getName(), String.valueOf(id));
         }
-    }
-
-    @Override
-    public void deleteById(@NotNull PK id) throws I18NException {
-        delete(getReference(id));
     }
 
     @Override
