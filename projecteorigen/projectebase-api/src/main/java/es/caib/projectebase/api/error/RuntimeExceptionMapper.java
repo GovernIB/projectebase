@@ -22,7 +22,7 @@ public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException>
 
     @Override
     public Response toResponse(RuntimeException e) {
-        LOG.error("Rebuda una RuntimeException: ", e);
+        LOG.error("Rebuda una RuntimeException: " + e.getMessage());
         LOG.error("Retornam un codi 500 al client");
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
