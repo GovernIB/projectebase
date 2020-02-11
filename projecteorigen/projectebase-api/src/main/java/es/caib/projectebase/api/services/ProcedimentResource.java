@@ -162,7 +162,7 @@ public class ProcedimentResource {
         if (procedimentService.findById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
-            procedimentService.deleteById(id);
+            procedimentService.delete(id);
             return Response.noContent().build();
         }
     }

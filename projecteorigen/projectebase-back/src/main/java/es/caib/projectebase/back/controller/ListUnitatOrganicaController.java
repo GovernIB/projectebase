@@ -103,7 +103,7 @@ public class ListUnitatOrganicaController implements Serializable {
     public void delete(Long id) {
         log.debug("delete");
         try {
-            unitatOrganicaService.deleteById(id);
+            unitatOrganicaService.delete(id);
             context.addMessage(null, new FacesMessage("Registre borrat", ""));
         } catch (I18NException e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));

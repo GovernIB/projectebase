@@ -83,7 +83,7 @@ public class ListProcedimentController implements Serializable {
     public void delete(Long id) {
         log.debug("delete");
         try {
-            procedimentService.deleteById(id);
+            procedimentService.delete(id);
             context.addMessage(null, new FacesMessage("Registre borrat"));
             // Actualitza les dades
             procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());

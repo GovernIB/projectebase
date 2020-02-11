@@ -153,7 +153,7 @@ public class UnitatOrganicaResource {
         if (unitatOrganicaService.findById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
-            unitatOrganicaService.deleteById(id);
+            unitatOrganicaService.delete(id);
             return Response.noContent().build();
         }
     }
