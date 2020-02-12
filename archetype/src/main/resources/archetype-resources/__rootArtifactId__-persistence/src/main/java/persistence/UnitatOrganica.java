@@ -3,6 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.persistence;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,6 +44,7 @@ import static javax.persistence.EnumType.ORDINAL;
             @Index(name= "${prefixuppercase}_UNITAT_CODIDIR3_UK_I", columnList = "CODIDIR3")
         }
 )
+@Schema(name="Unitat")
 public class UnitatOrganica implements Serializable {
 
     private static final long serialVersionUID = 1L;

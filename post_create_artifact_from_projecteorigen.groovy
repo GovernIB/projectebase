@@ -223,7 +223,8 @@ def scriptsFiles = [
    "./scripts/bdd/postgresql/create_schema.sql",
    "./scripts/bdd/postgresql/sample_data.sql",
    "./scripts/bdd/postgresql/drop_schema.sql",
-   "./scripts/bdd/postgresql/readme.txt"
+   "./scripts/bdd/postgresql/readme.txt",
+   "./scripts/keycloak/keycloak-subsystem.xml"
   ];
 for(String scriptFile : scriptsFiles) {
   replaceProperties(new File(baseProject, scriptFile), false);

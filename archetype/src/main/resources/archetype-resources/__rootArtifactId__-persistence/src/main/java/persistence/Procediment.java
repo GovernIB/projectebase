@@ -3,6 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.persistence;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,6 +43,7 @@ import java.util.Objects;
             @Index(name= "${prefixuppercase}_PROCEDIMENT_UNITAT_FK_I", columnList = "UNITATORGANICAID")
         }
 )
+@Schema(name="Procediment")
 public class Procediment implements Serializable {
 
     private static final long serialVersionUID = 1L;
