@@ -22,6 +22,12 @@ Pàgina per edició d'unitats orgàniques.
         #{editUnitatOrganica.create ? labels.newUnitatOrganica_title : labels.editUnitatOrganica_title}
     </ui:define>
 
+    <ui:define name="breadcrumb">
+        <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+        <p:menuitem value="#{editUnitatOrganica.create? labels.newUnitatOrganica_link : labels.editUnitatOrganica_link}"
+                    outcome="/editUnitatOrganica" includeViewParams="true" />
+    </ui:define>
+    
     <ui:define name="content">
 
         <h:form id="form">

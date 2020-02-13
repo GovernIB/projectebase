@@ -145,17 +145,17 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                 <p:commandButton value="#{labels.button_no}" type="button" styleClass="ui-confirmdialog-no"
                                  icon="ui-icon-close"/>
             </p:confirmDialog>
+        
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="miga">
+                <p:breadCrumb styleClass="breadcrumb" homeDisplay="text">
+                    <p:menuitem value="Inici" outcome="/index" />
+                    <ui:insert name="breadcrumb" />
+                </p:breadCrumb>
+            </nav>
+        
         </h:form>
-
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb" class="miga">
-            <div class="migaDiv">
-                <ol class="breadcrumb" id="migaPan">
-                    <li class="breadcrumb-item active"><a href="">Inici</a></li>
-                    <li class="breadcrumb-item active">No se ha definido miga de pan</li>
-                </ol>
-            </div>
-        </nav>
+        
         <!-- FI Breadcrumb -->
 
         <!-- Content -->

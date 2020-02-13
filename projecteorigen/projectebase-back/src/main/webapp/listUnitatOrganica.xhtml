@@ -16,6 +16,10 @@ Pàgina amb el llistat d'unitats orgàniques.
 
     <ui:define name="pageTitle">#{labels.listUnitatOrganica_title}</ui:define>
 
+    <ui:define name="breadcrumb">
+        <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+    </ui:define>
+    
     <ui:define name="content">
         <h:form>
             <p:dataTable id="dataTable" value="#{listUnitatOrganica.lazyModel}" var="unitatOrganica" sortMode="multiple"
