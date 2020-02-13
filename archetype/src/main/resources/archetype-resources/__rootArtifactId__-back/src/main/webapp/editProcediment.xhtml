@@ -23,6 +23,14 @@ Pàgina per editar procediments
         </h:outputFormat>
     </ui:define>
 
+    <ui:define name="breadcrumb">
+        <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+        <p:menuitem value="#{labels.listProcediment_link}" outcome="/listProcediment" includeViewParams="true" />
+        <p:menuitem value="#{editProcediment.create ? labels.newProcediment_link : labels.editProcediment_link}" 
+                    outcome="/editProcediment" includeViewParams="true" />
+    </ui:define>
+    
+
     <ui:define name="content">
 
         <h:form id="form">

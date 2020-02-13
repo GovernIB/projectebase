@@ -81,18 +81,14 @@ a:hover{
 	padding-left: 45px;
 	background-color: #ffffff;
 	margin-bottom: 0px;
+        width: 100%;
+	border-bottom: 2px solid #EAEAEA;
 }
-.breadcrumb-item+.breadcrumb-item::before {
-	content: ">" !important;
-}
+
 .miga{
 	position: fixed;
 	z-index: 20;
 	width: 100%;
-}
-.migaDiv{
-	width: 100%;
-	border-bottom: 2px solid #EAEAEA;
 }
 /* FI Motlla de pa */
 
@@ -503,4 +499,11 @@ a.iconoXarxes{
 }
 .ui-widget {
 	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
+}
+.ui-breadcrumb a {
+	color: #4dba79;
+}
+.ui-breadcrumb a:hover {
+	color: #000;
+	text-decoration: none;
 }

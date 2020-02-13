@@ -25,6 +25,12 @@ Pàgina per edició d'unitats orgàniques.
         ${symbol_pound}{editUnitatOrganica.create ? labels.newUnitatOrganica_title : labels.editUnitatOrganica_title}
     </ui:define>
 
+    <ui:define name="breadcrumb">
+        <p:menuitem value="${symbol_pound}{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+        <p:menuitem value="${symbol_pound}{editUnitatOrganica.create? labels.newUnitatOrganica_link : labels.editUnitatOrganica_link}"
+                    outcome="/editUnitatOrganica" includeViewParams="true" />
+    </ui:define>
+    
     <ui:define name="content">
 
         <h:form id="form">
