@@ -41,7 +41,8 @@
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
                 <version>${javaee-api.version}</version>
-                <exclusions><!-- La dependència de javax.mail fa referència a activation 1.1 enlloc de 1.1.1 -->
+                <exclusions>
+                    <!-- La dependència de javax.mail fa referència a activation 1.1 enlloc de 1.1.1 -->
                     <exclusion>
                         <groupId>javax.activation</groupId>
                         <artifactId>activation</artifactId>
@@ -53,7 +54,6 @@
                 <artifactId>activation</artifactId>
                 <version>${activation.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.eclipse.microprofile.openapi</groupId>
                 <artifactId>microprofile-openapi-api</artifactId>
@@ -112,7 +112,8 @@
                 <artifactId>resteasy-client</artifactId>
                 <version>${resteasy.version}</version>
                 <scope>test</scope>
-                <exclusions><!-- JSON-API ja està inclòs dins les apis JAVA EE 8 -->
+                <exclusions>
+                    <!-- JSON-API ja està inclòs dins les apis JAVA EE 8 -->
                     <exclusion>
                         <groupId>javax.json</groupId>
                         <artifactId>javax.json-api</artifactId>
@@ -125,7 +126,8 @@
                 <artifactId>resteasy-json-binding-provider</artifactId>
                 <version>${resteasy.version}</version>
                 <scope>test</scope>
-                <exclusions><!-- JSON-API ja està inclòs dins les apis JAVA EE 8 -->
+                <exclusions>
+                    <!-- JSON-API ja està inclòs dins les apis JAVA EE 8 -->
                     <exclusion>
                         <groupId>javax.json</groupId>
                         <artifactId>javax.json-api</artifactId>
