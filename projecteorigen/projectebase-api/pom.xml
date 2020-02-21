@@ -43,6 +43,27 @@
             <artifactId>microprofile-openapi-api</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Dependències de test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--
+        Llibreries necessàries implementació client JAX-RS
+        Només són necessàries perquè al test el client s'executa fora del servidor d'aplicacions.
+        -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-json-binding-provider</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
