@@ -42,6 +42,7 @@
      var perfilWS = document.getElementById("generarws").checked;
      var perfilBack = document.getElementById("generarback").checked;
      var perfilFront = document.getElementById("generarfront").checked;
+     var perfilApiFirmaSimple = document.getElementById("generarapifirmasimple").checked;
      var perfilBatSh = document.getElementById("generarbatsh").checked;
 
      var projectnamelowercase = projectname.toLowerCase();
@@ -78,6 +79,7 @@
       + " -Dprefixuppercase=" + prefix.toUpperCase() 
       + " -DperfilBack=" + perfilBack
       + " -DperfilFront=" + perfilFront
+      + " -DperfilApiFirmaSimple=" + perfilApiFirmaSimple
       + ((perfilWS == true)?" -DperfilWS=true": "")
       + ((perfilBatSh == true)?" -DperfilBatSh=true": "");
 
@@ -135,6 +137,12 @@
                   <td>Generar Front</td>
                   <td>
                     <input size=35  id="generarfront" checked="true" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Generar Exemple ApiFirmaSimple</td>
+                  <td>
+                    <input size=35  id="generarapifirmasimple" checked="false" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
 

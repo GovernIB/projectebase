@@ -53,7 +53,7 @@ IF /I "%ERRORLEVEL%" EQU "0" (
   
   
   cd ..
-  
+  REM Això neteja d'espais el pom.xml
   call mvn org.codehaus.gmaven:groovy-maven-plugin:2.1.1:execute  -Dsource=post_regenerate_apifirmasimple.groovy
 
   
