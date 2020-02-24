@@ -30,6 +30,16 @@ I PER COPIAR EXEMPLES D'ADMINISTRACIO ELECTRONICA
             </plugin>
         </plugins>
     </build>
+    
+    <repositories>
+        <!-- Repositori del GovernIB amb llibreries compartides, plugins, clients d'altres eines... -->
+        <repository>
+            <id>github-governib-maven</id>
+            <name>GitHub GovernIB Maven Repository</name>
+            <url>https://governib.github.io/maven/maven/</url>
+        </repository>
+    </repositories>
+    
 
     <profiles>
 
