@@ -3,10 +3,15 @@ import static groovy.io.FileType.*
 import java.nio.file.Path
 import java.nio.file.Files
 import java.util.regex.Pattern
+import java.io.*
+import javax.xml.transform.*;
+import javax.xml.transform.stream.*;
 
 //GroovyShell shell = new GroovyShell()
 //def ProjecteBaseUtils = shell.parse(new File("./projectebaseutils.groovy"))
 //ProjecteBaseUtils.method()
+
+
 
 def removeModule(module, rootDir) {
     assert new File(rootDir, module).deleteDir()
@@ -113,7 +118,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 
 // POMS
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
-     "__rootArtifactId__-front", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
+     "__rootArtifactId__-front", "__rootArtifactId__-apifirmasimple", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
 	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", 
 	 "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
 

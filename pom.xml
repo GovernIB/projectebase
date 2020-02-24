@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-AQUEST POM NOMES ES PER PODER EXECUTAR GROOVY
+AQUEST POM NOMES ES PER PODER EXECUTAR GROOVY 
+I PER COPIAR EXEMPLES D'ADMINISTRACIO ELECTRONICA
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.fundaicobit.projectebaseparent</groupId>
+    <groupId>org.fundaciobit.projectebaseparent</groupId>
     <artifactId>projectebaseparent</artifactId>
     <version>1.0.2</version>
     <packaging>pom</packaging>
@@ -29,5 +30,169 @@ AQUEST POM NOMES ES PER PODER EXECUTAR GROOVY
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+
+
+        <profile>
+            <id>apifirmasimple</id>
+
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.1.1</version>    
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>es.caib.apisib.apifirmasimple</groupId>
+                                            <artifactId>apifirmasimple-example-web</artifactId>
+                                            <version>1.0.0</version>
+                                            <classifier>sources</classifier>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.basedir}/tmp/apifirmasimpleoriginal/src/main/java</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>es.caib.apisib.apifirmasimple</groupId>
+                                            <artifactId>apifirmasimple-example-web</artifactId>
+                                            <version>1.0.0</version>
+                                            <type>war</type>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.basedir}/tmp/apifirmasimpleoriginal/src/main/webapp</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                    <!-- other configurations here /apifirmasimple_repos/src/main/java-->
+                                </configuration>
+
+
+                            </execution>
+
+                        </executions>
+
+                    </plugin>
+
+
+                    <plugin>
+                        <groupId>com.coderplus.maven.plugins</groupId>
+                        <artifactId>copy-rename-maven-plugin</artifactId>
+                        <version>1.0</version>
+                        <executions>
+                            <execution>
+                                <id>renames-files-1</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>rename</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceFile>./tmp/apifirmasimpleoriginal/src/main/java/META-INF/maven/es.caib.apisib.apifirmasimple/apifirmasimple-example-web/pom.xml</sourceFile>
+                                    <destinationFile>./tmp/apifirmasimpleoriginal/pom.xml</destinationFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+
+                    <plugin>
+                        <groupId>com.coderplus.maven.plugins</groupId>
+                        <artifactId>copy-rename-maven-plugin</artifactId>
+                        <version>1.0</version>
+                        <executions>
+                            <execution>
+                                <id>rename-files-2</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>rename</goal>
+                                </goals>
+                                <configuration>
+
+                                    <fileSets>
+                                        <fileSet>
+                                            <sourceFile>./tmp/apifirmasimpleoriginal/src/main/java/META-INF/maven/es.caib.apisib.apifirmasimple/apifirmasimple-example-web/pom.xml</sourceFile>
+                                            <destinationFile>./tmp/apifirmasimpleoriginal/pom.xml</destinationFile>
+                                        </fileSet>
+                                        <fileSet>
+                                            <sourceFile>./tmp/apifirmasimpleoriginal/src/main/java/shared/ValidationMessages.properties</sourceFile>
+                                            <destinationFile>./tmp/apifirmasimpleoriginal/src/main/resources/shared/ValidationMessages.properties</destinationFile>
+                                        </fileSet>   
+                                        <fileSet>
+                                            <sourceFile>./tmp/apifirmasimpleoriginal/src/main/java/shared/ValidationMessages_es.properties</sourceFile>
+                                            <destinationFile>./tmp/apifirmasimpleoriginal/src/main/resources/shared/ValidationMessages_es.properties</destinationFile>
+                                        </fileSet>
+                                        <fileSet>
+                                            <sourceFile>./tmp/apifirmasimpleoriginal/src/main/java/ValidationMessages.properties</sourceFile>
+                                            <destinationFile>./tmp/apifirmasimpleoriginal/src/main/resources/ValidationMessages.properties</destinationFile>
+                                        </fileSet> 
+
+                                        <fileSet>
+                                            <sourceFile>./tmp/apifirmasimpleoriginal/src/main/java/ValidationMessages_es.properties</sourceFile>
+                                            <destinationFile>./tmp/apifirmasimpleoriginal/src/main/resources/ValidationMessages_es.properties</destinationFile>
+                                        </fileSet>  
+
+                                        <fileSet>
+                                            <sourceFile>./tmp/apifirmasimpleoriginal/src/main/java/messages_es.properties</sourceFile>
+                                            <destinationFile>./tmp/apifirmasimpleoriginal/src/main/resources/messages_es.properties</destinationFile>
+                                        </fileSet>  
+                                        <fileSet>
+                                            <sourceFile>./tmp/apifirmasimpleoriginal/src/main/java/messages.properties</sourceFile>
+                                            <destinationFile>./tmp/apifirmasimpleoriginal/src/main/resources/messages.properties</destinationFile>
+                                        </fileSet>                                         
+
+                                    </fileSets>
+
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+
+                    <plugin>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <version>2.2</version>
+                        <executions>
+                            <execution>
+                                <id>auto-clean</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>clean</goal>
+                                </goals>
+                                <configuration>
+                                    <filesets>
+                                        <fileset>
+                                            <directory>./tmp/apifirmasimpleoriginal/src/main</directory>
+                                            <includes>
+                                                <include>webapp/META-INF</include>
+                                                <include>webapp/WEB-INF/classes</include>
+                                                <include>webapp/WEB-INF/lib</include>
+                                            </includes>
+                                        </fileset>
+                                        <fileset>
+                                            <directory>./tmp/apifirmasimpleoriginal/src/main/java</directory>
+                                            <includes>
+                                                <include>META-INF</include>
+                                                <include>shared</include>
+                                            </includes>
+                                        </fileset>
+                                    </filesets>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
+
+    </profiles>
 
 </project>
