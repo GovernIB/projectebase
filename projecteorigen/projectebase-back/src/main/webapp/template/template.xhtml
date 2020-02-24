@@ -24,8 +24,8 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/datatables.min.css" />
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/open-iconic-bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/styles.css" />
-    <script src="#{request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="#{request.contextPath}/js/datatables.min.js" type="text/javascript"></script>
+    <script src="#{request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>    
+    <script src="#{request.contextPath}/js/primefaceslocale_#{sessionController.language}.js" type="text/javascript"></script>
 </h:head>
 <h:body>
     <!--
@@ -108,9 +108,8 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                                     <p:repeat value="#{languageController.languages}" var="lang">
                                         <p:commandLink styleClass="dropdown-item mobil" hreflang="#{lang}"
                                                        action="#{sessionController.setLanguage(lang)}"
-                                                       value="#{labels['idioma_link_' += lang]}">
-                                            <f:ajax render="@all" />
-                                        </p:commandLink>
+                                                       value="#{labels['idioma_link_' += lang]}"
+                                                       ajax="false" />
                                     </p:repeat>
                                 </div>
                             </li>
@@ -131,31 +130,32 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                 </nav>
                 <!-- FI Header -->
             </header>
+        </h:form>
 
-            <p:growl id="messages"
-                     globalOnly="true"
-                     showDetail="true"
-                     life="5000"
-                     escape="false"/>
+        <p:growl id="messages"
+                 globalOnly="true"
+                 showDetail="true"
+                 life="5000"
+                 escape="false"/>
 
+        <h:form>
             <p:confirmDialog global="true">
                 <p:commandButton value="#{labels.button_si}" type="button" styleClass="ui-confirmdialog-yes"
                                  icon="ui-icon-check"/>
                 <p:commandButton value="#{labels.button_no}" type="button" styleClass="ui-confirmdialog-no"
                                  icon="ui-icon-close"/>
             </p:confirmDialog>
-
+        
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="miga">
+                <p:breadCrumb styleClass="breadcrumb" homeDisplay="text">
+                    <p:menuitem value="Inici" outcome="/index" />
+                    <ui:insert name="breadcrumb" />
+                </p:breadCrumb>
+            </nav>
+        
         </h:form>
-
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb" class="miga">
-            <div class="migaDiv">
-                <ol class="breadcrumb" id="migaPan">
-                    <li class="breadcrumb-item active"><a href="">Inici</a></li>
-                    <li class="breadcrumb-item active">No se ha definido miga de pan</li>
-                </ol>
-            </div>
-        </nav>
+        
         <!-- FI Breadcrumb -->
 
         <!-- Content -->

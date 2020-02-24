@@ -25,6 +25,12 @@ Pàgina per edició d'unitats orgàniques.
         ${symbol_pound}{editUnitatOrganica.create ? labels.newUnitatOrganica_title : labels.editUnitatOrganica_title}
     </ui:define>
 
+    <ui:define name="breadcrumb">
+        <p:menuitem value="${symbol_pound}{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+        <p:menuitem value="${symbol_pound}{editUnitatOrganica.create? labels.newUnitatOrganica_link : labels.editUnitatOrganica_link}"
+                    outcome="/editUnitatOrganica" includeViewParams="true" />
+    </ui:define>
+    
     <ui:define name="content">
 
         <h:form id="form">
@@ -45,7 +51,7 @@ Pàgina per edició d'unitats orgàniques.
                 </ui:define>
                 <ui:define name="input">
                     <p:inputText id="codiDir3" value="${symbol_pound}{editUnitatOrganica.current.codiDir3}" />
-                    <p:message for="codiDir3" errorStyle="color: red"/>
+                    <p:message for="codiDir3" />
                 </ui:define>
             </ui:decorate>
 
@@ -55,7 +61,7 @@ Pàgina per edició d'unitats orgàniques.
                 </ui:define>
                 <ui:define name="input">
                     <p:inputText id="nom" value="${symbol_pound}{editUnitatOrganica.current.nom}" />
-                    <p:message for="nom" errorStyle="color: red"/>
+                    <p:message for="nom" />
                 </ui:define>
             </ui:decorate>
 
@@ -66,7 +72,7 @@ Pàgina per edició d'unitats orgàniques.
                 <ui:define name="input">
                     <p:datePicker id="dataCreacio" value="${symbol_pound}{editUnitatOrganica.current.dataCreacio}"
                                   pattern="dd-MM-yyyy" />
-                    <p:message for="dataCreacio" errorStyle="color: red"/>
+                    <p:message for="dataCreacio" />
                 </ui:define>
             </ui:decorate>
 
@@ -78,7 +84,7 @@ Pàgina per edició d'unitats orgàniques.
                     <p:selectOneMenu id="estat" value="${symbol_pound}{editUnitatOrganica.current.estat}">
                         <f:selectItems value="${symbol_pound}{estats.values()}" var="estat" />
                     </p:selectOneMenu>
-                    <p:message for="estat" errorStyle="color: red"/>
+                    <p:message for="estat" />
                 </ui:define>
             </ui:decorate>
 

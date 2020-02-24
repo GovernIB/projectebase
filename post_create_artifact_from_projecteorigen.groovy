@@ -186,7 +186,8 @@ for(String ejbFile : ejbFiles) {
 
 // REST
 def restFiles = [
-   "./__rootArtifactId__-api/src/main/webapp/WEB-INF/web.xml"
+   "./__rootArtifactId__-api/src/main/webapp/WEB-INF/web.xml",
+   "./__rootArtifactId__-api/src/test/java/api/test/TestApi.java"
   ];
 for(String restFile : restFiles) {
   replaceProperties(new File(baseProject, restFile), false);
@@ -219,16 +220,16 @@ for(String wsFile : wsFiles) {
 
 // SCRIPTS
 def scriptsFiles = [
-   "./scripts/datasource/oracle.xml",
-   "./scripts/datasource/postgresql.xml", 
-   "./scripts/bdd/oracle/create_schema.sql",
-   "./scripts/bdd/oracle/create_schema_caib.sql",
-   "./scripts/bdd/oracle/sample_data.sql",
-   "./scripts/bdd/oracle/drop_schema.sql",
-   "./scripts/bdd/postgresql/create_schema.sql",
-   "./scripts/bdd/postgresql/sample_data.sql",
-   "./scripts/bdd/postgresql/drop_schema.sql",
-   "./scripts/bdd/postgresql/readme.txt"
+   "./scripts/datasources/oracle.xml",
+   "./scripts/datasources/postgresql.xml", 
+   "./scripts/bbdd/oracle/01_create_schema.sql",
+   "./scripts/bbdd/oracle/02_sample_data.sql",
+   "./scripts/bbdd/oracle/drop_schema.sql",
+   "./scripts/bbdd/postgresql/01_create_schema.sql",
+   "./scripts/bbdd/postgresql/02_sample_data.sql",
+   "./scripts/bbdd/postgresql/drop_schema.sql",
+   "./scripts/bbdd/postgresql/readme.txt",
+   "./scripts/keycloak/keycloak-subsystem.xml"
   ];
 for(String scriptFile : scriptsFiles) {
   replaceProperties(new File(baseProject, scriptFile), false);

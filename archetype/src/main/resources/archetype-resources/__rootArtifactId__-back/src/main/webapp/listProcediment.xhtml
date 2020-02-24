@@ -23,6 +23,11 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
         </h:outputFormat>
     </ui:define>
 
+    <ui:define name="breadcrumb">
+        <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+        <p:menuitem value="#{labels.listProcediment_link}" outcome="/listProcediment" includeViewParams="true" />
+    </ui:define>
+    
     <ui:define name="content">
         <p>
             <p:button value="#{labels.newProcediment_link}" outcome="/editProcediment">

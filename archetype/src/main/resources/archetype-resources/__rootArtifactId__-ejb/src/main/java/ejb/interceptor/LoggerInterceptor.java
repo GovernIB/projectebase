@@ -17,6 +17,8 @@ import java.util.Arrays;
  * Interceptor per loguejar les cridades als mètodes de la classe interceptada. El feim serializable perquè
  * es pugui aplicar a classes que perquè estiguin a un determinat scope hagin de ser serializables.
  *
+ * Cal tenir en compte que els interceptors s'han de declarar dins el fitxer META-INF/beans.xml del mòdul.
+ *
  * @author areus
  */
 @Logged
@@ -40,7 +42,7 @@ public class LoggerInterceptor implements Serializable {
         log.debug(callMessage);
 
         Object result = context.proceed();
-        
+
         final String returnMessage = methodName + " return(" + result + ")";
         log.debug(returnMessage);
         return result;

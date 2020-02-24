@@ -12,6 +12,7 @@ import ${package}.persistence.dao.ProcedimentDAO;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
+import javax.persistence.EntityNotFoundException;
 
 
 /**
@@ -28,16 +29,14 @@ public class ProcedimentEJB extends ProcedimentDAO implements ProcedimentService
 
     @Override
     public Procediment create(Procediment procediment, Long unitatOrganicaId) throws I18NException {
-        UnitatOrganica unitatOrganica;
         try {
-            unitatOrganica = entityManager.getReference(UnitatOrganica.class, unitatOrganicaId);
-        } catch (java.lang.IllegalArgumentException e) {
+            UnitatOrganica unitatOrganica = entityManager.getReference(UnitatOrganica.class, unitatOrganicaId);
+            procediment.setUnitatOrganica(unitatOrganica);
+            entityManager.persist(procediment);
+            return procediment;
+        } catch (EntityNotFoundException e) {
             throw new I18NException("unitatorganica.noexisteix", String.valueOf(unitatOrganicaId));
         }
-
-        procediment.setUnitatOrganica(unitatOrganica);
-        entityManager.persist(procediment);
-        return procediment;
     }
 
 }

@@ -5,6 +5,7 @@ import es.caib.projectebase.ejb.UnitatOrganicaService;
 import es.caib.projectebase.persistence.UnitatOrganica;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.headers.Header;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
@@ -45,7 +46,7 @@ public class UnitatOrganicaResource {
      * @return Un codi 200 amb totes les unitats orgàniques.
      */
     @GET
-    @Operation(summary = "Retorna una llista de totes les unitats orgàniques")
+    @Operation(operationId = "getAllUnitats", summary = "Retorna una llista de totes les unitats orgàniques")
     @APIResponse(
             responseCode = "200",
             description = "Llista d'unitats orgàniques",
@@ -65,12 +66,12 @@ public class UnitatOrganicaResource {
      */
     @GET
     @Path("{id}")
-    @Operation(summary = "Obté una unitat orgànica")
+    @Operation(operationId = "getUnitat", summary = "Obté una unitat orgànica")
     @APIResponse(responseCode = "200",
             description = "Unitat orgànica",
             content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = UnitatOrganica.class)))
-    @APIResponse(responseCode = "404", description = "Unitat orgànica no trobada")
+    @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response get(@Parameter(description = "L'identificador de la unitat", required = true)
                         @PathParam("id") Long id) {
         UnitatOrganica unitatOrganica = unitatOrganicaService.findById(id);
@@ -88,8 +89,9 @@ public class UnitatOrganicaResource {
      * @return Un codi 201 amb la localització de la unitat orgància creada.
      */
     @POST
-    @Operation(summary = "Crea una nova unitat orgànica")
-    @APIResponse(responseCode = "201", description = "L'enllaç a la unitat orgànica creada")
+    @Operation(operationId = "createUnitat", summary = "Crea una nova unitat orgànica")
+    @APIResponse(responseCode = "201", description = "Recurs creat",
+            headers = @Header(name = "location", description = "Enllaç al nou recurs"))
     public Response create(
             @RequestBody(
                     description = "Unitat orgànica",
@@ -106,13 +108,13 @@ public class UnitatOrganicaResource {
      *
      * @param unitatOrganica dades de la unitat orgànica a actualitzar.
      * @param id Identificador de la unitat orgància a actualitzar.
-     * @return Un codi 200 si la modificació va bé, 404 si la unidad indicada per l'id no existeix.
+     * @return Resposta amb status 204 si l'operació té èxit, o 404 si el recurs amb l'id indicat no existeix.
      */
     @PUT
     @Path("{id}")
-    @Operation(summary = "Actualitza una unitat orgànica")
-    @APIResponse(responseCode = "200", description = "La modificació s'ha realitzat correctament")
-    @APIResponse(responseCode = "404", description = "La unitat orgànica que es vol modificar no existeix.")
+    @Operation(operationId = "updateUnitat", summary = "Actualitza una unitat orgànica")
+    @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
+    @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response update(
             @RequestBody(
                     description = "Unitat orgànica",
@@ -131,7 +133,7 @@ public class UnitatOrganicaResource {
             unitatActual.setEstat(unitatOrganica.getEstat());
             unitatActual.setDataCreacio(unitatOrganica.getDataCreacio());
             unitatOrganicaService.update(unitatActual);
-            return Response.ok().build();
+            return Response.noContent().build();
         }
     }
 
@@ -139,16 +141,20 @@ public class UnitatOrganicaResource {
      * Esborra una unitat orgànica.
      *
      * @param id identificador
-     * @return Resposta amb status 200 que indica que l'operaicó ha tengut èxit.
+     * @return Resposta amb status 204 si l'operació té èxit, o 404 si el recurs amb l'id indicat no existeix.
      */
     @DELETE
     @Path("{id}")
-    @Operation(summary = "Esborra una unitat orgànica")
-    @APIResponse(responseCode = "200", description = "La unitat s'ha esborrat correctament")
-    @APIResponse(responseCode = "404", description = "Unitat orgànica no trobada")
+    @Operation(operationId = "deleteUnitat", summary = "Esborra una unitat orgànica")
+    @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
+    @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response delete(@Parameter(description = "L'identificador de la unitat", required = true)
                         @PathParam("id") Long id) throws I18NException {
-        unitatOrganicaService.deleteById(id);
-        return Response.ok().build();
+        if (unitatOrganicaService.findById(id) == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            unitatOrganicaService.delete(id);
+            return Response.noContent().build();
+        }
     }
 }

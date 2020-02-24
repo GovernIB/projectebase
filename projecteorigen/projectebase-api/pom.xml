@@ -43,6 +43,27 @@
             <artifactId>microprofile-openapi-api</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Dependències de test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--
+        Llibreries necessàries implementació client JAX-RS
+        Només són necessàries perquè al test el client s'executa fora del servidor d'aplicacions.
+        -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-json-binding-provider</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -63,7 +84,7 @@
                             <goal>openapi.json</goal>
                         </goals>
                         <configuration>
-                            <application>es.caib.projectebase.api.SampleApplication</application>
+                            <application>es.caib.projectebase.api.config.ApiConfiguration</application>
                             <endpointClasses>
                                 <endpointClass>es.caib.projectebase.api.services.UnitatOrganicaResource</endpointClass>
                                 <endpointClass>es.caib.projectebase.api.services.ProcedimentResource</endpointClass>
@@ -87,7 +108,7 @@
             <id>swagger-ui</id>
             <properties>
                 <!-- La darrera versió disponible: https://github.com/swagger-api/swagger-ui/releases -->
-                <swagger-ui.version>3.24.3</swagger-ui.version>
+                <swagger-ui.version>3.25.0</swagger-ui.version>
             </properties>
             <build>
                 <plugins>
@@ -147,5 +168,6 @@
                 </plugins>
             </build>
         </profile>
+
     </profiles>
 </project>

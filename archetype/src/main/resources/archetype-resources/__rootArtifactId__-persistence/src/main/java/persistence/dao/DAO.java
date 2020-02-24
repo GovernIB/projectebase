@@ -44,14 +44,7 @@ public interface DAO<E extends Serializable, PK> {
      *
      * @param id Identificador del entity
      */
-    void deleteById(@NotNull PK id) throws I18NException;
-
-    /**
-     * Esborra una entitat
-     * 
-     * @param entity l'entitat a borrar
-     */
-    void delete(@NotNull E entity) throws I18NException;
+    void delete(@NotNull PK id) throws I18NException;
 
     /**
      * Obté un entity amb l'identificador indicat.

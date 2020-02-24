@@ -23,6 +23,14 @@ Pàgina per editar procediments
         </h:outputFormat>
     </ui:define>
 
+    <ui:define name="breadcrumb">
+        <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+        <p:menuitem value="#{labels.listProcediment_link}" outcome="/listProcediment" includeViewParams="true" />
+        <p:menuitem value="#{editProcediment.create ? labels.newProcediment_link : labels.editProcediment_link}" 
+                    outcome="/editProcediment" includeViewParams="true" />
+    </ui:define>
+    
+
     <ui:define name="content">
 
         <h:form id="form">
@@ -46,7 +54,7 @@ Pàgina per editar procediments
                 </ui:define>
                 <ui:define name="input">
                     <p:inputText id="codiDir3" value="#{editProcediment.procediment.codiSia}" />
-                    <p:message for="codiDir3" errorStyle="color: red"/>
+                    <p:message for="codiDir3" />
                 </ui:define>
             </ui:decorate>
 
@@ -56,7 +64,7 @@ Pàgina per editar procediments
                 </ui:define>
                 <ui:define name="input">
                     <p:inputText id="nom" value="#{editProcediment.procediment.nom}" />
-                    <p:message for="nom" errorStyle="color: red"/>
+                    <p:message for="nom" />
                 </ui:define>
             </ui:decorate>
 

@@ -19,15 +19,23 @@ Pàgina amb el llistat d'unitats orgàniques.
 
     <ui:define name="pageTitle">${symbol_pound}{labels.listUnitatOrganica_title}</ui:define>
 
+    <ui:define name="breadcrumb">
+        <p:menuitem value="${symbol_pound}{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+    </ui:define>
+    
     <ui:define name="content">
         <h:form>
             <p:dataTable id="dataTable" value="${symbol_pound}{listUnitatOrganica.lazyModel}" var="unitatOrganica" sortMode="multiple"
-                         paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100" lazy="true"
-                         paginatorPosition="bottom" filterDelay="300" widgetVar="unitatsTable"
-                         paginatorAlwaysVisible="false"
-                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport}
-                          {NextPageLink} {LastPageLink}"
+                         paginator="true" lazy="true" filterDelay="300" widgetVar="unitatsTable"
+                         rows="10" rowsPerPageTemplate="10,20,50,100" 
+                         paginatorPosition="bottom" paginatorAlwaysVisible="false"
+                         paginatorTemplate="{RowsPerPageLabel} {RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+                          {NextPageLink} {LastPageLink}" 
+                         currentPageReportTemplate="${symbol_pound}{labels.dataTable_currentPageReport}" 
                          emptyMessage="${symbol_pound}{labels.dataTable_emptyMessage}">
+                <f:facet name="{RowsPerPageLabel}">
+                    ${symbol_pound}{labels.dataTable_rowsPerPage}
+                </f:facet>
                 <p:column>
                     <f:facet name="header">${symbol_pound}{labels.unitatOrganica_id}</f:facet>
                     <h:outputText value="${symbol_pound}{unitatOrganica.id}"/>
