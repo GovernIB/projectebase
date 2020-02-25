@@ -62,10 +62,20 @@ def cleanPom(file) {
     pomContent = pomContent.replaceAll("><project ", ">" + System.lineSeparator() + "<project "); 
 
     file.newWriter("UTF-8").withWriter { w -> w << pomContent }
-    
-    
+}
+
+def replaceText(file, search, replace) {    
+    def pomContent = file.getText("UTF-8")
+    pomContent = pomContent.replaceAll(search, replace)
+    file.newWriter("UTF-8").withWriter { w -> w << pomContent }
 }
 
 
 // Neteja de linies buides del pom.xml (per si s'ha generat apifirmasimple)
 cleanPom(new File("./projecteorigen", "pom.xml"));
+
+
+replaceText( new File("./projecteorigen/projectebase-apifirmasimple/src/main/webapp/WEB-INF/web.xml"),
+         "es.caib.apisib.apifirmasimple.example.web", "es.caib.projectebase.apifirmasimple.example.web");
+
+

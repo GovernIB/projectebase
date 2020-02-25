@@ -49,7 +49,7 @@ IF /I "%ERRORLEVEL%" EQU "0" (
   echo
   
   set MAVEN_OPTS="-Dfile.encoding=UTF-8"
-  call mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.2:generate -B -DarchetypeGroupId=es.caib.apisib.apifirmasimple -DarchetypeArtifactId=apifirmasimple-example-web-archetype -DarchetypeVersion=1.0.0 -Dpackage=es.caib.projectebase.apifirmasimple -DgroupId=es.caib.projectebase -DartifactId=projectebase-apifirmasimple -Dversion=1.0.0
+  call mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.2:generate -B -DarchetypeGroupId=es.caib.apisib.apifirmasimple -DarchetypeArtifactId=apifirmasimple-example-web-archetype -DarchetypeVersion=1.0.0 -Dpackage=es.caib.projectebase.apifirmasimple.example.web -DgroupId=es.caib.projectebase -DartifactId=projectebase-apifirmasimple -Dversion=1.0.0
   
   
   cd ..
