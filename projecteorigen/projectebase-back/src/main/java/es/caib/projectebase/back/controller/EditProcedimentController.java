@@ -37,9 +37,7 @@ public class EditProcedimentController implements Serializable {
     @Inject
     private FacesContext context;
 
-    /**
-     * Injecta el bundle definit dins faces-config.xml amb var = labels.
-     */
+    /** Injecta el bundle definit dins faces-config.xml amb var = labels. */
     @Inject
     @ManagedProperty("#{labels}")
     private ResourceBundle labelsBundle;

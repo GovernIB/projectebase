@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -22,6 +23,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Controlador pels llistats d'Unitats Organiques. El definim a l'scope de view perquè a nivell de request es
@@ -33,10 +35,15 @@ import java.util.Map;
 @ViewScoped
 public class ListUnitatOrganicaController implements Serializable {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOG = LoggerFactory.getLogger(ListUnitatOrganicaController.class);
 
     @Inject
     private FacesContext context;
+
+    /** Injecta el bundle definit dins faces-config.xml amb var = labels. */
+    @Inject
+    @ManagedProperty("#{labels}")
+    private ResourceBundle labelsBundle;
 
     @EJB
     private UnitatOrganicaService unitatOrganicaService;
@@ -57,7 +64,7 @@ public class ListUnitatOrganicaController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        log.debug("init");
+        LOG.debug("init");
 
         lazyModel = new LazyDataModel<>() {
             /*
@@ -96,17 +103,22 @@ public class ListUnitatOrganicaController implements Serializable {
     // ACCIONS
 
     /**
-     * Esborra l'unitat orgànica amb l'identificador indicat.
+     * Esborra l'unitat orgànica amb l'identificador indicat. El mètode retorna void perquè no cal navegació ja que
+     * l'eliminació es realitza des de la pàgina de llistat, i quedam en aquesta pàgina.
      *
      * @param id identificador de l'unitat orgànica
      */
     public void delete(Long id) {
-        log.debug("delete");
+        LOG.debug("delete");
         try {
             unitatOrganicaService.delete(id);
-            context.addMessage(null, new FacesMessage("Registre borrat", ""));
+            context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
+
+            // No cal actualitzar el model perquè no aparegui el registre eliminat perquè primefaces cridarà
+            // automàticament el load del lazyDataModel en refrescar el component del datatable.
+
         } catch (I18NException e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
         }
     }
 }
