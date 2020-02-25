@@ -8,7 +8,6 @@ call mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.2:create-from-proje
 IF /I "%ERRORLEVEL%" EQU "0" (
   cd ..
   ECHO Execution OK. Copying to artifact ...
-REM  xcopy .\projecteorigen\target\generated-sources\archetype\src\main\resources\archetype-resources\*.*  .\archetype\src\main\resources\archetype-resources\  /e /y /d
   
   robocopy .\projecteorigen\target\generated-sources\archetype\src\main\resources\archetype-resources\  .\archetype\src\main\resources\archetype-resources\ /MIR /E
   
