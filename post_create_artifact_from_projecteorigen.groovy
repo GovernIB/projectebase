@@ -176,6 +176,12 @@ for(String frontFile : frontFiles) {
   replaceProperties(new File(baseProject, frontFile), false);
 }
 
+// APIFirmaSimple - web
+String searchAFS = "es\\.caib\\.projectebase";
+String replaceAFS = "\\\$\\{package\\}";
+replaceText(new File(baseProject,"./__rootArtifactId__-apifirmasimple/src/main/webapp/WEB-INF/web.xml"),
+   searchAFS, replaceAFS);
+
 // EJB   
 def ejbFiles = [ "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml",
     "./__rootArtifactId__-ejb/src/main/java/ejb/ProcedimentEJB.java",
