@@ -19,7 +19,7 @@ import java.time.LocalDate;
  * El test requereix que hi hagi una unitat orgànica amb id = 1 i codiDir3 = A00000001.
  * També requereix que no existeix el codiDir3 = U87654321
  */
-public class TestApi {
+public class UnitatOrganicaServiceTest {
 
     // URL a partir de la qual estan penjats els resources.
     private static final String BASE_URL = "http://localhost:8080/projectebase/api/services";
