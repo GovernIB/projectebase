@@ -22,6 +22,4 @@ public class I18NArgumentString implements I18NArgument {
     public String getValue() {
         return this.message;
     }
-
-
 }

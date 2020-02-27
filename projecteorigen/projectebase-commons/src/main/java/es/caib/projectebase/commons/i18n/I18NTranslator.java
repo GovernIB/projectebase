@@ -3,33 +3,23 @@ package es.caib.projectebase.commons.i18n;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.MessageFormat;
 import java.util.Locale;
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-import java.util.ResourceBundle.Control;
 import java.util.TreeMap;
 
 /**
+ * Classe d'utilitat per generar missatges a partir de traduccions.
  * @author anadal
  */
 public class I18NTranslator {
 
-    public final Logger log = LoggerFactory.getLogger(I18NTranslator.class);
+    private static final Logger LOG = LoggerFactory.getLogger(I18NTranslator.class);
 
-    protected final TreeMap<String, ResourceBundle> bundles = new TreeMap<String, ResourceBundle>();
-
+    protected final TreeMap<String, ResourceBundle> bundles = new TreeMap<>();
     protected final String[] bundlesNames;
 
-    protected static UTF8Control UTF8CONTROL = new UTF8Control();
-
     public I18NTranslator(String[] bundlesNames) {
-        super();
         this.bundlesNames = bundlesNames;
     }
 
@@ -42,7 +32,6 @@ public class I18NTranslator {
     }
 
     public String translate(String valueIfNotExist, Locale loc, String code, String... args) {
-
         // Cache de resource bundle
         String msg = null;
         Exception lastException = null;
@@ -51,7 +40,7 @@ public class I18NTranslator {
             String key = res + "_" + loc.toString();
             ResourceBundle resource = bundles.get(key);
             if (resource == null) {
-                resource = ResourceBundle.getBundle(res, loc, UTF8CONTROL);
+                resource = ResourceBundle.getBundle(res, loc);
                 bundles.put(key, resource);
             }
 
@@ -70,7 +59,7 @@ public class I18NTranslator {
                 if (lastException == null) {
                     lastException = new Exception();
                 }
-                log.error("La clau de traducció [" + code + "] per l'idioma " + lang + " no existeix: "
+                LOG.error("La clau de traducció [" + code + "] per l'idioma " + lang + " no existeix: "
                         + lastException.getMessage(), lastException);
                 return "{" + lang + "_" + code + "}";
             } else {
@@ -81,39 +70,6 @@ public class I18NTranslator {
                 msg = MessageFormat.format(msg, (Object[]) args);
             }
             return msg;
-        }
-    }
-
-    public static class UTF8Control extends Control {
-        public ResourceBundle newBundle(String baseName, Locale locale, String format, ClassLoader loader,
-                                        boolean reload) throws IllegalAccessException, InstantiationException, IOException {
-            // The below is a copy of the default implementation.
-            String bundleName = toBundleName(baseName, locale);
-            String resourceName = toResourceName(bundleName, "properties");
-            ResourceBundle bundle = null;
-            InputStream stream = null;
-            if (reload) {
-                URL url = loader.getResource(resourceName);
-                if (url != null) {
-                    URLConnection connection = url.openConnection();
-                    if (connection != null) {
-                        connection.setUseCaches(false);
-                        stream = connection.getInputStream();
-                    }
-                }
-            } else {
-                stream = loader.getResourceAsStream(resourceName);
-            }
-            if (stream != null) {
-                try {
-                    // Only this line is changed to make it to read properties files as
-                    // UTF-8.
-                    bundle = new PropertyResourceBundle(new InputStreamReader(stream, "UTF-8"));
-                } finally {
-                    stream.close();
-                }
-            }
-            return bundle;
         }
     }
 
