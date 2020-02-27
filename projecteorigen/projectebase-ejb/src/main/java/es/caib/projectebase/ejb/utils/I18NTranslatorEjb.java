@@ -3,7 +3,6 @@ package es.caib.projectebase.ejb.utils;
 import es.caib.projectebase.commons.i18n.I18NArgument;
 import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.i18n.I18NTranslator;
-import es.caib.projectebase.commons.i18n.I18NValidationException;
 
 import java.util.Locale;
 
@@ -28,10 +27,6 @@ public class I18NTranslatorEjb {
     public static String translate(String valueIfNotExist, Locale loc, String code, String... args) {
 
         return translator.translate(valueIfNotExist, loc, code, args);
-    }
-
-    public static String translate(I18NValidationException ve, Locale locale) {
-        return translator.translate(ve, locale);
     }
 
     public static String translate(I18NException e, Locale locale) {

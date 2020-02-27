@@ -3,9 +3,7 @@ package es.caib.projectebase.front.utils;
 import es.caib.projectebase.commons.i18n.I18NArgument;
 import es.caib.projectebase.commons.i18n.I18NArgumentCode;
 import es.caib.projectebase.commons.i18n.I18NException;
-import es.caib.projectebase.commons.i18n.I18NFieldError;
 import es.caib.projectebase.commons.i18n.I18NTranslation;
-import es.caib.projectebase.commons.i18n.I18NValidationException;
 import es.caib.projectebase.commons.i18n.MultipleResourceBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -113,26 +111,6 @@ public final class I18NTranslatorFront {
             }
         }
 
-    }
-
-    public static String translate(I18NValidationException ve) {
-        StringBuffer str = new StringBuffer();
-
-        for (I18NFieldError fe : ve.getFieldErrorList()) {
-            I18NTranslation trans = fe.getTranslation();
-            String code = trans.getCode();
-            String[] args = translateArguments(trans.getArgs());
-            String error = translate(code, args);
-            String field = fe.getField();
-            String fieldLabel = field; // TODO Traduir el camp
-
-            if (str.length() != 0) {
-                str.append("\n");
-            }
-            str.append(fieldLabel + "(" + field + "): " + error);
-
-        }
-        return str.toString();
     }
 
     public static String translate(I18NException e) {

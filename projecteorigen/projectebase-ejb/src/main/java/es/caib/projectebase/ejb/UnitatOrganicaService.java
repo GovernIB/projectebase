@@ -1,8 +1,7 @@
 package es.caib.projectebase.ejb;
 
-import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.persistence.UnitatOrganica;
-import es.caib.projectebase.persistence.dao.IUnitatOrganicaDAO;
+import es.caib.projectebase.persistence.dao.DAO;
 
 import javax.ejb.Local;
 
@@ -13,8 +12,6 @@ import javax.ejb.Local;
  * @author anadal
  */
 @Local
-public interface UnitatOrganicaService extends IUnitatOrganicaDAO {
-
-    void testTranslationError() throws I18NException;
+public interface UnitatOrganicaService extends DAO<UnitatOrganica, Long> {
 
 }

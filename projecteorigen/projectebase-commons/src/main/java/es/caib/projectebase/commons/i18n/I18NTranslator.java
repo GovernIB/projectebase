@@ -1,5 +1,8 @@
 package es.caib.projectebase.commons.i18n;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,16 +12,11 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-import java.util.TreeMap;
 import java.util.ResourceBundle.Control;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.TreeMap;
 
 /**
- * 
  * @author anadal
- *
  */
 public class I18NTranslator {
 
@@ -88,7 +86,7 @@ public class I18NTranslator {
 
     public static class UTF8Control extends Control {
         public ResourceBundle newBundle(String baseName, Locale locale, String format, ClassLoader loader,
-                boolean reload) throws IllegalAccessException, InstantiationException, IOException {
+                                        boolean reload) throws IllegalAccessException, InstantiationException, IOException {
             // The below is a copy of the default implementation.
             String bundleName = toBundleName(baseName, locale);
             String resourceName = toResourceName(bundleName, "properties");
@@ -117,26 +115,6 @@ public class I18NTranslator {
             }
             return bundle;
         }
-    }
-
-    public String translate(I18NValidationException ve, Locale locale) {
-        StringBuffer str = new StringBuffer();
-
-        for (I18NFieldError fe : ve.getFieldErrorList()) {
-            I18NTranslation trans = fe.getTranslation();
-            String code = trans.getCode();
-            String[] args = translateArguments(locale, trans.getArgs());
-            String error = translate(locale, code, args);
-            String field = fe.getField();
-            String fieldLabel = translate(locale, field);
-
-            if (str.length() != 0) {
-                str.append("\n");
-            }
-            str.append(fieldLabel + "(" + field + "): " + error);
-
-        }
-        return str.toString();
     }
 
     public String translate(I18NException e, Locale locale) {

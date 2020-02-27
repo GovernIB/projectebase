@@ -27,7 +27,7 @@ import static javax.persistence.EnumType.ORDINAL;
 /**
  * Representació d'una unitat orgànica. Sempre convé definir-les serializable, per si hi mantenim referències dins
  * coses serializables. A nivell de classe definim la seqüència que emprarem, i les claus úniques.
- *
+ * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  * @author areus
  */
 @Entity

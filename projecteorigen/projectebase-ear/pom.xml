@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>es.caib.projectebase</groupId>
@@ -70,17 +71,17 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
-        
-        <!-- WS START -->  
+
+        <!-- WS START -->
         <!-- WS de ProjecteBase -->
         <!--  http://localhost:8080/projectebase-ws-server/ws/v1/ProjecteBaseHelloWorld -->
         <!--  http://localhost:8080/projectebase-ws-server/ws/v1/ProjecteBaseHelloWorldWithSecurity -->
         <!--  ... -->
         <dependency>
-          <groupId>es.caib.projectebase</groupId>
-          <artifactId>projectebase-ws-server</artifactId>
-          <version>1.0.0</version>
-          <type>ejb</type>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-ws-server</artifactId>
+            <version>1.0.0</version>
+            <type>ejb</type>
         </dependency>
         <!-- WS END -->
     </dependencies>
@@ -139,8 +140,8 @@
                         <!-- APIFIRMASIMPLE END -->
                         <!-- WS START -->
                         <ejbModule>
-                          <groupId>es.caib.projectebase</groupId>
-                          <artifactId>projectebase-ws-server</artifactId>
+                            <groupId>es.caib.projectebase</groupId>
+                            <artifactId>projectebase-ws-server</artifactId>
                         </ejbModule>
                         <!-- WS END -->
                     </modules>
@@ -203,16 +204,21 @@
             </properties>
         </profile>
         <profile>
-          <id>revisionnumber</id>
-          <build>
-            <plugins>
-                <!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>buildnumber-maven-plugin</artifactId>
-                </plugin>
-            </plugins>
-          </build>
+            <id>revisionnumber</id>
+            <activation>
+                <property>
+                    <name>revisionnumber</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>buildnumber-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>

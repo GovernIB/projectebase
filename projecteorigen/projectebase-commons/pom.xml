@@ -46,7 +46,23 @@
 
     <profiles>
         <profile>
+            <id>norevisionnumber</id>
+            <activation>
+                <property>
+                    <name>!revisionnumber</name>
+                </property>
+            </activation>
+            <properties>
+                <buildNumber>[Cal compilar amb -Drevisionnumber per veure la propietat]</buildNumber>
+            </properties>
+        </profile>
+        <profile>
             <id>revisionnumber</id>
+            <activation>
+                <property>
+                    <name>revisionnumber</name>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->

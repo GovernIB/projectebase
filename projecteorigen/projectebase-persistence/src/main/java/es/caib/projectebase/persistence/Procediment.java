@@ -25,6 +25,7 @@ import java.util.Objects;
 
 /**
  * Representació d'un procediment. A nivell de classe definim la seqüència que emprarem, i les claus úniques.
+ * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
  */
