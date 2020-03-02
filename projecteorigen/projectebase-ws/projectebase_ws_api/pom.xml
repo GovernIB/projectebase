@@ -45,7 +45,7 @@
                                 <id>generate-wsdl-ProjecteBaseHelloWorldWs</id>
                                 <phase>generate-sources</phase>
                                 <configuration>
-                                    <className>es.caib.projectebase.ws.v1.impl.ProjecteBaseHelloWorldWsImpl</className>
+                                    <className>es.caib.projectebase.ws.impl.ProjecteBaseHelloWorldWsImpl</className>
                                     <genWsdl>true</genWsdl>
                                     <verbose>true</verbose>
                                     <frontend>jaxws</frontend>
@@ -64,7 +64,7 @@
                                 <id>generate-wsdl-ProjecteBaseHelloWorldWithSecurityWs</id>
                                 <phase>generate-sources</phase>
                                 <configuration>
-                                    <className>es.caib.projectebase.ws.v1.impl.ProjecteBaseHelloWorldWithSecurityWsImpl</className>
+                                    <className>es.caib.projectebase.ws.impl.ProjecteBaseHelloWorldWithSecurityWsImpl</className>
                                     <genWsdl>true</genWsdl>
                                     <verbose>true</verbose>
                                     <frontend>jaxws</frontend>
@@ -146,19 +146,12 @@
         <dependency>
             <groupId>javax.xml.ws</groupId>
             <artifactId>jaxws-api</artifactId>
-            <version>2.3.0</version>
         </dependency>
         <dependency>
             <groupId>javax.jws</groupId>
             <artifactId>jsr181-api</artifactId>
-            <version>1.0-MR1</version>
         </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.2</version>
-            <scope>test</scope>
-        </dependency>
+        <!-- dependències de test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

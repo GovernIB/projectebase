@@ -11,6 +11,29 @@
     <packaging>pom</packaging>
     <name>ProjecteBase - WS</name>
 
+    <properties>
+        <jaxws-api.version>2.3.1</jaxws-api.version>
+        <jsr181-api.version>1.0-MR1</jsr181-api.version>
+        <cxf.version>3.3.3</cxf.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax.xml.ws</groupId>
+                <artifactId>jaxws-api</artifactId>
+                <version>${jaxws-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.jws</groupId>
+                <artifactId>jsr181-api</artifactId>
+                <version>${jsr181-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <modules>
         <module>projectebase_ws_server</module>
         <module>projectebase_ws_api</module>
