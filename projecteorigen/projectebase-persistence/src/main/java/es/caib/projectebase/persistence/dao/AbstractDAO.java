@@ -54,7 +54,8 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
     /**
      * Construtor per defecte. Emmagatzema a {@link #entityClass} el tipus d'entitat.
      */
-    protected AbstractDAO() {
+    @SuppressWarnings("unchecked")
+	protected AbstractDAO() {
         Class<?> clazz = getClass();
         while (!clazz.getSuperclass().equals(AbstractDAO.class)) {
             clazz = clazz.getSuperclass();

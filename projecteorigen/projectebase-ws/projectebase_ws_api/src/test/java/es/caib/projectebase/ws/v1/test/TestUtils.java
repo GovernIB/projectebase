@@ -22,8 +22,6 @@ public abstract class TestUtils {
   
   public static final String HELLO_WORLD_WITH_SECURITY = "HelloWorldWithSecurity";
  
-  // TODO GEN APP ADD OTHERS
-  
   private static Properties testProperties = new Properties();
   
   static {

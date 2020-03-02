@@ -26,7 +26,9 @@ import java.io.Serializable;
 @SessionScoped
 public class SessionController implements Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SessionController.class);
+	private static final long serialVersionUID = -3709390221710580769L;
+
+	private static final Logger LOG = LoggerFactory.getLogger(SessionController.class);
 
     @Inject
     private FacesContext context;

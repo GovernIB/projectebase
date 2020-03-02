@@ -35,7 +35,9 @@ import java.util.ResourceBundle;
 @ViewScoped
 public class ListUnitatOrganicaController implements Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ListUnitatOrganicaController.class);
+	private static final long serialVersionUID = -6015369276336087696L;
+
+	private static final Logger LOG = LoggerFactory.getLogger(ListUnitatOrganicaController.class);
 
     @Inject
     private FacesContext context;
@@ -67,7 +69,10 @@ public class ListUnitatOrganicaController implements Serializable {
         LOG.debug("init");
 
         lazyModel = new LazyDataModel<>() {
-            /*
+
+			private static final long serialVersionUID = -1420774197768250112L;
+
+			/*
             Primefaces cridarà automàticament aquest mètode quan necessita actualitzar les dades del dataTable
             per qualsevol circumstància (filtres, ordenació, canvi de pàgina ...)
             */

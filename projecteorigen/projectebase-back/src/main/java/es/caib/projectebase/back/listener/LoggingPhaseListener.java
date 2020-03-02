@@ -15,7 +15,9 @@ import javax.faces.event.PhaseListener;
  */
 public class LoggingPhaseListener implements PhaseListener {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LoggingPhaseListener.class);
+	private static final long serialVersionUID = 8891688142408982273L;
+	
+	private static final Logger LOG = LoggerFactory.getLogger(LoggingPhaseListener.class);
 
     /**
      * S'executa abans de començar una fase.

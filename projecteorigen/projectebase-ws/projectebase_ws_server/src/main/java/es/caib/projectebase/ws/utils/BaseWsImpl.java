@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import es.caib.projectebase.commons.utils.Version;
-import es.caib.projectebase.commons.utils.Constants;
 
 /**
  * 

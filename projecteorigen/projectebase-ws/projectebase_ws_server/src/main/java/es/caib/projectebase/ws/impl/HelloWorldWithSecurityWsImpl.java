@@ -1,8 +1,6 @@
 package es.caib.projectebase.ws.impl;
 
 import es.caib.projectebase.ws.utils.BaseWsImpl;
-import org.jboss.wsf.spi.annotation.TransportGuarantee;
-import org.jboss.wsf.spi.annotation.WebContext;
 
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
@@ -32,11 +30,6 @@ import static es.caib.projectebase.commons.utils.Constants.PBS_USER;
     name = HelloWorldWithSecurityWsImpl.NAME_WS,
     portName = HelloWorldWithSecurityWsImpl.NAME_WS,
     serviceName = HelloWorldWithSecurityWsImpl.NAME_WS + "Service")
-@WebContext(contextRoot = "/projectebase-ws-server/ws/v1/" + HelloWorldWithSecurityWsImpl.NAME,
-    //urlPattern = "/v1/" + HelloWorldWithSecurityWsImpl.NAME,
-    transportGuarantee = TransportGuarantee.NONE,
-    secureWSDLAccess = false,
-    authMethod = "BASIC")
 public class HelloWorldWithSecurityWsImpl extends BaseWsImpl {
 
   public static final String NAME = "HelloWorldWithSecurity";

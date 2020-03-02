@@ -31,7 +31,9 @@ import java.util.ResourceBundle;
 @ViewScoped
 public class ListProcedimentController implements Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ListProcedimentController.class);
+	private static final long serialVersionUID = -7992474170848445700L;
+
+	private static final Logger LOG = LoggerFactory.getLogger(ListProcedimentController.class);
 
     @Inject
     private FacesContext context;

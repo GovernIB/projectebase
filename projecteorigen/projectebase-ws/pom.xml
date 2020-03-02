@@ -6,23 +6,11 @@
         <artifactId>projectebase</artifactId>
         <version>1.0.0</version>
     </parent>
+
     <artifactId>projectebase-ws</artifactId>
     <packaging>pom</packaging>
     <name>ProjecteBase - WS</name>
-    <repositories>
-        <repository>
-            <id>maven-nuxeo</id>
-            <name>Maven Nuxeo Repository</name>
-            <url>https://maven.nuxeo.org/nexus/content/groups/public/</url>
-            <layout>default</layout>
-            <releases>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
+
     <modules>
         <module>projectebase_ws_server</module>
         <module>projectebase_ws_api</module>

@@ -1,6 +1,5 @@
 package es.caib.projectebase.api.utils;
 
-import es.caib.projectebase.commons.i18n.I18NArgument;
 import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.i18n.I18NTranslator;
 

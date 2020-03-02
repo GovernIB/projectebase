@@ -29,7 +29,9 @@ import java.util.ResourceBundle;
 @ViewScoped
 public class EditUnitatOrganicaController implements Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(EditUnitatOrganicaController.class);
+	private static final long serialVersionUID = -4092311228270716321L;
+
+	private static final Logger LOG = LoggerFactory.getLogger(EditUnitatOrganicaController.class);
 
     @Inject
     private FacesContext context;

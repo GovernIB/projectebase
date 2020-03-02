@@ -1,16 +1,13 @@
 package es.caib.projectebase.ws.impl;
 
+import es.caib.projectebase.ws.utils.BaseWsImpl;
+
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.validation.constraints.Null;
-
-import org.jboss.wsf.spi.annotation.TransportGuarantee;
-import org.jboss.wsf.spi.annotation.WebContext;
-
-import es.caib.projectebase.ws.utils.BaseWsImpl;
 
 /**
  *
@@ -24,13 +21,6 @@ import es.caib.projectebase.ws.utils.BaseWsImpl;
     name=HelloWorldWsImpl.NAME_WS,
     portName = HelloWorldWsImpl.NAME_WS,
     serviceName = HelloWorldWsImpl.NAME_WS + "Service"
-)
-@WebContext
-(
-    contextRoot="/projectebase-ws-server/ws",
-    urlPattern="/v1/" + HelloWorldWsImpl.NAME,    
-    transportGuarantee= TransportGuarantee.NONE,
-    secureWSDLAccess = false
 )
 public class HelloWorldWsImpl extends BaseWsImpl {
   

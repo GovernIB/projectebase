@@ -32,7 +32,9 @@ import java.util.ResourceBundle;
 @ViewScoped
 public class EditProcedimentController implements Serializable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(EditProcedimentController.class);
+	private static final long serialVersionUID = -6369618058993094891L;
+
+	private static final Logger LOG = LoggerFactory.getLogger(EditProcedimentController.class);
 
     @Inject
     private FacesContext context;

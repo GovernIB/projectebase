@@ -27,7 +27,9 @@ import java.util.Map;
 @WebServlet(urlPatterns = "/principalInfo")
 public class PrincipalInfoServlet extends HttpServlet {
 
-    @Override
+	private static final long serialVersionUID = -6071413123148684294L;
+
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         PrintWriter writer = response.getWriter();
