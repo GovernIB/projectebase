@@ -189,7 +189,7 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
         if (orderByList != null && orderByList.length != 0) {
             List<Order> orderList = new ArrayList<>();
             for (OrderBy orderBy : orderByList) {
-                Path<Object> attributePath = root.get(orderBy.javaName);
+                Path<Object> attributePath = root.get(orderBy.property);
                 if (orderBy.orderType == OrderType.ASC) {
                     orderList.add(cb.asc(attributePath));
                 } else {

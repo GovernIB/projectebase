@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 /**
+ * Implementació d'un {@link ResourceBundle} que permet delegar, i per tant cercar etiquetes dins una llista
+ * de bundles.
+ *
  * @author anadal
  */
 public class MultipleResourceBundle extends ResourceBundle {
@@ -16,7 +20,7 @@ public class MultipleResourceBundle extends ResourceBundle {
     private final List<ResourceBundle> delegates;
 
     public MultipleResourceBundle(List<ResourceBundle> resourceBundles) {
-        this.delegates = resourceBundles == null ? new ArrayList<ResourceBundle>() : resourceBundles;
+        this.delegates = resourceBundles == null ? new ArrayList<>() : resourceBundles;
     }
 
     @Override
@@ -26,13 +30,13 @@ public class MultipleResourceBundle extends ResourceBundle {
                 .map(delegate -> delegate.getObject(key))
                 .findFirst();
 
-        return firstPropertyValue.isPresent() ? firstPropertyValue.get() : null;
+        return firstPropertyValue.orElse(null);
     }
 
     @Override
     public Enumeration<String> getKeys() {
         List<String> keys = this.delegates.stream()
-                .filter(delegate -> delegate != null)
+                .filter(Objects::nonNull)
                 .flatMap(delegate -> Collections.list(delegate.getKeys()).stream())
                 .collect(Collectors.toList());
 

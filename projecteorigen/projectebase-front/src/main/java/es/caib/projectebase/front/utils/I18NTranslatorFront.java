@@ -11,51 +11,43 @@ import org.slf4j.LoggerFactory;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
- * 
+ * Clase d'utilitat per traduir missatges I18N dins el mòdul Front
+ *
  * @author anadal
- * 
+ * @author areus
  */
-public final class I18NTranslatorFront { 
+public final class I18NTranslatorFront {
 
+    private static final Logger LOG = LoggerFactory.getLogger(I18NTranslatorFront.class);
 
-    private static final Logger log = LoggerFactory.getLogger(I18NTranslatorFront.class);
-
-    private static final Map<Locale, ResourceBundle> resourceMapping = new HashMap<Locale, ResourceBundle>();
+    private static final Map<Locale, ResourceBundle> resourceMapping = new HashMap<>();
 
     public static ResourceBundle getResourceBundle(Locale locale) {
-
         ResourceBundle rb = resourceMapping.get(locale);
-
         if (rb == null) {
             FacesContext context = FacesContext.getCurrentInstance();
 
             // Identificadors de ResourceBundles que es troben a faces-config.xml
-            String[] names = new String[] { "ValidationMessages", "labelsPersistence", "labelsEJB", "labels" };
-
-            List<ResourceBundle> bundles = new ArrayList<ResourceBundle>();
-            for (String name : names) {
-                ResourceBundle bundle = context.getApplication().evaluateExpressionGet(context, "#{" + name + "}",
-                        ResourceBundle.class);
-                bundles.add(bundle);
-            }
+            List<ResourceBundle> bundles = Stream.of("ValidationMessages", "labelsPersistence", "labelsEJB", "labels")
+                    .map(name -> context.getApplication().getResourceBundle(context, name))
+                    .collect(Collectors.toList());
 
             rb = new MultipleResourceBundle(bundles);
             resourceMapping.put(locale, rb);
         }
 
         return rb;
-
     }
-
 
     public static String translate(boolean useCodeIfNotExist, String code, String... args) {
         return translate(useCodeIfNotExist ? code : null, code, args);
@@ -81,19 +73,13 @@ public final class I18NTranslatorFront {
     }
 
     public static String translate(String valueIfNotExist, String code, String... args) {
-
         if (code == null) {
             return null;
         }
 
         Locale loc = getCurrentLocale();
-
         ResourceBundle resource = getResourceBundle(loc);
 
-        if (resource == null) {
-            log.error("No s'ha definit l'objecte resourceBundle dins la classe " + I18NTranslatorFront.class);
-            return "{" + loc.getLanguage() + "_" + code + "}";
-        }
         try {
             String trans = resource.getString(code);
             if (args != null && args.length != 0) {
@@ -103,14 +89,13 @@ public final class I18NTranslatorFront {
 
         } catch (MissingResourceException nsme) {
             if (valueIfNotExist == null) {
-                log.error("No es pot obtenir la clau de traducció [" + code + "] per l'idioma " + loc.getLanguage()
+                LOG.error("No es pot obtenir la clau de traducció [" + code + "] per l'idioma " + loc.getLanguage()
                         + ": " + nsme.getMessage(), nsme);
                 return "{" + loc.getLanguage() + "_" + code + "}";
             } else {
                 return valueIfNotExist;
             }
         }
-
     }
 
     public static String translate(I18NException e) {
@@ -138,8 +123,6 @@ public final class I18NTranslatorFront {
     public static Locale getCurrentLocale() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         UIViewRoot viewRoot = facesContext.getViewRoot();
-        Locale locale = viewRoot.getLocale();
-        return locale;
+        return viewRoot.getLocale();
     }
-
 }

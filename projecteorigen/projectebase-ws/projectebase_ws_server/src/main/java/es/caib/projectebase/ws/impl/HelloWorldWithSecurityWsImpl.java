@@ -1,4 +1,8 @@
-package es.caib.projectebase.ws.v1.impl;
+package es.caib.projectebase.ws.impl;
+
+import es.caib.projectebase.ws.utils.BaseWsImpl;
+import org.jboss.wsf.spi.annotation.TransportGuarantee;
+import org.jboss.wsf.spi.annotation.WebContext;
 
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
@@ -9,16 +13,8 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.ws.WebServiceContext;
 
-import org.jboss.wsf.spi.annotation.TransportGuarantee;
-import org.jboss.wsf.spi.annotation.WebContext;
-
-import javax.validation.constraints.Null;
-
-
-import es.caib.projectebase.commons.utils.Constants;
-import es.caib.projectebase.ws.utils.AuthenticatedBaseWsImpl;
-import es.caib.projectebase.ws.utils.WsI18NException;
-import es.caib.projectebase.ws.utils.WsValidationException;
+import static es.caib.projectebase.commons.utils.Constants.PBS_ADMIN;
+import static es.caib.projectebase.commons.utils.Constants.PBS_USER;
 
 /**
  * 
@@ -26,7 +22,7 @@ import es.caib.projectebase.ws.utils.WsValidationException;
  * 
  */
 @Stateless(name = HelloWorldWithSecurityWsImpl.NAME + "Ejb")
-@RolesAllowed({ Constants.PBS_USER, Constants.PBS_ADMIN })
+@RolesAllowed({ PBS_USER, PBS_ADMIN })
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @org.apache.cxf.interceptor.InInterceptors(interceptors = {
     "es.caib.projectebase.ws.utils.WsInInterceptor" })
@@ -41,8 +37,7 @@ import es.caib.projectebase.ws.utils.WsValidationException;
     transportGuarantee = TransportGuarantee.NONE,
     secureWSDLAccess = false,
     authMethod = "BASIC")
-public class HelloWorldWithSecurityWsImpl extends AuthenticatedBaseWsImpl
-    implements Constants {
+public class HelloWorldWithSecurityWsImpl extends BaseWsImpl {
 
   public static final String NAME = "HelloWorldWithSecurity";
 
@@ -53,8 +48,7 @@ public class HelloWorldWithSecurityWsImpl extends AuthenticatedBaseWsImpl
 
   @RolesAllowed({ PBS_ADMIN, PBS_USER })
   @WebMethod
-  public String echo(@WebParam(name = "echo") @Null String echo)
-      throws WsValidationException, WsI18NException, Throwable {
+  public String echo(@WebParam(name = "echo") String echo) {
 
     /*
      * Quan hi hagi fixers FitxerPA.enableEncryptedFileIDGeneration(); try {

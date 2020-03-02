@@ -12,17 +12,10 @@ import es.caib.projectebase.commons.utils.Constants;
 /**
  * 
  * @author anadal
- *
  */
-public class BaseWsImpl implements Constants {
+public class BaseWsImpl {
 
   protected final Logger log = LoggerFactory.getLogger(getClass());
-  
-  // -------------------------------------------------------------------
-  // -------------------------------------------------------------------
-  // --------------------------| UTILITATS |----------------------------
-  // -------------------------------------------------------------------
-  // -------------------------------------------------------------------
 
   @Inject
   private Version version;
@@ -30,11 +23,5 @@ public class BaseWsImpl implements Constants {
   @WebMethod
   public String getVersion() {
     return version.getVersion();
-  }
-
-
-  @WebMethod
-  public int getVersionWs() {
-    return VersionsWs.VERSIO_WS_1;
   }
 }

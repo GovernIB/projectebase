@@ -1,15 +1,14 @@
 package es.caib.projectebase.ejb.utils;
 
-import es.caib.projectebase.commons.i18n.I18NArgument;
 import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.i18n.I18NTranslator;
 
 import java.util.Locale;
 
 /**
- * 
+ * Clase d'utilitat per traduir missatges I18N dins el mòdul EJB
+ *
  * @author anadal
- * 
  */
 public class I18NTranslatorEjb {
 
@@ -25,16 +24,10 @@ public class I18NTranslatorEjb {
     }
 
     public static String translate(String valueIfNotExist, Locale loc, String code, String... args) {
-
         return translator.translate(valueIfNotExist, loc, code, args);
     }
 
     public static String translate(I18NException e, Locale locale) {
-        return translate(locale, e.getMessage(), translateArguments(locale, e.getTraduccio().getArgs()));
+        return translator.translate(e, locale);
     }
-
-    public static String[] translateArguments(Locale locale, I18NArgument... args) {
-        return translator.translateArguments(locale, args);
-    }
-
 }

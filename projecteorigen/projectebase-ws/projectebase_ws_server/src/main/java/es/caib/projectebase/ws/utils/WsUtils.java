@@ -29,8 +29,7 @@ public class WsUtils {
         if (origArgs != null && origArgs.length != 0) {
             args = new ArrayList<>(origArgs.length);
             for (I18NArgument i18nArgument : origArgs) {
-                args.add(new WsI18NArgument(i18nArgument.getValue(),
-                        i18nArgument instanceof I18NArgumentCode));
+                args.add(new WsI18NArgument(i18nArgument.getValue(), i18nArgument instanceof I18NArgumentCode));
             }
         }
         return new WsI18NTranslation(translation.getCode(), args);

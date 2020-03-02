@@ -18,11 +18,10 @@ import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Locale;
 
 /**
- * Intercepta les cridades a un WS. Veure: Veure https://cxf.apache.org/docs/interceptors.html
+ * Intercepta les cridades entrants a un WS. Veure: Veure https://cxf.apache.org/docs/interceptors.html
  *
  * @author anadal
  */
-
 public class WsInInterceptor extends AbstractPhaseInterceptor<Message> {
 
     private static final Logger LOG = LoggerFactory.getLogger(WsInInterceptor.class);
@@ -31,6 +30,7 @@ public class WsInInterceptor extends AbstractPhaseInterceptor<Message> {
         super(Phase.PRE_INVOKE);
     }
 
+    @Override
     public void handleMessage(Message message) throws Fault {
 
         LOG.debug("WsInInterceptor::handleMessage() =>  Thread = " + Thread.currentThread().getId());

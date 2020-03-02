@@ -35,8 +35,4 @@ public class I18NTranslatorRest {
     public static String translate(I18NException e, Locale locale) {
         return translator.translate(e, locale);
     }
-
-    public static String[] translateArguments(Locale locale, I18NArgument... args) {
-        return translator.translateArguments(locale, args);
-    }
 }

@@ -1,10 +1,15 @@
 package es.caib.projectebase.commons.query;
 
-import java.io.Serializable;
-
 /**
+ * Tipus d'ordenació, ascendent o descendent.
+ *
  * @author anadal
  */
-public enum OrderType implements Serializable {
-    ASC, DESC
+public enum OrderType {
+
+    /** Ascendent */
+    ASC,
+
+    /** Descendent */
+    DESC
 }

@@ -7,9 +7,12 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Classe d'utilitat per generar missatges a partir de traduccions.
+ *
  * @author anadal
  */
 public class I18NTranslator {
@@ -77,20 +80,21 @@ public class I18NTranslator {
         return translate(locale, e.getMessage(), translateArguments(locale, e.getTraduccio().getArgs()));
     }
 
+    /**
+     * Procesa un array d'arguments traduintlos si fa falta. Per cada arguent, si és una etiqueta la intenta
+     * traduïr, i si és un literal el retorna talment.
+     *
+     * @param locale idioma de la traducció
+     * @param args array d'arguements
+     * @return retorna un array de Strings amb els arguments traduïts.
+     */
     public String[] translateArguments(Locale locale, I18NArgument... args) {
         if (args == null || args.length == 0) {
             return null;
         }
-        String[] traduits = new String[args.length];
-        for (int i = 0; i < args.length; i++) {
-            if (args[i] != null) {
-                if (args[i] instanceof I18NArgumentCode) {
-                    traduits[i] = translate(locale, args[i].getValue());
-                } else {
-                    traduits[i] = args[i].getValue();
-                }
-            }
-        }
-        return traduits;
+
+        return (String[]) Stream.of(args)
+                .map(arg -> (arg instanceof I18NArgumentCode) ? translate(locale, arg.getValue()): arg.getValue())
+                .toArray();
     }
 }

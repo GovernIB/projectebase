@@ -1,4 +1,4 @@
-package es.caib.projectebase.ws.v1.impl;
+package es.caib.projectebase.ws.impl;
 
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;

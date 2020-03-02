@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * 
  * @author anadal
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = { "code", "args"})

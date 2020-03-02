@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Clase d'utilitat per traduir missatges I18N dins el mòdul API REST.
+ * Clase d'utilitat per traduir missatges I18N dins el mòdul Back
  *
  * @author anadal
  * @author areus
