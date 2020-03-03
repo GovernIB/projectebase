@@ -38,13 +38,11 @@
         <dependency>
             <groupId>javax.xml.ws</groupId>
             <artifactId>jaxws-api</artifactId>
-            <version>${jaxws-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.jws</groupId>
             <artifactId>jsr181-api</artifactId>
-            <version>${jsr181-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
