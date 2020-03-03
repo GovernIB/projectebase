@@ -29,7 +29,8 @@ public class PrincipalInfoServlet extends HttpServlet {
 
     private static final long serialVersionUID = -6071413123148684294L;
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         PrintWriter writer = response.getWriter();
@@ -67,11 +68,11 @@ public class PrincipalInfoServlet extends HttpServlet {
 
 
         // API keycloak
-        if (principal instanceof KeycloakPrincipal) {
+        if (principal instanceof KeycloakPrincipal<?>) {
             writer.println("--------------------------------");
             writer.println("Informació del token de keycloak:");
 
-            KeycloakPrincipal kp = (KeycloakPrincipal) principal;
+            KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) principal;
             KeycloakSecurityContext keycloakSecurityContext = kp.getKeycloakSecurityContext();
 
             AccessToken token = keycloakSecurityContext.getToken();
