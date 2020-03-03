@@ -15,12 +15,13 @@ import javax.faces.event.PhaseListener;
  */
 public class LoggingPhaseListener implements PhaseListener {
 
-	private static final long serialVersionUID = 8891688142408982273L;
-	
-	private static final Logger LOG = LoggerFactory.getLogger(LoggingPhaseListener.class);
+    private static final long serialVersionUID = 8891688142408982273L;
+
+    private static final Logger LOG = LoggerFactory.getLogger(LoggingPhaseListener.class);
 
     /**
      * S'executa abans de començar una fase.
+     *
      * @param phaseEvent Esdeveniment de fase.
      */
     @Override
@@ -30,6 +31,7 @@ public class LoggingPhaseListener implements PhaseListener {
 
     /**
      * S'executa després d'acabar una fase.
+     *
      * @param phaseEvent Esdeveniment de fase.
      */
     @Override
@@ -39,6 +41,7 @@ public class LoggingPhaseListener implements PhaseListener {
 
     /**
      * Indica les fases que es volen rebre, en aquest cas, totes.
+     *
      * @return el valor especial ANY_PHASE per indicar que vol rebre els esdeveniments de totes les fases.
      */
     @Override

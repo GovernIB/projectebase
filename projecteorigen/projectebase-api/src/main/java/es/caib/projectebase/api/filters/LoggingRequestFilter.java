@@ -23,12 +23,13 @@ import javax.ws.rs.ext.Provider;
 @Provider
 @PreMatching
 @Priority(100)
-public class LoggingRequestFilter implements ContainerRequestFilter , ContainerResponseFilter {
+public class LoggingRequestFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoggingRequestFilter.class);
 
     /**
      * Realitza un log del mètode HTTP i el request URI.
+     *
      * @param request informació de context de la petició
      */
     @Override
@@ -38,7 +39,8 @@ public class LoggingRequestFilter implements ContainerRequestFilter , ContainerR
 
     /**
      * Realitza un log del mètode HTTP i el request URI amb l'status de la resposta.
-     * @param request informació de context de la petició
+     *
+     * @param request  informació de context de la petició
      * @param response informació de context de la resposta
      */
     @Override

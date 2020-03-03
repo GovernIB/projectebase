@@ -33,15 +33,15 @@ import java.util.Objects;
 @SequenceGenerator(name = "procediment-sequence", sequenceName = "PBS_PROCEDIMENT_SEQ", allocationSize = 1)
 @Table(name = "PBS_PROCEDIMENT",
         uniqueConstraints = {
-            @UniqueConstraint(name = "PBS_PROCEDIMENT_CODISIA_UK", columnNames = "CODISIA")
+                @UniqueConstraint(name = "PBS_PROCEDIMENT_CODISIA_UK", columnNames = "CODISIA")
         },
         indexes = {
-            @Index(name= "PBS_PROCEDIMENT_PK_I", columnList = "ID"),
-            @Index(name= "PBS_PROCEDIMENT_CODISIA_UK_I", columnList = "CODISIA"),
-            @Index(name= "PBS_PROCEDIMENT_UNITAT_FK_I", columnList = "UNITATORGANICAID")
+                @Index(name = "PBS_PROCEDIMENT_PK_I", columnList = "ID"),
+                @Index(name = "PBS_PROCEDIMENT_CODISIA_UK_I", columnList = "CODISIA"),
+                @Index(name = "PBS_PROCEDIMENT_UNITAT_FK_I", columnList = "UNITATORGANICAID")
         }
 )
-@Schema(name="Procediment")
+@Schema(name = "Procediment")
 public class Procediment implements Serializable {
 
     private static final long serialVersionUID = 1L;

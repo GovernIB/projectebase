@@ -17,7 +17,7 @@ public class I18NTranslatorRest {
      * Classe en la que es delega la traducció. S'inicialitza amb tots els recursos que s'empraran per cercar les claus.
      */
     public static final I18NTranslator translator = new I18NTranslator(
-            new String[] { "ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB" });
+            new String[]{"ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB"});
 
     public static String translate(boolean useCodeIfNotExist, Locale loc, String code, String... args) {
         return translator.translate(useCodeIfNotExist, loc, code, args);

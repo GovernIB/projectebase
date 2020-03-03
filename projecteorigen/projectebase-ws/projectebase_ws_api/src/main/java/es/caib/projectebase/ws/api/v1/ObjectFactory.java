@@ -8,18 +8,17 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the es.caib.projectebase.ws.api.v1 package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the es.caib.projectebase.ws.api.v1 package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -29,14 +28,12 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: es.caib.projectebase.ws.api.v1
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link WsFieldValidationError }
-     * 
      */
     public WsFieldValidationError createWsFieldValidationError() {
         return new WsFieldValidationError();
@@ -44,7 +41,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link WsI18NTranslation }
-     * 
      */
     public WsI18NTranslation createWsI18NTranslation() {
         return new WsI18NTranslation();
@@ -52,7 +48,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link WsI18NArgument }
-     * 
      */
     public WsI18NArgument createWsI18NArgument() {
         return new WsI18NArgument();
@@ -60,7 +55,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link WsI18NError }
-     * 
      */
     public WsI18NError createWsI18NError() {
         return new WsI18NError();
@@ -68,7 +62,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FitxerBean }
-     * 
      */
     public FitxerBean createFitxerBean() {
         return new FitxerBean();
@@ -76,7 +69,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link WsValidationErrors }
-     * 
      */
     public WsValidationErrors createWsValidationErrors() {
         return new WsValidationErrors();
@@ -84,7 +76,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link WsValidationErrors }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "http://impl.v1.ws.projectebase.caib.es/", name = "WsValidationErrors")
     public JAXBElement<WsValidationErrors> createWsValidationErrors(WsValidationErrors value) {
@@ -93,7 +84,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link WsI18NError }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "http://impl.v1.ws.projectebase.caib.es/", name = "WsI18NError")
     public JAXBElement<WsI18NError> createWsI18NError(WsI18NError value) {

@@ -31,14 +31,16 @@ import java.util.ResourceBundle;
 @ViewScoped
 public class ListProcedimentController implements Serializable {
 
-	private static final long serialVersionUID = -7992474170848445700L;
+    private static final long serialVersionUID = -7992474170848445700L;
 
-	private static final Logger LOG = LoggerFactory.getLogger(ListProcedimentController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ListProcedimentController.class);
 
     @Inject
     private FacesContext context;
 
-    /** Injecta el bundle definit dins faces-config.xml amb var = labels. */
+    /**
+     * Injecta el bundle definit dins faces-config.xml amb var = labels.
+     */
     @Inject
     @ManagedProperty("#{labels}")
     private ResourceBundle labelsBundle;
@@ -54,12 +56,16 @@ public class ListProcedimentController implements Serializable {
     private UnitatOrganica unitatOrganica;
     private List<Procediment> procediments;
 
-    /** Obté la unitat orgànica de la qual s'estàn llistat els procediments. */
+    /**
+     * Obté la unitat orgànica de la qual s'estàn llistat els procediments.
+     */
     public UnitatOrganica getUnitatOrganica() {
         return unitatOrganica;
     }
 
-    /** Obté la llista de procedmients associats a la unitat orgànica */
+    /**
+     * Obté la llista de procedmients associats a la unitat orgànica
+     */
     public List<Procediment> getProcediments() {
         return procediments;
     }

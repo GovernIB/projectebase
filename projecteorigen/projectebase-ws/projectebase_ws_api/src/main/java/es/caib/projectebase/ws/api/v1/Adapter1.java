@@ -7,10 +7,8 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 import es.caib.projectebase.ws.api.v1.utils.WsTimestampAdapter;
 
 
-
 public class Adapter1
-    extends XmlAdapter<String, Timestamp>
-{
+        extends XmlAdapter<String, Timestamp> {
 
 
     public Timestamp unmarshal(String value) {

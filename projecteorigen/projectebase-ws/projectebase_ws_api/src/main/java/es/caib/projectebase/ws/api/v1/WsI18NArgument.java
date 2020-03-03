@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for wsI18NArgument complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="wsI18NArgument">
  *   &lt;complexContent>
@@ -23,13 +23,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "wsI18NArgument", propOrder = {
-    "value",
-    "translate"
+        "value",
+        "translate"
 })
 public class WsI18NArgument {
 
@@ -38,11 +36,9 @@ public class WsI18NArgument {
 
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getValue() {
         return value;
@@ -50,11 +46,9 @@ public class WsI18NArgument {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setValue(String value) {
         this.value = value;
@@ -62,7 +56,6 @@ public class WsI18NArgument {
 
     /**
      * Gets the value of the translate property.
-     * 
      */
     public boolean isTranslate() {
         return translate;
@@ -70,7 +63,6 @@ public class WsI18NArgument {
 
     /**
      * Sets the value of the translate property.
-     * 
      */
     public void setTranslate(boolean value) {
         this.translate = value;

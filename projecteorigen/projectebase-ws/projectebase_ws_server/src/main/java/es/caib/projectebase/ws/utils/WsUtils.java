@@ -17,6 +17,7 @@ public class WsUtils {
     /**
      * Converteix la classe que representa la traducció d'un missatge a una classe que està
      * preparada per serialitzar-se en XML dins una respota de servei web.
+     *
      * @param translation traducció d'un missatge
      * @return representació de la traducció amb una classe serialitzable amb XML.
      */

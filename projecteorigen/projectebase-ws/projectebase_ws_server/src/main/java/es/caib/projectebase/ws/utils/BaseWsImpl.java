@@ -9,18 +9,17 @@ import org.slf4j.LoggerFactory;
 import es.caib.projectebase.commons.utils.Version;
 
 /**
- * 
  * @author anadal
  */
 public class BaseWsImpl {
 
-  protected final Logger log = LoggerFactory.getLogger(getClass());
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
-  @Inject
-  private Version version;
-  
-  @WebMethod
-  public String getVersion() {
-    return version.getVersion();
-  }
+    @Inject
+    private Version version;
+
+    @WebMethod
+    public String getVersion() {
+        return version.getVersion();
+    }
 }

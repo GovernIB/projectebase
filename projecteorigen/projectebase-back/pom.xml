@@ -58,7 +58,7 @@
             <artifactId>bootstrap</artifactId>
         </dependency>
     </dependencies>
-    
+
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>

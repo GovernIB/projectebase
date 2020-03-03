@@ -41,7 +41,7 @@ public class UnitatOrganicaServiceTest {
                 .request(MediaType.APPLICATION_JSON)
                 .get(UnitatOrganica.class);
 
-        Assert.assertEquals(1L, (long)unitat.getId());
+        Assert.assertEquals(1L, (long) unitat.getId());
         Assert.assertEquals("A00000001", unitat.getCodiDir3());
     }
 

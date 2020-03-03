@@ -32,14 +32,16 @@ import java.util.ResourceBundle;
 @ViewScoped
 public class EditProcedimentController implements Serializable {
 
-	private static final long serialVersionUID = -6369618058993094891L;
+    private static final long serialVersionUID = -6369618058993094891L;
 
-	private static final Logger LOG = LoggerFactory.getLogger(EditProcedimentController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EditProcedimentController.class);
 
     @Inject
     private FacesContext context;
 
-    /** Injecta el bundle definit dins faces-config.xml amb var = labels. */
+    /**
+     * Injecta el bundle definit dins faces-config.xml amb var = labels.
+     */
     @Inject
     @ManagedProperty("#{labels}")
     private ResourceBundle labelsBundle;
@@ -72,6 +74,7 @@ public class EditProcedimentController implements Serializable {
 
     /**
      * Indica si és una creació o una actualització segons s'hagi fixat o no l'id del procediment.
+     *
      * @return <code>true</code> si l'id és null, i per tant és una creació, <code>false</code> en cas contrari.
      */
     public boolean isCreate() {
@@ -106,6 +109,7 @@ public class EditProcedimentController implements Serializable {
     /**
      * Crea o actualitza la unitat orgànica que s'està editant. Afegeix un missatge si s'ha fet amb èxit
      * i redirecciona cap a la pàgina de llistat.
+     *
      * @return navegació cap al llistat d'unitats orgàniques.
      */
     public String saveOrUpdate() {

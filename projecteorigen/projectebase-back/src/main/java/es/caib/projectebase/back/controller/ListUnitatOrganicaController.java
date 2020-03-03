@@ -35,14 +35,16 @@ import java.util.ResourceBundle;
 @ViewScoped
 public class ListUnitatOrganicaController implements Serializable {
 
-	private static final long serialVersionUID = -6015369276336087696L;
+    private static final long serialVersionUID = -6015369276336087696L;
 
-	private static final Logger LOG = LoggerFactory.getLogger(ListUnitatOrganicaController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ListUnitatOrganicaController.class);
 
     @Inject
     private FacesContext context;
 
-    /** Injecta el bundle definit dins faces-config.xml amb var = labels. */
+    /**
+     * Injecta el bundle definit dins faces-config.xml amb var = labels.
+     */
     @Inject
     @ManagedProperty("#{labels}")
     private ResourceBundle labelsBundle;
@@ -70,9 +72,9 @@ public class ListUnitatOrganicaController implements Serializable {
 
         lazyModel = new LazyDataModel<>() {
 
-			private static final long serialVersionUID = -1420774197768250112L;
+            private static final long serialVersionUID = -1420774197768250112L;
 
-			/*
+            /*
             Primefaces cridarà automàticament aquest mètode quan necessita actualitzar les dades del dataTable
             per qualsevol circumstància (filtres, ordenació, canvi de pàgina ...)
             */

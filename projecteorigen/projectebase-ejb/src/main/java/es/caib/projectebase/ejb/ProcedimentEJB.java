@@ -58,6 +58,7 @@ public class ProcedimentEJB extends AbstractDAO<Procediment, Long> implements Pr
 
     /**
      * Obté el nombre de procediments d'una unitat orgànica
+     *
      * @param unitatOrganicaId identificador de la unitat orgànica.
      * @return nombre de procediments relacionats amb la unitat orgànica
      */
@@ -72,7 +73,7 @@ public class ProcedimentEJB extends AbstractDAO<Procediment, Long> implements Pr
      * Si filter és <code>null</code> no aplica cap filtre.
      *
      * @param unitatOrganicaId identificador de la unitat orgànica.
-     * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
+     * @param filters          map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
      * @return llista de procediments de la unitat orgànica que compleixen el filtre.
      */
     @PermitAll
@@ -97,7 +98,7 @@ public class ProcedimentEJB extends AbstractDAO<Procediment, Long> implements Pr
      * Si filter és <code>null</code> no aplica cap filtre.
      *
      * @param unitatOrganicaId identificador de la unitat orgànica.
-     * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
+     * @param filters          map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
      * @return nombre de procediments relacionats amb la unitat orgànica que compleixen el filtre.
      */
     @PermitAll

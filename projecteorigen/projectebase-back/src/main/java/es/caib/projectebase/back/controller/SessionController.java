@@ -16,7 +16,7 @@ import java.io.Serializable;
 /**
  * Bean per controlar la sessió d'usuari. S'ha de mantenir dins l'scope de sessió, i per tant cal definir-ho
  * com a serialitzable. Anar en compte a mantenir referències a objectes no serialitzables.
- *
+ * <p>
  * Quan indicam que és @Named i no posam nom, per defecte el nom del bean serà el nom de la classe començat en
  * minúscules, en aquest cas "sessionController".
  *
@@ -26,9 +26,9 @@ import java.io.Serializable;
 @SessionScoped
 public class SessionController implements Serializable {
 
-	private static final long serialVersionUID = -3709390221710580769L;
+    private static final long serialVersionUID = -3709390221710580769L;
 
-	private static final Logger LOG = LoggerFactory.getLogger(SessionController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SessionController.class);
 
     @Inject
     private FacesContext context;

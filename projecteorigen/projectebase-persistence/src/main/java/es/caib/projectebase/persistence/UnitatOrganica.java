@@ -28,20 +28,21 @@ import static javax.persistence.EnumType.ORDINAL;
  * Representació d'una unitat orgànica. Sempre convé definir-les serializable, per si hi mantenim referències dins
  * coses serializables. A nivell de classe definim la seqüència que emprarem, i les claus úniques.
  * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
+ *
  * @author areus
  */
 @Entity
 @SequenceGenerator(name = "uo-sequence", sequenceName = "PBS_UNITATORGANICA_SEQ", allocationSize = 1)
 @Table(name = "PBS_UNITATORGANICA",
         uniqueConstraints = {
-            @UniqueConstraint(name = "PBS_UNITAT_CODIDIR3_UK", columnNames = "CODIDIR3")
+                @UniqueConstraint(name = "PBS_UNITAT_CODIDIR3_UK", columnNames = "CODIDIR3")
         },
         indexes = {
-            @Index(name= "PBS_UNITAT_PK_I", columnList = "ID"),
-            @Index(name= "PBS_UNITAT_CODIDIR3_UK_I", columnList = "CODIDIR3")
+                @Index(name = "PBS_UNITAT_PK_I", columnList = "ID"),
+                @Index(name = "PBS_UNITAT_CODIDIR3_UK_I", columnList = "CODIDIR3")
         }
 )
-@Schema(name="Unitat")
+@Schema(name = "Unitat")
 public class UnitatOrganica implements Serializable {
 
     private static final long serialVersionUID = 1L;

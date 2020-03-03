@@ -7,9 +7,13 @@ package es.caib.projectebase.commons.query;
  */
 public enum OrderType {
 
-    /** Ascendent */
+    /**
+     * Ascendent
+     */
     ASC,
 
-    /** Descendent */
+    /**
+     * Descendent
+     */
     DESC
 }

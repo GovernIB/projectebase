@@ -84,7 +84,7 @@ public class I18NTranslator {
      * traduïr, i si és un literal el retorna talment.
      *
      * @param locale idioma de la traducció
-     * @param args array d'arguements
+     * @param args   array d'arguements
      * @return retorna un array de Strings amb els arguments traduïts.
      */
     public String[] translateArguments(Locale locale, I18NArgument... args) {
@@ -93,7 +93,7 @@ public class I18NTranslator {
         }
 
         return (String[]) Stream.of(args)
-                .map(arg -> (arg instanceof I18NArgumentCode) ? translate(locale, arg.getValue()): arg.getValue())
+                .map(arg -> (arg instanceof I18NArgumentCode) ? translate(locale, arg.getValue()) : arg.getValue())
                 .toArray();
     }
 }

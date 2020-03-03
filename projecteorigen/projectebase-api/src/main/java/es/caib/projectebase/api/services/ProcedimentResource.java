@@ -95,7 +95,7 @@ public class ProcedimentResource {
      * Crea un nou procediment dependent d'una unitat orgànica.
      *
      * @param procediment la nova unitat orgànica a crear.
-     * @param unitatId identificador de la unitat orgànica de la que dependrà el procediment.
+     * @param unitatId    identificador de la unitat orgànica de la que dependrà el procediment.
      * @return Un codi 201 amb la localització del procediment creat.
      */
     @POST
@@ -119,7 +119,7 @@ public class ProcedimentResource {
      * amb els camps rebuts.
      *
      * @param procediment dades a actualitzar del procediment.
-     * @param id Identificador del procediment a actualitzar.
+     * @param id          Identificador del procediment a actualitzar.
      * @return Resposta amb status 204 si l'operació té èxit, o 404 si el recurs amb l'id indicat no existeix.
      */
     @PUT
@@ -158,7 +158,7 @@ public class ProcedimentResource {
     @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response delete(@Parameter(description = "L'identificador del procediment", required = true)
-                        @PathParam("id") Long id) throws I18NException {
+                           @PathParam("id") Long id) throws I18NException {
         if (procedimentService.findById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {

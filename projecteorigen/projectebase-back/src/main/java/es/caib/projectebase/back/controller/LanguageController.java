@@ -15,7 +15,7 @@ import java.util.Locale;
 /**
  * Proporciona les opcions d'idioma. Atès que són les mateixes sempre per tots els usuaris
  * ho ficam com un bean a l'scope d'aplicació perquè només es carregui una vegada.
- *
+ * <p>
  * Quan indicam que és @Named i no posam nom, per defecte el nom del bean serà el nom de la classe començat en
  * minúscules, en aquest cas "languageController".
  *

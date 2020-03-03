@@ -7,8 +7,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 import es.caib.projectebase.ws.api.v1.utils.WsSqlDateAdapter;
 
 public class Adapter2
-    extends XmlAdapter<String, Date>
-{
+        extends XmlAdapter<String, Date> {
 
 
     public Date unmarshal(String value) {

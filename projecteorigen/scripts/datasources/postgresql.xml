@@ -1,8 +1,9 @@
-<datasource jndi-name="java:jboss/datasources/projectebaseDS" pool-name="projectebaseDS" enabled="true" use-java-context="true">
-	<connection-url>jdbc:postgresql://localhost:5432/projectebase</connection-url>
-	<driver>postgresql</driver>
-	<security>
-		<user-name>projectebase</user-name>
-		<password>projectebase</password>
-	</security>
+<datasource jndi-name="java:jboss/datasources/projectebaseDS" pool-name="projectebaseDS" enabled="true"
+            use-java-context="true">
+    <connection-url>jdbc:postgresql://localhost:5432/projectebase</connection-url>
+    <driver>postgresql</driver>
+    <security>
+        <user-name>projectebase</user-name>
+        <password>projectebase</password>
+    </security>
 </datasource>

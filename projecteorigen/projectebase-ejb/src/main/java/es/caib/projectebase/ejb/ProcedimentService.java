@@ -21,10 +21,8 @@ public interface ProcedimentService extends DAO<Procediment, Long> {
     /**
      * Crea un procediment depenent d'una unitat orgànica.
      *
-     * @param procediment
-     *            procediment.
-     * @param unitatOrganicaId
-     *            identificador de la unitat orgànica.
+     * @param procediment      procediment.
+     * @param unitatOrganicaId identificador de la unitat orgànica.
      * @return El procediment creat.
      */
     Procediment create(Procediment procediment, Long unitatOrganicaId) throws I18NException;
@@ -32,8 +30,7 @@ public interface ProcedimentService extends DAO<Procediment, Long> {
     /**
      * Obté una llista de tots els procediments d'una unitat orgànica.
      *
-     * @param unitatOrganicaId
-     *            identificador de la unitat orgànica.
+     * @param unitatOrganicaId identificador de la unitat orgànica.
      * @return llista de procediments de la unitat orgànica.
      */
     List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId);
@@ -41,8 +38,7 @@ public interface ProcedimentService extends DAO<Procediment, Long> {
     /**
      * Obté el nombre de procediments d'una unitat orgànica
      *
-     * @param unitatOrganicaId
-     *            identificador de la unitat orgànica.
+     * @param unitatOrganicaId identificador de la unitat orgànica.
      * @return nombre de procediments de la unitat orgànica
      */
     Long countAllByUnitatOrganica(Long unitatOrganicaId);
@@ -53,7 +49,7 @@ public interface ProcedimentService extends DAO<Procediment, Long> {
      * Si filter és <code>null</code> no aplica cap filtre.
      *
      * @param unitatOrganicaId identificador de la unitat orgànica.
-     * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
+     * @param filters          map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
      * @return llista de procediments de la unitat orgànica que compleixen el filtre.
      */
     List<Procediment> findAllByUnitatOrganica(Long unitatOrganicaId, Map<String, Object> filters);
@@ -63,7 +59,7 @@ public interface ProcedimentService extends DAO<Procediment, Long> {
      * Si filter és <code>null</code> no aplica cap filtre.
      *
      * @param unitatOrganicaId identificador de la unitat orgànica.
-     * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
+     * @param filters          map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
      * @return nombre de procediments relacionats amb la unitat orgànica que compleixen el filtre.
      */
     long countAllByUnitatOrganica(Long unitatOrganicaId, Map<String, Object> filters);

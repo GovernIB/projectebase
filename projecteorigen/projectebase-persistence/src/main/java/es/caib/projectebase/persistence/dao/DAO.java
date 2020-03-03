@@ -12,9 +12,9 @@ import java.util.Map;
 
 /**
  * Defineix les operacions dels Data Access Object per una entitat.
- * @param <E> Tipus de l'entitat.
- * @param <PK> Tipus de la clau primària de l'entitat.
  *
+ * @param <E>  Tipus de l'entitat.
+ * @param <PK> Tipus de la clau primària de l'entitat.
  * @author anadal
  * @author areus
  */
@@ -23,7 +23,7 @@ public interface DAO<E extends Serializable, PK> {
     /**
      * Crea un entity.
      *
-     * @param entity  l'entity a crear.
+     * @param entity l'entity a crear.
      * @return El entity creat.
      */
     E create(@NotNull E entity) throws I18NException;
@@ -57,7 +57,7 @@ public interface DAO<E extends Serializable, PK> {
      * @return nombre total d'entitats.
      */
     long countAll();
-    
+
     /**
      * Retorna el nombre total d'entitats que compleixen els filtres indicats.
      *
@@ -88,9 +88,9 @@ public interface DAO<E extends Serializable, PK> {
     /**
      * Obté les entitats dins el rang indicat.
      *
-     * @param first primer resultat a retornar. El primer és 0.
+     * @param first    primer resultat a retornar. El primer és 0.
      * @param pageSize nombre màxim de resultats a retornar.
-     * @param orderBy ordenacions que s'aplicaran amb l'ordre indicat.
+     * @param orderBy  ordenacions que s'aplicaran amb l'ordre indicat.
      * @return llista d'entitats dins el rang indicat ordenada amb els criteris indicats.
      * @throws I18NException si es produeix qualsevol error d'accés a les dades.
      */
@@ -101,15 +101,15 @@ public interface DAO<E extends Serializable, PK> {
     /**
      * Obté les entitats dins el rang indicat que compleixen els filtres.
      *
-     * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
-     * @param first primer resultat a retornar. El primer és 0.
+     * @param filters  map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
+     * @param first    primer resultat a retornar. El primer és 0.
      * @param pageSize nombre màxim de resultats a retornar.
-     * @param orderBy ordenacions que s'aplicaran amb l'ordre indicat.
+     * @param orderBy  ordenacions que s'aplicaran amb l'ordre indicat.
      * @return llista d'entitats dins el rang indicat que compleixen els filtres ordenada amb els criteris indicats.
      * @throws I18NException si es produeix qualsevol error d'accés a les dades.
      */
     List<E> findFiltered(Map<String, Object> filters, @PositiveOrZero int first, @Positive int pageSize,
-                                OrderBy... orderBy)
+                         OrderBy... orderBy)
             throws I18NException;
 
     /**

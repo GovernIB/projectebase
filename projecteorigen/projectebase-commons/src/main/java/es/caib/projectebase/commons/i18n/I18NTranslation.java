@@ -14,8 +14,9 @@ public class I18NTranslation {
 
     /**
      * Construeix una traducció amb una etiqueta i uns arguments.
-     * @param code  etiqueta del missatge
-     * @param args  arguments a emprar amb l'etiqueta
+     *
+     * @param code etiqueta del missatge
+     * @param args arguments a emprar amb l'etiqueta
      */
     public I18NTranslation(String code, I18NArgument... args) {
         this.code = code;
@@ -24,7 +25,8 @@ public class I18NTranslation {
 
     /**
      * Construeix una traducció amb una etiqueta.
-     * @param code  etiqueta del missatge
+     *
+     * @param code etiqueta del missatge
      */
     public I18NTranslation(String code) {
         this.code = code;
@@ -32,8 +34,9 @@ public class I18NTranslation {
 
     /**
      * Construeix una traducció amb una etiqueta i uns arguments.
-     * @param code  etiqueta del missatge
-     * @param args  arguments a emprar amb l'etiqueta
+     *
+     * @param code etiqueta del missatge
+     * @param args arguments a emprar amb l'etiqueta
      */
     public I18NTranslation(String code, String... args) {
         this.code = code;

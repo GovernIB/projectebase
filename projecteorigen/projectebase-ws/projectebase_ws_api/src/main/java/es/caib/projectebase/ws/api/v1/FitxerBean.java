@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for fitxerBean complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="fitxerBean">
  *   &lt;complexContent>
@@ -28,18 +28,16 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "fitxerBean", propOrder = {
-    "data",
-    "descripcio",
-    "encryptedFileID",
-    "fitxerID",
-    "mime",
-    "nom",
-    "tamany"
+        "data",
+        "descripcio",
+        "encryptedFileID",
+        "fitxerID",
+        "mime",
+        "nom",
+        "tamany"
 })
 public class FitxerBean {
 
@@ -53,10 +51,9 @@ public class FitxerBean {
 
     /**
      * Gets the value of the data property.
-     * 
-     * @return
-     *     possible object is
-     *     byte[]
+     *
+     * @return possible object is
+     * byte[]
      */
     public byte[] getData() {
         return data;
@@ -64,10 +61,9 @@ public class FitxerBean {
 
     /**
      * Sets the value of the data property.
-     * 
-     * @param value
-     *     allowed object is
-     *     byte[]
+     *
+     * @param value allowed object is
+     *              byte[]
      */
     public void setData(byte[] value) {
         this.data = ((byte[]) value);
@@ -75,11 +71,9 @@ public class FitxerBean {
 
     /**
      * Gets the value of the descripcio property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDescripcio() {
         return descripcio;
@@ -87,11 +81,9 @@ public class FitxerBean {
 
     /**
      * Sets the value of the descripcio property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDescripcio(String value) {
         this.descripcio = value;
@@ -99,11 +91,9 @@ public class FitxerBean {
 
     /**
      * Gets the value of the encryptedFileID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getEncryptedFileID() {
         return encryptedFileID;
@@ -111,11 +101,9 @@ public class FitxerBean {
 
     /**
      * Sets the value of the encryptedFileID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setEncryptedFileID(String value) {
         this.encryptedFileID = value;
@@ -123,7 +111,6 @@ public class FitxerBean {
 
     /**
      * Gets the value of the fitxerID property.
-     * 
      */
     public long getFitxerID() {
         return fitxerID;
@@ -131,7 +118,6 @@ public class FitxerBean {
 
     /**
      * Sets the value of the fitxerID property.
-     * 
      */
     public void setFitxerID(long value) {
         this.fitxerID = value;
@@ -139,11 +125,9 @@ public class FitxerBean {
 
     /**
      * Gets the value of the mime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getMime() {
         return mime;
@@ -151,11 +135,9 @@ public class FitxerBean {
 
     /**
      * Sets the value of the mime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setMime(String value) {
         this.mime = value;
@@ -163,11 +145,9 @@ public class FitxerBean {
 
     /**
      * Gets the value of the nom property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNom() {
         return nom;
@@ -175,11 +155,9 @@ public class FitxerBean {
 
     /**
      * Sets the value of the nom property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNom(String value) {
         this.nom = value;
@@ -187,7 +165,6 @@ public class FitxerBean {
 
     /**
      * Gets the value of the tamany property.
-     * 
      */
     public long getTamany() {
         return tamany;
@@ -195,7 +172,6 @@ public class FitxerBean {
 
     /**
      * Sets the value of the tamany property.
-     * 
      */
     public void setTamany(long value) {
         this.tamany = value;

@@ -29,7 +29,7 @@ import static es.caib.projectebase.api.config.ApiConstants.SUPPORTED_LOCALES;
 @Provider
 @PreMatching
 @Priority(300)
-public class LocaleRequestFilter implements ContainerRequestFilter , ContainerResponseFilter {
+public class LocaleRequestFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
     @Context
     private HttpServletRequest servletRequest;
@@ -54,6 +54,7 @@ public class LocaleRequestFilter implements ContainerRequestFilter , ContainerRe
     /**
      * Determina el language de la petició, en primer lloc agafant el paràmetre lang, i si no, de la capçalera
      * Accept-language de la petició.
+     *
      * @param request informació de context de la petició
      */
     @Override
@@ -83,7 +84,8 @@ public class LocaleRequestFilter implements ContainerRequestFilter , ContainerRe
     /**
      * Comprova si la resposta té el language fixat i si no el té afegeix la capçalera Content-Language amb
      * el valor determinat al filtre d'entrada.
-     * @param request informació de context de la petició
+     *
+     * @param request  informació de context de la petició
      * @param response informació de context de la resposta
      */
     @Override

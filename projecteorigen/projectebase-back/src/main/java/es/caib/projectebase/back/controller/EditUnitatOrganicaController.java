@@ -29,14 +29,16 @@ import java.util.ResourceBundle;
 @ViewScoped
 public class EditUnitatOrganicaController implements Serializable {
 
-	private static final long serialVersionUID = -4092311228270716321L;
+    private static final long serialVersionUID = -4092311228270716321L;
 
-	private static final Logger LOG = LoggerFactory.getLogger(EditUnitatOrganicaController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EditUnitatOrganicaController.class);
 
     @Inject
     private FacesContext context;
 
-    /** Injecta el bundle definit dins faces-config.xml amb var = labels. */
+    /**
+     * Injecta el bundle definit dins faces-config.xml amb var = labels.
+     */
     @Inject
     @ManagedProperty("#{labels}")
     private ResourceBundle labelsBundle;

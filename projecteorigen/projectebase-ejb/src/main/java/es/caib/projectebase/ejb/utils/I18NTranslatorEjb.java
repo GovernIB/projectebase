@@ -13,7 +13,7 @@ import java.util.Locale;
 public class I18NTranslatorEjb {
 
     public static final I18NTranslator translator = new I18NTranslator(
-            new String[] { "ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB" });
+            new String[]{"ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB"});
 
     public static String translate(boolean useCodeIfNotExist, Locale loc, String code, String... args) {
         return translator.translate(useCodeIfNotExist, loc, code, args);
