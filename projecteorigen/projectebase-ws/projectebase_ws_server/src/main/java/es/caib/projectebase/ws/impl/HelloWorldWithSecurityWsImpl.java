@@ -40,15 +40,8 @@ public class HelloWorldWithSecurityWsImpl extends BaseWsImpl {
     @RolesAllowed({PBS_ADMIN, PBS_USER})
     @WebMethod
     public String echo(@WebParam(name = "echo") String echo) {
-
-        /*
-         * Quan hi hagi fixers FitxerPA.enableEncryptedFileIDGeneration(); try {
-         */
         log.info("HelloWorldWithSecurityWsImpl :: echo = " + echo);
         return "USER: " + wsContext.getUserPrincipal().getName() + " | ECHO: " + echo;
-        /*
-         * Quan hi hagi fixers } finally { FitxerJPA.disableEncryptedFileIDGeneration(); }
-         */
     }
 
 }

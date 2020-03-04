@@ -1,9 +1,9 @@
 package es.caib.projectebase.ws.v1.test;
 
+import es.caib.projectebase.ws.api.HelloWorldWithSecurityWs;
+import es.caib.projectebase.ws.api.HelloWorldWs;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-
-import es.caib.projectebase.ws.api.HelloWorldWs;
 import org.junit.Test;
 
 /**
@@ -11,9 +11,9 @@ import org.junit.Test;
  *
  * @author anadal
  */
-public class HelloWorldTest {
+public class HelloWorldWithSecurityTest {
 
-    protected static HelloWorldWs helloWorldApi;
+    protected static HelloWorldWithSecurityWs helloWorldWithSecurityApi;
 
     /**
      * S'executa una vegada abans de l'execució de tots els tests d'aquesta classe
@@ -22,17 +22,17 @@ public class HelloWorldTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        helloWorldApi = TestUtils.getHelloWorldApi();
+        helloWorldWithSecurityApi = TestUtils.getHelloWorldWithSecurityApi();
     }
 
     @Test
     public void testVersio() throws Exception {
-        Assert.assertEquals("1.0.0", helloWorldApi.getVersion());
+        Assert.assertEquals("1.0.0", helloWorldWithSecurityApi.getVersion());
     }
 
     @Test
     public void testEcho() throws Exception {
         final String echo = "eco ecooooo";
-        Assert.assertEquals(echo, helloWorldApi.echo(echo));
+        Assert.assertEquals(echo, helloWorldWithSecurityApi.echo(echo));
     }
 }

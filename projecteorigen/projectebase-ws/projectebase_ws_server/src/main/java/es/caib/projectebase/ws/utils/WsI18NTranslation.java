@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 /**
+ * Representació d'una traducció per la seva seralització en xml dins una respota WS.
+ *
  * @author anadal
  */
 @XmlAccessorType(XmlAccessType.FIELD)

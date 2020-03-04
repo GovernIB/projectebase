@@ -6,6 +6,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
+ * Representació d'un argument de traducció per la seva seralització en xml dins una respota WS.
+ *
  * @author anadal
  */
 @XmlAccessorType(XmlAccessType.FIELD)

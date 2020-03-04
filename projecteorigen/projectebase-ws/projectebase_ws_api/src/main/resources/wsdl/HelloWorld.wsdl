@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="HelloWorldWsService" targetNamespace="http://impl.ws.projectebase.caib.es/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://impl.ws.projectebase.caib.es/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:tns="http://impl.ws.projectebase.caib.es/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://impl.ws.projectebase.caib.es/" version="1.0">
+  <xs:complexType name="wsI18NTranslation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="args" type="tns:wsI18NArgument"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="wsI18NArgument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="value" type="xs:string"/>
+      <xs:element name="translate" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsI18NError" type="tns:WsI18NError"/>
+  <xs:complexType name="WsI18NError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="translation" type="tns:wsI18NTranslation"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="echo">
+    <wsdl:part name="echo" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVersionResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="echoResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WsI18NException">
+    <wsdl:part name="WsI18NException" element="tns:WsI18NError">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVersion">
+  </wsdl:message>
+  <wsdl:portType name="HelloWorldWs">
+    <wsdl:operation name="echo">
+      <wsdl:input name="echo" message="tns:echo">
+    </wsdl:input>
+      <wsdl:output name="echoResponse" message="tns:echoResponse">
+    </wsdl:output>
+      <wsdl:fault name="WsI18NException" message="tns:WsI18NException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <wsdl:input name="getVersion" message="tns:getVersion">
+    </wsdl:input>
+      <wsdl:output name="getVersionResponse" message="tns:getVersionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldWsServiceSoapBinding" type="tns:HelloWorldWs">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="echo">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="echo">
+        <soap:body use="literal" namespace="http://impl.ws.projectebase.caib.es/"/>
+      </wsdl:input>
+      <wsdl:output name="echoResponse">
+        <soap:body use="literal" namespace="http://impl.ws.projectebase.caib.es/"/>
+      </wsdl:output>
+      <wsdl:fault name="WsI18NException">
+        <soap:fault name="WsI18NException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getVersion">
+        <soap:body use="literal" namespace="http://impl.ws.projectebase.caib.es/"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionResponse">
+        <soap:body use="literal" namespace="http://impl.ws.projectebase.caib.es/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorldWsService">
+    <wsdl:port name="HelloWorldWs" binding="tns:HelloWorldWsServiceSoapBinding">
+      <soap:address location="http://localhost:8080/projectebase-ws-server-1.0.0/HelloWorldWsService/HelloWorldWs"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

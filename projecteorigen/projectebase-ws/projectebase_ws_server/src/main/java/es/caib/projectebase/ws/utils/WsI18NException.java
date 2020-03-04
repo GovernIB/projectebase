@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.WebFault;
 
 /**
+ * Representació d'una excepció traduïble per la seva seralització en xml dins una respota WS.
+ *
  * @author anadal
  */
 @WebFault(name = "WsI18NError")
