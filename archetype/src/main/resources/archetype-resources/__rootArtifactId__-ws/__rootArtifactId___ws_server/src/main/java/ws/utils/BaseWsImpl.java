@@ -10,34 +10,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ${package}.commons.utils.Version;
-import ${package}.commons.utils.Constants;
 
 /**
- * 
- * @author anadal
+ * Classe base dels diferents serveis web que ofereix mètodes comuns.
  *
+ * @author anadal
  */
-public class BaseWsImpl implements Constants {
+public class BaseWsImpl {
 
-  protected final Logger log = LoggerFactory.getLogger(getClass());
-  
-  // -------------------------------------------------------------------
-  // -------------------------------------------------------------------
-  // --------------------------| UTILITATS |----------------------------
-  // -------------------------------------------------------------------
-  // -------------------------------------------------------------------
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
-  @Inject
-  private Version version;
-  
-  @WebMethod
-  public String getVersion() {
-    return version.getVersion();
-  }
+    @Inject
+    private Version version;
 
-
-  @WebMethod
-  public int getVersionWs() {
-    return VersionsWs.VERSIO_WS_1;
-  }
+    /**
+     * Retorna la versió actual de l'aplicació.
+     * @return versió actual de l'aplicació.
+     */
+    @WebMethod
+    public String getVersion() {
+        return version.getVersion();
+    }
 }

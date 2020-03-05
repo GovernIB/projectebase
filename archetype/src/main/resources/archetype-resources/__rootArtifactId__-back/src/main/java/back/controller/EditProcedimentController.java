@@ -14,12 +14,14 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ResourceBundle;
 
 /**
  * Controlador per l'edició de Procediments. El definim a l'scope de view perquè a nivell de request es
@@ -33,10 +35,19 @@ import java.io.Serializable;
 @ViewScoped
 public class EditProcedimentController implements Serializable {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private static final long serialVersionUID = -6369618058993094891L;
+
+    private static final Logger LOG = LoggerFactory.getLogger(EditProcedimentController.class);
 
     @Inject
     private FacesContext context;
+
+    /**
+     * Injecta el bundle definit dins faces-config.xml amb var = labels.
+     */
+    @Inject
+    @ManagedProperty("${symbol_pound}{labels}")
+    private ResourceBundle labelsBundle;
 
     @EJB
     ProcedimentService procedimentService;
@@ -66,6 +77,7 @@ public class EditProcedimentController implements Serializable {
 
     /**
      * Indica si és una creació o una actualització segons s'hagi fixat o no l'id del procediment.
+     *
      * @return <code>true</code> si l'id és null, i per tant és una creació, <code>false</code> en cas contrari.
      */
     public boolean isCreate() {
@@ -77,7 +89,7 @@ public class EditProcedimentController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        log.debug("init");
+        LOG.debug("init");
         procediment = new Procediment();
         unitatOrganica = new UnitatOrganica();
     }
@@ -88,7 +100,7 @@ public class EditProcedimentController implements Serializable {
      * Carrega el procediment i la unitat orgància per editar.
      */
     public void load() {
-        log.debug("load");
+        LOG.debug("load");
         if (procediment.getId() != null) {
             procediment = procedimentService.findById(procediment.getId());
         }
@@ -100,39 +112,35 @@ public class EditProcedimentController implements Serializable {
     /**
      * Crea o actualitza la unitat orgànica que s'està editant. Afegeix un missatge si s'ha fet amb èxit
      * i redirecciona cap a la pàgina de llistat.
+     *
      * @return navegació cap al llistat d'unitats orgàniques.
      */
     public String saveOrUpdate() {
-        log.debug("saveOrUpdate");
-        if (isCreate()) {
-            try {
+        LOG.debug("saveOrUpdate");
+        try {
+            // Feim una creació o una actualització.
+            if (isCreate()) {
                 procedimentService.create(procediment, unitatOrganica.getId());
-                context.addMessage(null, new FacesMessage(I18NTranslatorBack.translate("msg.creaciocorrecta")));
-            } catch (I18NException i18ne) {
-
-                String msgError = I18NTranslatorBack.translate(i18ne);
-                log.error("${symbol_escape}nError Creació => " + msgError + "${symbol_escape}n"); 
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
-
-            }
-            
-        } else {
-            try {
+                context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.creaciocorrecta")));
+            } else {
                 procedimentService.update(procediment);
-                context.addMessage(null, new FacesMessage(I18NTranslatorBack.translate("msg.actualitzaciocorrecta")));
-            } catch (I18NException i18ne) {
-                String msgError = I18NTranslatorBack.translate(i18ne);
-                log.error("${symbol_escape}nError Actualitzacio => " + msgError + "${symbol_escape}n"); 
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
+                context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.actualitzaciocorrecta")));
             }
-            
-         
-        }
-        // Els missatges no aguanten una redirecció ja que no es la mateixa petició
-        // amb l'objecte flash podem assegurar que es guardin fins la visualització
-        context.getExternalContext().getFlash().setKeepMessages(true);
 
-        // Redireccionam cap al llistat de procediments, mantenint l'identificador de unitat orgànica
-        return "/listProcediment?faces-redirect=true&includeViewParams=true";
+            // Els missatges no aguanten una redirecció ja que no es la mateixa petició
+            // amb l'objecte flash podem assegurar que es guardin fins la visualització
+            context.getExternalContext().getFlash().setKeepMessages(true);
+
+            // Redireccionam cap al llistat de procediments, mantenint l'identificador de unitat orgànica
+            return "/listProcediment?faces-redirect=true&includeViewParams=true";
+
+        } catch (I18NException i18ne) {
+            String msgError = I18NTranslatorBack.translate(i18ne);
+            LOG.error("Error saveOrUpdate: " + msgError);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, null));
+
+            // si ha donat un error la lògica de negoci, ens mantenim a la pàgina
+            return null;
+        }
     }
 }

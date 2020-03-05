@@ -23,16 +23,15 @@
         <javaee-api.version>8.0.1</javaee-api.version>
         <activation.version>1.1.1</activation.version>
         <mp-openapi.version>1.0.1</mp-openapi.version>
-        <jaxb-api.version>2.2.12</jaxb-api.version>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
         <slf4j.version>1.7.30</slf4j.version>
         <keycloak.version>6.0.1</keycloak.version>
         <primefaces.version>7.0</primefaces.version>
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
-        <cxf.version>3.3.3</cxf.version>
-        <junit.version>4.8.2</junit.version>
+        <junit.version>4.13</junit.version>
         <hibernate.version>5.3.15.Final</hibernate.version>
-        <resteasy.version>3.6.3.Final</resteasy.version>
-        <jboss-logging.version>3.3.2.Final</jboss-logging.version>
+        <resteasy.version>3.6.3.SP1</resteasy.version>
+        <jboss-logging.version>3.3.3.Final</jboss-logging.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -41,14 +40,8 @@
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
                 <version>${javaee-api.version}</version>
-                <exclusions>
-                    <!-- La dependència de javax.mail fa referència a activation 1.1 enlloc de 1.1.1 -->
-                    <exclusion>
-                        <groupId>javax.activation</groupId>
-                        <artifactId>activation</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
+            <!-- JAVA EE 8 du activation 1.1, però la que empren altres dependències (i la que du JBOSS) és 1.1.1 -->
             <dependency>
                 <groupId>javax.activation</groupId>
                 <artifactId>activation</artifactId>
@@ -296,30 +289,6 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>revisionnumber</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>buildnumber-maven-plugin</artifactId>
-                            <version>1.4</version>
-                            <executions>
-                                <execution>
-                                    <phase>validate</phase>
-                                    <goals>
-                                        <goal>create</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-    </profiles>
     <repositories>
         <!-- Les llibreries de Primefaces no estan definides als repositoris centrals -->
         <repository>

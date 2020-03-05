@@ -13,22 +13,20 @@ import org.apache.cxf.phase.Phase;
 
 
 /**
- * 
+ * Intercepta les cridades sortints a un WS. Veure: Veure https://cxf.apache.org/docs/interceptors.html
+ *
  * @author anadal
  */
 public class WsOutInterceptor extends AbstractPhaseInterceptor<Message> {
 
-  protected final Logger log = LoggerFactory.getLogger(getClass());
+    private static final Logger LOG = LoggerFactory.getLogger(WsOutInterceptor.class);
 
-  public WsOutInterceptor() {
-    // Veure https://cxf.apache.org/docs/interceptors.html
-    super(Phase.SEND);
-  }
+    public WsOutInterceptor() {
+        super(Phase.SEND);
+    }
 
-  
-  public void handleMessage(Message message) throws Fault {
-    //UsuariAplicacioCache.remove();
-  }
-
-
+    @Override
+    public void handleMessage(Message message) throws Fault {
+        LOG.debug("WsInInterceptor::handleMessage() =>  Thread = " + Thread.currentThread().getId());
+    }
 }

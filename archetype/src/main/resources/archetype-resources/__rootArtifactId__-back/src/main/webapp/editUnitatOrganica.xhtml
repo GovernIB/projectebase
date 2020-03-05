@@ -15,9 +15,9 @@ Pàgina per edició d'unitats orgàniques.
         <f:metadata>
             <!-- Al principi de la vista, es fixarà el paràmetre rebut dins
             l'id, i amb l'acció load el carregarem. -->
-            <f:viewParam name="id" value="${symbol_pound}{editUnitatOrganica.current.id}" />
-            <f:viewAction action="${symbol_pound}{editUnitatOrganica.load}" />
-            <f:importConstants type="${package}.persistence.EstatPublicacio" var="estats" />
+            <f:viewParam name="id" value="${symbol_pound}{editUnitatOrganica.current.id}"/>
+            <f:viewAction action="${symbol_pound}{editUnitatOrganica.load}"/>
+            <f:importConstants type="${package}.persistence.EstatPublicacio" var="estats"/>
         </f:metadata>
     </ui:define>
 
@@ -26,65 +26,65 @@ Pàgina per edició d'unitats orgàniques.
     </ui:define>
 
     <ui:define name="breadcrumb">
-        <p:menuitem value="${symbol_pound}{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+        <p:menuitem value="${symbol_pound}{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica"/>
         <p:menuitem value="${symbol_pound}{editUnitatOrganica.create? labels.newUnitatOrganica_link : labels.editUnitatOrganica_link}"
-                    outcome="/editUnitatOrganica" includeViewParams="true" />
+                    outcome="/editUnitatOrganica" includeViewParams="true"/>
     </ui:define>
-    
+
     <ui:define name="content">
 
         <h:form id="form">
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="id" value="${symbol_pound}{labels.unitatOrganica_id}" />
+                    <p:outputLabel for="id" value="${symbol_pound}{labels.unitatOrganica_id}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="id" value="${symbol_pound}{editUnitatOrganica.current.id}" readonly="true" />
+                    <p:inputText id="id" value="${symbol_pound}{editUnitatOrganica.current.id}" readonly="true"/>
                     <!-- els camps readonly no es processen, per tant pot perdre l'id, per això el ficam a un hidden -->
-                    <h:inputHidden value="${symbol_pound}{editUnitatOrganica.current.id}" />
+                    <h:inputHidden value="${symbol_pound}{editUnitatOrganica.current.id}"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="codiDir3" value="${symbol_pound}{labels.unitatOrganica_codiDir3}" />
+                    <p:outputLabel for="codiDir3" value="${symbol_pound}{labels.unitatOrganica_codiDir3}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="codiDir3" value="${symbol_pound}{editUnitatOrganica.current.codiDir3}" />
-                    <p:message for="codiDir3" />
+                    <p:inputText id="codiDir3" value="${symbol_pound}{editUnitatOrganica.current.codiDir3}"/>
+                    <p:message for="codiDir3"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="nom" value="${symbol_pound}{labels.unitatOrganica_nom}" />
+                    <p:outputLabel for="nom" value="${symbol_pound}{labels.unitatOrganica_nom}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="nom" value="${symbol_pound}{editUnitatOrganica.current.nom}" />
-                    <p:message for="nom" />
+                    <p:inputText id="nom" value="${symbol_pound}{editUnitatOrganica.current.nom}"/>
+                    <p:message for="nom"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="dataCreacio" value="${symbol_pound}{labels.unitatOrganica_dataCreacio}" />
+                    <p:outputLabel for="dataCreacio" value="${symbol_pound}{labels.unitatOrganica_dataCreacio}"/>
                 </ui:define>
                 <ui:define name="input">
                     <p:datePicker id="dataCreacio" value="${symbol_pound}{editUnitatOrganica.current.dataCreacio}"
-                                  pattern="dd-MM-yyyy" />
-                    <p:message for="dataCreacio" />
+                                  pattern="dd-MM-yyyy"/>
+                    <p:message for="dataCreacio"/>
                 </ui:define>
             </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
-                    <p:outputLabel for="estat" value="${symbol_pound}{labels.unitatOrganica_estat}" />
+                    <p:outputLabel for="estat" value="${symbol_pound}{labels.unitatOrganica_estat}"/>
                 </ui:define>
                 <ui:define name="input">
                     <p:selectOneMenu id="estat" value="${symbol_pound}{editUnitatOrganica.current.estat}">
-                        <f:selectItems value="${symbol_pound}{estats.values()}" var="estat" />
+                        <f:selectItems value="${symbol_pound}{estats.values()}" var="estat"/>
                     </p:selectOneMenu>
-                    <p:message for="estat" />
+                    <p:message for="estat"/>
                 </ui:define>
             </ui:decorate>
 
@@ -92,7 +92,7 @@ Pàgina per edició d'unitats orgàniques.
                 <ui:define name="buttons">
                     <p:commandButton id="saveOrUpdateButton" action="${symbol_pound}{editUnitatOrganica.saveOrUpdate}"
                                      value="${symbol_pound}{labels.button_guardar}"
-                                     process="@form" update="@form" />
+                                     process="@form" update="@form"/>
                     <p:button value="${symbol_pound}{labels.button_tornar}" outcome="/listUnitatOrganica"
                               styleClass="float-right"/>
                 </ui:define>

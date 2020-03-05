@@ -14,9 +14,9 @@
 
     <dependencies>
         <dependency>
-           <artifactId>${rootArtifactId}-commons</artifactId>
-           <groupId>${groupId}</groupId>
-           <version>${version}</version>
+            <artifactId>${rootArtifactId}-commons</artifactId>
+            <groupId>${groupId}</groupId>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

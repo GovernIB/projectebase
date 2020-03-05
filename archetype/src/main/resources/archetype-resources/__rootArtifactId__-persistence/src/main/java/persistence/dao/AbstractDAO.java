@@ -35,9 +35,8 @@ import java.util.Map;
 /**
  * Implementació bàsica d'un {@link DAO}.
  *
- * @param <E> Tipus de l'entitat.
+ * @param <E>  Tipus de l'entitat.
  * @param <PK> Tipus de la clau primària de l'entitat.
- *
  * @author areus
  * @author anadal
  */
@@ -57,6 +56,7 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
     /**
      * Construtor per defecte. Emmagatzema a {@link ${symbol_pound}entityClass} el tipus d'entitat.
      */
+    @SuppressWarnings("unchecked")
     protected AbstractDAO() {
         Class<?> clazz = getClass();
         while (!clazz.getSuperclass().equals(AbstractDAO.class)) {
@@ -170,9 +170,9 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
      * Obté una llista de les entitats filtrades per una cadena de caràcters per paginacions.
      * La cadena de filtre es cerca dins tots els camps de tipus String de l'entitat.
      *
-     * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
+     * @param filters     map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
      * @param firstResult el número d'ordre de la primera entitat a tornar. La primera és 0.
-     * @param maxResults el nombre màxim d'entitats a tornar.
+     * @param maxResults  el nombre màxim d'entitats a tornar.
      * @param orderByList Camps per ordenar el llistat
      * @return llista d'entitats que compleixen el filtre.
      * @throws I18NException si es produeix un error executant la consulta
@@ -184,7 +184,7 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
         CriteriaQuery<E> cq = cb.createQuery(entityClass);
         final Root<E> root = cq.from(entityClass);
         cq.select(root);
-        
+
         if (filters != null && !filters.isEmpty()) {
             cq.where(getFilterPredicate(root, filters));
         }
@@ -192,7 +192,7 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
         if (orderByList != null && orderByList.length != 0) {
             List<Order> orderList = new ArrayList<>();
             for (OrderBy orderBy : orderByList) {
-                Path<Object> attributePath = root.get(orderBy.javaName);
+                Path<Object> attributePath = root.get(orderBy.property);
                 if (orderBy.orderType == OrderType.ASC) {
                     orderList.add(cb.asc(attributePath));
                 } else {
@@ -222,13 +222,13 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
     /**
      * Obté un predicat per emprar amb un where per aplicar uns filtres determinats.
      *
-     * @param root objecte emprant al from del select d'on s'agafen els camps.
+     * @param root    objecte emprant al from del select d'on s'agafen els camps.
      * @param filters Filtres a aplicar.
      * @return predicat per emprar a un where per aplicar el filtre. Si els filtres són buids, retorna
      * un predicat que sempre avalua a <code>true</code>.
      */
     @SuppressWarnings("unchecked")
-    protected Predicate getFilterPredicate(Root<E> root, Map<String,Object> filters) {
+    protected Predicate getFilterPredicate(Root<E> root, Map<String, Object> filters) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
         if (filters == null || filters.isEmpty()) {
@@ -248,16 +248,16 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
             if (bindableJavaType.equals(String.class)) {
                 predicateList.add(
                         cb.like(
-                                cb.lower((Path<String>)attributePath),
+                                cb.lower((Path<String>) attributePath),
                                 "%" + ((String) attributeValue).toLowerCase() + "%"
                         )
                 );
-            // Quan és una enumeració, però rebem un String, hem de convertir el valor que rebem a enumeració
+                // Quan és una enumeració, però rebem un String, hem de convertir el valor que rebem a enumeració
             } else if (bindableJavaType.isEnum() && (attributeValue instanceof String)) {
                 @SuppressWarnings("rawtypes")
                 Enum enumValue = Enum.valueOf(bindableJavaType, (String) attributeValue);
                 predicateList.add(cb.equal(attributePath, enumValue));
-            // En qualsevol altre cas, feim directament l'equal
+                // En qualsevol altre cas, feim directament l'equal
             } else {
                 predicateList.add(cb.equal(attributePath, attributeValue));
             }

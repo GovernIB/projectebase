@@ -12,7 +12,9 @@ Veure
     <ui:define name="pageTitle">Error</ui:define>
 
     <ui:define name="content">
-        <p class="card-text mb-5 lh15"><h:outputText value="#{pfExceptionHandler.message}"/></p>
+        <p class="card-text mb-5 lh15">
+            <h:outputText value="#{pfExceptionHandler.message}"/>
+        </p>
         <pre>
 			<h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false"/>
 		</pre>

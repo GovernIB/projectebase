@@ -3,77 +3,54 @@
 #set( $symbol_escape = '\' )
 package ${package}.commons.i18n;
 
+import java.util.Arrays;
+
 /**
- * 
- * @author anadal
+ * Representa un missatge traduïble que està compost per una etiqueta i uns arguments opcionals.
  *
+ * @author anadal
  */
 public class I18NTranslation {
 
-  
-  protected String code;
-  
-  protected I18NArgument[] args;
-  
-  /**
-   * 
-   */
-  public I18NTranslation() {
-  }
-  
-  /**
-   * @param code
-   */
-  public I18NTranslation(String code, I18NArgument ... args) {
-    this.code = code;
-    this.args = args;
-  }
-  
-  /**
-   * @param code
-   */
-  public I18NTranslation(String code) {
-    this(code, (I18NArgument[])null);
-  }
-  
-  /**
-   * @param code
-   */
-  public I18NTranslation(String code, String ...  args) {    
-    this(code, stringdToI18NArgument(args));
-  }
-  
-  
-  
-  
-  public static I18NArgument[] stringdToI18NArgument(String ...  args) {
-    I18NArgument[] argus;
-    if (args == null || args.length == 0) {
-      argus = null;
-    } else {
-      
-      argus = new I18NArgument[args.length];
-      for (int i = 0; i < args.length; i++) {
-        argus[i] = new I18NArgumentString(args[i]);
-      }      
+    private String code;
+    private I18NArgument[] args;
+
+    /**
+     * Construeix una traducció amb una etiqueta i uns arguments.
+     *
+     * @param code etiqueta del missatge
+     * @param args arguments a emprar amb l'etiqueta
+     */
+    public I18NTranslation(String code, I18NArgument... args) {
+        this.code = code;
+        this.args = args;
     }
-    return argus;
-  }
 
-  public String getCode() {
-    return code;
-  }
+    /**
+     * Construeix una traducció amb una etiqueta.
+     *
+     * @param code etiqueta del missatge
+     */
+    public I18NTranslation(String code) {
+        this.code = code;
+    }
 
-  public void setCode(String code) {
-    this.code = code;
-  }
+    /**
+     * Construeix una traducció amb una etiqueta i uns arguments.
+     *
+     * @param code etiqueta del missatge
+     * @param args arguments a emprar amb l'etiqueta
+     */
+    public I18NTranslation(String code, String... args) {
+        this.code = code;
+        this.args = Arrays.stream(args).map(I18NArgumentString::new).toArray(I18NArgument[]::new);
+    }
 
-  public I18NArgument[] getArgs() {
-    return args;
-  }
+    public String getCode() {
+        return code;
+    }
 
-  public void setArgs(I18NArgument[] args) {
-    this.args = args;
-  }
-  
+    public I18NArgument[] getArgs() {
+        return args;
+    }
 }

@@ -13,25 +13,25 @@ Pàgina amb el llistat d'unitats orgàniques.
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:importConstants type="${package}.persistence.EstatPublicacio" var="estats" />
+            <f:importConstants type="${package}.persistence.EstatPublicacio" var="estats"/>
         </f:metadata>
     </ui:define>
 
     <ui:define name="pageTitle">${symbol_pound}{labels.listUnitatOrganica_title}</ui:define>
 
     <ui:define name="breadcrumb">
-        <p:menuitem value="${symbol_pound}{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica" />
+        <p:menuitem value="${symbol_pound}{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica"/>
     </ui:define>
-    
+
     <ui:define name="content">
         <h:form>
             <p:dataTable id="dataTable" value="${symbol_pound}{listUnitatOrganica.lazyModel}" var="unitatOrganica" sortMode="multiple"
                          paginator="true" lazy="true" filterDelay="300" widgetVar="unitatsTable"
-                         rows="10" rowsPerPageTemplate="10,20,50,100" 
+                         rows="10" rowsPerPageTemplate="10,20,50,100"
                          paginatorPosition="bottom" paginatorAlwaysVisible="false"
                          paginatorTemplate="{RowsPerPageLabel} {RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport}
-                          {NextPageLink} {LastPageLink}" 
-                         currentPageReportTemplate="${symbol_pound}{labels.dataTable_currentPageReport}" 
+                          {NextPageLink} {LastPageLink}"
+                         currentPageReportTemplate="${symbol_pound}{labels.dataTable_currentPageReport}"
                          emptyMessage="${symbol_pound}{labels.dataTable_emptyMessage}">
                 <f:facet name="{RowsPerPageLabel}">
                     ${symbol_pound}{labels.dataTable_rowsPerPage}
@@ -48,7 +48,7 @@ Pàgina amb el llistat d'unitats orgàniques.
                     <f:facet name="header">${symbol_pound}{labels.unitatOrganica_nom}</f:facet>
                     <h:outputText value="${symbol_pound}{unitatOrganica.nom}"/>
                 </p:column>
-                <p:column sortBy="${symbol_pound}{unitatOrganica.dataCreacio}" >
+                <p:column sortBy="${symbol_pound}{unitatOrganica.dataCreacio}">
                     <f:facet name="header">${symbol_pound}{labels.unitatOrganica_dataCreacio}</f:facet>
                     <h:outputText value="${symbol_pound}{unitatOrganica.dataCreacio}">
                         <f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
@@ -58,25 +58,25 @@ Pàgina amb el llistat d'unitats orgàniques.
                     <f:facet name="header">${symbol_pound}{labels.unitatOrganica_estat}</f:facet>
                     <f:facet name="filter">
                         <p:selectOneMenu onchange="PF('unitatsTable').filter()" required="false">
-                            <f:selectItem itemLabel="----" itemValue="" />
-                            <f:selectItems value="${symbol_pound}{estats.values()}" />
+                            <f:selectItem itemLabel="----" itemValue=""/>
+                            <f:selectItems value="${symbol_pound}{estats.values()}"/>
                         </p:selectOneMenu>
                     </f:facet>
                     <h:outputText value="${symbol_pound}{unitatOrganica.estat}"/>
                 </p:column>
                 <p:column>
-                    <f:facet name="header"> </f:facet>
+                    <f:facet name="header"></f:facet>
                     <p:menuButton value="${symbol_pound}{labels.button_opcions}">
                         <p:menuitem value="${symbol_pound}{labels.button_editar}" outcome="/editUnitatOrganica">
-                            <f:param name="id" value="${symbol_pound}{unitatOrganica.id}" />
+                            <f:param name="id" value="${symbol_pound}{unitatOrganica.id}"/>
                         </p:menuitem>
                         <p:menuitem value="${symbol_pound}{labels.listProcediment_link}" outcome="/listProcediment">
-                            <f:param name="unitatOrganicaId" value="${symbol_pound}{unitatOrganica.id}" />
+                            <f:param name="unitatOrganicaId" value="${symbol_pound}{unitatOrganica.id}"/>
                         </p:menuitem>
                         <p:menuitem value="${symbol_pound}{labels.button_eliminar}"
                                     action="${symbol_pound}{listUnitatOrganica.delete(unitatOrganica.id)}"
                                     update="messages @form">
-                            <p:confirm message="${symbol_pound}{labels.confirm_eliminar}" />
+                            <p:confirm message="${symbol_pound}{labels.confirm_eliminar}"/>
                         </p:menuitem>
                     </p:menuButton>
                 </p:column>

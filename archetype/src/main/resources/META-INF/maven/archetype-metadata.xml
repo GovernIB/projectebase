@@ -274,6 +274,7 @@
                 <include>**/*.java</include>
               </includes>
             </fileSet>
+			<!--
             <fileSet encoding="UTF-8">
               <directory>src/main/resources</directory>
               <includes>
@@ -281,6 +282,7 @@
                 <include>**/*.properties</include>
               </includes>
             </fileSet>
+			-->
           </fileSets>
         </module>
         <module id="${rootArtifactId}-ws-api" dir="__rootArtifactId___ws_api" name="${rootArtifactId}-ws-api">
@@ -297,10 +299,11 @@
                 <include>**/*.java</include>
               </includes>
             </fileSet>
-            <fileSet encoding="UTF-8">
+            <fileSet filtered="true" encoding="UTF-8">
               <directory>src/main/resources</directory>
               <includes>
                 <include>**/*.properties</include>
+				<include>**/*.wsdl</include>
               </includes>
             </fileSet>
             <fileSet filtered="true" packaged="true" encoding="UTF-8">
@@ -310,16 +313,9 @@
               </includes>
             </fileSet>
             <fileSet encoding="UTF-8">
-              <directory>bindings</directory>
-              <includes>
-                <include>**/*.xjc</include>
-              </includes>
-            </fileSet>
-            <fileSet encoding="UTF-8">
               <directory></directory>
               <includes>
                 <include>regenerateapi.bat</include>
-                <include>test.properties</include>
               </includes>
             </fileSet>
           </fileSets>

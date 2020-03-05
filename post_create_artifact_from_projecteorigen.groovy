@@ -137,8 +137,9 @@ replaceProperties(new File(baseProject, "compile.bat"), true);
 
 
 // COMMONS - model i utilitats
-def commonsFiles = [ "./__rootArtifactId__-commons/src/main/java/commons/utils/Constants.java",
-       "./__rootArtifactId__-commons/src/main/java/commons/utils/Configuration.java" ];
+def commonsFiles = [ 
+	"./__rootArtifactId__-commons/src/main/java/commons/utils/Constants.java"
+	];
 for(String commonFile : commonsFiles) {
   replaceProperties(new File(baseProject, commonFile), false);
 }
@@ -147,7 +148,6 @@ for(String commonFile : commonsFiles) {
 def jpaFiles = [ "./__rootArtifactId__-persistence/src/main/resources/META-INF/persistence.xml",
 	"./__rootArtifactId__-persistence/src/test/resources/META-INF/persistence.xml",
     "./__rootArtifactId__-persistence/src/main/java/persistence/dao/AbstractDAO.java",
-    "./__rootArtifactId__-persistence/src/main/java/persistence/dao/ProcedimentDAO.java",
     "./__rootArtifactId__-persistence/src/main/java/persistence/Procediment.java",
     "./__rootArtifactId__-persistence/src/main/java/persistence/UnitatOrganica.java" 
 	];
@@ -193,31 +193,31 @@ for(String ejbFile : ejbFiles) {
 // REST
 def restFiles = [
    "./__rootArtifactId__-api/src/main/webapp/WEB-INF/web.xml",
-   "./__rootArtifactId__-api/src/test/java/api/test/TestApi.java"
+   "./__rootArtifactId__-api/src/test/java/api/test/UnitatOrganicaServiceTest.java"
   ];
 for(String restFile : restFiles) {
   replaceProperties(new File(baseProject, restFile), false);
 }
 
 // WS
-def wsFiles = [ "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/v1/impl/HelloWorldWsImpl.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/v1/impl/HelloWorldWithSecurityWsImpl.java",
+def wsFiles = [ 
+"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/impl/HelloWorldWsImpl.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/impl/HelloWorldWithSecurityWsImpl.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/I18NTranslatorWS.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/WsInInterceptor.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/AuthenticatedBaseWsImpl.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsValidationErrors.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsI18NException.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsFieldValidationError.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/HelloWorldWsService.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/test/java/ws/v1/test/HelloWorldTest.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/HelloWorldWithSecurityWs.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/HelloWorldWithSecurityWsService.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/HelloWorldWs.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/ObjectFactory.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/package-info.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsI18NError.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsI18NTranslation.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/v1/WsValidationException.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/resources/wsdl/HelloWorld.wsdl",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/resources/wsdl/HelloWorldWithSecurity.wsdl",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/WsI18NException.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/HelloWorldWsService.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/HelloWorldWithSecurityWs.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/HelloWorldWithSecurityWsService.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/HelloWorldWs.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/ObjectFactory.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/package-info.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/WsI18NError.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/WsI18NTranslation.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/test/java/ws/test/HelloWorldTest.java",
+"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/test/java/ws/test/HelloWorldWithSecurityTest.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/test.properties"
  ];
 for(String wsFile : wsFiles) {

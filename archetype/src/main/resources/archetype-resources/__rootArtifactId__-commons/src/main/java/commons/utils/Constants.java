@@ -5,16 +5,20 @@ package ${package}.commons.utils;
 
 
 /**
+ * Constants emprades dins tota l'aplicació.
  *
  * @author anadal
  * @author areus
  */
 public interface Constants {
 
-  String ${projectnameuppercase}ARCHETYPE_PROPERTY_BASE = "${package}.";
-  
-  String ${prefixuppercase}_ADMIN = "${prefixuppercase}_ADMIN";
+    /**
+     * Constant pel rol d'Administrador
+     */
+    String ${prefixuppercase}_ADMIN = "${prefixuppercase}_ADMIN";
 
-  String ${prefixuppercase}_USER = "${prefixuppercase}_USER";
-
+    /**
+     * Constant pel rol d'Usuari
+     */
+    String ${prefixuppercase}_USER = "${prefixuppercase}_USER";
 }

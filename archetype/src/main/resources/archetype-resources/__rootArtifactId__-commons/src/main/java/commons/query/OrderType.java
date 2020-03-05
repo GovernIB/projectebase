@@ -3,13 +3,20 @@
 #set( $symbol_escape = '\' )
 package ${package}.commons.query;
 
-import java.io.Serializable;
-
 /**
- * 
- * @author anadal
+ * Tipus d'ordenació, ascendent o descendent.
  *
+ * @author anadal
  */
-public enum OrderType implements Serializable {
-    ASC, DESC
+public enum OrderType {
+
+    /**
+     * Ascendent
+     */
+    ASC,
+
+    /**
+     * Descendent
+     */
+    DESC
 }

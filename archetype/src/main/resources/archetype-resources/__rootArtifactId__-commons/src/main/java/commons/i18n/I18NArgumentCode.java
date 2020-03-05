@@ -4,24 +4,26 @@
 package ${package}.commons.i18n;
 
 /**
- * 
- * @author anadal
+ * Representa un paràmetre per el formateig d'un missatge que és una etiqueta que es traduirà.
  *
+ * @author anadal
  */
 public class I18NArgumentCode implements I18NArgument {
 
-  public final String code;
+    private final String code;
 
-  /**
-   * @param code
-   */
-  public I18NArgumentCode(String code) {
-    super();
-    this.code = code;
-  }
+    /**
+     * Construeix un nou argument que és una etiqueta.
+     *
+     * @param code etiqueta.
+     */
+    public I18NArgumentCode(String code) {
+        super();
+        this.code = code;
+    }
 
-  public String getValue() {
-    return this.code;
-  }
+    public String getValue() {
+        return this.code;
+    }
 
 }

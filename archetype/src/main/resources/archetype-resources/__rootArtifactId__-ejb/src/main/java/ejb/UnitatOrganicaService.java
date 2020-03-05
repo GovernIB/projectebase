@@ -3,9 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.ejb;
 
-import ${package}.commons.i18n.I18NException;
 import ${package}.persistence.UnitatOrganica;
-import ${package}.persistence.dao.IUnitatOrganicaDAO;
+import ${package}.persistence.dao.DAO;
 
 import javax.ejb.Local;
 
@@ -16,8 +15,6 @@ import javax.ejb.Local;
  * @author anadal
  */
 @Local
-public interface UnitatOrganicaService extends IUnitatOrganicaDAO {
-
-    void testTranslationError() throws I18NException;
+public interface UnitatOrganicaService extends DAO<UnitatOrganica, Long> {
 
 }

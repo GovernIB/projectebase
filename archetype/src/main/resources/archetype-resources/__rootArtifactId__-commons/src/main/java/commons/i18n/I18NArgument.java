@@ -4,11 +4,11 @@
 package ${package}.commons.i18n;
 
 /**
- * 
- * @author anadal
+ * Representa un paràmetre per el formateig d'un missatge.
  *
+ * @author anadal
  */
 public interface I18NArgument {
 
-  String getValue();
+    String getValue();
 }

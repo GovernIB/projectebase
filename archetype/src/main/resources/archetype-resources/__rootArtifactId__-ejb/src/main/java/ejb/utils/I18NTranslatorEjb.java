@@ -3,22 +3,20 @@
 #set( $symbol_escape = '\' )
 package ${package}.ejb.utils;
 
-import ${package}.commons.i18n.I18NArgument;
 import ${package}.commons.i18n.I18NException;
 import ${package}.commons.i18n.I18NTranslator;
-import ${package}.commons.i18n.I18NValidationException;
 
 import java.util.Locale;
 
 /**
- * 
+ * Clase d'utilitat per traduir missatges I18N dins el mòdul EJB
+ *
  * @author anadal
- * 
  */
 public class I18NTranslatorEjb {
 
     public static final I18NTranslator translator = new I18NTranslator(
-            new String[] { "ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB" });
+            new String[]{"ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB"});
 
     public static String translate(boolean useCodeIfNotExist, Locale loc, String code, String... args) {
         return translator.translate(useCodeIfNotExist, loc, code, args);
@@ -29,20 +27,10 @@ public class I18NTranslatorEjb {
     }
 
     public static String translate(String valueIfNotExist, Locale loc, String code, String... args) {
-
         return translator.translate(valueIfNotExist, loc, code, args);
     }
 
-    public static String translate(I18NValidationException ve, Locale locale) {
-        return translator.translate(ve, locale);
-    }
-
     public static String translate(I18NException e, Locale locale) {
-        return translate(locale, e.getMessage(), translateArguments(locale, e.getTraduccio().getArgs()));
+        return translator.translate(e, locale);
     }
-
-    public static String[] translateArguments(Locale locale, I18NArgument... args) {
-        return translator.translateArguments(locale, args);
-    }
-
 }

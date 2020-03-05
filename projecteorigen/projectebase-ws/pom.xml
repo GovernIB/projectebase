@@ -6,18 +6,15 @@
         <artifactId>projectebase</artifactId>
         <version>1.0.0</version>
     </parent>
-
     <artifactId>projectebase-ws</artifactId>
     <packaging>pom</packaging>
     <name>ProjecteBase - WS</name>
-
     <properties>
         <jaxws-api.version>2.3.1</jaxws-api.version>
         <jsr181-api.version>1.0-MR1</jsr181-api.version>
         <cxf.version>3.2.12</cxf.version>
         <asm.version>6.2.1</asm.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -32,7 +29,6 @@
                 <version>${jsr181-api.version}</version>
                 <scope>provided</scope>
             </dependency>
-
             <!-- cxf referencia versions diferents d'aquestes llibreries -->
             <dependency>
                 <groupId>org.glassfish.jaxb</groupId>
@@ -99,7 +95,6 @@
                 <artifactId>xmlsec</artifactId>
                 <version>2.1.4</version>
             </dependency>
-
             <dependency>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-core</artifactId>
@@ -172,7 +167,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <modules>
         <module>projectebase_ws_server</module>
         <module>projectebase_ws_api</module>

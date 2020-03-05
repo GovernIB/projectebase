@@ -110,7 +110,7 @@ public class UnitatOrganicaResource {
      * amb els camps rebuts.
      *
      * @param unitatOrganica dades de la unitat orgànica a actualitzar.
-     * @param id Identificador de la unitat orgància a actualitzar.
+     * @param id             Identificador de la unitat orgància a actualitzar.
      * @return Resposta amb status 204 si l'operació té èxit, o 404 si el recurs amb l'id indicat no existeix.
      */
     @PUT
@@ -152,7 +152,7 @@ public class UnitatOrganicaResource {
     @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response delete(@Parameter(description = "L'identificador de la unitat", required = true)
-                        @PathParam("id") Long id) throws I18NException {
+                           @PathParam("id") Long id) throws I18NException {
         if (unitatOrganicaService.findById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {

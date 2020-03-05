@@ -20,7 +20,7 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class StartupListener implements ServletContextListener {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOG = LoggerFactory.getLogger(StartupListener.class);
 
     @Inject
     private Version version;
@@ -28,12 +28,11 @@ public class StartupListener implements ServletContextListener {
     /**
      * Executat quan s'inicialitza el contexte web. Treu un missatge amb la versió als logs.
      *
-     * @param sce
-     *            Informació de l'esdeveniment de context.
+     * @param sce Informació de l'esdeveniment de context.
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        log.info("${symbol_escape}nWebApp " + version.getProjectName() + ":"
+        LOG.info("${symbol_escape}nWebApp " + version.getProjectName() + ":"
                 + "${symbol_escape}n  + Version: " + version.getVersion()
                 + "${symbol_escape}n  + BuildTime: " + version.getBuildTime()
                 + "${symbol_escape}n  + Revision: " + version.getScmRevision());
@@ -42,11 +41,10 @@ public class StartupListener implements ServletContextListener {
     /**
      * Executat quan es destrueix el contexte web.
      *
-     * @param sce
-     *            Informació de l'esdeveniment de context.
+     * @param sce Informació de l'esdeveniment de context.
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        log.info("Aturant aplicació ${symbol_dollar}{project_name}");
+        LOG.info("Aturant aplicació " + version.getProjectName());
     }
 }

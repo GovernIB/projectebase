@@ -17,7 +17,7 @@ import javax.ws.rs.ext.Provider;
 import java.util.Locale;
 
 /**
- * Permet mapejar a una respota comuna a les excepcions de tipus I18NException.
+ * Permet mapejar a una resposta comuna a les excepcions de tipus I18NException.
  * Són bàsicament excepcions a la lògica de l'aplicació, i per tant enviarem un error
  * 400 al client.
  *

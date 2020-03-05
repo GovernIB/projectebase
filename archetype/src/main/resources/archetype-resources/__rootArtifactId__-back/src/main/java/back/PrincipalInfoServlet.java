@@ -30,7 +30,10 @@ import java.util.Map;
 @WebServlet(urlPatterns = "/principalInfo")
 public class PrincipalInfoServlet extends HttpServlet {
 
-    @Override
+    private static final long serialVersionUID = -6071413123148684294L;
+
+    @SuppressWarnings("unchecked")
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         PrintWriter writer = response.getWriter();
@@ -57,7 +60,7 @@ public class PrincipalInfoServlet extends HttpServlet {
 
             if (subject != null) {
                 writer.println("Subject principals:");
-                for (Principal subjectPrincipal: subject.getPrincipals()) {
+                for (Principal subjectPrincipal : subject.getPrincipals()) {
                     writer.println(subjectPrincipal.getName() + ", " + subjectPrincipal.getClass());
                 }
             }
@@ -68,11 +71,11 @@ public class PrincipalInfoServlet extends HttpServlet {
 
 
         // API keycloak
-        if (principal instanceof KeycloakPrincipal) {
+        if (principal instanceof KeycloakPrincipal<?>) {
             writer.println("--------------------------------");
             writer.println("Informació del token de keycloak:");
 
-            KeycloakPrincipal kp = (KeycloakPrincipal) principal;
+            KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) principal;
             KeycloakSecurityContext keycloakSecurityContext = kp.getKeycloakSecurityContext();
 
             AccessToken token = keycloakSecurityContext.getToken();
@@ -86,14 +89,14 @@ public class PrincipalInfoServlet extends HttpServlet {
 
             writer.println("--------------------------------");
             writer.println("resourceAccessRoles:");
-            Map<String,AccessToken.Access> resourceAccess = token.getResourceAccess();
+            Map<String, AccessToken.Access> resourceAccess = token.getResourceAccess();
             for (String key : resourceAccess.keySet()) {
                 writer.println(key + " = " + resourceAccess.get(key).getRoles());
             }
 
             writer.println("--------------------------------");
             writer.println("otherClaims:");
-            Map<String,Object> otherClaims = token.getOtherClaims();
+            Map<String, Object> otherClaims = token.getOtherClaims();
             for (String key : otherClaims.keySet()) {
                 writer.println(key + " = " + otherClaims.get(key));
             }

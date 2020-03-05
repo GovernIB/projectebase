@@ -12,12 +12,14 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ResourceBundle;
 
 /**
  * Controlador per l'edició d'Unitats Organiques. El definim a l'scope de view perquè a nivell
@@ -30,10 +32,19 @@ import java.io.Serializable;
 @ViewScoped
 public class EditUnitatOrganicaController implements Serializable {
 
-    private Logger log = LoggerFactory.getLogger(EditUnitatOrganicaController.class);
+    private static final long serialVersionUID = -4092311228270716321L;
+
+    private static final Logger LOG = LoggerFactory.getLogger(EditUnitatOrganicaController.class);
 
     @Inject
     private FacesContext context;
+
+    /**
+     * Injecta el bundle definit dins faces-config.xml amb var = labels.
+     */
+    @Inject
+    @ManagedProperty("${symbol_pound}{labels}")
+    private ResourceBundle labelsBundle;
 
     @EJB
     UnitatOrganicaService unitatOrganicaService;
@@ -52,9 +63,9 @@ public class EditUnitatOrganicaController implements Serializable {
     /**
      * Indica si és una creació o una actualització segons s'hagi fixat o no l'id de la unitat
      * orgànica.
-     * 
+     *
      * @return <code>true</code> si l'id és null, i per tant és una creació, <code>false</code>
-     *         en cas contrari.
+     * en cas contrari.
      */
     public boolean isCreate() {
         return current.getId() == null;
@@ -65,7 +76,7 @@ public class EditUnitatOrganicaController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        log.debug("init");
+        LOG.debug("init");
         current = new UnitatOrganica();
     }
 
@@ -75,7 +86,7 @@ public class EditUnitatOrganicaController implements Serializable {
      * Carrega la unitat orgànica per editar.
      */
     public void load() {
-        log.debug("load");
+        LOG.debug("load");
         if (current.getId() != null) {
             current = unitatOrganicaService.findById(current.getId());
         }
@@ -84,88 +95,35 @@ public class EditUnitatOrganicaController implements Serializable {
     /**
      * Crea o actualitza la unitat orgànica que s'està editant. Afegeix un missatge si s'ha fet
      * amb èxit i redirecciona cap a la pàgina de llistat.
-     * 
+     *
      * @return navegació cap al llistat d'unitats orgàniques.
      */
     public String saveOrUpdate() {
-        log.debug("saveOrUpdate");
+        LOG.debug("saveOrUpdate");
         try {
-          if (isCreate()) {
-              unitatOrganicaService.create(current);
-              // Creació correcta
-              context.addMessage(null, new FacesMessage(I18NTranslatorBack.translate("msg.creaciocorrecta")));
-          } else {
-              unitatOrganicaService.update(current);
-              // Actualització correcta
-              context.addMessage(null, new FacesMessage(I18NTranslatorBack.translate("msg.actualitzaciocorrecta")));
-          }
-        } catch (I18NException i18ne) {
+            // Feim una creació o una actualització.
+            if (isCreate()) {
+                unitatOrganicaService.create(current);
+                context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.creaciocorrecta")));
+            } else {
+                unitatOrganicaService.update(current);
+                context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.actualitzaciocorrecta")));
+            }
 
-            String msgError = I18NTranslatorBack.translate(i18ne);
-
-            log.error("${symbol_escape}nError saveOrUpdate() => " + msgError + "${symbol_escape}n"); 
-
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
-        }
-        // Els missatges no aguanten una redirecció ja que no es la mateixa petició
-        // amb l'objecte flash podem assegurar que es guardin fins la visualització
-        context.getExternalContext().getFlash().setKeepMessages(true);
-        // Redireccionam cap al llistat d'unitats orgàniques
-        return "/listUnitatOrganica?faces-redirect=true";
-    }
-
-
-    /**
-     * 
-     * @return
-     */
-    public String testError() {
-
-        {
-            String[] labels = { "example.error", // EJB
-                    "error.query", // persistence
-                    "javax.validation.constraints.Size.message", // ValidationMessages.properties
-                    "accessibilitat_title" // BACK
-            };
-
-            log.info("${symbol_escape}n${symbol_escape}n${symbol_escape}n");
-            log.info("======= TRADUCCIONS BACK =============");
-
-              for (String label : labels) {
-                  try {
-                  log.info("Traduccio[" + label + "] => |"
-                          + I18NTranslatorBack.translate(label) + "|");
-                } catch (Throwable th) {
-                    log.error("NO TROB TRADUCCIO PER [" + label + "] => " + th.getMessage(), th);
-                }
-              }
-           
-
-            log.info("${symbol_escape}n${symbol_escape}n${symbol_escape}n");
-            
-        }
-
-
-        try {
-            unitatOrganicaService.testTranslationError();
-        } catch (I18NException i18ne) {
-
-            String msgError = I18NTranslatorBack.translate(i18ne);
-
-            log.error("${symbol_escape}nError cridant a testTranslationError() => " + msgError + "${symbol_escape}n"); 
-
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, ""));
-            
-            // Redireccionam cap a l'unitat orgànica que estam editant
+            // Els missatges no aguanten una redirecció ja que no es la mateixa petició
+            // amb l'objecte flash podem assegurar que es guardin fins la visualització
             context.getExternalContext().getFlash().setKeepMessages(true);
-            return "/editUnitatOrganica?faces-redirect=true&includeViewParams=true";
+
+            // Redireccionam cap al llistat d'unitats orgàniques
+            return "/listUnitatOrganica?faces-redirect=true";
+
+        } catch (I18NException i18ne) {
+            String msgError = I18NTranslatorBack.translate(i18ne);
+            LOG.error("Error saveOrUpdate: " + msgError);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, null));
+
+            // si ha donat un error la lògica de negoci, ens mantenim a la pàgina
+            return null;
         }
-
-        // Els missatges no aguanten una redirecció ja que no es la mateixa petició
-        // amb l'objecte flash podem assegurar que es guardin fins la visualització
-        context.getExternalContext().getFlash().setKeepMessages(true);
-        return "/listUnitatOrganica?faces-redirect=true";
-
     }
-
 }

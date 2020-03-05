@@ -9,55 +9,55 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * 
+ * Representació d'un argument de traducció per la seva seralització en xml dins una respota WS.
+ *
  * @author anadal
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = { "value", "translate" })
+@XmlType(propOrder = {"value", "translate"})
 public class WsI18NArgument {
 
-  @XmlElement(name = "value")
-  protected String value;
+    @XmlElement(name = "value")
+    protected String value;
 
-  @XmlElement(name = "translate")
-  protected boolean translate;
+    @XmlElement(name = "translate")
+    protected boolean translate;
 
-  /**
-   * 
-   */
-  public WsI18NArgument() {
-    super();
-  }
+    /**
+     *
+     */
+    public WsI18NArgument() {
+        super();
+    }
 
-  /**
-   * @param value
-   */
-  public WsI18NArgument(String value, boolean translate) {
-    super();
-    this.value = value;
-    this.translate = translate;
-  }
+    /**
+     * @param value
+     */
+    public WsI18NArgument(String value, boolean translate) {
+        super();
+        this.value = value;
+        this.translate = translate;
+    }
 
-  public String getValue() {
-    return value;
-  }
+    public String getValue() {
+        return value;
+    }
 
-  public void setValue(String value) {
-    this.value = value;
-  }
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-  public boolean isTranslate() {
-    return translate;
-  }
+    public boolean isTranslate() {
+        return translate;
+    }
 
-  public void setTranslate(boolean translate) {
-    this.translate = translate;
-  }
+    public void setTranslate(boolean translate) {
+        this.translate = translate;
+    }
 
-  @Override
-  public String toString() {
-    return (translate ? "*" : "") + this.value;
-  }
+    @Override
+    public String toString() {
+        return (translate ? "*" : "") + this.value;
+    }
 
 }

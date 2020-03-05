@@ -28,6 +28,7 @@ import java.util.Objects;
 
 /**
  * Representació d'un procediment. A nivell de classe definim la seqüència que emprarem, i les claus úniques.
+ * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
  */
@@ -35,15 +36,15 @@ import java.util.Objects;
 @SequenceGenerator(name = "procediment-sequence", sequenceName = "${prefixuppercase}_PROCEDIMENT_SEQ", allocationSize = 1)
 @Table(name = "${prefixuppercase}_PROCEDIMENT",
         uniqueConstraints = {
-            @UniqueConstraint(name = "${prefixuppercase}_PROCEDIMENT_CODISIA_UK", columnNames = "CODISIA")
+                @UniqueConstraint(name = "${prefixuppercase}_PROCEDIMENT_CODISIA_UK", columnNames = "CODISIA")
         },
         indexes = {
-            @Index(name= "${prefixuppercase}_PROCEDIMENT_PK_I", columnList = "ID"),
-            @Index(name= "${prefixuppercase}_PROCEDIMENT_CODISIA_UK_I", columnList = "CODISIA"),
-            @Index(name= "${prefixuppercase}_PROCEDIMENT_UNITAT_FK_I", columnList = "UNITATORGANICAID")
+                @Index(name = "${prefixuppercase}_PROCEDIMENT_PK_I", columnList = "ID"),
+                @Index(name = "${prefixuppercase}_PROCEDIMENT_CODISIA_UK_I", columnList = "CODISIA"),
+                @Index(name = "${prefixuppercase}_PROCEDIMENT_UNITAT_FK_I", columnList = "UNITATORGANICAID")
         }
 )
-@Schema(name="Procediment")
+@Schema(name = "Procediment")
 public class Procediment implements Serializable {
 
     private static final long serialVersionUID = 1L;

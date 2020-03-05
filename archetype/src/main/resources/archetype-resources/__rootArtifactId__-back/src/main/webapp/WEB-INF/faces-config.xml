@@ -18,7 +18,7 @@
             <supported-locale>ca</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>ValidationMessages</base-name>            
+            <base-name>ValidationMessages</base-name>
             <var>ValidationMessages</var>
         </resource-bundle>
         <resource-bundle>
@@ -29,7 +29,7 @@
             <base-name>ejb.LabelsEJB</base-name>
             <var>labelsEJB</var>
         </resource-bundle>
-        <resource-bundle>           
+        <resource-bundle>
             <base-name>back.LabelsBack</base-name>
             <var>labels</var>
         </resource-bundle>

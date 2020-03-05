@@ -7,13 +7,13 @@ import ${package}.commons.i18n.I18NTranslator;
 import ${package}.ejb.utils.I18NTranslatorEjb;
 
 /**
+ * Clase d'utilitat per traduir missatges I18N dins el mòdul WS.
  *
  * @author anadal
- * 
  */
 public class I18NTranslatorWS extends I18NTranslatorEjb {
 
     public static final I18NTranslator translator = new I18NTranslator(
-            new String[] { "ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB", "${rootArtifactId}_genapp", "genapp" });
+            new String[]{"ValidationMessages", "persistence.LabelsPersistence", "ejb.LabelsEJB"});
 
 }

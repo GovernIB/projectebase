@@ -19,12 +19,17 @@ import java.io.Serializable;
 /**
  * Bean per controlar la sessió d'usuari. S'ha de mantenir dins l'scope de sessió, i per tant cal definir-ho
  * com a serialitzable. Anar en compte a mantenir referències a objectes no serialitzables.
+ * <p>
+ * Quan indicam que és @Named i no posam nom, per defecte el nom del bean serà el nom de la classe començat en
+ * minúscules, en aquest cas "sessionController".
  *
  * @author areus
  */
-@Named("sessionController")
+@Named
 @SessionScoped
 public class SessionController implements Serializable {
+
+    private static final long serialVersionUID = -3709390221710580769L;
 
     private static final Logger LOG = LoggerFactory.getLogger(SessionController.class);
 
@@ -62,20 +67,31 @@ public class SessionController implements Serializable {
     }
 
     /**
-     * Invalida la sessió d'usuari i redirecciona a la pàgina principal.
+     * Realitza un logout i redirecciona a la pàgina principal.
      *
      * @return navegació cap a la pàgina principal
      */
     public String logout() {
         LOG.debug("logout");
         try {
-            ((HttpServletRequest) context.getExternalContext().getRequest()).logout();
+            // Opcional: invalidam la sessió d'usuari
+            // Aquesta passa és opcional, podriem fer logout sense invalidar la sessió d'usuari.
+            // p.e. si una aplicació web combina funcionalitats per les que requereix estar autenticat i altres que
+            // no, si evitam invalidar la sessió, podriem fer logout sense perdre la informacío de la sessió com
+            // ara l'idioma seleccionat en el que estam navegant.
+            context.getExternalContext().invalidateSession();
+
+            // Per fer un logout cal emprar el mètode logout de HttpServletRequest. És l'única manera de evitar
+            // que recarregant la pàgina es torni autenticar.
+            HttpServletRequest httpServletRequest = (HttpServletRequest) context.getExternalContext().getRequest();
+            httpServletRequest.logout();
+
         } catch (ServletException e) {
             LOG.error("Error durant el logout", e);
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            // Atès que farem una redirecció fixam l'objecte flash perquè guardi el missatge fins la visualització
             context.getExternalContext().getFlash().setKeepMessages(true);
         }
         return "/index?faces-redirect=true";
     }
-
 }
