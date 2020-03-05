@@ -146,6 +146,13 @@
             <artifactId>jbossws-cxf-client</artifactId>
             <version>5.2.4.Final</version>
             <scope>provided</scope>
+            <!-- aquestes classes ja estan dins el JDK -->
+            <exclusions>
+                <exclusion>
+            	    <groupId>xml-apis</groupId>
+            	    <artifactId>xml-apis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- dependències de test -->
