@@ -9,8 +9,8 @@ import java.util.Arrays;
  */
 public class I18NTranslation {
 
-    private String code;
-    private I18NArgument[] args;
+    private final String code;
+    private final I18NArgument[] args;
 
     /**
      * Construeix una traducció amb una etiqueta i uns arguments.
@@ -30,6 +30,7 @@ public class I18NTranslation {
      */
     public I18NTranslation(String code) {
         this.code = code;
+        this.args = null;
     }
 
     /**
