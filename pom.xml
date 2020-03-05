@@ -10,7 +10,7 @@ I PER COPIAR EXEMPLES D'ADMINISTRACIO ELECTRONICA
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.fundaciobit.projectebaseparent</groupId>
     <artifactId>projectebaseparent</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>pom</packaging>
     <name>projectebaseparent</name>
 
