@@ -43,7 +43,7 @@ prefixuppercase=EXE
    
      
      
-(5) El pas anterior compila l'artifact i genera un projecte de prova amb les propietats del fitxer "archetype\src\test\resources\projects\basic\archetype.properties". El projecte generat el podeu trobar a  archetype\target\test-classes\projects\basic\project\projectebaseexemple.
+(5) El pas anterior compila l'artifact i genera un projecte de prova amb les propietats del fitxer "archetype\src\test\resources\projects\basic\archetype.properties". El projecte generat el podeu trobar a  archetype\target\test-classes\projects\basic\project\aixoesunexemple.
    Anar a aquest directori i executar "mvn clean install" per comproar que s'ha generat correctament a partir de la plantilla.
 
 (6) Anar al directori /generat i executar "projectebase.bat". 
