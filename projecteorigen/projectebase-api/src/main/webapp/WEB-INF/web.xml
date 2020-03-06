@@ -23,25 +23,20 @@
         <param-value>ca,es</param-value>
     </context-param>
 
+    <!--
+    Amb el següent obligam a sempre autenticar-se per accedir a tots els recursos REST, independentment del role
+    d'usuari. A nivell de recurs es poden exigir roles determinats.
+    -->
     <security-constraint>
-        <display-name>Accés restringit a adminsitradors</display-name>
+        <display-name>Accés restringit</display-name>
         <web-resource-collection>
             <web-resource-name>restringit</web-resource-name>
-            <description>Accions de modificació de dades</description>
+            <description>Restringim l'accés a tots els recursos REST</description>
             <url-pattern>/services/*</url-pattern>
-            <http-method>POST</http-method>
-            <http-method>PUT</http-method>
-            <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>PBS_ADMIN</role-name>
+            <role-name>**</role-name>
         </auth-constraint>
-        <!-- Si requerim SSL -->
-        <!--
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-        -->
     </security-constraint>
 
     <login-config>

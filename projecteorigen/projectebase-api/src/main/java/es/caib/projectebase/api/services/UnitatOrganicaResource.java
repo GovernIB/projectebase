@@ -1,6 +1,7 @@
 package es.caib.projectebase.api.services;
 
 import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.ejb.UnitatOrganicaService;
 import es.caib.projectebase.persistence.UnitatOrganica;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -26,15 +27,21 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.Stateless;
 
 /**
- * Recurs REST per accedir a Unitats Organiques.
+ * Recurs REST per accedir a Unitats Organiques. La seguretat es pot establir a nivel de url-pattern/http-method a 
+ * dins web.xml, o a nivell de classe/mètode com es fa en aquest cas, requerint el role PBS_ADMIN a nivell de 
+ * classe.
  *
  * @author areus
  */
+@Stateless
 @Path("unitats")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@RolesAllowed({Constants.PBS_ADMIN})
 public class UnitatOrganicaResource {
 
     @EJB
