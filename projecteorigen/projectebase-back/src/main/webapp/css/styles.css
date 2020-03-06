@@ -255,6 +255,9 @@ a:hover{
 .oi-power-standby:before {
 	content: '\e0ab\0000a0' !important;
 }
+.oi-briefcase:before {
+	content: '\e024\0000a0' !important;
+}
 .bg-aplicacio{
 	background-color: #4dba79 !important;
 	padding-left: 0px;

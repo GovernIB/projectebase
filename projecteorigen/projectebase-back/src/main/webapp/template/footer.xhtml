@@ -29,10 +29,23 @@ Peu de pàgina
             </div>
             <!-- Centro -->
             <div class="col-4 text-center pt-2 text-decoration-none bg-transparent text-uppercase p-2 opcionsPeu elementPeuResponsive">
-                <ul class="list-unstyled d-inline-flex justify-content-center mb-0">
-                    <li><a href="" class="text-dark linkPeu">Mapa web</a></li>
+                <ul class="list-unstyled d-inline-flex justify-content-center mb-0">                   
+                    <li>
+                        <p:link styleClass="text-dark linkPeu" outcome="/mapaweb">
+                            #{labels.mapaweb_link}
+                        </p:link>
+                    </li>
+                    <li>
+                        <p:link styleClass="text-dark linkPeu" outcome="/accessibilitat">
+                            #{labels.accessibilitat_link}
+                        </p:link>
+                    </li>
                     <li><a href="" class="text-dark linkPeu" target="_blank">LOPD</a></li>
-                    <li><a href="" class="text-dark linkPeu" target="_blank">Avís legal</a></li>
+                    <li>
+                        <p:link styleClass="text-dark linkPeu" outcome="/avislegal">
+                            #{labels.avislegal_link}
+                        </p:link>
+                    </li>
                 </ul>
             </div>
             <!-- Dreta -->

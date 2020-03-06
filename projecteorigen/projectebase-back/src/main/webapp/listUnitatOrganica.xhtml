@@ -33,7 +33,7 @@ Pàgina amb el llistat d'unitats orgàniques.
                 <f:facet name="{RowsPerPageLabel}">
                     #{labels.dataTable_rowsPerPage}
                 </f:facet>
-                <p:column>
+                <p:column sortBy="#{unitatOrganica.id}">
                     <f:facet name="header">#{labels.unitatOrganica_id}</f:facet>
                     <h:outputText value="#{unitatOrganica.id}"/>
                 </p:column>
@@ -79,6 +79,8 @@ Pàgina amb el llistat d'unitats orgàniques.
                 </p:column>
             </p:dataTable>
 
+            <p:button value="#{labels.newUnitatOrganica_link}" outcome="/editUnitatOrganica" />
+            
         </h:form>
     </ui:define>
 </ui:composition>
