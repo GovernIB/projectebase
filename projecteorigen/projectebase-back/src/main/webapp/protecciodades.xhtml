@@ -4,18 +4,18 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--
-Pàgina amb l'Avís legal
+Pàgina de Protecció de dades
 -->
 <ui:composition template="/template/template.xhtml">
 
-    <ui:define name="pageTitle">#{labels.avislegal_title}</ui:define>
+    <ui:define name="pageTitle">#{labels.protecciodades_title}</ui:define>
 
     <ui:define name="content">
-        <ui:include src="#{labels.avislegal_include}" />
+        <p>Aquí ha d'anar la informació de protecció de dades</p>
     </ui:define>
 
     <ui:define name="breadcrumb">
-        <p:menuitem value="#{labels.avislegal_link}" outcome="/avislegal"/>
+        <p:menuitem value="#{labels.protecciodades_link}" outcome="/protecciodades"/>
     </ui:define>
 
 </ui:composition>
