@@ -14,6 +14,8 @@ import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import javax.ejb.EJB;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,9 +33,12 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 
 /**
- * Recurs REST per accedir a Unitats Organiques. La seguretat es pot establir a nivel de url-pattern/http-method a 
- * dins web.xml, o a nivell de classe/mètode com es fa en aquest cas, requerint el role PBS_ADMIN a nivell de 
- * classe.
+ * Recurs REST per accedir a Unitats Organiques.
+ *
+ * La seguretat es pot establir a nivel de url-pattern/http-method a dins web.xml, o amb l'etiqueta {@link RolesAllowed}
+ * a nivell de tota la classe o de recurs. Per poder-la emprar cal que marquem el recurs com un bean {@link Stateless}.
+ * Fixam també el {@link TransactionAttribute} al valor {@link TransactionAttributeType#NOT_SUPPORTED} atès que no
+ * volem que demarqui transaccions.
  *
  * @author areus
  */
@@ -42,6 +47,7 @@ import javax.ejb.Stateless;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @RolesAllowed({Constants.PBS_ADMIN})
+@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class UnitatOrganicaResource {
 
     @EJB
