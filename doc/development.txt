@@ -13,7 +13,7 @@ prefix=exe
 prefixuppercase=EXE
 
 
-(2) Executar  regenerate_artifact_from_projecteorigen.bat
+(2) Executar  regenerate_artifact_from_projecteorigen.bat(.sh)
     AA- genera l'archetype (plantilla) a partir del projecte funcional (projecteorigen)
     BB- Copia els resultats de la generació a archetype\src\main\resources\archetype-resources
     CC- En una segona passada, executa el fitxer "post_create_from_project.groovy" que fa substitucions de les constants del punt (XXX) que no s'han substituït en el punt AA.
@@ -46,11 +46,9 @@ prefixuppercase=EXE
 (5) El pas anterior compila l'artifact i genera un projecte de prova amb les propietats del fitxer "archetype\src\test\resources\projects\basic\archetype.properties". El projecte generat el podeu trobar a  archetype\target\test-classes\projects\basic\project\aixoesunexemple.
    Anar a aquest directori i executar "mvn clean install" per comproar que s'ha generat correctament a partir de la plantilla.
 
-(6) Anar al directori /generat i executar "projectebase.bat". 
+(6) Anar al directori /generat i executar "projectebase.bat(.sh)".
     fer doble click sobre compare_projecteorigen_i_projectegenerat.WinMerge (s'ha de tenir instal3lat WinMerge)
-
-
-
+    o executar diff_projecteorigen_projectegenerat.sh
 
 
 
