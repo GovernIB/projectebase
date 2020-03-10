@@ -1,7 +1,7 @@
 ECHO OFF
 
 ECHO ----------------
-ECHO "Esborrar <module>projectebase</module> de projecteorigen/pom.xml"
+ECHO "Esborrar <module>projectebase-apifirmasimple</module> de projecteorigen/pom.xml"
 ECHO ----------------
 pause
 
