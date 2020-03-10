@@ -7,6 +7,8 @@ import java.io.*
 import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 
+boolean WIN = System.lineSeparator() != "\n";
+
 def dos2unix(file) {    
       def content = file.getText("UTF-8")
 
@@ -260,15 +262,19 @@ if (perfilBatSh.equals("false")) {
 } else {
   
   // DOS TO UNIX
-  def dos2unixFiles = [ "compile.sh",  "help.sh", "novaversio.sh" ];
-  for(String dos2unixFile : dos2unixFiles) {
-    dos2unix(new File(rootDir, dos2unixFile));
+  if (!WIN) {
+      def dos2unixFiles = ["compile.sh", "help.sh", "novaversio.sh"];
+      for (String dos2unixFile : dos2unixFiles) {
+          dos2unix(new File(rootDir, dos2unixFile));
+      }
   }
 }
 
 // Solucionar Bug de Archetype-maven (Afegeix linies buides al pom.xml arrel #27)
 cleanPom(new File(rootDir, "pom.xml"));
-unix2dos(new File(rootDir, "pom.xml"));
+if (WIN) {
+    unix2dos(new File(rootDir, "pom.xml"));
+}
 
 // .gitignore
 File sourceFile = new File(rootDir, "gitignore");

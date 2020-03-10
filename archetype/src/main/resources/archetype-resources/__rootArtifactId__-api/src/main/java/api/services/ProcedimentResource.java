@@ -51,7 +51,7 @@ import java.util.List;
 @Path("procediments")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@RolesAllowed({Constants.PBS_ADMIN})
+@RolesAllowed({Constants.${prefixuppercase}_ADMIN})
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class ProcedimentResource {
 

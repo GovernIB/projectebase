@@ -193,7 +193,9 @@ for(String ejbFile : ejbFiles) {
 // REST
 def restFiles = [
    "./__rootArtifactId__-api/src/main/webapp/WEB-INF/web.xml",
-   "./__rootArtifactId__-api/src/test/java/api/test/UnitatOrganicaServiceTest.java"
+   "./__rootArtifactId__-api/src/test/java/api/test/UnitatOrganicaServiceTest.java",
+   "./__rootArtifactId__-api/src/main/java/api/services/ProcedimentResource.java",
+   "./__rootArtifactId__-api/src/main/java/api/services/UnitatOrganicaResource.java"
   ];
 for(String restFile : restFiles) {
   replaceProperties(new File(baseProject, restFile), false);
