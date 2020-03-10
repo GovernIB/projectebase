@@ -51,8 +51,10 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                     <!-- Logo i nom aplicació -->
                     <div class="navbar-brand menuGovern">
                         <div class="logoGovern">
-                            <a class="mr-auto" href=""><img src="#{request.contextPath}/img/STT_logo2.png"
-                                                            class="imatgeGovern" alt="Govern de les Illes Balears"/></a>
+                            <a class="mr-auto" href="#{request.contextPath}/index.xhtml">
+                                <img src="#{request.contextPath}/img/STT_logo2.png" class="imatgeGovern" 
+                                     alt="Govern de les Illes Balears"/>
+                            </a>
                         </div>
 
                         <div>
@@ -60,7 +62,7 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                         </div>
                         <div>
                             <div>
-                                <strong class="subtitol llevarMobil">Usuari: </strong>
+                                <strong class="subtitol llevarMobil">#{labels.usuari_label}: </strong>
                                 <span class="subtitolMay">#{request.remoteUser}</span>
                             </div>
                         </div>
@@ -73,28 +75,12 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                         <ul class="navbar-nav mobil">
 
                             <li class="nav-item colorVerd">
-                                <p:link styleClass="nav-link mobil" title="#{labels.accessibilitat_title}"
-                                        outcome="/accessibilitat">
-                                    <img src="#{request.contextPath}/img/ico_accessibilitat.svg" class="iconoCapsalera"
-                                         title="#{labels.accessibilitat_title}" alt="#{labels.accessibilitat_title}"/>
-                                    <p class="mb-0 float-right botoCurt">#{labels.accessibilitat_link}</p>
-                                </p:link>
-                            </li>
-
-                            <li class="nav-item dropdown colorVerd">
-                                <a class="nav-link dropdown mobil" title="#{labels.gestionar_link}" href="#"
-                                   id="gestionar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="oi oi-caret-bottom float-right flechaSubmenu" title=""
+                                <p:link styleClass="nav-link mobil" outcome="/listUnitatOrganica"
+                                            title="#{labels.listUnitatOrganica_link}">                                                                    
+                                    <span class="oi oi-briefcase" title="#{labels.listUnitatOrganica_link}"
                                           aria-hidden="true"></span>
-                                    <p class="mb-0 float-right botoCurt">#{labels.gestionar_link}</p>
-                                    <span class="oi oi-briefcase" title="#{labels.gestionar_link}"
-                                          aria-hidden="true"></span></a>
-                                <div class="dropdown-menu dropdown-menu-right marg0 minW0" aria-labelledby="gestionar">
-                                    <p:link styleClass="dropdown-item mobil" outcome="/listUnitatOrganica"
-                                            value="#{labels.listUnitatOrganica_link}"/>
-                                    <p:link styleClass="dropdown-item mobil" outcome="/editUnitatOrganica"
-                                            value="#{labels.newUnitatOrganica_link}"/>
-                                </div>
+                                    <p class="mb-0 float-right botoCurt">#{labels.listUnitatOrganica_link}</p>
+                                </p:link>
                             </li>
 
                             <li class="nav-item dropdown colorVerd">
@@ -150,7 +136,7 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
             <!-- Breadcrumb -->
             <nav aria-label="breadcrumb" class="miga">
                 <p:breadCrumb styleClass="breadcrumb" homeDisplay="text">
-                    <p:menuitem value="Inici" outcome="/index"/>
+                    <p:menuitem value="#{labels.inici_link}" outcome="/index"/>
                     <ui:insert name="breadcrumb"/>
                 </p:breadCrumb>
             </nav>
@@ -177,10 +163,10 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
         </div>
         <!-- FI Content -->
 
-        <!-- Contacte -->
+        <!-- Contacte 
         <div class="infoContacte">
             <strong>Necessita ajuda?</strong>
-            <!--
+            
             <strong>Necessita ajuda? </strong>Contacti amb l'
             <button type="button" class="btn btn-suport" data-toggle="modal" data-target="#modalContacto">
                 equip de suport
@@ -219,9 +205,9 @@ s'ha de definir tant xml:lang com lang amb l'idioma de la pàgina
                 </div>
             </div>
             -->
+        <!--    
         </div>
-        <!-- FI Contacte -->
-
+         FI Contacte -->
         <ui:include src="footer.xhtml"/>
 
     </f:view>

@@ -27,6 +27,6 @@ public class EJBExceptionMapper implements ExceptionMapper<EJBException> {
     public Response toResponse(EJBException e) {
         LOG.error("Rebuda una EJBException: " + e.getMessage());
         LOG.error("Retornam un codi 500 al client");
-        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        return Response.serverError().build();
     }
 }

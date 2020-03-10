@@ -4,6 +4,7 @@
 package ${package}.api.services;
 
 import ${package}.commons.i18n.I18NException;
+import ${package}.commons.utils.Constants;
 import ${package}.ejb.ProcedimentService;
 import ${package}.persistence.Procediment;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -16,7 +17,11 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -35,11 +40,19 @@ import java.util.List;
 /**
  * Recurs REST per accedir a Procediments.
  *
- * @author areus
+ * La seguretat es pot establir a nivel de url-pattern/http-method a dins web.xml, o amb l'etiqueta {@link RolesAllowed}
+ * a nivell de tota la classe o de recurs. Per poder-la emprar cal que marquem el recurs com un bean {@link Stateless}.
+ * Fixam també el {@link TransactionAttribute} al valor {@link TransactionAttributeType${symbol_pound}NOT_SUPPORTED} atès que no
+ * volem que demarqui transaccions.
+ *
+ *  @author areus
  */
+@Stateless
 @Path("procediments")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@RolesAllowed({Constants.PBS_ADMIN})
+@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class ProcedimentResource {
 
     @EJB

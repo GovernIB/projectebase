@@ -16,6 +16,9 @@ import ${package}.ws.api.HelloWorldWsService;
 import ${package}.ws.api.HelloWorldWithSecurityWs;
 import ${package}.ws.api.HelloWorldWithSecurityWsService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Mètodes d'utilitat per configurar els serveis web a emprar durant els tests.
  *
@@ -23,18 +26,20 @@ import ${package}.ws.api.HelloWorldWithSecurityWsService;
  */
 public abstract class TestUtils {
 
+    private static final Logger LOG = LoggerFactory.getLogger(TestUtils.class);
+    
     public static final String HELLO_WORLD = "HelloWorldWsService/HelloWorldWs";
 
     public static final String HELLO_WORLD_WITH_SECURITY = "HelloWorldWithSecurityWsService/HelloWorldWithSecurityWs";
 
-    private static Properties testProperties = new Properties();
+    private static final Properties testProperties = new Properties();
 
     static {
         // Carrega la configuració a emprar pel test, urls, noms d'usuari...
         try (InputStream inputStream = new FileInputStream("test.properties")) {
             testProperties.load(inputStream);
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            LOG.error("Error llegint test.properties", ioe);
         }
     }
 

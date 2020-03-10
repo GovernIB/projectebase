@@ -54,7 +54,6 @@ public class I18NTranslator {
                 break;
             } catch (Exception mre) {
                 lastException = mre;
-                continue;
             }
         }
 
