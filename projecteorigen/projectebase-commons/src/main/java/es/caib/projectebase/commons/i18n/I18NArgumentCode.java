@@ -7,6 +7,8 @@ package es.caib.projectebase.commons.i18n;
  */
 public class I18NArgumentCode implements I18NArgument {
 
+    private static final long serialVersionUID = -6566772986461062754L;
+
     private final String code;
 
     /**
