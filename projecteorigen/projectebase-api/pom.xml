@@ -13,7 +13,25 @@
     <description>API REST de ProjecteBase</description>
 
     <dependencies>
+        <!-- Especificacions i llibreries proporcionades per JBoss -->
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-8.0</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <!-- Altres mòduls del projecte -->
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-commons</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-persistence</artifactId>
@@ -26,24 +44,12 @@
             <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
-
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <!-- Anotacions de documentació de openapi -->
         <dependency>
             <groupId>org.eclipse.microprofile.openapi</groupId>
             <artifactId>microprofile-openapi-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <!-- Dependències de test -->
         <dependency>
             <groupId>junit</groupId>
@@ -62,6 +68,11 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-json-binding-provider</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>commons-logging-jboss-logging</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -168,6 +179,5 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
 </project>

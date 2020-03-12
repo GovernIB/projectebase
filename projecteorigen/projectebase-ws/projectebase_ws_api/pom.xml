@@ -10,8 +10,10 @@
     <artifactId>projectebase-ws-api</artifactId>
     <packaging>jar</packaging>
     <name>ProjecteBase - WS - API</name>
+    <description>Client de Serveis Web de ProjecteBase</description>
 
     <profiles>
+        <!-- Perfil per regenerar el WSDL i les classes client dels serveis web -->
         <profile>
             <id>regenerateapi</id>
             <activation>
@@ -21,22 +23,11 @@
             </activation>
             <build>
                 <plugins>
+                    <!-- Processa les classes de la implementació dels serveis web per generar els fitxers WSDL -->
                     <plugin>
                         <groupId>org.apache.cxf</groupId>
                         <artifactId>cxf-java2ws-plugin</artifactId>
                         <version>3.3.5</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.apache.cxf</groupId>
-                                <artifactId>cxf-rt-frontend-jaxws</artifactId>
-                                <version>${cxf.version}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.apache.cxf</groupId>
-                                <artifactId>cxf-rt-frontend-simple</artifactId>
-                                <version>${cxf.version}</version>
-                            </dependency>
-                        </dependencies>
                         <executions>
                             <execution>
                                 <id>generate-wsdl-HelloWorldWs</id>
@@ -72,7 +63,7 @@
                             </execution>
                         </executions>
                     </plugin>
-
+                    <!-- Crea les classes client a partir dels WSDL generats amb el plugin anterior -->
                     <plugin>
                         <groupId>org.jboss.ws.plugins</groupId>
                         <artifactId>jaxws-tools-maven-plugin</artifactId>
@@ -118,56 +109,51 @@
     </profiles>
 
     <dependencies>
+        <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-8.0</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.xml.ws</groupId>
-            <artifactId>jaxws-api</artifactId>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>javax.jws</groupId>
-            <artifactId>jsr181-api</artifactId>
-        </dependency>
+        <!-- Altres mòduls del projecte -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-ws-server</artifactId>
             <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.ws.cxf</groupId>
-            <artifactId>jbossws-cxf-client</artifactId>
-            <version>5.2.4.Final</version>
-            <scope>provided</scope>
-            <!-- aquestes classes ja estan dins el JDK -->
-            <exclusions>
-                <exclusion>
-            	    <groupId>xml-apis</groupId>
-            	    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <!-- dependències de test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.ws.cxf</groupId>
+            <artifactId>jbossws-cxf-client</artifactId>
+            <scope>test</scope>
+            <!-- excloem les següents llibreries perquè donen problemes de convergència -->
+            <exclusions>
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.sf.ehcache</groupId>
+                    <artifactId>ehcache</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>jboss-community</id>
-            <name>JBoss Public Repository</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/public/</url>
-        </repository>
-    </repositories>
 </project>
