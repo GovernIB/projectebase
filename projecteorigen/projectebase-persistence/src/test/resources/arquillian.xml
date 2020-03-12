@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian http://www.jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+    <defaultProtocol type="jmx-as7">
+        <property name="enableThreadContextClassLoader">false</property>
+    </defaultProtocol>
+
+    <!-- Activat quan s'empra el profile -Parq-jboss-managed -->
+    <!-- Arranca automàticament el JBoss ubicat a la variable d'entorn JBOSS_HOME -->
+    <container qualifier="jboss-managed" default="true">
+        <configuration>
+            <property name="jbossHome">${env.JBOSS_HOME}</property>
+            <!--
+            <property name="serverConfig">standalone-full.xml</property>
+            -->
+        </configuration>
+    </container>
+
+    <!-- Activat quan s'empra el profile -Parq-jboss-managed -->
+    <!-- Es connecta a una instància de JBoss en marxa a localhost -->
+    <container qualifier="jboss-remote">
+        <configuration>
+            <property name="managementAddress">localhost</property>
+            <property name="managementPort">9990</property>
+            <!--
+            <property name="username">admin</property>
+            <property name="password">admin</property>
+            -->
+        </configuration>
+    </container>
+
+</arquillian>

@@ -64,27 +64,23 @@
     </build>
 
     <profiles>
-        <!--
+        <!-- Realitza els tests arrancant automàticament un JBoss ubicat a la variable d'entorn JBOSS_HOME -->
         <profile>
-            <id>arquillian-managed</id>
+            <id>arq-jboss-managed</id>
+            <properties>
+                <maven.test.skip>false</maven.test.skip>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <version>2.2.0.Final</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-protocol-jmx</artifactId>
-                    <version>2.2.0.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
         </profile>
-        -->
+        <!-- Realitza els tests connectant a una instància de JBoss en marxa a localhost -->
         <profile>
-            <id>arquillian-remote</id>
+            <id>arq-jboss-remote</id>
             <properties>
                 <maven.test.skip>false</maven.test.skip>
             </properties>
