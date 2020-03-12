@@ -23,16 +23,26 @@ import javax.transaction.UserTransaction;
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
 
+/**
+ * Realitza tests de persistència i validació damunt Unitats Orgàniques.
+ *
+ * Els tests s'executen sobre una instància de JBoss que o bé s'arranca automàticament (-Parq-jboss-managed), o bé
+ * ja està en marxa (-Parq-jboss-remote).
+ */
 @RunWith(Arquillian.class)
 public class TestUnitatOrganica {
 
+    /**
+     * Crea l'arxiu de deploy que es desplegarà sobre JBoss per fer els tests.
+     * @return arxiu desplegable.
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
                 .addPackages(true, "es.caib.projectebase.persistence")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource("META-INF/arquillian-persistence.xml", "META-INF/persistence.xml");
-        System.out.println(jar.toString(true));
+        //System.out.println(jar.toString(true));
         return jar;
     }
 
@@ -42,21 +52,33 @@ public class TestUnitatOrganica {
     @Inject
     UserTransaction utx;
 
+    /**
+     * Abans de cada test s'inciarà una transacció.
+     * @throws Exception Error durant l'inici de la transacció
+     */
     @Before
     public void startTransaction() throws Exception {
         utx.begin();
         em.joinTransaction();
     }
 
+    /**
+     * Finalitzsació d'una transacció. Es farà un commit, o un rollback si la transacció s'ha marcat com a rollbackonly
+     * @throws Exception Error durant el final de la transacció.
+     */
     @After
-    public void commitTransaction() throws Exception {
+    public void endTransaction() throws Exception {
         if (utx.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
             utx.rollback();
         } else {
             utx.commit();
         }
+        em.clear();
     }
 
+    /**
+     * Crea una unitat orgància amb codiDir3 "U87654321".
+     */
     @Test
     @InSequence(1)
     public void testCreateUnitat() {
@@ -71,6 +93,9 @@ public class TestUnitatOrganica {
         Assert.assertNotNull(unitatOrganica.getId());
     }
 
+    /**
+     * Selecciona la unitat orgànica amb codiDir3 "U87654321".
+     */
     @Test
     @InSequence(2)
     public void testQueryUnitat() {
@@ -79,9 +104,13 @@ public class TestUnitatOrganica {
         query.setParameter("codiDir3", "U87654321");
         UnitatOrganica unitat = query.getSingleResult();
 
+        // Comprovam el nom de la unitat seleccionada
         Assert.assertEquals("Unitat test arquillian", unitat.getNom());
     }
 
+    /**
+     * Selecciona i esborra la unitat orgànica amb codiDir3 "U87654321".
+     */
     @Test
     @InSequence(3)
     public void testRemoveUnitat() {
@@ -92,9 +121,13 @@ public class TestUnitatOrganica {
         em.remove(unitat);
         em.flush();
 
+        // La unitat no hauria d'estar ja dins
         Assert.assertFalse(em.contains(unitat));
     }
 
+    /**
+     * Crea una unitat orgànica incomplint les validacons i intenta persistir-la per fer botar els errors de validació.
+     */
     @Test
     @InSequence(4)
     public void testConstraintsUnitat() {
@@ -110,6 +143,7 @@ public class TestUnitatOrganica {
             em.flush();
             Assert.fail("Hauria d'haver donat un error de validació");
         } catch (ConstraintViolationException cve) {
+            // Hi hauria d'haver 4 errors de validació.
             Assert.assertEquals(4, cve.getConstraintViolations().size());
         }
     }
