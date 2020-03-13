@@ -18,6 +18,18 @@
     </properties>
 
     <dependencies>
+        <!-- Especificacions i llibreries proporcionades per JBoss -->
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-8.0</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <!-- Mòduls que van dins l'application.xml -->
         <dependency>
             <groupId>${groupId}</groupId>
@@ -55,22 +67,22 @@
             <version>${version}</version>
             <type>war</type>
         </dependency>
-        <!-- Mòduls que van dins el lib/ -->
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-persistence</artifactId>
-            <version>${version}</version>
-        </dependency>
         <!--
+        Mòduls que van dins el lib/
         Tenir en compte a l'hora de incloure dependències només si és imprescindible i no està ja dins
         un mòdul sobre el que es pugui establir una dependència als descriptors.
         https://docs.jboss.org/author/display/AS72/Implicit+module+dependencies+for+deployments
         -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-persistence</artifactId>
+            <version>${version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-commons</artifactId>
+            <version>${version}</version>
+        </dependency>
         <!-- WS START -->
         <!-- WS de ${projectname} -->
         <!--  http://localhost:8080/${rootArtifactId}-ws-server/ws/v1/${projectname}HelloWorld -->

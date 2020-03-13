@@ -13,19 +13,24 @@
     <description>Capa de persistència de ${projectname}</description>
 
     <dependencies>
+        <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
-            <artifactId>${rootArtifactId}-commons</artifactId>
-            <groupId>${groupId}</groupId>
-            <version>${version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-8.0</artifactId>
+            <type>pom</type>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Altres mòduls del projecte -->
+        <dependency>
+            <artifactId>${rootArtifactId}-commons</artifactId>
+            <groupId>${groupId}</groupId>
+            <version>${version}</version>
+            <scope>provided</scope>
         </dependency>
         <!-- Anotacions de documentació de openapi -->
         <dependency>
@@ -33,8 +38,6 @@
             <artifactId>microprofile-openapi-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
-
         <!-- Dependències de test -->
         <dependency>
             <groupId>junit</groupId>
@@ -48,9 +51,46 @@
             <artifactId>hibernate-core</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- Per tests EJB amb Arquillian -->
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
     </build>
+
+    <profiles>
+        <!-- Realitza els tests arrancant automàticament un JBoss ubicat a la variable d'entorn JBOSS_HOME -->
+        <profile>
+            <id>arq-jboss-managed</id>
+            <properties>
+                <maven.test.skip>false</maven.test.skip>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <!-- Realitza els tests connectant a una instància de JBoss en marxa a localhost -->
+        <profile>
+            <id>arq-jboss-remote</id>
+            <properties>
+                <maven.test.skip>false</maven.test.skip>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-remote</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>

@@ -7,6 +7,7 @@ package ${package}.api.test;
 import ${package}.persistence.EstatPublicacio;
 import ${package}.persistence.UnitatOrganica;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.ws.rs.client.Client;
@@ -32,13 +33,20 @@ public class UnitatOrganicaServiceTest {
     private static final String USER = "app";
     private static final String PASSWORD = "app";
 
+    // Client a reutilitzar durant test
+    private static Client client;
+
+    @BeforeClass
+    public static void setUp() {
+        // Construïm un client amb autenticació
+        client = ClientBuilder.newClient().register(new BasicAuthenticator(USER, PASSWORD));
+    }
+
     /**
      * Consulta la unitat amb codi 1.
      */
     @Test
     public void testGetUnitat() {
-
-        Client client = ClientBuilder.newClient();
 
         UnitatOrganica unitat = client.target(BASE_URL + "/unitats/1")
                 .request(MediaType.APPLICATION_JSON)
@@ -53,7 +61,6 @@ public class UnitatOrganicaServiceTest {
      */
     @Test
     public void testGetAllUnitats() {
-        Client client = ClientBuilder.newClient();
 
         UnitatOrganica[] unitats = client.target(BASE_URL + "/unitats")
                 .request(MediaType.APPLICATION_JSON)
@@ -67,9 +74,6 @@ public class UnitatOrganicaServiceTest {
      */
     @Test
     public void testUpdateUnitat() {
-
-        // La petició PUT requereix autenticació, per tant registram un autenticador.
-        Client client = ClientBuilder.newClient().register(new BasicAuthenticator(USER, PASSWORD));
 
         UnitatOrganica unitat = new UnitatOrganica();
         unitat.setId(1L);
@@ -91,9 +95,6 @@ public class UnitatOrganicaServiceTest {
      */
     @Test
     public void testCreateAndDelete() {
-
-        // La petició POST requereix autenticació, per tant registram un autenticador.
-        Client client = ClientBuilder.newClient().register(new BasicAuthenticator(USER, PASSWORD));
 
         // Dades de la nova unitat orgànica que crearem
         UnitatOrganica newUnitat = new UnitatOrganica();

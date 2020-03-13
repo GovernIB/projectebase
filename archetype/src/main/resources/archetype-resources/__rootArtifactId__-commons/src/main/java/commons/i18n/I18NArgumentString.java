@@ -10,6 +10,8 @@ package ${package}.commons.i18n;
  */
 public class I18NArgumentString implements I18NArgument {
 
+    private static final long serialVersionUID = 2475236632433945131L;
+
     private final String message;
 
     /**

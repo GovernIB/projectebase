@@ -242,11 +242,9 @@
             <url>https://maven.repository.redhat.com/ga/</url>
             <layout>default</layout>
             <releases>
-                <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>

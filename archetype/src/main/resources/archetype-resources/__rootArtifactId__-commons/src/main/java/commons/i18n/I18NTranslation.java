@@ -3,6 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.commons.i18n;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -10,7 +11,9 @@ import java.util.Arrays;
  *
  * @author anadal
  */
-public class I18NTranslation {
+public class I18NTranslation implements Serializable {
+
+    private static final long serialVersionUID = 5470509251455807675L;
 
     private final String code;
     private final I18NArgument[] args;

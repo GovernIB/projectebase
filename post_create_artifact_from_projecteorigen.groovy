@@ -147,6 +147,7 @@ for(String commonFile : commonsFiles) {
 // JPA - persistence
 def jpaFiles = [ "./__rootArtifactId__-persistence/src/main/resources/META-INF/persistence.xml",
 	"./__rootArtifactId__-persistence/src/test/resources/META-INF/persistence.xml",
+	"./__rootArtifactId__-persistence/src/test/resources/META-INF/arquillian-persistence.xml",
     "./__rootArtifactId__-persistence/src/main/java/persistence/dao/AbstractDAO.java",
     "./__rootArtifactId__-persistence/src/main/java/persistence/Procediment.java",
     "./__rootArtifactId__-persistence/src/main/java/persistence/UnitatOrganica.java" 

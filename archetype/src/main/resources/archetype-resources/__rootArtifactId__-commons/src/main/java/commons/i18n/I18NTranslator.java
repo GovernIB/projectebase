@@ -94,8 +94,8 @@ public class I18NTranslator {
             return null;
         }
 
-        return (String[]) Stream.of(args)
+        return Stream.of(args)
                 .map(arg -> (arg instanceof I18NArgumentCode) ? translate(locale, arg.getValue()) : arg.getValue())
-                .toArray();
+                .toArray(String[]::new);
     }
 }

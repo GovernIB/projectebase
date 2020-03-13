@@ -6,12 +6,10 @@
         <artifactId>projectebase</artifactId>
         <version>1.0.0</version>
     </parent>
-
     <artifactId>projectebase-ws</artifactId>
     <packaging>pom</packaging>
     <name>ProjecteBase - WS</name>
     <description>Mòdul pare de Serveis Web SOAP de ProjecteBase</description>
-
     <modules>
         <module>projectebase_ws_server</module>
         <module>projectebase_ws_api</module>
