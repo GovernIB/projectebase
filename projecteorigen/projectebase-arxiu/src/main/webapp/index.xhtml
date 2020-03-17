@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<ui:composition template="/WEB-INF/template/template.xhtml">
+    <ui:define name="title">Exemple ARXIU</ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="col">
+                <p>Crear expedient</p>
+                <h:form>
+                    <div class="form-group">
+                        <h:outputLabel for="expedient_name">Nom de l'expedient</h:outputLabel>
+                        <h:inputText id="expedient_name" value="#{expedientModel.name}"
+                                     styleClass="form-control"/>
+                    </div>
+                    <h:commandButton action="#{expedientController.crearExpedient()}" 
+                                     styleClass="btn btn-primary"
+                                     value="Crear"/>
+                </h:form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Llistat d'expedients</p>
+                <h:form>
+                    <ol>
+                    <ui:repeat value="#{expedientController.expedientsCreats}" var="contingut">
+                        <li>
+                            #{contingut.nom} [#{contingut.identificador}] 
+                            <h:commandLink action="#{expedientController.borrarExpedient(contingut.identificador)}"
+                                           value="Borrar" />
+                        </li>
+                    </ui:repeat>
+                    </ol>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
