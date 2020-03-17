@@ -11,13 +11,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * Bean que produeix les instàncies de plugins.
+ * 
  * @author areus
  */
-public class ArxiuProducer {
+public class PluginProducer {
     
-    private static final Logger LOG = LoggerFactory.getLogger(ArxiuProducer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PluginProducer.class);
     
+    /**
+     * Instancia el plugin d'arxiu. El marcam amb @Produces per poder injectar el plugin d'arxiu
+     * dins qualsevol controlador. El marcam com a @ApplicationScoped per garantir que només s'en
+     * instancia un.
+     * 
+     * @return instància del plugin d'arxiu.
+     */
     @Produces
     @ApplicationScoped
     public IArxiuPlugin getArxiuPlugin() {

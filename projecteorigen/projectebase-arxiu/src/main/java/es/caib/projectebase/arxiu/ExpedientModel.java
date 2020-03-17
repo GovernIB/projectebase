@@ -4,7 +4,7 @@ import javax.enterprise.inject.Model;
 import javax.validation.constraints.NotEmpty;
 
 /**
- *
+ * Model de dades pel 
  * @author Antoni
  */
 @Model
