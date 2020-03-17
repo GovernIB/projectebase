@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="/WEB-INF/template/template.xhtml">
     <ui:define name="title">Exemple ARXIU</ui:define>
 
@@ -10,14 +11,18 @@
             <div class="col">
                 <p>Crear expedient</p>
                 <h:form>
+                    <h:messages globalOnly="true" errorStyle="color: red" />
                     <div class="form-group">
                         <h:outputLabel for="expedient_name">Nom de l'expedient</h:outputLabel>
                         <h:inputText id="expedient_name" value="#{expedientModel.name}"
                                      styleClass="form-control"/>
+                        <h:message for="expedient_name" errorStyle="color: red" />
                     </div>
                     <h:commandButton action="#{expedientController.crearExpedient()}" 
                                      styleClass="btn btn-primary"
-                                     value="Crear"/>
+                                     value="Crear">
+                        <f:ajax execute="@form" render="@all" />
+                    </h:commandButton>
                 </h:form>
             </div>
         </div>
@@ -30,7 +35,9 @@
                         <li>
                             #{contingut.nom} [#{contingut.identificador}] 
                             <h:commandLink action="#{expedientController.borrarExpedient(contingut.identificador)}"
-                                           value="Borrar" />
+                                           value="Borrar">
+                                <f:ajax execute="@form" render="@form" />
+                            </h:commandLink>
                         </li>
                     </ui:repeat>
                     </ol>

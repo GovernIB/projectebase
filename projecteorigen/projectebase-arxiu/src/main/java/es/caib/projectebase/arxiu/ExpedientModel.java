@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package es.caib.projectebase.arxiu;
 
 import javax.enterprise.inject.Model;
+import javax.validation.constraints.NotEmpty;
 
 /**
  *
@@ -14,6 +10,7 @@ import javax.enterprise.inject.Model;
 @Model
 public class ExpedientModel {
     
+    @NotEmpty
     private String name;
 
     public String getName() {
