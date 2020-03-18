@@ -208,6 +208,11 @@ String perfilApiFirmaSimple = properties.get("perfilApiFirmaSimple");
 println " + perfilApiFirmaSimple: " + perfilApiFirmaSimple;
 checkProperty("^(true|false)\$", perfilApiFirmaSimple, "perfilApiFirmaSimple");
 
+// perfilArxiu
+String perfilArxiu = properties.get("perfilArxiu");
+println " + perfilArxiu: " + perfilArxiu;
+checkProperty("^(true|false)\$", perfilArxiu, "perfilArxiu");
+
 // perfilBatSh
 String perfilBatSh = properties.get("perfilBatSh");
 println " + perfilBatSh: " + perfilBatSh;
@@ -306,7 +311,7 @@ if (perfilFront.equals("false")) {
   removeTextBetweenTwoStrings(pomEar, "<!-- FRONT START -->", "<!-- FRONT END -->");
 }
 
-// PerfilFront
+// PerfilApiFirmaSimple
 if (perfilApiFirmaSimple.equals("false")) {
   println " + Eliminant Modul ApiFirmaSimple ..."
   // Llevar directori
@@ -316,3 +321,12 @@ if (perfilApiFirmaSimple.equals("false")) {
   removeTextBetweenTwoStrings(pomEar, "<!-- APIFIRMASIMPLE START -->", "<!-- APIFIRMASIMPLE END -->");
 }
 
+// PerfilArxiu
+if (perfilArxiu.equals("false")) {
+  println " + Eliminant Modul Arxiu ..."
+  // Llevar directori
+  removeModule(artifactId +'-arxiu', rootDir)
+  // Llevar WEB de EAR pom
+  def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
+  removeTextBetweenTwoStrings(pomEar, "<!-- PLUGINARXIU START -->", "<!-- PLUGINARXIU END -->");
+}

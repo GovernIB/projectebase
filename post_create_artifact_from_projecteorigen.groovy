@@ -119,7 +119,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 // POMS
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
      "__rootArtifactId__-front", "__rootArtifactId__-apifirmasimple", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
-	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", 
+	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-arxiu",
 	 "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
 
 for(String moduleDir : moduleFolders) {
@@ -182,6 +182,14 @@ String searchAFS = "es\\.caib\\.projectebase";
 String replaceAFS = "\\\$\\{package\\}";
 replaceText(new File(baseProject,"./__rootArtifactId__-apifirmasimple/src/main/webapp/WEB-INF/web.xml"),
    searchAFS, replaceAFS);
+
+// ARXIU - web
+def arxiuFiles = [
+        "./__rootArtifactId__-arxiu/src/main/webapp/WEB-INF/web.xml",
+];
+for(String arxiuFile : arxiuFiles) {
+    replaceProperties(new File(baseProject, arxiuFile), false);
+}
 
 // EJB   
 def ejbFiles = [ "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml",

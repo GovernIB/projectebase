@@ -1,4 +1,7 @@
-package es.caib.projectebase.arxiu;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.arxiu;
 
 import es.caib.plugins.arxiu.api.ContingutArxiu;
 import es.caib.plugins.arxiu.api.ContingutOrigen;
@@ -47,7 +50,7 @@ public class ExpedientController implements Serializable {
     FacesContext context;
 
     /**
-     * Obté el plugin d'arxiu a través de {@link PluginProducer#getArxiuPlugin() }
+     * Obté el plugin d'arxiu a través de {@link PluginProducer${symbol_pound}getArxiuPlugin() }
      */
     @Inject
     private IArxiuPlugin plugin;

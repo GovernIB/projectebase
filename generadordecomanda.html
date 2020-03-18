@@ -43,6 +43,7 @@
      var perfilBack = document.getElementById("generarback").checked;
      var perfilFront = document.getElementById("generarfront").checked;
      var perfilApiFirmaSimple = document.getElementById("generarapifirmasimple").checked;
+     var perfilArxiu = document.getElementById("generararxiu").checked;
      var perfilBatSh = document.getElementById("generarbatsh").checked;
 
      var projectnamelowercase = projectname.toLowerCase();
@@ -80,6 +81,7 @@
       + " -DperfilBack=" + perfilBack
       + " -DperfilFront=" + perfilFront
       + " -DperfilApiFirmaSimple=" + perfilApiFirmaSimple
+      + " -DperfilArxiu=" + perfilArxiu
       + ((perfilWS == true)?" -DperfilWS=true": "")
       + ((perfilBatSh == true)?" -DperfilBatSh=true": "");
 
@@ -145,6 +147,12 @@
                     <input size=35  id="generarapifirmasimple" checked="false" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
+                <tr>
+                  <td>Generar Exemple Plugin Arxiu</td>
+                  <td>
+                    <input size=35  id="generararxiu" checked="false" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
 
                 </tbody>
 
@@ -168,8 +176,6 @@
                   </tbody>
                 </table>
               </div>
-              
-              
               
            </td>
            <td>
