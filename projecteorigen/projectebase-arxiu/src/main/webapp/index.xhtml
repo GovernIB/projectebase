@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+>
 <ui:composition template="/WEB-INF/template/template.xhtml">
     <ui:define name="title">Exemple ARXIU</ui:define>
 
@@ -15,17 +15,23 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>Crear expedient</h3>
-                <h:form>
+                <h:form enctype="multipart/form-data">
                     <div class="form-group">
                         <h:outputLabel for="expedient_name">Nom de l'expedient</h:outputLabel>
                         <h:inputText id="expedient_name" value="#{expedientModel.name}"
                                      styleClass="form-control"/>
-                        <h:message for="expedient_name" errorStyle="color: red" />
+                        <h:message for="expedient_name" errorStyle="color: red"/>
                     </div>
-                    <h:commandButton action="#{expedientController.crearExpedient()}" 
+                    <div class="form-group">
+                        <h:outputLabel for="expedient_file">Fitxer</h:outputLabel>
+                        <h:inputFile id="expedient_file" value="#{expedientModel.file}"
+                                     styleClass="form-control"/>
+                        <h:message for="expedient_file" errorStyle="color: red"/>
+                    </div>
+                    <h:commandButton action="#{expedientController.crearExpedient()}"
                                      styleClass="btn btn-primary"
                                      value="Crear">
-                        <f:ajax execute="@form" render="@all" />
+                        <!-- f:ajax execute="@form" render="@all" / -->
                     </h:commandButton>
                 </h:form>
             </div>
@@ -33,14 +39,23 @@
                 <h3>Llistat d'expedients</h3>
                 <h:form>
                     <ol>
-                    <ui:repeat value="#{expedientController.expedientsCreats}" var="contingut">
-                        <li>
-                            #{contingut.nom} [#{contingut.identificador}] 
-                            <h:commandLink action="#{expedientController.borrarExpedient(contingut.identificador)}"
-                                           value="Esborrar">
-                                <f:ajax execute="@form" render="@all" />
-                            </h:commandLink>
-                        </li>
+                        <ui:repeat value="#{expedientController.expedientsCreats}" var="expedient">
+                            <li>
+                                #{expedient.nom} [#{expedient.identificador}]
+                                <h:commandLink action="#{expedientController.borrarExpedient(expedient.identificador)}"
+                                               value="Esborrar">
+                                    <!-- f:ajax execute="@form" render="@all" / -->
+                                </h:commandLink>
+                                <ul>
+                                    <ui:repeat value="#{expedient.continguts}" var="contingut">
+                                        <li>
+                                            #{contingut.tipus}
+                                            #{contingut.nom}
+                                            [#{contingut.identificador} ]
+                                        </li>
+                                    </ui:repeat>
+                                </ul>
+                            </li>
                     </ui:repeat>
                     </ol>
                 </h:form>

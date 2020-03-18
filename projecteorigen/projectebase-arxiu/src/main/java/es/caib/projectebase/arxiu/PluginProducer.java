@@ -2,19 +2,24 @@ package es.caib.projectebase.arxiu;
 
 import es.caib.plugins.arxiu.api.IArxiuPlugin;
 import es.caib.plugins.arxiu.caib.ArxiuPluginCaib;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
+import javax.faces.annotation.FacesConfig;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
 
 /**
  * Bean que produeix les instàncies de plugins.
  * 
  * @author areus
  */
+@FacesConfig(version = JSF_2_3)
 public class PluginProducer {
     
     private static final Logger LOG = LoggerFactory.getLogger(PluginProducer.class);
@@ -29,7 +34,7 @@ public class PluginProducer {
     @Produces
     @ApplicationScoped
     public IArxiuPlugin getArxiuPlugin() {
-        LOG.info("init");
+        LOG.info("getArxiuPlugin");
         
         LOG.info("Carregant properties...");
         Properties properties = new Properties();
