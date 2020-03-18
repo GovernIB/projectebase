@@ -52,6 +52,9 @@ public class ExpedientController implements Serializable {
     @Inject
     private IArxiuPlugin plugin;
 
+    /**
+     * Model de dades del formulari
+     */
     @Inject
     private ExpedientModel model;
 
@@ -60,7 +63,7 @@ public class ExpedientController implements Serializable {
     public List<Expedient> getExpedientsCreats() {
         return expedientsCreats;
     }
-    
+
     public String crearExpedient() {
         LOG.info("createExpedient");
 

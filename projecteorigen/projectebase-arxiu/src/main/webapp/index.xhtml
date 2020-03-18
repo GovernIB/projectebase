@@ -36,7 +36,7 @@
                 </h:form>
             </div>
             <div class="col-md-6">
-                <h3>Llistat d'expedients</h3>
+                <h3>Llistat d'expedients creats</h3>
                 <h:form>
                     <ol>
                         <ui:repeat value="#{expedientController.expedientsCreats}" var="expedient">
@@ -46,17 +46,21 @@
                                                value="Esborrar">
                                     <!-- f:ajax execute="@form" render="@all" / -->
                                 </h:commandLink>
-                                <ul>
-                                    <ui:repeat value="#{expedient.continguts}" var="contingut">
-                                        <li>
-                                            #{contingut.tipus}
-                                            #{contingut.nom}
-                                            [#{contingut.identificador} ]
-                                        </li>
-                                    </ui:repeat>
-                                </ul>
+                                <ui:fragment rendered="#{not empty expedient.continguts}">
+                                    <br/>Contingut:
+                                    <ul>
+                                        <ui:repeat value="#{expedient.continguts}" var="contingut">
+                                            <li>
+                                                #{contingut.tipus}
+                                                #{contingut.nom}
+                                                [#{contingut.identificador} ]
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </ui:fragment>
                             </li>
-                    </ui:repeat>
+
+                        </ui:repeat>
                     </ol>
                 </h:form>
             </div>
