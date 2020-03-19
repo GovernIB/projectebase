@@ -186,6 +186,7 @@ replaceText(new File(baseProject,"./__rootArtifactId__-apifirmasimple/src/main/w
 // ARXIU - web
 def arxiuFiles = [
         "./__rootArtifactId__-arxiu/src/main/webapp/WEB-INF/web.xml",
+        "./__rootArtifactId__-arxiu/readme.txt"
 ];
 for(String arxiuFile : arxiuFiles) {
     replaceProperties(new File(baseProject, arxiuFile), false);

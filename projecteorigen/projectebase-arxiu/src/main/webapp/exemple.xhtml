@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+<ui:composition template="/WEB-INF/template/template.xhtml">
+    <ui:define name="title">Exemple ARXIU</ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="col">
+                <h:messages id="messages" globalOnly="true" errorStyle="color: red"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Crear expedient</h3>
+                <p>Introdueix el nom de l'expedient i un fitxer. Es crearà un EXPEDIENT amb el nom
+                    indicat i s'hi insertarà un DOCUMENT amb el contingut del fitxer hi una sèrie de
+                    metadades prefixades. </p>
+                <h:form enctype="multipart/form-data">
+                    <div class="form-group">
+                        <h:outputLabel for="expedient_name">Nom de l'expedient</h:outputLabel>
+                        <h:inputText id="expedient_name" value="#{expedientModel.name}"
+                                     styleClass="form-control"/>
+                        <h:message for="expedient_name" errorStyle="color: red"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="expedient_file">Fitxer del document en format PDF</h:outputLabel>
+                        <h:inputFile id="expedient_file" value="#{expedientModel.file}"
+                                     styleClass="form-control"/>
+                        <h:message for="expedient_file" errorStyle="color: red"/>
+                    </div>
+                    <h:commandButton action="#{expedientController.crearExpedient()}"
+                                     styleClass="btn btn-primary"
+                                     value="Crear">
+                        <!-- f:ajax execute="@form" render="@all" / -->
+                    </h:commandButton>
+                </h:form>
+            </div>
+            <div class="col-md-6">
+                <h3>Llistat d'expedients creats dins aquesta sessió:</h3>
+                <p>Una vegada finalitzada la sessió d'usuari per quasevol motiu, els expedients
+                    que no s'haguessin esborrat quedaran dins el servidor de l'arxiu a la data en que s'han creat.</p>
+                <h:form>
+                    <ol>
+                        <ui:repeat value="#{expedientController.expedientsCreats}" var="expedient">
+                            <li>
+                                Nom expedient: #{expedient.nom}
+                                <h:commandButton
+                                        action="#{expedientController.borrarExpedient(expedient.identificador)}"
+                                        styleClass="btn btn-danger"
+                                        value="Esborrar"/>
+                                <br/>
+                                Identificador #{expedient.identificador} <br/>
+                                Metadades:
+                                <ul>
+                                    <li>Data obertura: #{expedient.metadades.dataObertura}</li>
+                                    <li>Classificació: #{expedient.metadades.classificacio}</li>
+                                    <li>Estat: #{expedient.metadades.estat}</li>
+                                    <li>Interessats: #{expedient.metadades.interessats}</li>
+                                    <li>Organs: #{expedient.metadades.organs}</li>
+                                    <li>Serie documental: #{expedient.metadades.serieDocumental}</li>
+                                </ul>
+                                <ui:fragment rendered="#{not empty expedient.continguts}">
+                                    Contingut:
+                                    <ul>
+                                        <ui:repeat value="#{expedient.continguts}" var="contingut">
+                                            <li>
+                                                Tipus: #{contingut.tipus}<br/>
+                                                Nom: #{contingut.nom}<br/>
+                                                <h:commandLink value="Descarregar"
+                                                               action="#{expedientController.descarregarDocument(contingut.identificador)}"/>
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </ui:fragment>
+                            </li>
+                        </ui:repeat>
+                    </ol>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

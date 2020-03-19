@@ -6,7 +6,6 @@ package ${package}.arxiu;
 import javax.enterprise.inject.Model;
 import javax.servlet.http.Part;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 /**
  * Model de dades per la creació d'un expedient amb un document.
@@ -27,7 +26,6 @@ public class ExpedientModel {
         this.name = name;
     }
 
-    @NotNull
     private Part file;
 
     public Part getFile() {

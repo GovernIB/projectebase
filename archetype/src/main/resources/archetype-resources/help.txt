@@ -1,9 +1,6 @@
 
 -------------------------------- OPCIONS ---------------------------------
 
--Psqlgen          XYZ ZZZ Genera scripts SQL dins /scripts/sqlgenerator.
-                  Mes informacio a /scripts/sqlgenerator/readme.txt
-
 -Pswagger-ui      Inclou l'interficie d'usuari Swagger dins el modul d'API REST
 
 -Previsionnumber  Inclou el numero de la darrera revisio pujada al repositori
