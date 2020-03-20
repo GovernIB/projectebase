@@ -49,6 +49,8 @@ import java.util.Optional;
 @SessionScoped
 public class ExpedientController implements Serializable {
 
+    private static final long serialVersionUID = 6444222206315310496L;
+
     private static final Logger LOG = LoggerFactory.getLogger(ExpedientController.class);
 
     /*
