@@ -41,39 +41,41 @@
             <div class="col-md-6">
                 <h3>Llistat d'expedients creats dins aquesta sessió:</h3>
                 <p>Una vegada finalitzada la sessió d'usuari per quasevol motiu, els expedients
-                   que no s'haguessin esborrat quedaran dins el servidor de l'arxiu a la data en que s'han creat.</p>
+                    que no s'haguessin esborrat quedaran dins el servidor de l'arxiu a la data en que s'han creat.</p>
                 <h:form>
                     <ol>
                         <ui:repeat value="#{expedientController.expedientsCreats}" var="expedient">
-                        <li>
-                            Nom expedient: #{expedient.nom}
-                            <h:commandButton action="#{expedientController.borrarExpedient(expedient.identificador)}" 
-                                             styleClass="btn btn-danger"
-                                             value="Esborrar" /><br />
-                            Identificador #{expedient.identificador} <br />
-                            Metadades:
-                            <ul>
-                                <li>Data obertura: #{expedient.metadades.dataObertura}</li>
-                                <li>Classificació: #{expedient.metadades.classificacio}</li>
-                                <li>Estat: #{expedient.metadades.estat}</li>
-                                <li>Interessats: #{expedient.metadades.interessats}</li>
-                                <li>Organs: #{expedient.metadades.organs}</li>
-                                <li>Serie documental: #{expedient.metadades.serieDocumental}</li>                                    
-                            </ul>
-                            <ui:fragment rendered="#{not empty expedient.continguts}">
-                                Contingut:
+                            <li>
+                                Nom expedient: #{expedient.nom}
+                                <h:commandButton
+                                        action="#{expedientController.borrarExpedient(expedient.identificador)}"
+                                        styleClass="btn btn-danger"
+                                        value="Esborrar"/>
+                                <br/>
+                                Identificador #{expedient.identificador} <br/>
+                                Metadades:
                                 <ul>
-                                    <ui:repeat value="#{expedient.continguts}" var="contingut">
-                                    <li>
-                                        Tipus: #{contingut.tipus}<br />
-                                        Nom: #{contingut.nom}<br />
-                                        <h:commandLink value="Descarregar" 
-                                                       action="#{expedientController.descarregarDocument(contingut.identificador)}" />
-                                    </li>
-                                    </ui:repeat>
+                                    <li>Data obertura: #{expedient.metadades.dataObertura}</li>
+                                    <li>Classificació: #{expedient.metadades.classificacio}</li>
+                                    <li>Estat: #{expedient.metadades.estat}</li>
+                                    <li>Interessats: #{expedient.metadades.interessats}</li>
+                                    <li>Organs: #{expedient.metadades.organs}</li>
+                                    <li>Serie documental: #{expedient.metadades.serieDocumental}</li>
                                 </ul>
-                            </ui:fragment>
-                        </li>
+                                <ui:fragment rendered="#{not empty expedient.continguts}">
+                                    Contingut:
+                                    <ul>
+                                        <ui:repeat value="#{expedient.continguts}" var="contingut">
+                                            <li>
+                                                Tipus: #{contingut.tipus}<br/>
+                                                Nom: #{contingut.nom}<br/>
+                                                <h:commandLink value="Descarregar"
+                                                               action="#{expedientController.descarregarDocument(contingut.identificador)}"/>
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </ui:fragment>
+                            </li>
                         </ui:repeat>
                     </ol>
                 </h:form>

@@ -1,4 +1,4 @@
-#set( $symbol_pount = '#' )
+#set( $symbol_pound = '#' )
 #set( $symbol_escape = '\' )
 #set( $symbol_dollar = '$' )
 

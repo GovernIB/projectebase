@@ -1,5 +1,6 @@
-Es recomana crear un schema amb el mateix nom d'usuari:
+Es recomana llevar permisos sobre l'schema public i crear-ne un amb el nom d'usuari:
 
-   CREATE SCHEMA projectebase AUTHORIZATION projectebase;
+    REVOKE CREATE ON SCHEMA public FROM PUBLIC;
+    CREATE SCHEMA projectebase AUTHORIZATION projectebase;
 
 Veure: https://www.postgresql.org/docs/10/ddl-schemas.html

@@ -93,7 +93,7 @@ def escapeFile(file) {
     
     content = "#set( \$symbol_dollar = '\$' )" + "\r\n" + content;
     content = "#set( \$symbol_escape = '\\' )" + "\r\n" + content;
-    content = "#set( \$symbol_pount = '#' )" + "\r\n" + content;
+    content = "#set( \$symbol_pound = '#' )" + "\r\n" + content;
     
     file.newWriter("UTF-8").withWriter { w -> w << content }
 }
