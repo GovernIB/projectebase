@@ -238,8 +238,8 @@ for(String wsFile : wsFiles) {
 
 // SCRIPTS
 def scriptsFiles = [
-   "./scripts/datasources/oracle.xml",
-   "./scripts/datasources/postgresql.xml", 
+   "./scripts/datasources/oracle/__artifactId__-ds.xml",
+   "./scripts/datasources/postgresql/__artifactId__-ds.xml", 
    "./scripts/bbdd/oracle/01_create_schema.sql",
    "./scripts/bbdd/oracle/02_sample_data.sql",
    "./scripts/bbdd/oracle/drop_schema.sql",
