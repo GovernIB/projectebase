@@ -1,5 +1,5 @@
 # ![Logo](https://github.com/GovernIB/maven/raw/binaris/projectebase/icon.png) Projecte Base (projectebase)
-*Projecte Base - JBoss 7.2 EAP*
+*Projecte Base - JBoss 7.2 EAP / JDK 11*
 
 
 ***Versions***
