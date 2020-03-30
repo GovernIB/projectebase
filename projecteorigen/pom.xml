@@ -20,7 +20,7 @@
         <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
         <!-- Versions de JBoss -->
-        <jboss-eap.version>7.2.6.GA</jboss-eap.version>
+        <jboss-eap.version>7.2.7.GA</jboss-eap.version>
         <jboss-javaee.version>1.0.1.Final-redhat-00003</jboss-javaee.version>
         <!-- Versions de diferents llibreries emprades dins els mòduls -->
         <mp-openapi.version>1.0.1</mp-openapi.version>
@@ -92,7 +92,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.1.1</version>
+                    <version>3.1.2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -131,13 +131,13 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.8.2</version>
+                    <version>3.9.0</version>
                 </plugin>
                 <!-- Altres plugins generals -->
                 <plugin>
                     <groupId>com.googlecode.maven-download-plugin</groupId>
                     <artifactId>download-maven-plugin</artifactId>
-                    <version>1.4.2</version>
+                    <version>1.5.0</version>
                 </plugin>
                 <plugin>
                     <groupId>com.google.code.maven-replacer-plugin</groupId>
@@ -179,7 +179,7 @@
                 <plugin>
                     <groupId>org.codehaus.cargo</groupId>
                     <artifactId>cargo-maven2-plugin</artifactId>
-                    <version>1.7.10</version>
+                    <version>1.7.11</version>
                     <configuration>
                         <!-- Només estarà activat als mòduls que volem que es despleguin, com l'EAR -->
                         <skip>true</skip>
