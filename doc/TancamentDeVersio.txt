@@ -32,6 +32,8 @@ PREPARAR NOVA VERSIÓ
 * Incrementar la versió del pom.xml arrel i del pom.xml del directori archetype
 * Actualitzar la versió que apareix al fitxer generadordecomanda.html (Títol i parametre -DarchetypeVersion)
 * Actualitzar la versió de la propietat -DarchetypeVersion del fitxer [ProjecteBase]\generat\projectebase.bat(.sh)
-* Actualitzar versió que apareix al Readme.md
+* Actualitzar versió que apareix al Readme.md (titol i enllaç generador)
+    * En desenvolupament, l'enllaç del generador ha de ser projectebase-1.0, en tancar versió projectebase-1.0.xml
+	
 
 
