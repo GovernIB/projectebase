@@ -69,6 +69,14 @@
             <type>war</type>
         </dependency>
         <!-- PLUGINARXIU END -->
+        <!-- REGWEB START -->
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-registre</artifactId>
+            <version>1.0.0</version>
+            <type>war</type>
+        </dependency>
+        <!-- REGWEB END -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-api</artifactId>
@@ -164,6 +172,13 @@
                             <contextRoot>/projectebase/arxiu</contextRoot>
                         </webModule>
                         <!-- PLUGINARXIU END -->
+                        <!-- REGWEB START -->
+                        <webModule>
+                            <groupId>es.caib.projectebase</groupId>
+                            <artifactId>projectebase-registre</artifactId>
+                            <contextRoot>/projectebase/registre</contextRoot>
+                        </webModule>
+                        <!-- REGWEB END -->
                         <!-- WS START -->
                         <ejbModule>
                             <groupId>es.caib.projectebase</groupId>

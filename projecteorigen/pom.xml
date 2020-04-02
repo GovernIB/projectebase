@@ -294,5 +294,6 @@
         <module>projectebase-ear</module>
         <module>projectebase-apifirmasimple</module>
         <module>projectebase-arxiu</module>
+        <module>projectebase-registre</module>
     </modules>
 </project>
