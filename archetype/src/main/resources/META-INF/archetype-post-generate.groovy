@@ -213,6 +213,11 @@ String perfilArxiu = properties.get("perfilArxiu");
 println " + perfilArxiu: " + perfilArxiu;
 checkProperty("^(true|false)\$", perfilArxiu, "perfilArxiu");
 
+// perfilRegistre
+String perfilRegistre = properties.get("perfilRegistre");
+println " + perfilRegistre: " + perfilRegistre;
+checkProperty("^(true|false)\$", perfilRegistre, "perfilRegistre");
+
 // perfilBatSh
 String perfilBatSh = properties.get("perfilBatSh");
 println " + perfilBatSh: " + perfilBatSh;
@@ -328,5 +333,15 @@ if (perfilArxiu.equals("false")) {
   removeModule(artifactId +'-arxiu', rootDir)
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- PLUGINARXIU START -->", "<!-- PLUGINARXIU END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- ARXIU START -->", "<!-- ARXIU END -->");
+}
+
+// PerfilRegistre
+if (perfilRegistre.equals("false")) {
+  println " + Eliminant Modul Registre ..."
+  // Llevar directori
+  removeModule(artifactId +'-registre', rootDir)
+  // Llevar WEB de EAR pom
+  def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
+  removeTextBetweenTwoStrings(pomEar, "<!-- REGISTRE START -->", "<!-- REGISTRE END -->");
 }

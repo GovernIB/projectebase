@@ -119,7 +119,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 // POMS
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
      "__rootArtifactId__-front", "__rootArtifactId__-apifirmasimple", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
-	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-arxiu",
+	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-arxiu", "__rootArtifactId__-registre",
 	 "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
 
 for(String moduleDir : moduleFolders) {
@@ -190,6 +190,16 @@ def arxiuFiles = [
 ];
 for(String arxiuFile : arxiuFiles) {
     replaceProperties(new File(baseProject, arxiuFile), false);
+}
+
+// REGISTRE - web
+def registreFiles = [
+        "./__rootArtifactId__-registre/src/main/webapp/WEB-INF/web.xml",
+		"./__rootArtifactId__-registre/src/main/resources/registre/Registre.properties",
+        "./__rootArtifactId__-registre/readme.txt"
+];
+for(String registreFile : registreFiles) {
+    replaceProperties(new File(baseProject, registreFile), false);
 }
 
 // EJB   

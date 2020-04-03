@@ -144,12 +144,13 @@ public class ExpedientController implements Serializable {
                 plugin.documentCrear(documentPerCrear, expedientCreat.getIdentificador());
             } catch (ArxiuException ae) {
                 LOG.error("Error creant document", ae);
-                context.addMessage(null, new FacesMessage("Error creant document", ae.getMessage()));
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Error creant document", ae.getMessage()));
             }
         }
 
         // Obtenim els detalls de l'expedient i els guardam dins la llista d'expedients creats dins la sessió
-        expedientsCreats.add(plugin.expedientDetalls(expedientCreat.getIdentificador(), null));
+        expedientsCreats.add(plugin.expedientDetalls(expedientCreat.getIdentificador(), ""));
 
         context.addMessage(null, new FacesMessage("Expedient creat"));
         context.getExternalContext().getFlash().setKeepMessages(true);
@@ -170,11 +171,11 @@ public class ExpedientController implements Serializable {
 
             // El llevam de la llista d'expedients creats
             expedientsCreats.remove(optional.get());
-            context.addMessage(null, new FacesMessage("Expedient esborrat"));
+            context.addMessage(null, new FacesMessage("Expedient esborrat", ""));
         } else {
             context.addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Expedient desconegut: " + identificador, null));
+                            "Expedient desconegut: " + identificador, ""));
         }
 
         context.getExternalContext().getFlash().setKeepMessages(true);
