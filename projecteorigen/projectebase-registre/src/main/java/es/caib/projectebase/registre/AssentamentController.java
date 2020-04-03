@@ -39,6 +39,8 @@ import java.util.List;
 @SessionScoped
 public class AssentamentController implements Serializable {
 
+    private static final long serialVersionUID = 7851876209589793985L;
+
     private static final Logger LOG = LoggerFactory.getLogger(AssentamentController.class);
 
     @Inject
