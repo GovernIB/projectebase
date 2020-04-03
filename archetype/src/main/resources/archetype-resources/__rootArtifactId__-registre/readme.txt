@@ -1,0 +1,38 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
+
+Mòdul d'exemple per conectar amb REGISTRE emprant l'api descrita a:
+
+    https://github.com/GovernIB/registre/blob/registre-3.1/doc/pdf/Manual_Integracio_RegWeb3.pdf
+
+Per provar el plugin:
+
+    1. fixar variable d'entorn JBOSS_HOME
+
+    2. Editar el fitxer src/main/resources/registre/Registre.properties indicant les propietats necessàries per la connexió
+      (tenir en compte que si s'accedeix a un servidor https pot necessitar importar el certificat dins el JDK)
+
+    3. Desplegar l'aplicació dins l'EAR o en solitari
+
+        3.1. Dins l'EAR
+
+            Desplegar normalment l'EAR executant dins la carpeta arrel del projecte:
+                mvn verify cargo:deploy
+            El mòdul estarà accessible a:
+                http://localhost:8080/${rootArtifactId}/registre
+
+        3.2. Desplegament en solitari.
+
+            En aquesta carpeta executar:
+                mvn -Pregistre-war-deploy verify cargo:deploy
+            El mòdul estarà accessible a:
+                http://localhost:8080/${rootArtifactId}-registre
+
+
+L'aplicació bàsicament permet indicar un assumte i un fitxer. Crearà un assentament registral d'entrada a l'oficina
+ indicada a la configuració amb l'assumpte indicat, i una sèrie de dades prefixades. El document si s'indica
+ s'afegirà a l'assentament com annex.
+
+També visualitza els assentaments regsitrals que s'han creat durant la sessió d'usuari, i permet descarregar el
+justificant de la presentació del registre.
