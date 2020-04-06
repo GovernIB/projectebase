@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -58,12 +59,18 @@ public class SessionController implements Serializable {
 
     /**
      * Per defecte inialitzam el locale de l'usuari amb el locale que haurà autodectat el view d'acord amb
-     * punt 2.5.2.1 de l'especificació
+     * punt 2.5.2.1 de l'especificació.
      */
     @PostConstruct
     private void init() {
-        LOG.debug("Inicialitzant sessió");
-        language = context.getViewRoot().getLocale().toLanguageTag();
+        LOG.info("Inicialitzant sessió");
+        UIViewRoot viewRoot = context.getViewRoot();
+        if (viewRoot != null) {
+            language = viewRoot.getLocale().toLanguageTag();
+        } else {
+            LOG.info("ViewRoot is null");
+            language = context.getApplication().getDefaultLocale().toLanguageTag();
+        }
     }
 
     /**

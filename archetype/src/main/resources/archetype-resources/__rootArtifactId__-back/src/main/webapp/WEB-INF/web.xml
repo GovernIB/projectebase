@@ -31,10 +31,21 @@
         <param-value>server</param-value>
     </context-param>
     <!-- Canvia el mode en que es generen certs errors per ajudar al desenvolupament -->
-    <!-- TODO Aquest s'hauria de filtrar amb el maven per generar l'aplicació de producció -->
+    <!-- TODO: Aquest s'hauria de filtrar amb el maven per generar l'aplicació de producció -->
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
+    </context-param>
+    <!-- Fa que els comentaris dins els xhtml no es processin. -->
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <!-- Buffer de 64K per evitar que la resposta s'hagi començat a escriure si es produeix un error
+       a la fase de RENDER_RESPONSE -->
+    <context-param>
+        <param-name>javax.faces.FACELETS_BUFFER_SIZE</param-name>
+        <param-value>65536</param-value>
     </context-param>
     <!-- Per defecte és GMT. Com que solem estam a CEST convé indicar que agafi del sistema -->
     <context-param>
@@ -61,13 +72,34 @@
         <param-value>bootstrap</param-value>
     </context-param>
 
+    <!-- Pàgina estàndard d'error, en cas que l'usauri no tengui el rol requerit -->
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/403.xhtml</location>
+    </error-page>
+    <!-- Pàgina estàndard d'error en cas que es cridi un recurs que no existeix -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.xhtml</location>
+    </error-page>
     <!--
-        Primefaces s'integra amb les error-page.
+        Primefaces pot capturar les excepcions i integrar-se amb els error-page
         Veure: https://primefaces.github.io/primefaces/7_0/${symbol_pound}/core/errorhandling?id=error-pages
+        Pàgina general per qualsevol excepció:
     -->
     <error-page>
-        <location>/error/defaultError.xhtml</location>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error/exception.xhtml</location>
     </error-page>
+
+    <security-constraint>
+        <display-name>Permetre recursos CSS, JS, etc</display-name>
+        <web-resource-collection>
+            <web-resource-name>Recursos públics</web-resource-name>
+            <url-pattern>/javax.faces.resource/*</url-pattern>
+        </web-resource-collection>
+        <!-- No especificam constraint -->
+    </security-constraint>
 
     <security-constraint>
         <display-name>Accés restringit a adminsitradors</display-name>
