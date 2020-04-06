@@ -1,7 +1,7 @@
 /* Estils generals */
 @font-face {
 	font-family: 'Bariol Regular';
-	src: url('../fonts/Bariol_Regular.ttf');
+	src: url("#{resource['fonts/Bariol_Regular.ttf']}");
 }
 body {
 	padding-top: 4.5rem;

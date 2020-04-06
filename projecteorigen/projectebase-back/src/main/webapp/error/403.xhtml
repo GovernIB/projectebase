@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--
+Pàgina d'error 403 NO AUTORITZAT
+Els atributs disponibles defnits al request són els definits a 10.9.1 de l'especificació del Servlets
+-->
+<ui:composition template="/template/errorTemplate.xhtml">
+    <ui:define name="pageTitle">#{labels['error.403.title']}</ui:define>
+    <ui:define name="content">
+        <p class="card-text mb-5 lh15">
+            <h:outputFormat value="#{labels['error.403.desc']}">
+                <f:param value="#{request.remoteUser}" />
+            </h:outputFormat>
+        </p>
+    </ui:define>
+</ui:composition>
+</html>

@@ -2,8 +2,12 @@
 
 @font-face {
   font-family: 'Icons';
-  src: url('../fonts/open-iconic.eot');
-  src: url('../fonts/open-iconic.eot?#iconic-sm') format('embedded-opentype'), url('../fonts/open-iconic.woff') format('woff'), url('../fonts/open-iconic.ttf') format('truetype'), url('../fonts/open-iconic.otf') format('opentype'), url('../fonts/open-iconic.svg#iconic-sm') format('svg');
+  src: url("#{resource['fonts/open-iconic.eot']}");
+  src: url("#{resource['fonts/open-iconic.eot']}?#iconic-sm") format('embedded-opentype'), 
+      url("#{resource['fonts/open-iconic.woff']}") format('woff'), 
+      url("#{resource['fonts/open-iconic.ttf']}") format('truetype'), 
+      url("#{resource['fonts/open-iconic.otf']}") format('opentype'), 
+      url("#{resource['fonts/open-iconic.svg']}#iconic-sm") format('svg');
   font-weight: normal;
   font-style: normal;
 }
