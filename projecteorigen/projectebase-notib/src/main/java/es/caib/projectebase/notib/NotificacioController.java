@@ -147,8 +147,8 @@ public class NotificacioController implements Serializable {
         entregaDeh.setProcedimentCodi(model.getProcedimentCodi());
         enviament.setEntregaDeh(entregaDeh);
 
-        // Per fefecte l'envaiment és NORMAL, el podem indicar com URGENT
-        //enviament.setServeiTipus(NotificaServeiTipusEnumDto.URGENT);
+        // NORMAL o URGENT
+        enviament.setServeiTipus(NotificaServeiTipusEnumDto.NORMAL);
 
         notificacio.getEnviaments().add(enviament);
         
