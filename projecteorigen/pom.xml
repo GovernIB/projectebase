@@ -295,5 +295,6 @@
         <module>projectebase-apifirmasimple</module>
         <module>projectebase-arxiu</module>
         <module>projectebase-registre</module>
+        <module>projectebase-notib</module>
     </modules>
 </project>

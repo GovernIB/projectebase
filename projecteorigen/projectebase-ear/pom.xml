@@ -77,6 +77,14 @@
             <type>war</type>
         </dependency>
         <!-- REGISTRE END -->
+        <!-- NOTIB START -->
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-notib</artifactId>
+            <version>1.0.0</version>
+            <type>war</type>
+        </dependency>
+        <!-- NOTIB END -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-api</artifactId>
@@ -179,6 +187,13 @@
                             <contextRoot>/projectebase/registre</contextRoot>
                         </webModule>
                         <!-- REGISTRE END -->
+                        <!-- NOTIB START -->
+                        <webModule>
+                            <groupId>es.caib.projectebase</groupId>
+                            <artifactId>projectebase-notib</artifactId>
+                            <contextRoot>/projectebase/notib</contextRoot>
+                        </webModule>
+                        <!-- NOTIB END -->
                         <!-- WS START -->
                         <ejbModule>
                             <groupId>es.caib.projectebase</groupId>
