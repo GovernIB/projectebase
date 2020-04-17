@@ -218,6 +218,11 @@ String perfilRegistre = properties.get("perfilRegistre");
 println " + perfilRegistre: " + perfilRegistre;
 checkProperty("^(true|false)\$", perfilRegistre, "perfilRegistre");
 
+// perfilNotib
+String perfilNotib = properties.get("perfilNotib");
+println " + perfilNotib: " + perfilNotib;
+checkProperty("^(true|false)\$", perfilNotib, "perfilNotib");
+
 // perfilBatSh
 String perfilBatSh = properties.get("perfilBatSh");
 println " + perfilBatSh: " + perfilBatSh;
@@ -344,4 +349,14 @@ if (perfilRegistre.equals("false")) {
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- REGISTRE START -->", "<!-- REGISTRE END -->");
+}
+
+// PerfilNotib
+if (perfilNotib.equals("false")) {
+  println " + Eliminant Modul Notib ..."
+  // Llevar directori
+  removeModule(artifactId +'-notib', rootDir)
+  // Llevar WEB de EAR pom
+  def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
+  removeTextBetweenTwoStrings(pomEar, "<!-- NOTIB START -->", "<!-- NOTIB END -->");
 }

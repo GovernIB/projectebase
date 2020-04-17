@@ -10,3 +10,4 @@ target/
 .idea/
 # Fitxers de projecte de Netbeans
 nb-configuration.xml
+faces-config.NavData

@@ -45,6 +45,7 @@
      var perfilApiFirmaSimple = document.getElementById("generarapifirmasimple").checked;
      var perfilArxiu = document.getElementById("generararxiu").checked;
      var perfilRegistre = document.getElementById("generarregistre").checked;
+     var perfilNotib = document.getElementById("generarnotib").checked;
      var perfilBatSh = document.getElementById("generarbatsh").checked;
 
      var projectnamelowercase = projectname.toLowerCase();
@@ -84,6 +85,7 @@
       + " -DperfilApiFirmaSimple=" + perfilApiFirmaSimple
       + " -DperfilArxiu=" + perfilArxiu
       + " -DperfilRegistre=" + perfilRegistre
+      + " -DperfilNotib=" + perfilNotib
       + ((perfilWS == true)?" -DperfilWS=true": "")
       + ((perfilBatSh == true)?" -DperfilBatSh=true": "");
 
@@ -161,7 +163,12 @@
                     <input size=35  id="generarregistre" checked="false" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
-
+                <tr>
+                  <td>Generar Exemple Notib</td>
+                  <td>
+                    <input size=35  id="generarnotib" checked="false" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
                 </tbody>
 
               </table>

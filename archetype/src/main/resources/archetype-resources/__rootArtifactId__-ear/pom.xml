@@ -77,6 +77,14 @@
             <type>war</type>
         </dependency>
         <!-- REGISTRE END -->
+        <!-- NOTIB START -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-notib</artifactId>
+            <version>${version}</version>
+            <type>war</type>
+        </dependency>
+        <!-- NOTIB END -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-api</artifactId>
@@ -179,6 +187,13 @@
                             <contextRoot>/${rootArtifactId}/registre</contextRoot>
                         </webModule>
                         <!-- REGISTRE END -->
+                        <!-- NOTIB START -->
+                        <webModule>
+                            <groupId>${groupId}</groupId>
+                            <artifactId>${rootArtifactId}-notib</artifactId>
+                            <contextRoot>/${rootArtifactId}/notib</contextRoot>
+                        </webModule>
+                        <!-- NOTIB END -->
                         <!-- WS START -->
                         <ejbModule>
                             <groupId>${groupId}</groupId>

@@ -1,4 +1,7 @@
-package es.caib.projectebase.notib;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.notib;
 
 import es.caib.notib.client.NotificacioRestClient;
 import es.caib.notib.ws.notificacio.Certificacio;
@@ -57,7 +60,7 @@ public class NotificacioController implements Serializable {
     FacesContext context;
 
     /**
-     * Obté el client de Notificacio a través de {@link ClientNotibProducer#getNotificacioRestClient(Configuracio)}
+     * Obté el client de Notificacio a través de {@link ClientNotibProducer${symbol_pound}getNotificacioRestClient(Configuracio)}
      */
     @Inject
     private NotificacioRestClient client;
@@ -266,7 +269,7 @@ public class NotificacioController implements Serializable {
         ec.setResponseContentType(mimetype);
         ec.setResponseContentLength(content.length);
 
-        ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+        ec.setResponseHeader("Content-Disposition", "attachment; filename=${symbol_escape}"" + filename + "${symbol_escape}"");
 
         OutputStream output = ec.getResponseOutputStream();
         try (ByteArrayInputStream inputStream = new ByteArrayInputStream(content)) {

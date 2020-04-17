@@ -120,7 +120,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
      "__rootArtifactId__-front", "__rootArtifactId__-apifirmasimple", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
 	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-arxiu", "__rootArtifactId__-registre",
-	 "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
+	 "__rootArtifactId__-notib", "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
 
 for(String moduleDir : moduleFolders) {
   File tmp = new File(baseProject, moduleDir);
@@ -200,6 +200,16 @@ def registreFiles = [
 ];
 for(String registreFile : registreFiles) {
     replaceProperties(new File(baseProject, registreFile), false);
+}
+
+// NOTIB - web
+def notibFiles = [
+        "./__rootArtifactId__-notib/src/main/webapp/WEB-INF/web.xml",
+		"./__rootArtifactId__-notib/src/main/resources/notib/Notib.properties",
+        "./__rootArtifactId__-notib/readme.txt"
+];
+for(String notibFile : notibFiles) {
+    replaceProperties(new File(baseProject, notibFile), false);
 }
 
 // EJB   

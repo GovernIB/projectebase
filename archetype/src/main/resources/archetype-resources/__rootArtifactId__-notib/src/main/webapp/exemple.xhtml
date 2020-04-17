@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<ui:composition template="/WEB-INF/template/template.xhtml">
+    <ui:define name="title">Exemple NOTIB</ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="col">
+                <h:messages id="messages" globalOnly="true" showDetail="true"
+                            errorStyle="color: red"
+                            infoStyle="color: green"
+                            warnStyle="color: yellow"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Crear notificació</h3>
+                <p>Es crearà una notificació amb les dades indicades.</p>
+                <h:form id="notificacioForm" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="procedimentCodi">Codi del procediment</h:outputLabel>
+                            <h:inputText id="procedimentCodi" value="#{notificacioModel.procedimentCodi}"
+                                         styleClass="form-control" />
+                            <h:message for="procedimentCodi" errorStyle="color: red"/>
+                        </div>
+                        <div class="form-group col">
+                            <h:outputLabel for="emisorDir3Codi">Codi DIR3 de l'emissor</h:outputLabel>
+                            <h:inputText id="emisorDir3Codi" value="#{notificacioModel.emisorDir3Codi}"
+                                         styleClass="form-control" />
+                            <h:message for="emisorDir3Codi" errorStyle="color: red"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="concepte">Concepte</h:outputLabel>
+                        <h:inputText id="concepte" value="#{notificacioModel.concepte}"
+                                     styleClass="form-control" />
+                        <h:message for="concepte" errorStyle="color: red"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="descripcio">Descripció</h:outputLabel>
+                        <h:inputTextarea id="descripcio" value="#{notificacioModel.descripcio}" 
+                                         styleClass="form-control"/>
+                        <h:message for="descripcio" errorStyle="color: red"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="usuariCodi">Codi de l'usuari</h:outputLabel>
+                        <h:inputText id="usuariCodi" value="#{notificacioModel.usuariCodi}"
+                                     styleClass="form-control"/>
+                        <h:message for="usuariCodi" errorStyle="color: red"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="fitxer">Document a notificar</h:outputLabel>
+                        <h:inputFile id="fitxer" value="#{notificacioModel.fitxer}"
+                                     styleClass="form-control-file"/>
+                        <h:message for="fitxer" errorStyle="color: red"/>
+                    </div>
+                    <h4>Dades del titular de la notifciació</h4>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="titularLlinatge1">Primer llinatge</h:outputLabel>
+                            <h:inputText id="titularLlinatge1" value="#{notificacioModel.titularLlinatge1}"
+                                         styleClass="form-control"/>
+                            <h:message for="titularLlinatge1" errorStyle="color: red"/>
+                        </div>
+                        <div class="form-group col">
+                            <h:outputLabel for="titularLlinatge2">Segon llinatge</h:outputLabel>
+                            <h:inputText id="titularLlinatge2" value="#{notificacioModel.titularLlinatge2}"
+                                         styleClass="form-control"/>
+                            <h:message for="titularLlinatge2" errorStyle="color: red"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="titularNom">Nom</h:outputLabel>
+                        <h:inputText id="titularNom" value="#{notificacioModel.titularNom}"
+                                     styleClass="form-control"/>
+                        <h:message for="titularNom" errorStyle="color: red"/>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="titularNif">NIF</h:outputLabel>
+                            <h:inputText id="titularNif" value="#{notificacioModel.titularNif}"
+                                         styleClass="form-control"/>
+                            <h:message for="titularNif" errorStyle="color: red"/>
+                        </div>
+                        <div class="form-group col">
+                            <h:outputLabel for="titularEmail">E-mail</h:outputLabel>
+                            <h:inputText id="titularEmail" value="#{notificacioModel.titularEmail}"
+                                         styleClass="form-control"/>
+                            <h:message for="titularEmail" errorStyle="color: red"/>
+                        </div>
+                    </div>
+                    <h:commandButton action="#{notificacioController.crearNotificacio()}"
+                                     styleClass="btn btn-primary"
+                                     value="Crear notificació">
+                        <!-- f:ajax execute="@form" render="@all" / -->
+                    </h:commandButton>
+                </h:form>
+            </div>
+            <div class="col-md-6">
+                <h3>Llistat de notificacions</h3>
+                <p>Les notificacions es poden llegir i acceptar a la 
+                    <a href="https://se-sede-administracion.redsara.es/carpeta/clave.htm" target="_blank">Carpeta ciutadana</a>
+                    o a la
+                    <a href="https://se-dehu.redsara.es" target="_blank">Dirección Electrónica Habilitada Única</a>
+                </p>
+                <p>Notificacions que s'han creat durant aquesta sessió d'usuari.</p>
+                <h:form>
+                    <ol>
+                        <ui:repeat value="#{notificacioController.respostes}" var="resposta">
+                            <li>
+                                Identificador: [#{resposta.identificador}]<br/>
+                                Estat: #{resposta.estat}
+                                <h:commandButton value="Actualitza estat"
+                                                 styleClass="btn btn-secondary"
+                                                 action="#{notificacioController.consultaEstatNotificacio(resposta)}" />
+                                <br />
+                                <ui:fragment rendered="#{not empty resposta.referencies}">
+                                    Referències: <br/>
+                                    <ul>
+                                        <ui:repeat value="#{resposta.referencies}" var="ref">
+                                            <li>Titular: #{ref.titularNif}<br/>
+                                                Referència: #{ref.referencia}<br />
+                                                Estat: #{notificacioController.estatReferencies[ref.referencia]}
+                                                <h:commandButton value="Actualitza estat"
+                                                                 styleClass="btn btn-secondary"
+                                                                 action="#{notificacioController.consultaEstatEnviament(ref.referencia)}" 
+                                                                 /><br />
+                                                <h:commandLink value="Descarregar certificació" 
+                                                               rendered="#{not empty notificacioController.certificacioReferencies[ref.referencia]}"
+                                                               action="#{notificacioController.descarregaCertificacio(ref.referencia)}" 
+                                                               />
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </ui:fragment>
+                                
+                            </li>
+                        </ui:repeat>
+                    </ol>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
