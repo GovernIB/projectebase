@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -35,13 +34,6 @@ public class EditUnitatOrganicaController implements Serializable {
 
     @Inject
     private FacesContext context;
-
-    /**
-     * Injecta el bundle definit dins faces-config.xml amb var = labels.
-     */
-    @Inject
-    @ManagedProperty("#{labels}")
-    private ResourceBundle labelsBundle;
 
     @EJB
     UnitatOrganicaService unitatOrganicaService;
@@ -97,6 +89,8 @@ public class EditUnitatOrganicaController implements Serializable {
      */
     public String saveOrUpdate() {
         LOG.debug("saveOrUpdate");
+        // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
+        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
         try {
             // Feim una creació o una actualització.
             if (isCreate()) {

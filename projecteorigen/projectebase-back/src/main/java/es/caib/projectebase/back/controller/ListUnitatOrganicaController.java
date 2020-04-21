@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -41,13 +40,6 @@ public class ListUnitatOrganicaController implements Serializable {
 
     @Inject
     private FacesContext context;
-
-    /**
-     * Injecta el bundle definit dins faces-config.xml amb var = labels.
-     */
-    @Inject
-    @ManagedProperty("#{labels}")
-    private ResourceBundle labelsBundle;
 
     @EJB
     private UnitatOrganicaService unitatOrganicaService;
@@ -117,6 +109,8 @@ public class ListUnitatOrganicaController implements Serializable {
      */
     public void delete(Long id) {
         LOG.debug("delete");
+        // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
+        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
         try {
             unitatOrganicaService.delete(id);
             context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
