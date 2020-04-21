@@ -9,6 +9,7 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Interceptor per loguejar les cridades als mètodes de la classe interceptada. El feim serializable perquè
@@ -37,13 +38,13 @@ public class LoggerInterceptor implements Serializable {
     public Object logCall(InvocationContext context) throws Exception {
         final String simpleName = context.getTarget().getClass().getSimpleName();
         final String methodName = simpleName + "." + context.getMethod().getName();
-        final String callMessage = methodName + Arrays.toString(context.getParameters());
-        LOG.debug(callMessage);
+        LOG.debug("{} {}", methodName, Arrays.toString(context.getParameters()));
 
+        long startTime = System.nanoTime();
         Object result = context.proceed();
+        long duration = System.nanoTime() - startTime;
 
-        final String returnMessage = methodName + " return(" + result + ")";
-        LOG.debug(returnMessage);
+        LOG.debug("{} return({}) in {} ms", methodName, result, TimeUnit.NANOSECONDS.toMillis(duration));
         return result;
     }
 }
