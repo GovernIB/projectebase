@@ -653,7 +653,8 @@ public abstract class AbstractFirmaController {
     /**
      * Descàrrega del document firmat
      * 
-     * @param id
+     * @param signID
+     * @param request
      * @param response
      * @throws Exception
      */
