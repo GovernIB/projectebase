@@ -1,6 +1,5 @@
 package es.caib.projectebase.persistence.dao;
 
-import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.query.OrderBy;
 
 import javax.validation.constraints.NotNull;
@@ -15,6 +14,7 @@ import java.util.Map;
  *
  * @param <E>  Tipus de l'entitat.
  * @param <PK> Tipus de la clau primària de l'entitat.
+ *
  * @author anadal
  * @author areus
  */
@@ -26,7 +26,7 @@ public interface DAO<E extends Serializable, PK> {
      * @param entity l'entity a crear.
      * @return El entity creat.
      */
-    E create(@NotNull E entity) throws I18NException;
+    E create(@NotNull E entity) throws DAOException;
 
     /**
      * Actualitza un entity.
@@ -34,20 +34,20 @@ public interface DAO<E extends Serializable, PK> {
      * @param entity l'entity a actualitzar
      * @return entity actualitzat.
      */
-    E update(@NotNull E entity) throws I18NException;
+    E update(@NotNull E entity) throws DAOException;
 
     /**
      * Esborra un entity a partir de l'identificador indicat.
      *
      * @param id Identificador del entity
      */
-    void delete(@NotNull PK id) throws I18NException;
+    void delete(@NotNull PK id) throws DAOException;
 
     /**
      * Obté un entity amb l'identificador indicat.
      *
      * @param id identificador del entity.
-     * @return El entity o <code>null</code> sino n'hi ha cap entitat amb l'id indicat.
+     * @return El entity o <code>null</code> si no n'hi ha cap amb l'id indicat.
      */
     E findById(@NotNull PK id);
 
@@ -56,7 +56,7 @@ public interface DAO<E extends Serializable, PK> {
      *
      * @return nombre total d'entitats.
      */
-    long countAll();
+    long countAll() throws DAOException;
 
     /**
      * Retorna el nombre total d'entitats que compleixen els filtres indicats.
@@ -64,16 +64,16 @@ public interface DAO<E extends Serializable, PK> {
      * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
      * @return nombre d'entitats que compleixen el filtre.
      */
-    long countFiltered(Map<String, Object> filters);
+    long countFiltered(Map<String, Object> filters) throws DAOException;
 
     /**
      * Obté totes les entitats.
      *
      * @param orderBy ordenacions que s'aplicaran amb l'ordre indicat.
      * @return llista d'entitats ordenada amb els criteris indicats.
-     * @throws I18NException si es produeix qualsevol error d'accés a les dades.
+     * @throws DAOException si es produeix qualsevol error d'accés a les dades.
      */
-    List<E> findAll(OrderBy... orderBy) throws I18NException;
+    List<E> findAll(OrderBy... orderBy) throws DAOException;
 
     /**
      * Obté les entitats que compleixen el filtre indicat.
@@ -81,9 +81,9 @@ public interface DAO<E extends Serializable, PK> {
      * @param filters map on les claus són el nom d'atribut i el valor pel qual s'ha de filtrar.
      * @param orderBy ordenacions que s'aplicaran amb l'ordre indicat.
      * @return llista d'entitats ordenada amb els criteris indicats.
-     * @throws I18NException si es produeix qualsevol error d'accés a les dades.
+     * @throws DAOException si es produeix qualsevol error d'accés a les dades.
      */
-    List<E> findFiltered(Map<String, Object> filters, OrderBy... orderBy) throws I18NException;
+    List<E> findFiltered(Map<String, Object> filters, OrderBy... orderBy) throws DAOException;
 
     /**
      * Obté les entitats dins el rang indicat.
@@ -92,10 +92,10 @@ public interface DAO<E extends Serializable, PK> {
      * @param pageSize nombre màxim de resultats a retornar.
      * @param orderBy  ordenacions que s'aplicaran amb l'ordre indicat.
      * @return llista d'entitats dins el rang indicat ordenada amb els criteris indicats.
-     * @throws I18NException si es produeix qualsevol error d'accés a les dades.
+     * @throws DAOException si es produeix qualsevol error d'accés a les dades.
      */
     List<E> findAll(@PositiveOrZero int first, @Positive int pageSize, OrderBy... orderBy)
-            throws I18NException;
+            throws DAOException;
 
 
     /**
@@ -106,11 +106,11 @@ public interface DAO<E extends Serializable, PK> {
      * @param pageSize nombre màxim de resultats a retornar.
      * @param orderBy  ordenacions que s'aplicaran amb l'ordre indicat.
      * @return llista d'entitats dins el rang indicat que compleixen els filtres ordenada amb els criteris indicats.
-     * @throws I18NException si es produeix qualsevol error d'accés a les dades.
+     * @throws DAOException si es produeix qualsevol error d'accés a les dades.
      */
     List<E> findFiltered(Map<String, Object> filters, @PositiveOrZero int first, @Positive int pageSize,
                          OrderBy... orderBy)
-            throws I18NException;
+            throws DAOException;
 
     /**
      * Obté una entitat en forma de referència, per tant sense carregar les seves dades. Emprat

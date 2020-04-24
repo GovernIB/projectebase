@@ -1,6 +1,5 @@
 package es.caib.projectebase.ejb;
 
-import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.ejb.interceptor.Logged;
 import es.caib.projectebase.persistence.Procediment;
@@ -34,14 +33,14 @@ public class ProcedimentEJB extends AbstractDAO<Procediment, Long> implements Pr
     // MÈTODES ESPECÍFICS PER PROCEDIMENTS
 
     @Override
-    public Procediment create(Procediment procediment, Long unitatOrganicaId) throws I18NException {
+    public Procediment create(Procediment procediment, Long unitatOrganicaId) throws ServiceException {
         try {
             UnitatOrganica unitatOrganica = entityManager.getReference(UnitatOrganica.class, unitatOrganicaId);
             procediment.setUnitatOrganica(unitatOrganica);
             entityManager.persist(procediment);
             return procediment;
         } catch (EntityNotFoundException e) {
-            throw new I18NException("unitatorganica.noexisteix", String.valueOf(unitatOrganicaId));
+            throw new ServiceException("unitatorganica.noexisteix", unitatOrganicaId);
         }
     }
 
@@ -117,5 +116,4 @@ public class ProcedimentEJB extends AbstractDAO<Procediment, Long> implements Pr
         TypedQuery<Long> query = entityManager.createQuery(cq);
         return query.getSingleResult();
     }
-
 }

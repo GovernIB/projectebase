@@ -1,10 +1,10 @@
 package es.caib.projectebase.back.controller;
 
-import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.ejb.ProcedimentService;
 import es.caib.projectebase.ejb.UnitatOrganicaService;
 import es.caib.projectebase.persistence.Procediment;
 import es.caib.projectebase.persistence.UnitatOrganica;
+import es.caib.projectebase.persistence.dao.DAOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -98,8 +98,9 @@ public class ListProcedimentController implements Serializable {
 
             // Actualitza el model de dades perquè desapareixi del llistat.
             procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
-        } catch (I18NException e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+        } catch (DAOException e) {
+            String message = e.getLocalizedMessage(context.getViewRoot().getLocale());
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
         }
     }
 }

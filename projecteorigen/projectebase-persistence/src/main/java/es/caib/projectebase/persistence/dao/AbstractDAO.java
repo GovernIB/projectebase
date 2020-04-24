@@ -1,7 +1,5 @@
 package es.caib.projectebase.persistence.dao;
 
-import es.caib.projectebase.commons.i18n.I18NArgumentString;
-import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.query.OrderBy;
 import es.caib.projectebase.commons.query.OrderType;
 import es.caib.projectebase.commons.utils.Constants;
@@ -10,9 +8,11 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -34,6 +34,7 @@ import java.util.Map;
  *
  * @param <E>  Tipus de l'entitat.
  * @param <PK> Tipus de la clau primària de l'entitat.
+ *
  * @author areus
  * @author anadal
  */
@@ -66,36 +67,35 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
     // IMPLEMENTACIÓ DELS MÈTODES DAO
 
     @Override
-    public E create(@NotNull E entity) throws I18NException {
+    public E create(@NotNull E entity) throws DAOException {
         try {
             entityManager.persist(entity);
-        } catch (javax.persistence.EntityExistsException eee) {
-            throw new I18NException("entity.error.alreadyexists", entityClass.getName());
-        } catch (Throwable e) {
-            // entity.error.creant=Error desconocido creando un objeto de tipo {0}: {1}
-            throw new I18NException("entity.error.creating", entityClass.getName(), e.getMessage());
+        } catch (EntityExistsException eee) {
+            throw new DAOException("persistence.error.alreadyexists", entityClass.getName());
+        } catch (PersistenceException pe) {
+            throw new DAOException(pe, "persistence.error.unexpected");
         }
         return entity;
     }
 
     @Override
-    public E update(@NotNull E entity) throws I18NException {
+    public E update(@NotNull E entity) throws DAOException {
         try {
             return entityManager.merge(entity);
-        } catch (Throwable e) {
-            // entity.error.updating=Error desconocido actualizando un objeto de tipo {0}: {1}
-            throw new I18NException("entity.error.updating", entityClass.getName(), e.getMessage());
+        } catch (PersistenceException pe) {
+            throw new DAOException(pe, "persistence.error.unexpected");
         }
     }
 
     @Override
-    public void delete(@NotNull PK id) throws I18NException {
+    public void delete(@NotNull PK id) throws DAOException {
         try {
             E entity = getReference(id);
             entityManager.remove(entity);
         } catch (EntityNotFoundException e) {
-            //entity.error.notexists=L´objecte de tipus {0} amb identificador {1} no existeix a la base de dades
-            throw new I18NException("entity.error.notexists", entityClass.getName(), String.valueOf(id));
+            throw new DAOException("persistence.error.notexists", entityClass.getName(), id);
+        } catch (PersistenceException pe) {
+            throw new DAOException(pe, "persistence.error.unexpected");
         }
     }
 
@@ -107,18 +107,22 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
 
     @Override
     @PermitAll
-    public long countAll() {
+    public long countAll() throws DAOException {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         final Root<E> root = cq.from(entityClass);
         cq.select(cb.count(root));
         TypedQuery<Long> query = entityManager.createQuery(cq);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        } catch (PersistenceException pe) {
+            throw new DAOException(pe, "persistence.error.unexpected");
+        }
     }
 
     @Override
     @PermitAll
-    public long countFiltered(Map<String, Object> filters) {
+    public long countFiltered(Map<String, Object> filters) throws DAOException {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         final Root<E> root = cq.from(entityClass);
@@ -126,32 +130,35 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
         cq.where(getFilterPredicate(root, filters));
 
         TypedQuery<Long> query = entityManager.createQuery(cq);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        } catch (PersistenceException pe) {
+            throw new DAOException(pe, "persistence.error.unexpected");
+        }
     }
 
     @Override
     @PermitAll
-    public List<E> findAll(OrderBy... orderBy) throws I18NException {
+    public List<E> findAll(OrderBy... orderBy) throws DAOException {
         return select(null, null, null, orderBy);
     }
 
     @Override
     @PermitAll
-    public List<E> findFiltered(Map<String, Object> filters, OrderBy... orderBy) throws I18NException {
+    public List<E> findFiltered(Map<String, Object> filters, OrderBy... orderBy) throws DAOException {
         return select(filters, null, null, orderBy);
     }
 
     @Override
     @PermitAll
-    public List<E> findAll(@PositiveOrZero int first, @Positive int pageSize, OrderBy... orderBy)
-            throws I18NException {
+    public List<E> findAll(@PositiveOrZero int first, @Positive int pageSize, OrderBy... orderBy) throws DAOException {
         return select(null, first, pageSize, orderBy);
     }
 
     @Override
     @PermitAll
     public List<E> findFiltered(Map<String, Object> filters, @PositiveOrZero int first, @Positive int pageSize,
-                                OrderBy... orderBy) throws I18NException {
+                                OrderBy... orderBy) throws DAOException {
         return select(filters, first, pageSize, orderBy);
     }
 
@@ -172,10 +179,9 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
      * @param maxResults  el nombre màxim d'entitats a tornar.
      * @param orderByList Camps per ordenar el llistat
      * @return llista d'entitats que compleixen el filtre.
-     * @throws I18NException si es produeix un error executant la consulta
      */
     protected List<E> select(Map<String, Object> filters, Integer firstResult, Integer maxResults,
-                             OrderBy... orderByList) throws I18NException {
+                             OrderBy... orderByList) throws DAOException {
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<E> cq = cb.createQuery(entityClass);
@@ -186,7 +192,7 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
             cq.where(getFilterPredicate(root, filters));
         }
 
-        if (orderByList != null && orderByList.length != 0) {
+        if (orderByList != null && orderByList.length > 0) {
             List<Order> orderList = new ArrayList<>();
             for (OrderBy orderBy : orderByList) {
                 Path<Object> attributePath = root.get(orderBy.property);
@@ -209,10 +215,8 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
 
         try {
             return query.getResultList();
-        } catch (Throwable e) {
-            log.error("Error executant la consulta: " + query.toString());
-            throw new I18NException(e, "error.query", new I18NArgumentString(query.toString()),
-                    new I18NArgumentString(e.getMessage()));
+        } catch (PersistenceException pe) {
+            throw new DAOException(pe, "persistence.error.unexpected");
         }
     }
 
@@ -249,17 +253,17 @@ public abstract class AbstractDAO<E extends Serializable, PK> implements DAO<E, 
                                 "%" + ((String) attributeValue).toLowerCase() + "%"
                         )
                 );
-                // Quan és una enumeració, però rebem un String, hem de convertir el valor que rebem a enumeració
+            // Quan és una enumeració, però rebem un String, hem de convertir el valor que rebem a enumeració
             } else if (bindableJavaType.isEnum() && (attributeValue instanceof String)) {
                 @SuppressWarnings("rawtypes")
                 Enum enumValue = Enum.valueOf(bindableJavaType, (String) attributeValue);
                 predicateList.add(cb.equal(attributePath, enumValue));
-                // En qualsevol altre cas, feim directament l'equal
+            // En qualsevol altre cas, feim directament l'equal
             } else {
                 predicateList.add(cb.equal(attributePath, attributeValue));
             }
         }
         // Retornam un AND amb el predicat de cada propietat.
-        return cb.and(predicateList.toArray(new Predicate[0]));
+        return cb.and(predicateList.toArray(Predicate[]::new));
     }
 }

@@ -1,6 +1,5 @@
 package es.caib.projectebase.back.controller;
 
-import es.caib.projectebase.back.utils.I18NTranslatorBack;
 import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.ejb.ProcedimentService;
 import es.caib.projectebase.ejb.UnitatOrganicaService;
@@ -125,9 +124,9 @@ public class EditProcedimentController implements Serializable {
             // Redireccionam cap al llistat de procediments, mantenint l'identificador de unitat orgànica
             return "/listProcediment?faces-redirect=true&includeViewParams=true";
 
-        } catch (I18NException i18ne) {
-            String msgError = I18NTranslatorBack.translate(i18ne);
-            LOG.error("Error saveOrUpdate: " + msgError);
+        } catch (I18NException i18NException) {
+            String msgError = i18NException.getLocalizedMessage(context.getViewRoot().getLocale());
+            LOG.error("Error saveOrUpdate: {}", msgError);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, null));
 
             // si ha donat un error la lògica de negoci, ens mantenim a la pàgina

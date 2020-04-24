@@ -1,6 +1,5 @@
 package es.caib.projectebase.ejb;
 
-import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.persistence.Procediment;
 import es.caib.projectebase.persistence.dao.DAO;
 
@@ -25,7 +24,7 @@ public interface ProcedimentService extends DAO<Procediment, Long> {
      * @param unitatOrganicaId identificador de la unitat orgànica.
      * @return El procediment creat.
      */
-    Procediment create(Procediment procediment, Long unitatOrganicaId) throws I18NException;
+    Procediment create(Procediment procediment, Long unitatOrganicaId) throws ServiceException;
 
     /**
      * Obté una llista de tots els procediments d'una unitat orgànica.

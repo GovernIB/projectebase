@@ -1,7 +1,7 @@
 package es.caib.projectebase.common.test;
 
-import es.caib.projectebase.commons.i18n.I18NException2;
-import es.caib.projectebase.commons.i18n.I18NTranslator2;
+import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.commons.i18n.I18NTranslator;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -60,7 +60,7 @@ public class TestI18N {
     }
 }
 
-class TestException extends I18NException2 {
+class TestException extends I18NException {
 
     private static final long serialVersionUID = 5433469565190777267L;
 
@@ -69,7 +69,7 @@ class TestException extends I18NException2 {
     }
 
     @Override
-    protected I18NTranslator2 getTranslator() {
-        return I18NTranslator2.from("TestLabels");
+    protected I18NTranslator getTranslator() {
+        return I18NTranslator.from("TestLabels");
     }
 }

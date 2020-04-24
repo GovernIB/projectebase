@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions name="HelloWorldWsService" targetNamespace="http://impl.ws.projectebase.caib.es/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://impl.ws.projectebase.caib.es/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
-<xs:schema xmlns:tns="http://impl.ws.projectebase.caib.es/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://impl.ws.projectebase.caib.es/" version="1.0">
-  <xs:complexType name="wsI18NTranslation">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="code" type="xs:string"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="args" type="tns:wsI18NArgument"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="wsI18NArgument">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="value" type="xs:string"/>
-      <xs:element name="translate" type="xs:boolean"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="WsI18NError" type="tns:WsI18NError"/>
-  <xs:complexType name="WsI18NError">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="translation" type="tns:wsI18NTranslation"/>
-      <xs:element minOccurs="0" name="message" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-</xs:schema>
+<xsd:schema xmlns:tns="http://impl.ws.projectebase.caib.es/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://impl.ws.projectebase.caib.es/">
+  <xsd:element name="WsI18NError" type="tns:WsI18NError"/>
+  <xsd:complexType name="WsI18NError">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
   </wsdl:types>
   <wsdl:message name="echo">
     <wsdl:part name="echo" type="xsd:string">

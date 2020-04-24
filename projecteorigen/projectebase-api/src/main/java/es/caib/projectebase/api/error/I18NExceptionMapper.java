@@ -1,7 +1,6 @@
 package es.caib.projectebase.api.error;
 
 import es.caib.projectebase.api.config.ApiConstants;
-import es.caib.projectebase.api.utils.I18NTranslatorRest;
 import es.caib.projectebase.commons.i18n.I18NException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,13 +31,12 @@ public class I18NExceptionMapper implements ExceptionMapper<I18NException> {
     public Response toResponse(I18NException e) {
 
         Locale locale = (Locale) request.getAttribute(ApiConstants.REQUEST_LOCALE);
-
-        String msg = I18NTranslatorRest.translate(e, locale);
-        LOG.error("Rebuda una I18NException: " + msg);
+        String message = e.getLocalizedMessage(locale);
+        LOG.error("Rebuda una I18NException: " + message);
 
         ErrorBean errorBean = new ErrorBean();
         errorBean.setType(ErrorType.APLICACIO);
-        errorBean.setMessage(msg);
+        errorBean.setMessage(message);
 
         return Response.status(Response.Status.BAD_REQUEST)
                 .entity(errorBean)

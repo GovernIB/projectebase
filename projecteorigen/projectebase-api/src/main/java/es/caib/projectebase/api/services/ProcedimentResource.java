@@ -1,9 +1,10 @@
 package es.caib.projectebase.api.services;
 
-import es.caib.projectebase.commons.i18n.I18NException;
 import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.ejb.ProcedimentService;
+import es.caib.projectebase.ejb.ServiceException;
 import es.caib.projectebase.persistence.Procediment;
+import es.caib.projectebase.persistence.dao.DAOException;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.headers.Header;
@@ -122,7 +123,7 @@ public class ProcedimentResource {
                             schema = @Schema(implementation = Procediment.class)))
             @Valid Procediment procediment,
             @Parameter(description = "L'identificador de la unitat", required = true)
-            @QueryParam("unitatId") Long unitatId) throws I18NException {
+            @QueryParam("unitatId") Long unitatId) throws ServiceException {
         procedimentService.create(procediment, unitatId);
         return Response.created(URI.create("procediments/" + procediment.getId())).build();
     }
@@ -147,7 +148,7 @@ public class ProcedimentResource {
                             schema = @Schema(implementation = Procediment.class)))
             @Valid Procediment procediment,
             @Parameter(description = "L'identificador del procediment", required = true)
-            @PathParam("id") Long id) throws I18NException {
+            @PathParam("id") Long id) throws DAOException {
         Procediment procedimentActual = procedimentService.findById(id);
         if (procedimentActual == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -171,7 +172,7 @@ public class ProcedimentResource {
     @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response delete(@Parameter(description = "L'identificador del procediment", required = true)
-                           @PathParam("id") Long id) throws I18NException {
+                           @PathParam("id") Long id) throws DAOException {
         if (procedimentService.findById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
