@@ -3,7 +3,6 @@
 #set( $symbol_escape = '\' )
 package ${package}.ejb;
 
-import ${package}.commons.i18n.I18NException;
 import ${package}.persistence.Procediment;
 import ${package}.persistence.dao.DAO;
 
@@ -28,7 +27,7 @@ public interface ProcedimentService extends DAO<Procediment, Long> {
      * @param unitatOrganicaId identificador de la unitat orgànica.
      * @return El procediment creat.
      */
-    Procediment create(Procediment procediment, Long unitatOrganicaId) throws I18NException;
+    Procediment create(Procediment procediment, Long unitatOrganicaId) throws ServiceException;
 
     /**
      * Obté una llista de tots els procediments d'una unitat orgànica.

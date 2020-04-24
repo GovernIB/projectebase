@@ -3,16 +3,14 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.controller;
 
-import ${package}.back.utils.I18NTranslatorBack;
-import ${package}.commons.i18n.I18NException;
 import ${package}.ejb.UnitatOrganicaService;
 import ${package}.persistence.UnitatOrganica;
+import ${package}.persistence.dao.DAOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -38,13 +36,6 @@ public class EditUnitatOrganicaController implements Serializable {
 
     @Inject
     private FacesContext context;
-
-    /**
-     * Injecta el bundle definit dins faces-config.xml amb var = labels.
-     */
-    @Inject
-    @ManagedProperty("${symbol_pound}{labels}")
-    private ResourceBundle labelsBundle;
 
     @EJB
     UnitatOrganicaService unitatOrganicaService;
@@ -100,6 +91,8 @@ public class EditUnitatOrganicaController implements Serializable {
      */
     public String saveOrUpdate() {
         LOG.debug("saveOrUpdate");
+        // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
+        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
         try {
             // Feim una creació o una actualització.
             if (isCreate()) {
@@ -117,9 +110,9 @@ public class EditUnitatOrganicaController implements Serializable {
             // Redireccionam cap al llistat d'unitats orgàniques
             return "/listUnitatOrganica?faces-redirect=true";
 
-        } catch (I18NException i18ne) {
-            String msgError = I18NTranslatorBack.translate(i18ne);
-            LOG.error("Error saveOrUpdate: " + msgError);
+        } catch (DAOException daoException) {
+            String msgError = daoException.getLocalizedMessage(context.getViewRoot().getLocale());
+            LOG.error("Error saveOrUpdate: {}", msgError);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, null));
 
             // si ha donat un error la lògica de negoci, ens mantenim a la pàgina

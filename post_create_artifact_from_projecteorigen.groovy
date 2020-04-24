@@ -235,7 +235,6 @@ for(String restFile : restFiles) {
 def wsFiles = [ 
 "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/impl/HelloWorldWsImpl.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/impl/HelloWorldWithSecurityWsImpl.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/I18NTranslatorWS.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_server/src/main/java/ws/utils/WsInInterceptor.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/resources/wsdl/HelloWorld.wsdl",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/resources/wsdl/HelloWorldWithSecurity.wsdl",
@@ -247,7 +246,6 @@ def wsFiles = [
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/ObjectFactory.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/package-info.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/WsI18NError.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/WsI18NTranslation.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/test/java/ws/test/HelloWorldTest.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/test/java/ws/test/HelloWorldWithSecurityTest.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/test.properties"

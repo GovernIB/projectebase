@@ -3,11 +3,11 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.controller;
 
-import ${package}.commons.i18n.I18NException;
 import ${package}.commons.query.OrderBy;
 import ${package}.commons.query.OrderType;
 import ${package}.ejb.UnitatOrganicaService;
 import ${package}.persistence.UnitatOrganica;
+import ${package}.persistence.dao.DAOException;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -44,13 +43,6 @@ public class ListUnitatOrganicaController implements Serializable {
 
     @Inject
     private FacesContext context;
-
-    /**
-     * Injecta el bundle definit dins faces-config.xml amb var = labels.
-     */
-    @Inject
-    @ManagedProperty("${symbol_pound}{labels}")
-    private ResourceBundle labelsBundle;
 
     @EJB
     private UnitatOrganicaService unitatOrganicaService;
@@ -103,7 +95,7 @@ public class ListUnitatOrganicaController implements Serializable {
 
                     return unitatOrganicaService.findFiltered(filters, first, pageSize, orderByArray);
 
-                } catch (I18NException e) {
+                } catch (DAOException e) {
                     throw new RuntimeException(e);
                 }
             }
@@ -120,6 +112,8 @@ public class ListUnitatOrganicaController implements Serializable {
      */
     public void delete(Long id) {
         LOG.debug("delete");
+        // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
+        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
         try {
             unitatOrganicaService.delete(id);
             context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
@@ -127,8 +121,9 @@ public class ListUnitatOrganicaController implements Serializable {
             // No cal actualitzar el model perquè no aparegui el registre eliminat perquè primefaces cridarà
             // automàticament el load del lazyDataModel en refrescar el component del datatable.
 
-        } catch (I18NException e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+        } catch (DAOException e) {
+            String message = e.getLocalizedMessage(context.getViewRoot().getLocale());
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
         }
     }
 }

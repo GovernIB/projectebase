@@ -121,23 +121,10 @@
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Altres mòduls del projecte -->
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-ws-server</artifactId>
-            <version>${version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- dependències de test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.jboss.ws.cxf</groupId>
             <artifactId>jbossws-cxf-client</artifactId>
-            <scope>test</scope>
+            <scope>provided</scope>
             <!-- excloem les següents llibreries perquè donen problemes de convergència -->
             <exclusions>
                 <exclusion>
@@ -154,6 +141,18 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- Altres mòduls del projecte -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-ws-server</artifactId>
+            <version>${version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- dependències de test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-
 </project>

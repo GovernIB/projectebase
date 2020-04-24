@@ -3,17 +3,16 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.controller;
 
-import ${package}.commons.i18n.I18NException;
 import ${package}.ejb.ProcedimentService;
 import ${package}.ejb.UnitatOrganicaService;
 import ${package}.persistence.Procediment;
 import ${package}.persistence.UnitatOrganica;
+import ${package}.persistence.dao.DAOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -40,13 +39,6 @@ public class ListProcedimentController implements Serializable {
 
     @Inject
     private FacesContext context;
-
-    /**
-     * Injecta el bundle definit dins faces-config.xml amb var = labels.
-     */
-    @Inject
-    @ManagedProperty("${symbol_pound}{labels}")
-    private ResourceBundle labelsBundle;
 
     @EJB
     UnitatOrganicaService unitatOrganicaService;
@@ -101,14 +93,17 @@ public class ListProcedimentController implements Serializable {
      */
     public void delete(Long id) {
         LOG.debug("delete");
+        // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
+        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
         try {
             procedimentService.delete(id);
             context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
 
             // Actualitza el model de dades perquè desapareixi del llistat.
             procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
-        } catch (I18NException e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+        } catch (DAOException e) {
+            String message = e.getLocalizedMessage(context.getViewRoot().getLocale());
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
         }
     }
 }

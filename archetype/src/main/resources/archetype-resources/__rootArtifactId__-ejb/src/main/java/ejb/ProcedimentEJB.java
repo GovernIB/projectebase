@@ -3,7 +3,6 @@
 #set( $symbol_escape = '\' )
 package ${package}.ejb;
 
-import ${package}.commons.i18n.I18NException;
 import ${package}.commons.utils.Constants;
 import ${package}.ejb.interceptor.Logged;
 import ${package}.persistence.Procediment;
@@ -37,14 +36,14 @@ public class ProcedimentEJB extends AbstractDAO<Procediment, Long> implements Pr
     // MÈTODES ESPECÍFICS PER PROCEDIMENTS
 
     @Override
-    public Procediment create(Procediment procediment, Long unitatOrganicaId) throws I18NException {
+    public Procediment create(Procediment procediment, Long unitatOrganicaId) throws ServiceException {
         try {
             UnitatOrganica unitatOrganica = entityManager.getReference(UnitatOrganica.class, unitatOrganicaId);
             procediment.setUnitatOrganica(unitatOrganica);
             entityManager.persist(procediment);
             return procediment;
         } catch (EntityNotFoundException e) {
-            throw new I18NException("unitatorganica.noexisteix", String.valueOf(unitatOrganicaId));
+            throw new ServiceException("unitatorganica.noexisteix", unitatOrganicaId);
         }
     }
 
@@ -120,5 +119,4 @@ public class ProcedimentEJB extends AbstractDAO<Procediment, Long> implements Pr
         TypedQuery<Long> query = entityManager.createQuery(cq);
         return query.getSingleResult();
     }
-
 }

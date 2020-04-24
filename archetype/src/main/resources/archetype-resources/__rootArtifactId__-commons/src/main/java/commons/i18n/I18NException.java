@@ -3,77 +3,84 @@
 #set( $symbol_escape = '\' )
 package ${package}.commons.i18n;
 
-import javax.ejb.ApplicationException;
+import java.util.Locale;
 
 /**
- * Reprsenta una excepció d'aplicació amb un missatge traduible.
- * Es marca amb amb l'annotació d'excepció d'aplicació i fixant el rollback perquè quan l'excepció s'empri
- * dins la capa d'EJBs volem que si es llança es produeix un rollback de la transacció.
- *
- * @author anadal
+ * Excepció que permet emprar missatges traduïbles.
+ * Emprarà una instància de {@link I18NTranslator} per traduir els missatges.
+ * Les subclasses han d'implementar el mètode {@link ${symbol_pound}getTranslator()} per indicar
+ * la instància a emprar per traduir els missatges.
  */
-@ApplicationException(rollback = true)
-public class I18NException extends Exception {
+public abstract class I18NException extends Exception {
 
-    private static final long serialVersionUID = 125634754654675478L;
+    private static final long serialVersionUID = -3124602547590507219L;
 
-    private final I18NTranslation traduccio;
+    private Object[] parameters;
 
-    public I18NTranslation getTraduccio() {
-        return this.traduccio;
+    public Object[] getParameters() {
+        return parameters;
     }
 
     /**
-     * Crea una nova excepció amb una traducció.
-     *
-     * @param traduccio Traducció amb la que es generarà el missatge de l'excepció.
+     * Crea una excepció amb un missatge traduïble.
+     * @param message etiqueta del missatge a traduir.
      */
-    public I18NException(I18NTranslation traduccio) {
-        super(traduccio.getCode());
-        this.traduccio = traduccio;
+    public I18NException(String message) {
+        super(message);
     }
 
     /**
-     * Crea una nova traducció amb una etiqueta i uns arguments per generar una traducció, així com l'excepció origen.
-     *
-     * @param cause excepció origen
-     * @param code  etiqueta del missatge de l'excepció
-     * @param args  arguments a emprar amb l'etiqueta
+     * Crea una excepció amb un missatge traduïble i els paràmetres indicats.
+     * @param message etiqueta del missatge a traduir.
+     * @param parameters paràmetres del missatge.
      */
-    public I18NException(Throwable cause, String code, I18NArgument... args) {
-        super(code, cause);
-        this.traduccio = new I18NTranslation(code, args);
+    public I18NException(String message, Object... parameters) {
+        super(message);
+        this.parameters = parameters;
     }
 
     /**
-     * Crea una nova traducció amb una etiqueta i uns arguments per generar una traducció.
-     *
-     * @param code etiqueta del missatge de l'excepció
-     * @param args arguments a emprar amb l'etiqueta
+     * Crea una excepció amb un missatge traduïble.
+     * @param cause excepció original
+     * @param message etiqueta del missatge a traduir.
      */
-    public I18NException(String code, I18NArgument... args) {
-        super(code);
-        this.traduccio = new I18NTranslation(code, args);
+    public I18NException(Throwable cause, String message) {
+        super(message, cause);
     }
 
     /**
-     * Crea una nova traducció amb una etiqueta i uns arguments per generar una traducció.
-     *
-     * @param code etiqueta del missatge de l'excepció
-     * @param args arguments a emprar amb l'etiqueta
+     * Crea una excepció amb un missatge traduïble i els paràmetres indicats.
+     * @param cause excepció original
+     * @param message etiqueta del missatge a traduir.
+     * @param parameters paràmetres del missatge.
      */
-    public I18NException(String code, String... args) {
-        super(code);
-        this.traduccio = new I18NTranslation(code, args);
+    public I18NException(Throwable cause, String message, Object... parameters) {
+        super(message, cause);
+        this.parameters = parameters;
     }
 
     /**
-     * Crea una nova traducció amb una etiqueta.
-     *
-     * @param code etiqueta del missatge de l'excepció
+     * Proporciona la instància de {@link I18NTranslator} que s'emprarà per
+     * traduir els missatges.
+     * @return instància per traduir els missatges.
      */
-    public I18NException(String code) {
-        super(code);
-        this.traduccio = new I18NTranslation(code);
+    protected abstract I18NTranslator getTranslator();
+
+    /**
+     * Retorna el missatge de l'excepció traduit en l'idioma per defecte, {@link Locale${symbol_pound}getDefault()}.
+     * @return missatge traduit.
+     */
+    @Override
+    public String getLocalizedMessage() {
+        return getLocalizedMessage(Locale.getDefault());
+    }
+
+    /**
+     * Retorna el missatge de l'excepció traduit en l'idioma indicat.
+     * @param locale idioma per traduir.
+     * @return missatge traduit.
+     */
+    public String getLocalizedMessage(Locale locale) {
+        return getTranslator().translate(locale, super.getMessage(), parameters);
     }
 }

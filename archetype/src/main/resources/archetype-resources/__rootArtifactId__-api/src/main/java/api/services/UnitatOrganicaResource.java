@@ -3,10 +3,10 @@
 #set( $symbol_escape = '\' )
 package ${package}.api.services;
 
-import ${package}.commons.i18n.I18NException;
 import ${package}.commons.utils.Constants;
 import ${package}.ejb.UnitatOrganicaService;
 import ${package}.persistence.UnitatOrganica;
+import ${package}.persistence.dao.DAOException;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.headers.Header;
@@ -16,7 +16,9 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.validation.Valid;
@@ -32,8 +34,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
-import javax.annotation.security.RolesAllowed;
-import javax.ejb.Stateless;
 
 /**
  * Recurs REST per accedir a Unitats Organiques.
@@ -68,7 +68,7 @@ public class UnitatOrganicaResource {
             description = "Llista d'unitats orgàniques",
             content = @Content(mediaType = "application/json",
                     schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganica.class)))
-    public Response getAll() throws I18NException {
+    public Response getAll() throws DAOException {
         List<UnitatOrganica> all = unitatOrganicaService.findAll();
         return Response.ok().entity(all).build();
     }
@@ -113,7 +113,7 @@ public class UnitatOrganicaResource {
                     description = "Unitat orgànica",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UnitatOrganica.class)))
-            @Valid UnitatOrganica unitatOrganica) throws I18NException {
+            @Valid UnitatOrganica unitatOrganica) throws DAOException {
         unitatOrganicaService.create(unitatOrganica);
         return Response.created(URI.create("unitats/" + unitatOrganica.getId())).build();
     }
@@ -138,7 +138,7 @@ public class UnitatOrganicaResource {
                             schema = @Schema(implementation = UnitatOrganica.class)))
             @Valid UnitatOrganica unitatOrganica,
             @Parameter(description = "L'identificador de la unitat", required = true)
-            @PathParam("id") Long id) throws I18NException {
+            @PathParam("id") Long id) throws DAOException {
 
         UnitatOrganica unitatActual = unitatOrganicaService.findById(id);
         if (unitatActual == null) {
@@ -165,7 +165,7 @@ public class UnitatOrganicaResource {
     @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response delete(@Parameter(description = "L'identificador de la unitat", required = true)
-                           @PathParam("id") Long id) throws I18NException {
+                           @PathParam("id") Long id) throws DAOException {
         if (unitatOrganicaService.findById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
