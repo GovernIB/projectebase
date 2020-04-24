@@ -3,13 +3,16 @@ package es.caib.projectebase.ws.test;
 import es.caib.projectebase.ws.api.HelloWorldWithSecurityWs;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * Test de petició a WebService.
+ * Test de petició a WebService autenticada.
+ * TODO: pendent de si es pot integrar JAX-WS amb mòdul EJB amb keycloak (areus)
  *
  * @author anadal
  */
+@Ignore
 public class HelloWorldWithSecurityTest {
 
     protected static HelloWorldWithSecurityWs helloWorldWithSecurityApi;
