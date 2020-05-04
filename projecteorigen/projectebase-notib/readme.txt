@@ -1,9 +1,4 @@
 
-
-
-TODO: Editar per notib
-
-
 Mòdul d'exemple per crear notificacions amb NOTIB 1.1 emprant l'api descrita a:
 
     https://github.com/GovernIB/notib/raw/notib-1.1/doc/pdf/NOTIB_integracio.pdf
