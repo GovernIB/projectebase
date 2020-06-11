@@ -37,8 +37,7 @@ public class ClientNotibProducer {
 				configuracio.getUrl(),
 				configuracio.getUsername(),
 				configuracio.getPassword());
-        client.setServeiDesplegatDamuntJboss(true);
-        
+
         LOG.info("Client creat");
 
         return client;
