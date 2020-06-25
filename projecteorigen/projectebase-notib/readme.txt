@@ -1,9 +1,7 @@
 
-Mòdul d'exemple per crear notificacions amb NOTIB 1.1 (actualment 1.1.2.11) emprant l'api descrita a:
+Mòdul d'exemple per crear notificacions amb NOTIB 1.1 (actualment 1.1.2) emprant l'api descrita a:
 
     https://github.com/GovernIB/notib/raw/notib-1.1/doc/pdf/NOTIB_integracio.pdf
-
-(Nota: tot i que la versió de NOTIB és la 1.1, la versió de la dependència notib-client és la 1.2)
 
 Per provar el plugin:
 
