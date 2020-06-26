@@ -7,12 +7,16 @@
 <f:view>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>#{title}</title>
+        <title>
+            <ui:insert name="title"/>
+        </title>
         <h:outputStylesheet name="css/bootstrap.min.css"/>
     </h:head>
     <h:body>
         <div class="container">
-            <h1>#{title}</h1>
+            <h1>
+                <ui:insert name="title">PLANTILLA SENSE TÍTOL</ui:insert>
+            </h1>
             <ui:insert name="content"/>
         </div>
     </h:body>

@@ -1,0 +1,26 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:param name="title" value="Exemple Dir3Caib" />
+    <ui:define name="content">
+        <div class="row">
+            <div class="col">
+                <h:messages id="messages" globalOnly="true" showDetail="true"
+                            errorStyle="color: red"
+                            infoStyle="color: green"
+                            warnStyle="color: yellow"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Fer coses</h3>
+                <p>Es faran coses....</p>
+            </div>
+            <div class="col-md-6">
+                <h3>S'han fet coses</h3>
+                <p>Quines coses s'han fet ...</p>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
