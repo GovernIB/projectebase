@@ -26,6 +26,8 @@ public class Dir3ServiceImpl implements Dir3Service {
     private static final String CATALOGO_COMUNIDADES_AUTONOMAS = "/rest/catalogo/comunidadesAutonomas";
     private static final String CATALOGO_PROVINCIAS_COMUNIDAD = "/rest/catalogo/provincias/comunidadAutonoma";
     private static final String CATALOGO_LOCALIDADES = "/rest/catalogo/localidades/provincia/entidadGeografica";
+    private static final String CATALOGO_NIVELES_ADMINISTRACION = "/rest/catalogo/nivelesAdministracion";
+    private static final String BUSQUEDA_ORGANISMOS = "/rest/busqueda/organismos";
 
     private static final String ENTIDAD_GEOGRAFICA_MUNICIPIO = "01";
 
@@ -59,6 +61,31 @@ public class Dir3ServiceImpl implements Dir3Service {
         return client.target(baseUrl + CATALOGO_LOCALIDADES)
                 .queryParam("codigoProvincia", idProvincia)
                 .queryParam("codigoEntidadGeografica", ENTIDAD_GEOGRAFICA_MUNICIPIO)
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<>() {});
+    }
+
+    @Override
+    public List<CodigoValor> nivelesAdministracion() {
+        return client.target(baseUrl + CATALOGO_NIVELES_ADMINISTRACION)
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<>() {});
+    }
+
+    @Override
+    public List<Nodo> busquedaOrganismos(String codigo, String denominacion, Object codNivelAdministracion,
+                                         Object codComunidadAutonoma, boolean conOficinas, boolean unidadRaiz,
+                                         Object provincia, Object localidad, boolean vigentes) {
+        return client.target(baseUrl + BUSQUEDA_ORGANISMOS)
+                .queryParam("codigo", codigo)
+                .queryParam("denominacion", denominacion)
+                .queryParam("codNivelAdministracion", codNivelAdministracion == null ? "" : codNivelAdministracion)
+                .queryParam("codComunidadAutonoma", codComunidadAutonoma == null ? "" : codComunidadAutonoma)
+                .queryParam("conOficinas", conOficinas)
+                .queryParam("unidadRaiz", unidadRaiz)
+                .queryParam("provincia", provincia == null ? "" : provincia)
+                .queryParam("localidad", localidad == null ? "" : localidad + "-" + ENTIDAD_GEOGRAFICA_MUNICIPIO)
+                .queryParam("vigentes", vigentes)
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {});
     }

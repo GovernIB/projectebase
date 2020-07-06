@@ -2,15 +2,16 @@ package es.caib.projectebase.dir3caib;
 
 import es.caib.projectebase.dir3caib.api.CodigoValor;
 import es.caib.projectebase.dir3caib.api.Dir3Service;
+import es.caib.projectebase.dir3caib.api.Nodo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,11 +21,11 @@ import java.util.List;
  */
 @Named
 @ViewScoped
-public class CatalogoController implements Serializable {
+public class Dir3Controller implements Serializable {
 
     private static final long serialVersionUID = -9139731221657909836L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(CatalogoController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Dir3Controller.class);
 
     /**
      * Client de dir3caib
@@ -35,28 +36,36 @@ public class CatalogoController implements Serializable {
     private List<CodigoValor> comunitatsDisponibles;
     private List<CodigoValor> provinciesDisponibles;
     private List<CodigoValor> municipisDisponibles;
+    private List<CodigoValor> nivellsDisponibles;
 
     private Object comunitat;
     private Object provincia;
     private Object municipi;
+    private Object nivell;
+
+    private List<Nodo> resultatCerca;
 
     @PostConstruct
     public void init() {
         LOG.info("init");
         comunitatsDisponibles = dir3Service.comunidadesAutonomas();
-        comunitat = comunitatsDisponibles.get(0).getId();
-
-        loadProvincies();
+        nivellsDisponibles = dir3Service.nivelesAdministracion();
     }
 
     public void loadProvincies() {
-        provinciesDisponibles = dir3Service.provinciasComunidad(comunitat);
-        provincia = provinciesDisponibles.get(0).getId();
+        provinciesDisponibles = comunitat != null ? dir3Service.provinciasComunidad(comunitat) : new ArrayList<>();
+        provincia = null;
         loadMunicipis();
     }
 
     public void loadMunicipis() {
-        municipisDisponibles = dir3Service.municipios(provincia);
+        municipisDisponibles = provincia != null ? dir3Service.municipios(provincia) : new ArrayList<>();
+    }
+
+    public void cercarOrganismes() {
+        LOG.info("cercarOganismes");
+        resultatCerca = dir3Service.busquedaOrganismos("", "", nivell,
+                comunitat, false, true, provincia, municipi, true);
     }
 
     // Getters & Setters
@@ -71,6 +80,14 @@ public class CatalogoController implements Serializable {
 
     public List<CodigoValor> getMunicipisDisponibles() {
         return municipisDisponibles;
+    }
+
+    public List<CodigoValor> getNivellsDisponibles() {
+        return nivellsDisponibles;
+    }
+
+    public List<Nodo> getResultatCerca() {
+        return resultatCerca;
     }
 
     public Object getComunitat() {
@@ -95,5 +112,13 @@ public class CatalogoController implements Serializable {
 
     public void setMunicipi(Object municipi) {
         this.municipi = municipi;
+    }
+
+    public Object getNivell() {
+        return nivell;
+    }
+
+    public void setNivell(Object nivell) {
+        this.nivell = nivell;
     }
 }

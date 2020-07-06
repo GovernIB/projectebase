@@ -1,5 +1,8 @@
 package es.caib.projectebase.dir3caib.api;
 
+/**
+ * Model emprat per Api Rest Dir3Caib
+ */
 public class CodigoValor {
 
     private Object id;
