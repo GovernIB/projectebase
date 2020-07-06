@@ -27,11 +27,14 @@
             <scope>provided</scope>
         </dependency>
         <!--
-        Llibreries per emprar l'api de dir3CAIB
+        Llibreries per emprar l'api de dir3CAIB.
+        Només en cas d'emprar l'api WS SOAP. L'api REST no té cap llibreria específica.
+        -->
+        <!--
         <dependency>
-            <groupId>es.caib.notib</groupId>
-            <artifactId>notib-client</artifactId>
-            <version>1.1.2</version>
+            <groupId>es.caib.dir3caib</groupId>
+            <artifactId>dir3caib-ws-api</artifactId>
+            <version>1.0.11</version>
         </dependency>
         -->
     </dependencies>
