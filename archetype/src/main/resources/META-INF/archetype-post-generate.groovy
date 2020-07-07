@@ -223,6 +223,16 @@ String perfilNotib = properties.get("perfilNotib");
 println " + perfilNotib: " + perfilNotib;
 checkProperty("^(true|false)\$", perfilNotib, "perfilNotib");
 
+// perfilDir3Caib
+String perfilDir3Caib = properties.get("perfilDir3Caib");
+println " + perfilDir3Caib: " + perfilDir3Caib;
+checkProperty("^(true|false)\$", perfilDir3Caib, "perfilDir3Caib");
+
+// perfilDistribucio
+String perfilDistribucio = properties.get("perfilDistribucio");
+println " + perfilDistribucio: " + perfilDistribucio;
+checkProperty("^(true|false)\$", perfilDistribucio, "perfilDistribucio");
+
 // perfilBatSh
 String perfilBatSh = properties.get("perfilBatSh");
 println " + perfilBatSh: " + perfilBatSh;
@@ -359,4 +369,24 @@ if (perfilNotib.equals("false")) {
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- NOTIB START -->", "<!-- NOTIB END -->");
+}
+
+// PerfilDir3Caib
+if (perfilDir3Caib.equals("false")) {
+  println " + Eliminant Modul Dir3Caib ..."
+  // Llevar directori
+  removeModule(artifactId +'-dir3caib', rootDir)
+  // Llevar WEB de EAR pom
+  def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
+  removeTextBetweenTwoStrings(pomEar, "<!-- DIR3CAIB START -->", "<!-- DIR3CAIB END -->");
+}
+
+// PerfilDistribucio
+if (perfilDistribucio.equals("false")) {
+  println " + Eliminant Modul Distribucio ..."
+  // Llevar directori
+  removeModule(artifactId +'-distribucio', rootDir)
+  // Llevar WEB de EAR pom
+  def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
+  removeTextBetweenTwoStrings(pomEar, "<!-- DISTRIBUCIO START -->", "<!-- DISTRIBUCIO END -->");
 }

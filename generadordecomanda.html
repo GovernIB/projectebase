@@ -46,6 +46,8 @@
      var perfilArxiu = document.getElementById("generararxiu").checked;
      var perfilRegistre = document.getElementById("generarregistre").checked;
      var perfilNotib = document.getElementById("generarnotib").checked;
+     var perfilDir3Caib = document.getElementById("generardir3caib").checked;
+     var perfilDistribucio = document.getElementById("generardistribucio").checked;
      var perfilBatSh = document.getElementById("generarbatsh").checked;
 
      var projectnamelowercase = projectname.toLowerCase();
@@ -86,6 +88,8 @@
       + " -DperfilArxiu=" + perfilArxiu
       + " -DperfilRegistre=" + perfilRegistre
       + " -DperfilNotib=" + perfilNotib
+      + " -DperfilDir3Caib=" + perfilDir3Caib
+      + " -DperfilDistribucio=" + perfilDistribucio
       + ((perfilWS == true)?" -DperfilWS=true": "")
       + ((perfilBatSh == true)?" -DperfilBatSh=true": "");
 
@@ -167,6 +171,18 @@
                   <td>Generar Exemple Notib</td>
                   <td>
                     <input size=35  id="generarnotib" checked="false" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Generar Exemple Dir3Caib</td>
+                  <td>
+                    <input size=35  id="generardir3caib" checked="false" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Generar Exemple Distribució</td>
+                  <td>
+                    <input size=35  id="generardistribucio" checked="false" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
                 </tbody>

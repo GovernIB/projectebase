@@ -120,7 +120,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
      "__rootArtifactId__-front", "__rootArtifactId__-apifirmasimple", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
 	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-arxiu", "__rootArtifactId__-registre",
-	 "__rootArtifactId__-notib", "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
+	 "__rootArtifactId__-notib", "__rootArtifactId__-dir3caib", "__rootArtifactId__-distribucio", "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
 
 for(String moduleDir : moduleFolders) {
   File tmp = new File(baseProject, moduleDir);
@@ -210,6 +210,26 @@ def notibFiles = [
 ];
 for(String notibFile : notibFiles) {
     replaceProperties(new File(baseProject, notibFile), false);
+}
+
+// DIR3CAIB - web
+def dir3caibFiles = [
+        "./__rootArtifactId__-dir3caib/src/main/webapp/WEB-INF/web.xml",
+		"./__rootArtifactId__-dir3caib/src/main/resources/dir3caib/Dir3Caib.properties",
+        "./__rootArtifactId__-dir3caib/readme.txt"
+];
+for(String dir3caibFile : dir3caibFiles) {
+    replaceProperties(new File(baseProject, File), false);
+}
+
+// DISTRIBUCIO - web
+def distribucioFiles = [
+        "./__rootArtifactId__-distribucio/src/main/webapp/WEB-INF/web.xml",
+		"./__rootArtifactId__-distribucio/src/main/resources/distribucio/Distribucio.properties",
+        "./__rootArtifactId__-distribucio/readme.txt"
+];
+for(String distribucioFile : distribucioFiles) {
+    replaceProperties(new File(baseProject, distribucioFile), false);
 }
 
 // EJB   
