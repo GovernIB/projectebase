@@ -32,6 +32,12 @@
         <requiredProperty key="perfilNotib">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
+        <requiredProperty key="perfilDir3Caib">
+          <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
+        <requiredProperty key="perfilDistribucio">
+          <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
         <requiredProperty key="perfilBatSh">
           <validationRegex>^(true|false)$</validationRegex>
           <defaultValue>false</defaultValue>
@@ -504,6 +510,108 @@
       </fileSets>
     </module>
     <module id="${rootArtifactId}-notib" dir="__rootArtifactId__-notib" name="${rootArtifactId}-notib">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>readme.txt</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>src/main/webapp</directory>
+          <includes>
+            <include>**/*.css</include>
+            <include>**/*.js</include>
+            <include>**/*.map</include>
+            <include>**/*.ttf</include>
+            <include>**/*.svg</include>
+            <include>**/*.png</include>
+            <include>**/*.otf</include>
+            <include>**/*.woff</include>
+            <include>**/*.woff2</include>
+            <include>**/*.eot</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/webapp</directory>
+          <includes>
+            <include>**/*.xhtml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/webapp/WEB-INF</directory>
+          <includes>
+            <include>beans.xml</include>
+            <include>faces-config.xml</include>
+            <include>web.xml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-dir3caib" dir="__rootArtifactId__-dir3caib" name="${rootArtifactId}-dir3caib">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>readme.txt</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>src/main/webapp</directory>
+          <includes>
+            <include>**/*.css</include>
+            <include>**/*.js</include>
+            <include>**/*.map</include>
+            <include>**/*.ttf</include>
+            <include>**/*.svg</include>
+            <include>**/*.png</include>
+            <include>**/*.otf</include>
+            <include>**/*.woff</include>
+            <include>**/*.woff2</include>
+            <include>**/*.eot</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/webapp</directory>
+          <includes>
+            <include>**/*.xhtml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/webapp/WEB-INF</directory>
+          <includes>
+            <include>beans.xml</include>
+            <include>faces-config.xml</include>
+            <include>web.xml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-distribucio" dir="__rootArtifactId__-distribucio" name="${rootArtifactId}-distribucio">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
           <directory></directory>

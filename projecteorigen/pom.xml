@@ -297,5 +297,6 @@
         <module>projectebase-registre</module>
         <module>projectebase-notib</module>
         <module>projectebase-dir3caib</module>
+        <module>projectebase-distribucio</module>
     </modules>
 </project>
