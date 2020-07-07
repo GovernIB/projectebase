@@ -10,7 +10,7 @@
     <artifactId>projectebase-distribucio</artifactId>
 
     <packaging>war</packaging>
-    <name>ProjecteBase - Distribució</name>
+    <name>ProjecteBase - DISTRIBUCIO</name>
     <description>Mòdul web d'exemple d'integració amb Distribució</description>
 
     <dependencies>

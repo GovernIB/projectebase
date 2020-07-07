@@ -10,7 +10,7 @@
     <artifactId>projectebase-dir3caib</artifactId>
 
     <packaging>war</packaging>
-    <name>ProjecteBase - Dir3CAIB</name>
+    <name>ProjecteBase - DIR3CAIB</name>
     <description>Mòdul web d'exemple d'integració amb Dir3CAIB</description>
 
     <dependencies>
