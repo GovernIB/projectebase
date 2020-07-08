@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controlador per gestionar la creació de notificacions.
+ * Controlador per gestionar la cerca d'organismes amb Dir3Caib
  *
  * @author areus
  */
@@ -33,15 +33,21 @@ public class Dir3Controller implements Serializable {
     @Inject
     private Dir3Service dir3Service;
 
+    // Llistats d'opcions per els selects
     private List<CodigoValor> comunitatsDisponibles;
     private List<CodigoValor> provinciesDisponibles;
     private List<CodigoValor> municipisDisponibles;
     private List<CodigoValor> nivellsDisponibles;
 
+    // Camps del formulari
+    private String denominacio;
+    private String codi;
+    private Object nivell;
     private Object comunitat;
     private Object provincia;
     private Object municipi;
-    private Object nivell;
+    private boolean arrels;
+    private boolean vigents = true;
 
     private List<Nodo> resultatCerca;
 
@@ -54,8 +60,6 @@ public class Dir3Controller implements Serializable {
 
     public void loadProvincies() {
         provinciesDisponibles = comunitat != null ? dir3Service.provinciasComunidad(comunitat) : new ArrayList<>();
-        provincia = null;
-        loadMunicipis();
     }
 
     public void loadMunicipis() {
@@ -64,8 +68,9 @@ public class Dir3Controller implements Serializable {
 
     public void cercarOrganismes() {
         LOG.info("cercarOganismes");
-        resultatCerca = dir3Service.busquedaOrganismos("", "", nivell,
-                comunitat, false, true, provincia, municipi, true);
+        resultatCerca = dir3Service.busquedaOrganismos(codi, denominacio, nivell,
+                comunitat, false, arrels, provincia, municipi, vigents);
+        LOG.info("Resultat: {}", resultatCerca);
     }
 
     // Getters & Setters
@@ -88,6 +93,30 @@ public class Dir3Controller implements Serializable {
 
     public List<Nodo> getResultatCerca() {
         return resultatCerca;
+    }
+
+    public String getDenominacio() {
+        return denominacio;
+    }
+
+    public void setDenominacio(String denominacio) {
+        this.denominacio = denominacio;
+    }
+
+    public String getCodi() {
+        return codi;
+    }
+
+    public void setCodi(String codi) {
+        this.codi = codi;
+    }
+
+    public Object getNivell() {
+        return nivell;
+    }
+
+    public void setNivell(Object nivell) {
+        this.nivell = nivell;
     }
 
     public Object getComunitat() {
@@ -114,11 +143,19 @@ public class Dir3Controller implements Serializable {
         this.municipi = municipi;
     }
 
-    public Object getNivell() {
-        return nivell;
+    public boolean isArrels() {
+        return arrels;
     }
 
-    public void setNivell(Object nivell) {
-        this.nivell = nivell;
+    public void setArrels(boolean arrels) {
+        this.arrels = arrels;
+    }
+
+    public boolean isVigents() {
+        return vigents;
+    }
+
+    public void setVigents(boolean vigents) {
+        this.vigents = vigents;
     }
 }

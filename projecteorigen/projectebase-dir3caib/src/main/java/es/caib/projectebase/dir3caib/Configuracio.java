@@ -30,7 +30,7 @@ public class Configuracio {
     private String baseUrl;
 
     /**
-     * Carrega el fitxer de properties notib/Notib.properties per inicialitzar la configuració.
+     * Carrega el fitxer de properties dir3caib/Dir3Caib.properties per inicialitzar la configuració.
      */
     @PostConstruct
     protected void init() {

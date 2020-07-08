@@ -1,7 +1,7 @@
 
-Mòdul d'exemple per "FER COSES" amb Dir3CAIB 1.0 emprant l'api descrita a:
+Mòdul d'exemple per realitzar cerques d'organismes amb Dir3CAIB 1.0 emprant l'api descrita a:
 
-    https://github.com/GovernIB/dir3caib
+    https://github.com/GovernIB/dir3caib/blob/dir3caib-1.0/doc/pdf/Manual_de_WebServices_i_APIREST_de_DIR3CAIB.pdf
 
 Per provar el plugin:
 
@@ -27,6 +27,4 @@ Per provar el plugin:
                 http://localhost:8080/projectebase-dir3caib
 
 
-L'aplicació bàsicament permet fer coses.......
-
-També permet fer altres coses......
+L'aplicació bàsicament permet fer coses indicar una sèrie de filtres per obtenir una llista d'organismes.

@@ -17,68 +17,103 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <h3>Formulari per seleccionar localitat:</h3>
+                <h3>Cerca d'organismes a DIR3CAIB:</h3>
                 <h:form>
-                    <div class="form-group">
-                        <h:outputLabel for="comunitat">Comunitat Autònoma</h:outputLabel>
-                        <h:selectOneMenu id="comunitat" value="#{dir3Controller.comunitat}"
-                                         styleClass="form-control"
-                                         hideNoSelectionOption="true"
-                                         required="true"
-                                         requiredMessage="Cal seleccionar la comunitat autònoma">
-                            <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni comunitat autònoma --" 
-                                          noSelectionOption="true"/>
-                            <f:selectItems value="#{dir3Controller.comunitatsDisponibles}"
-                                           var="comunitat"
-                                           itemLabel="#{comunitat.descripcion}"
-                                           itemValue="#{comunitat.id}" />
-                            <f:ajax listener="#{dir3Controller.loadProvincies()}" render="provincia municipi"/>
-                        </h:selectOneMenu>
-                        <h:message for="comunitat" errorStyle="color: red"/>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="denominacio">Denominació</h:outputLabel>
+                            <h:inputText id="denominacio" value="#{dir3Controller.denominacio}"
+                                         styleClass="form-control" />
+                            <h:message for="denominacio" errorStyle="color: red"/>
+                        </div>
+                        <div class="form-group col">
+                            <h:outputLabel for="codi">Codi</h:outputLabel>
+                            <h:inputText id="codi" value="#{dir3Controller.codi}"
+                                         styleClass="form-control" />
+                            <h:message for="codi" errorStyle="color: red"/>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <h:outputLabel for="provincia">Província</h:outputLabel>
-                        <h:selectOneMenu id="provincia" value="#{dir3Controller.provincia}"
-                                         styleClass="form-control">
-                            <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni província --" 
-                                          noSelectionOption="true"/>
-                            <f:selectItems value="#{dir3Controller.provinciesDisponibles}"
-                                           var="provincia"
-                                           itemLabel="#{provincia.descripcion}"
-                                           itemValue="#{provincia.id}" />
-                            <f:ajax listener="#{dir3Controller.loadMunicipis()}" render="municipi"/>
-                        </h:selectOneMenu>
-                        <h:message for="provincia" errorStyle="color: red"/>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="nivell">Nivell Administració</h:outputLabel>
+                            <h:selectOneMenu id="nivell" value="#{dir3Controller.nivell}"
+                                             styleClass="form-control" 
+                                             hideNoSelectionOption="true"
+                                             required="true"
+                                             requiredMessage="Cal seleccionar el nivell adminsitratiu">
+                                <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni nivell administratiu --" 
+                                              noSelectionOption="true"/>
+                                <f:selectItems value="#{dir3Controller.nivellsDisponibles}"
+                                               var="nivell"
+                                               itemLabel="#{nivell.descripcion}"
+                                               itemValue="#{nivell.id}" />
+                            </h:selectOneMenu>
+                            <h:message for="nivell" errorStyle="color: red"/>                            
+                        </div>
+                        <div class="form-group col">
+                            <h:outputLabel for="comunitat">Comunitat Autònoma</h:outputLabel>
+                            <h:selectOneMenu id="comunitat" value="#{dir3Controller.comunitat}"
+                                             styleClass="form-control"
+                                             hideNoSelectionOption="true"
+                                             required="true"
+                                             requiredMessage="Cal seleccionar la comunitat autònoma">
+                                <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni comunitat autònoma --" 
+                                              noSelectionOption="true"/>
+                                <f:selectItems value="#{dir3Controller.comunitatsDisponibles}"
+                                               var="comunitat"
+                                               itemLabel="#{comunitat.descripcion}"
+                                               itemValue="#{comunitat.id}" />
+                                <f:ajax listener="#{dir3Controller.loadProvincies()}" render="provincia municipi"/>
+                            </h:selectOneMenu>
+                            <h:message for="comunitat" errorStyle="color: red"/>                            
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <h:outputLabel for="municipi">Municipi</h:outputLabel>
-                        <h:selectOneMenu id="municipi" value="#{dir3Controller.municipi}"
-                                         styleClass="form-control">
-                            <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni municipi --" 
-                                          noSelectionOption="true"/>
-                            <f:selectItems value="#{dir3Controller.municipisDisponibles}"
-                                           var="municipi"
-                                           itemLabel="#{municipi.descripcion}"
-                                           itemValue="#{municipi.id}" />
-                        </h:selectOneMenu>
-                        <h:message for="municipi" errorStyle="color: red"/>
-                        
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="provincia">Província</h:outputLabel>
+                            <h:selectOneMenu id="provincia" value="#{dir3Controller.provincia}"
+                                             disabled="#{empty dir3Controller.provinciesDisponibles}"
+                                             styleClass="form-control">
+                                <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni província --" 
+                                              noSelectionOption="true"/>
+                                <f:selectItems value="#{dir3Controller.provinciesDisponibles}"
+                                               var="provincia"
+                                               itemLabel="#{provincia.descripcion}"
+                                               itemValue="#{provincia.id}" />
+                                <f:ajax listener="#{dir3Controller.loadMunicipis()}" render="municipi"/>
+                            </h:selectOneMenu>
+                            <h:message for="provincia" errorStyle="color: red"/>
+                        </div>
+                        <div class="form-group col">
+                            <h:outputLabel for="municipi">Municipi</h:outputLabel>
+                            <h:selectOneMenu id="municipi" value="#{dir3Controller.municipi}"
+                                             disabled="#{empty dir3Controller.municipisDisponibles}"
+                                             styleClass="form-control">
+                                <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni municipi --" 
+                                              noSelectionOption="true"/>
+                                <f:selectItems value="#{dir3Controller.municipisDisponibles}"
+                                               var="municipi"
+                                               itemLabel="#{municipi.descripcion}"
+                                               itemValue="#{municipi.id}" />
+                            </h:selectOneMenu>
+                            <h:message for="municipi" errorStyle="color: red"/>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <h:outputLabel for="nivell">Nivell Administració</h:outputLabel>
-                        <h:selectOneMenu id="nivell" value="#{dir3Controller.nivell}"
-                                         styleClass="form-control" 
-                                         hideNoSelectionOption="true"
-                                         required="true"
-                                         requiredMessage="Cal seleccionar el nivell adminsitratiu">
-                            <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni nivell administratiu --" 
-                                          noSelectionOption="true"/>
-                            <f:selectItems value="#{dir3Controller.nivellsDisponibles}"
-                                           var="nivell"
-                                           itemLabel="#{nivell.descripcion}"
-                                           itemValue="#{nivell.id}" />
-                        </h:selectOneMenu>
-                        <h:message for="nivell" errorStyle="color: red"/>
+                    <div class="form-row">
+                        <div class="form-group col">                            
+                            <div class="form-check">
+                                <h:selectBooleanCheckbox id="arrels" value="#{dir3Controller.arrels}"
+                                                         styleClass="form-check-input" />
+                                <h:outputLabel for="arrels" styleClass="form-check-label">Organismes arrel</h:outputLabel>
+                            </div>
+                        </div>
+                        <div class="form-group col">
+                            <div class="form-check">
+                                <h:selectBooleanCheckbox id="vigents" value="#{dir3Controller.vigents}"
+                                                         styleClass="form-check-input" />
+                                <h:outputLabel for="vigents" styleClass="form-check-label">Vigents</h:outputLabel>
+                            </div>
+                        </div>
                     </div>
                     <h:commandButton action="#{dir3Controller.cercarOrganismes()}"
                                      styleClass="btn btn-primary"
@@ -95,11 +130,11 @@
                                  value="#{dir3Controller.resultatCerca}" var="resultat">
                         <h:column>
                             <f:facet name="header">Codi</f:facet>
-                            #{resultat.codigo}
+                                #{resultat.codigo}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Denominació</f:facet>
-                            #{resultat.denominacion}
+                                #{resultat.denominacion}
                         </h:column>
                     </h:dataTable>
                 </div>

@@ -12,6 +12,11 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+/**
+ * Implementació de les cridades a l'API REST de Dir3Caib
+ *
+ * @author areus
+ */
 @ApplicationScoped
 public class Dir3ServiceImpl implements Dir3Service {
 
@@ -77,8 +82,8 @@ public class Dir3ServiceImpl implements Dir3Service {
                                          Object codComunidadAutonoma, boolean conOficinas, boolean unidadRaiz,
                                          Object provincia, Object localidad, boolean vigentes) {
         return client.target(baseUrl + BUSQUEDA_ORGANISMOS)
-                .queryParam("codigo", codigo)
-                .queryParam("denominacion", denominacion)
+                .queryParam("codigo", codigo == null ? "" : codigo)
+                .queryParam("denominacion", denominacion == null ? "" : denominacion)
                 .queryParam("codNivelAdministracion", codNivelAdministracion == null ? "" : codNivelAdministracion)
                 .queryParam("codComunidadAutonoma", codComunidadAutonoma == null ? "" : codComunidadAutonoma)
                 .queryParam("conOficinas", conOficinas)

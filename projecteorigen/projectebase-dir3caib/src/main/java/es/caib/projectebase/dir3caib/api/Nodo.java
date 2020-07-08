@@ -3,7 +3,9 @@ package es.caib.projectebase.dir3caib.api;
 import java.util.List;
 
 /**
- * Model emprat per Api Rest Dir3Caib
+ * Model emprat per Api Rest Dir3Caib per retornar organismes.
+ *
+ * @author areus
  */
 public class Nodo extends ObjetoBasico {
 
@@ -87,5 +89,10 @@ public class Nodo extends ObjetoBasico {
 
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+
+    @Override
+    public String toString() {
+        return "Nodo{} " + super.toString();
     }
 }

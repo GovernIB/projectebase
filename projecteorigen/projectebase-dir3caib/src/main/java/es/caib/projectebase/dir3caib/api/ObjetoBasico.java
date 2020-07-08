@@ -1,7 +1,7 @@
 package es.caib.projectebase.dir3caib.api;
 
 /**
- * Model emprat per Api Rest Dir3Caib
+ * Model emprat per Api Rest Dir3Caib per retornar organismes.
  */
 public class ObjetoBasico {
 
@@ -67,5 +67,13 @@ public class ObjetoBasico {
 
     public void setEdpPrincipal(String edpPrincipal) {
         this.edpPrincipal = edpPrincipal;
+    }
+
+    @Override
+    public String toString() {
+        return "ObjetoBasico{" +
+                "codigo='" + codigo + '\'' +
+                ", denominacion='" + denominacion + '\'' +
+                '}';
     }
 }

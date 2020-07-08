@@ -1,7 +1,7 @@
 package es.caib.projectebase.dir3caib.api;
 
 /**
- * Model emprat per Api Rest Dir3Caib
+ * Model emprat per Api Rest Dir3Caib per retornar llistes de valors
  */
 public class CodigoValor {
 
@@ -22,5 +22,13 @@ public class CodigoValor {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "CodigoValor{" +
+                "id=" + id +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
 }

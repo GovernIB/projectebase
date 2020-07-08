@@ -2,6 +2,11 @@ package es.caib.projectebase.dir3caib.api;
 
 import java.util.List;
 
+/**
+ * Subconjunt d'operacions proporcionades per l'API REST de Dir3Caib
+ *
+ * @author areus
+ */
 public interface Dir3Service {
 
     List<CodigoValor> comunidadesAutonomas();
