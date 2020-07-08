@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>projectebase</artifactId>
-        <groupId>es.caib.projectebase</groupId>
-        <version>1.0.0</version>
+        <artifactId>${rootArtifactId}</artifactId>
+        <groupId>${groupId}</groupId>
+        <version>${version}</version>
     </parent>
 
-    <artifactId>projectebase-distribucio</artifactId>
+    <artifactId>${artifactId}</artifactId>
 
     <packaging>war</packaging>
-    <name>ProjecteBase - DISTRIBUCIO</name>
+    <name>${projectname} - DISTRIBUCIO</name>
     <description>Mòdul web d'exemple d'integració amb Distribució</description>
 
     <dependencies>

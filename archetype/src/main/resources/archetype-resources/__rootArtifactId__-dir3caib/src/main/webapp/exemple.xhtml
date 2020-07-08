@@ -1,0 +1,144 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:param name="title" value="Exemple Dir3Caib" />
+    <ui:define name="content">
+        <div class="row">
+            <div class="col">
+                <h:messages id="messages" globalOnly="true" showDetail="true"
+                            errorStyle="color: red"
+                            infoStyle="color: green"
+                            warnStyle="color: yellow"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Cerca d'organismes a DIR3CAIB:</h3>
+                <h:form>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="denominacio">Denominació</h:outputLabel>
+                            <h:inputText id="denominacio" value="#{dir3Controller.denominacio}"
+                                         styleClass="form-control" />
+                            <h:message for="denominacio" errorStyle="color: red"/>
+                        </div>
+                        <div class="form-group col">
+                            <h:outputLabel for="codi">Codi</h:outputLabel>
+                            <h:inputText id="codi" value="#{dir3Controller.codi}"
+                                         styleClass="form-control" />
+                            <h:message for="codi" errorStyle="color: red"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="nivell">Nivell Administració</h:outputLabel>
+                            <h:selectOneMenu id="nivell" value="#{dir3Controller.nivell}"
+                                             styleClass="form-control" 
+                                             hideNoSelectionOption="true"
+                                             required="true"
+                                             requiredMessage="Cal seleccionar el nivell adminsitratiu">
+                                <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni nivell administratiu --" 
+                                              noSelectionOption="true"/>
+                                <f:selectItems value="#{dir3Controller.nivellsDisponibles}"
+                                               var="nivell"
+                                               itemLabel="#{nivell.descripcion}"
+                                               itemValue="#{nivell.id}" />
+                            </h:selectOneMenu>
+                            <h:message for="nivell" errorStyle="color: red"/>                            
+                        </div>
+                        <div class="form-group col">
+                            <h:outputLabel for="comunitat">Comunitat Autònoma</h:outputLabel>
+                            <h:selectOneMenu id="comunitat" value="#{dir3Controller.comunitat}"
+                                             styleClass="form-control"
+                                             hideNoSelectionOption="true"
+                                             required="true"
+                                             requiredMessage="Cal seleccionar la comunitat autònoma">
+                                <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni comunitat autònoma --" 
+                                              noSelectionOption="true"/>
+                                <f:selectItems value="#{dir3Controller.comunitatsDisponibles}"
+                                               var="comunitat"
+                                               itemLabel="#{comunitat.descripcion}"
+                                               itemValue="#{comunitat.id}" />
+                                <f:ajax listener="#{dir3Controller.loadProvincies()}" render="provincia municipi"/>
+                            </h:selectOneMenu>
+                            <h:message for="comunitat" errorStyle="color: red"/>                            
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="provincia">Província</h:outputLabel>
+                            <h:selectOneMenu id="provincia" value="#{dir3Controller.provincia}"
+                                             disabled="#{empty dir3Controller.provinciesDisponibles}"
+                                             styleClass="form-control">
+                                <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni província --" 
+                                              noSelectionOption="true"/>
+                                <f:selectItems value="#{dir3Controller.provinciesDisponibles}"
+                                               var="provincia"
+                                               itemLabel="#{provincia.descripcion}"
+                                               itemValue="#{provincia.id}" />
+                                <f:ajax listener="#{dir3Controller.loadMunicipis()}" render="municipi"/>
+                            </h:selectOneMenu>
+                            <h:message for="provincia" errorStyle="color: red"/>
+                        </div>
+                        <div class="form-group col">
+                            <h:outputLabel for="municipi">Municipi</h:outputLabel>
+                            <h:selectOneMenu id="municipi" value="#{dir3Controller.municipi}"
+                                             disabled="#{empty dir3Controller.municipisDisponibles}"
+                                             styleClass="form-control">
+                                <f:selectItem itemValue="#{null}" itemLabel="-- seleccioni municipi --" 
+                                              noSelectionOption="true"/>
+                                <f:selectItems value="#{dir3Controller.municipisDisponibles}"
+                                               var="municipi"
+                                               itemLabel="#{municipi.descripcion}"
+                                               itemValue="#{municipi.id}" />
+                            </h:selectOneMenu>
+                            <h:message for="municipi" errorStyle="color: red"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">                            
+                            <div class="form-check">
+                                <h:selectBooleanCheckbox id="arrels" value="#{dir3Controller.arrels}"
+                                                         styleClass="form-check-input" />
+                                <h:outputLabel for="arrels" styleClass="form-check-label">Organismes arrel</h:outputLabel>
+                            </div>
+                        </div>
+                        <div class="form-group col">
+                            <div class="form-check">
+                                <h:selectBooleanCheckbox id="vigents" value="#{dir3Controller.vigents}"
+                                                         styleClass="form-check-input" />
+                                <h:outputLabel for="vigents" styleClass="form-check-label">Vigents</h:outputLabel>
+                            </div>
+                        </div>
+                    </div>
+                    <h:commandButton action="#{dir3Controller.cercarOrganismes()}"
+                                     styleClass="btn btn-primary"
+                                     value="Cercar">
+                        <f:ajax execute="@form" render=":resultats @form" />
+                    </h:commandButton>
+                </h:form>
+            </div>
+            <div class="col-md-6">
+                <h3>Resultats de la cerca</h3>
+                <div jsf:id="resultats">
+                    <h:outputText rendered="#{empty dir3Controller.resultatCerca}" value="No s'han trobat resultats" />
+                    <h:dataTable id="resultatList" rendered="#{not empty dir3Controller.resultatCerca}"
+                                 value="#{dir3Controller.resultatCerca}" var="resultat">
+                        <h:column>
+                            <f:facet name="header">Codi</f:facet>
+                                #{resultat.codigo}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Denominació</f:facet>
+                                #{resultat.denominacion}
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

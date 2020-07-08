@@ -8,9 +8,14 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>#{title}</title>
-        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>     
     </h:head>
     <h:body>
+        <script>
+            jsf.ajax.addOnEvent(function(data) {
+                document.body.style.cursor = (data.status === "begin" ? 'wait' : 'default');
+            });
+        </script>
         <div class="container">
             <h1>#{title}</h1>
             <ui:insert name="content"/>

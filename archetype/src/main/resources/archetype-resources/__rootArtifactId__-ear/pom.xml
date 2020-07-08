@@ -85,6 +85,22 @@
             <type>war</type>
         </dependency>
         <!-- NOTIB END -->
+        <!-- DIR3CAIB START -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-dir3caib</artifactId>
+            <version>${version}</version>
+            <type>war</type>
+        </dependency>
+        <!-- DIR3CAIB END -->
+        <!-- DISTRIBUCIO START -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-distribucio</artifactId>
+            <version>${version}</version>
+            <type>war</type>
+        </dependency>
+        <!-- DISTRIBUCIO END -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-api</artifactId>
@@ -194,6 +210,20 @@
                             <contextRoot>/${rootArtifactId}/notib</contextRoot>
                         </webModule>
                         <!-- NOTIB END -->
+                        <!-- DIR3CAIB START -->
+                        <webModule>
+                            <groupId>${groupId}</groupId>
+                            <artifactId>${rootArtifactId}-dir3caib</artifactId>
+                            <contextRoot>/${rootArtifactId}/dir3caib</contextRoot>
+                        </webModule>
+                        <!-- DIR3CAIB END -->
+                        <!-- DISTRIBUCIO START -->
+                        <webModule>
+                            <groupId>${groupId}</groupId>
+                            <artifactId>${rootArtifactId}-distribucio</artifactId>
+                            <contextRoot>/${rootArtifactId}/distribucio</contextRoot>
+                        </webModule>
+                        <!-- DISTRIBUCIO END -->
                         <!-- WS START -->
                         <ejbModule>
                             <groupId>${groupId}</groupId>

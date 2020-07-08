@@ -2,16 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>projectebase</artifactId>
-        <groupId>es.caib.projectebase</groupId>
-        <version>1.0.0</version>
+        <artifactId>${rootArtifactId}</artifactId>
+        <groupId>${groupId}</groupId>
+        <version>${version}</version>
     </parent>
 
-    <artifactId>projectebase-distribucio</artifactId>
+    <artifactId>${artifactId}</artifactId>
 
     <packaging>war</packaging>
-    <name>ProjecteBase - DISTRIBUCIO</name>
-    <description>Mòdul web d'exemple d'integració amb Distribució</description>
+    <name>${projectname} - DIR3CAIB</name>
+    <description>Mòdul web d'exemple d'integració amb Dir3CAIB</description>
 
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
@@ -27,18 +27,14 @@
             <scope>provided</scope>
         </dependency>
         <!--
-        Llibreries per emprar l'api de Distribució.
+        Llibreries per emprar l'api de dir3CAIB.
+        Només en cas d'emprar l'api WS SOAP. L'api REST no té cap llibreria específica.
         -->
-        <dependency>
-            <groupId>es.caib.distribucio</groupId>
-            <artifactId>distribucio-ws-client</artifactId>
-            <version>0.9</version>
-        </dependency>
         <!--
         <dependency>
-            <groupId>es.caib.distribucio</groupId>
-            <artifactId>distribucio-backoffice-utils</artifactId>
-            <version>0.9.28</version>
+            <groupId>es.caib.dir3caib</groupId>
+            <artifactId>dir3caib-ws-api</artifactId>
+            <version>1.0.11</version>
         </dependency>
         -->
     </dependencies>
@@ -56,7 +52,7 @@
     <profiles>
         <profile>
             <!-- Per poder desplegar el WAR de dir3caib en solitari -->
-            <id>distribucio-war-deploy</id>
+            <id>dir3caib-war-deploy</id>
             <build>
                 <plugins>
                     <plugin>

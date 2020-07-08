@@ -219,7 +219,7 @@ def dir3caibFiles = [
         "./__rootArtifactId__-dir3caib/readme.txt"
 ];
 for(String dir3caibFile : dir3caibFiles) {
-    replaceProperties(new File(baseProject, File), false);
+    replaceProperties(new File(baseProject, dir3caibFile), false);
 }
 
 // DISTRIBUCIO - web
