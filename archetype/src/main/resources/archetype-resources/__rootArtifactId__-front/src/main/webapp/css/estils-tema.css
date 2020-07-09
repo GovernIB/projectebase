@@ -3435,7 +3435,7 @@ a.imc-bt-xarxa {
 
 /* titol */
 
-.imc-titol { position: fixed; z-index: 5; top: 0; left: 0; width: 100%; height: 2.5em; padding-left: 4.5em;  background-color: #4dba79; 
+.imc-titol { position: fixed; z-index: 5; top: 0; left: 0; width: 100%; height: 2.5em; padding-left: 4.5em;  background-color: #32814B;
 	margin: 0em auto 0em auto;
 }
 .imc-titol .imc--contingut { position: relative; max-width: 1280px !important; margin: 0; width: calc(100% - 5em);  }
@@ -3508,8 +3508,8 @@ html.imc-menu-visible .imc-marc .imc-marc-menu {
 	transition: transform .2s ease-out;
 }
 
-.imc-marc .imc-cercador { width: 100%; height: 2.5em; padding: 0 1.5em; background-color: #4dba79; }
-.imc-marc .imc-cercador input { width: 15em; height: 2.4em; color: #fff; padding: .2em .4em; background-color: #7dd29f; border-width: .3em !important; border-color: #4dba79 !important; }
+.imc-marc .imc-cercador { width: 100%; height: 2.5em; padding: 0 1.5em; background-color: #32814B; }
+.imc-marc .imc-cercador input { width: 15em; height: 2.4em; color: #fff; padding: .2em .4em; background-color: #7dd29f; border-width: .3em !important; border-color: #32814B !important; }
 .imc-marc .imc-cercador button { width: 4.5em; height: 2.4em; padding: .3em .4em; background-color: rgba(0,0,0,.3); color: white; border: none; }
 
 .imc-marc .imc-cercador input::-webkit-input-placeholder {
@@ -3576,7 +3576,7 @@ html.imc-menu-visible .imc-marc .imc-marc-menu {
 
 	.imc-titol .imc-torna:hover,
 	.imc-titol .imc-torna:focus,
-	.imc-titol .imc-torna:active { background-color: #4dba79; }
+	.imc-titol .imc-torna:active { background-color: #32814B; }
 	
 	.imc-titol .imc-torna::before {
 		content: "";
