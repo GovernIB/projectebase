@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>projectebase-ejb</artifactId>
-    <packaging>jar</packaging>
+    <packaging>ejb</packaging>
     <name>ProjecteBase - EJB</name>
     <description>Mòdul EJB de ProjecteBase</description>
 
@@ -29,13 +29,11 @@
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-commons</artifactId>
-            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-persistence</artifactId>
-            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

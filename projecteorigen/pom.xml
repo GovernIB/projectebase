@@ -17,6 +17,7 @@
         <!-- Propietats que afecten els plugins -->
         <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
         <!-- Versions de JBoss -->
@@ -30,6 +31,41 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <!-- Dependències internes dins el projecte -->
+            <dependency>
+                <groupId>es.caib.projectebase</groupId>
+                <artifactId>projectebase-commons</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>es.caib.projectebase</groupId>
+                <artifactId>projectebase-persistence</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>es.caib.projectebase</groupId>
+                <artifactId>projectebase-ejb</artifactId>
+                <version>1.0.0</version>
+                <type>ejb</type>
+            </dependency>
+            <dependency>
+                <groupId>es.caib.projectebase</groupId>
+                <artifactId>projectebase-back</artifactId>
+                <version>1.0.0</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>es.caib.projectebase</groupId>
+                <artifactId>projectebase-front</artifactId>
+                <version>1.0.0</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>es.caib.projectebase</groupId>
+                <artifactId>projectebase-api</artifactId>
+                <version>1.0.0</version>
+                <type>war</type>
+            </dependency>
             <!-- Definició de les versions de les llibreries, especificacions i eines disponibles dins JBoss -->
             <dependency>
                 <groupId>org.jboss.bom</groupId>
@@ -173,6 +209,8 @@
                         <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
                         <!-- Longitut màxima de la revisió -->
                         <shortRevisionLength>8</shortRevisionLength>
+                        <!-- Valor de la revisió si no s'ha configurat bé el sistema de control de versions -->
+                        <revisionOnScmFailure>SCM_FAIL</revisionOnScmFailure>
                     </configuration>
                 </plugin>
                 <!-- Plugin per permetre desplegar l'aplicació a un sevidor d'aplicacions local -->

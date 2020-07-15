@@ -34,14 +34,12 @@
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-ejb</artifactId>
-            <version>1.0.0</version>
             <type>ejb</type>
         </dependency>
         <!-- BACK START -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-back</artifactId>
-            <version>1.0.0</version>
             <type>war</type>
         </dependency>
         <!-- BACK END -->
@@ -49,7 +47,6 @@
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-front</artifactId>
-            <version>1.0.0</version>
             <type>war</type>
         </dependency>
         <!-- FRONT END -->
@@ -104,7 +101,6 @@
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-api</artifactId>
-            <version>1.0.0</version>
             <type>war</type>
         </dependency>
         <!--
@@ -116,12 +112,10 @@
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-persistence</artifactId>
-            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-commons</artifactId>
-            <version>1.0.0</version>
         </dependency>
         <!-- WS START -->
         <!-- WS de ProjecteBase -->
@@ -148,7 +142,7 @@
                     <generateApplicationXml>true</generateApplicationXml>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <includeLibInApplicationXml>false</includeLibInApplicationXml>
-                    <!--suppress UnresolvedMavenProperty --><!-- Nom mòduls d'acord amb punt 4.2 de l'Estàndard CAIB -->
+                    <!-- Nom mòduls d'acord amb punt 4.2 de l'Estàndard CAIB -->
                     <outputFileNameMapping>@{artifactId}@-@{version}@.@{extension}@</outputFileNameMapping>
                     <version>8</version>
                     <archive>
@@ -252,38 +246,11 @@
                     </deployables>
                 </configuration>
             </plugin>
+            <!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <!-- Garantir que es fixa la variable d'entorn JBOSS_HOME -->
-        <profile>
-            <id>fix JBOSS_HOME</id>
-            <activation>
-                <property>
-                    <name>!env.JBOSS_HOME</name>
-                </property>
-            </activation>
-            <properties>
-                <env.JBOSS_HOME>HA DE FIXAR LA VARIABLE D'ENTORN JBOSS_HOME</env.JBOSS_HOME>
-            </properties>
-        </profile>
-        <profile>
-            <id>revisionnumber</id>
-            <activation>
-                <property>
-                    <name>revisionnumber</name>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>buildnumber-maven-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

@@ -29,7 +29,6 @@
         <dependency>
             <artifactId>projectebase-commons</artifactId>
             <groupId>es.caib.projectebase</groupId>
-            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <!-- Anotacions de documentació de openapi -->

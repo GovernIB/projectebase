@@ -29,19 +29,17 @@
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-commons</artifactId>
-            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-persistence</artifactId>
-            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-ejb</artifactId>
-            <version>1.0.0</version>
+            <type>ejb</type>
             <scope>provided</scope>
         </dependency>
         <!-- Anotacions de documentació de openapi -->
@@ -83,8 +81,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>${project.build.directory}/openapi</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
             </plugin>
-            <!-- Genera el descriptor openapi.json de forma estàtica per posar-lo a l'arrel del WAR -->
+            <!-- Genera el descriptor openapi.json de forma estàtica després el posarem l'arrel del WAR -->
             <plugin>
                 <groupId>org.apache.geronimo</groupId>
                 <artifactId>geronimo-openapi-maven-plugin</artifactId>
@@ -100,7 +105,7 @@
                                 <endpointClass>es.caib.projectebase.api.services.UnitatOrganicaResource</endpointClass>
                                 <endpointClass>es.caib.projectebase.api.services.ProcedimentResource</endpointClass>
                             </endpointClasses>
-                            <output>${project.build.directory}/${project.build.finalName}/openapi.json</output>
+                            <output>${project.build.directory}/openapi/openapi.json</output>
                             <info>
                                 <version>${project.version}</version>
                                 <title>${project.name}</title>
@@ -169,7 +174,7 @@
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
                         <configuration>
-                            <webResources>
+                            <webResources combine.children="append">
                                 <resource>
                                     <directory>${project.build.directory}/swagger-ui-${swagger-ui.version}/dist</directory>
                                 </resource>
