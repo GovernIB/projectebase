@@ -12,6 +12,11 @@
     <name>ProjecteBase - PERSISTENCE</name>
     <description>Capa de persistència de ProjecteBase</description>
 
+    <properties>
+        <!-- A desenvolupament mostrar sql, per producció activar profile produccio -->
+        <persistenceXml.hibernate.showSql>true</persistenceXml.hibernate.showSql>
+    </properties>
+
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
@@ -60,9 +65,22 @@
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
+        <resources>
+            <!-- Activam filtre per fer substitucions al fitxer persistence.xml -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
     <profiles>
+        <profile>
+            <id>produccio</id>
+            <properties>
+                <persistenceXml.hibernate.showSql>false</persistenceXml.hibernate.showSql>
+            </properties>
+        </profile>
         <!-- Realitza els tests arrancant automàticament un JBoss ubicat a la variable d'entorn JBOSS_HOME -->
         <profile>
             <id>arq-jboss-managed</id>

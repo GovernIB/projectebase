@@ -53,7 +53,7 @@
         <resources>
             <!-- Activam filtre per fer substitucions al fitxer Version.properties -->
             <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>

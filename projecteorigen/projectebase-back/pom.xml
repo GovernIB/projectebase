@@ -12,6 +12,11 @@
     <name>ProjecteBase - BACK</name>
     <description>Backoffice de ProjecteBase, amb JSF+Primefaces</description>
 
+    <properties>
+        <!-- Per defecte emprar Development, per producíó activar profile produccio -->
+        <webXml.faces.projectStage>Development</webXml.faces.projectStage>
+    </properties>
+
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
@@ -65,7 +70,19 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>produccio</id>
+            <properties>
+                <webXml.faces.projectStage>Production</webXml.faces.projectStage>
+            </properties>
+        </profile>
+    </profiles>
 </project>
