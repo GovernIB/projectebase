@@ -226,6 +226,8 @@ for(String dir3caibFile : dir3caibFiles) {
 def distribucioFiles = [
         "./__rootArtifactId__-distribucio/src/main/webapp/WEB-INF/web.xml",
 		"./__rootArtifactId__-distribucio/src/main/resources/distribucio/Distribucio.properties",
+		"./__rootArtifactId__-distribucio/src/main/webapp/exemple.xhtml",
+		"./__rootArtifactId__-distribucio/src/main/java/distribucio/BustiaController.java",
         "./__rootArtifactId__-distribucio/readme.txt"
 ];
 for(String distribucioFile : distribucioFiles) {

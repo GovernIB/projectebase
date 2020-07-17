@@ -23,9 +23,13 @@ import java.util.List;
 @ApplicationScoped
 public class Dir3ServiceImpl implements Dir3Service {
 
-    private final String baseUrl;
+    private String baseUrl;
     private Client client;
 
+    protected Dir3ServiceImpl() {
+    	
+    }
+    
     @Inject
     public Dir3ServiceImpl(Configuracio configuracio) {
         baseUrl = configuracio.getBaseUrl();

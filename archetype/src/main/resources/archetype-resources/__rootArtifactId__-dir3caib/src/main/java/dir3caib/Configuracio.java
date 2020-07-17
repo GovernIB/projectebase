@@ -8,13 +8,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.faces.annotation.FacesConfig;
-import javax.inject.Named;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
 
 /**
  * Configuració de l'exemple de Dir3Caib. Accedeix al fitxer dir3caib/Dir3Caib.properties per llegir les propietats
