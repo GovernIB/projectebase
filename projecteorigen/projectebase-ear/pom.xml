@@ -156,12 +156,14 @@
                         <ejbModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-ejb</artifactId>
+                            <bundleFileName>projectebase-ejb.jar</bundleFileName>
                         </ejbModule>
                         <!-- BACK START -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-back</artifactId>
                             <contextRoot>/projectebaseback</contextRoot>
+                            <bundleFileName>projectebase-back.war</bundleFileName>
                         </webModule>
                         <!-- BACK END -->
                         <!-- FRONT START -->
@@ -169,18 +171,21 @@
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-front</artifactId>
                             <contextRoot>/projectebasefront</contextRoot>
+                            <bundleFileName>projectebase-front.war</bundleFileName>
                         </webModule>
                         <!-- FRONT END -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-api</artifactId>
                             <contextRoot>/projectebase/api</contextRoot>
+                            <bundleFileName>projectebase-api.war</bundleFileName>
                         </webModule>
                         <!-- APIFIRMASIMPLE START -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-apifirmasimple</artifactId>
                             <contextRoot>/projectebase/apifirmasimple</contextRoot>
+                            <bundleFileName>projectebase-apifirmasimple.war</bundleFileName>
                         </webModule>
                         <!-- APIFIRMASIMPLE END -->
                         <!-- ARXIU START -->
@@ -188,6 +193,7 @@
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-arxiu</artifactId>
                             <contextRoot>/projectebase/arxiu</contextRoot>
+                            <bundleFileName>projectebase-arxiu.war</bundleFileName>
                         </webModule>
                         <!-- ARXIU END -->
                         <!-- REGISTRE START -->
@@ -195,6 +201,7 @@
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-registre</artifactId>
                             <contextRoot>/projectebase/registre</contextRoot>
+                            <bundleFileName>projectebase-registre.war</bundleFileName>
                         </webModule>
                         <!-- REGISTRE END -->
                         <!-- NOTIB START -->
@@ -202,6 +209,7 @@
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-notib</artifactId>
                             <contextRoot>/projectebase/notib</contextRoot>
+                            <bundleFileName>projectebase-notib.war</bundleFileName>
                         </webModule>
                         <!-- NOTIB END -->
                         <!-- DIR3CAIB START -->
@@ -209,6 +217,7 @@
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-dir3caib</artifactId>
                             <contextRoot>/projectebase/dir3caib</contextRoot>
+                            <bundleFileName>projectebase-dir3caib.war</bundleFileName>
                         </webModule>
                         <!-- DIR3CAIB END -->
                         <!-- DISTRIBUCIO START -->
@@ -216,12 +225,14 @@
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-distribucio</artifactId>
                             <contextRoot>/projectebase/distribucio</contextRoot>
+                            <bundleFileName>projectebase-distribucio.war</bundleFileName>
                         </webModule>
                         <!-- DISTRIBUCIO END -->
                         <!-- WS START -->
                         <ejbModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-ws-server</artifactId>
+                            <bundleFileName>projectebase-ws-server.jar</bundleFileName>
                         </ejbModule>
                         <!-- WS END -->
                     </modules>
