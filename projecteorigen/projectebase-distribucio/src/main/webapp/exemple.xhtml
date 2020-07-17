@@ -8,6 +8,7 @@
     <ui:define name="metadata">
         <f:metadata>
             <f:importConstants type="es.caib.projectebase.distribucio.TipusAnotacio" var="tipusAnotacio" />
+            <f:importConstants type="es.caib.projectebase.distribucio.IdiomaAnotacio" var="idiomaAnotacio" />
         </f:metadata>
     </ui:define>
 
@@ -20,7 +21,7 @@
             </div>
         </div>
 
-        <h:form>
+        <h:form id="bustiaForm" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6">
                     <h3>Dades de l'anotació:</h3>
@@ -40,11 +41,26 @@
                             </fieldset>
                         </div>
                         <div class="form-group col">
-                            <h:outputLabel for="extracte">Extracte</h:outputLabel>
-                            <h:inputText id="extracte" value="#{bustiaController.model.extracte}"
-                                styleClass="form-control" />
-                            <h:message for="extracte" errorStyle="color: red" />
+                            <fieldset>
+                                <legend class="col-form-label">Idioma</legend>
+                                <ui:repeat id="idiomaRadio" value="#{idiomaAnotacio.values()}" var="idioma">
+                                    <div class="form-check">
+                                        <h:selectOneRadio id="idioma" group="idiomaGroup"
+                                            value="#{bustiaController.model.idioma}" styleClass="form-check-input">
+                                            <f:selectItem itemValue="${idioma}" />
+                                        </h:selectOneRadio>
+                                        <h:outputLabel for="idioma" styleClass="form-check-label"
+                                            value="#{idioma.label}" />
+                                    </div>
+                                </ui:repeat>
+                            </fieldset>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="extracte">Extracte</h:outputLabel>
+                        <h:inputTextarea id="extracte" value="#{bustiaController.model.extracte}" rows="3"
+                            styleClass="form-control" />
+                        <h:message for="extracte" errorStyle="color: red" />
                     </div>
                     <div class="form-row">
                         <div class="form-group col">
@@ -88,24 +104,26 @@
                         </div>
                         <div class="form-group col">
                             <h:outputLabel for="interessatNom">Nom</h:outputLabel>
-                            <h:inputText id="interessatNom" value="#{bustiaController.model.interessatNom}" styleClass="form-control" />
+                            <h:inputText id="interessatNom" value="#{bustiaController.model.interessatNom}"
+                                styleClass="form-control" />
                             <h:message for="interessatNom" errorStyle="color: red" />
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col">
                             <h:outputLabel for="interessatPrimerLlinatge">Primer llinatge</h:outputLabel>
-                            <h:inputText id="interessatPrimerLlinatge" value="#{bustiaController.model.interessatPrimerLlinatge}"
-                                styleClass="form-control" />
+                            <h:inputText id="interessatPrimerLlinatge"
+                                value="#{bustiaController.model.interessatPrimerLlinatge}" styleClass="form-control" />
                             <h:message for="interessatPrimerLlinatge" errorStyle="color: red" />
                         </div>
                         <div class="form-group col">
                             <h:outputLabel for="interessatSegonLlinatge">Segon llinatge</h:outputLabel>
-                            <h:inputText id="interessatSegonLlinatge" value="#{bustiaController.model.interessatSegonLlinatge}" styleClass="form-control" />
+                            <h:inputText id="interessatSegonLlinatge"
+                                value="#{bustiaController.model.interessatSegonLlinatge}" styleClass="form-control" />
                             <h:message for="interessatSegonLlinatge" errorStyle="color: red" />
                         </div>
                     </div>
-                    <div class="form-row">                        
+                    <div class="form-row">
                         <div class="form-group col">
                             <h:outputLabel for="interessatPais">País</h:outputLabel>
                             <h:inputText id="interessatPais" value="#{bustiaController.model.interessatPais}"
@@ -114,11 +132,12 @@
                         </div>
                         <div class="form-group col">
                             <h:outputLabel for="interessatProvincia">Provincia</h:outputLabel>
-                            <h:inputText id="interessatProvincia" value="#{bustiaController.model.interessatProvincia}" styleClass="form-control" />
+                            <h:inputText id="interessatProvincia" value="#{bustiaController.model.interessatProvincia}"
+                                styleClass="form-control" />
                             <h:message for="interessatProvincia" errorStyle="color: red" />
                         </div>
                     </div>
-                    <div class="form-row">                        
+                    <div class="form-row">
                         <div class="form-group col">
                             <h:outputLabel for="interessatMunicipi">Municipi</h:outputLabel>
                             <h:inputText id="interessatMunicipi" value="#{bustiaController.model.interessatMunicipi}"
@@ -127,22 +146,31 @@
                         </div>
                         <div class="form-group col">
                             <h:outputLabel for="interessatAdresa">Adreça</h:outputLabel>
-                            <h:inputText id="interessatAdresa" value="#{bustiaController.model.interessatAdresa}" styleClass="form-control" />
+                            <h:inputText id="interessatAdresa" value="#{bustiaController.model.interessatAdresa}"
+                                styleClass="form-control" />
                             <h:message for="interessatAdresa" errorStyle="color: red" />
                         </div>
                     </div>
-                    <div class="form-row">                        
+                    <div class="form-row">
                         <div class="form-group col">
                             <h:outputLabel for="interessatCodiPostal">Codi Postal</h:outputLabel>
-                            <h:inputText id="interessatCodiPostal" value="#{bustiaController.model.interessatCodiPostal}"
-                                styleClass="form-control" />
+                            <h:inputText id="interessatCodiPostal"
+                                value="#{bustiaController.model.interessatCodiPostal}" styleClass="form-control" />
                             <h:message for="interessatCodiPostal" errorStyle="color: red" />
                         </div>
                         <div class="form-group col">
                             <h:outputLabel for="interessatEmail">Email</h:outputLabel>
-                            <h:inputText id="interessatEmail" value="#{bustiaController.model.interessatEmail}" styleClass="form-control" />
+                            <h:inputText id="interessatEmail" value="#{bustiaController.model.interessatEmail}"
+                                styleClass="form-control" />
                             <h:message for="interessatEmail" errorStyle="color: red" />
                         </div>
+                    </div>
+                    <h3>Documentació a annexar</h3>
+                    <div class="form-group">
+                        <h:outputLabel for="annex">Annex</h:outputLabel>
+                        <h:inputFile id="annex" value="#{bustiaController.model.annex}"
+                                     styleClass="form-control-file"/>
+                        <h:message for="annex" errorStyle="color: red"/>
                     </div>
                 </div>
             </div>

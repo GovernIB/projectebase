@@ -1,28 +1,40 @@
 package es.caib.projectebase.distribucio;
 
+import javax.servlet.http.Part;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-public class BustiaModel implements Serializable {
+/**
+ * Encapçula les dades del formulari d'una anotació, amb les seves validacions corresponents.
+ *
+ * @author areus
+ */
+public class AnotacioModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private TipusAnotacio tipus;
-    private String extracte;
-    private String entitat;
-    private String unitat;
-    private String oficina;
-    private String llibre;
-         
-    private String interessatNif;
-    private String interessatNom;
-    private String interessatPrimerLlinatge;
-    private String interessatSegonLlinatge;
-    private String interessatPais;
-    private String interessatProvincia;
-    private String interessatMunicipi;
-    private String interessatAdresa;
-    private String interessatCodiPostal;
-    private String interessatEmail;
+    @NotNull private TipusAnotacio tipus;
+    @NotNull private IdiomaAnotacio idioma;
+    @NotEmpty @Size(max=240) private String extracte;
+    @NotEmpty private String entitat;
+    @NotEmpty private String unitat;
+    @NotEmpty private String oficina;
+    @NotEmpty private String llibre;
+
+    @NotEmpty private String interessatNif;
+    @NotEmpty private String interessatNom;
+    @NotEmpty private String interessatPrimerLlinatge;
+    @NotEmpty private String interessatSegonLlinatge;
+    @NotEmpty private String interessatPais;
+    @NotEmpty private String interessatProvincia;
+    @NotEmpty private String interessatMunicipi;
+    @NotEmpty private String interessatAdresa;
+    @NotEmpty private String interessatCodiPostal;
+    @NotEmpty private String interessatEmail;
+
+    private Part annex;
 
     // Getters & Setters
 
@@ -32,6 +44,14 @@ public class BustiaModel implements Serializable {
 
     public void setTipus(TipusAnotacio tipus) {
         this.tipus = tipus;
+    }
+
+    public IdiomaAnotacio getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(IdiomaAnotacio idioma) {
+        this.idioma = idioma;
     }
 
     public String getExtracte() {
@@ -152,5 +172,13 @@ public class BustiaModel implements Serializable {
 
     public void setInteressatEmail(String interessatEmail) {
         this.interessatEmail = interessatEmail;
+    }
+
+    public Part getAnnex() {
+        return annex;
+    }
+
+    public void setAnnex(Part annex) {
+        this.annex = annex;
     }
 }

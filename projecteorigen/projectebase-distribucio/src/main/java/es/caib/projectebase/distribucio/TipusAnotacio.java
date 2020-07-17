@@ -1,5 +1,8 @@
 package es.caib.projectebase.distribucio;
 
+/**
+ * Mapeja els tipus d'anotació emprat per l'API amb una enumeració
+ */
 public enum TipusAnotacio {
 
     ENTRADA("E"),

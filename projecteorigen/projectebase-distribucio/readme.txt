@@ -1,5 +1,5 @@
 
-Mòdul d'exemple per "FER COSES" amb Distribució 0.9 emprant l'api descrita a:
+Mòdul d'exemple per enviar anotacvions amb l'API de Bústica de Distribució 0.9 emprant l'api descrita a:
 
     https://github.com/GovernIB/distribucio
 
@@ -27,6 +27,4 @@ Per provar el plugin:
                 http://localhost:8080/projectebase-distribucio
 
 
-L'aplicació bàsicament permet fer coses.......
-
-També permet fer altres coses......
+L'aplicació bàsicament permet introduir les dades bàsiques d'una anotació amb un interessat i un annex.
