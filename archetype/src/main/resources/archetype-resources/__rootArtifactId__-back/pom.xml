@@ -29,19 +29,17 @@
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-commons</artifactId>
-            <version>${version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-persistence</artifactId>
-            <version>${version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-ejb</artifactId>
-            <version>${version}</version>
+            <type>ejb</type>
             <scope>provided</scope>
         </dependency>
         <!-- Llibreries de keycloak -->
@@ -67,6 +65,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                </configuration>
             </plugin>
         </plugins>
     </build>

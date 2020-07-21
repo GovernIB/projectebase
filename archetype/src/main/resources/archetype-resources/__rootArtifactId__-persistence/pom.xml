@@ -29,7 +29,6 @@
         <dependency>
             <artifactId>${rootArtifactId}-commons</artifactId>
             <groupId>${groupId}</groupId>
-            <version>${version}</version>
             <scope>provided</scope>
         </dependency>
         <!-- Anotacions de documentació de openapi -->
@@ -61,6 +60,13 @@
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
+        <resources>
+            <!-- Activam filtre per fer substitucions al fitxer persistence.xml -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
     <profiles>

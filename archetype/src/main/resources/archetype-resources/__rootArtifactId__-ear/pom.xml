@@ -34,14 +34,12 @@
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-ejb</artifactId>
-            <version>${version}</version>
             <type>ejb</type>
         </dependency>
         <!-- BACK START -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-back</artifactId>
-            <version>${version}</version>
             <type>war</type>
         </dependency>
         <!-- BACK END -->
@@ -49,7 +47,6 @@
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-front</artifactId>
-            <version>${version}</version>
             <type>war</type>
         </dependency>
         <!-- FRONT END -->
@@ -104,7 +101,6 @@
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-api</artifactId>
-            <version>${version}</version>
             <type>war</type>
         </dependency>
         <!--
@@ -116,12 +112,10 @@
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-persistence</artifactId>
-            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-commons</artifactId>
-            <version>${version}</version>
         </dependency>
         <!-- WS START -->
         <!-- WS de ${projectname} -->
@@ -148,7 +142,7 @@
                     <generateApplicationXml>true</generateApplicationXml>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <includeLibInApplicationXml>false</includeLibInApplicationXml>
-                    <!--suppress UnresolvedMavenProperty --><!-- Nom mòduls d'acord amb punt 4.2 de l'Estàndard CAIB -->
+                    <!-- Nom mòduls d'acord amb punt 4.2 de l'Estàndard CAIB -->
                     <outputFileNameMapping>@{artifactId}@-@{version}@.@{extension}@</outputFileNameMapping>
                     <version>8</version>
                     <archive>
@@ -162,12 +156,14 @@
                         <ejbModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-ejb</artifactId>
+                            <bundleFileName>${rootArtifactId}-ejb.jar</bundleFileName>
                         </ejbModule>
                         <!-- BACK START -->
                         <webModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-back</artifactId>
                             <contextRoot>/${rootArtifactId}back</contextRoot>
+                            <bundleFileName>${rootArtifactId}-back.war</bundleFileName>
                         </webModule>
                         <!-- BACK END -->
                         <!-- FRONT START -->
@@ -175,18 +171,21 @@
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-front</artifactId>
                             <contextRoot>/${rootArtifactId}front</contextRoot>
+                            <bundleFileName>${rootArtifactId}-front.war</bundleFileName>
                         </webModule>
                         <!-- FRONT END -->
                         <webModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-api</artifactId>
                             <contextRoot>/${rootArtifactId}/api</contextRoot>
+                            <bundleFileName>${rootArtifactId}-api.war</bundleFileName>
                         </webModule>
                         <!-- APIFIRMASIMPLE START -->
                         <webModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-apifirmasimple</artifactId>
                             <contextRoot>/${rootArtifactId}/apifirmasimple</contextRoot>
+                            <bundleFileName>${rootArtifactId}-apifirmasimple.war</bundleFileName>
                         </webModule>
                         <!-- APIFIRMASIMPLE END -->
                         <!-- ARXIU START -->
@@ -194,6 +193,7 @@
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-arxiu</artifactId>
                             <contextRoot>/${rootArtifactId}/arxiu</contextRoot>
+                            <bundleFileName>${rootArtifactId}-arxiu.war</bundleFileName>
                         </webModule>
                         <!-- ARXIU END -->
                         <!-- REGISTRE START -->
@@ -201,6 +201,7 @@
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-registre</artifactId>
                             <contextRoot>/${rootArtifactId}/registre</contextRoot>
+                            <bundleFileName>${rootArtifactId}-registre.war</bundleFileName>
                         </webModule>
                         <!-- REGISTRE END -->
                         <!-- NOTIB START -->
@@ -208,6 +209,7 @@
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-notib</artifactId>
                             <contextRoot>/${rootArtifactId}/notib</contextRoot>
+                            <bundleFileName>${rootArtifactId}-notib.war</bundleFileName>
                         </webModule>
                         <!-- NOTIB END -->
                         <!-- DIR3CAIB START -->
@@ -215,6 +217,7 @@
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-dir3caib</artifactId>
                             <contextRoot>/${rootArtifactId}/dir3caib</contextRoot>
+                            <bundleFileName>${rootArtifactId}-dir3caib.war</bundleFileName>
                         </webModule>
                         <!-- DIR3CAIB END -->
                         <!-- DISTRIBUCIO START -->
@@ -222,12 +225,14 @@
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-distribucio</artifactId>
                             <contextRoot>/${rootArtifactId}/distribucio</contextRoot>
+                            <bundleFileName>${rootArtifactId}-distribucio.war</bundleFileName>
                         </webModule>
                         <!-- DISTRIBUCIO END -->
                         <!-- WS START -->
                         <ejbModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-ws-server</artifactId>
+                            <bundleFileName>${rootArtifactId}-ws-server.jar</bundleFileName>
                         </ejbModule>
                         <!-- WS END -->
                     </modules>
@@ -252,38 +257,11 @@
                     </deployables>
                 </configuration>
             </plugin>
+            <!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <!-- Garantir que es fixa la variable d'entorn JBOSS_HOME -->
-        <profile>
-            <id>fix JBOSS_HOME</id>
-            <activation>
-                <property>
-                    <name>!env.JBOSS_HOME</name>
-                </property>
-            </activation>
-            <properties>
-                <env.JBOSS_HOME>HA DE FIXAR LA VARIABLE D'ENTORN JBOSS_HOME</env.JBOSS_HOME>
-            </properties>
-        </profile>
-        <profile>
-            <id>revisionnumber</id>
-            <activation>
-                <property>
-                    <name>revisionnumber</name>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>buildnumber-maven-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

@@ -31,10 +31,9 @@
         <param-value>server</param-value>
     </context-param>
     <!-- Canvia el mode en que es generen certs errors per ajudar al desenvolupament -->
-    <!-- TODO: Aquest s'hauria de filtrar amb el maven per generar l'aplicació de producció -->
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
+        <param-value>${symbol_dollar}{webXml.faces.projectStage}</param-value>
     </context-param>
     <!-- Fa que els comentaris dins els xhtml no es processin. -->
     <context-param>

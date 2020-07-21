@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>${artifactId}</artifactId>
-    <packaging>jar</packaging>
+    <packaging>ejb</packaging>
     <name>${projectname} - EJB</name>
     <description>Mòdul EJB de ${projectname}</description>
 
@@ -29,13 +29,11 @@
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-commons</artifactId>
-            <version>${version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-persistence</artifactId>
-            <version>${version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

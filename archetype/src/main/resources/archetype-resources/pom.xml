@@ -17,6 +17,7 @@
         <!-- Propietats que afecten els plugins -->
         <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
         <!-- Versions de JBoss -->
@@ -27,9 +28,48 @@
         <keycloak.version>6.0.1</keycloak.version>
         <primefaces.version>7.0</primefaces.version>
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
+        <!-- Propietats emprades als descriptors en mode Desenvolupament. -->
+        <!-- Es poden activar els valors de producció activatn el profile -Pproduccio -->
+        <webXml.faces.projectStage>Development</webXml.faces.projectStage>
+        <persistenceXml.hibernate.showSql>true</persistenceXml.hibernate.showSql>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <!-- Dependències internes dins el projecte -->
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-commons</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-persistence</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-ejb</artifactId>
+                <version>${version}</version>
+                <type>ejb</type>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-back</artifactId>
+                <version>${version}</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-front</artifactId>
+                <version>${version}</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>${rootArtifactId}-api</artifactId>
+                <version>${version}</version>
+                <type>war</type>
+            </dependency>
             <!-- Definició de les versions de les llibreries, especificacions i eines disponibles dins JBoss -->
             <dependency>
                 <groupId>org.jboss.bom</groupId>
@@ -100,11 +140,11 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M4</version>
+                    <version>3.0.0-M5</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>3.0.0-M4</version>
+                    <version>3.0.0-M5</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -112,14 +152,11 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-ejb-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.3</version>
-                    <configuration>
-                        <useCache>true</useCache>
-                    </configuration>
+                    <version>3.3.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-ear-plugin</artifactId>
@@ -131,13 +168,13 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.9.0</version>
+                    <version>3.9.1</version>
                 </plugin>
                 <!-- Altres plugins generals -->
                 <plugin>
                     <groupId>com.googlecode.maven-download-plugin</groupId>
                     <artifactId>download-maven-plugin</artifactId>
-                    <version>1.5.0</version>
+                    <version>1.6.0</version>
                 </plugin>
                 <plugin>
                     <groupId>com.google.code.maven-replacer-plugin</groupId>
@@ -173,13 +210,15 @@
                         <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
                         <!-- Longitut màxima de la revisió -->
                         <shortRevisionLength>8</shortRevisionLength>
+                        <!-- Valor de la revisió si no s'ha configurat bé el sistema de control de versions -->
+                        <revisionOnScmFailure>SCM_FAIL</revisionOnScmFailure>
                     </configuration>
                 </plugin>
                 <!-- Plugin per permetre desplegar l'aplicació a un sevidor d'aplicacions local -->
                 <plugin>
                     <groupId>org.codehaus.cargo</groupId>
                     <artifactId>cargo-maven2-plugin</artifactId>
-                    <version>1.7.11</version>
+                    <version>1.7.15</version>
                     <configuration>
                         <!-- Només estarà activat als mòduls que volem que es despleguin, com l'EAR -->
                         <skip>true</skip>
@@ -255,6 +294,16 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <!-- Profile per fixar valors de producció als descriptors -->
+            <id>produccio</id>
+            <properties>
+                <webXml.faces.projectStage>Production</webXml.faces.projectStage>
+                <persistenceXml.hibernate.showSql>false</persistenceXml.hibernate.showSql>
+            </properties>
+        </profile>
+    </profiles>
     <repositories>
         <!-- Repositori oficial de JBoss -->
         <repository>

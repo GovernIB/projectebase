@@ -6,7 +6,7 @@
         <auth-server-url>http://localhost:8180/auth</auth-server-url>
         <ssl-required>EXTERNAL</ssl-required>
     </realm>
-    <secure-deployment name="${rootArtifactId}-back-1.0.0.war">
+    <secure-deployment name="${rootArtifactId}-back.war">
         <realm>GOIB</realm>
         <resource>goib-default</resource>
         <use-resource-role-mappings>true</use-resource-role-mappings>
@@ -14,7 +14,7 @@
         <principal-attribute>preferred_username</principal-attribute>
         <verify-token-audience>true</verify-token-audience>
     </secure-deployment>
-    <secure-deployment name="${rootArtifactId}-api-1.0.0.war">
+    <secure-deployment name="${rootArtifactId}-api.war">
         <realm>GOIB</realm>
         <resource>goib-ws</resource>
         <use-resource-role-mappings>true</use-resource-role-mappings>
