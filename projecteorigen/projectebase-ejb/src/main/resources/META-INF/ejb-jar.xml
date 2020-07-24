@@ -5,4 +5,16 @@
         http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd"
          version="3.2">
 
+    <!--
+    Aquest descriptor es podria llevar simplement anotant la classe ServiceException amb
+    @ApplicationException(rollback=true), però atès que aquesta classe està definida a la capa
+    de serveis així evitam que tengui dependències sobre classes de l'API dels EJBs
+    -->
+    <assembly-descriptor>
+        <application-exception>
+            <exception-class>es.caib.projectebase.service.exception.ServiceException</exception-class>
+            <rollback>true</rollback>
+        </application-exception>
+    </assembly-descriptor>
+
 </ejb-jar>

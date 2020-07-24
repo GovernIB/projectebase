@@ -1,8 +1,7 @@
-package es.caib.projectebase.persistence;
+package es.caib.projectebase.persistence.model;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,11 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -28,6 +22,8 @@ import java.util.Objects;
  * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
+ *
+ * TODO llevar etiquetes openapi
  */
 @Entity
 @SequenceGenerator(name = "procediment-sequence", sequenceName = "PBS_PROCEDIMENT_SEQ", allocationSize = 1)
@@ -42,7 +38,7 @@ import java.util.Objects;
         }
 )
 @Schema(name = "Procediment")
-public class Procediment implements Serializable {
+public class Procediment extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -55,16 +51,12 @@ public class Procediment implements Serializable {
      * Codi SIR que identifica el procediment. És únic, i per tant una clau natural.
      * Ha de ser un nombre de entre 6 i 8 dígits.
      */
-    @NotNull
-    @Pattern(regexp = "[0-9]{6,8}", message = "{persistence.Procediment.codiSia.Pattern.message}")
     @Column(name = "CODISIA", nullable = false, length = 8)
     private String codiSia;
 
     /**
      * Nom del procediment.
      */
-    @NotEmpty
-    @Size(max = 50)
     @Column(name = "NOM", nullable = false, length = 50)
     private String nom;
 
@@ -75,7 +67,6 @@ public class Procediment implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UNITATORGANICAID", nullable = false,
             foreignKey = @ForeignKey(name = "PBS_PROCEDIMENT_UNITAT_FK"))
-    @JsonbTransient
     private UnitatOrganica unitatOrganica;
 
     public Long getId() {
@@ -117,7 +108,7 @@ public class Procediment implements Serializable {
             return false;
         }
         Procediment procediment = (Procediment) o;
-        return codiSia.equals(procediment.codiSia);
+        return Objects.equals(codiSia, procediment.codiSia);
     }
 
     @Override

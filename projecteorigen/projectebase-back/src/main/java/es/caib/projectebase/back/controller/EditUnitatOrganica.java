@@ -1,13 +1,11 @@
 package es.caib.projectebase.back.controller;
 
-import es.caib.projectebase.ejb.UnitatOrganicaService;
-import es.caib.projectebase.persistence.UnitatOrganica;
-import es.caib.projectebase.persistence.dao.DAOException;
+import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
+import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -23,28 +21,28 @@ import java.util.ResourceBundle;
  *
  * @author areus
  */
-@Named("editUnitatOrganica")
+@Named
 @ViewScoped
-public class EditUnitatOrganicaController implements Serializable {
+public class EditUnitatOrganica implements Serializable {
 
     private static final long serialVersionUID = -4092311228270716321L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(EditUnitatOrganicaController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EditUnitatOrganica.class);
 
     @Inject
     private FacesContext context;
 
-    @EJB
-    UnitatOrganicaService unitatOrganicaService;
+    @Inject
+    UnitatOrganicaServiceFacade unitatOrganicaService;
 
     // PROPIETATS + GETTERS/SETTERS
 
-    private UnitatOrganica current;
+    private UnitatOrganicaDTO current;
 
     /**
      * Obté la unitat orgànica que s'està editant
      */
-    public UnitatOrganica getCurrent() {
+    public UnitatOrganicaDTO getCurrent() {
         return current;
     }
 
@@ -65,7 +63,7 @@ public class EditUnitatOrganicaController implements Serializable {
     @PostConstruct
     public void init() {
         LOG.debug("init");
-        current = new UnitatOrganica();
+        current = new UnitatOrganicaDTO();
     }
 
     // ACCIONS
@@ -90,30 +88,21 @@ public class EditUnitatOrganicaController implements Serializable {
         LOG.debug("saveOrUpdate");
         // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
         ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
-        try {
-            // Feim una creació o una actualització.
-            if (isCreate()) {
-                unitatOrganicaService.create(current);
-                context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.creaciocorrecta")));
-            } else {
-                unitatOrganicaService.update(current);
-                context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.actualitzaciocorrecta")));
-            }
 
-            // Els missatges no aguanten una redirecció ja que no es la mateixa petició
-            // amb l'objecte flash podem assegurar que es guardin fins la visualització
-            context.getExternalContext().getFlash().setKeepMessages(true);
-
-            // Redireccionam cap al llistat d'unitats orgàniques
-            return "/listUnitatOrganica?faces-redirect=true";
-
-        } catch (DAOException daoException) {
-            String msgError = daoException.getLocalizedMessage(context.getViewRoot().getLocale());
-            LOG.error("Error saveOrUpdate: {}", msgError);
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgError, null));
-
-            // si ha donat un error la lògica de negoci, ens mantenim a la pàgina
-            return null;
+        // Feim una creació o una actualització.
+        if (isCreate()) {
+            unitatOrganicaService.create(current);
+            context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.creaciocorrecta")));
+        } else {
+            unitatOrganicaService.update(current);
+            context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.actualitzaciocorrecta")));
         }
+
+        // Els missatges no aguanten una redirecció ja que no es la mateixa petició
+        // amb l'objecte flash podem assegurar que es guardin fins la visualització
+        context.getExternalContext().getFlash().setKeepMessages(true);
+
+        // Redireccionam cap al llistat d'unitats orgàniques
+        return "/listUnitatOrganica?faces-redirect=true";
     }
 }

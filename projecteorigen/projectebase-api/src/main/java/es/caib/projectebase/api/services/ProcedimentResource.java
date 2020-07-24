@@ -1,10 +1,8 @@
 package es.caib.projectebase.api.services;
 
-import es.caib.projectebase.commons.utils.Constants;
-import es.caib.projectebase.ejb.ProcedimentService;
-import es.caib.projectebase.ejb.ServiceException;
-import es.caib.projectebase.persistence.Procediment;
-import es.caib.projectebase.persistence.dao.DAOException;
+import es.caib.projectebase.service.facade.ProcedimentServiceFacade;
+import es.caib.projectebase.service.model.Page;
+import es.caib.projectebase.service.model.ProcedimentDTO;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.headers.Header;
@@ -15,11 +13,7 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -33,47 +27,41 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
-import java.util.List;
 
 /**
  * Recurs REST per accedir a Procediments.
  *
- * La seguretat es pot establir a nivel de url-pattern/http-method a dins web.xml, o amb l'etiqueta {@link RolesAllowed}
- * a nivell de tota la classe o de recurs. Per poder-la emprar cal que marquem el recurs com un bean {@link Stateless}.
- * Fixam també el {@link TransactionAttribute} al valor {@link TransactionAttributeType#NOT_SUPPORTED} atès que no
- * volem que demarqui transaccions.
+ * Es pot establir la seguretat a nivell url-pattern/http-method a dins web.xml, però d'altra banda, aquesta
+ * ja està establerta a nivell de la capa de serveis.
  *
  *  @author areus
  */
-@Stateless
 @Path("procediments")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@RolesAllowed({Constants.PBS_ADMIN})
-@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class ProcedimentResource {
 
-    @EJB
-    private ProcedimentService procedimentService;
+    @Inject
+    private ProcedimentServiceFacade procedimentService;
 
     /**
      * Retorna tots els procediments d'una unitat orgànica.
-     *
+     * TODO implementar paginació
      * @param unitatId identificador de la unitat orgànica
      * @return Un codi 200 amb tots els procediments
      */
     @GET
-    @Operation(operationId = "getProcedimentsByUnitat", summary = "Retorna una llista de tots els procediments")
+    @Operation(operationId = "getProcedimentsByUnitat", summary = "Retorna una llista de procediments d'una unitat")
     @APIResponse(
             responseCode = "200",
             description = "Llista de procediments",
             content = @Content(mediaType = "application/json",
-                    schema = @Schema(type = SchemaType.ARRAY, implementation = Procediment.class)))
-    public Response getAll(
+                    schema = @Schema(type = SchemaType.ARRAY, implementation = ProcedimentDTO.class)))
+    public Response getByUnitat(
             @Parameter(description = "L'identificador de la unitat", required = true)
             @QueryParam("unitatId") Long unitatId) {
-        List<Procediment> all = procedimentService.findAllByUnitatOrganica(unitatId);
-        return Response.ok().entity(all).build();
+        Page<ProcedimentDTO> page = procedimentService.findByUnitat(0, 10, unitatId);
+        return Response.ok().entity(page).build();
     }
 
     /**
@@ -89,16 +77,16 @@ public class ProcedimentResource {
     @APIResponse(responseCode = "200",
             description = "Procediment",
             content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = Procediment.class)),
+                    schema = @Schema(implementation = ProcedimentDTO.class)),
             links = @Link(name = "unitat", description = "Enllaç a la unitat orgància del procediment")
     )
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response get(@Parameter(description = "L'identificador del procediment", required = true)
                         @PathParam("id") Long id) {
-        Procediment procediment = procedimentService.findById(id);
+        ProcedimentDTO procediment = procedimentService.findById(id);
         if (procediment != null) {
             return Response.ok(procediment)
-                    .link(URI.create("unitats/" + procediment.getUnitatOrganica().getId()), "unitat")
+                    .link(URI.create("unitats/" + procediment.getIdUnitat()), "unitat")
                     .build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -120,12 +108,12 @@ public class ProcedimentResource {
             @RequestBody(
                     description = "Procediment",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Procediment.class)))
-            @Valid Procediment procediment,
+                            schema = @Schema(implementation = ProcedimentDTO.class)))
+            @Valid ProcedimentDTO procediment,
             @Parameter(description = "L'identificador de la unitat", required = true)
-            @QueryParam("unitatId") Long unitatId) throws ServiceException {
-        procedimentService.create(procediment, unitatId);
-        return Response.created(URI.create("procediments/" + procediment.getId())).build();
+            @QueryParam("unitatId") Long unitatId) {
+        Long newId = procedimentService.create(procediment, unitatId);
+        return Response.created(URI.create("procediments/" + newId)).build();
     }
 
     /**
@@ -145,19 +133,13 @@ public class ProcedimentResource {
             @RequestBody(
                     description = "Procediment",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Procediment.class)))
-            @Valid Procediment procediment,
+                            schema = @Schema(implementation = ProcedimentDTO.class)))
+            @Valid ProcedimentDTO procediment,
             @Parameter(description = "L'identificador del procediment", required = true)
-            @PathParam("id") Long id) throws DAOException {
-        Procediment procedimentActual = procedimentService.findById(id);
-        if (procedimentActual == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        } else {
-            procedimentActual.setCodiSia(procediment.getCodiSia());
-            procedimentActual.setNom(procediment.getNom());
-            procedimentService.update(procedimentActual);
-            return Response.noContent().build();
-        }
+            @PathParam("id") Long id)  {
+        procediment.setId(id);
+        procedimentService.update(procediment);
+        return Response.noContent().build();
     }
 
     /**
@@ -172,12 +154,8 @@ public class ProcedimentResource {
     @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response delete(@Parameter(description = "L'identificador del procediment", required = true)
-                           @PathParam("id") Long id) throws DAOException {
-        if (procedimentService.findById(id) == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        } else {
-            procedimentService.delete(id);
-            return Response.noContent().build();
-        }
+                           @PathParam("id") Long id) {
+        procedimentService.delete(id);
+        return Response.noContent().build();
     }
 }

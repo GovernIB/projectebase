@@ -15,9 +15,9 @@ import javax.ejb.Startup;
  */
 @Singleton
 @Startup
-public class StartupServiceEJB {
+public class StartupServiceBean {
 
-    private static final Logger LOG = LoggerFactory.getLogger(StartupServiceEJB.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StartupServiceBean.class);
 
     /**
      * Executat a l'inici de l'aplicació.

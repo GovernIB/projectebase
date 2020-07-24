@@ -1,8 +1,8 @@
-package es.caib.projectebase.persistence;
+package es.caib.projectebase.persistence.model;
 
+import es.caib.projectebase.service.model.EstatPublicacio;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -13,12 +13,6 @@ import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -30,6 +24,8 @@ import static javax.persistence.EnumType.ORDINAL;
  * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
+ *
+ * TODO llevar etiquetes openapi
  */
 @Entity
 @SequenceGenerator(name = "uo-sequence", sequenceName = "PBS_UNITATORGANICA_SEQ", allocationSize = 1)
@@ -43,7 +39,7 @@ import static javax.persistence.EnumType.ORDINAL;
         }
 )
 @Schema(name = "Unitat")
-public class UnitatOrganica implements Serializable {
+public class UnitatOrganica extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,16 +55,12 @@ public class UnitatOrganica implements Serializable {
      * Codi DIR3 que identifica la únicat orgànica. És únic, i per tant una clau natural.
      * Ha de seguir el patró d'una lletra (A, E, I, J, L, U) seguida de 8 dígits. Ficam un missatge de validació personalitzat.
      */
-    @NotNull
-    @Pattern(regexp = "[AEIJLU][0-9]{8}", message = "{persistence.UnitatOrganica.codidir3.Pattern.message}")
     @Column(name = "CODIDIR3", nullable = false, length = 9)
     private String codiDir3;
 
     /**
      * Nom de la únitat orgànica. Ha de ser una cadena no buida, de màxim 50 caràcters.
      */
-    @NotEmpty
-    @Size(max = 50)
     @Column(name = "NOM", nullable = false, length = 50)
     private String nom;
 
@@ -76,10 +68,7 @@ public class UnitatOrganica implements Serializable {
      * Dia de creació. Ha de ser el dia d'avui o un dia passat (no pot ser futur).
      * En la serialitzacio/deserialització JSON s'empra el format dd-mm-aaaa.
      */
-    @NotNull
-    @PastOrPresent
     @Column(name = "DATACREACIO", nullable = false)
-    @JsonbDateFormat("dd-MM-yyyy")
     private LocalDate dataCreacio;
 
     /**
@@ -87,7 +76,6 @@ public class UnitatOrganica implements Serializable {
      * està definida l'enumeració {@link EstatPublicacio}, això vol dir que canviar d'ordre els valors de l'enumeració
      * fa que els valors de base de dades facin referència a altres valors.
      */
-    @NotNull
     @Enumerated(ORDINAL)
     @Column(name = "ESTAT", nullable = false)
     private EstatPublicacio estat;
@@ -147,7 +135,7 @@ public class UnitatOrganica implements Serializable {
             return false;
         }
         UnitatOrganica unitatOrganica = (UnitatOrganica) o;
-        return codiDir3.equals(unitatOrganica.codiDir3);
+        return Objects.equals(codiDir3, unitatOrganica.codiDir3);
     }
 
     @Override

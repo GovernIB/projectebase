@@ -6,8 +6,8 @@
     <persistence-unit name="projectebasePU" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/projectebaseDS</jta-data-source>
 
-        <class>es.caib.projectebase.persistence.UnitatOrganica</class>
-        <class>es.caib.projectebase.persistence.Procediment</class>
+        <class>es.caib.projectebase.persistence.model.UnitatOrganica</class>
+        <class>es.caib.projectebase.persistence.model.Procediment</class>
 
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
         <validation-mode>CALLBACK</validation-mode>

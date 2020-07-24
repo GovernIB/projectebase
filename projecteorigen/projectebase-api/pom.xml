@@ -33,13 +33,7 @@
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-persistence</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-ejb</artifactId>
-            <type>ejb</type>
+            <artifactId>projectebase-service</artifactId>
             <scope>provided</scope>
         </dependency>
         <!-- Anotacions de documentació de openapi -->

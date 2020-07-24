@@ -111,6 +111,10 @@
         -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-persistence</artifactId>
         </dependency>
         <dependency>

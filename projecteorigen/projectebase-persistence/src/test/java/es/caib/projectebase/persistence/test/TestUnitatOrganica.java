@@ -1,7 +1,8 @@
 package es.caib.projectebase.persistence.test;
 
-import es.caib.projectebase.persistence.EstatPublicacio;
-import es.caib.projectebase.persistence.UnitatOrganica;
+import es.caib.projectebase.service.model.EstatPublicacio;
+import es.caib.projectebase.persistence.model.UnitatOrganica;
+import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -40,6 +41,7 @@ public class TestUnitatOrganica {
     public static JavaArchive createDeployment() {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
                 .addPackages(true, "es.caib.projectebase.persistence")
+                .addPackages(true, "es.caib.projectebase.service")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource("META-INF/arquillian-persistence.xml", "META-INF/persistence.xml");
         //System.out.println(jar.toString(true));
@@ -99,10 +101,12 @@ public class TestUnitatOrganica {
     @Test
     @InSequence(2)
     public void testQueryUnitat() {
-        TypedQuery<UnitatOrganica> query = em.createQuery(
-                "select u from UnitatOrganica u where u.codiDir3 = :codiDir3", UnitatOrganica.class);
+        TypedQuery<UnitatOrganicaDTO> query = em.createQuery(
+                "select new es.caib.projectebase.service.model.UnitatOrganicaDTO(u.id, u.codiDir3, u.nom, " +
+                        "u.dataCreacio, u.estat) " +
+                        "from UnitatOrganica u where u.codiDir3 = :codiDir3", UnitatOrganicaDTO.class);
         query.setParameter("codiDir3", "U87654321");
-        UnitatOrganica unitat = query.getSingleResult();
+        UnitatOrganicaDTO unitat = query.getSingleResult();
 
         // Comprovam el nom de la unitat seleccionada
         Assert.assertEquals("Unitat test arquillian", unitat.getNom());

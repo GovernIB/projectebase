@@ -9,8 +9,8 @@
     <persistence-unit name="testPU" transaction-type="RESOURCE_LOCAL">
 
         <!-- Llista de classes persistents -->
-        <class>es.caib.projectebase.persistence.UnitatOrganica</class>
-        <class>es.caib.projectebase.persistence.Procediment</class>
+        <class>es.caib.projectebase.persistence.model.UnitatOrganica</class>
+        <class>es.caib.projectebase.persistence.model.Procediment</class>
 
         <!-- Desactivar cache -->
         <shared-cache-mode>NONE</shared-cache-mode>

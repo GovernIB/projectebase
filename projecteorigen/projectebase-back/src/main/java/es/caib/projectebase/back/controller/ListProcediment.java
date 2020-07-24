@@ -1,15 +1,13 @@
 package es.caib.projectebase.back.controller;
 
-import es.caib.projectebase.ejb.ProcedimentService;
-import es.caib.projectebase.ejb.UnitatOrganicaService;
-import es.caib.projectebase.persistence.Procediment;
-import es.caib.projectebase.persistence.UnitatOrganica;
-import es.caib.projectebase.persistence.dao.DAOException;
+import es.caib.projectebase.service.facade.ProcedimentServiceFacade;
+import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
+import es.caib.projectebase.service.model.ProcedimentDTO;
+import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -28,37 +26,37 @@ import java.util.ResourceBundle;
  */
 @Named("listProcediment")
 @ViewScoped
-public class ListProcedimentController implements Serializable {
+public class ListProcediment implements Serializable {
 
     private static final long serialVersionUID = -7992474170848445700L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(ListProcedimentController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ListProcediment.class);
 
     @Inject
     private FacesContext context;
 
-    @EJB
-    UnitatOrganicaService unitatOrganicaService;
+    @Inject
+    UnitatOrganicaServiceFacade unitatOrganicaService;
 
-    @EJB
-    ProcedimentService procedimentService;
+    @Inject
+    ProcedimentServiceFacade procedimentService;
 
     // PROPIETATS + GETTERS/SETTERS
 
-    private UnitatOrganica unitatOrganica;
-    private List<Procediment> procediments;
+    private UnitatOrganicaDTO unitatOrganica;
+    private List<ProcedimentDTO> procediments;
 
     /**
      * Obté la unitat orgànica de la qual s'estàn llistat els procediments.
      */
-    public UnitatOrganica getUnitatOrganica() {
+    public UnitatOrganicaDTO getUnitatOrganica() {
         return unitatOrganica;
     }
 
     /**
      * Obté la llista de procedmients associats a la unitat orgànica
      */
-    public List<Procediment> getProcediments() {
+    public List<ProcedimentDTO> getProcediments() {
         return procediments;
     }
 
@@ -68,7 +66,7 @@ public class ListProcedimentController implements Serializable {
     @PostConstruct
     public void init() {
         LOG.debug("init");
-        unitatOrganica = new UnitatOrganica();
+        unitatOrganica = new UnitatOrganicaDTO();
     }
 
     // ACCIONS
@@ -79,7 +77,8 @@ public class ListProcedimentController implements Serializable {
     public void load() {
         LOG.debug("load");
         unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId());
-        procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
+        // TODO, paginació
+        procediments = procedimentService.findByUnitat(0, 10, unitatOrganica.getId());
     }
 
     /**
@@ -92,15 +91,12 @@ public class ListProcedimentController implements Serializable {
         LOG.debug("delete");
         // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
         ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
-        try {
-            procedimentService.delete(id);
-            context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
 
-            // Actualitza el model de dades perquè desapareixi del llistat.
-            procediments = procedimentService.findAllByUnitatOrganica(unitatOrganica.getId());
-        } catch (DAOException e) {
-            String message = e.getLocalizedMessage(context.getViewRoot().getLocale());
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
-        }
+        procedimentService.delete(id);
+        context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
+
+        // Actualitza el model de dades perquè desapareixi del llistat.
+        // TODO, paginació
+        procediments = procedimentService.findByUnitat(0, 10, unitatOrganica.getId());
     }
 }
