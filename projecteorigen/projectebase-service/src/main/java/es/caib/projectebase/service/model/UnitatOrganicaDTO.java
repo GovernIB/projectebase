@@ -1,5 +1,7 @@
 package es.caib.projectebase.service.model;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -12,6 +14,7 @@ import java.time.LocalDate;
  *
  * @author areus
  */
+@Schema(name = "Unitat")
 public class UnitatOrganicaDTO {
 
     private Long id;

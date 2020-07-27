@@ -1,7 +1,5 @@
 package es.caib.projectebase.persistence.model;
 
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,8 +20,6 @@ import java.util.Objects;
  * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
- *
- * TODO llevar etiquetes openapi
  */
 @Entity
 @SequenceGenerator(name = "procediment-sequence", sequenceName = "PBS_PROCEDIMENT_SEQ", allocationSize = 1)
@@ -37,7 +33,6 @@ import java.util.Objects;
                 @Index(name = "PBS_PROCEDIMENT_UNITAT_FK_I", columnList = "UNITATORGANICAID")
         }
 )
-@Schema(name = "Procediment")
 public class Procediment extends BaseEntity {
 
     private static final long serialVersionUID = 1L;

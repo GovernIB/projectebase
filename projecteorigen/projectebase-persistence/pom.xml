@@ -36,12 +36,6 @@
             <groupId>es.caib.projectebase</groupId>
             <scope>provided</scope>
         </dependency>
-        <!-- Anotacions de documentació de openapi -->
-        <dependency>
-            <groupId>org.eclipse.microprofile.openapi</groupId>
-            <artifactId>microprofile-openapi-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <!--
         Per generar el metamodel de JPA
         Veure: https://docs.jboss.org/hibernate/orm/5.3/topical/html_single/metamodelgen/MetamodelGenerator.html

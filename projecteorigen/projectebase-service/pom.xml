@@ -27,14 +27,12 @@
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Altres mòduls del projecte -->
-        <!--
+        <!-- Anotacions de documentació de openapi -->
         <dependency>
-            <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-commons</artifactId>
+            <groupId>org.eclipse.microprofile.openapi</groupId>
+            <artifactId>microprofile-openapi-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        -->
     </dependencies>
 
     <build>

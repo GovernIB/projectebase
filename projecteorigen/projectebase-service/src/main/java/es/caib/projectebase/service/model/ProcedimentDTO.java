@@ -1,10 +1,13 @@
 package es.caib.projectebase.service.model;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+@Schema(name = "Procediment")
 public class ProcedimentDTO {
 
     private Long id;

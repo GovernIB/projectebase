@@ -1,7 +1,6 @@
 package es.caib.projectebase.persistence.model;
 
 import es.caib.projectebase.service.model.EstatPublicacio;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,8 +23,6 @@ import static javax.persistence.EnumType.ORDINAL;
  * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
- *
- * TODO llevar etiquetes openapi
  */
 @Entity
 @SequenceGenerator(name = "uo-sequence", sequenceName = "PBS_UNITATORGANICA_SEQ", allocationSize = 1)
@@ -38,7 +35,6 @@ import static javax.persistence.EnumType.ORDINAL;
                 @Index(name = "PBS_UNITAT_CODIDIR3_UK_I", columnList = "CODIDIR3")
         }
 )
-@Schema(name = "Unitat")
 public class UnitatOrganica extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
