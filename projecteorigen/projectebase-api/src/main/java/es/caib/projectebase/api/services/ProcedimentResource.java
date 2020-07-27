@@ -13,7 +13,7 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -41,7 +41,7 @@ import java.net.URI;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ProcedimentResource {
 
-    @Inject
+    @EJB
     private ProcedimentServiceFacade procedimentService;
 
     /**

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -35,10 +36,10 @@ public class ListProcediment implements Serializable {
     @Inject
     private FacesContext context;
 
-    @Inject
+    @EJB
     UnitatOrganicaServiceFacade unitatOrganicaService;
 
-    @Inject
+    @EJB
     ProcedimentServiceFacade procedimentService;
 
     // PROPIETATS + GETTERS/SETTERS

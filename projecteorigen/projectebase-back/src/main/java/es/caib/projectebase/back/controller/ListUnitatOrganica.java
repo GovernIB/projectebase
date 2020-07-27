@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -36,7 +37,7 @@ public class ListUnitatOrganica implements Serializable {
     @Inject
     private FacesContext context;
 
-    @Inject
+    @EJB
     private UnitatOrganicaServiceFacade unitatOrganicaService;
 
     // PROPIETATS + GETTERS/SETTERS
