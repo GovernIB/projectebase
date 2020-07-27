@@ -29,6 +29,7 @@ public class LoggerInterceptor implements Serializable {
 
     /**
      * Intercepta un mètode de negoci i fa un log a l'inici i al final.
+     * TODO: deixar en debug
      *
      * @param context Contexte d'invocació.
      * @return El resultat del mètode interceptar.
