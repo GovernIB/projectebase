@@ -14,6 +14,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import javax.ejb.EJB;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -104,10 +105,11 @@ public class UnitatOrganicaResource {
             headers = @Header(name = "location", description = "Enllaç al nou recurs"))
     public Response create(
             @RequestBody(
+                    required = true,
                     description = "Unitat orgànica",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UnitatOrganicaDTO.class)))
-            @Valid UnitatOrganicaDTO unitatOrganica) {
+            @NotNull @Valid UnitatOrganicaDTO unitatOrganica) {
         Long newId = unitatOrganicaService.create(unitatOrganica);
         return Response.created(URI.create("unitats/" + newId)).build();
     }
@@ -127,10 +129,11 @@ public class UnitatOrganicaResource {
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response update(
             @RequestBody(
+                    required = true,
                     description = "Unitat orgànica",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UnitatOrganicaDTO.class)))
-            @Valid UnitatOrganicaDTO unitatOrganica,
+            @NotNull @Valid UnitatOrganicaDTO unitatOrganica,
             @Parameter(description = "L'identificador de la unitat", required = true)
             @PathParam("id") Long id) {
         unitatOrganica.setId(id);

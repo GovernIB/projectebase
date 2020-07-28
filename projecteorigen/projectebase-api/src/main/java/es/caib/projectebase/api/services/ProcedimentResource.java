@@ -15,6 +15,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import javax.ejb.EJB;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -59,7 +60,7 @@ public class ProcedimentResource {
                     schema = @Schema(type = SchemaType.ARRAY, implementation = ProcedimentDTO.class)))
     public Response getByUnitat(
             @Parameter(description = "L'identificador de la unitat", required = true)
-            @QueryParam("unitatId") Long unitatId,
+            @NotNull @QueryParam("unitatId") Long unitatId,
             @Parameter(description = "Primer resultat, per defecte 0")
             @DefaultValue("0") @QueryParam("firstResult") int firstResult,
             @Parameter(description = "Nombre màxim de resultats, per defecte 10")
@@ -110,12 +111,13 @@ public class ProcedimentResource {
             headers = @Header(name = "location", description = "Enllaç al nou recurs"))
     public Response create(
             @RequestBody(
+                    required = true,
                     description = "Procediment",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ProcedimentDTO.class)))
-            @Valid ProcedimentDTO procediment,
+            @NotNull @Valid ProcedimentDTO procediment,
             @Parameter(description = "L'identificador de la unitat", required = true)
-            @QueryParam("unitatId") Long unitatId) {
+            @NotNull @QueryParam("unitatId") Long unitatId) {
         Long newId = procedimentService.create(procediment, unitatId);
         return Response.created(URI.create("procediments/" + newId)).build();
     }
@@ -135,10 +137,11 @@ public class ProcedimentResource {
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response update(
             @RequestBody(
+                    required = true,
                     description = "Procediment",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ProcedimentDTO.class)))
-            @Valid ProcedimentDTO procediment,
+            @NotNull @Valid ProcedimentDTO procediment,
             @Parameter(description = "L'identificador del procediment", required = true)
             @PathParam("id") Long id)  {
         procediment.setId(id);

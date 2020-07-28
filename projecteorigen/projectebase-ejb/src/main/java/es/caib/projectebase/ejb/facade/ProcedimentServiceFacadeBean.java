@@ -19,6 +19,8 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.executable.ValidateOnExecution;
+
 import java.util.List;
 
 @Logged
@@ -26,6 +28,7 @@ import java.util.List;
 @Local(ProcedimentServiceFacade.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @RolesAllowed(Constants.PBS_ADMIN)
+@ValidateOnExecution
 public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
 
     @PersistenceContext

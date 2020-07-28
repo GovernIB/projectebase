@@ -7,19 +7,24 @@ import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+
 /**
  * Servei per els casos d'ús de mateniment d'una Unitat Organica
  */
 public interface UnitatOrganicaServiceFacade {
 
-    Long create(UnitatOrganicaDTO dto);
+    Long create(@NotNull @Valid UnitatOrganicaDTO dto);
 
-    void update(UnitatOrganicaDTO dto);
+    void update(@NotNull @Valid UnitatOrganicaDTO dto);
 
-    void delete(Long id);
+    void delete(@NotNull Long id);
 
-    UnitatOrganicaDTO findById(Long id);
+    UnitatOrganicaDTO findById(@NotNull Long id);
 
-    Page<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<String, Object> filters,
-                                         List<Ordre> ordenacio);
+    Page<UnitatOrganicaDTO> findFiltered(@PositiveOrZero int firstResult, @Positive int maxResult, 
+            @NotNull Map<String, Object> filters, @NotNull List<Ordre> ordenacio);
 }

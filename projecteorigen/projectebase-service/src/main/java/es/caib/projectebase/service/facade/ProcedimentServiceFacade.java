@@ -1,5 +1,10 @@
 package es.caib.projectebase.service.facade;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+
 import es.caib.projectebase.service.model.Page;
 import es.caib.projectebase.service.model.ProcedimentDTO;
 
@@ -8,13 +13,13 @@ import es.caib.projectebase.service.model.ProcedimentDTO;
  */
 public interface ProcedimentServiceFacade {
 
-    Long create(ProcedimentDTO dto, Long idUnitat);
+    Long create(@NotNull @Valid ProcedimentDTO dto, @NotNull Long idUnitat);
 
-    void update(ProcedimentDTO dto);
+    void update(@NotNull @Valid ProcedimentDTO dto);
 
-    void delete(Long id);
+    void delete(@NotNull Long id);
 
-    ProcedimentDTO findById(Long id);
+    ProcedimentDTO findById(@NotNull Long id);
 
-    Page<ProcedimentDTO> findByUnitat(int firstResult, int maxResult, Long idUnitat);
+    Page<ProcedimentDTO> findByUnitat(@PositiveOrZero int firstResult, @Positive int maxResult, @NotNull Long idUnitat);
 }
