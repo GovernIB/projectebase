@@ -1,8 +1,10 @@
 package es.caib.projectebase.service.facade;
 
+import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Page;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,5 +20,6 @@ public interface UnitatOrganicaServiceFacade {
 
     UnitatOrganicaDTO findById(Long id);
 
-    Page<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<String, Object> filters);
+    Page<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<String, Object> filters,
+                                         List<Ordre> ordenacio);
 }

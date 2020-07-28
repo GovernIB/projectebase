@@ -1,6 +1,8 @@
 package es.caib.projectebase.back.controller;
 
+import es.caib.projectebase.back.utils.PFUtils;
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
+import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Page;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.primefaces.model.LazyDataModel;
@@ -60,7 +62,7 @@ public class ListUnitatOrganica implements Serializable {
 
         lazyModel = new LazyDataModel<>() {
 
-            private static final long serialVersionUID = -1420774197768250112L;
+            private static final long serialVersionUID = 1L;
 
             /*
             Primefaces cridarà automàticament aquest mètode quan necessita actualitzar les dades del dataTable
@@ -69,17 +71,14 @@ public class ListUnitatOrganica implements Serializable {
             @Override
             public List<UnitatOrganicaDTO> load(int first, int pageSize, List<SortMeta> multiSortMeta,
                                              Map<String, Object> filters) {
-                // TODO mirar que passa amb els filtres, i amb l'ordenació.
-                /*
-                List<Ordenacio> ordenacions = multiSortMeta.stream().map(
-                        sortMeta -> (sortMeta.getSortOrder() == SortOrder.ASCENDING ?
-                                Ordenacio.ascendent(sortMeta.getSortField()) :
-                                Ordenacio.descendent(sortMeta.getSortField()))
-                ).collect(Collectors.toList());
-                 */
 
-                Page<UnitatOrganicaDTO> llistat = unitatOrganicaService.findFiltered(first, pageSize, filters);
+                List<Ordre> ordenacions = PFUtils.sortMetaToOrdre(multiSortMeta);
+
+                Page<UnitatOrganicaDTO> llistat = unitatOrganicaService
+                        .findFiltered(first, pageSize, filters, ordenacions);
+
                 setRowCount((int) llistat.getTotal());
+
                 return llistat;
             }
         };

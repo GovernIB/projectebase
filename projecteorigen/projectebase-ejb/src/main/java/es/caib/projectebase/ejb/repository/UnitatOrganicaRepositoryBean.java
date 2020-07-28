@@ -1,0 +1,70 @@
+package es.caib.projectebase.ejb.repository;
+
+import es.caib.projectebase.persistence.model.UnitatOrganica;
+import es.caib.projectebase.persistence.model.UnitatOrganica_;
+import es.caib.projectebase.service.model.Ordre;
+import es.caib.projectebase.service.model.UnitatOrganicaDTO;
+
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
+import java.util.Map;
+
+@Stateless
+@Local(UnitatOrganicaRepository.class)
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
+public class UnitatOrganicaRepositoryBean extends AbstractCrudRepository<UnitatOrganica, Long>
+        implements UnitatOrganicaRepository {
+
+    protected UnitatOrganicaRepositoryBean() {
+        super(UnitatOrganica.class);
+    }
+
+    @Override
+    public List<UnitatOrganicaDTO> findPagedByFilterAndOrder(int firstResult, int maxResult,
+                                                             Map<String, Object> filters,
+                                                             List<Ordre> ordenacio) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<UnitatOrganicaDTO> criteriaQuery = builder.createQuery(UnitatOrganicaDTO.class);
+        Root<UnitatOrganica> root = criteriaQuery.from(UnitatOrganica.class);
+
+        criteriaQuery.select(builder.construct(UnitatOrganicaDTO.class,
+                root.get(UnitatOrganica_.id),
+                root.get(UnitatOrganica_.codiDir3),
+                root.get(UnitatOrganica_.nom),
+                root.get(UnitatOrganica_.dataCreacio),
+                root.get(UnitatOrganica_.estat)));
+
+        CriteriaHelper<UnitatOrganica> helper = CriteriaHelper.getInstance(builder, root);
+
+        helper.applyFilters(filters, criteriaQuery);
+        helper.applyOrder(ordenacio, criteriaQuery);
+
+        TypedQuery<UnitatOrganicaDTO> query = entityManager.createQuery(criteriaQuery);
+        query.setFirstResult(firstResult);
+        query.setMaxResults(maxResult);
+        return query.getResultList();
+    }
+
+    @Override
+    public long countByFilter(Map<String, Object> filters) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
+        Root<UnitatOrganica> root = criteriaQuery.from(UnitatOrganica.class);
+
+        criteriaQuery.select(builder.count(root));
+
+        CriteriaHelper<UnitatOrganica> helper = CriteriaHelper.getInstance(builder, root);
+
+        helper.applyFilters(filters, criteriaQuery);
+
+        TypedQuery<Long> query = entityManager.createQuery(criteriaQuery);
+        return query.getSingleResult();
+    }
+}

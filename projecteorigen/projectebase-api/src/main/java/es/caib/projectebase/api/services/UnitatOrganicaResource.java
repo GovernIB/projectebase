@@ -16,12 +16,14 @@ import javax.ejb.EJB;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -45,7 +47,6 @@ public class UnitatOrganicaResource {
 
     /**
      * Retorna unta llista paginada de les unitats orgàniques.
-     * TODO: paràmetres paginació
      *
      * @return Un codi 200 amb les unitats orgàniques.
      */
@@ -56,8 +57,13 @@ public class UnitatOrganicaResource {
             description = "Llista d'unitats orgàniques",
             content = @Content(mediaType = "application/json",
                     schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganicaDTO.class)))
-    public Response getUnitats()  {
-        Page<UnitatOrganicaDTO> page = unitatOrganicaService.findFiltered(0, 10, Collections.emptyMap());
+    public Response getUnitats(
+            @Parameter(description = "Primer resultat, per defecte 0")
+            @DefaultValue("0") @QueryParam("firstResult") int firstResult,
+            @Parameter(description = "Nombre màxim de resultats, per defecte 10")
+            @DefaultValue("10") @QueryParam("maxResult") int maxResult)  {
+        Page<UnitatOrganicaDTO> page = unitatOrganicaService.findFiltered(firstResult, maxResult,
+                Collections.emptyMap(), Collections.emptyList());
         return Response.ok().entity(page).build();
     }
 

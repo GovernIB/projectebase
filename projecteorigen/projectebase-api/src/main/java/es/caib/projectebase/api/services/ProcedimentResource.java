@@ -17,6 +17,7 @@ import javax.ejb.EJB;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -46,7 +47,6 @@ public class ProcedimentResource {
 
     /**
      * Retorna tots els procediments d'una unitat orgànica.
-     * TODO implementar paginació
      * @param unitatId identificador de la unitat orgànica
      * @return Un codi 200 amb tots els procediments
      */
@@ -59,8 +59,12 @@ public class ProcedimentResource {
                     schema = @Schema(type = SchemaType.ARRAY, implementation = ProcedimentDTO.class)))
     public Response getByUnitat(
             @Parameter(description = "L'identificador de la unitat", required = true)
-            @QueryParam("unitatId") Long unitatId) {
-        Page<ProcedimentDTO> page = procedimentService.findByUnitat(0, 10, unitatId);
+            @QueryParam("unitatId") Long unitatId,
+            @Parameter(description = "Primer resultat, per defecte 0")
+            @DefaultValue("0") @QueryParam("firstResult") int firstResult,
+            @Parameter(description = "Nombre màxim de resultats, per defecte 10")
+            @DefaultValue("10") @QueryParam("maxResult") int maxResult) {
+        Page<ProcedimentDTO> page = procedimentService.findByUnitat(firstResult, maxResult, unitatId);
         return Response.ok().entity(page).build();
     }
 

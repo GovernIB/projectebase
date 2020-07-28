@@ -2,8 +2,11 @@ package es.caib.projectebase.back.controller;
 
 import es.caib.projectebase.service.facade.ProcedimentServiceFacade;
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
+import es.caib.projectebase.service.model.Page;
 import es.caib.projectebase.service.model.ProcedimentDTO;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -44,21 +48,22 @@ public class ListProcediment implements Serializable {
 
     // PROPIETATS + GETTERS/SETTERS
 
-    private UnitatOrganicaDTO unitatOrganica;
-    private List<ProcedimentDTO> procediments;
-
     /**
-     * Obté la unitat orgànica de la qual s'estàn llistat els procediments.
+     * Model de dades emprat pel compoment dataTable de primefaces.
      */
-    public UnitatOrganicaDTO getUnitatOrganica() {
-        return unitatOrganica;
+    private LazyDataModel<ProcedimentDTO> lazyModel;
+
+    public LazyDataModel<ProcedimentDTO> getLazyModel() {
+        return lazyModel;
     }
 
     /**
-     * Obté la llista de procedmients associats a la unitat orgànica
+     * la unitat orgànica de la qual s'estàn llistat els procediments.
      */
-    public List<ProcedimentDTO> getProcediments() {
-        return procediments;
+    private UnitatOrganicaDTO unitatOrganica;
+
+    public UnitatOrganicaDTO getUnitatOrganica() {
+        return unitatOrganica;
     }
 
     /**
@@ -66,7 +71,7 @@ public class ListProcediment implements Serializable {
      */
     @PostConstruct
     public void init() {
-        LOG.debug("init");
+        LOG.info("init");
         unitatOrganica = new UnitatOrganicaDTO();
     }
 
@@ -76,10 +81,21 @@ public class ListProcediment implements Serializable {
      * Carrega la unitat orgànica i els procediments.
      */
     public void load() {
-        LOG.debug("load");
+        LOG.info("load");
         unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId());
-        // TODO, paginació
-        procediments = procedimentService.findByUnitat(0, 10, unitatOrganica.getId());
+
+        lazyModel = new LazyDataModel<>() {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public List<ProcedimentDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+                                             Map<String, Object> filters) {
+                Page<ProcedimentDTO> llistat = procedimentService.findByUnitat(first, pageSize, unitatOrganica.getId());
+                setRowCount((int) llistat.getTotal());
+                return llistat;
+            }
+        };
     }
 
     /**
@@ -95,9 +111,5 @@ public class ListProcediment implements Serializable {
 
         procedimentService.delete(id);
         context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
-
-        // Actualitza el model de dades perquè desapareixi del llistat.
-        // TODO, paginació
-        procediments = procedimentService.findByUnitat(0, 10, unitatOrganica.getId());
     }
 }

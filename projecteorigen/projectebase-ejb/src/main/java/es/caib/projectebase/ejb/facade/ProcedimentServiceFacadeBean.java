@@ -19,7 +19,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Logged
@@ -71,19 +70,9 @@ public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
 
     @Override
     public Page<ProcedimentDTO> findByUnitat(int firstResult, int maxResult, Long idUnitat) {
-        TypedQuery<ProcedimentDTO> query = entityManager.createQuery(
-                "select new es.caib.projectebase.service.model.ProcedimentDTO(p.id, p.codiSia, p.nom, u.id) " +
-                        "from Procediment p join p.unitatOrganica u where u.id = :idUnitat", ProcedimentDTO.class);
-        query.setParameter("idUnitat", idUnitat);
-        query.setFirstResult(firstResult);
-        query.setMaxResults(maxResult);
-        List<ProcedimentDTO> items = query.getResultList();
 
-        TypedQuery<Long> countQuery = entityManager.createQuery(
-                "select count(p) from Procediment p join p.unitatOrganica u " +
-                        "where u.id = :idUnitat", Long.class);
-        countQuery.setParameter("idUnitat", idUnitat);
-        long total = countQuery.getSingleResult();
+        List<ProcedimentDTO> items = repository.findPagedByUnitat(firstResult, maxResult, idUnitat);
+        long total = repository.countByUnitat(idUnitat);
 
         return new Page<>(items, total);
     }

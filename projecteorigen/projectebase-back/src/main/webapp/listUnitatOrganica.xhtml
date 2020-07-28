@@ -10,7 +10,7 @@
 
         <ui:define name="metadata">
             <f:metadata>
-                <f:importConstants type="es.caib.projectebase.service.model.EstatPublicacio" var="estats"/>
+                <f:importConstants type="es.caib.projectebase.service.model.EstatPublicacio" />
             </f:metadata>
         </ui:define>
 
@@ -55,9 +55,10 @@
                     <p:column filterBy="#{unitatOrganica.estat}">
                         <f:facet name="header">#{labels.unitatOrganica_estat}</f:facet>
                         <f:facet name="filter">
-                            <p:selectOneMenu onchange="PF('unitatsTable').filter()" required="false">
-                                <f:selectItem itemLabel="----" itemValue=""/>
-                                <f:selectItems value="#{estats.values()}"/>
+                            <p:selectOneMenu onchange="PF('unitatsTable').filter()">
+                                <f:selectItem itemLabel="---" itemValue="#{null}"/>
+                                <f:selectItems value="#{EstatPublicacio.values()}" />
+                                <f:converter converterId="estatPublicacioConverter"/>
                             </p:selectOneMenu>
                         </f:facet>
                         <h:outputText value="#{unitatOrganica.estat}"/>

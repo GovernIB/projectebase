@@ -4,12 +4,12 @@ package es.caib.projectebase.service.model;
  * Representa un criteri d'ordenació per una consulta.
  * @author areus
  */
-public class Ordenacio {
+public class Ordre {
 
     private final String atribut;
     private final boolean ascendent;
 
-    private Ordenacio(String atribut, boolean ascendent) {
+    private Ordre(String atribut, boolean ascendent) {
         if (atribut == null || atribut.isEmpty()) {
             throw new IllegalArgumentException("Atribut invàlid: " + atribut);
         }
@@ -18,12 +18,12 @@ public class Ordenacio {
         this.ascendent = ascendent;
     }
 
-    public static Ordenacio ascendent(String atribut) {
-        return new Ordenacio(atribut, true);
+    public static Ordre ascendent(String atribut) {
+        return new Ordre(atribut, true);
     }
 
-    public static Ordenacio descendent(String atribut) {
-        return new Ordenacio(atribut, false);
+    public static Ordre descendent(String atribut) {
+        return new Ordre(atribut, false);
     }
 
     public String getAtribut() {

@@ -36,8 +36,17 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
             <p:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica"/>
         </p>
         <h:form>
-            <p:dataTable id="dataTable" value="#{listProcediment.procediments}" var="procediment"
+            <p:dataTable id="dataTable" value="#{listProcediment.lazyModel}" var="procediment" 
+                         paginator="true" lazy="true" filterDelay="300" widgetVar="procedimentsTable"
+                         rows="10" rowsPerPageTemplate="10,20,50,100"
+                         paginatorPosition="bottom" paginatorAlwaysVisible="false"
+                         paginatorTemplate="{RowsPerPageLabel} {RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+                         {NextPageLink} {LastPageLink}"
+                         currentPageReportTemplate="#{labels.dataTable_currentPageReport}"
                          emptyMessage="#{labels.dataTable_emptyMessage}">
+                <f:facet name="{RowsPerPageLabel}">
+                    #{labels.dataTable_rowsPerPage}
+                </f:facet>
                 <p:column>
                     <f:facet name="header">#{labels.procediment_id}</f:facet>
                     <h:outputText value="#{procediment.id}"/>
