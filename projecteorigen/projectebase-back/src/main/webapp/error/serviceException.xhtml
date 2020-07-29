@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--
+Pàgina d'error de Primefaces.
+Veure https://primefaces.github.io/primefaces/7_0/#/core/errorhandling?id=exception-information
+-->
+<ui:composition template="/template/errorTemplate.xhtml">
+    <ui:define name="pageTitle">#{labels['error.exception.title']}</ui:define>
+    <ui:define name="content">
+        <p class="card-text mb-5 lh15">
+            <h:outputFormat value="#{labels['error.exception.desc']}">
+                <f:param value="#{pfExceptionHandler.exception.getLocalizedMessage(userLocale.current)}" />
+            </h:outputFormat>
+        </p>
+        <!-- Descomentar per mostrar tot l'stackTrace de l'excepció -->
+        <!--
+        <pre>
+            <h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false"/>
+        </pre>
+        -->
+    </ui:define>
+</ui:composition>
+</html>

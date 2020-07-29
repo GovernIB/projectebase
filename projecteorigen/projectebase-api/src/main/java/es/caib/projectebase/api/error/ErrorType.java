@@ -7,6 +7,7 @@ package es.caib.projectebase.api.error;
  * @author areus
  */
 public enum ErrorType {
+
     /**
      * Error de les regles lògiques de l'aplicació
      */

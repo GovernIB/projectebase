@@ -15,7 +15,13 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+/**
+ * Implementació del repositori d'Unitats Orgàniques.
+ *
+ * @author areus
+ */
 @Stateless
 @Local(UnitatOrganicaRepository.class)
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -24,6 +30,15 @@ public class UnitatOrganicaRepositoryBean extends AbstractCrudRepository<UnitatO
 
     protected UnitatOrganicaRepositoryBean() {
         super(UnitatOrganica.class);
+    }
+
+    @Override
+    public Optional<UnitatOrganica> findByCodiDir3(String codiDir3) {
+        TypedQuery<UnitatOrganica> query = entityManager.createQuery(
+                "select u from UnitatOrganica u where u.codiDir3 = :codiDir3", UnitatOrganica.class);
+        query.setParameter("codiDir3", codiDir3);
+        List<UnitatOrganica> result = query.getResultList();
+        return Optional.ofNullable(result.isEmpty() ? null : result.get(0));
     }
 
     @Override
@@ -41,8 +56,7 @@ public class UnitatOrganicaRepositoryBean extends AbstractCrudRepository<UnitatO
                 root.get(UnitatOrganica_.dataCreacio),
                 root.get(UnitatOrganica_.estat)));
 
-        CriteriaHelper<UnitatOrganica> helper = CriteriaHelper.getInstance(builder, root);
-
+        CriteriaHelper helper = CriteriaHelper.getInstance(builder, root);
         helper.applyFilters(filters, criteriaQuery);
         helper.applyOrder(ordenacio, criteriaQuery);
 
@@ -60,8 +74,7 @@ public class UnitatOrganicaRepositoryBean extends AbstractCrudRepository<UnitatO
 
         criteriaQuery.select(builder.count(root));
 
-        CriteriaHelper<UnitatOrganica> helper = CriteriaHelper.getInstance(builder, root);
-
+        CriteriaHelper helper = CriteriaHelper.getInstance(builder, root);
         helper.applyFilters(filters, criteriaQuery);
 
         TypedQuery<Long> query = entityManager.createQuery(criteriaQuery);

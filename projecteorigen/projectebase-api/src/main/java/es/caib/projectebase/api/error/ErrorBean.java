@@ -7,29 +7,19 @@ package es.caib.projectebase.api.error;
  */
 public class ErrorBean {
 
-    /**
-     * Missatge d'error
-     */
-    private String message;
+    private final String message;
+    private final ErrorType type;
 
-    /**
-     * Tipus d'error
-     */
-    private ErrorType type;
+    public ErrorBean(String message, ErrorType type) {
+        this.message = message;
+        this.type = type;
+    }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public ErrorType getType() {
         return type;
-    }
-
-    public void setType(ErrorType type) {
-        this.type = type;
     }
 }

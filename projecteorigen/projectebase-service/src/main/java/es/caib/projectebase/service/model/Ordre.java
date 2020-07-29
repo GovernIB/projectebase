@@ -2,6 +2,7 @@ package es.caib.projectebase.service.model;
 
 /**
  * Representa un criteri d'ordenació per una consulta.
+ *
  * @author areus
  */
 public class Ordre {

@@ -9,7 +9,13 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Optional;
 
+/**
+ * Implementació del repositori de Procediments.
+ *
+ * @author areus
+ */
 @Stateless
 @Local(ProcedimentRepository.class)
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -18,6 +24,15 @@ public class ProcedimentRepositoryBean extends AbstractCrudRepository<Procedimen
 
     protected ProcedimentRepositoryBean() {
         super(Procediment.class);
+    }
+
+    @Override
+    public Optional<Procediment> findByCodiSia(String codiSia) {
+        TypedQuery<Procediment> query = entityManager.createQuery(
+                "select p from Procediment p where p.codiSia = :codiSia", Procediment.class);
+        query.setParameter("codiSia", codiSia);
+        List<Procediment> result = query.getResultList();
+        return Optional.ofNullable(result.isEmpty() ? null : result.get(0));
     }
 
     @Override

@@ -2,6 +2,7 @@ package es.caib.projectebase.ejb.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Optional;
 
 /**
  * Implementació bàsica d'un {@link CrudRepository}.
@@ -47,8 +48,8 @@ public abstract class AbstractCrudRepository<E, PK> implements CrudRepository<E,
     }
 
     @Override
-    public E findById(PK id) {
-        return entityManager.find(entityClass, id);
+    public Optional<E> findById(PK id) {
+        return Optional.ofNullable(entityManager.find(entityClass, id));
     }
 
     @Override

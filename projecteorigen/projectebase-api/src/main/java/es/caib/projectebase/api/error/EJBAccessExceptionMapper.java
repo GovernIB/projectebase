@@ -9,9 +9,8 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 /**
- * Permet mapejar a una respota qualsevol excepció unchecked de la capa EJB.
- * Envia un codi d'error 500 i evita que els detalls de l'excepció arribin al client,
- * ja que un error de sistema l'ha de mirar l'administrador.
+ * Permet mapejar a una respota a un error de permisos a la capa EJB.
+ * Envia un codi d'error 403 al client.
  *
  * @author areus
  */
@@ -22,8 +21,7 @@ public class EJBAccessExceptionMapper implements ExceptionMapper<EJBAccessExcept
 
     @Override
     public Response toResponse(EJBAccessException e) {
-        LOG.error("Rebuda una EJBAccessException: " + e.getMessage());
-        LOG.error("Retornam un codi 403 al client");
+        LOG.error("Rebuda una EJBAccessException: {}", e.getMessage());
         return Response.status(Response.Status.FORBIDDEN).build();
     }
 }

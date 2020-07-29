@@ -7,6 +7,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * Dades d'un Procediment.
+ *
+ * @author areus
+ */
 @Schema(name = "Procediment")
 public class ProcedimentDTO {
 

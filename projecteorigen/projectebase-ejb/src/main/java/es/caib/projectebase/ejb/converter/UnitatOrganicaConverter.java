@@ -5,6 +5,11 @@ import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
+/**
+ * Conversor entre UnitatOrganica i UnitatOrganicaDTO. La implementació es generarà automàticament per MapStruct
+ *
+ * @author areus
+ */
 @Mapper
 public interface UnitatOrganicaConverter extends Converter<UnitatOrganica, UnitatOrganicaDTO> {
 

@@ -13,18 +13,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CriteriaHelper<E> {
+/**
+ * Classe d'utilitat per treballar amb queries Criteria.
+ *
+ * @author areus
+ */
+public class CriteriaHelper {
 
     private final CriteriaBuilder builder;
-    private final Root<E> root;
+    private final Root<?> root;
 
-    private CriteriaHelper(CriteriaBuilder builder, Root<E> root) {
+    private CriteriaHelper(CriteriaBuilder builder, Root<?> root) {
         this.builder = builder;
         this.root = root;
     }
 
-    public static <E> CriteriaHelper<E> getInstance(CriteriaBuilder builder, Root<E> root) {
-        return new CriteriaHelper<>(builder, root);
+    public static CriteriaHelper getInstance(CriteriaBuilder builder, Root<?> root) {
+        return new CriteriaHelper(builder, root);
     }
 
     public void applyFilters(Map<String, Object> filters, CriteriaQuery<?> criteriaQuery) {

@@ -86,11 +86,7 @@ public class UnitatOrganicaResource {
     public Response get(@Parameter(description = "L'identificador de la unitat", required = true)
                         @PathParam("id") Long id) {
         UnitatOrganicaDTO unitatOrganica = unitatOrganicaService.findById(id);
-        if (unitatOrganica != null) {
-            return Response.ok(unitatOrganica).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+        return Response.ok(unitatOrganica).build();
     }
 
     /**
@@ -115,7 +111,6 @@ public class UnitatOrganicaResource {
     }
 
     /**
-     * TODO, mirar que passa amb el not found. També amb el tema de la còpia de l'identificador
      * Actualitza una unitat orgànica.
      *
      * @param unitatOrganica dades de la unitat orgànica a actualitzar.
@@ -142,7 +137,6 @@ public class UnitatOrganicaResource {
     }
 
     /**
-     * TODO mirar que passa si no es troba.
      * Esborra una unitat orgànica.
      *
      * @param id identificador

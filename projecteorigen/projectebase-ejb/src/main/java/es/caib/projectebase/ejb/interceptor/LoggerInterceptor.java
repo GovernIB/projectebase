@@ -29,7 +29,6 @@ public class LoggerInterceptor implements Serializable {
 
     /**
      * Intercepta un mètode de negoci i fa un log a l'inici i al final.
-     * TODO: deixar en debug
      *
      * @param context Contexte d'invocació.
      * @return El resultat del mètode interceptar.
@@ -39,17 +38,17 @@ public class LoggerInterceptor implements Serializable {
     public Object logCall(InvocationContext context) throws Exception {
         String simpleName = context.getTarget().getClass().getSimpleName();
         String methodName = simpleName + "." + context.getMethod().getName();
-        boolean logEnabled = LOG.isInfoEnabled();
-        if (logEnabled) {
-            LOG.info("{} {}", methodName, Arrays.toString(context.getParameters()));
+        boolean debugEnabled = LOG.isDebugEnabled();
+        if (debugEnabled) {
+            LOG.debug("{} {}", methodName, Arrays.toString(context.getParameters()));
         }
 
         long startTime = System.nanoTime();
         Object result = context.proceed();
         long duration = System.nanoTime() - startTime;
 
-        if (logEnabled) {
-            LOG.info("{} return({}) in {} ms", methodName, result, TimeUnit.NANOSECONDS.toMillis(duration));
+        if (debugEnabled) {
+            LOG.debug("{} return({}) in {} ms", methodName, result, TimeUnit.NANOSECONDS.toMillis(duration));
         }
         return result;
     }

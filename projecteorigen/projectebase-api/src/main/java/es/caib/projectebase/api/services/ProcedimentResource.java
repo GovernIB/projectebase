@@ -89,13 +89,9 @@ public class ProcedimentResource {
     public Response get(@Parameter(description = "L'identificador del procediment", required = true)
                         @PathParam("id") Long id) {
         ProcedimentDTO procediment = procedimentService.findById(id);
-        if (procediment != null) {
-            return Response.ok(procediment)
-                    .link(URI.create("unitats/" + procediment.getIdUnitat()), "unitat")
-                    .build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+        return Response.ok(procediment)
+                .link(URI.create("unitats/" + procediment.getIdUnitat()), "unitat")
+                .build();
     }
 
     /**

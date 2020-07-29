@@ -6,6 +6,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+/**
+ * Conversor entre Procediment i ProcedimentDTO. La implementació es generarà automàticament per MapStruct
+ *
+ * @author areus
+ */
 @Mapper
 public interface ProcedimentConverter extends Converter<Procediment, ProcedimentDTO> {
 

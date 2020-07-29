@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 /**
- * Encapçula les dades d'una Unitat Orgànica.
+ * Dades d'una Unitat Orgànica.
  *
  * @author areus
  */

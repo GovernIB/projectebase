@@ -1,7 +1,7 @@
 package es.caib.projectebase.api.error;
 
 import es.caib.projectebase.api.config.ApiConstants;
-import es.caib.projectebase.commons.i18n.I18NException;
+import es.caib.projectebase.service.exception.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,30 +13,27 @@ import javax.ws.rs.ext.Provider;
 import java.util.Locale;
 
 /**
- * Permet mapejar a una resposta comuna a les excepcions de tipus I18NException.
+ * Permet mapejar a una resposta comuna a les excepcions de tipus ServiceException.
  * Són bàsicament excepcions a la lògica de l'aplicació, i per tant enviarem un error
  * 400 al client.
  *
  * @author areus
  */
 @Provider
-public class I18NExceptionMapper implements ExceptionMapper<I18NException> {
+public class ServiceExceptionMapper implements ExceptionMapper<ServiceException> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(I18NExceptionMapper.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ServiceExceptionMapper.class);
 
     @Context
     private HttpServletRequest request;
 
     @Override
-    public Response toResponse(I18NException e) {
-
+    public Response toResponse(ServiceException serviceException) {
         Locale locale = (Locale) request.getAttribute(ApiConstants.REQUEST_LOCALE);
-        String message = e.getLocalizedMessage(locale);
-        LOG.error("Rebuda una I18NException: " + message);
+        String message = serviceException.getLocalizedMessage(locale);
+        LOG.error("Rebuda una ServiceException: {}", message);
 
-        ErrorBean errorBean = new ErrorBean();
-        errorBean.setType(ErrorType.APLICACIO);
-        errorBean.setMessage(message);
+        ErrorBean errorBean = new ErrorBean(message, ErrorType.APLICACIO);
 
         return Response.status(Response.Status.BAD_REQUEST)
                 .entity(errorBean)
