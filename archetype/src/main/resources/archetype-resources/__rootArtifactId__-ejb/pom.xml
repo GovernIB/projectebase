@@ -32,9 +32,19 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <artifactId>${rootArtifactId}-service</artifactId>
+            <groupId>${groupId}</groupId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-persistence</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <!-- Altres llibreries necessàries per aquest mòdul -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
         </dependency>
     </dependencies>
 
@@ -46,6 +56,23 @@
                 <artifactId>maven-ejb-plugin</artifactId>
                 <configuration>
                     <ejbVersion>3.2</ejbVersion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!--
+                    Genera els conversors del package converter automàticmaent.
+                    Documentació: https://mapstruct.org/documentation/1.3/reference/html/
+                    -->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>

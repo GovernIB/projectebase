@@ -87,8 +87,12 @@
         Pàgina general per qualsevol excepció:
     -->
     <error-page>
-        <exception-type>java.lang.Throwable</exception-type>
+        <error-code>500</error-code>
         <location>/error/exception.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>${package}.service.exception.ServiceException</exception-type>
+        <location>/error/serviceException.xhtml</location>
     </error-page>
 
     <security-constraint>

@@ -3,10 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package}.api.services;
 
-import ${package}.commons.utils.Constants;
-import ${package}.ejb.UnitatOrganicaService;
-import ${package}.persistence.UnitatOrganica;
-import ${package}.persistence.dao.DAOException;
+import ${package}.service.facade.UnitatOrganicaServiceFacade;
+import ${package}.service.model.Page;
+import ${package}.service.model.UnitatOrganicaDTO;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.headers.Header;
@@ -16,61 +15,60 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
-import java.util.List;
+import java.util.Collections;
 
 /**
  * Recurs REST per accedir a Unitats Organiques.
  *
- * La seguretat es pot establir a nivel de url-pattern/http-method a dins web.xml, o amb l'etiqueta {@link RolesAllowed}
- * a nivell de tota la classe o de recurs. Per poder-la emprar cal que marquem el recurs com un bean {@link Stateless}.
- * Fixam també el {@link TransactionAttribute} al valor {@link TransactionAttributeType${symbol_pound}NOT_SUPPORTED} atès que no
- * volem que demarqui transaccions.
+ * Es pot establir la seguretat a nivell url-pattern/http-method a dins web.xml, però d'altra banda, aquesta
+ * ja està establerta a nivell de la capa de serveis.
  *
  * @author areus
  */
-@Stateless
 @Path("unitats")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@RolesAllowed({Constants.${prefixuppercase}_ADMIN})
-@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class UnitatOrganicaResource {
 
     @EJB
-    private UnitatOrganicaService unitatOrganicaService;
+    private UnitatOrganicaServiceFacade unitatOrganicaService;
 
     /**
-     * Retorna totes les unitats orgàniques.
+     * Retorna unta llista paginada de les unitats orgàniques.
      *
-     * @return Un codi 200 amb totes les unitats orgàniques.
+     * @return Un codi 200 amb les unitats orgàniques.
      */
     @GET
-    @Operation(operationId = "getAllUnitats", summary = "Retorna una llista de totes les unitats orgàniques")
+    @Operation(operationId = "getUnitats", summary = "Retorna una llista paginada d'unitats orgàniques")
     @APIResponse(
             responseCode = "200",
             description = "Llista d'unitats orgàniques",
             content = @Content(mediaType = "application/json",
-                    schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganica.class)))
-    public Response getAll() throws DAOException {
-        List<UnitatOrganica> all = unitatOrganicaService.findAll();
-        return Response.ok().entity(all).build();
+                    schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganicaDTO.class)))
+    public Response getUnitats(
+            @Parameter(description = "Primer resultat, per defecte 0")
+            @DefaultValue("0") @QueryParam("firstResult") int firstResult,
+            @Parameter(description = "Nombre màxim de resultats, per defecte 10")
+            @DefaultValue("10") @QueryParam("maxResult") int maxResult)  {
+        Page<UnitatOrganicaDTO> page = unitatOrganicaService.findFiltered(firstResult, maxResult,
+                Collections.emptyMap(), Collections.emptyList());
+        return Response.ok().entity(page).build();
     }
 
     /**
@@ -86,16 +84,12 @@ public class UnitatOrganicaResource {
     @APIResponse(responseCode = "200",
             description = "Unitat orgànica",
             content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = UnitatOrganica.class)))
+                    schema = @Schema(implementation = UnitatOrganicaDTO.class)))
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response get(@Parameter(description = "L'identificador de la unitat", required = true)
                         @PathParam("id") Long id) {
-        UnitatOrganica unitatOrganica = unitatOrganicaService.findById(id);
-        if (unitatOrganica != null) {
-            return Response.ok(unitatOrganica).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+        UnitatOrganicaDTO unitatOrganica = unitatOrganicaService.findById(id);
+        return Response.ok(unitatOrganica).build();
     }
 
     /**
@@ -110,17 +104,17 @@ public class UnitatOrganicaResource {
             headers = @Header(name = "location", description = "Enllaç al nou recurs"))
     public Response create(
             @RequestBody(
+                    required = true,
                     description = "Unitat orgànica",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UnitatOrganica.class)))
-            @Valid UnitatOrganica unitatOrganica) throws DAOException {
-        unitatOrganicaService.create(unitatOrganica);
-        return Response.created(URI.create("unitats/" + unitatOrganica.getId())).build();
+                            schema = @Schema(implementation = UnitatOrganicaDTO.class)))
+            @NotNull @Valid UnitatOrganicaDTO unitatOrganica) {
+        Long newId = unitatOrganicaService.create(unitatOrganica);
+        return Response.created(URI.create("unitats/" + newId)).build();
     }
 
     /**
-     * Actualitza una unitat orgànica. Carrega la unitat orgànica indicada per l'identificador i l'actualitza
-     * amb els camps rebuts.
+     * Actualitza una unitat orgànica.
      *
      * @param unitatOrganica dades de la unitat orgànica a actualitzar.
      * @param id             Identificador de la unitat orgància a actualitzar.
@@ -133,24 +127,16 @@ public class UnitatOrganicaResource {
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response update(
             @RequestBody(
+                    required = true,
                     description = "Unitat orgànica",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UnitatOrganica.class)))
-            @Valid UnitatOrganica unitatOrganica,
+                            schema = @Schema(implementation = UnitatOrganicaDTO.class)))
+            @NotNull @Valid UnitatOrganicaDTO unitatOrganica,
             @Parameter(description = "L'identificador de la unitat", required = true)
-            @PathParam("id") Long id) throws DAOException {
-
-        UnitatOrganica unitatActual = unitatOrganicaService.findById(id);
-        if (unitatActual == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        } else {
-            unitatActual.setNom(unitatOrganica.getNom());
-            unitatActual.setCodiDir3(unitatOrganica.getCodiDir3());
-            unitatActual.setEstat(unitatOrganica.getEstat());
-            unitatActual.setDataCreacio(unitatOrganica.getDataCreacio());
-            unitatOrganicaService.update(unitatActual);
-            return Response.noContent().build();
-        }
+            @PathParam("id") Long id) {
+        unitatOrganica.setId(id);
+        unitatOrganicaService.update(unitatOrganica);
+        return Response.noContent().build();
     }
 
     /**
@@ -165,12 +151,8 @@ public class UnitatOrganicaResource {
     @APIResponse(responseCode = "204", description = "Operació realitzada correctament")
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response delete(@Parameter(description = "L'identificador de la unitat", required = true)
-                           @PathParam("id") Long id) throws DAOException {
-        if (unitatOrganicaService.findById(id) == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        } else {
-            unitatOrganicaService.delete(id);
-            return Response.noContent().build();
-        }
+                           @PathParam("id") Long id) {
+        unitatOrganicaService.delete(id);
+        return Response.noContent().build();
     }
 }

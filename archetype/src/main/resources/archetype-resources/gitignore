@@ -5,6 +5,9 @@ target/
 .classpath
 .project
 .settings/
+.factorypath
+.apt_generated/
+.apt_generated_tests/
 # Fitxers de projecte de IntelliJ IDEA
 *.iml
 .idea/

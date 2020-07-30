@@ -13,7 +13,7 @@
 
         <ui:define name="metadata">
             <f:metadata>
-                <f:importConstants type="${package}.persistence.EstatPublicacio" var="estats"/>
+                <f:importConstants type="${package}.service.model.EstatPublicacio" />
             </f:metadata>
         </ui:define>
 
@@ -58,9 +58,10 @@
                     <p:column filterBy="${symbol_pound}{unitatOrganica.estat}">
                         <f:facet name="header">${symbol_pound}{labels.unitatOrganica_estat}</f:facet>
                         <f:facet name="filter">
-                            <p:selectOneMenu onchange="PF('unitatsTable').filter()" required="false">
-                                <f:selectItem itemLabel="----" itemValue=""/>
-                                <f:selectItems value="${symbol_pound}{estats.values()}"/>
+                            <p:selectOneMenu onchange="PF('unitatsTable').filter()">
+                                <f:selectItem itemLabel="---" itemValue="${symbol_pound}{null}"/>
+                                <f:selectItems value="${symbol_pound}{EstatPublicacio.values()}" />
+                                <f:converter converterId="estatPublicacioConverter"/>
                             </p:selectOneMenu>
                         </f:facet>
                         <h:outputText value="${symbol_pound}{unitatOrganica.estat}"/>

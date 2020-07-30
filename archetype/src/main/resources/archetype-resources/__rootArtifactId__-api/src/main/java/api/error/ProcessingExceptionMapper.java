@@ -26,12 +26,8 @@ public class ProcessingExceptionMapper implements ExceptionMapper<ProcessingExce
 
     @Override
     public Response toResponse(ProcessingException e) {
-        LOG.error("Rebuda una ProcessingException: " + e.getMessage());
-
-        ErrorBean errorBean = new ErrorBean();
-        errorBean.setType(ErrorType.PETICIO);
-        errorBean.setMessage(e.getMessage());
-
+        LOG.error("Rebuda una ProcessingException: {}", e.getMessage());
+        ErrorBean errorBean = new ErrorBean(e.getMessage(), ErrorType.PETICIO);
         return Response.status(Response.Status.BAD_REQUEST).entity(errorBean).build();
     }
 }

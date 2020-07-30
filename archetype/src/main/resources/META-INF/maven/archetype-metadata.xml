@@ -100,7 +100,7 @@
             <include>**/*.java</include>
           </includes>
         </fileSet>
-        <fileSet encoding="UTF-8">
+        <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
             <include>**/*.xml</include>
@@ -129,22 +129,11 @@
           <includes>
             <include>**/*.java</include>
           </includes>
-        </fileSet>
+        </fileSet>	
         <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
             <include>**/*.xml</include>
-          </includes>
-        </fileSet>		
-        <fileSet encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/ValidationMessages*.properties</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/resources/persistence</directory>
-          <includes>
             <include>**/*.properties</include>
           </includes>
         </fileSet>
@@ -158,6 +147,7 @@
           <directory>src/test/resources</directory>
           <includes>
             <include>**/*.xml</include>
+			<include>**/*.properties</include>
           </includes>
         </fileSet>
       </fileSets>
@@ -175,6 +165,32 @@
           <includes>
             <include>**/*.xml</include>
             <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>    
+	<module id="${rootArtifactId}-service" dir="__rootArtifactId__-service" name="${rootArtifactId}-service">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.xml</include>
+            <include>**/*.properties</include>
+          </includes>
+          <excludes>
+            <exclude>ValidationMessages*.properties</exclude>
+          </excludes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>ValidationMessages*.properties</include>
           </includes>
         </fileSet>
       </fileSets>
@@ -226,12 +242,14 @@
     </module>
     <module id="${rootArtifactId}-front" dir="__rootArtifactId__-front" name="${rootArtifactId}-front">
       <fileSets>
+        <!--
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
           <directory>src/main/java</directory>
           <includes>
             <include>**/*.java</include>
           </includes>
         </fileSet>
+        -->
         <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
@@ -302,15 +320,6 @@
                 <include>**/*.java</include>
               </includes>
             </fileSet>
-			<!--
-            <fileSet encoding="UTF-8">
-              <directory>src/main/resources</directory>
-              <includes>
-                <include>**/*.xml</include>
-                <include>**/*.properties</include>
-              </includes>
-            </fileSet>
-			-->
           </fileSets>
         </module>
         <module id="${rootArtifactId}-ws-api" dir="__rootArtifactId___ws_api" name="${rootArtifactId}-ws-api">

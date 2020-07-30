@@ -9,8 +9,8 @@
     <persistence-unit name="${rootArtifactId}PU" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/${rootArtifactId}DS</jta-data-source>
 
-        <class>${package}.persistence.UnitatOrganica</class>
-        <class>${package}.persistence.Procediment</class>
+        <class>${package}.persistence.model.UnitatOrganica</class>
+        <class>${package}.persistence.model.Procediment</class>
 
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
         <validation-mode>CALLBACK</validation-mode>

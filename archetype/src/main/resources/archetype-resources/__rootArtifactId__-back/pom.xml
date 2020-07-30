@@ -33,13 +33,7 @@
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-persistence</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-ejb</artifactId>
-            <type>ejb</type>
+            <artifactId>${rootArtifactId}-service</artifactId>
             <scope>provided</scope>
         </dependency>
         <!-- Llibreries de keycloak -->

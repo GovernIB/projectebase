@@ -12,8 +12,8 @@
     <persistence-unit name="testPU" transaction-type="RESOURCE_LOCAL">
 
         <!-- Llista de classes persistents -->
-        <class>${package}.persistence.UnitatOrganica</class>
-        <class>${package}.persistence.Procediment</class>
+        <class>${package}.persistence.model.UnitatOrganica</class>
+        <class>${package}.persistence.model.Procediment</class>
 
         <!-- Desactivar cache -->
         <shared-cache-mode>NONE</shared-cache-mode>

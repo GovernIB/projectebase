@@ -39,15 +39,20 @@ public class LoggerInterceptor implements Serializable {
      */
     @AroundInvoke
     public Object logCall(InvocationContext context) throws Exception {
-        final String simpleName = context.getTarget().getClass().getSimpleName();
-        final String methodName = simpleName + "." + context.getMethod().getName();
-        LOG.debug("{} {}", methodName, Arrays.toString(context.getParameters()));
+        String simpleName = context.getTarget().getClass().getSimpleName();
+        String methodName = simpleName + "." + context.getMethod().getName();
+        boolean debugEnabled = LOG.isDebugEnabled();
+        if (debugEnabled) {
+            LOG.debug("{} {}", methodName, Arrays.toString(context.getParameters()));
+        }
 
         long startTime = System.nanoTime();
         Object result = context.proceed();
         long duration = System.nanoTime() - startTime;
 
-        LOG.debug("{} return({}) in {} ms", methodName, result, TimeUnit.NANOSECONDS.toMillis(duration));
+        if (debugEnabled) {
+            LOG.debug("{} return({}) in {} ms", methodName, result, TimeUnit.NANOSECONDS.toMillis(duration));
+        }
         return result;
     }
 }

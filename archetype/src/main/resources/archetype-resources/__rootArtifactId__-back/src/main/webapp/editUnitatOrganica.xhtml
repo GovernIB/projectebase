@@ -17,7 +17,7 @@ Pàgina per edició d'unitats orgàniques.
             l'id, i amb l'acció load el carregarem. -->
             <f:viewParam name="id" value="${symbol_pound}{editUnitatOrganica.current.id}"/>
             <f:viewAction action="${symbol_pound}{editUnitatOrganica.load}"/>
-            <f:importConstants type="${package}.persistence.EstatPublicacio" var="estats"/>
+            <f:importConstants type="${package}.service.model.EstatPublicacio" var="estats"/>
         </f:metadata>
     </ui:define>
 

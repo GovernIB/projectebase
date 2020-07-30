@@ -25,12 +25,8 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 
     @Override
     public Response toResponse(ConstraintViolationException e) {
-        LOG.error("Rebuda una ConstraintViolationException: " + e.getMessage());
-
-        ErrorBean errorBean = new ErrorBean();
-        errorBean.setType(ErrorType.VALIDACIO);
-        errorBean.setMessage(e.getMessage());
-
+        LOG.error("Rebuda una ConstraintViolationException: {}", e.getMessage());
+        ErrorBean errorBean = new ErrorBean(e.getMessage(), ErrorType.VALIDACIO);
         return Response.status(Response.Status.BAD_REQUEST).entity(errorBean).build();
     }
 }

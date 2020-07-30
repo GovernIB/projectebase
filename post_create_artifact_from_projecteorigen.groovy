@@ -117,7 +117,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 
 
 // POMS
-def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back",
+def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back", "__rootArtifactId__-service",
      "__rootArtifactId__-front", "__rootArtifactId__-apifirmasimple", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
 	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-arxiu", "__rootArtifactId__-registre",
 	 "__rootArtifactId__-notib", "__rootArtifactId__-dir3caib", "__rootArtifactId__-distribucio", "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
@@ -148,9 +148,8 @@ for(String commonFile : commonsFiles) {
 def jpaFiles = [ "./__rootArtifactId__-persistence/src/main/resources/META-INF/persistence.xml",
 	"./__rootArtifactId__-persistence/src/test/resources/META-INF/persistence.xml",
 	"./__rootArtifactId__-persistence/src/test/resources/META-INF/arquillian-persistence.xml",
-    "./__rootArtifactId__-persistence/src/main/java/persistence/dao/AbstractDAO.java",
-    "./__rootArtifactId__-persistence/src/main/java/persistence/Procediment.java",
-    "./__rootArtifactId__-persistence/src/main/java/persistence/UnitatOrganica.java" 
+    "./__rootArtifactId__-persistence/src/main/java/persistence/model/Procediment.java",
+    "./__rootArtifactId__-persistence/src/main/java/persistence/model/UnitatOrganica.java" 
 	];
 for(String jpaFile : jpaFiles) {
   replaceProperties(new File(baseProject, jpaFile), false);
@@ -234,10 +233,19 @@ for(String distribucioFile : distribucioFiles) {
     replaceProperties(new File(baseProject, distribucioFile), false);
 }
 
+// SERVICE
+def serviceFiles = [ "./__rootArtifactId__-service/src/main/resources/META-INF/beans.xml" ];
+for(String file : serviceFiles) {
+  replaceProperties(new File(baseProject, file), false);
+}
+
 // EJB   
-def ejbFiles = [ "./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml",
-    "./__rootArtifactId__-ejb/src/main/java/ejb/ProcedimentEJB.java",
-    "./__rootArtifactId__-ejb/src/main/java/ejb/UnitatOrganicaEJB.java" ];
+def ejbFiles = [ 
+	"./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml",
+	"./__rootArtifactId__-ejb/src/main/resources/META-INF/ejb-jar.xml",
+	"./__rootArtifactId__-ejb/src/main/java/ejb/facade/ProcedimentServiceFacadeBean.java",
+	"./__rootArtifactId__-ejb/src/main/java/ejb/facade/UnitatOrganicaServiceFacadeBean.java"
+	];
 for(String ejbFile : ejbFiles) {
   replaceProperties(new File(baseProject, ejbFile), false);
 }

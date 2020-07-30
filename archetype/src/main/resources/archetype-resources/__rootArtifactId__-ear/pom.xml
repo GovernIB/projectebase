@@ -111,6 +111,10 @@
         -->
         <dependency>
             <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-persistence</artifactId>
         </dependency>
         <dependency>

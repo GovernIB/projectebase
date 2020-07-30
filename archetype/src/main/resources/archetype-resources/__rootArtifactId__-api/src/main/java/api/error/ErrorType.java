@@ -10,6 +10,7 @@ package ${package}.api.error;
  * @author areus
  */
 public enum ErrorType {
+
     /**
      * Error de les regles lògiques de l'aplicació
      */

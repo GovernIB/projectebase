@@ -4,8 +4,8 @@
 package ${package}.api.test;
 
 
-import ${package}.persistence.EstatPublicacio;
-import ${package}.persistence.UnitatOrganica;
+import ${package}.service.model.EstatPublicacio;
+import ${package}.service.model.UnitatOrganicaDTO;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,10 +13,13 @@ import org.junit.Test;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Clase d'exemple de client de l'api REST. Empra l'api estàndard de Client de JAX-RS 2.1.
@@ -47,10 +50,9 @@ public class UnitatOrganicaServiceTest {
      */
     @Test
     public void testGetUnitat() {
-
-        UnitatOrganica unitat = client.target(BASE_URL + "/unitats/1")
+        UnitatOrganicaDTO unitat = client.target(BASE_URL + "/unitats/1")
                 .request(MediaType.APPLICATION_JSON)
-                .get(UnitatOrganica.class);
+                .get(UnitatOrganicaDTO.class);
 
         Assert.assertEquals(1L, (long) unitat.getId());
         Assert.assertEquals("A00000001", unitat.getCodiDir3());
@@ -62,11 +64,11 @@ public class UnitatOrganicaServiceTest {
     @Test
     public void testGetAllUnitats() {
 
-        UnitatOrganica[] unitats = client.target(BASE_URL + "/unitats")
+        List<UnitatOrganicaDTO> unitats = client.target(BASE_URL + "/unitats")
                 .request(MediaType.APPLICATION_JSON)
-                .get(UnitatOrganica[].class);
+                .get(new GenericType<>() {});
 
-        Assert.assertTrue(unitats.length > 0);
+        Assert.assertTrue(unitats.size() > 0);
     }
 
     /**
@@ -75,10 +77,12 @@ public class UnitatOrganicaServiceTest {
     @Test
     public void testUpdateUnitat() {
 
-        UnitatOrganica unitat = new UnitatOrganica();
-        unitat.setId(1L);
+        String randomString = UUID.randomUUID().toString();
+        String newName = "Test " + randomString;
+
+        UnitatOrganicaDTO unitat = new UnitatOrganicaDTO();
         unitat.setCodiDir3("A00000001");
-        unitat.setNom("Updated by test");
+        unitat.setNom(newName);
         unitat.setDataCreacio(LocalDate.now());
         unitat.setEstat(EstatPublicacio.ACTIU);
 
@@ -88,6 +92,14 @@ public class UnitatOrganicaServiceTest {
 
         // La resposta quan tot ha anat bé és un 204, ja que no envia contingut.
         Assert.assertEquals(204, response.getStatus());
+
+        UnitatOrganicaDTO unitatModificada = client.target(BASE_URL + "/unitats/1")
+                .request(MediaType.APPLICATION_JSON)
+                .get(UnitatOrganicaDTO.class);
+
+        Assert.assertEquals(newName, unitatModificada.getNom());
+        Assert.assertEquals(LocalDate.now(), unitatModificada.getDataCreacio()); // no començar el test a les 23:59:59 ;)
+        Assert.assertEquals(EstatPublicacio.ACTIU, unitatModificada.getEstat());
     }
 
     /**
@@ -97,7 +109,7 @@ public class UnitatOrganicaServiceTest {
     public void testCreateAndDelete() {
 
         // Dades de la nova unitat orgànica que crearem
-        UnitatOrganica newUnitat = new UnitatOrganica();
+        UnitatOrganicaDTO newUnitat = new UnitatOrganicaDTO();
         //no fixam id perquè és una creació
         newUnitat.setCodiDir3("U87654321"); // aquest codiDir3 no ha d'exisitir ja que és clau única
         newUnitat.setNom("Created by test");
@@ -116,9 +128,9 @@ public class UnitatOrganicaServiceTest {
         URI unitatURI = postResponse.getLocation();
 
         // Itentam consultar el recurs creat per comprovar que els camps arriben ingual que els hem enviat
-        UnitatOrganica unitat = client.target(unitatURI)
+        UnitatOrganicaDTO unitat = client.target(unitatURI)
                 .request(MediaType.APPLICATION_JSON)
-                .get(UnitatOrganica.class);
+                .get(UnitatOrganicaDTO.class);
         Assert.assertEquals("U87654321", unitat.getCodiDir3());
         Assert.assertEquals("Created by test", unitat.getNom());
         Assert.assertEquals(LocalDate.now(), unitat.getDataCreacio()); // no començar el test a les 23:59:59 ;)

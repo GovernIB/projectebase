@@ -345,9 +345,9 @@
     </repositories>
     <modules>
         <module>projectebase-commons</module>
-        <module>projectebase-service</module>
         <module>projectebase-persistence</module>
         <module>projectebase-ejb</module>
+        <module>projectebase-service</module>
         <module>projectebase-back</module>
         <module>projectebase-front</module>
         <module>projectebase-api</module>

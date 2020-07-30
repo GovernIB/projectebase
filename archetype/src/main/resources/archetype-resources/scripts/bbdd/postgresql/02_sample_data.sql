@@ -17,13 +17,25 @@ INSERT INTO ${prefix}_unitatorganica (id, codidir3, datacreacio, estat, nom) VAL
 INSERT INTO ${prefix}_unitatorganica (id, codidir3, datacreacio, estat, nom) VALUES (12, 'A00000012', '2020-01-15', 0, 'Unitat 12');
 
 -- Crear procediments d'exemple
-INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (1, '000001', 'Procediment 1', 1);
-INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (2, '000002', 'Procediment 2', 1);
-INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (3, '000003', 'Procediment 3', 2);
-INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (4, '000004', 'Procediment 4', 3);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (1, '010001', 'Procediment 1', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (2, '010002', 'Procediment 2', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (3, '010003', 'Procediment 3', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (4, '010004', 'Procediment 4', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (5, '010005', 'Procediment 5', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (6, '010006', 'Procediment 6', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (7, '010007', 'Procediment 7', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (8, '010008', 'Procediment 8', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (9, '010009', 'Procediment 9', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (10, '010010', 'Procediment 10', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (11, '010011', 'Procediment 11', 1);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (12, '020001', 'Procediment 2-1', 2);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (13, '020002', 'Procediment 2-2', 2);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (14, '030001', 'Procediment 3-1', 3);
+INSERT INTO ${prefix}_procediment (id, codisia, nom, unitatorganicaid) VALUES (15, '030002', 'Procediment 3-2', 3);
+
 
 -- Actualitzar seqüència de les unitats orgàniques
-SELECT pg_catalog.setval('${prefix}_unitatorganica_seq', 12, true);
+SELECT pg_catalog.setval('${prefix}_unitatorganica_seq', 100, true);
 -- Actualitzar seqüència dels procediments
-SELECT pg_catalog.setval('${prefix}_procediment_seq', 4, true);
+SELECT pg_catalog.setval('${prefix}_procediment_seq', 100, true);
 
