@@ -18,20 +18,8 @@
         <properties>
             <!-- Per les propietats estandard veure punt 8.2.1.9 de l'especificació JPA -->
 
-            <!--
-            Normalment Hibernate obté el dialecte correcte a partir de les metadades de la connexió.
-            Per mor d'un bug a Hibernate 5.3.x, amb versions d'Oracle superiors a la 12 (18 o 19), no ho resòl bé.
-                https://github.com/hibernate/hibernate-orm/pull/3018
-            Cal fixar la següent propietat
-            -->
-            <!--
-            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
-            -->
-
             <!-- Afecta molt al rendiment. A entorn de producció, sempre a false -->
             <property name="hibernate.show_sql" value="${persistenceXml.hibernate.showSql}"/>
-            <!-- Evita que es carreguin les relacions només per accedir al id -->
-            <property name="hibernate.jpa.compliance.proxy" value="false"/>
         </properties>
     </persistence-unit>
 </persistence>

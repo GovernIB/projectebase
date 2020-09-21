@@ -7,13 +7,13 @@ import java.util.Locale;
  *
  * @author areus
  */
-public class UnitatOrganicaDuplicadaExeption extends ServiceException {
+public class UnitatOrganicaDuplicadaException extends ServiceException {
     
     private static final long serialVersionUID = 1L;
 
     private final String codiDir3;
 
-    public UnitatOrganicaDuplicadaExeption(String codiDir3) {
+    public UnitatOrganicaDuplicadaException(String codiDir3) {
         this.codiDir3 = codiDir3;
     }
 

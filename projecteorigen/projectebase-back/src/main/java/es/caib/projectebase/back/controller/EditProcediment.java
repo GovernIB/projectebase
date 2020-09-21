@@ -97,7 +97,7 @@ public class EditProcediment implements Serializable {
     }
 
     /**
-     * Crea o actualitza la unitat orgànica que s'està editant. Afegeix un missatge si s'ha fet amb èxit
+     * Crea o actualitza el procediment que s'està editant. Afegeix un missatge si s'ha fet amb èxit
      * i redirecciona cap a la pàgina de llistat.
      *
      * @return navegació cap al llistat d'unitats orgàniques.

@@ -8,7 +8,7 @@ import es.caib.projectebase.ejb.repository.ProcedimentRepository;
 import es.caib.projectebase.ejb.repository.UnitatOrganicaRepository;
 import es.caib.projectebase.persistence.model.Procediment;
 import es.caib.projectebase.persistence.model.UnitatOrganica;
-import es.caib.projectebase.service.exception.ProcedimentDuplicatExeption;
+import es.caib.projectebase.service.exception.ProcedimentDuplicatException;
 import es.caib.projectebase.service.exception.RecursNoTrobatException;
 import es.caib.projectebase.service.facade.ProcedimentServiceFacade;
 import es.caib.projectebase.service.model.Page;
@@ -50,9 +50,9 @@ public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
     private ProcedimentConverter converter;
 
     @Override
-    public Long create(ProcedimentDTO dto, Long idUnitat) throws ProcedimentDuplicatExeption {
+    public Long create(ProcedimentDTO dto, Long idUnitat) throws ProcedimentDuplicatException {
         if (repository.findByCodiSia(dto.getCodiSia()).isPresent()) {
-            throw new ProcedimentDuplicatExeption(dto.getCodiSia());
+            throw new ProcedimentDuplicatException(dto.getCodiSia());
         }
 
         UnitatOrganica unitatReference = unitatRepository.getReference(idUnitat);
@@ -63,10 +63,10 @@ public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
     }
 
     @Override
-    public void update(ProcedimentDTO dto) throws ProcedimentDuplicatExeption {
+    public void update(ProcedimentDTO dto) throws ProcedimentDuplicatException {
         Optional<Procediment> opProcediment = repository.findByCodiSia(dto.getCodiSia());
         if (opProcediment.isPresent() && !opProcediment.get().getId().equals(dto.getId())) {
-            throw new ProcedimentDuplicatExeption(dto.getCodiSia());
+            throw new ProcedimentDuplicatException(dto.getCodiSia());
         }
 
         Procediment procediment = opProcediment.orElse(repository.getReference(dto.getId()));

@@ -7,7 +7,7 @@ import es.caib.projectebase.ejb.interceptor.Logged;
 import es.caib.projectebase.ejb.repository.UnitatOrganicaRepository;
 import es.caib.projectebase.persistence.model.UnitatOrganica;
 import es.caib.projectebase.service.exception.RecursNoTrobatException;
-import es.caib.projectebase.service.exception.UnitatOrganicaDuplicadaExeption;
+import es.caib.projectebase.service.exception.UnitatOrganicaDuplicadaException;
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Page;
@@ -48,9 +48,9 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
     private UnitatOrganicaConverter converter;
 
     @Override
-    public Long create(UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaExeption {
+    public Long create(UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaException {
         if (repository.findByCodiDir3(dto.getCodiDir3()).isPresent()) {
-            throw new UnitatOrganicaDuplicadaExeption(dto.getCodiDir3());
+            throw new UnitatOrganicaDuplicadaException(dto.getCodiDir3());
         }
 
         UnitatOrganica unitat = converter.toEntity(dto);
@@ -59,10 +59,10 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
     }
 
     @Override
-    public void update(UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaExeption {
+    public void update(UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaException {
         Optional<UnitatOrganica> opUnitat = repository.findByCodiDir3(dto.getCodiDir3());
         if (opUnitat.isPresent() && !opUnitat.get().getId().equals(dto.getId())) {
-            throw new UnitatOrganicaDuplicadaExeption(dto.getCodiDir3());
+            throw new UnitatOrganicaDuplicadaException(dto.getCodiDir3());
         }
 
         UnitatOrganica unitat = opUnitat.orElse(repository.getReference(dto.getId()));

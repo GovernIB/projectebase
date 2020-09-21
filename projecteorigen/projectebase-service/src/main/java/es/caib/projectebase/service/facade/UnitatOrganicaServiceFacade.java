@@ -1,7 +1,7 @@
 package es.caib.projectebase.service.facade;
 
 import es.caib.projectebase.service.exception.RecursNoTrobatException;
-import es.caib.projectebase.service.exception.UnitatOrganicaDuplicadaExeption;
+import es.caib.projectebase.service.exception.UnitatOrganicaDuplicadaException;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Page;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
@@ -20,9 +20,9 @@ import java.util.Map;
  */
 public interface UnitatOrganicaServiceFacade {
 
-    Long create(@NotNull @Valid UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaExeption;
+    Long create(@NotNull @Valid UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaException;
 
-    void update(@NotNull @Valid UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaExeption;
+    void update(@NotNull @Valid UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaException;
 
     void delete(@NotNull Long id);
 

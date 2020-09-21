@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
-import es.caib.projectebase.service.exception.ProcedimentDuplicatExeption;
+import es.caib.projectebase.service.exception.ProcedimentDuplicatException;
 import es.caib.projectebase.service.exception.RecursNoTrobatException;
 import es.caib.projectebase.service.model.Page;
 import es.caib.projectebase.service.model.ProcedimentDTO;
@@ -17,9 +17,9 @@ import es.caib.projectebase.service.model.ProcedimentDTO;
  */
 public interface ProcedimentServiceFacade {
 
-    Long create(@NotNull @Valid ProcedimentDTO dto, @NotNull Long idUnitat) throws ProcedimentDuplicatExeption;
+    Long create(@NotNull @Valid ProcedimentDTO dto, @NotNull Long idUnitat) throws ProcedimentDuplicatException;
 
-    void update(@NotNull @Valid ProcedimentDTO dto) throws ProcedimentDuplicatExeption;
+    void update(@NotNull @Valid ProcedimentDTO dto) throws ProcedimentDuplicatException;
 
     void delete(@NotNull Long id);
 
