@@ -54,7 +54,7 @@ public class Dir3ServiceImpl implements Dir3Service {
     public List<CodigoValor> comunidadesAutonomas() {
         return client.target(baseUrl + CATALOGO_COMUNIDADES_AUTONOMAS)
                 .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>() {});
+                .get(new GenericType<List<CodigoValor>>() {});
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Dir3ServiceImpl implements Dir3Service {
         return client.target(baseUrl + CATALOGO_PROVINCIAS_COMUNIDAD)
                 .queryParam("id", idComunidad)
                 .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>() {});
+                .get(new GenericType<List<CodigoValor>>() {});
     }
 
     @Override
@@ -71,14 +71,14 @@ public class Dir3ServiceImpl implements Dir3Service {
                 .queryParam("codigoProvincia", idProvincia)
                 .queryParam("codigoEntidadGeografica", ENTIDAD_GEOGRAFICA_MUNICIPIO)
                 .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>() {});
+                .get(new GenericType<List<CodigoValor>>() {});
     }
 
     @Override
     public List<CodigoValor> nivelesAdministracion() {
         return client.target(baseUrl + CATALOGO_NIVELES_ADMINISTRACION)
                 .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>() {});
+                .get(new GenericType<List<CodigoValor>>() {});
     }
 
     @Override
@@ -96,6 +96,6 @@ public class Dir3ServiceImpl implements Dir3Service {
                 .queryParam("localidad", localidad == null ? "" : localidad + "-" + ENTIDAD_GEOGRAFICA_MUNICIPIO)
                 .queryParam("vigentes", vigentes)
                 .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>() {});
+                .get(new GenericType<List<Nodo>>() {});
     }
 }
