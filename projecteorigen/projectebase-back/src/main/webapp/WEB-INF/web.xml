@@ -120,8 +120,8 @@
     </security-constraint>
 
     <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>Govern de les Illes Balears</realm-name>
+        <auth-method>${webXml.loginConfig.authMethod}</auth-method>
+        <realm-name>${webXml.loginConfig.realmName}</realm-name>
     </login-config>
 
     <security-role>

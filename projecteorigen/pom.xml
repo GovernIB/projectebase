@@ -33,6 +33,10 @@
         <!-- Es poden activar els valors de producció activatn el profile -Pproduccio -->
         <webXml.faces.projectStage>Development</webXml.faces.projectStage>
         <persistenceXml.hibernate.showSql>true</persistenceXml.hibernate.showSql>
+        <!-- Altres substitucions a aplicar dins els descriptors. -->
+        <!-- Es poden sobreescriure passant la propietat al maven amb -D -->
+        <webXml.loginConfig.authMethod>KEYCLOAK</webXml.loginConfig.authMethod>
+        <webXml.loginConfig.realmName>Govern de les Illes Balears</webXml.loginConfig.realmName>
     </properties>
     <dependencyManagement>
         <dependencies>
