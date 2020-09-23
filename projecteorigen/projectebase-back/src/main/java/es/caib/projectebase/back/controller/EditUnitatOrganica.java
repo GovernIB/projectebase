@@ -7,12 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
@@ -25,14 +21,11 @@ import java.util.ResourceBundle;
  */
 @Named
 @ViewScoped
-public class EditUnitatOrganica implements Serializable {
+public class EditUnitatOrganica extends AbstractController implements Serializable {
 
     private static final long serialVersionUID = -4092311228270716321L;
 
     private static final Logger LOG = LoggerFactory.getLogger(EditUnitatOrganica.class);
-
-    @Inject
-    private FacesContext context;
 
     @EJB
     UnitatOrganicaServiceFacade unitatOrganicaService;
@@ -73,7 +66,7 @@ public class EditUnitatOrganica implements Serializable {
     /**
      * Carrega la unitat orgànica per editar.
      */
-    public void load() throws IOException {
+    public void load() {
         LOG.debug("load");
         if (current.getId() != null) {
             current = unitatOrganicaService.findById(current.getId())
@@ -90,20 +83,20 @@ public class EditUnitatOrganica implements Serializable {
     public String saveOrUpdate() {
         LOG.debug("saveOrUpdate");
         // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
-        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
+        ResourceBundle labelsBundle = getBundle("labels");
 
         // Feim una creació o una actualització.
         if (isCreate()) {
             unitatOrganicaService.create(current);
-            context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.creaciocorrecta")));
+            addGlobalMessage(labelsBundle.getString("msg.creaciocorrecta"));
         } else {
             unitatOrganicaService.update(current);
-            context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.actualitzaciocorrecta")));
+            addGlobalMessage(labelsBundle.getString("msg.actualitzaciocorrecta"));
         }
 
         // Els missatges no aguanten una redirecció ja que no es la mateixa petició
-        // amb l'objecte flash podem assegurar que es guardin fins la visualització
-        context.getExternalContext().getFlash().setKeepMessages(true);
+        // Així asseguram que es guardin fins la visualització
+        keepMessages();
 
         // Redireccionam cap al llistat d'unitats orgàniques
         return "/listUnitatOrganica?faces-redirect=true";

@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -30,14 +27,11 @@ import java.util.ResourceBundle;
  */
 @Named
 @ViewScoped
-public class ListUnitatOrganica implements Serializable {
+public class ListUnitatOrganica extends AbstractController implements Serializable {
 
     private static final long serialVersionUID = -6015369276336087696L;
 
     private static final Logger LOG = LoggerFactory.getLogger(ListUnitatOrganica.class);
-
-    @Inject
-    private FacesContext context;
 
     @EJB
     private UnitatOrganicaServiceFacade unitatOrganicaService;
@@ -94,10 +88,10 @@ public class ListUnitatOrganica implements Serializable {
     public void delete(Long id) {
         LOG.debug("delete");
         // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
-        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
+        ResourceBundle labelsBundle = getBundle("labels");
 
         unitatOrganicaService.delete(id);
-        context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
+        addGlobalMessage(labelsBundle.getString("msg.eliminaciocorrecta"));
 
         // No cal actualitzar el model perquè no aparegui el registre eliminat perquè primefaces cridarà
         // automàticament el load del lazyDataModel en refrescar el component del datatable.

@@ -10,8 +10,12 @@ Pàgina per editar procediments
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}" />
+            <f:viewParam id="unitatOrganicaId" name="unitatOrganicaId" 
+                         value="#{editProcediment.unitatOrganica.id}" 
+                         required="#{not facesContext.postback}" /> 
             <f:viewParam name="id" value="#{editProcediment.procediment.id}"/>
+            <!-- si la validació/conversió falla el viewAction no es processarà per això necessitam aquest event -->
+            <f:event type="postValidate" listener="#{editProcediment.badRequestOnValidationFailed}" />
             <f:viewAction action="#{editProcediment.load}"/>
         </f:metadata>
     </ui:define>

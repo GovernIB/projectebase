@@ -9,11 +9,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
@@ -27,14 +25,11 @@ import java.util.ResourceBundle;
  */
 @Named
 @ViewScoped
-public class EditProcediment implements Serializable {
+public class EditProcediment extends AbstractController implements Serializable {
 
     private static final long serialVersionUID = -6369618058993094891L;
 
     private static final Logger LOG = LoggerFactory.getLogger(EditProcediment.class);
-
-    @Inject
-    private FacesContext context;
 
     @EJB
     ProcedimentServiceFacade procedimentService;
@@ -76,7 +71,7 @@ public class EditProcediment implements Serializable {
      */
     @PostConstruct
     public void init() {
-        LOG.debug("init");
+        LOG.info("init");
         procediment = new ProcedimentDTO();
         unitatOrganica = new UnitatOrganicaDTO();
     }
@@ -86,9 +81,9 @@ public class EditProcediment implements Serializable {
     /**
      * Carrega la unitat orgànica en la que editar un procediment, i opcionalment el procediment.
      */
-    public void load() {
-        LOG.debug("load");
-
+    public void load() throws IOException {
+        LOG.info("load");
+        
         unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId())
                 .orElseThrow(() -> new RuntimeException("id invàlid"));
 
@@ -107,20 +102,20 @@ public class EditProcediment implements Serializable {
     public String saveOrUpdate() {
         LOG.debug("saveOrUpdate");
         // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
-        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
+        ResourceBundle labelsBundle = getBundle("labels");
 
         // Feim una creació o una actualització.
         if (isCreate()) {
             procedimentService.create(procediment, unitatOrganica.getId());
-            context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.creaciocorrecta")));
+            addGlobalMessage(labelsBundle.getString("msg.creaciocorrecta"));
         } else {
             procedimentService.update(procediment);
-            context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.actualitzaciocorrecta")));
+            addGlobalMessage(labelsBundle.getString("msg.actualitzaciocorrecta"));
         }
 
         // Els missatges no aguanten una redirecció ja que no es la mateixa petició
-        // amb l'objecte flash podem assegurar que es guardin fins la visualització
-        context.getExternalContext().getFlash().setKeepMessages(true);
+        // així asseguram que es guardin fins la visualització
+        keepMessages();
 
         // Redireccionam cap al llistat de procediments, mantenint l'identificador de unitat orgànica
         return "/listProcediment?faces-redirect=true&includeViewParams=true";

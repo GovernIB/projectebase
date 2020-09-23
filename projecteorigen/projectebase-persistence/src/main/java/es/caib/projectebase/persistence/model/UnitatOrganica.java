@@ -12,6 +12,11 @@ import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -20,7 +25,6 @@ import static javax.persistence.EnumType.ORDINAL;
 /**
  * Representació d'una unitat orgànica. Sempre convé definir-les serializable, per si hi mantenim referències dins
  * coses serializables. A nivell de classe definim la seqüència que emprarem, i les claus úniques.
- * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
  */
@@ -54,12 +58,14 @@ public class UnitatOrganica extends BaseEntity {
      * Ficam un missatge de validació personalitzat.
      */
     @Column(name = "CODIDIR3", nullable = false, updatable = false, length = 9)
+    @NotNull @Pattern(regexp = "[AEIJLU][0-9]{8}", message = "{codidir3.Pattern.message}")
     private String codiDir3;
 
     /**
      * Nom de la únitat orgànica. Ha de ser una cadena no buida, de màxim 50 caràcters.
      */
     @Column(name = "NOM", nullable = false, length = 50)
+    @NotEmpty @Size(max = 50)
     private String nom;
 
     /**
@@ -67,6 +73,7 @@ public class UnitatOrganica extends BaseEntity {
      * En la serialitzacio/deserialització JSON s'empra el format dd-mm-aaaa.
      */
     @Column(name = "DATACREACIO", nullable = false)
+    @NotNull @PastOrPresent
     private LocalDate dataCreacio;
 
     /**
@@ -76,6 +83,7 @@ public class UnitatOrganica extends BaseEntity {
      */
     @Enumerated(ORDINAL)
     @Column(name = "ESTAT", nullable = false)
+    @NotNull
     private EstatPublicacio estat;
 
     public Long getId() {

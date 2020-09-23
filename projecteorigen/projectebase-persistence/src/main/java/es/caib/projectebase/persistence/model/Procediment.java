@@ -13,11 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
  * Representació d'un procediment. A nivell de classe definim la seqüència que emprarem, i les claus úniques.
- * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
  */
@@ -48,12 +51,14 @@ public class Procediment extends BaseEntity {
      * No es pot actualitzar una vegada creat.
      */
     @Column(name = "CODISIA", nullable = false, updatable = false, length = 8)
+    @NotNull @Pattern(regexp = "[0-9]{6,8}", message = "{codiSia.Pattern.message}")
     private String codiSia;
 
     /**
      * Nom del procediment.
      */
     @Column(name = "NOM", nullable = false, length = 50)
+    @NotEmpty @Size(max = 50)
     private String nom;
 
     /**

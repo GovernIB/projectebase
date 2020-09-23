@@ -13,6 +13,8 @@ Pàgina per edició d'unitats orgàniques.
             <!-- Al principi de la vista, es fixarà el paràmetre rebut dins
             l'id, i amb l'acció load el carregarem. -->
             <f:viewParam name="id" value="#{editUnitatOrganica.current.id}" />
+            <!-- si la validació/conversió falla el viewAction no es processarà per això necessitam aquest event -->
+            <f:event type="postValidate" listener="#{editUnitatOrganica.badRequestOnValidationFailed}" />
             <f:viewAction action="#{editUnitatOrganica.load}"/>
             <f:importConstants type="es.caib.projectebase.service.model.EstatPublicacio" var="estats"/>
         </f:metadata>
