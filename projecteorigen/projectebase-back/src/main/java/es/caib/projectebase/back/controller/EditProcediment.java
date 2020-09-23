@@ -84,15 +84,17 @@ public class EditProcediment implements Serializable {
     // ACCIONS
 
     /**
-     * Carrega el procediment i la unitat orgància per editar.
+     * Carrega la unitat orgànica en la que editar un procediment, i opcionalment el procediment.
      */
     public void load() {
         LOG.debug("load");
+
+        unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId())
+                .orElseThrow(() -> new RuntimeException("id invàlid"));
+
         if (procediment.getId() != null) {
-            procediment = procedimentService.findById(procediment.getId());
-        }
-        if (unitatOrganica.getId() != null) {
-            unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId());
+            procediment = procedimentService.findById(procediment.getId())
+                    .orElseThrow(() -> new RuntimeException("id invàlid"));
         }
     }
 

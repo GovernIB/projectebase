@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
@@ -72,10 +73,11 @@ public class EditUnitatOrganica implements Serializable {
     /**
      * Carrega la unitat orgànica per editar.
      */
-    public void load() {
+    public void load() throws IOException {
         LOG.debug("load");
         if (current.getId() != null) {
-            current = unitatOrganicaService.findById(current.getId());
+            current = unitatOrganicaService.findById(current.getId())
+                    .orElseThrow(() -> new RuntimeException("id invàlid"));
         }
     }
 

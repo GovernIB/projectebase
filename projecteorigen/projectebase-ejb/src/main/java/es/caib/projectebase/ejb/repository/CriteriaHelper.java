@@ -48,7 +48,7 @@ public class CriteriaHelper {
             // Si el tipo java és string, llavors segur que és un Path<String>
             @SuppressWarnings("unchecked")
             Path<String> stringPath = (Path<String>) path;
-            return builder.like(stringPath, "%" + value + "%");
+            return builder.like(stringPath, value + "%");
         } else {
             return builder.equal(path, value);
         }

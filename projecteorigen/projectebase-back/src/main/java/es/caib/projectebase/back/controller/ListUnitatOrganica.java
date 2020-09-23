@@ -3,7 +3,7 @@ package es.caib.projectebase.back.controller;
 import es.caib.projectebase.back.utils.PFUtils;
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
 import es.caib.projectebase.service.model.Ordre;
-import es.caib.projectebase.service.model.Page;
+import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
@@ -74,12 +74,11 @@ public class ListUnitatOrganica implements Serializable {
 
                 List<Ordre> ordenacions = PFUtils.sortMetaToOrdre(multiSortMeta);
 
-                Page<UnitatOrganicaDTO> llistat = unitatOrganicaService
+                Pagina<UnitatOrganicaDTO> pagina = unitatOrganicaService
                         .findFiltered(first, pageSize, filters, ordenacions);
 
-                setRowCount((int) llistat.getTotal());
-
-                return llistat;
+                setRowCount((int) pagina.getTotal());
+                return pagina.getItems();
             }
         };
     }

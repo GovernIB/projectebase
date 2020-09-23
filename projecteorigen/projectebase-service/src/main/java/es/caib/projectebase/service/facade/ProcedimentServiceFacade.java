@@ -1,14 +1,10 @@
 package es.caib.projectebase.service.facade;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
-
 import es.caib.projectebase.service.exception.ProcedimentDuplicatException;
-import es.caib.projectebase.service.exception.RecursNoTrobatException;
-import es.caib.projectebase.service.model.Page;
+import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.ProcedimentDTO;
+
+import java.util.Optional;
 
 /**
  * Servei per els casos d'ús de mateniment d'un Procediment.
@@ -17,13 +13,13 @@ import es.caib.projectebase.service.model.ProcedimentDTO;
  */
 public interface ProcedimentServiceFacade {
 
-    Long create(@NotNull @Valid ProcedimentDTO dto, @NotNull Long idUnitat) throws ProcedimentDuplicatException;
+    Long create(ProcedimentDTO dto, Long idUnitat) throws ProcedimentDuplicatException;
 
-    void update(@NotNull @Valid ProcedimentDTO dto) throws ProcedimentDuplicatException;
+    void update(ProcedimentDTO dto);
 
-    void delete(@NotNull Long id);
+    void delete(Long id);
 
-    ProcedimentDTO findById(@NotNull Long id) throws RecursNoTrobatException;
+    Optional<ProcedimentDTO> findById(Long id);
 
-    Page<ProcedimentDTO> findByUnitat(@PositiveOrZero int firstResult, @Positive int maxResult, @NotNull Long idUnitat);
+    Pagina<ProcedimentDTO> findByUnitat(int firstResult, int maxResult, Long idUnitat);
 }

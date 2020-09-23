@@ -12,7 +12,7 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
             <!-- Al principi de la vista, es fixarà el paràmetre rebut dins
             i amb l'acció load carregarem les dades. El posam required perquè és obligatori -->
             <f:viewParam name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}" required="true"/>
-            <f:viewAction action="#{listProcediment.load}"/>
+            <f:viewAction action="#{listProcediment.load}" />
         </f:metadata>
     </ui:define>
 

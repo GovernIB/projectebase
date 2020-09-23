@@ -10,7 +10,7 @@ Pàgina per editar procediments
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}"/>
+            <f:viewParam name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}" />
             <f:viewParam name="id" value="#{editProcediment.procediment.id}"/>
             <f:viewAction action="#{editProcediment.load}"/>
         </f:metadata>
@@ -34,26 +34,14 @@ Pàgina per editar procediments
     <ui:define name="content">
 
         <h:form id="form">
-            <!-- Els paràmetres de la vista s'han de mantenir, perquè sinó, després d'una validació es perden -->
-            <input type="hidden" name="unitatOrganicaId" value="#{editProcediment.unitatOrganica.id}"/>
-
-            <ui:decorate template="/template/field.xhtml">
-                <ui:define name="label">
-                    <p:outputLabel for="id" value="#{labels.procediment_id}"/>
-                </ui:define>
-                <ui:define name="input">
-                    <p:inputText id="id" value="#{editProcediment.procediment.id}" readonly="true"/>
-                    <!-- els camps readonly no es processen, per tant pot perdre l'id, per això el ficam a un hidden -->
-                    <h:inputHidden value="#{editProcediment.procediment.id}"/>
-                </ui:define>
-            </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
                     <p:outputLabel for="codiDir3" value="#{labels.procediment_codiSia}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="codiDir3" value="#{editProcediment.procediment.codiSia}"/>
+                    <p:inputText id="codiDir3" value="#{editProcediment.procediment.codiSia}" 
+                                 readonly="#{not editProcediment.create}"/>
                     <p:message for="codiDir3"/>
                 </ui:define>
             </ui:decorate>

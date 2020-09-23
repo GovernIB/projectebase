@@ -12,7 +12,7 @@ Pàgina per edició d'unitats orgàniques.
         <f:metadata>
             <!-- Al principi de la vista, es fixarà el paràmetre rebut dins
             l'id, i amb l'acció load el carregarem. -->
-            <f:viewParam name="id" value="#{editUnitatOrganica.current.id}"/>
+            <f:viewParam name="id" value="#{editUnitatOrganica.current.id}" />
             <f:viewAction action="#{editUnitatOrganica.load}"/>
             <f:importConstants type="es.caib.projectebase.service.model.EstatPublicacio" var="estats"/>
         </f:metadata>
@@ -31,23 +31,14 @@ Pàgina per edició d'unitats orgàniques.
     <ui:define name="content">
 
         <h:form id="form">
-            <ui:decorate template="/template/field.xhtml">
-                <ui:define name="label">
-                    <p:outputLabel for="id" value="#{labels.unitatOrganica_id}"/>
-                </ui:define>
-                <ui:define name="input">
-                    <p:inputText id="id" value="#{editUnitatOrganica.current.id}" readonly="true"/>
-                    <!-- els camps readonly no es processen, per tant pot perdre l'id, per això el ficam a un hidden -->
-                    <h:inputHidden value="#{editUnitatOrganica.current.id}"/>
-                </ui:define>
-            </ui:decorate>
 
             <ui:decorate template="/template/field.xhtml">
                 <ui:define name="label">
                     <p:outputLabel for="codiDir3" value="#{labels.unitatOrganica_codiDir3}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="codiDir3" value="#{editUnitatOrganica.current.codiDir3}"/>
+                    <p:inputText id="codiDir3" value="#{editUnitatOrganica.current.codiDir3}"
+                                 readonly="#{not editUnitatOrganica.create}"/>
                     <p:message for="codiDir3"/>
                 </ui:define>
             </ui:decorate>

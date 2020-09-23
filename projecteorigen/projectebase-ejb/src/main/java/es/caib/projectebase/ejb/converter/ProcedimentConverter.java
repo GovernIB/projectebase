@@ -25,6 +25,7 @@ public interface ProcedimentConverter extends Converter<Procediment, Procediment
     Procediment toEntity(ProcedimentDTO dto);
 
     @Mapping(target = "unitatOrganica", ignore = true)
+    @Mapping(target = "codiSia", ignore = true) // no volem que s'actualitzi
     @Override
     void updateFromDTO(@MappingTarget Procediment entity, ProcedimentDTO dto);
 }

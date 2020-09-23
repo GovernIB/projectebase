@@ -3,6 +3,9 @@ package es.caib.projectebase.commons.utils;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
@@ -15,6 +18,8 @@ import java.util.ResourceBundle;
 @Named
 @ApplicationScoped
 public class Version {
+
+    private static final DateTimeFormatter BUILD_TIME_PATTERN = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
 
     private String version;
     private String buildTime;
@@ -30,7 +35,10 @@ public class Version {
         /* Agafa fitxer Version.properties amb el mateix package */
         ResourceBundle bundle = ResourceBundle.getBundle("projectebase.version.Version");
         version = bundle.getString("project.version");
-        buildTime = bundle.getString("project.buildtime");
+        buildTime = ZonedDateTime
+                .parse(bundle.getString("project.buildtime"))
+                .withZoneSameInstant(ZoneId.systemDefault())
+                .format(BUILD_TIME_PATTERN);
         scmRevision = bundle.getString("scm.revision");
         jdkVersion = bundle.getString("jdk.version");
         projectName = bundle.getString("project.name");

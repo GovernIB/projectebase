@@ -12,11 +12,6 @@
     <name>ProjecteBase - EAR</name>
     <description>Arxiu d'aplicació EAR de ProjecteBase</description>
 
-    <properties>
-        <!-- Format del timestamp -->
-        <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
-    </properties>
-
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>

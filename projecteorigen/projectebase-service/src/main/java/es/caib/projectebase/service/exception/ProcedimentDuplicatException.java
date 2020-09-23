@@ -19,6 +19,6 @@ public class ProcedimentDuplicatException extends ServiceException {
 
     @Override
     public String getLocalizedMessage(Locale locale) {
-        return translate(locale, "error.prodedimentDuplicat", codiSia);
+        return translate(locale, "error.procedimentDuplicat", codiSia);
     }
 }

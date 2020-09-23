@@ -45,8 +45,9 @@ public class Procediment extends BaseEntity {
     /**
      * Codi SIR que identifica el procediment. És únic, i per tant una clau natural.
      * Ha de ser un nombre de entre 6 i 8 dígits.
+     * No es pot actualitzar una vegada creat.
      */
-    @Column(name = "CODISIA", nullable = false, length = 8)
+    @Column(name = "CODISIA", nullable = false, updatable = false, length = 8)
     private String codiSia;
 
     /**
@@ -99,11 +100,9 @@ public class Procediment extends BaseEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Procediment procediment = (Procediment) o;
-        return Objects.equals(codiSia, procediment.codiSia);
+        if (!(o instanceof Procediment)) return false;
+        Procediment that = (Procediment) o;
+        return Objects.equals(codiSia, that.codiSia);
     }
 
     @Override

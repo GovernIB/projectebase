@@ -49,9 +49,11 @@ public class UnitatOrganica extends BaseEntity {
 
     /**
      * Codi DIR3 que identifica la únicat orgànica. És únic, i per tant una clau natural.
-     * Ha de seguir el patró d'una lletra (A, E, I, J, L, U) seguida de 8 dígits. Ficam un missatge de validació personalitzat.
+     * Una vegada creat, no s'actualitza.
+     * Ha de seguir el patró d'una lletra (A, E, I, J, L, U) seguida de 8 dígits.
+     * Ficam un missatge de validació personalitzat.
      */
-    @Column(name = "CODIDIR3", nullable = false, length = 9)
+    @Column(name = "CODIDIR3", nullable = false, updatable = false, length = 9)
     private String codiDir3;
 
     /**
@@ -127,11 +129,9 @@ public class UnitatOrganica extends BaseEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        UnitatOrganica unitatOrganica = (UnitatOrganica) o;
-        return Objects.equals(codiDir3, unitatOrganica.codiDir3);
+        if (!(o instanceof UnitatOrganica)) return false;
+        UnitatOrganica that = (UnitatOrganica) o;
+        return Objects.equals(codiDir3, that.codiDir3);
     }
 
     @Override

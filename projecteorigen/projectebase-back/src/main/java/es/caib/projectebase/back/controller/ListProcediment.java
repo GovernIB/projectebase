@@ -2,7 +2,7 @@ package es.caib.projectebase.back.controller;
 
 import es.caib.projectebase.service.facade.ProcedimentServiceFacade;
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
-import es.caib.projectebase.service.model.Page;
+import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.ProcedimentDTO;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.primefaces.model.LazyDataModel;
@@ -82,7 +82,10 @@ public class ListProcediment implements Serializable {
      */
     public void load() {
         LOG.info("load");
-        unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId());
+
+        LOG.info("id: {}", unitatOrganica.getId());
+        unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId())
+                .orElseThrow(() -> new RuntimeException("id invàlid"));
 
         lazyModel = new LazyDataModel<>() {
 
@@ -91,9 +94,9 @@ public class ListProcediment implements Serializable {
             @Override
             public List<ProcedimentDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder,
                                              Map<String, Object> filters) {
-                Page<ProcedimentDTO> llistat = procedimentService.findByUnitat(first, pageSize, unitatOrganica.getId());
-                setRowCount((int) llistat.getTotal());
-                return llistat;
+                Pagina<ProcedimentDTO> pagina = procedimentService.findByUnitat(first, pageSize, unitatOrganica.getId());
+                setRowCount((int) pagina.getTotal());
+                return pagina.getItems();
             }
         };
     }

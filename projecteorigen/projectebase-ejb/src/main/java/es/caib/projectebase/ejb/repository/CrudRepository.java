@@ -1,7 +1,5 @@
 package es.caib.projectebase.ejb.repository;
 
-import java.util.Optional;
-
 /**
  * Operacions bàsiques d'un repositori CRUD
  * @param <E> tipus de l'entity
@@ -13,7 +11,7 @@ public interface CrudRepository<E, PK> {
 
     void update(E entity);
 
-    Optional<E> findById(PK id);
+    E findById(PK id);
 
     E getReference(PK id);
 

@@ -1,17 +1,13 @@
 package es.caib.projectebase.service.facade;
 
-import es.caib.projectebase.service.exception.RecursNoTrobatException;
 import es.caib.projectebase.service.exception.UnitatOrganicaDuplicadaException;
 import es.caib.projectebase.service.model.Ordre;
-import es.caib.projectebase.service.model.Page;
+import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Servei per els casos d'ús de mateniment d'una Unitat Orgànica.
@@ -20,14 +16,14 @@ import java.util.Map;
  */
 public interface UnitatOrganicaServiceFacade {
 
-    Long create(@NotNull @Valid UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaException;
+    Long create(UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaException;
 
-    void update(@NotNull @Valid UnitatOrganicaDTO dto) throws UnitatOrganicaDuplicadaException;
+    void update(UnitatOrganicaDTO dto);
 
-    void delete(@NotNull Long id);
+    void delete(Long id);
 
-    UnitatOrganicaDTO findById(@NotNull Long id) throws RecursNoTrobatException;
+    Optional<UnitatOrganicaDTO> findById(Long id);
 
-    Page<UnitatOrganicaDTO> findFiltered(@PositiveOrZero int firstResult, @Positive int maxResult,
-            @NotNull Map<String, Object> filters, @NotNull List<Ordre> ordenacio);
+    Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult,
+                                           Map<String, Object> filters, List<Ordre> ordenacio);
 }
