@@ -2,11 +2,13 @@ package es.caib.projectebase.ejb.facade;
 
 import es.caib.projectebase.commons.utils.Constants;
 import es.caib.projectebase.ejb.converter.ProcedimentConverter;
+import es.caib.projectebase.ejb.interceptor.ExceptionTranslate;
 import es.caib.projectebase.ejb.interceptor.Logged;
 import es.caib.projectebase.ejb.repository.ProcedimentRepository;
 import es.caib.projectebase.ejb.repository.UnitatOrganicaRepository;
 import es.caib.projectebase.persistence.model.Procediment;
 import es.caib.projectebase.service.exception.ProcedimentDuplicatException;
+import es.caib.projectebase.service.exception.RecursNoTrobatException;
 import es.caib.projectebase.service.facade.ProcedimentServiceFacade;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.ProcedimentDTO;
@@ -23,10 +25,12 @@ import java.util.Optional;
 /**
  * Implementació dels casos d'ús de manteniment de Procediments.
  * És responsabilitat d'aquesta capa definir el limit de les transaccions i la seguretat.
- *
+ * Les excepcions específiques es llancen mitjançant l'{@link ExceptionTranslate} que transforma
+ * els errors JPA amb les excepcions de servei com la {@link RecursNoTrobatException}
  * @author areus
  */
 @Logged
+@ExceptionTranslate
 @Stateless @Local(ProcedimentServiceFacade.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @RolesAllowed(Constants.PBS_ADMIN)
@@ -42,7 +46,7 @@ public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
     private ProcedimentConverter converter;
 
     @Override
-    public Long create(ProcedimentDTO dto, Long idUnitat) throws ProcedimentDuplicatException {
+    public Long create(ProcedimentDTO dto, Long idUnitat) throws RecursNoTrobatException, ProcedimentDuplicatException {
         // Comprovam que el codiSia no existeix ja
         if (repository.findByCodiSia(dto.getCodiSia()).isPresent()) {
             throw new ProcedimentDuplicatException(dto.getCodiSia());
@@ -55,13 +59,13 @@ public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
     }
 
     @Override
-    public void update(ProcedimentDTO dto) {
+    public void update(ProcedimentDTO dto) throws RecursNoTrobatException {
         Procediment procediment = repository.getReference(dto.getId());
         converter.updateFromDTO(procediment, dto);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws RecursNoTrobatException {
         Procediment procediment = repository.getReference(id);
         repository.delete(procediment);
     }

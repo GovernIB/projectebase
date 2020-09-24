@@ -1,6 +1,7 @@
 package es.caib.projectebase.service.facade;
 
 import es.caib.projectebase.service.exception.ProcedimentDuplicatException;
+import es.caib.projectebase.service.exception.RecursNoTrobatException;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.ProcedimentDTO;
 
@@ -13,13 +14,43 @@ import java.util.Optional;
  */
 public interface ProcedimentServiceFacade {
 
-    Long create(ProcedimentDTO dto, Long idUnitat) throws ProcedimentDuplicatException;
+    /**
+     * Crea un nou procediment a la base de dades relacionat amb la unitat indicada.
+     * @param dto dades del procediment
+     * @param idUnitat identificador de la unitat
+     * @return l'identificador del nou procediment
+     * @throws RecursNoTrobatException si la unitat no existeix
+     * @throws ProcedimentDuplicatException si ja existeix un procediment amb el mateix codi SIA
+     */
+    Long create(ProcedimentDTO dto, Long idUnitat) throws RecursNoTrobatException, ProcedimentDuplicatException;
 
-    void update(ProcedimentDTO dto);
+    /**
+     * Actualitza les dades d'un procediment a la base de dades. El codiSia no es sobreescriu.
+     * @param dto noves dades del procediment.
+     * @throws RecursNoTrobatException si el procediment amb identificador dto.id no existeix.
+     */
+    void update(ProcedimentDTO dto) throws RecursNoTrobatException;
 
-    void delete(Long id);
+    /**
+     * Esborra un procediment de la base de dades.
+     * @param id identificador del procediment a esborrar.
+     * @throws RecursNoTrobatException si el procediment amb identificador id no existeix.
+     */
+    void delete(Long id) throws RecursNoTrobatException;
 
+    /**
+     * Retorna un opcional amb el procediment indicat per l'identificador.
+     * @param id identificador del procediment a cercar
+     * @return un opcional amb les dades del procediment indicat o buid si no existeix.
+     */
     Optional<ProcedimentDTO> findById(Long id);
 
+    /**
+     * Retorna una pàgina dels procediments relacionats amb la unitat indicada.
+     * @param firstResult primer resultat del rang de la pàgina
+     * @param maxResult nombre d'elements màxim de la pàgina.
+     * @param idUnitat identificador de la unitat.
+     * @return una pàgina amb el nombre total de procediments i la llista de procediments pel rang indicat.
+     */
     Pagina<ProcedimentDTO> findByUnitat(int firstResult, int maxResult, Long idUnitat);
 }

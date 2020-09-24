@@ -11,7 +11,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
@@ -71,7 +70,7 @@ public class EditProcediment extends AbstractController implements Serializable 
      */
     @PostConstruct
     public void init() {
-        LOG.info("init");
+        LOG.debug("init");
         procediment = new ProcedimentDTO();
         unitatOrganica = new UnitatOrganicaDTO();
     }
@@ -81,8 +80,8 @@ public class EditProcediment extends AbstractController implements Serializable 
     /**
      * Carrega la unitat orgànica en la que editar un procediment, i opcionalment el procediment.
      */
-    public void load() throws IOException {
-        LOG.info("load");
+    public void load() {
+        LOG.debug("load");
         
         unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId())
                 .orElseThrow(() -> new RuntimeException("id invàlid"));

@@ -2,11 +2,10 @@ package es.caib.projectebase.ejb.interceptor;
 
 import es.caib.projectebase.service.exception.RecursNoTrobatException;
 import es.caib.projectebase.service.exception.ServiceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJBTransactionRolledbackException;
+import javax.ejb.EJBException;
 import javax.interceptor.AroundInvoke;
+import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
@@ -19,11 +18,11 @@ import java.io.Serializable;
  *
  * @author areus
  */
-public class ExceptionInterceptor implements Serializable {
+@ExceptionTranslate
+@Interceptor
+public class ExceptionTranslatorInterceptor implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    private static final Logger LOG = LoggerFactory.getLogger(ExceptionInterceptor.class);
 
     /**
      * Transforma les excepcions.
@@ -36,21 +35,23 @@ public class ExceptionInterceptor implements Serializable {
     public Object aroundInvoke(InvocationContext context) throws Exception {
         try {
             return context.proceed();
-        } catch (EJBTransactionRolledbackException ejbException) {
+        } catch (PersistenceException exception) {
+            throw processPersistenceException(exception);
+        } catch (EJBException ejbException) {
             Throwable cause = ejbException.getCause();
-            LOG.error("Error a la capa EJB, classe excepció origen de l'error: {}", cause.getClass());
-            if (cause instanceof EntityNotFoundException) {
-                throw new RecursNoTrobatException();
-            }
             if (cause instanceof PersistenceException) {
-                // Si es una violació de constraints es podria extreure la SQLException per trobar el codi
-                // o emprar la ConstraintViolationException de hibernate.
-                throw new ServiceException(cause);
+                throw processPersistenceException((PersistenceException) cause);
             }
             throw ejbException;
         }
     }
 
-
-
+    private ServiceException processPersistenceException(PersistenceException exception) {
+        if (exception instanceof EntityNotFoundException) {
+            return new RecursNoTrobatException();
+        }
+        // Si es una violació de constraints es podria extreure la SQLException per trobar el codi
+        // o emprar la ConstraintViolationException de hibernate.
+        return new ServiceException(exception);
+    }
 }
