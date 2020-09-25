@@ -5,6 +5,7 @@ import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
+import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 import org.slf4j.Logger;
@@ -62,14 +63,17 @@ public class ListUnitatOrganica extends AbstractController implements Serializab
             Primefaces cridarà automàticament aquest mètode quan necessita actualitzar les dades del dataTable
             per qualsevol circumstància (filtres, ordenació, canvi de pàgina ...)
             */
-            @Override
-            public List<UnitatOrganicaDTO> load(int first, int pageSize, List<SortMeta> multiSortMeta,
-                                             Map<String, Object> filters) {
 
-                List<Ordre> ordenacions = PFUtils.sortMetaToOrdre(multiSortMeta);
+            @Override
+            public List<UnitatOrganicaDTO> load(int first, int pageSize, Map<String, SortMeta> sortBy,
+                                                Map<String, FilterMeta> filterBy) {
+                LOG.info("filterBy: {}", filterBy);
+
+                List<Ordre> ordenacions = PFUtils.sortMetaToOrdre(sortBy.values());
+                Map<String, Object> filtre = PFUtils.filterMetaToFilter(filterBy);
 
                 Pagina<UnitatOrganicaDTO> pagina = unitatOrganicaService
-                        .findFiltered(first, pageSize, filters, ordenacions);
+                        .findFiltered(first, pageSize, filtre, ordenacions);
 
                 setRowCount((int) pagina.getTotal());
                 return pagina.getItems();

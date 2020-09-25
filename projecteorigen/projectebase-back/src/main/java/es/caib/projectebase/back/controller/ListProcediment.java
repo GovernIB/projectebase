@@ -5,6 +5,7 @@ import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.ProcedimentDTO;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
+import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
@@ -14,7 +15,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +75,7 @@ public class ListProcediment extends AbstractController implements Serializable 
     /**
      * Carrega la unitat orgànica i els procediments.
      */
-    public void load() throws IOException {
+    public void load() {
         LOG.debug("load");
 
         unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId())
@@ -87,7 +87,7 @@ public class ListProcediment extends AbstractController implements Serializable 
 
             @Override
             public List<ProcedimentDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-                                             Map<String, Object> filters) {
+                                             Map<String, FilterMeta> filterBy) {
                 Pagina<ProcedimentDTO> pagina = procedimentService.findByUnitat(first, pageSize, unitatOrganica.getId());
                 setRowCount((int) pagina.getTotal());
                 return pagina.getItems();

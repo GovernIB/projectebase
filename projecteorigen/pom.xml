@@ -26,7 +26,7 @@
         <!-- Versions de diferents llibreries emprades dins els mòduls -->
         <mp-openapi.version>1.0.1</mp-openapi.version>
         <keycloak.version>6.0.1</keycloak.version>
-        <primefaces.version>7.0</primefaces.version>
+        <primefaces.version>8.0</primefaces.version>
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
         <mapstruct.version>1.3.1.Final</mapstruct.version>
         <!-- Propietats emprades als descriptors en mode Desenvolupament. -->
@@ -316,6 +316,13 @@
             <properties>
                 <webXml.faces.projectStage>Production</webXml.faces.projectStage>
                 <persistenceXml.hibernate.showSql>false</persistenceXml.hibernate.showSql>
+            </properties>
+        </profile>
+        <profile>
+            <!-- Profile per emprar authenticació BASIC sense keycloak -->
+            <id>authBasic</id>
+            <properties>
+                <webXml.loginConfig.authMethod>BASIC</webXml.loginConfig.authMethod>
             </properties>
         </profile>
     </profiles>

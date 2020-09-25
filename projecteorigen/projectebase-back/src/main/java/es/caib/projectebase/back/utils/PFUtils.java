@@ -1,11 +1,11 @@
 package es.caib.projectebase.back.utils;
 
 import es.caib.projectebase.service.model.Ordre;
+import org.primefaces.model.FilterMeta;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -22,7 +22,7 @@ public final class PFUtils {
      * Converteix una llista de SortMeta, l'abstracció que empra Primefaces per l'ordenaicó,
      * a la nostra abstracció: Ordre.
      */
-    public static List<Ordre> sortMetaToOrdre(List<SortMeta> multiSortMeta) {
+    public static List<Ordre> sortMetaToOrdre(Collection<SortMeta> multiSortMeta) {
         if (multiSortMeta == null || multiSortMeta.isEmpty()) {
             return Collections.emptyList();
         }
@@ -32,5 +32,18 @@ public final class PFUtils {
                             Ordre.ascendent(sortMeta.getSortField()) :
                             Ordre.descendent(sortMeta.getSortField()))
             ).collect(Collectors.toList());
+    }
+
+    public static Map<String, Object> filterMetaToFilter(Map<String, FilterMeta> filterBy) {
+        if (filterBy == null || filterBy.isEmpty()) {
+            return Collections.emptyMap();
+        }
+
+        return filterBy.entrySet().stream()
+                .filter(e -> Objects.nonNull(e.getValue().getFilterValue()))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> e.getValue().getFilterValue()
+                ));
     }
 }
