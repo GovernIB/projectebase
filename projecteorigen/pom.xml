@@ -143,7 +143,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-dependency-plugin</artifactId>
@@ -233,7 +233,7 @@
                 <plugin>
                     <groupId>org.codehaus.cargo</groupId>
                     <artifactId>cargo-maven2-plugin</artifactId>
-                    <version>1.8.1</version>
+                    <version>1.8.2</version>
                     <configuration>
                         <!-- Només estarà activat als mòduls que volem que es despleguin, com l'EAR -->
                         <skip>true</skip>
@@ -273,8 +273,7 @@
                     <allowAnyUpdates>false</allowAnyUpdates>
                     <allowSnapshots>false</allowSnapshots>
                     <allowMajorUpdates>false</allowMajorUpdates>
-                    <allowMinorUpdates>false</allowMinorUpdates>
-                    <allowIncrementalUpdates>true</allowIncrementalUpdates>
+                    <allowMinorUpdates>true</allowMinorUpdates>
                     <rulesUri>file:///${session.executionRootDirectory}/version-ruleset.xml</rulesUri>
                 </configuration>
             </plugin>
