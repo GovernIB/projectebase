@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>projectebase</artifactId>
+        <groupId>es.caib.projectebase</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>projectebase-sistra2</artifactId>
+    <packaging>war</packaging>
+    <name>ProjecteBase - SISTRA2</name>
+    <description>Mòdul web d'exemple d'integració amb SISTRA2</description>
+
+    <dependencies>
+        <!-- Especificacions i llibreries proporcionades per JBoss -->
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-8.0</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Llibreries per emprar l'api de SISTRA2 -->
+        <dependency>
+            <groupId>es.caib.sistra2</groupId>
+            <artifactId>sistramit-rest-api</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <!-- Dependències de test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <!-- Per poder desplegar el WAR de notib en solitari -->
+            <id>sistra2-war-deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <configuration>
+                            <skip>false</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>wsimport</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>jaxws-maven-plugin</artifactId>
+                        <version>2.6</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>wsimport</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <wsdlDirectory>src/main/resources/wsdl</wsdlDirectory>
+                            <wsdlFiles>
+                                <wsdlFile>backoffice.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>/wsdl/*</wsdlLocation>
+                            <target>2.2</target>
+                            <genJWS>true</genJWS>
+                            <packageName>es.caib.projectebase.sistra2.backoffice.api</packageName>
+                            <sourceDestDir>src/main/java</sourceDestDir>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
