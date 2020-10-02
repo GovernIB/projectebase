@@ -1,308 +1,317 @@
-<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="BackofficeIntegracioService" targetNamespace="http://www.caib.es/distribucio/ws/backofficeIntegracio" xmlns:ns1="http://schemas.xmlsoap.org/wsdl/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.caib.es/distribucio/ws/backofficeIntegracio" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <wsdl:types>
-<xs:schema elementFormDefault="unqualified" targetNamespace="http://www.caib.es/distribucio/ws/backofficeIntegracio" version="1.0" xmlns:tns="http://www.caib.es/distribucio/ws/backofficeIntegracio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-<xs:element name="canviEstat" type="tns:canviEstat" />
-<xs:element name="canviEstatResponse" type="tns:canviEstatResponse" />
-<xs:element name="consulta" type="tns:consulta" />
-<xs:element name="consultaResponse" type="tns:consultaResponse" />
-<xs:complexType name="consulta">
-<xs:sequence>
-<xs:element name="id" type="tns:anotacioRegistreId" />
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="anotacioRegistreId">
-<xs:sequence>
-<xs:element minOccurs="0" name="clauAcces" type="xs:string" />
-<xs:element minOccurs="0" name="indetificador" type="xs:string" />
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="consultaResponse">
-<xs:sequence>
-<xs:element minOccurs="0" name="return" type="tns:anotacioRegistreEntrada" />
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="anotacioRegistreEntrada">
-<xs:complexContent>
-<xs:extension base="tns:anotacioRegistreBase">
-<xs:sequence>
-<xs:element minOccurs="0" name="destiCodi" type="xs:string" />
-<xs:element minOccurs="0" name="destiDescripcio" type="xs:string" />
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-<xs:complexType name="anotacioRegistreBase">
-<xs:sequence>
-<xs:element maxOccurs="unbounded" minOccurs="0" name="annexos" nillable="true" type="tns:annex" />
-<xs:element minOccurs="0" name="aplicacioCodi" type="xs:string" />
-<xs:element minOccurs="0" name="aplicacioVersio" type="xs:string" />
-<xs:element minOccurs="0" name="assumpteCodiCodi" type="xs:string" />
-<xs:element minOccurs="0" name="assumpteCodiDescripcio" type="xs:string" />
-<xs:element minOccurs="0" name="assumpteTipusCodi" type="xs:string" />
-<xs:element minOccurs="0" name="assumpteTipusDescripcio" type="xs:string" />
-<xs:element minOccurs="0" name="data" type="xs:dateTime" />
-<xs:element minOccurs="0" name="docFisicaCodi" type="xs:string" />
-<xs:element minOccurs="0" name="docFisicaDescripcio" type="xs:string" />
-<xs:element minOccurs="0" name="entitatCodi" type="xs:string" />
-<xs:element minOccurs="0" name="entitatDescripcio" type="xs:string" />
-<xs:element minOccurs="0" name="expedientNumero" type="xs:string" />
-<xs:element minOccurs="0" name="exposa" type="xs:string" />
-<xs:element minOccurs="0" name="extracte" type="xs:string" />
-<xs:element minOccurs="0" name="identificador" type="xs:string" />
-<xs:element minOccurs="0" name="idiomaCodi" type="xs:string" />
-<xs:element minOccurs="0" name="idomaDescripcio" type="xs:string" />
-<xs:element maxOccurs="unbounded" minOccurs="0" name="interessats" nillable="true" type="tns:interessat" />
-<xs:element minOccurs="0" name="llibreCodi" type="xs:string" />
-<xs:element minOccurs="0" name="llibreDescripcio" type="xs:string" />
-<xs:element minOccurs="0" name="observacions" type="xs:string" />
-<xs:element minOccurs="0" name="oficinaCodi" type="xs:string" />
-<xs:element minOccurs="0" name="oficinaDescripcio" type="xs:string" />
-<xs:element minOccurs="0" name="origenData" type="xs:dateTime" />
-<xs:element minOccurs="0" name="origenRegistreNumero" type="xs:string" />
-<xs:element minOccurs="0" name="procedimentCodi" type="xs:string" />
-<xs:element minOccurs="0" name="refExterna" type="xs:string" />
-<xs:element minOccurs="0" name="solicita" type="xs:string" />
-<xs:element minOccurs="0" name="transportNumero" type="xs:string" />
-<xs:element minOccurs="0" name="transportTipusCodi" type="xs:string" />
-<xs:element minOccurs="0" name="transportTipusDescripcio" type="xs:string" />
-<xs:element minOccurs="0" name="usuariCodi" type="xs:string" />
-<xs:element minOccurs="0" name="usuariNom" type="xs:string" />
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="annex">
-<xs:sequence>
-<xs:element minOccurs="0" name="contingut" type="xs:base64Binary" />
-<xs:element minOccurs="0" name="firmaContingut" type="xs:base64Binary" />
-<xs:element minOccurs="0" name="firmaNom" type="xs:string" />
-<xs:element minOccurs="0" name="firmaPerfil" type="tns:firmaPerfil" />
-<xs:element name="firmaTamany" type="xs:long" />
-<xs:element minOccurs="0" name="firmaTipus" type="tns:firmaTipus" />
-<xs:element minOccurs="0" name="firmaTipusMime" type="xs:string" />
-<xs:element minOccurs="0" name="nom" type="xs:string" />
-<xs:element minOccurs="0" name="ntiEstadoElaboracion" type="tns:ntiEstadoElaboracion" />
-<xs:element minOccurs="0" name="ntiFechaCaptura" type="xs:dateTime" />
-<xs:element minOccurs="0" name="ntiOrigen" type="tns:ntiOrigen" />
-<xs:element minOccurs="0" name="ntiTipoDocumental" type="tns:ntiTipoDocumento" />
-<xs:element minOccurs="0" name="observacions" type="xs:string" />
-<xs:element minOccurs="0" name="sicresTipoDocumento" type="tns:sicresTipoDocumento" />
-<xs:element minOccurs="0" name="sicresValidezDocumento" type="tns:sicresValidezDocumento" />
-<xs:element name="tamany" type="xs:long" />
-<xs:element minOccurs="0" name="tipusMime" type="xs:string" />
-<xs:element minOccurs="0" name="titol" type="xs:string" />
-<xs:element minOccurs="0" name="uuid" type="xs:string" />
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="interessat">
-<xs:complexContent>
-<xs:extension base="tns:interessatBase">
-<xs:sequence>
-<xs:element minOccurs="0" name="representant" type="tns:representant" />
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-<xs:complexType name="interessatBase">
-<xs:sequence>
-<xs:element minOccurs="0" name="adresa" type="xs:string" />
-<xs:element minOccurs="0" name="adresaElectronica" type="xs:string" />
-<xs:element minOccurs="0" name="canal" type="xs:string" />
-<xs:element minOccurs="0" name="cp" type="xs:string" />
-<xs:element minOccurs="0" name="documentNumero" type="xs:string" />
-<xs:element minOccurs="0" name="documentTipus" type="tns:documentTipus" />
-<xs:element minOccurs="0" name="email" type="xs:string" />
-<xs:element minOccurs="0" name="llinatge1" type="xs:string" />
-<xs:element minOccurs="0" name="llinatge2" type="xs:string" />
-<xs:element minOccurs="0" name="municipi" type="xs:string" />
-<xs:element minOccurs="0" name="municipiCodi" type="xs:string" />
-<xs:element minOccurs="0" name="nom" type="xs:string" />
-<xs:element minOccurs="0" name="observacions" type="xs:string" />
-<xs:element minOccurs="0" name="organCodi" type="xs:string" />
-<xs:element minOccurs="0" name="pais" type="xs:string" />
-<xs:element minOccurs="0" name="paisCodi" type="xs:string" />
-<xs:element minOccurs="0" name="provincia" type="xs:string" />
-<xs:element minOccurs="0" name="provinciaCodi" type="xs:string" />
-<xs:element minOccurs="0" name="raoSocial" type="xs:string" />
-<xs:element minOccurs="0" name="telefon" type="xs:string" />
-<xs:element minOccurs="0" name="tipus" type="tns:interessatTipus" />
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="representant">
-<xs:complexContent>
-<xs:extension base="tns:interessatBase">
-<xs:sequence />
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-<xs:complexType name="canviEstat">
-<xs:sequence>
-<xs:element name="id" type="tns:anotacioRegistreId" />
-<xs:element name="estat" type="tns:estat" />
-<xs:element minOccurs="0" name="observacions" type="xs:string" />
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="canviEstatResponse">
-<xs:sequence />
-</xs:complexType>
-<xs:simpleType name="firmaPerfil">
-<xs:restriction base="xs:string">
-<xs:enumeration value="BES" />
-<xs:enumeration value="EPES" />
-<xs:enumeration value="LTV" />
-<xs:enumeration value="T" />
-<xs:enumeration value="C" />
-<xs:enumeration value="X" />
-<xs:enumeration value="XL" />
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="firmaTipus">
-<xs:restriction base="xs:string">
-<xs:enumeration value="CSV" />
-<xs:enumeration value="XADES_DET" />
-<xs:enumeration value="XADES_ENV" />
-<xs:enumeration value="CADES_DET" />
-<xs:enumeration value="CADES_ATT" />
-<xs:enumeration value="PADES" />
-<xs:enumeration value="SMIME" />
-<xs:enumeration value="ODT" />
-<xs:enumeration value="OOXML" />
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="ntiEstadoElaboracion">
-<xs:restriction base="xs:string">
-<xs:enumeration value="ORIGINAL" />
-<xs:enumeration value="COPIA_ELECT_AUTENTICA_CANVI_FORMAT" />
-<xs:enumeration value="COPIA_ELECT_AUTENTICA_PAPER" />
-<xs:enumeration value="COPIA_ELECT_AUTENTICA_PARCIAL" />
-<xs:enumeration value="ALTRES" />
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="ntiOrigen">
-<xs:restriction base="xs:string">
-<xs:enumeration value="CIUTADA" />
-<xs:enumeration value="ADMINISTRACIO" />
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="ntiTipoDocumento">
-<xs:restriction base="xs:string">
-<xs:enumeration value="RESOLUCIO" />
-<xs:enumeration value="ACORD" />
-<xs:enumeration value="CONTRACTE" />
-<xs:enumeration value="CONVENI" />
-<xs:enumeration value="DECLARACIO" />
-<xs:enumeration value="COMUNICACIO" />
-<xs:enumeration value="NOTIFICACIO" />
-<xs:enumeration value="PUBLICACIO" />
-<xs:enumeration value="JUSTIFICANT_RECEPCIO" />
-<xs:enumeration value="ACTA" />
-<xs:enumeration value="CERTIFICAT" />
-<xs:enumeration value="DILIGENCIA" />
-<xs:enumeration value="INFORME" />
-<xs:enumeration value="SOLICITUD" />
-<xs:enumeration value="DENUNCIA" />
-<xs:enumeration value="ALEGACIO" />
-<xs:enumeration value="RECURS" />
-<xs:enumeration value="COMUNICACIO_CIUTADA" />
-<xs:enumeration value="FACTURA" />
-<xs:enumeration value="ALTRES_INCAUTATS" />
-<xs:enumeration value="ALTRES" />
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="sicresTipoDocumento">
-<xs:restriction base="xs:string">
-<xs:enumeration value="FORMULARI" />
-<xs:enumeration value="ADJUNT" />
-<xs:enumeration value="TECNIC_INTERN" />
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="sicresValidezDocumento">
-<xs:restriction base="xs:string">
-<xs:enumeration value="COPIA" />
-<xs:enumeration value="COPIA_ELEC_AUTENTICA" />
-<xs:enumeration value="ORIGINAL" />
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="documentTipus">
-<xs:restriction base="xs:string">
-<xs:enumeration value="NIF" />
-<xs:enumeration value="CIF" />
-<xs:enumeration value="PASSAPORT" />
-<xs:enumeration value="NIE" />
-<xs:enumeration value="CODI_ORIGEN" />
-<xs:enumeration value="ALTRES" />
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="interessatTipus">
-<xs:restriction base="xs:string">
-<xs:enumeration value="PERSONA_FISICA" />
-<xs:enumeration value="PERSONA_JURIDICA" />
-<xs:enumeration value="ADMINISTRACIO" />
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="estat">
-<xs:restriction base="xs:string">
-<xs:enumeration value="PENDENT" />
-<xs:enumeration value="REBUDA" />
-<xs:enumeration value="PROCESSADA" />
-<xs:enumeration value="REBUTJADA" />
-<xs:enumeration value="ERROR" />
-</xs:restriction>
-</xs:simpleType>
-</xs:schema>
-  </wsdl:types>
-  <wsdl:message name="canviEstatResponse">
-    <wsdl:part element="tns:canviEstatResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="consulta">
-    <wsdl:part element="tns:consulta" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="consultaResponse">
-    <wsdl:part element="tns:consultaResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="canviEstat">
-    <wsdl:part element="tns:canviEstat" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:portType name="BackofficeIntegracio">
-    <wsdl:operation name="consulta">
-      <wsdl:input message="tns:consulta" name="consulta">
-    </wsdl:input>
-      <wsdl:output message="tns:consultaResponse" name="consultaResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="canviEstat">
-      <wsdl:input message="tns:canviEstat" name="canviEstat">
-    </wsdl:input>
-      <wsdl:output message="tns:canviEstatResponse" name="canviEstatResponse">
-    </wsdl:output>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="BackofficeIntegracioServiceSoapBinding" type="tns:BackofficeIntegracio">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="consulta">
-      <soap:operation soapAction="" style="document" />
-      <wsdl:input name="consulta">
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="consultaResponse">
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="canviEstat">
-      <soap:operation soapAction="" style="document" />
-      <wsdl:input name="canviEstat">
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="canviEstatResponse">
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="BackofficeIntegracioService">
-    <wsdl:port binding="tns:BackofficeIntegracioServiceSoapBinding" name="BackofficeIntegracioServicePort">
-      <soap:address location="http://PROGRAMACIO19:8081/distribucio/ws/backofficeIntegracio" />
-    </wsdl:port>
-  </wsdl:service>
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://www.caib.es/distribucio/ws/backofficeIntegracio"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  name="BackofficeIntegracioService"
+                  targetNamespace="http://www.caib.es/distribucio/ws/backofficeIntegracio">
+    <wsdl:types>
+        <xs:schema xmlns:tns="http://www.caib.es/distribucio/ws/backofficeIntegracio"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+                   targetNamespace="http://www.caib.es/distribucio/ws/backofficeIntegracio"
+                   version="1.0">
+            <xs:element name="canviEstat" type="tns:canviEstat"/>
+            <xs:element name="canviEstatResponse" type="tns:canviEstatResponse"/>
+            <xs:element name="consulta" type="tns:consulta"/>
+            <xs:element name="consultaResponse" type="tns:consultaResponse"/>
+            <xs:complexType name="consulta">
+                <xs:sequence>
+                    <xs:element name="id" type="tns:anotacioRegistreId"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="anotacioRegistreId">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="clauAcces" type="xs:string"/>
+                    <xs:element minOccurs="0" name="indetificador" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="consultaResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:anotacioRegistreEntrada"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="anotacioRegistreEntrada">
+                <xs:complexContent>
+                    <xs:extension base="tns:anotacioRegistreBase">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="destiCodi" type="xs:string"/>
+                            <xs:element minOccurs="0" name="destiDescripcio" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="anotacioRegistreBase">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="annexos" nillable="true" type="tns:annex"/>
+                    <xs:element minOccurs="0" name="aplicacioCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="aplicacioVersio" type="xs:string"/>
+                    <xs:element minOccurs="0" name="assumpteCodiCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="assumpteCodiDescripcio" type="xs:string"/>
+                    <xs:element minOccurs="0" name="assumpteTipusCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="assumpteTipusDescripcio" type="xs:string"/>
+                    <xs:element minOccurs="0" name="data" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="docFisicaCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="docFisicaDescripcio" type="xs:string"/>
+                    <xs:element minOccurs="0" name="entitatCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="entitatDescripcio" type="xs:string"/>
+                    <xs:element minOccurs="0" name="expedientNumero" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exposa" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extracte" type="xs:string"/>
+                    <xs:element minOccurs="0" name="identificador" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idiomaCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idomaDescripcio" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="interessats" nillable="true"
+                                type="tns:interessat"/>
+                    <xs:element minOccurs="0" name="llibreCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="llibreDescripcio" type="xs:string"/>
+                    <xs:element minOccurs="0" name="observacions" type="xs:string"/>
+                    <xs:element minOccurs="0" name="oficinaCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="oficinaDescripcio" type="xs:string"/>
+                    <xs:element minOccurs="0" name="origenData" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="origenRegistreNumero" type="xs:string"/>
+                    <xs:element minOccurs="0" name="procedimentCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="refExterna" type="xs:string"/>
+                    <xs:element minOccurs="0" name="solicita" type="xs:string"/>
+                    <xs:element minOccurs="0" name="transportNumero" type="xs:string"/>
+                    <xs:element minOccurs="0" name="transportTipusCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="transportTipusDescripcio" type="xs:string"/>
+                    <xs:element minOccurs="0" name="usuariCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="usuariNom" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="annex">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="contingut" type="xs:base64Binary"/>
+                    <xs:element minOccurs="0" name="firmaContingut" type="xs:base64Binary"/>
+                    <xs:element minOccurs="0" name="firmaNom" type="xs:string"/>
+                    <xs:element minOccurs="0" name="firmaPerfil" type="tns:firmaPerfil"/>
+                    <xs:element name="firmaTamany" type="xs:long"/>
+                    <xs:element minOccurs="0" name="firmaTipus" type="tns:firmaTipus"/>
+                    <xs:element minOccurs="0" name="firmaTipusMime" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nom" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ntiEstadoElaboracion" type="tns:ntiEstadoElaboracion"/>
+                    <xs:element minOccurs="0" name="ntiFechaCaptura" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="ntiOrigen" type="tns:ntiOrigen"/>
+                    <xs:element minOccurs="0" name="ntiTipoDocumental" type="tns:ntiTipoDocumento"/>
+                    <xs:element minOccurs="0" name="observacions" type="xs:string"/>
+                    <xs:element minOccurs="0" name="sicresTipoDocumento" type="tns:sicresTipoDocumento"/>
+                    <xs:element minOccurs="0" name="sicresValidezDocumento" type="tns:sicresValidezDocumento"/>
+                    <xs:element name="tamany" type="xs:long"/>
+                    <xs:element minOccurs="0" name="tipusMime" type="xs:string"/>
+                    <xs:element minOccurs="0" name="titol" type="xs:string"/>
+                    <xs:element minOccurs="0" name="uuid" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="interessat">
+                <xs:complexContent>
+                    <xs:extension base="tns:interessatBase">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="representant" type="tns:representant"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="interessatBase">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="adresa" type="xs:string"/>
+                    <xs:element minOccurs="0" name="adresaElectronica" type="xs:string"/>
+                    <xs:element minOccurs="0" name="canal" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cp" type="xs:string"/>
+                    <xs:element minOccurs="0" name="documentNumero" type="xs:string"/>
+                    <xs:element minOccurs="0" name="documentTipus" type="tns:documentTipus"/>
+                    <xs:element minOccurs="0" name="email" type="xs:string"/>
+                    <xs:element minOccurs="0" name="llinatge1" type="xs:string"/>
+                    <xs:element minOccurs="0" name="llinatge2" type="xs:string"/>
+                    <xs:element minOccurs="0" name="municipi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="municipiCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nom" type="xs:string"/>
+                    <xs:element minOccurs="0" name="observacions" type="xs:string"/>
+                    <xs:element minOccurs="0" name="organCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="pais" type="xs:string"/>
+                    <xs:element minOccurs="0" name="paisCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="provincia" type="xs:string"/>
+                    <xs:element minOccurs="0" name="provinciaCodi" type="xs:string"/>
+                    <xs:element minOccurs="0" name="raoSocial" type="xs:string"/>
+                    <xs:element minOccurs="0" name="telefon" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipus" type="tns:interessatTipus"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="representant">
+                <xs:complexContent>
+                    <xs:extension base="tns:interessatBase">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="canviEstat">
+                <xs:sequence>
+                    <xs:element name="id" type="tns:anotacioRegistreId"/>
+                    <xs:element name="estat" type="tns:estat"/>
+                    <xs:element minOccurs="0" name="observacions" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="canviEstatResponse">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:simpleType name="firmaPerfil">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="BES"/>
+                    <xs:enumeration value="EPES"/>
+                    <xs:enumeration value="LTV"/>
+                    <xs:enumeration value="T"/>
+                    <xs:enumeration value="C"/>
+                    <xs:enumeration value="X"/>
+                    <xs:enumeration value="XL"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="firmaTipus">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CSV"/>
+                    <xs:enumeration value="XADES_DET"/>
+                    <xs:enumeration value="XADES_ENV"/>
+                    <xs:enumeration value="CADES_DET"/>
+                    <xs:enumeration value="CADES_ATT"/>
+                    <xs:enumeration value="PADES"/>
+                    <xs:enumeration value="SMIME"/>
+                    <xs:enumeration value="ODT"/>
+                    <xs:enumeration value="OOXML"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="ntiEstadoElaboracion">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ORIGINAL"/>
+                    <xs:enumeration value="COPIA_ELECT_AUTENTICA_CANVI_FORMAT"/>
+                    <xs:enumeration value="COPIA_ELECT_AUTENTICA_PAPER"/>
+                    <xs:enumeration value="COPIA_ELECT_AUTENTICA_PARCIAL"/>
+                    <xs:enumeration value="ALTRES"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="ntiOrigen">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CIUTADA"/>
+                    <xs:enumeration value="ADMINISTRACIO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="ntiTipoDocumento">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="RESOLUCIO"/>
+                    <xs:enumeration value="ACORD"/>
+                    <xs:enumeration value="CONTRACTE"/>
+                    <xs:enumeration value="CONVENI"/>
+                    <xs:enumeration value="DECLARACIO"/>
+                    <xs:enumeration value="COMUNICACIO"/>
+                    <xs:enumeration value="NOTIFICACIO"/>
+                    <xs:enumeration value="PUBLICACIO"/>
+                    <xs:enumeration value="JUSTIFICANT_RECEPCIO"/>
+                    <xs:enumeration value="ACTA"/>
+                    <xs:enumeration value="CERTIFICAT"/>
+                    <xs:enumeration value="DILIGENCIA"/>
+                    <xs:enumeration value="INFORME"/>
+                    <xs:enumeration value="SOLICITUD"/>
+                    <xs:enumeration value="DENUNCIA"/>
+                    <xs:enumeration value="ALEGACIO"/>
+                    <xs:enumeration value="RECURS"/>
+                    <xs:enumeration value="COMUNICACIO_CIUTADA"/>
+                    <xs:enumeration value="FACTURA"/>
+                    <xs:enumeration value="ALTRES_INCAUTATS"/>
+                    <xs:enumeration value="ALTRES"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="sicresTipoDocumento">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="FORMULARI"/>
+                    <xs:enumeration value="ADJUNT"/>
+                    <xs:enumeration value="TECNIC_INTERN"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="sicresValidezDocumento">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="COPIA"/>
+                    <xs:enumeration value="COPIA_ELEC_AUTENTICA"/>
+                    <xs:enumeration value="ORIGINAL"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="documentTipus">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="NIF"/>
+                    <xs:enumeration value="CIF"/>
+                    <xs:enumeration value="PASSAPORT"/>
+                    <xs:enumeration value="NIE"/>
+                    <xs:enumeration value="CODI_ORIGEN"/>
+                    <xs:enumeration value="ALTRES"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="interessatTipus">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="PERSONA_FISICA"/>
+                    <xs:enumeration value="PERSONA_JURIDICA"/>
+                    <xs:enumeration value="ADMINISTRACIO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="estat">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="PENDENT"/>
+                    <xs:enumeration value="REBUDA"/>
+                    <xs:enumeration value="PROCESSADA"/>
+                    <xs:enumeration value="REBUTJADA"/>
+                    <xs:enumeration value="ERROR"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="canviEstatResponse">
+        <wsdl:part element="tns:canviEstatResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="consulta">
+        <wsdl:part element="tns:consulta" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="consultaResponse">
+        <wsdl:part element="tns:consultaResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="canviEstat">
+        <wsdl:part element="tns:canviEstat" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="BackofficeIntegracio">
+        <wsdl:operation name="consulta">
+            <wsdl:input message="tns:consulta" name="consulta">
+            </wsdl:input>
+            <wsdl:output message="tns:consultaResponse" name="consultaResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="canviEstat">
+            <wsdl:input message="tns:canviEstat" name="canviEstat">
+            </wsdl:input>
+            <wsdl:output message="tns:canviEstatResponse" name="canviEstatResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BackofficeIntegracioServiceSoapBinding" type="tns:BackofficeIntegracio">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="consulta">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="consulta">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="consultaResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="canviEstat">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="canviEstat">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="canviEstatResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="BackofficeIntegracioService">
+        <wsdl:port binding="tns:BackofficeIntegracioServiceSoapBinding" name="BackofficeIntegracioServicePort">
+            <soap:address location="http://localhost:8080/distribucio/ws/backofficeIntegracio"/>
+        </wsdl:port>
+    </wsdl:service>
 </wsdl:definitions>

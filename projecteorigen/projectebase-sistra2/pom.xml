@@ -102,7 +102,6 @@
                             <wsdlFiles>
                                 <wsdlFile>backoffice.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <genJWS>true</genJWS>
                             <packageName>es.caib.projectebase.sistra2.backoffice.api</packageName>
                         </configuration>
                     </plugin>

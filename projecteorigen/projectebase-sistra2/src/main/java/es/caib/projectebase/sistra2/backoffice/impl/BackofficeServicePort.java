@@ -6,7 +6,6 @@ import es.caib.projectebase.sistra2.backoffice.api.Backoffice;
 import es.caib.projectebase.sistra2.facade.api.AnotacioFacadeService;
 import es.caib.projectebase.sistra2.facade.exception.AnotacioIdInvalidException;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -17,7 +16,6 @@ import javax.xml.namespace.QName;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPFactory;
 import javax.xml.soap.SOAPFault;
-import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.soap.SOAPFaultException;
 import java.util.List;
 
@@ -34,9 +32,9 @@ import java.util.List;
         wsdlLocation = "/wsdl/backoffice.wsdl",
         endpointInterface = "es.caib.projectebase.sistra2.backoffice.api.Backoffice")
 @HandlerChain(file = "/handlers/backoffice-handlers.xml")
-public class BackofficeServiceImpl implements Backoffice {
+public class BackofficeServicePort implements Backoffice {
 
-    public BackofficeServiceImpl() {
+    public BackofficeServicePort() {
     }
 
     @Inject
