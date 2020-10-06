@@ -12,6 +12,17 @@
     <name>ProjecteBase - SISTRA2</name>
     <description>Mòdul EJB d'exemple d'integració amb SISTRA2</description>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jvnet.mimepull</groupId>
+                <artifactId>mimepull</artifactId>
+                <version>1.9.13</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
@@ -26,16 +37,41 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>es.caib.distribucio</groupId>
+            <artifactId>distribucio-ws-client</artifactId>
+            <version>0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>es.caib.distribucio</groupId>
+            <artifactId>distribucio-backoffice-utils</artifactId>
+            <version>0.9.29</version>
+        </dependency>
+
         <!-- Dependències de test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.3.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Altres llibreries necessàries per aquest mòdul -->
+        <!-- Només necessària per la generació de codi -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <resources>
             <!-- Activam filtre per fer substitucions al fitxer persistence.xml -->
             <resource>
@@ -49,6 +85,19 @@
                 <artifactId>maven-ejb-plugin</artifactId>
                 <configuration>
                     <ejbVersion>3.2</ejbVersion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
@@ -77,21 +126,6 @@
 
     <profiles>
         <profile>
-            <!-- Per poder desplegar el JAR de sistra2 en solitari -->
-            <id>sistra2-ejb-deploy</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.cargo</groupId>
-                        <artifactId>cargo-maven2-plugin</artifactId>
-                        <configuration>
-                            <skip>false</skip>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>generate-ws-backoffice</id>
             <build>
                 <plugins>
@@ -103,23 +137,6 @@
                                 <wsdlFile>backoffice.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName>es.caib.projectebase.sistra2.backoffice.api</packageName>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>generate-ws-integracio</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>jaxws-maven-plugin</artifactId>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>backofficeIntegracio.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>es.caib.projectebase.sistra2.integracio.api</packageName>
                         </configuration>
                     </plugin>
                 </plugins>

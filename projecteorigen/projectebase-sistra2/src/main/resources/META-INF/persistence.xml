@@ -6,13 +6,17 @@
     <persistence-unit name="projectebaseSistra2PU" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/projectebaseDS</jta-data-source>
 
-        <class>es.caib.projectebase.sistra2.persistence.Anotacio</class>
+        <class>es.caib.projectebase.sistra2.persistence.AnotacioInbox</class>
 
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
         <validation-mode>CALLBACK</validation-mode>
 
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+
+            <property name="hibernate.jdbc.batch_size" value="50"/>
+            <property name="hibernate.order_updates" value="true"/>
+            <property name="hibernate.order_inserts" value="true"/>
 
             <property name="hibernate.show_sql" value="${persistenceXml.hibernate.showSql}"/>
         </properties>

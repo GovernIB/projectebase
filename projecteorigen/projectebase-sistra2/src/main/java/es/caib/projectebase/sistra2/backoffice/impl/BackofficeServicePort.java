@@ -3,8 +3,9 @@ package es.caib.projectebase.sistra2.backoffice.impl;
 
 import es.caib.projectebase.sistra2.backoffice.api.AnotacioRegistreId;
 import es.caib.projectebase.sistra2.backoffice.api.Backoffice;
-import es.caib.projectebase.sistra2.facade.api.AnotacioFacadeService;
-import es.caib.projectebase.sistra2.facade.exception.AnotacioIdInvalidException;
+import es.caib.projectebase.sistra2.converter.AnotacioRegistreConverter;
+import es.caib.projectebase.sistra2.persistence.AnotacioInbox;
+import es.caib.projectebase.sistra2.repository.AnotacioInboxRepository;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -19,12 +20,11 @@ import javax.xml.soap.SOAPFault;
 import javax.xml.ws.soap.SOAPFaultException;
 import java.util.List;
 
-
 /**
  * Implementació del backoffice de distribució.
  */
 @Stateless
-@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 
 @WebService(portName = "BackofficeServicePort",
         serviceName = "BackofficeService",
@@ -34,32 +34,28 @@ import java.util.List;
 @HandlerChain(file = "/handlers/backoffice-handlers.xml")
 public class BackofficeServicePort implements Backoffice {
 
-    public BackofficeServicePort() {
-    }
+    private static final String SERVER_FAULT_CODE = "Server";
+    private static final String CLIENT_FAULT_CODE = "Client";
 
     @Inject
-    private AnotacioFacadeService anotacioFacadeService;
+    private AnotacioInboxRepository anotacioInboxRepository;
+
+    @Inject
+    private AnotacioRegistreConverter anotacioRegistreConverter;
 
     /**
      * Reb una llista d'anotacions pendents de processar
      * @param ids llista d'identificadors d'anotació.
      */
     public void comunicarAnotacionsPendents(List<AnotacioRegistreId> ids) {
-        try {
-            anotacioFacadeService.rebreAnotacions(ids);
-        } catch (AnotacioIdInvalidException exception) {
-            throwClientFault(exception.getMessage());
-        }
+        List<AnotacioInbox> anotacioList = anotacioRegistreConverter.toAnotacioInbox(ids);
+        anotacioInboxRepository.createBulk(anotacioList);
     }
 
-    /**
-     * Llança una soap:Fault amb el missatge indicant al faultcode que és un error del client.
-     * @param message missatge d'error que anirà dins el faultstring
-     */
-    private void throwClientFault(String message) {
+    private void throwFault(String message, String faultCode) {
         try {
             SOAPFactory soapFactory = SOAPFactory.newInstance();
-            SOAPFault fault = soapFactory.createFault(message, new QName("Client"));
+            SOAPFault fault = soapFactory.createFault(message, new QName(faultCode));
             throw new SOAPFaultException(fault);
         } catch (SOAPException exception) {
             throw new RuntimeException(exception);

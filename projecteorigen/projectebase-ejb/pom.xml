@@ -42,9 +42,11 @@
             <scope>provided</scope>
         </dependency>
         <!-- Altres llibreries necessàries per aquest mòdul -->
+        <!-- Només necessària per la generació de codi -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
