@@ -403,5 +403,9 @@ if (perfilSistra2.equals("false")) {
   removeModule(artifactId +'-sistra2', rootDir)
   // Llevar EJB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->")
+  assert new File(rootDir, "scripts/bbdd/oracle/sistra2_create_schema.sql").delete()
+  assert new File(rootDir, "scripts/bbdd/oracle/sistra2_drop_schema.sql").delete()
+  assert new File(rootDir, "scripts/bbdd/postgresql/sistra2_create_schema.sql").delete()
+  assert new File(rootDir, "scripts/bbdd/postgresql/sistra2_drop_schema.sql").delete()
 }

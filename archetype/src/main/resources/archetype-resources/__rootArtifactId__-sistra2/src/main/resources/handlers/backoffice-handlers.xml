@@ -1,0 +1,12 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+    <handler-chain>
+        <handler>
+            <handler-name>LoggingHandler</handler-name>
+            <handler-class>${package}.sistra2.backoffice.impl.LoggingHandler</handler-class>
+        </handler>
+    </handler-chain>
+</handler-chains>

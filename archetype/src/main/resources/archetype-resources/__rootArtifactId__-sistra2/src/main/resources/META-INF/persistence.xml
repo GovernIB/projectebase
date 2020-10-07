@@ -1,0 +1,25 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="${rootArtifactId}Sistra2PU" transaction-type="JTA">
+        <jta-data-source>java:jboss/datasources/${rootArtifactId}DS</jta-data-source>
+
+        <class>${package}.sistra2.persistence.AnotacioInbox</class>
+
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+        <validation-mode>CALLBACK</validation-mode>
+
+        <properties>
+            <property name="hibernate.jdbc.batch_size" value="50"/>
+            <property name="hibernate.order_updates" value="true"/>
+            <property name="hibernate.order_inserts" value="true"/>
+
+            <property name="hibernate.show_sql" value="${symbol_dollar}{persistenceXml.hibernate.showSql}"/>
+        </properties>
+    </persistence-unit>
+</persistence>
