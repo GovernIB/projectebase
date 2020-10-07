@@ -60,6 +60,11 @@
             <version>2.3.3</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Altres llibreries necessàries per aquest mòdul -->
         <!-- Només necessària per la generació de codi -->
