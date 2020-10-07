@@ -3,7 +3,7 @@ package es.caib.projectebase.sistra2.backoffice.impl;
 
 import es.caib.projectebase.sistra2.backoffice.api.AnotacioRegistreId;
 import es.caib.projectebase.sistra2.backoffice.api.Backoffice;
-import es.caib.projectebase.sistra2.converter.AnotacioRegistreConverter;
+import es.caib.projectebase.sistra2.converter.AnotacioInboxConverter;
 import es.caib.projectebase.sistra2.persistence.AnotacioInbox;
 import es.caib.projectebase.sistra2.repository.AnotacioInboxRepository;
 
@@ -13,11 +13,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.jws.HandlerChain;
 import javax.jws.WebService;
-import javax.xml.namespace.QName;
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPFactory;
-import javax.xml.soap.SOAPFault;
-import javax.xml.ws.soap.SOAPFaultException;
 import java.util.List;
 
 /**
@@ -34,31 +29,18 @@ import java.util.List;
 @HandlerChain(file = "/handlers/backoffice-handlers.xml")
 public class BackofficeServicePort implements Backoffice {
 
-    private static final String SERVER_FAULT_CODE = "Server";
-    private static final String CLIENT_FAULT_CODE = "Client";
-
     @Inject
     private AnotacioInboxRepository anotacioInboxRepository;
 
     @Inject
-    private AnotacioRegistreConverter anotacioRegistreConverter;
+    private AnotacioInboxConverter anotacioInboxConverter;
 
     /**
      * Reb una llista d'anotacions pendents de processar
      * @param ids llista d'identificadors d'anotació.
      */
     public void comunicarAnotacionsPendents(List<AnotacioRegistreId> ids) {
-        List<AnotacioInbox> anotacioList = anotacioRegistreConverter.toAnotacioInbox(ids);
+        List<AnotacioInbox> anotacioList = anotacioInboxConverter.toAnotacioInbox(ids);
         anotacioInboxRepository.createBulk(anotacioList);
-    }
-
-    private void throwFault(String message, String faultCode) {
-        try {
-            SOAPFactory soapFactory = SOAPFactory.newInstance();
-            SOAPFault fault = soapFactory.createFault(message, new QName(faultCode));
-            throw new SOAPFaultException(fault);
-        } catch (SOAPException exception) {
-            throw new RuntimeException(exception);
-        }
     }
 }

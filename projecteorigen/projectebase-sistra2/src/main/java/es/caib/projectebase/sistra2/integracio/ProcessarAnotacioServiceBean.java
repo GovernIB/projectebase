@@ -9,6 +9,7 @@ import es.caib.distribucio.backoffice.utils.sistra.pago.Pago;
 import es.caib.distribucio.core.api.dto.ExpedientEstatEnumDto;
 import es.caib.distribucio.ws.backofficeintegracio.Annex;
 import es.caib.distribucio.ws.backofficeintegracio.AnotacioRegistreEntrada;
+import es.caib.distribucio.ws.backofficeintegracio.AnotacioRegistreId;
 import es.caib.distribucio.ws.backofficeintegracio.BackofficeIntegracio;
 import es.caib.distribucio.ws.backofficeintegracio.Consulta;
 import es.caib.distribucio.ws.backofficeintegracio.Estat;
@@ -61,11 +62,11 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
                 return;
             }
 
-            Consulta consulta  = anotacioInboxConverter.toConsulta(anotacioInbox);
-            AnotacioRegistreEntrada registreEntrada = backofficeIntegracio.consulta(consulta.getId());
+            AnotacioRegistreId arId  = anotacioInboxConverter.toAnotacioRegistre(anotacioInbox);
+            AnotacioRegistreEntrada registreEntrada = backofficeIntegracio.consulta(arId);
 
             // si rebem correctament l'anotació de registre d'entrada enviam el canvi d'estat
-            backofficeIntegracio.canviEstat(consulta.getId(), Estat.REBUDA, null);
+            backofficeIntegracio.canviEstat(arId, Estat.REBUDA, null);
 
             // guaram la informació i canviam l'estat
             anotacioInbox.setContingut(JAXBUtil.marshallAnotacio(registreEntrada));
@@ -98,6 +99,7 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
                 return;
             }
 
+            AnotacioRegistreId arId  = anotacioInboxConverter.toAnotacioRegistre(anotacioInbox);
             AnotacioRegistreEntrada anotacio = JAXBUtil.unmarshallAnotacio(anotacioInbox.getContingut());
 
             // L'anotació s'ha processant anteriorment i s'ha creat arxiu, per tant no fa falta fer aquesta passa
@@ -120,6 +122,7 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
                 if (arxiuResultat.getErrorCodi() != DistribucioArxiuError.NO_ERROR) {
                     LOG.error("S'ha produit un error creant l'expedient a arxiu", arxiuResultat.getException());
                     // TODO caldria implementar reintents?
+                    backofficeIntegracio.canviEstat(arId, Estat.ERROR, null);
                     anotacioInbox.setEstat(AnotacioInbox.Estat.ERROR);
                     return;
                 }
@@ -149,6 +152,7 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
                 // TODO: aquí caldria fer les comprovacions i si hi ha un error marcar l'estat ERROR o REBUTJADA
             }
 
+            backofficeIntegracio.canviEstat(arId, Estat.PROCESSADA, null);
             // si no hi ha cap error marcam com a processada i ja no farem res més
             anotacioInbox.setEstat(AnotacioInbox.Estat.PROCESSADA);
 

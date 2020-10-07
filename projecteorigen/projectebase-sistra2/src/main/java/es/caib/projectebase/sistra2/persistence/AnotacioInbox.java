@@ -59,6 +59,7 @@ public class AnotacioInbox implements Serializable {
     @Size(max = 256)
     private String expedientArxiu;
 
+    @Column(name = "ESTAT")
     @Enumerated(EnumType.STRING)
     @NotNull
     private Estat estat = Estat.PENDENT;

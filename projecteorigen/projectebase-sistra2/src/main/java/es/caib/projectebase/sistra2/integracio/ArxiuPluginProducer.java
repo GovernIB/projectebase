@@ -24,22 +24,10 @@ public class ArxiuPluginProducer {
      */
     @Produces
     @ApplicationScoped
-    public IArxiuPlugin getArxiuPlugin() {
-        LOG.info("getArxiuPlugin");
-        
-        LOG.info("Carregant properties...");
-        Properties properties = new Properties();
-        try (InputStream is = this.getClass().getResourceAsStream("/arxiu/Arxiu.properties")) {
-            properties.load(is);
-            LOG.info("Properties carregades");
-        } catch (IOException io) {
-            throw new RuntimeException("No s'han pogut llegir les propietats de configuració", io);
-        }
-        
-        LOG.info("Instanciant plugin...");
-        IArxiuPlugin plugin = new ArxiuPluginCaib("", properties);
+    public IArxiuPlugin getArxiuPlugin(Configuracio configuracio) {
+        LOG.info("Instanciant plugin arxiu...");
+        IArxiuPlugin plugin = new ArxiuPluginCaib("es.caib.projectebase.sistra2.", configuracio.getProperties());
         LOG.info("Plugin instanciat");
-        
         return plugin;
     }
 }

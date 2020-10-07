@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
 
 public class TestIntegracio {
 
@@ -20,10 +21,14 @@ public class TestIntegracio {
 
     private static Backoffice backoffice;
 
+    private static final int NOMBRE_ANOTACIONS = 5;
+
+    private static final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(NOMBRE_ANOTACIONS * 2);
+
     @BeforeClass
     public static void beforeClass() {
         Endpoint.publish("http://localhost:8888/distribucio/ws/backofficeIntegracio",
-                new BackofficeIntegracioServicePortImpl());
+                new BackofficeIntegracioServicePortImpl(COUNT_DOWN_LATCH));
 
         backoffice = new BackofficeService().getBackofficeServicePort();
         Map<String, Object> requestContext = ((BindingProvider) backoffice).getRequestContext();
@@ -35,7 +40,7 @@ public class TestIntegracio {
 
         List<AnotacioRegistreId> anotacions = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < NOMBRE_ANOTACIONS; i++) {
             AnotacioRegistreId anotacio = new AnotacioRegistreId();
             anotacio.setIndetificador(UUID.randomUUID().toString());
             anotacio.setClauAcces("XXX");
@@ -45,10 +50,9 @@ public class TestIntegracio {
         backoffice.comunicarAnotacionsPendents(anotacions);
 
         try {
-            Thread.sleep(300_000);
+            COUNT_DOWN_LATCH.await();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-
     }
 }

@@ -7,6 +7,7 @@ import es.caib.distribucio.ws.backofficeintegracio.Estat;
 
 import javax.jws.WebService;
 import javax.xml.ws.BindingType;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -22,8 +23,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 @BindingType("http://schemas.xmlsoap.org/wsdl/soap/http")
 public class BackofficeIntegracioServicePortImpl implements BackofficeIntegracio {
 
+    private final CountDownLatch countDownLatch;
 
-    public BackofficeIntegracioServicePortImpl() {
+    public BackofficeIntegracioServicePortImpl(CountDownLatch countDownLatch) {
+        this.countDownLatch = countDownLatch;
     }
 
     private static final AtomicInteger CONSULTA_COUNTER = new AtomicInteger(0);
@@ -37,6 +40,7 @@ public class BackofficeIntegracioServicePortImpl implements BackofficeIntegracio
         System.out.println("cosulta: " + id.getIndetificador() +
                 ". Total rebuts: " + CONSULTA_COUNTER.incrementAndGet());
         AnotacioRegistreEntrada registreEntrada = new AnotacioRegistreEntrada();
+        registreEntrada.setIdentificador(id.getIndetificador());
         registreEntrada.setDestiCodi("prova");
         registreEntrada.setDestiDescripcio("descripcio");
         registreEntrada.setObservacions("observacions");
@@ -50,6 +54,7 @@ public class BackofficeIntegracioServicePortImpl implements BackofficeIntegracio
      * @param estat
      */
     public void canviEstat(AnotacioRegistreId id, Estat estat, String observacions) {
+        countDownLatch.countDown();
         System.out.println("canviEStat: " + id.getIndetificador() +
                 ", Estat: " + estat +
                 ". Total rebuts: " + ESTAT_COUNTER.incrementAndGet());

@@ -370,6 +370,5 @@
         <module>projectebase-dir3caib</module>
         <module>projectebase-distribucio</module>
         <module>projectebase-sistra2</module>
-        <module>projectebase-sistra2-ear</module>
     </modules>
 </project>
