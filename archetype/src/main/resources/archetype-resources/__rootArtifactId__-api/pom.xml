@@ -76,6 +76,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
+                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
                     <webResources>
                         <resource>
                             <directory>${project.build.directory}/openapi</directory>
@@ -118,7 +119,7 @@
             <id>swagger-ui</id>
             <properties>
                 <!-- La darrera versió disponible: https://github.com/swagger-api/swagger-ui/releases -->
-                <swagger-ui.version>3.25.0</swagger-ui.version>
+                <swagger-ui.version>3.34.0</swagger-ui.version>
             </properties>
             <build>
                 <plugins>

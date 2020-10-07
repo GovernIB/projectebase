@@ -12,11 +12,6 @@
     <name>${projectname} - EAR</name>
     <description>Arxiu d'aplicació EAR de ${projectname}</description>
 
-    <properties>
-        <!-- Format del timestamp -->
-        <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
-    </properties>
-
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
@@ -98,6 +93,14 @@
             <type>war</type>
         </dependency>
         <!-- DISTRIBUCIO END -->
+        <!-- SISTRA2 START -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-sistra2</artifactId>
+            <version>${version}</version>
+            <type>ejb</type>
+        </dependency>
+        <!-- SISTRA2 END -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-api</artifactId>
@@ -232,6 +235,13 @@
                             <bundleFileName>${rootArtifactId}-distribucio.war</bundleFileName>
                         </webModule>
                         <!-- DISTRIBUCIO END -->
+                        <!-- SISTRA2 START -->
+                        <ejbModule>
+                            <groupId>${groupId}</groupId>
+                            <artifactId>${rootArtifactId}-sistra2</artifactId>
+                            <bundleFileName>${rootArtifactId}-sistra2.jar</bundleFileName>
+                        </ejbModule>
+                        <!-- SISTRA2 END -->
                         <!-- WS START -->
                         <ejbModule>
                             <groupId>${groupId}</groupId>

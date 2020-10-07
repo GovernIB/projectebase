@@ -34,7 +34,7 @@ Plantilla per pàgines d'error.
     Si no fixam el locale amb f:view sempre agafarà el valor que correspon al navegador que millor encaixa
     amb els default/supported locales. Veure 2.5.2.1 de l'especificació JSF
     -->
-    <f:view locale="#{sessionController.language}">
+    <f:view locale="#{userLocale.current}">
 
         <header>
             <!-- Header -->

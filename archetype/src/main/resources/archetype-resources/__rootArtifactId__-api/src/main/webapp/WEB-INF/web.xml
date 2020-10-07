@@ -44,8 +44,8 @@
     </security-constraint>
 
     <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>Govern de les Illes Balears</realm-name>
+        <auth-method>${symbol_dollar}{webXml.loginConfig.authMethod}</auth-method>
+        <realm-name>${symbol_dollar}{webXml.loginConfig.realmName}</realm-name>
     </login-config>
 
     <security-role>

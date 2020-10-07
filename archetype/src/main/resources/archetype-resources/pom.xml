@@ -21,18 +21,22 @@
         <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
         <!-- Versions de JBoss -->
-        <jboss-eap.version>7.2.7.GA</jboss-eap.version>
+        <jboss-eap.version>7.2.9.GA</jboss-eap.version>
         <jboss-javaee.version>1.0.1.Final-redhat-00003</jboss-javaee.version>
         <!-- Versions de diferents llibreries emprades dins els mòduls -->
         <mp-openapi.version>1.0.1</mp-openapi.version>
         <keycloak.version>6.0.1</keycloak.version>
-        <primefaces.version>7.0</primefaces.version>
+        <primefaces.version>8.0</primefaces.version>
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
-        <mapstruct.version>1.3.1.Final</mapstruct.version>
+        <mapstruct.version>1.4.0.Final</mapstruct.version>
         <!-- Propietats emprades als descriptors en mode Desenvolupament. -->
         <!-- Es poden activar els valors de producció activatn el profile -Pproduccio -->
         <webXml.faces.projectStage>Development</webXml.faces.projectStage>
         <persistenceXml.hibernate.showSql>true</persistenceXml.hibernate.showSql>
+        <!-- Altres substitucions a aplicar dins els descriptors. -->
+        <!-- Es poden sobreescriure passant la propietat al maven amb -D -->
+        <webXml.loginConfig.authMethod>KEYCLOAK</webXml.loginConfig.authMethod>
+        <webXml.loginConfig.realmName>Govern de les Illes Balears</webXml.loginConfig.realmName>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -139,7 +143,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-dependency-plugin</artifactId>
@@ -171,7 +175,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-ear-plugin</artifactId>
-                    <version>3.0.2</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
@@ -229,7 +233,7 @@
                 <plugin>
                     <groupId>org.codehaus.cargo</groupId>
                     <artifactId>cargo-maven2-plugin</artifactId>
-                    <version>1.7.15</version>
+                    <version>1.8.2</version>
                     <configuration>
                         <!-- Només estarà activat als mòduls que volem que es despleguin, com l'EAR -->
                         <skip>true</skip>
@@ -264,13 +268,12 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>2.7</version>
+                <version>2.8.1</version>
                 <configuration>
                     <allowAnyUpdates>false</allowAnyUpdates>
                     <allowSnapshots>false</allowSnapshots>
                     <allowMajorUpdates>false</allowMajorUpdates>
-                    <allowMinorUpdates>false</allowMinorUpdates>
-                    <allowIncrementalUpdates>true</allowIncrementalUpdates>
+                    <allowMinorUpdates>true</allowMinorUpdates>
                     <rulesUri>file:///${session.executionRootDirectory}/version-ruleset.xml</rulesUri>
                 </configuration>
             </plugin>
@@ -312,6 +315,13 @@
             <properties>
                 <webXml.faces.projectStage>Production</webXml.faces.projectStage>
                 <persistenceXml.hibernate.showSql>false</persistenceXml.hibernate.showSql>
+            </properties>
+        </profile>
+        <profile>
+            <!-- Profile per emprar authenticació BASIC sense keycloak -->
+            <id>authBasic</id>
+            <properties>
+                <webXml.loginConfig.authMethod>BASIC</webXml.loginConfig.authMethod>
             </properties>
         </profile>
     </profiles>

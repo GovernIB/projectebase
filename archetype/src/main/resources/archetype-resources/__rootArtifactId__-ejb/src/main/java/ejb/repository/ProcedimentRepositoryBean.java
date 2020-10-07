@@ -19,8 +19,7 @@ import java.util.Optional;
  *
  * @author areus
  */
-@Stateless
-@Local(ProcedimentRepository.class)
+@Stateless @Local(ProcedimentRepository.class)
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class ProcedimentRepositoryBean extends AbstractCrudRepository<Procediment, Long>
         implements ProcedimentRepository {

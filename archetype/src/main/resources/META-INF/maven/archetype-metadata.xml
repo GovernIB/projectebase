@@ -38,6 +38,9 @@
         <requiredProperty key="perfilDistribucio">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
+        <requiredProperty key="perfilSistra2">
+          <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
         <requiredProperty key="perfilBatSh">
           <validationRegex>^(true|false)$</validationRegex>
           <defaultValue>false</defaultValue>
@@ -671,5 +674,36 @@
         </fileSet>
       </fileSets>
     </module>
+	<module id="${rootArtifactId}-sistra2" dir="__rootArtifactId__-sistra2" name="${rootArtifactId}-sistra2">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.xml</include>
+            <include>**/*.wsdl</include>
+            <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+		<fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/test/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/test/resources</directory>
+          <includes>
+            <include>**/*.xml</include>
+			<include>**/*.properties</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>    
   </modules>
 </archetype-descriptor>

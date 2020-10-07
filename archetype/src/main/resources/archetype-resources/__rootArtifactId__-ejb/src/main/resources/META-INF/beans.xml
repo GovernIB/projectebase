@@ -10,6 +10,7 @@ http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd" bean-discovery-mode="all" vers
     <!-- Tots els interceptors i decorators s'han de llistar explicitament dins els beans -->
     <interceptors>
         <class>${package}.ejb.interceptor.LoggerInterceptor</class>
+        <class>${package}.ejb.interceptor.ExceptionTranslatorInterceptor</class>
     </interceptors>
 
 </beans>

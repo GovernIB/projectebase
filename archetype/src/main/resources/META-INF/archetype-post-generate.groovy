@@ -233,6 +233,11 @@ String perfilDistribucio = properties.get("perfilDistribucio");
 println " + perfilDistribucio: " + perfilDistribucio;
 checkProperty("^(true|false)\$", perfilDistribucio, "perfilDistribucio");
 
+// perfilSistra2
+String perfilSistra2 = properties.get("perfilSistra2");
+println " + perfilSistra2: " + perfilSistra2;
+checkProperty("^(true|false)\$", perfilSistra2, "perfilSistra2");
+
 // perfilBatSh
 String perfilBatSh = properties.get("perfilBatSh");
 println " + perfilBatSh: " + perfilBatSh;
@@ -389,4 +394,14 @@ if (perfilDistribucio.equals("false")) {
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- DISTRIBUCIO START -->", "<!-- DISTRIBUCIO END -->");
+}
+
+// PerfilSistra2
+if (perfilSistra2.equals("false")) {
+  println " + Eliminant Modul Sistra2 ..."
+  // Llevar directori
+  removeModule(artifactId +'-sistra2', rootDir)
+  // Llevar EJB de EAR pom
+  def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
+  removeTextBetweenTwoStrings(pomEar, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->");
 }

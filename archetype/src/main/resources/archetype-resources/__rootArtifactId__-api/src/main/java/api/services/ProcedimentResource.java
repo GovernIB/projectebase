@@ -4,7 +4,7 @@
 package ${package}.api.services;
 
 import ${package}.service.facade.ProcedimentServiceFacade;
-import ${package}.service.model.Page;
+import ${package}.service.model.Pagina;
 import ${package}.service.model.ProcedimentDTO;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
@@ -19,16 +19,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import javax.ejb.EJB;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -68,8 +59,8 @@ public class ProcedimentResource {
             @DefaultValue("0") @QueryParam("firstResult") int firstResult,
             @Parameter(description = "Nombre màxim de resultats, per defecte 10")
             @DefaultValue("10") @QueryParam("maxResult") int maxResult) {
-        Page<ProcedimentDTO> page = procedimentService.findByUnitat(firstResult, maxResult, unitatId);
-        return Response.ok().entity(page).build();
+        Pagina<ProcedimentDTO> pagina = procedimentService.findByUnitat(firstResult, maxResult, unitatId);
+        return Response.ok().entity(pagina).build();
     }
 
     /**
@@ -91,7 +82,8 @@ public class ProcedimentResource {
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response get(@Parameter(description = "L'identificador del procediment", required = true)
                         @PathParam("id") Long id) {
-        ProcedimentDTO procediment = procedimentService.findById(id);
+        ProcedimentDTO procediment = procedimentService.findById(id)
+                .orElseThrow(NotFoundException::new);
         return Response.ok(procediment)
                 .link(URI.create("unitats/" + procediment.getIdUnitat()), "unitat")
                 .build();

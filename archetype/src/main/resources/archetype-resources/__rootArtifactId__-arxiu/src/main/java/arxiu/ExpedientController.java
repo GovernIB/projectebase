@@ -150,7 +150,7 @@ public class ExpedientController implements Serializable {
         }
 
         // Obtenim els detalls de l'expedient i els guardam dins la llista d'expedients creats dins la sessió
-        expedientsCreats.add(plugin.expedientDetalls(expedientCreat.getIdentificador(), ""));
+        expedientsCreats.add(plugin.expedientDetalls(expedientCreat.getIdentificador(), null));
 
         context.addMessage(null, new FacesMessage("Expedient creat"));
         context.getExternalContext().getFlash().setKeepMessages(true);

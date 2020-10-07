@@ -6,8 +6,9 @@ package ${package}.back.controller;
 import ${package}.back.utils.PFUtils;
 import ${package}.service.facade.UnitatOrganicaServiceFacade;
 import ${package}.service.model.Ordre;
-import ${package}.service.model.Page;
+import ${package}.service.model.Pagina;
 import ${package}.service.model.UnitatOrganicaDTO;
+import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 import org.slf4j.Logger;
@@ -15,10 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -33,14 +31,11 @@ import java.util.ResourceBundle;
  */
 @Named
 @ViewScoped
-public class ListUnitatOrganica implements Serializable {
+public class ListUnitatOrganica extends AbstractController implements Serializable {
 
     private static final long serialVersionUID = -6015369276336087696L;
 
     private static final Logger LOG = LoggerFactory.getLogger(ListUnitatOrganica.class);
-
-    @Inject
-    private FacesContext context;
 
     @EJB
     private UnitatOrganicaServiceFacade unitatOrganicaService;
@@ -71,18 +66,20 @@ public class ListUnitatOrganica implements Serializable {
             Primefaces cridarà automàticament aquest mètode quan necessita actualitzar les dades del dataTable
             per qualsevol circumstància (filtres, ordenació, canvi de pàgina ...)
             */
+
             @Override
-            public List<UnitatOrganicaDTO> load(int first, int pageSize, List<SortMeta> multiSortMeta,
-                                             Map<String, Object> filters) {
+            public List<UnitatOrganicaDTO> load(int first, int pageSize, Map<String, SortMeta> sortBy,
+                                                Map<String, FilterMeta> filterBy) {
+                LOG.info("filterBy: {}", filterBy);
 
-                List<Ordre> ordenacions = PFUtils.sortMetaToOrdre(multiSortMeta);
+                List<Ordre> ordenacions = PFUtils.sortMetaToOrdre(sortBy.values());
+                Map<String, Object> filtre = PFUtils.filterMetaToFilter(filterBy);
 
-                Page<UnitatOrganicaDTO> llistat = unitatOrganicaService
-                        .findFiltered(first, pageSize, filters, ordenacions);
+                Pagina<UnitatOrganicaDTO> pagina = unitatOrganicaService
+                        .findFiltered(first, pageSize, filtre, ordenacions);
 
-                setRowCount((int) llistat.getTotal());
-
-                return llistat;
+                setRowCount((int) pagina.getTotal());
+                return pagina.getItems();
             }
         };
     }
@@ -98,10 +95,10 @@ public class ListUnitatOrganica implements Serializable {
     public void delete(Long id) {
         LOG.debug("delete");
         // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
-        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
+        ResourceBundle labelsBundle = getBundle("labels");
 
         unitatOrganicaService.delete(id);
-        context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
+        addGlobalMessage(labelsBundle.getString("msg.eliminaciocorrecta"));
 
         // No cal actualitzar el model perquè no aparegui el registre eliminat perquè primefaces cridarà
         // automàticament el load del lazyDataModel en refrescar el component del datatable.

@@ -6,6 +6,7 @@ package ${package}.ejb.converter;
 import ${package}.persistence.model.UnitatOrganica;
 import ${package}.service.model.UnitatOrganicaDTO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 /**
@@ -22,6 +23,7 @@ public interface UnitatOrganicaConverter extends Converter<UnitatOrganica, Unita
     @Override
     UnitatOrganica toEntity(UnitatOrganicaDTO dto);
 
+    @Mapping(target = "codiDir3", ignore = true) // no volem que s'actualitzi
     @Override
     void updateFromDTO(@MappingTarget UnitatOrganica entity, UnitatOrganicaDTO dto);
 }

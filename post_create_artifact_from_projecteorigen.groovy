@@ -120,7 +120,8 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back", "__rootArtifactId__-service",
      "__rootArtifactId__-front", "__rootArtifactId__-apifirmasimple", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
 	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-arxiu", "__rootArtifactId__-registre",
-	 "__rootArtifactId__-notib", "__rootArtifactId__-dir3caib", "__rootArtifactId__-distribucio", "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
+	 "__rootArtifactId__-notib", "__rootArtifactId__-dir3caib", "__rootArtifactId__-distribucio", "__rootArtifactId__-sistra2", 
+	 "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
 
 for(String moduleDir : moduleFolders) {
   File tmp = new File(baseProject, moduleDir);
@@ -233,6 +234,18 @@ for(String distribucioFile : distribucioFiles) {
     replaceProperties(new File(baseProject, distribucioFile), false);
 }
 
+// SISTRA2 - ejb
+def sistra2Files = [ 
+	"./__rootArtifactId__-sistra2/src/main/resources/handlers/backoffice-handlers.xml",
+	"./__rootArtifactId__-sistra2/src/main/resources/META-INF/persistence.xml",
+	"./__rootArtifactId__-sistra2/src/test/resources/META-INF/persistence.xml",
+	"./__rootArtifactId__-sistra2/src/main/resources/sistra2/Sistra2.properties",
+    "./__rootArtifactId__-sistra2/src/main/java/sistra2/persistence/AnotacioInbox.java"
+];
+for(String sistra2File : sistra2Files) {
+  replaceProperties(new File(baseProject, sistra2File), false);
+}
+
 // SERVICE
 def serviceFiles = [ "./__rootArtifactId__-service/src/main/resources/META-INF/beans.xml" ];
 for(String file : serviceFiles) {
@@ -291,9 +304,13 @@ def scriptsFiles = [
    "./scripts/bbdd/oracle/01_create_schema.sql",
    "./scripts/bbdd/oracle/02_sample_data.sql",
    "./scripts/bbdd/oracle/drop_schema.sql",
+   "./scripts/bbdd/oracle/sistra2_create_schema.sql",
+   "./scripts/bbdd/oracle/sistra2_drop_schema.sql",
    "./scripts/bbdd/postgresql/01_create_schema.sql",
    "./scripts/bbdd/postgresql/02_sample_data.sql",
    "./scripts/bbdd/postgresql/drop_schema.sql",
+   "./scripts/bbdd/postgresql/sistra2_create_schema.sql",
+   "./scripts/bbdd/postgresql/sistra2_drop_schema.sql",
    "./scripts/bbdd/postgresql/readme.txt",
    "./scripts/keycloak/keycloak-subsystem.xml"
   ];

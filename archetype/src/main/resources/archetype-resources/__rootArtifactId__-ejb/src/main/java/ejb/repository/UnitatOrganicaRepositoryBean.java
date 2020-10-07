@@ -25,8 +25,7 @@ import java.util.Optional;
  *
  * @author areus
  */
-@Stateless
-@Local(UnitatOrganicaRepository.class)
+@Stateless @Local(UnitatOrganicaRepository.class)
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class UnitatOrganicaRepositoryBean extends AbstractCrudRepository<UnitatOrganica, Long>
         implements UnitatOrganicaRepository {

@@ -26,4 +26,5 @@ public interface UnitatOrganicaRepository extends CrudRepository<UnitatOrganica,
                                                       List<Ordre> ordenacio);
 
     long countByFilter(Map<String, Object> filters);
+
 }

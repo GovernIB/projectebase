@@ -5,6 +5,7 @@ package ${package}.service.model;
 
 /**
  * Representa un criteri d'ordenació per una consulta.
+ * Immutable.
  *
  * @author areus
  */

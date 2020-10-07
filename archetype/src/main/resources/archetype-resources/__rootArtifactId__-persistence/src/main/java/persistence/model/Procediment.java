@@ -16,11 +16,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
  * Representació d'un procediment. A nivell de classe definim la seqüència que emprarem, i les claus úniques.
- * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
  */
@@ -48,14 +51,17 @@ public class Procediment extends BaseEntity {
     /**
      * Codi SIR que identifica el procediment. És únic, i per tant una clau natural.
      * Ha de ser un nombre de entre 6 i 8 dígits.
+     * No es pot actualitzar una vegada creat.
      */
-    @Column(name = "CODISIA", nullable = false, length = 8)
+    @Column(name = "CODISIA", nullable = false, updatable = false, length = 8)
+    @NotNull @Pattern(regexp = "[0-9]{6,8}", message = "{codiSia.Pattern.message}")
     private String codiSia;
 
     /**
      * Nom del procediment.
      */
     @Column(name = "NOM", nullable = false, length = 50)
+    @NotEmpty @Size(max = 50)
     private String nom;
 
     /**
@@ -102,11 +108,9 @@ public class Procediment extends BaseEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Procediment procediment = (Procediment) o;
-        return Objects.equals(codiSia, procediment.codiSia);
+        if (!(o instanceof Procediment)) return false;
+        Procediment that = (Procediment) o;
+        return Objects.equals(codiSia, that.codiSia);
     }
 
     @Override

@@ -5,9 +5,10 @@ package ${package}.back.controller;
 
 import ${package}.service.facade.ProcedimentServiceFacade;
 import ${package}.service.facade.UnitatOrganicaServiceFacade;
-import ${package}.service.model.Page;
+import ${package}.service.model.Pagina;
 import ${package}.service.model.ProcedimentDTO;
 import ${package}.service.model.UnitatOrganicaDTO;
+import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
@@ -15,10 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -34,14 +32,11 @@ import java.util.ResourceBundle;
  */
 @Named("listProcediment")
 @ViewScoped
-public class ListProcediment implements Serializable {
+public class ListProcediment extends AbstractController implements Serializable {
 
     private static final long serialVersionUID = -7992474170848445700L;
 
     private static final Logger LOG = LoggerFactory.getLogger(ListProcediment.class);
-
-    @Inject
-    private FacesContext context;
 
     @EJB
     UnitatOrganicaServiceFacade unitatOrganicaService;
@@ -74,7 +69,7 @@ public class ListProcediment implements Serializable {
      */
     @PostConstruct
     public void init() {
-        LOG.info("init");
+        LOG.debug("init");
         unitatOrganica = new UnitatOrganicaDTO();
     }
 
@@ -84,8 +79,10 @@ public class ListProcediment implements Serializable {
      * Carrega la unitat orgànica i els procediments.
      */
     public void load() {
-        LOG.info("load");
-        unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId());
+        LOG.debug("load");
+
+        unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId())
+                .orElseThrow(() -> new RuntimeException("id invàlid"));
 
         lazyModel = new LazyDataModel<>() {
 
@@ -93,10 +90,10 @@ public class ListProcediment implements Serializable {
 
             @Override
             public List<ProcedimentDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-                                             Map<String, Object> filters) {
-                Page<ProcedimentDTO> llistat = procedimentService.findByUnitat(first, pageSize, unitatOrganica.getId());
-                setRowCount((int) llistat.getTotal());
-                return llistat;
+                                             Map<String, FilterMeta> filterBy) {
+                Pagina<ProcedimentDTO> pagina = procedimentService.findByUnitat(first, pageSize, unitatOrganica.getId());
+                setRowCount((int) pagina.getTotal());
+                return pagina.getItems();
             }
         };
     }
@@ -110,9 +107,9 @@ public class ListProcediment implements Serializable {
     public void delete(Long id) {
         LOG.debug("delete");
         // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
-        ResourceBundle labelsBundle = context.getApplication().getResourceBundle(context, "labels");
+        ResourceBundle labelsBundle = getBundle("labels");
 
         procedimentService.delete(id);
-        context.addMessage(null, new FacesMessage(labelsBundle.getString("msg.eliminaciocorrecta")));
+        addGlobalMessage(labelsBundle.getString("msg.eliminaciocorrecta"));
     }
 }

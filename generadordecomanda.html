@@ -48,6 +48,7 @@
      var perfilNotib = document.getElementById("generarnotib").checked;
      var perfilDir3Caib = document.getElementById("generardir3caib").checked;
      var perfilDistribucio = document.getElementById("generardistribucio").checked;
+     var perfilSistra2 = document.getElementById("generarsistra2").checked;
      var perfilBatSh = document.getElementById("generarbatsh").checked;
 
      var projectnamelowercase = projectname.toLowerCase();
@@ -90,6 +91,7 @@
       + " -DperfilNotib=" + perfilNotib
       + " -DperfilDir3Caib=" + perfilDir3Caib
       + " -DperfilDistribucio=" + perfilDistribucio
+      + " -DperfilSistra2=" + perfilSistra2
       + ((perfilWS == true)?" -DperfilWS=true": "")
       + ((perfilBatSh == true)?" -DperfilBatSh=true": "");
 
@@ -183,6 +185,12 @@
                   <td>Generar Exemple Distribució</td>
                   <td>
                     <input size=35  id="generardistribucio" checked="false" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Generar Exemple Sistra2</td>
+                  <td>
+                    <input size=35  id="generarsistra2" checked="false" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
                 </tbody>

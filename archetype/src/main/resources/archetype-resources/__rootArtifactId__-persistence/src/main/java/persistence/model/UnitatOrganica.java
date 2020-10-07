@@ -15,6 +15,11 @@ import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -23,7 +28,6 @@ import static javax.persistence.EnumType.ORDINAL;
 /**
  * Representació d'una unitat orgànica. Sempre convé definir-les serializable, per si hi mantenim referències dins
  * coses serializables. A nivell de classe definim la seqüència que emprarem, i les claus úniques.
- * Amb l'anotació Schema de openapi li assignam un nom a l'schema generat.
  *
  * @author areus
  */
@@ -52,15 +56,19 @@ public class UnitatOrganica extends BaseEntity {
 
     /**
      * Codi DIR3 que identifica la únicat orgànica. És únic, i per tant una clau natural.
-     * Ha de seguir el patró d'una lletra (A, E, I, J, L, U) seguida de 8 dígits. Ficam un missatge de validació personalitzat.
+     * Una vegada creat, no s'actualitza.
+     * Ha de seguir el patró d'una lletra (A, E, I, J, L, U) seguida de 8 dígits.
+     * Ficam un missatge de validació personalitzat.
      */
-    @Column(name = "CODIDIR3", nullable = false, length = 9)
+    @Column(name = "CODIDIR3", nullable = false, updatable = false, length = 9)
+    @NotNull @Pattern(regexp = "[AEIJLU][0-9]{8}", message = "{codidir3.Pattern.message}")
     private String codiDir3;
 
     /**
      * Nom de la únitat orgànica. Ha de ser una cadena no buida, de màxim 50 caràcters.
      */
     @Column(name = "NOM", nullable = false, length = 50)
+    @NotEmpty @Size(max = 50)
     private String nom;
 
     /**
@@ -68,6 +76,7 @@ public class UnitatOrganica extends BaseEntity {
      * En la serialitzacio/deserialització JSON s'empra el format dd-mm-aaaa.
      */
     @Column(name = "DATACREACIO", nullable = false)
+    @NotNull @PastOrPresent
     private LocalDate dataCreacio;
 
     /**
@@ -77,6 +86,7 @@ public class UnitatOrganica extends BaseEntity {
      */
     @Enumerated(ORDINAL)
     @Column(name = "ESTAT", nullable = false)
+    @NotNull
     private EstatPublicacio estat;
 
     public Long getId() {
@@ -130,11 +140,9 @@ public class UnitatOrganica extends BaseEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        UnitatOrganica unitatOrganica = (UnitatOrganica) o;
-        return Objects.equals(codiDir3, unitatOrganica.codiDir3);
+        if (!(o instanceof UnitatOrganica)) return false;
+        UnitatOrganica that = (UnitatOrganica) o;
+        return Objects.equals(codiDir3, that.codiDir3);
     }
 
     @Override
