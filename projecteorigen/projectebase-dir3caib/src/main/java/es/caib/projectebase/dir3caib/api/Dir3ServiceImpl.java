@@ -20,17 +20,10 @@ import java.util.List;
 @ApplicationScoped
 public class Dir3ServiceImpl implements Dir3Service {
 
-    private String baseUrl;
-    private Client client;
-
-    protected Dir3ServiceImpl() {
-    	
-    }
-    
     @Inject
-    public Dir3ServiceImpl(Configuracio configuracio) {
-        baseUrl = configuracio.getBaseUrl();
-    }
+    private Configuracio configuracio;
+
+    private Client client;
 
     private static final String CATALOGO_COMUNIDADES_AUTONOMAS = "/rest/catalogo/comunidadesAutonomas";
     private static final String CATALOGO_PROVINCIAS_COMUNIDAD = "/rest/catalogo/provincias/comunidadAutonoma";
@@ -43,6 +36,9 @@ public class Dir3ServiceImpl implements Dir3Service {
     @PostConstruct
     private void init() {
         client = ClientBuilder.newClient();
+        if (configuracio.getUsuari() != null && !configuracio.getUsuari().isEmpty()) {
+            client.register(new BasicAuthenticator(configuracio.getUsuari(), configuracio.getSecret()));
+        }
     }
 
     @PreDestroy
@@ -52,14 +48,14 @@ public class Dir3ServiceImpl implements Dir3Service {
 
     @Override
     public List<CodigoValor> comunidadesAutonomas() {
-        return client.target(baseUrl + CATALOGO_COMUNIDADES_AUTONOMAS)
+        return client.target(configuracio.getBaseUrl() + CATALOGO_COMUNIDADES_AUTONOMAS)
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<List<CodigoValor>>() {});
     }
 
     @Override
     public List<CodigoValor> provinciasComunidad(Object idComunidad) {
-        return client.target(baseUrl + CATALOGO_PROVINCIAS_COMUNIDAD)
+        return client.target(configuracio.getBaseUrl() + CATALOGO_PROVINCIAS_COMUNIDAD)
                 .queryParam("id", idComunidad)
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<List<CodigoValor>>() {});
@@ -67,7 +63,7 @@ public class Dir3ServiceImpl implements Dir3Service {
 
     @Override
     public List<CodigoValor> municipios(Object idProvincia) {
-        return client.target(baseUrl + CATALOGO_LOCALIDADES)
+        return client.target(configuracio.getBaseUrl() + CATALOGO_LOCALIDADES)
                 .queryParam("codigoProvincia", idProvincia)
                 .queryParam("codigoEntidadGeografica", ENTIDAD_GEOGRAFICA_MUNICIPIO)
                 .request(MediaType.APPLICATION_JSON)
@@ -76,7 +72,7 @@ public class Dir3ServiceImpl implements Dir3Service {
 
     @Override
     public List<CodigoValor> nivelesAdministracion() {
-        return client.target(baseUrl + CATALOGO_NIVELES_ADMINISTRACION)
+        return client.target(configuracio.getBaseUrl() + CATALOGO_NIVELES_ADMINISTRACION)
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<List<CodigoValor>>() {});
     }
@@ -85,7 +81,7 @@ public class Dir3ServiceImpl implements Dir3Service {
     public List<Nodo> busquedaOrganismos(String codigo, String denominacion, Object codNivelAdministracion,
                                          Object codComunidadAutonoma, boolean conOficinas, boolean unidadRaiz,
                                          Object provincia, Object localidad, boolean vigentes) {
-        return client.target(baseUrl + BUSQUEDA_ORGANISMOS)
+        return client.target(configuracio.getBaseUrl() + BUSQUEDA_ORGANISMOS)
                 .queryParam("codigo", codigo == null ? "" : codigo)
                 .queryParam("denominacion", denominacion == null ? "" : denominacion)
                 .queryParam("codNivelAdministracion", codNivelAdministracion == null ? "" : codNivelAdministracion)

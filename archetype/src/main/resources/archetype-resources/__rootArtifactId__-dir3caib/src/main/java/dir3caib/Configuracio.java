@@ -26,8 +26,12 @@ public class Configuracio {
     private static final Logger LOG = LoggerFactory.getLogger(Configuracio.class);
 
     private static final String BASE_URL_PROPERTY = "${package}.dir3caib.baseUrl";
+    private static final String USUARI_PROPERTY = "${package}.dir3caib.usuari";
+    private static final String SECRET_PROPERTY = "${package}.dir3caib.secret";
 
     private String baseUrl;
+    private String usuari;
+    private String secret;
 
     /**
      * Carrega el fitxer de properties dir3caib/Dir3Caib.properties per inicialitzar la configuració.
@@ -45,9 +49,19 @@ public class Configuracio {
         }
 
         baseUrl = properties.getProperty(BASE_URL_PROPERTY);
+        usuari = properties.getProperty(USUARI_PROPERTY);
+        secret = properties.getProperty(SECRET_PROPERTY);
     }
 
     public String getBaseUrl() {
         return baseUrl;
+    }
+
+    public String getUsuari() {
+        return usuari;
+    }
+
+    public String getSecret() {
+        return secret;
     }
 }

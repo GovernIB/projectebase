@@ -6,7 +6,7 @@
     <handler-chain>
         <handler>
             <handler-name>LoggingHandler</handler-name>
-            <handler-class>${package}.sistra2.backoffice.impl.LoggingHandler</handler-class>
+            <handler-class>${package}.sistra2.integracio.LoggingHandler</handler-class>
         </handler>
     </handler-chain>
 </handler-chains>

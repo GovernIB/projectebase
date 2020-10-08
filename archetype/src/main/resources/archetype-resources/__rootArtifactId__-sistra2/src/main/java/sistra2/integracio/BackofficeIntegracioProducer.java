@@ -12,6 +12,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.xml.ws.BindingProvider;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -35,8 +36,9 @@ public class BackofficeIntegracioProducer {
                 = new BackofficeIntegracioService(wsdlLocation).getBackofficeIntegracioServicePort();
 
         BindingProvider bindingProvider = (BindingProvider) backofficeIntegracio;
-        Map<String, Object> requestContext = bindingProvider.getRequestContext();
+        bindingProvider.getBinding().setHandlerChain(List.of(new LoggingHandler()));
 
+        Map<String, Object> requestContext = bindingProvider.getRequestContext();
         Properties props = configuracio.getProperties();
         requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, props.getProperty(ENDPOINT_PROPERTY));
         requestContext.put(BindingProvider.USERNAME_PROPERTY, props.getProperty(USERNAME_PROPERTY));

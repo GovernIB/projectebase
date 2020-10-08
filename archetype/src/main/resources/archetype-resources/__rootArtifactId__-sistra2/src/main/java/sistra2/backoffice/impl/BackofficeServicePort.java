@@ -20,6 +20,8 @@ import java.util.List;
 
 /**
  * Implementació del backoffice de distribució.
+ *
+ * @author areus
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -29,6 +31,7 @@ import java.util.List;
         targetNamespace = "http://www.caib.es/distribucio/ws/backoffice",
         wsdlLocation = "/wsdl/backoffice.wsdl",
         endpointInterface = "${package}.sistra2.backoffice.api.Backoffice")
+
 @HandlerChain(file = "/handlers/backoffice-handlers.xml")
 public class BackofficeServicePort implements Backoffice {
 
@@ -39,7 +42,7 @@ public class BackofficeServicePort implements Backoffice {
     private AnotacioInboxConverter anotacioInboxConverter;
 
     /**
-     * Reb una llista d'anotacions pendents de processar
+     * Reb una llista d'anotacions pendents de processar i les emmagatzema a la base de dades.
      * @param ids llista d'identificadors d'anotació.
      */
     public void comunicarAnotacionsPendents(List<AnotacioRegistreId> ids) {
