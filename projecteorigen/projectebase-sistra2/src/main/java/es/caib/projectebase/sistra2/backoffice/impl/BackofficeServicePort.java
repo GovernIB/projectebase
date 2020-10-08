@@ -29,7 +29,9 @@ import java.util.List;
         wsdlLocation = "/wsdl/backoffice.wsdl",
         endpointInterface = "es.caib.projectebase.sistra2.backoffice.api.Backoffice")
 
+// registrar els handlers per el servidor
 @HandlerChain(file = "/handlers/backoffice-handlers.xml")
+
 public class BackofficeServicePort implements Backoffice {
 
     @Inject

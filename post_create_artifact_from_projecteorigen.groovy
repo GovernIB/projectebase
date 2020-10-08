@@ -240,7 +240,8 @@ def sistra2Files = [
 	"./__rootArtifactId__-sistra2/src/main/resources/META-INF/persistence.xml",
 	"./__rootArtifactId__-sistra2/src/test/resources/META-INF/persistence.xml",
 	"./__rootArtifactId__-sistra2/src/main/resources/sistra2/Sistra2.properties",
-    "./__rootArtifactId__-sistra2/src/main/java/sistra2/persistence/AnotacioInbox.java"
+    "./__rootArtifactId__-sistra2/src/main/java/sistra2/persistence/AnotacioInbox.java",
+	"./__rootArtifactId__-sistra2/readme.txt"
 ];
 for(String sistra2File : sistra2Files) {
   replaceProperties(new File(baseProject, sistra2File), false);

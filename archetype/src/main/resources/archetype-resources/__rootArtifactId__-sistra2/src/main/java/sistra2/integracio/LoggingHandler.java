@@ -17,6 +17,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
+/**
+ * Implementació d'un SOAPHandler per permetre loguejar les peticions/respostes WS tant per clients com per
+ * servidors.
+ */
 public class LoggingHandler implements SOAPHandler<SOAPMessageContext> {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoggingHandler.class);

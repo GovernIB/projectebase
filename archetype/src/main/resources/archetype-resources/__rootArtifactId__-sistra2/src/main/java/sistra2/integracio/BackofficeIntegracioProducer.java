@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * Per instanciar el client del backoffice d'integració
+ */
 public class BackofficeIntegracioProducer {
 
     private static final Logger LOG = LoggerFactory.getLogger(BackofficeIntegracioProducer.class);
@@ -24,6 +27,11 @@ public class BackofficeIntegracioProducer {
     private static final String USERNAME_PROPERTY = "${package}.sistra2.backofficeintegracio.username";
     private static final String PASSWORD_PROPERTY = "${package}.sistra2.backofficeintegracio.password";
 
+    /**
+     * Instancia i configura el client de backoffice integració de distribució.
+     * @param configuracio per accedir a les propietats de configuració.
+     * @return
+     */
     @Produces
     @ApplicationScoped
     public BackofficeIntegracio produceBackofficeIntegracio(Configuracio configuracio) {

@@ -13,17 +13,17 @@ import java.util.Properties;
 
 /**
  * Per instanciar el plugin d'arxiu.
+ *
+ * @author areus
  */
 public class ArxiuPluginProducer {
     
     private static final Logger LOG = LoggerFactory.getLogger(ArxiuPluginProducer.class);
     
     /**
-     * Instancia el plugin d'arxiu. El marcam amb @Produces per poder injectar el plugin d'arxiu
-     * dins qualsevol controlador. El marcam com a @ApplicationScoped per garantir que només s'en
+     * Instancia el plugin d'arxiu. El marcam com a @ApplicationScoped per garantir que només s'en
      * instancia un.
-     * 
-     * @return instància del plugin d'arxiu.
+     * @param configuracio per accedir a les propietats de configuració
      */
     @Produces
     @ApplicationScoped

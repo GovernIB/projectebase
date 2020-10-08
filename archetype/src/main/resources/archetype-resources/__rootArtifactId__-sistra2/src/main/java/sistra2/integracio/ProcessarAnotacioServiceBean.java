@@ -36,6 +36,9 @@ import javax.xml.ws.WebServiceException;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * EJB que processa anotacions. El definim asíncron.
+ */
 @Stateless
 @Local(ProcessarAnotacioService.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -63,9 +66,19 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
     @Inject
     private IArxiuPlugin arxiuPlugin;
 
+    /**
+     * Processa una anotació pendent. Intenta obtenir l'anotació del backoffice d'integració i si té èxit intenta
+     * canviar l'estat a REBUDA.
+     *
+     * Tal com està implementat es faran infinits reintents si falla la consulta o si falla el canvi d'estat. Si falla
+     * el canvi d'estat però, només és reintentarà aquest, no es repeteix la consulta.
+     *
+     * @param id identificador de l'anotació.
+     */
     @Override
     public void processarAnotacioPendent(Long id) {
         try {
+            // Bloquejam per evitar que mentre estam treballant un segon procés la modifiqui de forma concurrent.
             AnotacioInbox anotacioInbox = anotacioInboxRepository.lockById(id);
             if (anotacioInbox == null) {
                 LOG.warn("No s'ha trobat l'AnotacioInbox amb id: {}", id);
@@ -74,13 +87,14 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
 
             AnotacioRegistreId arId  = anotacioInboxConverter.toAnotacioRegistre(anotacioInbox);
 
-            // Es possible que ja haguem obtingut l'anotació i el que hagi fallat és el canvi d'estat
+            // Es possible que ja haguem obtingut l'anotació i el que hagi fallat és el canvi d'estat per tant si ja
+            // tenim el contingut no el tornam a obtenir.
             if (anotacioInbox.getContingut() == null) {
                 AnotacioRegistreEntrada registreEntrada = backofficeIntegracio.consulta(arId);
                 anotacioInbox.setContingut(JAXBUtil.marshallAnotacio(registreEntrada));
             }
 
-            // si ja tenim el contingut, enviam el canvi d'estat a REBUDA i actualitzam l'estat.
+            // en ja tenir el contingut, enviam el canvi d'estat a REBUDA i actualitzam l'estat.
             backofficeIntegracio.canviEstat(arId, Estat.REBUDA, null);
             anotacioInbox.setEstat(AnotacioInbox.Estat.REBUDA);
 
@@ -94,6 +108,18 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
         }
     }
 
+    /**
+     * Processa una anotació rebuda. Intenta crear l'expedient a l'arxiu i si té èxit processa els annexos i intenta
+     * canviar l'estat a PROCESSADA.
+     *
+     * Tal com està implementat es faran infinits reintents si falla la creació de l'arxiu amb un error no controlat
+     * o si falla el processat dels annexos.
+     *
+     * Si falla el canvi d'estat però, només és reintentarà aquest, no es repeteix la creació de l'arxiu.
+     * Si falla la creació de l'arxiu amb un error controlat, s'itenta marcar l'estat a ERROR.
+     *
+     * @param id identificador de l'anotació.
+     */
     @Override
     public void processarAnotacioRebuda(Long id) {
         try {
@@ -163,6 +189,11 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
 
         } catch (CannotLockException cle) {
             LOG.error("No s'ha pogut bloquejar el RegistreInbox amb id: {}", id);
+        } catch (WebServiceException wse) {
+            LOG.error("Error cridant WS: {}", wse.getMessage());
+            if (wse.getCause() != null) {
+                LOG.error("Causa: {}", wse.getCause().getMessage());
+            }
         }
     }
 }

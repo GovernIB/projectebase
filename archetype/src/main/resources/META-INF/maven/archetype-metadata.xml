@@ -676,6 +676,12 @@
     </module>
 	<module id="${rootArtifactId}-sistra2" dir="__rootArtifactId__-sistra2" name="${rootArtifactId}-sistra2">
       <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>readme.txt</include>
+          </includes>
+        </fileSet>	  
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
           <directory>src/main/java</directory>
           <includes>

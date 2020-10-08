@@ -80,6 +80,9 @@ public abstract class AbstractCrudRepository<E, PK> implements CrudRepository<E,
             return entityManager.find(entityClass, id, LockModeType.PESSIMISTIC_WRITE,
                     Collections.singletonMap("javax.persistence.lock.timeout", 0));
         } catch (LockTimeoutException e) {
+            // LockTimeoutException hereda de RuntimeException i per tant una system exception que
+            // produiria una EJBExcepiton i un rollback si la llançassim directament. Per això la rellançam com
+            // una excepció nova definica com a d'aplicació que no provoca rollback.
             throw new CannotLockException();
         }
     }

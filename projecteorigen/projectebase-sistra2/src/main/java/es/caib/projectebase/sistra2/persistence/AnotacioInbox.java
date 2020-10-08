@@ -20,6 +20,9 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * Emmagatzema la informació de les anotacions rebudes de distribució.
+ */
 @Entity
 @SequenceGenerator(name = "anotacioinbox-sequence", sequenceName = "PBS_ANOTACIOINBOX_SEQ", allocationSize = 50)
 @Table(
@@ -38,32 +41,53 @@ public class AnotacioInbox implements Serializable {
 
     public static final String FIND_ALL_BYESTAT = "AnotacioInbox.FIND_ALL_BYESTAT";
 
+    /**
+     * Id autogenerat amb seqüència.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "anotacioinbox-sequence")
     @Column(name = "ID", nullable = false, length = 19)
     private Long id;
 
+    /**
+     * Identificador de l'anotació enviat per Distribució.
+     */
     @Column(name = "IDENTIFICADOR", nullable = false, length = 100)
     @NotEmpty @Size(max = 100)
     private String identificador;
 
+    /**
+     * Clau d'accés de l'anotació enviat per Distribució.
+     */
     @Column(name = "CLAUACCES", nullable = false, length = 44)
     @NotEmpty @Size(max = 44)
     private String clauAcces;
 
+    /**
+     * Contingut complet serializat de l'anotació de registre d'entrada retornat per la consulta a Distribució.
+     */
     @Column(name = "CONTINGUT")
     @Lob
     private String contingut;
 
+    /**
+     * Identificador de l'expedient creat a Arxiu.
+     */
     @Column(name ="EXPEDIENT", length = 256)
     @Size(max = 256)
     private String expedientArxiu;
 
+    /**
+     * Estat de l'anotació.
+     */
     @Column(name = "ESTAT")
     @Enumerated(EnumType.STRING)
     @NotNull
     private Estat estat = Estat.PENDENT;
 
+    /**
+     * Timestamp del moment de creació.
+     */
     @Column(name = "CREATED", nullable = false, updatable = false)
     private LocalDateTime created;
 
@@ -129,10 +153,10 @@ public class AnotacioInbox implements Serializable {
     }
 
     public enum Estat {
-        PENDENT,
-        REBUDA,
-        PROCESSADA,
-        REBUTJADA,
-        ERROR;
+        PENDENT,    // rebut identificador i clau de Distribució.
+        REBUDA,     // consultada anotació i comunicat canvi d'estat a REBUDA a Distribució.
+        PROCESSADA, // creat expedient dins l'arxiu i  comunicat canvi d'estat a PROCESSADA a Distribució.
+        REBUTJADA,  // no emprat
+        ERROR;      // produit un error en crear l'expedient a arxiu i comunicat canvi d'estat a ERROR a Distribució
     }
 }

@@ -18,6 +18,9 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Classe d'utilitat per serialitzar/deserialitzar determinats objectes en XML.
+ */
 public class JAXBUtil {
 
     private static final JAXBContext JAXB_CONTEXT;
@@ -36,6 +39,7 @@ public class JAXBUtil {
     }
 
     public static String marshallAnotacio(AnotacioRegistreEntrada anotacioRegistreEntrada) {
+        // Atès que AnotacioRegistreEntrada no la controlam i no té @XmlRootElement cal crear el JAXBElement
         JAXBElement<AnotacioRegistreEntrada> element =
                 new JAXBElement<>(ANOTACIO_QNAME, AnotacioRegistreEntrada.class, anotacioRegistreEntrada);
         try {
