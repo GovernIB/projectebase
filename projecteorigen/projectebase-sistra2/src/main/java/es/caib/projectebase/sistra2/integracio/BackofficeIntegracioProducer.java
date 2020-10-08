@@ -36,10 +36,9 @@ public class BackofficeIntegracioProducer {
         bindingProvider.getBinding().setHandlerChain(List.of(new LoggingHandler()));
 
         Map<String, Object> requestContext = bindingProvider.getRequestContext();
-        Properties props = configuracio.getProperties();
-        requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, props.getProperty(ENDPOINT_PROPERTY));
-        requestContext.put(BindingProvider.USERNAME_PROPERTY, props.getProperty(USERNAME_PROPERTY));
-        requestContext.put(BindingProvider.PASSWORD_PROPERTY, props.getProperty(PASSWORD_PROPERTY));
+        requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, configuracio.get(ENDPOINT_PROPERTY));
+        requestContext.put(BindingProvider.USERNAME_PROPERTY, configuracio.get(USERNAME_PROPERTY));
+        requestContext.put(BindingProvider.PASSWORD_PROPERTY, configuracio.get(PASSWORD_PROPERTY));
 
         return backofficeIntegracio;
     }

@@ -42,4 +42,8 @@ public class Configuracio {
     public Properties getProperties() {
         return properties;
     }
+
+    public String get(String propertyName) {
+        return properties.getProperty(propertyName);
+    }
 }

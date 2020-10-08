@@ -44,6 +44,13 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProcessarAnotacioServiceBean.class);
 
+    private static final String PREFIXEXPEDIENT_PROPERTY = "${package}.sistra2.prefixExpedient";
+    private static final String SERIEDOCUMENTAL_PROPERTY = "${package}.sistra2.serieDocumental";
+    private static final String ORGAN_PROPERTY = "${package}.sistra2.organ";
+
+    @Inject
+    private Configuracio configuracio;
+
     @Inject
     private AnotacioInboxRepository anotacioInboxRepository;
 
@@ -66,32 +73,26 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
             }
 
             AnotacioRegistreId arId  = anotacioInboxConverter.toAnotacioRegistre(anotacioInbox);
-            AnotacioRegistreEntrada registreEntrada = backofficeIntegracio.consulta(arId);
 
-            // si rebem correctament l'anotació de registre d'entrada enviam el canvi d'estat
+            // Es possible que ja haguem obtingut l'anotació i el que hagi fallat és el canvi d'estat
+            if (anotacioInbox.getContingut() == null) {
+                AnotacioRegistreEntrada registreEntrada = backofficeIntegracio.consulta(arId);
+                anotacioInbox.setContingut(JAXBUtil.marshallAnotacio(registreEntrada));
+            }
+
+            // si ja tenim el contingut, enviam el canvi d'estat a REBUDA i actualitzam l'estat.
             backofficeIntegracio.canviEstat(arId, Estat.REBUDA, null);
-
-            // guaram la informació i canviam l'estat
-            anotacioInbox.setContingut(JAXBUtil.marshallAnotacio(registreEntrada));
             anotacioInbox.setEstat(AnotacioInbox.Estat.REBUDA);
-
-            // com que AnotacioInbox es managed no cal cridar explicitament al update.
-            //anotacioInboxRepository.update(anotacioInbox);
 
         } catch (CannotLockException cle) {
             LOG.error("No s'ha pogut bloquejar l'AnotacioInbox amb id: {}", id);
         } catch (WebServiceException wse) {
-            // TODO si es produeix un error de ws no feim res. caldria limitar reintents?
             LOG.error("Error cridant WS: {}", wse.getMessage());
             if (wse.getCause() != null) {
                 LOG.error("Causa: {}", wse.getCause().getMessage());
             }
         }
     }
-
-    private static final String CLASSIFICACIO = "000000";
-    private static final String SERIE_DOCUMENTAL = "S0001";
-    private static final List<String> ORGANS = List.of("A04013511");
 
     @Override
     public void processarAnotacioRebuda(Long id) {
@@ -105,21 +106,22 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
             AnotacioRegistreId arId  = anotacioInboxConverter.toAnotacioRegistre(anotacioInbox);
             AnotacioRegistreEntrada anotacio = JAXBUtil.unmarshallAnotacio(anotacioInbox.getContingut());
 
-            // L'anotació s'ha processant anteriorment i s'ha creat arxiu, per tant no fa falta fer aquesta passa
+            // Potser l'anotació s'ha processant anteriorment i s'ha creat arxiu, per tant no fa falta fer aquesta passa
             if (anotacioInbox.getExpedientArxiu() == null) {
 
                 BackofficeArxiuUtils backofficeArxiuUtils = new BackofficeArxiuUtilsImpl(arxiuPlugin);
-                backofficeArxiuUtils.setCarpeta(anotacio.getIdentificador());
+                backofficeArxiuUtils.setCarpeta(null);
+                String nomExpedient = configuracio.get(PREFIXEXPEDIENT_PROPERTY) + anotacio.getIdentificador();
 
                 ArxiuResultat arxiuResultat = backofficeArxiuUtils.crearExpedientAmbAnotacioRegistre(
+                        null, // perquè crei un nou expedient
+                        nomExpedient,
                         null,
-                        anotacio.getIdentificador(),
-                        null,
-                        ORGANS,
+                        List.of(configuracio.get(ORGAN_PROPERTY)),
                         new Date(),
-                        CLASSIFICACIO,
+                        anotacio.getProcedimentCodi(), // la classificació serà el codi de procediment
                         ExpedientEstatEnumDto.OBERT,
-                        SERIE_DOCUMENTAL,
+                        configuracio.get(SERIEDOCUMENTAL_PROPERTY),
                         anotacio);
 
                 if (arxiuResultat.getErrorCodi() != DistribucioArxiuError.NO_ERROR) {

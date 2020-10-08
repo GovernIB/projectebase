@@ -88,6 +88,14 @@
                             <h:message for="llibre" errorStyle="color: red" />
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h:outputLabel for="procedimentCodi">Codi procediment</h:outputLabel>
+                            <h:inputText id="procedimentCodi" value="#{bustiaController.model.procedimentCodi}"
+                                styleClass="form-control" />
+                            <h:message for="procedimentCodi" errorStyle="color: red" />
+                        </div>
+                    </div>
                     <h:commandButton action="#{bustiaController.crearAnotacio()}" styleClass="btn btn-primary"
                         value="Crear anotació">
                         <f:ajax execute="@form" render=":messages @form" />

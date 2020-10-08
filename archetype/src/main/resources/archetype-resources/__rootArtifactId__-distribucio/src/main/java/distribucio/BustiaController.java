@@ -74,6 +74,7 @@ public class BustiaController implements Serializable {
         model.setUnitat("A04027005");
         model.setOficina("O00009560");
         model.setLlibre("16");
+        model.setProcedimentCodi("874718");
         
         model.setInteressatNif("99999999R");
         model.setInteressatNom("PRUEBAS");
@@ -127,10 +128,8 @@ public class BustiaController implements Serializable {
         annex.setFitxerTamany((int) model.getAnnex().getSize());
         annex.setFitxerTipusMime(model.getAnnex().getContentType());
 
-        try (InputStream inputStream = model.getAnnex().getInputStream();
-             ByteArrayOutputStream baos = new ByteArrayOutputStream((int) model.getAnnex().getSize())) {
-            inputStream.transferTo(baos);
-            annex.setFitxerContingut(baos.toByteArray());
+        try (InputStream inputStream = model.getAnnex().getInputStream()) {
+            annex.setFitxerContingut(inputStream.readAllBytes());
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);
         }
@@ -166,7 +165,7 @@ public class BustiaController implements Serializable {
         anotacio.setNumero("${projectname}-" + UUID.randomUUID().toString());
 
         anotacio.setIdentificador("${projectname}-distribucio");
-
+        anotacio.setProcedimentCodi(model.getProcedimentCodi());
         anotacio.setEntitatCodi(model.getEntitat());
         anotacio.setOficinaCodi(model.getOficina());
         anotacio.setLlibreCodi(model.getLlibre());

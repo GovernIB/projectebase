@@ -22,6 +22,7 @@ public class AnotacioModel implements Serializable {
     @NotEmpty private String unitat;
     @NotEmpty private String oficina;
     @NotEmpty private String llibre;
+    @NotEmpty private String procedimentCodi;
 
     @NotEmpty private String interessatNif;
     @NotEmpty private String interessatNom;
@@ -92,6 +93,14 @@ public class AnotacioModel implements Serializable {
 
     public void setLlibre(String llibre) {
         this.llibre = llibre;
+    }
+
+    public String getProcedimentCodi() {
+        return procedimentCodi;
+    }
+
+    public void setProcedimentCodi(String procedimentCodi) {
+        this.procedimentCodi = procedimentCodi;
     }
 
     public String getInteressatNif() {
