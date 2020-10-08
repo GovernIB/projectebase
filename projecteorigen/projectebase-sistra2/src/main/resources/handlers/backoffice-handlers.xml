@@ -3,7 +3,7 @@
     <handler-chain>
         <handler>
             <handler-name>LoggingHandler</handler-name>
-            <handler-class>es.caib.projectebase.sistra2.backoffice.impl.LoggingHandler</handler-class>
+            <handler-class>es.caib.projectebase.sistra2.integracio.LoggingHandler</handler-class>
         </handler>
     </handler-chain>
 </handler-chains>

@@ -1,4 +1,4 @@
-package es.caib.projectebase.sistra2.backoffice.impl;
+package es.caib.projectebase.sistra2.integracio;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

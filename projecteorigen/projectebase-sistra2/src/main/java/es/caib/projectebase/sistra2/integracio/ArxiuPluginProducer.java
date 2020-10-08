@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Per instanciar el plugin d'arxiu.
+ */
 public class ArxiuPluginProducer {
     
     private static final Logger LOG = LoggerFactory.getLogger(ArxiuPluginProducer.class);
@@ -26,7 +29,9 @@ public class ArxiuPluginProducer {
     @ApplicationScoped
     public IArxiuPlugin getArxiuPlugin(Configuracio configuracio) {
         LOG.info("Instanciant plugin arxiu...");
-        IArxiuPlugin plugin = new ArxiuPluginCaib("es.caib.projectebase.sistra2.", configuracio.getProperties());
+        IArxiuPlugin plugin = new ArxiuPluginCaib(
+                "es.caib.projectebase.sistra2.",
+                configuracio.getProperties());
         LOG.info("Plugin instanciat");
         return plugin;
     }

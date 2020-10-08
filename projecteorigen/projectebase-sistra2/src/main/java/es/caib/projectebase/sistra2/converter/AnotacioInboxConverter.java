@@ -10,7 +10,11 @@ import java.util.List;
 
 /**
  * Conversor per transformar els AnotacioRegistreId de backoffice a AnotacioInbox,
- * i de AnotacioInbox als AnotacioRegistreId de backofficeintegracio
+ * i de AnotacioInbox als AnotacioRegistreId de backofficeintegracio.
+ *
+ * Fer notar que els AnotacioRegistreId de backoffice que envia Distribució per processar, no són la mateixa
+ * classe que AnotacioRegistreId de backofficeintegracio que requreix per les consultes i canvis d'estat, bàsicament
+ * perquè dins els WSDL tenen namespaces diferents.
  *
  * @author areus
  */
