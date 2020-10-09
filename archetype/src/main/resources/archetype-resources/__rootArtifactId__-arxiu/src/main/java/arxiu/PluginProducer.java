@@ -5,12 +5,15 @@ package ${package}.arxiu;
 
 import es.caib.plugins.arxiu.api.IArxiuPlugin;
 import es.caib.plugins.arxiu.caib.ArxiuPluginCaib;
+import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.faces.annotation.FacesConfig;
+import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -22,11 +25,26 @@ import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
  * 
  * @author areus
  */
-@FacesConfig(version = JSF_2_3)
 public class PluginProducer {
     
     private static final Logger LOG = LoggerFactory.getLogger(PluginProducer.class);
-    
+
+    @Inject
+    @ConfigProperty(name = "${package}.arxiu.baseUrl")
+    private String baseUrl;
+
+    @Inject
+    @ConfigProperty(name = "${package}.arxiu.aplicacioCodi")
+    private String aplicacioCodi;
+
+    @Inject
+    @ConfigProperty(name = "${package}.arxiu.usuari")
+    private String usuari;
+
+    @Inject
+    @ConfigProperty(name = "${package}.arxiu.secret")
+    private String secret;
+
     /**
      * Instancia el plugin d'arxiu. El marcam amb @Produces per poder injectar el plugin d'arxiu
      * dins qualsevol controlador. El marcam com a @ApplicationScoped per garantir que només s'en
@@ -36,19 +54,16 @@ public class PluginProducer {
      */
     @Produces
     @ApplicationScoped
-    public IArxiuPlugin getArxiuPlugin() {
+    public IArxiuPlugin getArxiuPlugin(Config config) {
         LOG.info("getArxiuPlugin");
-        
-        LOG.info("Carregant properties...");
+
+        // per instanciar el plugin necessitam adaptar les propietats
         Properties properties = new Properties();
-        try (InputStream is = this.getClass().getResourceAsStream("/arxiu/Arxiu.properties")) {
-            properties.load(is);
-            LOG.info("Properties carregades");
-        } catch (IOException io) {
-            throw new RuntimeException("No s'han pogut llegir les propietats de configuració", io);
-        }
-        
-        LOG.info("Instanciant plugin...");
+        properties.setProperty("plugin.arxiu.caib.base.url", baseUrl);
+        properties.setProperty("plugin.arxiu.caib.aplicacio.codi", aplicacioCodi);
+        properties.setProperty("plugin.arxiu.caib.usuari", usuari);
+        properties.setProperty("plugin.arxiu.caib.contrasenya", secret);
+
         IArxiuPlugin plugin = new ArxiuPluginCaib("", properties);
         LOG.info("Plugin instanciat");
         

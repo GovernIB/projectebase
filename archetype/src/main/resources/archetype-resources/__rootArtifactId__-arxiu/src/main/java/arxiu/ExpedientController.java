@@ -18,6 +18,7 @@ import es.caib.plugins.arxiu.api.Expedient;
 import es.caib.plugins.arxiu.api.ExpedientEstat;
 import es.caib.plugins.arxiu.api.ExpedientMetadades;
 import es.caib.plugins.arxiu.api.IArxiuPlugin;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,21 +57,25 @@ public class ExpedientController implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(ExpedientController.class);
 
-    /*
-    Dades de prova per la creació de l'expedient i el document.
-    */
-    private static final List<String> ORGANS = List.of("A04013511");
-    private static final List<String> INTERESSATS = List.of("12345678Z", "00000000T");
-    private static final String CLASSIFICACIO = "organo1_PRO_123456789";
-    private static final String SERIE_DOCUMENTAL = "S0001";
-    private static final String NOM_DOCUMENT = "document test";
+    @Inject
+    @ConfigProperty(name = "${package}.arxiu.serieDocumental")
+    private String serieDocumental;
+
+    @Inject
+    @ConfigProperty(name = "${package}.arxiu.classificacio")
+    private String classificacio;
+
+    @Inject
+    @ConfigProperty(name = "${package}.arxiu.organs")
+    private List<String> organs;
+
+    @Inject
+    @ConfigProperty(name = "${package}.arxiu.interessats")
+    private List<String> interessats;
 
     @Inject
     FacesContext context;
 
-    /**
-     * Obté el plugin d'arxiu a través de {@link PluginProducer${symbol_pound}getArxiuPlugin() }
-     */
     @Inject
     private IArxiuPlugin plugin;
 
@@ -93,12 +98,12 @@ public class ExpedientController implements Serializable {
         expedient.setNom(model.getName());
 
         ExpedientMetadades metadades = new ExpedientMetadades();
-        metadades.setOrgans(ORGANS);
+        metadades.setOrgans(organs);
         metadades.setDataObertura(new Date());
-        metadades.setClassificacio(CLASSIFICACIO);
+        metadades.setClassificacio(classificacio);
         metadades.setEstat(ExpedientEstat.OBERT);
-        metadades.setInteressats(INTERESSATS);
-        metadades.setSerieDocumental(SERIE_DOCUMENTAL);
+        metadades.setInteressats(interessats);
+        metadades.setSerieDocumental(serieDocumental);
         expedient.setMetadades(metadades);
 
         // Cream l'expedient
@@ -107,12 +112,12 @@ public class ExpedientController implements Serializable {
         Part file = model.getFile();
         if (file != null) {
             Document documentPerCrear = new Document();
-            documentPerCrear.setNom(NOM_DOCUMENT);
+            documentPerCrear.setNom(file.getSubmittedFileName());
             documentPerCrear.setEstat(DocumentEstat.ESBORRANY);
 
             DocumentMetadades documentMetadades = new DocumentMetadades();
             documentMetadades.setOrigen(ContingutOrigen.CIUTADA);
-            documentMetadades.setOrgans(ORGANS);
+            documentMetadades.setOrgans(organs);
             documentMetadades.setDataCaptura(new Date());
             documentMetadades.setEstatElaboracio(DocumentEstatElaboracio.ORIGINAL);
             documentMetadades.setTipusDocumental(DocumentTipus.ALTRES);

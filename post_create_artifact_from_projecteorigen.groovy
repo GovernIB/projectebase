@@ -139,7 +139,9 @@ replaceProperties(new File(baseProject, "compile.bat"), true);
 
 // COMMONS - model i utilitats
 def commonsFiles = [ 
-	"./__rootArtifactId__-commons/src/main/java/commons/utils/Constants.java"
+	"./__rootArtifactId__-commons/src/main/java/commons/utils/Constants.java",
+	"./__rootArtifactId__-commons/src/main/java/commons/config/PropertyFileConfigSource.java",
+	"./__rootArtifactId__-commons/src/main/resources/META-INF/services/org.eclipse.microprofile.config.spi.ConfigSource"
 	];
 for(String commonFile : commonsFiles) {
   replaceProperties(new File(baseProject, commonFile), false);
@@ -215,7 +217,6 @@ for(String notibFile : notibFiles) {
 // DIR3CAIB - web
 def dir3caibFiles = [
         "./__rootArtifactId__-dir3caib/src/main/webapp/WEB-INF/web.xml",
-		"./__rootArtifactId__-dir3caib/src/main/resources/dir3caib/Dir3Caib.properties",
         "./__rootArtifactId__-dir3caib/readme.txt"
 ];
 for(String dir3caibFile : dir3caibFiles) {
@@ -300,6 +301,8 @@ for(String wsFile : wsFiles) {
 
 // SCRIPTS
 def scriptsFiles = [
+   "./scripts/configuracio/__artifactId__.properties",
+   "./scripts/configuracio/readme.txt",
    "./scripts/datasources/oracle/__artifactId__-ds.xml",
    "./scripts/datasources/postgresql/__artifactId__-ds.xml", 
    "./scripts/bbdd/oracle/01_create_schema.sql",

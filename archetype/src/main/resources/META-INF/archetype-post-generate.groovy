@@ -268,6 +268,7 @@ list.each {
 }
 */
 
+def configProperties = new File(rootDir, "scripts/configuracio/" + artifactId +".properties")
 
 if (perfilWS.equals("false")) {
   println " + Eliminant modul de WS ..."
@@ -275,7 +276,8 @@ if (perfilWS.equals("false")) {
   removeModule(artifactId +'-ws', rootDir)
   // Llevar Ws de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- WS START -->", "<!-- WS END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- WS START -->", "<!-- WS END -->")
+  removeTextBetweenTwoStrings(configProperties, "## WS START", "## WS END")
 } else {
     
   cleanPom(new File(new File(rootDir, artifactId + "-ws"), "pom.xml"));
@@ -323,7 +325,8 @@ if (perfilBack.equals("false")) {
   removeModule(artifactId +'-back', rootDir)
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- BACK START -->", "<!-- BACK END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- BACK START -->", "<!-- BACK END -->")
+  removeTextBetweenTwoStrings(configProperties, "## BACK START", "## BACK END")
 }
 
 // PerfilFront
@@ -333,7 +336,8 @@ if (perfilFront.equals("false")) {
   removeModule(artifactId +'-front', rootDir)
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- FRONT START -->", "<!-- FRONT END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- FRONT START -->", "<!-- FRONT END -->")
+  removeTextBetweenTwoStrings(configProperties, "## FRONT START", "## FRONT END")
 }
 
 // PerfilApiFirmaSimple
@@ -343,7 +347,8 @@ if (perfilApiFirmaSimple.equals("false")) {
   removeModule(artifactId +'-apifirmasimple', rootDir)
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- APIFIRMASIMPLE START -->", "<!-- APIFIRMASIMPLE END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- APIFIRMASIMPLE START -->", "<!-- APIFIRMASIMPLE END -->")
+  removeTextBetweenTwoStrings(configProperties, "## APIFIRMASIMPLE START", "## APIFIRMASIMPLE END")
 }
 
 // PerfilArxiu
@@ -353,7 +358,8 @@ if (perfilArxiu.equals("false")) {
   removeModule(artifactId +'-arxiu', rootDir)
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- ARXIU START -->", "<!-- ARXIU END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- ARXIU START -->", "<!-- ARXIU END -->")
+  removeTextBetweenTwoStrings(configProperties, "## ARXIU START", "## ARXIU END")
 }
 
 // PerfilRegistre
@@ -363,7 +369,8 @@ if (perfilRegistre.equals("false")) {
   removeModule(artifactId +'-registre', rootDir)
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- REGISTRE START -->", "<!-- REGISTRE END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- REGISTRE START -->", "<!-- REGISTRE END -->")
+  removeTextBetweenTwoStrings(configProperties, "## REGISTRE START", "## REGISTRE END")
 }
 
 // PerfilNotib
@@ -373,7 +380,8 @@ if (perfilNotib.equals("false")) {
   removeModule(artifactId +'-notib', rootDir)
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- NOTIB START -->", "<!-- NOTIB END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- NOTIB START -->", "<!-- NOTIB END -->")
+  removeTextBetweenTwoStrings(configProperties, "## NOTIB START", "## NOTIB END")
 }
 
 // PerfilDir3Caib
@@ -383,7 +391,8 @@ if (perfilDir3Caib.equals("false")) {
   removeModule(artifactId +'-dir3caib', rootDir)
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- DIR3CAIB START -->", "<!-- DIR3CAIB END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- DIR3CAIB START -->", "<!-- DIR3CAIB END -->")
+  removeTextBetweenTwoStrings(configProperties, "## DIR3CAIB START", "## DIR3CAIB END")
 }
 
 // PerfilDistribucio
@@ -393,7 +402,8 @@ if (perfilDistribucio.equals("false")) {
   removeModule(artifactId +'-distribucio', rootDir)
   // Llevar WEB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
-  removeTextBetweenTwoStrings(pomEar, "<!-- DISTRIBUCIO START -->", "<!-- DISTRIBUCIO END -->");
+  removeTextBetweenTwoStrings(pomEar, "<!-- DISTRIBUCIO START -->", "<!-- DISTRIBUCIO END -->")
+  removeTextBetweenTwoStrings(configProperties, "## DISTRIBUCIO START", "## DISTRIBUCIO END")
 }
 
 // PerfilSistra2
@@ -404,6 +414,7 @@ if (perfilSistra2.equals("false")) {
   // Llevar EJB de EAR pom
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->")
+  removeTextBetweenTwoStrings(configProperties, "## SISTRA2 START", "## SISTRA2 END")
   assert new File(rootDir, "scripts/bbdd/oracle/sistra2_create_schema.sql").delete()
   assert new File(rootDir, "scripts/bbdd/oracle/sistra2_drop_schema.sql").delete()
   assert new File(rootDir, "scripts/bbdd/postgresql/sistra2_create_schema.sql").delete()

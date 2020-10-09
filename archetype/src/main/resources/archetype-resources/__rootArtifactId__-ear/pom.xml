@@ -46,12 +46,14 @@
         </dependency>
         <!-- FRONT END -->
         <!-- APIFIRMASIMPLE START -->
+        <!--
         <dependency>
-            <groupId>${groupId}</groupId>
+            <groupId>${package}</groupId>
             <artifactId>${rootArtifactId}-apifirmasimple</artifactId>
-            <version>${version}</version>
+            <version>1.0.0</version>
             <type>war</type>
         </dependency>
+        -->
         <!-- APIFIRMASIMPLE END -->
         <!-- ARXIU START -->
         <dependency>
@@ -188,12 +190,14 @@
                             <bundleFileName>${rootArtifactId}-api.war</bundleFileName>
                         </webModule>
                         <!-- APIFIRMASIMPLE START -->
+                        <!--
                         <webModule>
-                            <groupId>${groupId}</groupId>
+                            <groupId>${package}</groupId>
                             <artifactId>${rootArtifactId}-apifirmasimple</artifactId>
                             <contextRoot>/${rootArtifactId}/apifirmasimple</contextRoot>
                             <bundleFileName>${rootArtifactId}-apifirmasimple.war</bundleFileName>
                         </webModule>
+                        -->
                         <!-- APIFIRMASIMPLE END -->
                         <!-- ARXIU START -->
                         <webModule>
