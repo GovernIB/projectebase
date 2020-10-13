@@ -25,6 +25,11 @@
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>es.caib.distribucio</groupId>
@@ -36,7 +41,6 @@
             <artifactId>distribucio-backoffice-utils</artifactId>
             <version>0.9.29</version>
         </dependency>
-
         <!-- Dependències de test -->
         <dependency>
             <groupId>junit</groupId>
@@ -64,7 +68,6 @@
             <artifactId>hibernate-core</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!-- Altres llibreries necessàries per aquest mòdul -->
         <!-- Només necessària per la generació de codi -->
         <dependency>
@@ -129,6 +132,7 @@
     </build>
 
     <profiles>
+        <!-- Per regenerar les classes del servidor de backoffice per rebre cridades de distribució -->
         <profile>
             <id>generate-ws-backoffice</id>
             <build>

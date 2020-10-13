@@ -46,14 +46,12 @@
         </dependency>
         <!-- FRONT END -->
         <!-- APIFIRMASIMPLE START -->
-        <!--
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-apifirmasimple</artifactId>
             <version>1.0.0</version>
             <type>war</type>
         </dependency>
-        -->
         <!-- APIFIRMASIMPLE END -->
         <!-- ARXIU START -->
         <dependency>
@@ -190,14 +188,12 @@
                             <bundleFileName>projectebase-api.war</bundleFileName>
                         </webModule>
                         <!-- APIFIRMASIMPLE START -->
-                        <!--
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-apifirmasimple</artifactId>
                             <contextRoot>/projectebase/apifirmasimple</contextRoot>
                             <bundleFileName>projectebase-apifirmasimple.war</bundleFileName>
                         </webModule>
-                        -->
                         <!-- APIFIRMASIMPLE END -->
                         <!-- ARXIU START -->
                         <webModule>

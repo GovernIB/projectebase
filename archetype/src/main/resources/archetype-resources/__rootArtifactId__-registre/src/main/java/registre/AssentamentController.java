@@ -92,7 +92,7 @@ public class AssentamentController implements Serializable {
              */
             asiento.setTipoRegistro(1L);
 
-            asiento.setCodigoUsuario(configuracio.getUsername());
+            asiento.setCodigoUsuario(configuracio.getUsuari());
             // Ofincina de registre
             asiento.setEntidadRegistralOrigenCodigo(configuracio.getOficina());
             // Llibre de registre 

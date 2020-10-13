@@ -1,17 +1,19 @@
 package es.caib.projectebase.sistra2.integracio;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * Configuració de propietats.
+ * Configuració de propietats per accés al backoffice d'integració.
  * El definim com a {@link ApplicationScoped} perquè només hi hagi una instància per aplicació.
  *
  * @author areus
@@ -19,31 +21,27 @@ import java.util.Properties;
 @ApplicationScoped
 public class Configuracio {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Configuracio.class);
+    @Inject
+    @ConfigProperty(name = "es.caib.projectebase.sistra2.backofficeintegracio.endpoint")
+    private String endpoint;
 
-    private static final String CONFIG_FILE = "/sistra2/Sistra2.properties";
+    @Inject
+    @ConfigProperty(name = "es.caib.projectebase.sistra2.backofficeintegracio.usuari")
+    private String usuari;
 
-    private final Properties properties = new Properties();
+    @Inject
+    @ConfigProperty(name = "es.caib.projectebase.sistra2.backofficeintegracio.secret")
+    private String secret;
 
-    /**
-     * Carrega el fitxer de properties.
-     */
-    @PostConstruct
-    protected void init() {
-        LOG.info("Carregant properties...");
-        try (InputStream is = this.getClass().getResourceAsStream(CONFIG_FILE)) {
-            properties.load(is);
-            LOG.info("Properties carregades: {}", properties);
-        } catch (IOException io) {
-            throw new RuntimeException("No s'han pogut llegir les propietats de configuració", io);
-        }
+    public String getEndpoint() {
+        return endpoint;
     }
 
-    public Properties getProperties() {
-        return properties;
+    public String getUsuari() {
+        return usuari;
     }
 
-    public String get(String propertyName) {
-        return properties.getProperty(propertyName);
+    public String getSecret() {
+        return secret;
     }
 }

@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
- *
+ * servidor del backoffice d'integració mock
  */
 @WebService(
         portName = "BackofficeIntegracioServicePort",
@@ -32,10 +32,6 @@ public class BackofficeIntegracioServicePortImpl implements BackofficeIntegracio
     private static final AtomicInteger CONSULTA_COUNTER = new AtomicInteger(0);
     private static final AtomicInteger ESTAT_COUNTER = new AtomicInteger(0);
 
-    /**
-     * @param id
-     * @return returns es.caib.projectebase.sistra2.integracio.api.AnotacioRegistreEntrada
-     */
     public AnotacioRegistreEntrada consulta(AnotacioRegistreId id) {
         System.out.println("cosulta: " + id.getIndetificador() +
                 ". Total rebuts: " + CONSULTA_COUNTER.incrementAndGet());
@@ -48,11 +44,6 @@ public class BackofficeIntegracioServicePortImpl implements BackofficeIntegracio
         return registreEntrada;
     }
 
-    /**
-     * @param observacions
-     * @param id
-     * @param estat
-     */
     public void canviEstat(AnotacioRegistreId id, Estat estat, String observacions) {
         countDownLatch.countDown();
         System.out.println("canviEStat: " + id.getIndetificador() +

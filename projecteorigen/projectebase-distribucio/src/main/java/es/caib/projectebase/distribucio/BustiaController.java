@@ -15,7 +15,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.Valid;
 import javax.xml.datatype.DatatypeFactory;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -169,7 +168,7 @@ public class BustiaController implements Serializable {
 
         anotacio.setExtracte(model.getExtracte());
 
-        anotacio.setUsuariCodi(configuracio.getUsername());
+        anotacio.setUsuariCodi(configuracio.getUsuari());
         return anotacio;
     }
 

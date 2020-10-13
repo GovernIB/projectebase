@@ -32,12 +32,12 @@ public class ClientDistribucioProducer {
     @Produces
     @ApplicationScoped
     public BustiaV1 getBustiaClient(Configuracio configuracio) {
-        LOG.info("getRegWebAsientoRegistralWs");
+        LOG.info("getBustiaClient");
         try {
             BustiaV1 client = BustiaV1WsClientFactory.getWsClient(
                     configuracio.getEndpoint(),
-                    configuracio.getUsername(),
-                    configuracio.getPassword());
+                    configuracio.getUsuari(),
+                    configuracio.getSecret());
 
             LOG.info("Client creat");
             return client;

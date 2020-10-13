@@ -3,19 +3,13 @@
 #set( $symbol_escape = '\' )
 package ${package}.notib;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.annotation.PostConstruct;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 /**
- * Configuració de l'exemple de notib. Accedeix al fitxer notib/Notib.properties per llegir les propietats
- * de configuració de l'exemple.
+ * Configuració de l'exemple de notib.
  * El definim com a {@link ApplicationScoped} perquè només hi hagi una instància per aplicació.
  *
  * @author areus
@@ -24,52 +18,36 @@ import java.util.Properties;
 @ApplicationScoped
 public class Configuracio {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Configuracio.class);
+    @Inject
+    @ConfigProperty(name="${package}.notib.baseUrl")
+    private String baseUrl;
 
-    private static final String URL_PROPERTY = "${package}.notib.url";
-    private static final String USERNAME_PROPERTY = "${package}.notib.username";
-    private static final String PASSWORD_PROPERTY = "${package}.notib.password";
-    private static final String PROCEDIMENT_PROPERTY = "${package}.notib.procedimentCodi";
-    private static final String EMISORDIR3_PROPERTY = "${package}.notib.emisorDir3Codi";
+    @Inject
+    @ConfigProperty(name="${package}.notib.usuari")
+    private String usuari;
 
-    private String url;
-    private String username;
-    private String password;
+    @Inject
+    @ConfigProperty(name="${package}.notib.secret")
+    private String secret;
+
+    @Inject
+    @ConfigProperty(name="${package}.notib.procedimentCodi")
     private String procedimentCodi;
+
+    @Inject
+    @ConfigProperty(name="${package}.notib.emisorDir3Codi")
     private String emisorDir3Codi;
 
-    /**
-     * Carrega el fitxer de properties notib/Notib.properties per inicialitzar la configuració.
-     */
-    @PostConstruct
-    protected void init() {
-        LOG.info("Carregant properties...");
-        Properties properties = new Properties();
-        try (InputStream is = this.getClass().getResourceAsStream("/notib/Notib.properties")) {
-            properties.load(is);
-
-            LOG.info("Properties carregades: {}", properties);
-        } catch (IOException io) {
-            throw new RuntimeException("No s'han pogut llegir les propietats de configuració", io);
-        }
-
-        url = properties.getProperty(URL_PROPERTY);
-        username = properties.getProperty(USERNAME_PROPERTY);
-        password = properties.getProperty(PASSWORD_PROPERTY);
-        procedimentCodi = properties.getProperty(PROCEDIMENT_PROPERTY);
-        emisorDir3Codi = properties.getProperty(EMISORDIR3_PROPERTY);
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUsuari() {
+        return usuari;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
+    public String getSecret() {
+        return secret;
     }
 
     public String getProcedimentCodi() {

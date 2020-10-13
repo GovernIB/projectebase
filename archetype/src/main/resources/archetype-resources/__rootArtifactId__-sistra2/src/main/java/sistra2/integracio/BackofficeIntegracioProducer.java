@@ -14,7 +14,6 @@ import javax.xml.ws.BindingProvider;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 /**
  * Per instanciar el client del backoffice d'integració
@@ -23,14 +22,10 @@ public class BackofficeIntegracioProducer {
 
     private static final Logger LOG = LoggerFactory.getLogger(BackofficeIntegracioProducer.class);
 
-    private static final String ENDPOINT_PROPERTY = "${package}.sistra2.backofficeintegracio.endpoint";
-    private static final String USERNAME_PROPERTY = "${package}.sistra2.backofficeintegracio.username";
-    private static final String PASSWORD_PROPERTY = "${package}.sistra2.backofficeintegracio.password";
-
     /**
      * Instancia i configura el client de backoffice integració de distribució.
      * @param configuracio per accedir a les propietats de configuració.
-     * @return
+     * @return client per accedir al backoffice d'integració
      */
     @Produces
     @ApplicationScoped
@@ -47,9 +42,9 @@ public class BackofficeIntegracioProducer {
         bindingProvider.getBinding().setHandlerChain(List.of(new LoggingHandler()));
 
         Map<String, Object> requestContext = bindingProvider.getRequestContext();
-        requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, configuracio.get(ENDPOINT_PROPERTY));
-        requestContext.put(BindingProvider.USERNAME_PROPERTY, configuracio.get(USERNAME_PROPERTY));
-        requestContext.put(BindingProvider.PASSWORD_PROPERTY, configuracio.get(PASSWORD_PROPERTY));
+        requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, configuracio.getEndpoint());
+        requestContext.put(BindingProvider.USERNAME_PROPERTY, configuracio.getUsuari());
+        requestContext.put(BindingProvider.PASSWORD_PROPERTY, configuracio.getSecret());
 
         return backofficeIntegracio;
     }

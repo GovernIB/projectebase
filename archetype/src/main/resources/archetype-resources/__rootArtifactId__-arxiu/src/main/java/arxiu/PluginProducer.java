@@ -12,13 +12,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
-import javax.faces.annotation.FacesConfig;
 import javax.inject.Inject;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
-
-import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
 
 /**
  * Bean que produeix les instàncies de plugins.

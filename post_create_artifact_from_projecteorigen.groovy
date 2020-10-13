@@ -197,7 +197,6 @@ for(String arxiuFile : arxiuFiles) {
 // REGISTRE - web
 def registreFiles = [
         "./__rootArtifactId__-registre/src/main/webapp/WEB-INF/web.xml",
-		"./__rootArtifactId__-registre/src/main/resources/registre/Registre.properties",
         "./__rootArtifactId__-registre/readme.txt"
 ];
 for(String registreFile : registreFiles) {
@@ -207,7 +206,6 @@ for(String registreFile : registreFiles) {
 // NOTIB - web
 def notibFiles = [
         "./__rootArtifactId__-notib/src/main/webapp/WEB-INF/web.xml",
-		"./__rootArtifactId__-notib/src/main/resources/notib/Notib.properties",
         "./__rootArtifactId__-notib/readme.txt"
 ];
 for(String notibFile : notibFiles) {
@@ -226,7 +224,6 @@ for(String dir3caibFile : dir3caibFiles) {
 // DISTRIBUCIO - web
 def distribucioFiles = [
         "./__rootArtifactId__-distribucio/src/main/webapp/WEB-INF/web.xml",
-		"./__rootArtifactId__-distribucio/src/main/resources/distribucio/Distribucio.properties",
 		"./__rootArtifactId__-distribucio/src/main/webapp/exemple.xhtml",
 		"./__rootArtifactId__-distribucio/src/main/java/distribucio/BustiaController.java",
         "./__rootArtifactId__-distribucio/readme.txt"
@@ -240,7 +237,6 @@ def sistra2Files = [
 	"./__rootArtifactId__-sistra2/src/main/resources/handlers/backoffice-handlers.xml",
 	"./__rootArtifactId__-sistra2/src/main/resources/META-INF/persistence.xml",
 	"./__rootArtifactId__-sistra2/src/test/resources/META-INF/persistence.xml",
-	"./__rootArtifactId__-sistra2/src/main/resources/sistra2/Sistra2.properties",
     "./__rootArtifactId__-sistra2/src/main/java/sistra2/persistence/AnotacioInbox.java",
 	"./__rootArtifactId__-sistra2/readme.txt"
 ];

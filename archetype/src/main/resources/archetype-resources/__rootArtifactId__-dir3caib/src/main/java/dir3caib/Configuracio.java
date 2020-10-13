@@ -10,8 +10,7 @@ import javax.inject.Inject;
 
 
 /**
- * Configuració de l'exemple de Dir3Caib. Accedeix al fitxer dir3caib/Dir3Caib.properties per llegir les propietats
- * de configuració de l'exemple.
+ * Configuració de l'exemple de Dir3Caib.
  * El definim com a {@link ApplicationScoped} perquè només hi hagi una instància per aplicació.
  *
  * @author areus

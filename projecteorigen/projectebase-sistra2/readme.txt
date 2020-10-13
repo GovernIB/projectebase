@@ -7,8 +7,8 @@ Per provar el plugin:
 
     1. fixar variable d'entorn JBOSS_HOME
 
-    2. Editar el fitxer src/main/resources/sistra2/Sistra2.properties indicant les propietats necessàries per la connexió
-     amb distribució i amb arxiu, així com les metades a emprar.
+    2. Editar el fitxer scripts/configuracio/projectebase.properties indicant les propietats necessàries
+      per la connexió amb distribució i arxiu
       (tenir en compte que si s'accedeix a un servidor https pot necessitar importar el certificat dins el JDK)
 
     3. Executar l'script "sistra2_create_schema.sql" dins la mateixa base de dades de projectebase.

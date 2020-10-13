@@ -5,13 +5,13 @@ package ${package}.sistra2.integracio;
 
 import es.caib.plugins.arxiu.api.IArxiuPlugin;
 import es.caib.plugins.arxiu.caib.ArxiuPluginCaib;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.inject.Inject;
 import java.util.Properties;
 
 /**
@@ -22,7 +22,23 @@ import java.util.Properties;
 public class ArxiuPluginProducer {
     
     private static final Logger LOG = LoggerFactory.getLogger(ArxiuPluginProducer.class);
-    
+
+    @Inject
+    @ConfigProperty(name = "${package}.sistra2.arxiu.baseUrl")
+    private String baseUrl;
+
+    @Inject
+    @ConfigProperty(name = "${package}.sistra2.arxiu.aplicacioCodi")
+    private String aplicacioCodi;
+
+    @Inject
+    @ConfigProperty(name = "${package}.sistra2.arxiu.usuari")
+    private String usuari;
+
+    @Inject
+    @ConfigProperty(name = "${package}.sistra2.arxiu.secret")
+    private String secret;
+
     /**
      * Instancia el plugin d'arxiu. El marcam com a @ApplicationScoped per garantir que només s'en
      * instancia un.
@@ -32,9 +48,15 @@ public class ArxiuPluginProducer {
     @ApplicationScoped
     public IArxiuPlugin getArxiuPlugin(Configuracio configuracio) {
         LOG.info("Instanciant plugin arxiu...");
-        IArxiuPlugin plugin = new ArxiuPluginCaib(
-                "${package}.sistra2.",
-                configuracio.getProperties());
+
+        // per instanciar el plugin necessitam adaptar les propietats
+        Properties properties = new Properties();
+        properties.setProperty("plugin.arxiu.caib.base.url", baseUrl);
+        properties.setProperty("plugin.arxiu.caib.aplicacio.codi", aplicacioCodi);
+        properties.setProperty("plugin.arxiu.caib.usuari", usuari);
+        properties.setProperty("plugin.arxiu.caib.contrasenya", secret);
+
+        IArxiuPlugin plugin = new ArxiuPluginCaib("", properties);
         LOG.info("Plugin instanciat");
         return plugin;
     }

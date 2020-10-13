@@ -7,16 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
-import javax.faces.annotation.FacesConfig;
-
-import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
 
 /**
  * Bean que configura i instancia el client de notib.
  *
  * @author areus
  */
-@FacesConfig(version = JSF_2_3)
 public class ClientNotibProducer {
 
     private static final Logger LOG = LoggerFactory.getLogger(ClientNotibProducer.class);
@@ -34,9 +30,9 @@ public class ClientNotibProducer {
         LOG.info("getNotificacioRestClient");
 
         NotificacioRestClient client = NotificacioRestClientFactory.getRestClient(
-				configuracio.getUrl(),
-				configuracio.getUsername(),
-				configuracio.getPassword());
+				configuracio.getBaseUrl(),
+				configuracio.getUsuari(),
+				configuracio.getSecret());
 
         LOG.info("Client creat");
 

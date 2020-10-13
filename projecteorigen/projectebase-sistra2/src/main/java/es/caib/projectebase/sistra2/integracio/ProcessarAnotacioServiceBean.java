@@ -11,7 +11,6 @@ import es.caib.distribucio.ws.backofficeintegracio.Annex;
 import es.caib.distribucio.ws.backofficeintegracio.AnotacioRegistreEntrada;
 import es.caib.distribucio.ws.backofficeintegracio.AnotacioRegistreId;
 import es.caib.distribucio.ws.backofficeintegracio.BackofficeIntegracio;
-import es.caib.distribucio.ws.backofficeintegracio.Consulta;
 import es.caib.distribucio.ws.backofficeintegracio.Estat;
 import es.caib.plugins.arxiu.api.Document;
 import es.caib.plugins.arxiu.api.IArxiuPlugin;
@@ -20,6 +19,7 @@ import es.caib.projectebase.sistra2.persistence.AnotacioInbox;
 import es.caib.projectebase.sistra2.repository.AnotacioInboxRepository;
 import es.caib.projectebase.sistra2.repository.CannotLockException;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,12 +44,17 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProcessarAnotacioServiceBean.class);
 
-    private static final String PREFIXEXPEDIENT_PROPERTY = "es.caib.projectebase.sistra2.prefixExpedient";
-    private static final String SERIEDOCUMENTAL_PROPERTY = "es.caib.projectebase.sistra2.serieDocumental";
-    private static final String ORGAN_PROPERTY = "es.caib.projectebase.sistra2.organ";
+    @Inject
+    @ConfigProperty(name = "es.caib.projectebase.sistra2.organs")
+    private List<String> organs;
 
     @Inject
-    private Configuracio configuracio;
+    @ConfigProperty(name = "es.caib.projectebase.sistra2.serieDocumental")
+    private String serieDocumental;
+
+    @Inject
+    @ConfigProperty(name = "es.caib.projectebase.sistra2.prefixExpedient")
+    private String prefixExpedient;
 
     @Inject
     private AnotacioInboxRepository anotacioInboxRepository;
@@ -134,17 +139,17 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
 
                 BackofficeArxiuUtils backofficeArxiuUtils = new BackofficeArxiuUtilsImpl(arxiuPlugin);
                 backofficeArxiuUtils.setCarpeta(null);
-                String nomExpedient = configuracio.get(PREFIXEXPEDIENT_PROPERTY) + anotacio.getIdentificador();
+                String nomExpedient = prefixExpedient + anotacio.getIdentificador();
 
                 ArxiuResultat arxiuResultat = backofficeArxiuUtils.crearExpedientAmbAnotacioRegistre(
                         null, // perquè crei un nou expedient
                         nomExpedient,
                         null,
-                        List.of(configuracio.get(ORGAN_PROPERTY)),
+                        organs,
                         new Date(),
                         anotacio.getProcedimentCodi(), // la classificació serà el codi de procediment
                         ExpedientEstatEnumDto.OBERT,
-                        configuracio.get(SERIEDOCUMENTAL_PROPERTY),
+                        serieDocumental,
                         anotacio);
 
                 if (arxiuResultat.getErrorCodi() != DistribucioArxiuError.NO_ERROR) {
