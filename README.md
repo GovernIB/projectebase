@@ -13,5 +13,5 @@ Es tracte d'un projecte d'exemple per JBoss 7.2 EAP seguint l'estructura i està
 
 ***Generador de Projectes***
 
-Pitjar sobre el següent enllaç per generar un projecte: [Generador de Projectes](http://htmlpreview.github.io/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0.5/generadordecomanda.html)
+Pitjar sobre el següent enllaç per generar un projecte: [Generador de Projectes](http://htmlpreview.github.io/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0.6/generadordecomanda.html)
 
