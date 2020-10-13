@@ -10,6 +10,7 @@ Les tasques següents resumeixen les feines a realitzar pel tancament d'una vers
 (3) Revisar si generadordecomanda.html conté la versió que s'ha d'alliberar
 
 (4) Revisar si el Readme.md mostra la versió correcta
+	* En desenvolupament, l'enllaç del generador ha de ser projectebase-1.0, en tancar versió projectebase-1.0.x
 
 (5) Fer deploy de archetype: 
            - cd archetype
