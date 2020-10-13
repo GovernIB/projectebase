@@ -15,14 +15,13 @@ import javax.ws.rs.ext.Provider;
  * que estigui a un domini diferent al que està l'API.
  * Veure: https://www.html5rocks.com/en/tutorials/cors/
  * Activam {@link PreMatching} perquè cal capturar les cridades amb el mètode OPTIONS quen no corresponen a cap resource
- * Amb la prioritat 200 asseguram que s'executa després del logging, però abans que qualsevol altre.
  *
  * @author areus
  */
 @Provider
 @PreMatching
-@Priority(200)
-public class CORSFilter implements ContainerRequestFilter, ContainerResponseFilter {
+@Priority(300)
+public class CORSRestFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
     /**
      * Si és una petició preflight aborta la petició perquè no es processi cap a cap recurs, i al filtre de sortida
