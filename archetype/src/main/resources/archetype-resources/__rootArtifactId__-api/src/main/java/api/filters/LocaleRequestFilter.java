@@ -31,7 +31,7 @@ import static ${package}.api.config.ApiConstants.SUPPORTED_LOCALES;
  */
 @Provider
 @PreMatching
-@Priority(300)
+@Priority(200)
 public class LocaleRequestFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
     @Context

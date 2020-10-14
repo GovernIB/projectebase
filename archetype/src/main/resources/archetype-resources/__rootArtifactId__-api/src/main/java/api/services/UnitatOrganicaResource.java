@@ -51,7 +51,7 @@ public class UnitatOrganicaResource {
             responseCode = "200",
             description = "Llista d'unitats orgàniques",
             content = @Content(mediaType = "application/json",
-                    schema = @Schema(type = SchemaType.ARRAY, implementation = UnitatOrganicaDTO.class)))
+                    schema = @Schema(implementation = PaginaUnitatOrganica.class)))
     public Response getUnitats(
             @Parameter(description = "Primer resultat, per defecte 0")
             @DefaultValue("0") @QueryParam("firstResult") int firstResult,
@@ -93,7 +93,8 @@ public class UnitatOrganicaResource {
     @POST
     @Operation(operationId = "createUnitat", summary = "Crea una nova unitat orgànica")
     @APIResponse(responseCode = "201", description = "Recurs creat",
-            headers = @Header(name = "location", description = "Enllaç al nou recurs"))
+            headers = @Header(name = "location", description = "Enllaç al nou recurs",
+                    schema = @Schema(type = SchemaType.STRING)))
     public Response create(
             @RequestBody(
                     required = true,

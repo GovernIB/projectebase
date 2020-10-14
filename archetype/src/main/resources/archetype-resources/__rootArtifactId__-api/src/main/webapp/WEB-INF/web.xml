@@ -9,17 +9,6 @@
 
     <display-name>${projectname}: API REST</display-name>
 
-    <!-- Alternativa la definició d'una classe Application -->
-    <!--
-    <servlet>
-        <servlet-name>javax.ws.rs.core.Application</servlet-name>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>javax.ws.rs.core.Application</servlet-name>
-        <url-pattern>/services/*</url-pattern>
-    </servlet-mapping>
-    -->
-
     <!-- Paràmetre que indica els locales soportats -->
     <context-param>
         <param-name>${package}.api.supportedLocales</param-name>
@@ -29,6 +18,7 @@
     <!--
     Amb el següent obligam a sempre autenticar-se per accedir a tots els recursos REST, independentment del role
     d'usuari. A nivell de recurs ja s'exigiran roles determiants emprant @RollesAllowed
+    Ometem el mètode OPTIONS perquè s'empra ler les preflight requests que no són autenticades.
     -->
     <security-constraint>
         <display-name>Accés restringit</display-name>
@@ -36,6 +26,9 @@
             <web-resource-name>restringit</web-resource-name>
             <description>Restringim l'accés a tots els recursos REST</description>
             <url-pattern>/services/*</url-pattern>
+            <http-method-omission>
+                OPTIONS
+            </http-method-omission>
         </web-resource-collection>
         <auth-constraint>
             <description>Es poden posar roles concrets, o ** que vol dir qualsevol role</description>

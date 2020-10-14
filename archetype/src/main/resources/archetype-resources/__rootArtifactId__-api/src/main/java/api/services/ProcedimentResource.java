@@ -10,6 +10,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.headers.Header;
 import org.eclipse.microprofile.openapi.annotations.links.Link;
+import org.eclipse.microprofile.openapi.annotations.links.LinkParameter;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
@@ -51,7 +52,7 @@ public class ProcedimentResource {
             responseCode = "200",
             description = "Llista de procediments",
             content = @Content(mediaType = "application/json",
-                    schema = @Schema(type = SchemaType.ARRAY, implementation = ProcedimentDTO.class)))
+                    schema = @Schema(implementation = PaginaProcediment.class)))
     public Response getByUnitat(
             @Parameter(description = "L'identificador de la unitat", required = true)
             @NotNull @QueryParam("unitatId") Long unitatId,
@@ -77,16 +78,17 @@ public class ProcedimentResource {
             description = "Procediment",
             content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = ProcedimentDTO.class)),
-            links = @Link(name = "unitat", description = "Enllaç a la unitat orgància del procediment")
+            links = @Link(name = "unitat",
+                    description = "Unitat orgànica del procediment",
+                    operationId = "getUnitat",
+                    parameters = @LinkParameter(name = "id", expression = "${symbol_dollar}response.body${symbol_pound}/idUnitat"))
     )
     @APIResponse(responseCode = "404", description = "Recurs no trobat")
     public Response get(@Parameter(description = "L'identificador del procediment", required = true)
                         @PathParam("id") Long id) {
         ProcedimentDTO procediment = procedimentService.findById(id)
                 .orElseThrow(NotFoundException::new);
-        return Response.ok(procediment)
-                .link(URI.create("unitats/" + procediment.getIdUnitat()), "unitat")
-                .build();
+        return Response.ok(procediment).build();
     }
 
     /**
@@ -99,7 +101,8 @@ public class ProcedimentResource {
     @POST
     @Operation(operationId = "createProcediment", summary = "Crea un nou procediment associat a la unitat orgànica")
     @APIResponse(responseCode = "201", description = "Recurs creat",
-            headers = @Header(name = "location", description = "Enllaç al nou recurs"))
+            headers = @Header(name = "location", description = "Enllaç al nou recurs",
+                    schema = @Schema(type = SchemaType.STRING)))
     public Response create(
             @RequestBody(
                     required = true,
