@@ -27,8 +27,7 @@ public class ProcedimentRepositoryBean extends AbstractCrudRepository<Procedimen
 
     @Override
     public Optional<Procediment> findByCodiSia(String codiSia) {
-        TypedQuery<Procediment> query = entityManager.createQuery(
-                "select p from Procediment p where p.codiSia = :codiSia", Procediment.class);
+        TypedQuery<Procediment> query = entityManager.createNamedQuery(Procediment.FIND_BY_CODISIA, Procediment.class);
         query.setParameter("codiSia", codiSia);
         List<Procediment> result = query.getResultList();
         return Optional.ofNullable(result.isEmpty() ? null : result.get(0));
@@ -36,10 +35,9 @@ public class ProcedimentRepositoryBean extends AbstractCrudRepository<Procedimen
 
     @Override
     public List<ProcedimentDTO> findPagedByUnitat(int firstResult, int maxResult, Long idUnitat) {
-
-        TypedQuery<ProcedimentDTO> query = entityManager.createQuery(
-                "select new es.caib.projectebase.service.model.ProcedimentDTO(p.id, p.codiSia, p.nom, u.id) " +
-                        "from Procediment p join p.unitatOrganica u where u.id = :idUnitat", ProcedimentDTO.class);
+        TypedQuery<ProcedimentDTO> query = entityManager.createNamedQuery(
+                Procediment.FIND_DTO_BY_IDUNITAT,
+                ProcedimentDTO.class);
         query.setParameter("idUnitat", idUnitat);
         query.setFirstResult(firstResult);
         query.setMaxResults(maxResult);
@@ -48,9 +46,7 @@ public class ProcedimentRepositoryBean extends AbstractCrudRepository<Procedimen
 
     @Override
     public long countByUnitat(Long idUnitat) {
-        TypedQuery<Long> query = entityManager.createQuery(
-                "select count(p) from Procediment p join p.unitatOrganica u " +
-                        "where u.id = :idUnitat", Long.class);
+        TypedQuery<Long> query = entityManager.createNamedQuery(Procediment.COUNT_BY_IDUNITAT, Long.class);
         query.setParameter("idUnitat", idUnitat);
         return query.getSingleResult();
     }

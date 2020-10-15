@@ -33,8 +33,9 @@ public class UnitatOrganicaRepositoryBean extends AbstractCrudRepository<UnitatO
 
     @Override
     public Optional<UnitatOrganica> findByCodiDir3(String codiDir3) {
-        TypedQuery<UnitatOrganica> query = entityManager.createQuery(
-                "select u from UnitatOrganica u where u.codiDir3 = :codiDir3", UnitatOrganica.class);
+        TypedQuery<UnitatOrganica> query = entityManager.createNamedQuery(
+                UnitatOrganica.FIND_BY_CODIDIR3,
+                UnitatOrganica.class);
         query.setParameter("codiDir3", codiDir3);
         List<UnitatOrganica> result = query.getResultList();
         return Optional.ofNullable(result.isEmpty() ? null : result.get(0));

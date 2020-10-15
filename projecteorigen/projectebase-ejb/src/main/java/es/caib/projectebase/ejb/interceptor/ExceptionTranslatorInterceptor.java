@@ -35,8 +35,6 @@ public class ExceptionTranslatorInterceptor implements Serializable {
     public Object aroundInvoke(InvocationContext context) throws Exception {
         try {
             return context.proceed();
-        } catch (PersistenceException exception) {
-            throw processPersistenceException(exception);
         } catch (EJBException ejbException) {
             Throwable cause = ejbException.getCause();
             if (cause instanceof PersistenceException) {

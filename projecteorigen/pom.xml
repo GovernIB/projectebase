@@ -30,6 +30,7 @@
         <primefaces.version>8.0</primefaces.version>
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
         <mapstruct.version>1.4.0.Final</mapstruct.version>
+        <mockito.version>3.5.13</mockito.version>
         <!-- Propietats emprades als descriptors en mode Desenvolupament. -->
         <!-- Es poden activar els valors de producció activatn el profile -Pproduccio -->
         <webXml.faces.projectStage>Development</webXml.faces.projectStage>
@@ -132,6 +133,13 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
+            </dependency>
+            <!-- Dependències emprades als tests -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
