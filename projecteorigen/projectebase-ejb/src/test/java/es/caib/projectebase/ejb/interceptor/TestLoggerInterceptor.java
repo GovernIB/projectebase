@@ -48,7 +48,6 @@ public class TestLoggerInterceptor {
 
         Mockito.when(context.getTarget()).thenReturn(new Object());
         Mockito.when(context.getMethod()).thenReturn(Object.class.getMethod("toString"));
-        Mockito.when(context.getParameters()).thenReturn(new Object[0]);
         Mockito.when(context.proceed()).thenReturn(null);
 
         interceptor.logCall(context);
