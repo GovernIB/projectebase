@@ -1,13 +1,11 @@
-package es.caib.projectebase.persistence.test;
+package es.caib.projectebase.persistence.model;
 
-import es.caib.projectebase.service.model.EstatPublicacio;
 import es.caib.projectebase.persistence.model.UnitatOrganica;
-import es.caib.projectebase.service.model.UnitatOrganicaDTO;
+import es.caib.projectebase.service.model.EstatPublicacio;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.Assert;
@@ -31,7 +29,7 @@ import java.time.LocalDate;
  * ja està en marxa (-Parq-jboss-remote).
  */
 @RunWith(Arquillian.class)
-public class TestUnitatOrganica {
+public class UnitatOrganicaIT {;
 
     /**
      * Crea l'arxiu de deploy que es desplegarà sobre JBoss per fer els tests.
@@ -39,13 +37,19 @@ public class TestUnitatOrganica {
      */
     @Deployment
     public static JavaArchive createDeployment() {
-        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
-                .addPackages(true, "es.caib.projectebase.persistence")
-                .addPackages(true, "es.caib.projectebase.service")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsResource("META-INF/arquillian-persistence.xml", "META-INF/persistence.xml");
-        //System.out.println(jar.toString(true));
-        return jar;
+        try {
+            JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
+                    .addPackages(true, "es.caib.projectebase.persistence.model")
+                    .addPackages(true, "es.caib.projectebase.service.model")
+                    .addAsResource("META-INF/beans.xml")
+                    .addAsResource("META-INF/arquillian-persistence.xml", "META-INF/persistence.xml")
+                    .addAsResource("META-INF/arquillian-ds.xml");
+            System.out.println(jar.toString(true));
+            return jar;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @PersistenceContext
@@ -101,12 +105,9 @@ public class TestUnitatOrganica {
     @Test
     @InSequence(2)
     public void testQueryUnitat() {
-        TypedQuery<UnitatOrganicaDTO> query = em.createQuery(
-                "select new es.caib.projectebase.service.model.UnitatOrganicaDTO(u.id, u.codiDir3, u.nom, " +
-                        "u.dataCreacio, u.estat) " +
-                        "from UnitatOrganica u where u.codiDir3 = :codiDir3", UnitatOrganicaDTO.class);
+        TypedQuery<UnitatOrganica> query = em.createNamedQuery(UnitatOrganica.FIND_BY_CODIDIR3, UnitatOrganica.class);
         query.setParameter("codiDir3", "U87654321");
-        UnitatOrganicaDTO unitat = query.getSingleResult();
+        UnitatOrganica unitat = query.getSingleResult();
 
         // Comprovam el nom de la unitat seleccionada
         Assert.assertEquals("Unitat test arquillian", unitat.getNom());
@@ -118,8 +119,7 @@ public class TestUnitatOrganica {
     @Test
     @InSequence(3)
     public void testRemoveUnitat() {
-        TypedQuery<UnitatOrganica> query = em.createQuery(
-                "select u from UnitatOrganica u where u.codiDir3 = :codiDir3", UnitatOrganica.class);
+        TypedQuery<UnitatOrganica> query = em.createNamedQuery(UnitatOrganica.FIND_BY_CODIDIR3, UnitatOrganica.class);
         query.setParameter("codiDir3", "U87654321");
         UnitatOrganica unitat = query.getSingleResult();
         em.remove(unitat);

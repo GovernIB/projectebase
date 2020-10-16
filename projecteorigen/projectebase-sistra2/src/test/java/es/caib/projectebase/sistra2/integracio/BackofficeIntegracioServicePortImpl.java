@@ -1,4 +1,4 @@
-package es.caib.projectebase.sistra2.test.integracio;
+package es.caib.projectebase.sistra2.integracio;
 
 import es.caib.distribucio.ws.backofficeintegracio.AnotacioRegistreEntrada;
 import es.caib.distribucio.ws.backofficeintegracio.AnotacioRegistreId;

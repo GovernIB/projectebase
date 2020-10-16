@@ -12,10 +12,6 @@
     <name>ProjecteBase - EJB</name>
     <description>Mòdul EJB de ProjecteBase</description>
 
-    <properties>
-        <maven.test.skip>false</maven.test.skip>
-    </properties>
-
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>

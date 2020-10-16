@@ -1,4 +1,4 @@
-package es.caib.projectebase.api.test;
+package es.caib.projectebase.api.util;
 
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;

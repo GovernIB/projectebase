@@ -1,9 +1,10 @@
-package es.caib.projectebase.sistra2.test.integracio;
+package es.caib.projectebase.sistra2.integracio;
 
 import es.caib.projectebase.sistra2.backoffice.api.AnotacioRegistreId;
 import es.caib.projectebase.sistra2.backoffice.api.Backoffice;
 import es.caib.projectebase.sistra2.backoffice.api.BackofficeService;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.xml.ws.BindingProvider;
@@ -14,7 +15,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 
-public class TestIntegracio {
+@Ignore
+public class BackofficeIntegracioIT {
 
     private static final String BACKOFFICE_ADRESS =
             "http://localhost:8080/projectebase-sistra2/BackofficeService/BackofficeServicePort";

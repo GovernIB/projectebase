@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- No fer els tests per defecte. -->
-        <maven.test.skip>true</maven.test.skip>
+        <!-- <maven.test.skip>true</maven.test.skip> -->
         <!-- Versions de JBoss -->
         <jboss-eap.version>7.2.9.GA</jboss-eap.version>
         <jboss-javaee.version>1.0.1.Final-redhat-00003</jboss-javaee.version>
@@ -29,8 +29,12 @@
         <keycloak.version>6.0.1</keycloak.version>
         <primefaces.version>8.0</primefaces.version>
         <primefaces.theme.version>1.0.10</primefaces.theme.version>
-        <mapstruct.version>1.4.0.Final</mapstruct.version>
+        <mapstruct.version>1.4.1.Final</mapstruct.version>
+        <junit.version>4.13.1</junit.version>
+        <arquillian.version>1.6.0.Final</arquillian.version>
+        <wildfly-arquillian.version>3.0.1.Final</wildfly-arquillian.version>
         <mockito.version>3.5.13</mockito.version>
+        <h2.version>1.4.200</h2.version>
         <!-- Propietats emprades als descriptors en mode Desenvolupament. -->
         <!-- Es poden activar els valors de producció activatn el profile -Pproduccio -->
         <webXml.faces.projectStage>Development</webXml.faces.projectStage>
@@ -92,10 +96,27 @@
             </dependency>
             <dependency>
                 <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-eap-javaee8-with-tools</artifactId>
+                <artifactId>jboss-eap-javaee8</artifactId>
                 <version>${jboss-eap.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.arquillian</groupId>
+                <artifactId>wildfly-arquillian-container-managed</artifactId>
+                <version>${wildfly-arquillian.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.arquillian</groupId>
+                <artifactId>wildfly-arquillian-container-remote</artifactId>
+                <version>${wildfly-arquillian.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.spec</groupId>
@@ -135,6 +156,12 @@
                 <version>${mapstruct.version}</version>
             </dependency>
             <!-- Dependències emprades als tests -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
@@ -337,6 +364,28 @@
             <properties>
                 <webXml.loginConfig.authMethod>BASIC</webXml.loginConfig.authMethod>
             </properties>
+        </profile>
+        <profile>
+            <!-- Profile per executar els tests d'integració -->
+            <id>testsit</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
     <repositories>
