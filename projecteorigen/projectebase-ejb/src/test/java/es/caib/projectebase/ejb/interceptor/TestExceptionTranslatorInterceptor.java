@@ -90,4 +90,32 @@ public class TestExceptionTranslatorInterceptor {
             Assert.assertEquals(plainException, exception);
         }
     }
+
+    @Test
+    public void testPersistenceException() throws Exception {
+        PersistenceException persistenceException = new PersistenceException();
+
+        Mockito.when(context.proceed()).thenThrow(persistenceException);
+        try {
+            interceptor.aroundInvoke(context);
+            Assert.fail("Hauria d'haver llançat una excepció");
+        } catch (Exception exception) {
+            Assert.assertTrue(exception instanceof ServiceException);
+            Assert.assertEquals(persistenceException, exception.getCause());
+        }
+    }
+
+    @Test
+    public void testEntityNotFoundException() throws Exception {
+        PersistenceException persistenceException = new EntityNotFoundException();
+
+        Mockito.when(context.proceed()).thenThrow(persistenceException);
+        try {
+            interceptor.aroundInvoke(context);
+            Assert.fail("Hauria d'haver llançat una excepció");
+        } catch (Exception exception) {
+            Assert.assertTrue(exception instanceof RecursNoTrobatException);
+            Assert.assertNull(exception.getCause());
+        }
+    }
 }
