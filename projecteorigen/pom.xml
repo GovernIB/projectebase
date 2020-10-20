@@ -34,7 +34,6 @@
         <arquillian.version>1.6.0.Final</arquillian.version>
         <wildfly-arquillian.version>3.0.1.Final</wildfly-arquillian.version>
         <mockito.version>3.5.13</mockito.version>
-        <h2.version>1.4.200</h2.version>
         <!-- Propietats emprades als descriptors en mode Desenvolupament. -->
         <!-- Es poden activar els valors de producció activatn el profile -Pproduccio -->
         <webXml.faces.projectStage>Development</webXml.faces.projectStage>
@@ -109,16 +108,6 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.wildfly.arquillian</groupId>
-                <artifactId>wildfly-arquillian-container-managed</artifactId>
-                <version>${wildfly-arquillian.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.arquillian</groupId>
-                <artifactId>wildfly-arquillian-container-remote</artifactId>
-                <version>${wildfly-arquillian.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-javaee-8.0</artifactId>
                 <version>${jboss-javaee.version}</version>
@@ -166,6 +155,18 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.arquillian</groupId>
+                <artifactId>wildfly-arquillian-container-managed</artifactId>
+                <version>${wildfly-arquillian.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.arquillian</groupId>
+                <artifactId>wildfly-arquillian-container-remote</artifactId>
+                <version>${wildfly-arquillian.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -367,7 +368,7 @@
         </profile>
         <profile>
             <!-- Profile per executar els tests d'integració -->
-            <id>testsit</id>
+            <id>testsIntegracio</id>
             <build>
                 <plugins>
                     <plugin>

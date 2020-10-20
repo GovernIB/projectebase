@@ -45,7 +45,7 @@ import java.util.Objects;
                 query = "select count(p) from Procediment p join p.unitatOrganica u where u.id = :idUnitat"),
         @NamedQuery(name = Procediment.FIND_DTO_BY_IDUNITAT,
                 query = "select new es.caib.projectebase.service.model.ProcedimentDTO(p.id, p.codiSia, p.nom, u.id) " +
-                        "from Procediment p join p.unitatOrganica u where u.id = :idUnitat")
+                        "from Procediment p join p.unitatOrganica u where u.id = :idUnitat order by p.id")
 })
 public class Procediment extends BaseEntity {
 

@@ -6,6 +6,9 @@ import javax.annotation.security.PermitAll;
 import javax.annotation.security.RunAs;
 import javax.ejb.Stateless;
 
+/**
+ * EJB d'utilitat per pemetre executar mètodes amb permisos
+ */
 @Stateless
 @RunAs(Constants.PBS_ADMIN)
 @PermitAll
