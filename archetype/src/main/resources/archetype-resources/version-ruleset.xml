@@ -9,10 +9,8 @@
         <ignoreVersion type="regex">(?i).*RC(?:-?\d+)?</ignoreVersion>
         <ignoreVersion type="regex">(?i).*-b(?:-?\d+.\d+)?</ignoreVersion>
         <ignoreVersion type="regex">(?i).*CR(?:-?\d+)?</ignoreVersion>
-        <!--
-        <ignoreVersion type="regex">(?i).*-B(?:-?\d+)?</ignoreVersion>
+        <ignoreVersion type="regex">(?i).*CD(?:-?\d+)?</ignoreVersion>
         <ignoreVersion type="regex">(?i).*M(?:-?\d+)?</ignoreVersion>
-        -->
     </ignoreVersions>
     <rules>
     </rules>

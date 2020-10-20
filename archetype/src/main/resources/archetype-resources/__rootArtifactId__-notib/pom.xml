@@ -12,6 +12,10 @@
     <name>${projectname} - NOTIB</name>
     <description>Mòdul web d'exemple d'integració amb NOTIB</description>
 
+    <properties>
+        <notib-client.version>1.1.2</notib-client.version>
+    </properties>
+
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
@@ -34,7 +38,7 @@
         <dependency>
             <groupId>es.caib.notib</groupId>
             <artifactId>notib-client</artifactId>
-            <version>1.1.2</version>
+            <version>${notib-client.version}</version>
         </dependency>
     </dependencies>
 

@@ -151,6 +151,7 @@ for(String commonFile : commonsFiles) {
 def jpaFiles = [ "./__rootArtifactId__-persistence/src/main/resources/META-INF/persistence.xml",
 	"./__rootArtifactId__-persistence/src/test/resources/META-INF/persistence.xml",
 	"./__rootArtifactId__-persistence/src/test/resources/META-INF/arquillian-persistence.xml",
+	"./__rootArtifactId__-persistence/src/test/resources/META-INF/arquillian-ds.xml",
     "./__rootArtifactId__-persistence/src/main/java/persistence/model/Procediment.java",
     "./__rootArtifactId__-persistence/src/main/java/persistence/model/UnitatOrganica.java" 
 	];
@@ -255,7 +256,11 @@ def ejbFiles = [
 	"./__rootArtifactId__-ejb/src/main/resources/META-INF/beans.xml",
 	"./__rootArtifactId__-ejb/src/main/resources/META-INF/ejb-jar.xml",
 	"./__rootArtifactId__-ejb/src/main/java/ejb/facade/ProcedimentServiceFacadeBean.java",
-	"./__rootArtifactId__-ejb/src/main/java/ejb/facade/UnitatOrganicaServiceFacadeBean.java"
+	"./__rootArtifactId__-ejb/src/main/java/ejb/facade/UnitatOrganicaServiceFacadeBean.java",
+	"./__rootArtifactId__-ejb/src/test/resources/META-INF/arquillian-ds.xml",
+	"./__rootArtifactId__-ejb/src/test/resources/META-INF/arquillian-persistence.xml",
+	"./__rootArtifactId__-ejb/src/test/java/ejb/facade/AdminManager.java",
+	"./__rootArtifactId__-ejb/src/test/resources/META-INF/sample_data.sql"
 	];
 for(String ejbFile : ejbFiles) {
   replaceProperties(new File(baseProject, ejbFile), false);
@@ -264,9 +269,13 @@ for(String ejbFile : ejbFiles) {
 // REST
 def restFiles = [
    "./__rootArtifactId__-api/src/main/webapp/WEB-INF/web.xml",
-   "./__rootArtifactId__-api/src/test/java/api/test/UnitatOrganicaServiceTest.java",
    "./__rootArtifactId__-api/src/main/java/api/services/ProcedimentResource.java",
-   "./__rootArtifactId__-api/src/main/java/api/services/UnitatOrganicaResource.java"
+   "./__rootArtifactId__-api/src/main/java/api/services/UnitatOrganicaResource.java",
+   "./__rootArtifactId__-api/src/test/resources/web.xml",
+   "./__rootArtifactId__-api/src/test/resources/ejb-jar.xml",
+   "./__rootArtifactId__-api/src/test/resources/beans.xml",
+   "./__rootArtifactId__-api/src/test/resources/arquillian-ds.xml",
+   "./__rootArtifactId__-api/src/test/resources/META-INF/arquillian-persistence.xml"
   ];
 for(String restFile : restFiles) {
   replaceProperties(new File(baseProject, restFile), false);
@@ -287,8 +296,6 @@ def wsFiles = [
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/ObjectFactory.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/package-info.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/main/java/ws/api/WsI18NError.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/test/java/ws/test/HelloWorldTest.java",
-"./__rootArtifactId__-ws/__rootArtifactId___ws_api/src/test/java/ws/test/HelloWorldWithSecurityTest.java",
 "./__rootArtifactId__-ws/__rootArtifactId___ws_api/test.properties"
  ];
 for(String wsFile : wsFiles) {

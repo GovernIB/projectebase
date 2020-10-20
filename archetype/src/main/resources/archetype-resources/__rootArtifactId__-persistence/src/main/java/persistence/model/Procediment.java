@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -39,9 +41,22 @@ import java.util.Objects;
                 @Index(name = "${prefixuppercase}_PROCEDIMENT_UNITAT_FK_I", columnList = "UNITATORGANICAID")
         }
 )
+@NamedQueries({
+        @NamedQuery(name = Procediment.FIND_BY_CODISIA,
+                query = "select p from Procediment p where p.codiSia = :codiSia"),
+        @NamedQuery(name = Procediment.COUNT_BY_IDUNITAT,
+                query = "select count(p) from Procediment p join p.unitatOrganica u where u.id = :idUnitat"),
+        @NamedQuery(name = Procediment.FIND_DTO_BY_IDUNITAT,
+                query = "select new ${package}.service.model.ProcedimentDTO(p.id, p.codiSia, p.nom, u.id) " +
+                        "from Procediment p join p.unitatOrganica u where u.id = :idUnitat order by p.id")
+})
 public class Procediment extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String FIND_BY_CODISIA = "Procediment.FIND_BY_CODISIA";
+    public static final String COUNT_BY_IDUNITAT = "Procediment.COUNT_BY_IDUNITAT";
+    public static final String FIND_DTO_BY_IDUNITAT = "Procediment.FIND_DTO_BY_IDUNITAT";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "procediment-sequence")

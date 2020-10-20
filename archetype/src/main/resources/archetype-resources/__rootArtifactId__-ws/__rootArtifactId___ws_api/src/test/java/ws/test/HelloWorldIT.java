@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 
 import ${package}.ws.api.HelloWorldWs;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -14,7 +15,8 @@ import org.junit.Test;
  *
  * @author anadal
  */
-public class HelloWorldTest {
+@Ignore
+public class HelloWorldIT {
 
     protected static HelloWorldWs helloWorldApi;
 

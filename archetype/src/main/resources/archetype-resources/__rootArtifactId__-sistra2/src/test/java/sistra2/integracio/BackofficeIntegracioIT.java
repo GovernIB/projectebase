@@ -1,12 +1,13 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.sistra2.test.integracio;
+package ${package}.sistra2.integracio;
 
 import ${package}.sistra2.backoffice.api.AnotacioRegistreId;
 import ${package}.sistra2.backoffice.api.Backoffice;
 import ${package}.sistra2.backoffice.api.BackofficeService;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.xml.ws.BindingProvider;
@@ -17,7 +18,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 
-public class TestIntegracio {
+@Ignore
+public class BackofficeIntegracioIT {
 
     private static final String BACKOFFICE_ADRESS =
             "http://localhost:8080/${artifactId}/BackofficeService/BackofficeServicePort";

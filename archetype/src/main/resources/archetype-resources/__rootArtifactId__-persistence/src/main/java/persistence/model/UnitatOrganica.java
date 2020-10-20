@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -42,9 +44,15 @@ import static javax.persistence.EnumType.ORDINAL;
                 @Index(name = "${prefixuppercase}_UNITAT_CODIDIR3_UK_I", columnList = "CODIDIR3")
         }
 )
+@NamedQueries({
+        @NamedQuery(name = UnitatOrganica.FIND_BY_CODIDIR3,
+                query = "select u from UnitatOrganica u where u.codiDir3 = :codiDir3")
+})
 public class UnitatOrganica extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String FIND_BY_CODIDIR3 = "UnitatOrganica.FIND_BY_CODIDIR3";
 
     /**
      * Camp identificador generat per una seqüència.

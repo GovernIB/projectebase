@@ -1,8 +1,9 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.sistra2.test;
+package ${package}.persistence;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.persistence.Persistence;
@@ -11,6 +12,7 @@ import java.util.Collections;
 /**
  * Test per realitzar la generació de l'schema de base de dades.
  */
+@Ignore
 public class TestSchemaGenerator {
 
     /**
@@ -20,6 +22,6 @@ public class TestSchemaGenerator {
     public void testCreateSchema() {
         // Les propietats per la generació es poden indicar dins el persistence.xml o es poden
         // passar dins el Map.
-        Persistence.generateSchema("testSistra2PU", Collections.emptyMap());
+        Persistence.generateSchema("testPU", Collections.emptyMap());
     }
 }

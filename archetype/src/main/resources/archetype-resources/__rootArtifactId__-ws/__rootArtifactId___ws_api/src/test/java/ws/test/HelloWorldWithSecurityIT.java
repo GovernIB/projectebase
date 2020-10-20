@@ -16,7 +16,7 @@ import org.junit.Test;
  * @author anadal
  */
 @Ignore
-public class HelloWorldWithSecurityTest {
+public class HelloWorldWithSecurityIT {
 
     protected static HelloWorldWithSecurityWs helloWorldWithSecurityApi;
 
