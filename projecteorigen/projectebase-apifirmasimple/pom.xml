@@ -165,7 +165,7 @@
     </repositories>
 
     <build>
-        <finalName>apifirmasimple</finalName>
+        <finalName>${project.artifactId}</finalName>
         
         <plugins>
             <plugin>
