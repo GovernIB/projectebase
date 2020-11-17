@@ -22,15 +22,15 @@ import java.util.Properties;
 public class Configuracio {
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.sistra2.backofficeintegracio.endpoint")
+    @ConfigProperty(name = "es.caib.projectebase.sistra2.int.distribucio.endpoint")
     private String endpoint;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.sistra2.backofficeintegracio.usuari")
+    @ConfigProperty(name = "es.caib.projectebase.sistra2.int.distribucio.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.sistra2.backofficeintegracio.secret")
+    @ConfigProperty(name = "es.caib.projectebase.sistra2.int.distribucio.secret")
     private String secret;
 
     public String getEndpoint() {

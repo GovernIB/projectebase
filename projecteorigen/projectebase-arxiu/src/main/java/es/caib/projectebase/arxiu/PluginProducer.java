@@ -22,19 +22,19 @@ public class PluginProducer {
     private static final Logger LOG = LoggerFactory.getLogger(PluginProducer.class);
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.arxiu.baseUrl")
-    private String baseUrl;
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.endpoint")
+    private String endpoint;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.arxiu.aplicacioCodi")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.aplicacioCodi")
     private String aplicacioCodi;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.arxiu.usuari")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.arxiu.secret")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.secret")
     private String secret;
 
     /**
@@ -51,7 +51,7 @@ public class PluginProducer {
 
         // per instanciar el plugin necessitam adaptar les propietats
         Properties properties = new Properties();
-        properties.setProperty("plugin.arxiu.caib.base.url", baseUrl);
+        properties.setProperty("plugin.arxiu.caib.base.url", endpoint);
         properties.setProperty("plugin.arxiu.caib.aplicacio.codi", aplicacioCodi);
         properties.setProperty("plugin.arxiu.caib.usuari", usuari);
         properties.setProperty("plugin.arxiu.caib.contrasenya", secret);

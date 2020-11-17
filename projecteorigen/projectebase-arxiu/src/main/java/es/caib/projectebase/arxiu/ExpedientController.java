@@ -55,19 +55,19 @@ public class ExpedientController implements Serializable {
     private static final Logger LOG = LoggerFactory.getLogger(ExpedientController.class);
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.arxiu.serieDocumental")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.serieDocumental")
     private String serieDocumental;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.arxiu.classificacio")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.classificacio")
     private String classificacio;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.arxiu.organs")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.organs")
     private List<String> organs;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.arxiu.interessats")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.interessats")
     private List<String> interessats;
 
     @Inject

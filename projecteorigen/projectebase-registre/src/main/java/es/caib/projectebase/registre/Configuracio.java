@@ -17,31 +17,31 @@ import javax.inject.Named;
 public class Configuracio {
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.registre.endpoint")
+    @ConfigProperty(name="es.caib.projectebase.int.registre.endpoint")
     private String endpoint;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.registre.usuari")
+    @ConfigProperty(name="es.caib.projectebase.int.registre.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.registre.secret")
+    @ConfigProperty(name="es.caib.projectebase.int.registre.secret")
     private String secret;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.registre.entitat")
+    @ConfigProperty(name="es.caib.projectebase.int.registre.entitat")
     private String entitat;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.registre.oficina")
+    @ConfigProperty(name="es.caib.projectebase.int.registre.oficina")
     private String oficina;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.registre.llibre")
+    @ConfigProperty(name="es.caib.projectebase.int.registre.llibre")
     private String llibre;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.registre.organismeDesti")
+    @ConfigProperty(name="es.caib.projectebase.int.registre.organismeDesti")
     private String organismeDesti;
 
     public String getEndpoint() {

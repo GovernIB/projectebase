@@ -16,15 +16,15 @@ import javax.inject.Named;
 public class Configuracio {
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.distribucio.endpoint")
+    @ConfigProperty(name = "es.caib.projectebase.int.distribucio.endpoint")
     private String endpoint;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.distribucio.usuari")
+    @ConfigProperty(name = "es.caib.projectebase.int.distribucio.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.distribucio.secret")
+    @ConfigProperty(name = "es.caib.projectebase.int.distribucio.secret")
     private String secret;
 
     public String getEndpoint() {

@@ -16,27 +16,27 @@ import javax.inject.Named;
 public class Configuracio {
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.notib.baseUrl")
-    private String baseUrl;
+    @ConfigProperty(name="es.caib.projectebase.int.notib.endpoint")
+    private String endpoint;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.notib.usuari")
+    @ConfigProperty(name="es.caib.projectebase.int.notib.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.notib.secret")
+    @ConfigProperty(name="es.caib.projectebase.int.notib.secret")
     private String secret;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.notib.procedimentCodi")
+    @ConfigProperty(name="es.caib.projectebase.int.notib.procedimentCodi")
     private String procedimentCodi;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.notib.emisorDir3Codi")
+    @ConfigProperty(name="es.caib.projectebase.int.notib.emisorDir3Codi")
     private String emisorDir3Codi;
 
-    public String getBaseUrl() {
-        return baseUrl;
+    public String getEndpoint() {
+        return endpoint;
     }
 
     public String getUsuari() {

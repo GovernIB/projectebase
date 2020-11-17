@@ -30,7 +30,7 @@ public class ClientNotibProducer {
         LOG.info("getNotificacioRestClient");
 
         NotificacioRestClient client = NotificacioRestClientFactory.getRestClient(
-				configuracio.getBaseUrl(),
+				configuracio.getEndpoint(),
 				configuracio.getUsuari(),
 				configuracio.getSecret());
 
