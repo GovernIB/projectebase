@@ -15,6 +15,7 @@ import javax.inject.Named;
 @ApplicationScoped
 public class Configuracio {
 
+    // PROPIETATS DE SISTEMES
     @Inject
     @ConfigProperty(name="es.caib.projectebase.int.notib.endpoint")
     private String endpoint;
@@ -27,12 +28,14 @@ public class Configuracio {
     @ConfigProperty(name="es.caib.projectebase.int.notib.secret")
     private String secret;
 
+    // PROPIETATS D'APLICACIÓ
+
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.int.notib.procedimentCodi")
+    @ConfigProperty(name="es.caib.projectebase.notib.procedimentCodi")
     private String procedimentCodi;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.int.notib.emisorDir3Codi")
+    @ConfigProperty(name="es.caib.projectebase.notib.emisorDir3Codi")
     private String emisorDir3Codi;
 
     public String getEndpoint() {

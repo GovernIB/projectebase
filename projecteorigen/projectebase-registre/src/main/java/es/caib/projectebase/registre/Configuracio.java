@@ -16,6 +16,8 @@ import javax.inject.Named;
 @ApplicationScoped
 public class Configuracio {
 
+    // PROPIETATS DE SISTEMES
+
     @Inject
     @ConfigProperty(name="es.caib.projectebase.int.registre.endpoint")
     private String endpoint;
@@ -28,20 +30,22 @@ public class Configuracio {
     @ConfigProperty(name="es.caib.projectebase.int.registre.secret")
     private String secret;
 
+    // PROPIETATS D'APLICACIÓ
+
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.int.registre.entitat")
+    @ConfigProperty(name="es.caib.projectebase.registre.entitat")
     private String entitat;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.int.registre.oficina")
+    @ConfigProperty(name="es.caib.projectebase.registre.oficina")
     private String oficina;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.int.registre.llibre")
+    @ConfigProperty(name="es.caib.projectebase.registre.llibre")
     private String llibre;
 
     @Inject
-    @ConfigProperty(name="es.caib.projectebase.int.registre.organismeDesti")
+    @ConfigProperty(name="es.caib.projectebase.registre.organismeDesti")
     private String organismeDesti;
 
     public String getEndpoint() {
