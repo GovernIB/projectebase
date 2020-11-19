@@ -19,17 +19,21 @@ import javax.inject.Named;
 @ApplicationScoped
 public class Configuracio {
 
+    // PROPIETATS DE SISTEMES
+
     @Inject
-    @ConfigProperty(name="${package}.registre.endpoint")
+    @ConfigProperty(name="${package}.int.registre.endpoint")
     private String endpoint;
 
     @Inject
-    @ConfigProperty(name="${package}.registre.usuari")
+    @ConfigProperty(name="${package}.int.registre.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name="${package}.registre.secret")
+    @ConfigProperty(name="${package}.int.registre.secret")
     private String secret;
+
+    // PROPIETATS D'APLICACIÓ
 
     @Inject
     @ConfigProperty(name="${package}.registre.entitat")

@@ -54,7 +54,7 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <resources>
             <!-- Activam filtre per fer substitucions al fitxer Version.properties -->
             <resource>

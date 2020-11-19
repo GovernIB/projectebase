@@ -19,19 +19,19 @@ import javax.inject.Inject;
 public class Configuracio {
 
     @Inject
-    @ConfigProperty(name="${package}.dir3caib.baseUrl")
-    private String baseUrl;
+    @ConfigProperty(name="${package}.int.dir3caib.endpoint")
+    private String endpoint;
 
     @Inject
-    @ConfigProperty(name="${package}.dir3caib.usuari")
+    @ConfigProperty(name="${package}.int.dir3caib.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name="${package}.dir3caib.secret")
+    @ConfigProperty(name="${package}.int.dir3caib.secret")
     private String secret;
 
-    public String getBaseUrl() {
-        return baseUrl;
+    public String getEndpoint() {
+        return endpoint;
     }
 
     public String getUsuari() {

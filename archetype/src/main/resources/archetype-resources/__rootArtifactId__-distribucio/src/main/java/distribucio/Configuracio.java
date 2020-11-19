@@ -19,15 +19,15 @@ import javax.inject.Named;
 public class Configuracio {
 
     @Inject
-    @ConfigProperty(name = "${package}.distribucio.endpoint")
+    @ConfigProperty(name = "${package}.int.distribucio.endpoint")
     private String endpoint;
 
     @Inject
-    @ConfigProperty(name = "${package}.distribucio.usuari")
+    @ConfigProperty(name = "${package}.int.distribucio.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name = "${package}.distribucio.secret")
+    @ConfigProperty(name = "${package}.int.distribucio.secret")
     private String secret;
 
     public String getEndpoint() {

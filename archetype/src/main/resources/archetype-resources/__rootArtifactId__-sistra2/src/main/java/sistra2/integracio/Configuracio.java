@@ -25,15 +25,15 @@ import java.util.Properties;
 public class Configuracio {
 
     @Inject
-    @ConfigProperty(name = "${package}.sistra2.backofficeintegracio.endpoint")
+    @ConfigProperty(name = "${package}.sistra2.int.distribucio.endpoint")
     private String endpoint;
 
     @Inject
-    @ConfigProperty(name = "${package}.sistra2.backofficeintegracio.usuari")
+    @ConfigProperty(name = "${package}.sistra2.int.distribucio.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name = "${package}.sistra2.backofficeintegracio.secret")
+    @ConfigProperty(name = "${package}.sistra2.int.distribucio.secret")
     private String secret;
 
     public String getEndpoint() {

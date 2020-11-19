@@ -51,14 +51,14 @@ public class Dir3ServiceImpl implements Dir3Service {
 
     @Override
     public List<CodigoValor> comunidadesAutonomas() {
-        return client.target(configuracio.getBaseUrl() + CATALOGO_COMUNIDADES_AUTONOMAS)
+        return client.target(configuracio.getEndpoint() + CATALOGO_COMUNIDADES_AUTONOMAS)
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<List<CodigoValor>>() {});
     }
 
     @Override
     public List<CodigoValor> provinciasComunidad(Object idComunidad) {
-        return client.target(configuracio.getBaseUrl() + CATALOGO_PROVINCIAS_COMUNIDAD)
+        return client.target(configuracio.getEndpoint() + CATALOGO_PROVINCIAS_COMUNIDAD)
                 .queryParam("id", idComunidad)
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<List<CodigoValor>>() {});
@@ -66,7 +66,7 @@ public class Dir3ServiceImpl implements Dir3Service {
 
     @Override
     public List<CodigoValor> municipios(Object idProvincia) {
-        return client.target(configuracio.getBaseUrl() + CATALOGO_LOCALIDADES)
+        return client.target(configuracio.getEndpoint() + CATALOGO_LOCALIDADES)
                 .queryParam("codigoProvincia", idProvincia)
                 .queryParam("codigoEntidadGeografica", ENTIDAD_GEOGRAFICA_MUNICIPIO)
                 .request(MediaType.APPLICATION_JSON)
@@ -75,7 +75,7 @@ public class Dir3ServiceImpl implements Dir3Service {
 
     @Override
     public List<CodigoValor> nivelesAdministracion() {
-        return client.target(configuracio.getBaseUrl() + CATALOGO_NIVELES_ADMINISTRACION)
+        return client.target(configuracio.getEndpoint() + CATALOGO_NIVELES_ADMINISTRACION)
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<List<CodigoValor>>() {});
     }
@@ -84,7 +84,7 @@ public class Dir3ServiceImpl implements Dir3Service {
     public List<Nodo> busquedaOrganismos(String codigo, String denominacion, Object codNivelAdministracion,
                                          Object codComunidadAutonoma, boolean conOficinas, boolean unidadRaiz,
                                          Object provincia, Object localidad, boolean vigentes) {
-        return client.target(configuracio.getBaseUrl() + BUSQUEDA_ORGANISMOS)
+        return client.target(configuracio.getEndpoint() + BUSQUEDA_ORGANISMOS)
                 .queryParam("codigo", codigo == null ? "" : codigo)
                 .queryParam("denominacion", denominacion == null ? "" : denominacion)
                 .queryParam("codNivelAdministracion", codNivelAdministracion == null ? "" : codNivelAdministracion)

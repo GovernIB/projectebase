@@ -24,19 +24,19 @@ public class ArxiuPluginProducer {
     private static final Logger LOG = LoggerFactory.getLogger(ArxiuPluginProducer.class);
 
     @Inject
-    @ConfigProperty(name = "${package}.sistra2.arxiu.baseUrl")
-    private String baseUrl;
+    @ConfigProperty(name = "${package}.sistra2.int.arxiu.endpoint")
+    private String endpoint;
 
     @Inject
-    @ConfigProperty(name = "${package}.sistra2.arxiu.aplicacioCodi")
+    @ConfigProperty(name = "${package}.sistra2.int.arxiu.aplicacioCodi")
     private String aplicacioCodi;
 
     @Inject
-    @ConfigProperty(name = "${package}.sistra2.arxiu.usuari")
+    @ConfigProperty(name = "${package}.sistra2.int.arxiu.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name = "${package}.sistra2.arxiu.secret")
+    @ConfigProperty(name = "${package}.sistra2.int.arxiu.secret")
     private String secret;
 
     /**
@@ -51,7 +51,7 @@ public class ArxiuPluginProducer {
 
         // per instanciar el plugin necessitam adaptar les propietats
         Properties properties = new Properties();
-        properties.setProperty("plugin.arxiu.caib.base.url", baseUrl);
+        properties.setProperty("plugin.arxiu.caib.base.url", endpoint);
         properties.setProperty("plugin.arxiu.caib.aplicacio.codi", aplicacioCodi);
         properties.setProperty("plugin.arxiu.caib.usuari", usuari);
         properties.setProperty("plugin.arxiu.caib.contrasenya", secret);

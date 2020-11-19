@@ -18,17 +18,20 @@ import javax.inject.Named;
 @ApplicationScoped
 public class Configuracio {
 
+    // PROPIETATS DE SISTEMES
     @Inject
-    @ConfigProperty(name="${package}.notib.baseUrl")
-    private String baseUrl;
+    @ConfigProperty(name="${package}.int.notib.endpoint")
+    private String endpoint;
 
     @Inject
-    @ConfigProperty(name="${package}.notib.usuari")
+    @ConfigProperty(name="${package}.int.notib.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name="${package}.notib.secret")
+    @ConfigProperty(name="${package}.int.notib.secret")
     private String secret;
+
+    // PROPIETATS D'APLICACIÓ
 
     @Inject
     @ConfigProperty(name="${package}.notib.procedimentCodi")
@@ -38,8 +41,8 @@ public class Configuracio {
     @ConfigProperty(name="${package}.notib.emisorDir3Codi")
     private String emisorDir3Codi;
 
-    public String getBaseUrl() {
-        return baseUrl;
+    public String getEndpoint() {
+        return endpoint;
     }
 
     public String getUsuari() {

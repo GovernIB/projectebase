@@ -12,6 +12,10 @@
     <name>${projectname} - WS - API</name>
     <description>Client de Serveis Web de ${projectname}</description>
 
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+
     <profiles>
         <!-- Perfil per regenerar el WSDL i les classes client dels serveis web -->
         <profile>

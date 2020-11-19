@@ -305,6 +305,7 @@ for(String wsFile : wsFiles) {
 // SCRIPTS
 def scriptsFiles = [
    "./scripts/configuracio/__artifactId__.properties",
+   "./scripts/configuracio/__artifactId__.system.properties",
    "./scripts/configuracio/readme.txt",
    "./scripts/datasources/oracle/__artifactId__-ds.xml",
    "./scripts/datasources/postgresql/__artifactId__-ds.xml", 

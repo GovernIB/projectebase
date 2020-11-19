@@ -269,6 +269,7 @@ list.each {
 */
 
 def configProperties = new File(rootDir, "scripts/configuracio/" + artifactId +".properties")
+def configSystemProperties = new File(rootDir, "scripts/configuracio/" + artifactId +".system.properties")
 
 if (perfilWS.equals("false")) {
   println " + Eliminant modul de WS ..."
@@ -278,6 +279,7 @@ if (perfilWS.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- WS START -->", "<!-- WS END -->")
   removeTextBetweenTwoStrings(configProperties, "## WS START", "## WS END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## WS START", "## WS END")
 } else {
     
   cleanPom(new File(new File(rootDir, artifactId + "-ws"), "pom.xml"));
@@ -327,6 +329,7 @@ if (perfilBack.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- BACK START -->", "<!-- BACK END -->")
   removeTextBetweenTwoStrings(configProperties, "## BACK START", "## BACK END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## BACK START", "## BACK END")
 }
 
 // PerfilFront
@@ -338,6 +341,7 @@ if (perfilFront.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- FRONT START -->", "<!-- FRONT END -->")
   removeTextBetweenTwoStrings(configProperties, "## FRONT START", "## FRONT END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## FRONT START", "## FRONT END")
 }
 
 // PerfilApiFirmaSimple
@@ -349,6 +353,7 @@ if (perfilApiFirmaSimple.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- APIFIRMASIMPLE START -->", "<!-- APIFIRMASIMPLE END -->")
   removeTextBetweenTwoStrings(configProperties, "## APIFIRMASIMPLE START", "## APIFIRMASIMPLE END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## APIFIRMASIMPLE START", "## APIFIRMASIMPLE END")
 }
 
 // PerfilArxiu
@@ -360,6 +365,7 @@ if (perfilArxiu.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- ARXIU START -->", "<!-- ARXIU END -->")
   removeTextBetweenTwoStrings(configProperties, "## ARXIU START", "## ARXIU END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## ARXIU START", "## ARXIU END")
 }
 
 // PerfilRegistre
@@ -371,6 +377,7 @@ if (perfilRegistre.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- REGISTRE START -->", "<!-- REGISTRE END -->")
   removeTextBetweenTwoStrings(configProperties, "## REGISTRE START", "## REGISTRE END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## REGISTRE START", "## REGISTRE END")
 }
 
 // PerfilNotib
@@ -382,6 +389,7 @@ if (perfilNotib.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- NOTIB START -->", "<!-- NOTIB END -->")
   removeTextBetweenTwoStrings(configProperties, "## NOTIB START", "## NOTIB END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## NOTIB START", "## NOTIB END")
 }
 
 // PerfilDir3Caib
@@ -393,6 +401,7 @@ if (perfilDir3Caib.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- DIR3CAIB START -->", "<!-- DIR3CAIB END -->")
   removeTextBetweenTwoStrings(configProperties, "## DIR3CAIB START", "## DIR3CAIB END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## DIR3CAIB START", "## DIR3CAIB END")
 }
 
 // PerfilDistribucio
@@ -404,6 +413,7 @@ if (perfilDistribucio.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- DISTRIBUCIO START -->", "<!-- DISTRIBUCIO END -->")
   removeTextBetweenTwoStrings(configProperties, "## DISTRIBUCIO START", "## DISTRIBUCIO END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## DISTRIBUCIO START", "## DISTRIBUCIO END")
 }
 
 // PerfilSistra2
@@ -415,6 +425,7 @@ if (perfilSistra2.equals("false")) {
   def pomEar = new File(rootDir,artifactId +"-ear/pom.xml")
   removeTextBetweenTwoStrings(pomEar, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->")
   removeTextBetweenTwoStrings(configProperties, "## SISTRA2 START", "## SISTRA2 END")
+  removeTextBetweenTwoStrings(configSystemProperties, "## SISTRA2 START", "## SISTRA2 END")
   assert new File(rootDir, "scripts/bbdd/oracle/sistra2_create_schema.sql").delete()
   assert new File(rootDir, "scripts/bbdd/oracle/sistra2_drop_schema.sql").delete()
   assert new File(rootDir, "scripts/bbdd/postgresql/sistra2_create_schema.sql").delete()
