@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.caib.proyectobase</groupId>
+	<artifactId>proyectobase</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>proyectobase</name>
+	<description>Proyecto Base JSF2+EJB3+JPA+Primefaces</description>
+	<properties>
+		<jsf.version>2.1.2</jsf.version>
+		<modulo.version>0.0.1-SNAPSHOT</modulo.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<modules>
+		<module>proyectobase-ear</module>
+		<module>proyectobase-ejb</module>
+		<module>proyectobase-back</module>
+		<module>proyectobase-front</module>
+		<module>proyectobase-api</module>
+	</modules>
+</project>

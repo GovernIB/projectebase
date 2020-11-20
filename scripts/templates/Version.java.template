@@ -1,0 +1,10 @@
+package es.caib.proyectobase;
+/**
+* Código autogenerado por la Version.java.template
+*/
+public final class Version {
+    public static final String VERSION="@project.version@";
+    public static final String BUILDTIME="@project.buildtime@";
+    public static final String SVN_REVISION="@svn.revision@";
+    public static final String JDK_VERSION="@jdk.version@";
+}

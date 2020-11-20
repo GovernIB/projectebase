@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- [u91310] -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>
+		<ui:insert name="pageTitle">
+			¿¿¿Proyecto Base???
+		</ui:insert>
+	</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<f:view contentType="text/html">
+		<h:form id="form" prependId="false">
+			<div class="content_box">
+				<div id="container">
+					<ui:include src="header.xhtml" />
+					<div id="breadcrumb">
+						<p:breadCrumb>
+							<ui:insert name="breadcrumb">
+								<div style="background-color: navy; width: 100%; color: white">
+									<h:outputText value="No se ha definido miga de pan" />
+								</div>
+							</ui:insert>
+						</p:breadCrumb>
+					</div>
+					<ui:include src="messages.xhtml" />
+					<div id="content">
+						<ui:insert name="content" />
+					</div>
+				</div>
+				<ui:include src="footer.xhtml" />
+			</div>
+		</h:form>
+	</f:view>
+</h:body>
+</html>
+
+
+
