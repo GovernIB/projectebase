@@ -19,6 +19,8 @@ import java.io.IOException;
 @WebFilter(urlPatterns = "/openapi.json")
 public class CORSServletFilter extends HttpFilter {
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {

@@ -157,6 +157,6 @@ public class AnotacioInbox implements Serializable {
         REBUDA,     // consultada anotació i comunicat canvi d'estat a REBUDA a Distribució.
         PROCESSADA, // creat expedient dins l'arxiu i  comunicat canvi d'estat a PROCESSADA a Distribució.
         REBUTJADA,  // no emprat
-        ERROR;      // produit un error en crear l'expedient a arxiu i comunicat canvi d'estat a ERROR a Distribució
+        ERROR       // produit un error en crear l'expedient a arxiu i comunicat canvi d'estat a ERROR a Distribució
     }
 }

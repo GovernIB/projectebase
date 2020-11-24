@@ -2,14 +2,9 @@ package es.caib.projectebase.ejb.converter;
 
 import es.caib.projectebase.persistence.model.Procediment;
 import es.caib.projectebase.persistence.model.UnitatOrganica;
-import es.caib.projectebase.service.model.EstatPublicacio;
 import es.caib.projectebase.service.model.ProcedimentDTO;
-import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.time.LocalDate;
-import java.time.Month;
 
 public class TestProcedimentConverter {
 

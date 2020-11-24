@@ -4,16 +4,8 @@
 package ${package}.sistra2.integracio;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 /**
  * Configuració de propietats per accés al backoffice d'integració.

@@ -30,6 +30,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Recurs amb dominis d'exemple per emprar dins SISTRA2
+ */
 @Path("sistra2/dominis")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -43,6 +46,16 @@ public class DominisResource {
     @EJB
     private UnitatOrganicaServiceFacade unitatOrganicaService;
 
+    /**
+     * Domini d'exemple de SISTRA2 que retorna les unitats administratives actives opcionalment filtrades
+     * pel paràmetre "codiDir3"
+     *
+     * Per provar el domini dins SISTRA2 cal emprar la URL:
+     *    http://localhost:8080/${parentArtifactId}/api/services/sistra2/dominis/unitats
+     *
+     * @param filtro filtre a aplicar. Només soporta el paràmetre "codiDir3"
+     * @return domini amb les unitats administratives actives que complexien el filtre.
+     */
     @POST
     @Path("unitats")
     @Operation(operationId = "getDominiUnitats", summary = "Retorna el domini d'unitats")

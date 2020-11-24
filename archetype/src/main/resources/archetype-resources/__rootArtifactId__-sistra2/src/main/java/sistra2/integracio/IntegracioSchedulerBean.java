@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Schedule;
 import javax.ejb.Schedules;
 import javax.ejb.Stateless;
-import javax.ejb.Timer;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;

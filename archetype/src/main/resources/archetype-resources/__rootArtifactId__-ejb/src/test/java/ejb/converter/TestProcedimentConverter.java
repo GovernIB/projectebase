@@ -5,14 +5,9 @@ package ${package}.ejb.converter;
 
 import ${package}.persistence.model.Procediment;
 import ${package}.persistence.model.UnitatOrganica;
-import ${package}.service.model.EstatPublicacio;
 import ${package}.service.model.ProcedimentDTO;
-import ${package}.service.model.UnitatOrganicaDTO;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.time.LocalDate;
-import java.time.Month;
 
 public class TestProcedimentConverter {
 

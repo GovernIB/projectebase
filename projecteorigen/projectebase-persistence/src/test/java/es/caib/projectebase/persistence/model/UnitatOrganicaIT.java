@@ -1,6 +1,5 @@
 package es.caib.projectebase.persistence.model;
 
-import es.caib.projectebase.persistence.model.UnitatOrganica;
 import es.caib.projectebase.service.model.EstatPublicacio;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;

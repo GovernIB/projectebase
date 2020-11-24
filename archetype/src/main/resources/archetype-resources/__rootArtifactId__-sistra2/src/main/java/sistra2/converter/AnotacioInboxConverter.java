@@ -4,7 +4,6 @@
 package ${package}.sistra2.converter;
 
 import es.caib.distribucio.ws.backofficeintegracio.AnotacioRegistreId;
-import es.caib.distribucio.ws.backofficeintegracio.Consulta;
 import ${package}.sistra2.persistence.AnotacioInbox;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

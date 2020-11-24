@@ -26,6 +26,15 @@ Per provar el plugin:
 
             http://localhost:8080/${rootArtifactId}-sistra2/BackofficeService/BackofficeServicePort
 
+        Dins el mòdul ${rootArtifactId}-api s'inclou un Domini SISTRA2 que retorna les unitats adminsitratives actives
+        creades dins ${rootArtifactId}-back.
+
+        Per provar el domini dins SISTRA2 cal emprar la URL:
+
+            http://localhost:8080/${rootArtifactId}/api/services/sistra2/dominis/unitats
+
+        i emprar opcionalment el paràmetre de filtre: "codiDir3"
+
 El funcionament del mòdul és el següent:
 
  - A través del WS indicat donat d'alta a Distribució reb els avisos de noves anotacions d'entrada i les emmagatzema

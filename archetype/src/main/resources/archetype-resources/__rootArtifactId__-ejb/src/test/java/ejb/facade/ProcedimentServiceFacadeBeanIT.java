@@ -56,7 +56,7 @@ public class ProcedimentServiceFacadeBeanIT extends AbstractFacadeIT {;
         dto.setNom("Procediment test arquillian duplicat");
 
         adminManager.exec(() -> {
-            Long result = procedimentServiceFacade.create(dto, 2L);
+            procedimentServiceFacade.create(dto, 2L);
             Assert.fail("No s'hauria d'haver pogut crear");
         });
     }
@@ -72,7 +72,7 @@ public class ProcedimentServiceFacadeBeanIT extends AbstractFacadeIT {;
         dto.setNom("Procediment test arquillian amb unitat inexistent");
 
         adminManager.exec(() -> {
-            Long result = procedimentServiceFacade.create(dto, 999L);
+            procedimentServiceFacade.create(dto, 999L);
             Assert.fail("No s'hauria d'haver pogut crear");
         });
     }

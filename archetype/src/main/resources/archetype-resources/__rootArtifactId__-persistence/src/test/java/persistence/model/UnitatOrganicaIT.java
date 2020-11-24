@@ -3,7 +3,6 @@
 #set( $symbol_escape = '\' )
 package ${package}.persistence.model;
 
-import ${package}.persistence.model.UnitatOrganica;
 import ${package}.service.model.EstatPublicacio;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
