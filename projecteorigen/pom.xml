@@ -242,7 +242,7 @@
                 <plugin>
                     <groupId>org.apache.geronimo</groupId>
                     <artifactId>geronimo-openapi-maven-plugin</artifactId>
-                    <version>1.0.12</version>
+                    <version>1.0.13</version>
                 </plugin>
                 <!-- Plugin per generar la propietat ${buildNumber} amb la versio/revisio de GIT o SVN o CVS... -->
                 <plugin>
