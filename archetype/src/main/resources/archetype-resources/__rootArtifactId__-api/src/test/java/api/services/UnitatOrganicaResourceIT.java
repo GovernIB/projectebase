@@ -48,7 +48,11 @@ public class UnitatOrganicaResourceIT {
                     .addPackages(true, "${package}.persistence")
                     .addPackages(true, "${package}.ejb")
                     .addPackages(true, "${package}.service")
-                    .addPackages(true, "${package}.api")
+                    .addPackages(true, "${package}.api.config")
+                    .addPackages(true, "${package}.api.services")
+                    .addPackages(true, "${package}.api.error")
+                    .addPackages(true, "${package}.api.filters")
+
                     .addAsResource(
                             ServiceException.class.getResource("/service/ExceptionMessages_ca.properties"),
                             "service/ExceptionMessages_ca.properties")

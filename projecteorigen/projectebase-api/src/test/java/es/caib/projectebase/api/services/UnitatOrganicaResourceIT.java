@@ -45,7 +45,11 @@ public class UnitatOrganicaResourceIT {
                     .addPackages(true, "es.caib.projectebase.persistence")
                     .addPackages(true, "es.caib.projectebase.ejb")
                     .addPackages(true, "es.caib.projectebase.service")
-                    .addPackages(true, "es.caib.projectebase.api")
+                    .addPackages(true, "es.caib.projectebase.api.config")
+                    .addPackages(true, "es.caib.projectebase.api.services")
+                    .addPackages(true, "es.caib.projectebase.api.error")
+                    .addPackages(true, "es.caib.projectebase.api.filters")
+
                     .addAsResource(
                             ServiceException.class.getResource("/service/ExceptionMessages_ca.properties"),
                             "service/ExceptionMessages_ca.properties")
