@@ -3,27 +3,26 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:t="http://back.projectebase.caib.es/tags">
 <!--
 Pàgina amb el llistat de procediments d'una unitat administrativa.
 -->
 <ui:composition template="/WEB-INF/templates/layout.xhtml">
     <ui:define name="metadata">
         <f:metadata>
-            <!-- Al principi de la vista, es fixarà el paràmetre rebut dins
-            i amb l'acció load carregarem les dades. El posam required perquè és obligatori -->
-            <f:viewParam name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}" 
-                         required="#{not facesContext.postback}" />
-            <!-- si la validació/conversió falla el viewAction no es processarà per això necessitam aquest event -->
-            <f:event type="postValidate" listener="#{listProcediment.badRequestOnValidationFailed}" />
+            <f:viewParam id="unitatId" name="unitatId" value="#{listProcediment.unitat}"
+                         required="#{not facesContext.postback}">
+                <t:viewParamValidationFailed redirect="/listUnitatOrganica.xhtml" />
+            </f:viewParam>
             <f:viewAction action="#{listProcediment.load}" />
         </f:metadata>
     </ui:define>
 
     <ui:define name="pageTitle">
         <h:outputFormat value="#{labels.listProcediment_title}">
-            <f:param value="#{listProcediment.unitatOrganica.nom}"/>
-            <f:param value="#{listProcediment.unitatOrganica.codiDir3}"/>
+            <f:param value="#{listProcediment.unitat.nom}"/>
+            <f:param value="#{listProcediment.unitat.codiDir3}"/>
         </h:outputFormat>
     </ui:define>
 
@@ -35,8 +34,8 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
     <ui:define name="content">
         <c:if test="#{security.admin}">
             <p>
-                <p:button value="#{labels.newProcediment_link}" outcome="/editProcediment">
-                    <f:param name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}"/>
+                <p:button value="#{labels.newProcediment_link}" outcome="/newProcediment">
+                    <f:param name="unitatId" value="#{listProcediment.unitat.id}"/>
                 </p:button>
                 <p:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica"/>
             </p>
@@ -70,7 +69,7 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
                     <p:menuButton value="#{labels.button_opcions}">
                         <p:menuitem value="#{labels.button_editar}" outcome="/editProcediment">
                             <f:param name="id" value="#{procediment.id}"/>
-                            <f:param name="unitatOrganicaId" value="#{listProcediment.unitatOrganica.id}"/>
+                            <f:param name="unitatId" value="#{listProcediment.unitat.id}"/>
                         </p:menuitem>
                         <c:if test="#{security.admin}">
                             <p:menuitem value="#{labels.button_eliminar}" action="#{listProcediment.delete(procediment.id)}"

@@ -1,16 +1,17 @@
 package es.caib.projectebase.back.controller;
 
-import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
-import es.caib.projectebase.service.model.UnitatOrganicaDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.Serializable;
+import java.util.ResourceBundle;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import java.io.Serializable;
-import java.util.ResourceBundle;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
+import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 
 /**
  * Controlador per l'edició d'Unitats Organiques. El definim a l'scope de view perquè a nivell
@@ -38,61 +39,32 @@ public class EditUnitatOrganica extends AbstractController implements Serializab
      * Obté la unitat orgànica que s'està editant
      */
     public UnitatOrganicaDTO getCurrent() {
+        LOG.info("getCurrent: {}", current);
         return current;
     }
-
-    /**
-     * Indica si és una creació o una actualització segons s'hagi fixat o no l'id de la unitat
-     * orgànica.
-     *
-     * @return <code>true</code> si l'id és null, i per tant és una creació, <code>false</code>
-     * en cas contrari.
-     */
-    public boolean isCreate() {
-        return current.getId() == null;
-    }
-
-    /**
-     * Inicialitzam el bean amb les dades inicials.
-     */
-    @PostConstruct
-    public void init() {
-        LOG.debug("init");
-        current = new UnitatOrganicaDTO();
+    
+    public void setCurrent(UnitatOrganicaDTO current) {
+        LOG.info("Is postback? {}", getContext().isPostback());
+        LOG.info("setCurrent: {}", current);
+        this.current = current;
     }
 
     // ACCIONS
-
+    
     /**
-     * Carrega la unitat orgànica per editar.
-     */
-    public void load() {
-        LOG.debug("load");
-        if (current.getId() != null) {
-            current = unitatOrganicaService.findById(current.getId())
-                    .orElseThrow(() -> new RuntimeException("id invàlid"));
-        }
-    }
-
-    /**
-     * Crea o actualitza la unitat orgànica que s'està editant. Afegeix un missatge si s'ha fet
+     * Actualitza la unitat orgànica que s'està editant. Afegeix un missatge si s'ha fet
      * amb èxit i redirecciona cap a la pàgina de llistat.
      *
      * @return navegació cap al llistat d'unitats orgàniques.
      */
-    public String saveOrUpdate() {
-        LOG.debug("saveOrUpdate");
-        // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
+    public String update() {
+        LOG.debug("update");
+        
+        LOG.info("update iD: {}", current.getId());
+        unitatOrganicaService.update(current);
+            
         ResourceBundle labelsBundle = getBundle("labels");
-
-        // Feim una creació o una actualització.
-        if (isCreate()) {
-            unitatOrganicaService.create(current);
-            addGlobalMessage(labelsBundle.getString("msg.creaciocorrecta"));
-        } else {
-            unitatOrganicaService.update(current);
-            addGlobalMessage(labelsBundle.getString("msg.actualitzaciocorrecta"));
-        }
+        addGlobalMessage(labelsBundle.getString("msg.actualitzaciocorrecta"));
 
         // Els missatges no aguanten una redirecció ja que no es la mateixa petició
         // Així asseguram que es guardin fins la visualització

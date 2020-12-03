@@ -69,9 +69,9 @@
                         <p:menuButton value="#{labels.button_opcions}">
                             <p:menuitem value="#{labels.button_editar}" outcome="/editUnitatOrganica">
                                 <f:param name="id" value="#{unitatOrganica.id}"/>
-                            </p:menuitem>
+                            </p:menuitem>                        
                             <p:menuitem value="#{labels.listProcediment_link}" outcome="/listProcediment">
-                                <f:param name="unitatOrganicaId" value="#{unitatOrganica.id}"/>
+                                <f:param name="unitatId" value="#{unitatOrganica.id}"/>
                             </p:menuitem>
                             <c:if test="#{security.admin}">
                                 <p:menuitem value="#{labels.button_eliminar}"
@@ -87,7 +87,7 @@
             </p>
             <c:if test="#{security.admin}">
                 <p>
-                    <p:button value="#{labels.newUnitatOrganica_link}" outcome="/editUnitatOrganica" />
+                    <p:button value="#{labels.newUnitatOrganica_link}" outcome="/newUnitatOrganica" />
                 </p>
             </c:if>
         </ui:define>
