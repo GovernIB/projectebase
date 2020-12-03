@@ -163,7 +163,7 @@ public class UnitatOrganicaResourceIT {
         try {
             unitats = client.target(baseUrl + "services/unitats")
                     .request(MediaType.APPLICATION_JSON)
-                    .get(new GenericType<>() {});
+                    .get(new GenericType<Pagina<UnitatOrganicaDTO>>() {});
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail(e.getMessage());
