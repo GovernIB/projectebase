@@ -6,7 +6,7 @@
 <!--
 Pàgina per edició d'unitats orgàniques.
 -->
-<ui:composition template="/template/template.xhtml">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -34,7 +34,7 @@ Pàgina per edició d'unitats orgàniques.
 
         <h:form id="form">
 
-            <ui:decorate template="/template/field.xhtml">
+            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
                 <ui:define name="label">
                     <p:outputLabel for="codiDir3" value="#{labels.unitatOrganica_codiDir3}"/>
                 </ui:define>
@@ -45,7 +45,7 @@ Pàgina per edició d'unitats orgàniques.
                 </ui:define>
             </ui:decorate>
 
-            <ui:decorate template="/template/field.xhtml">
+            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
                 <ui:define name="label">
                     <p:outputLabel for="nom" value="#{labels.unitatOrganica_nom}"/>
                 </ui:define>
@@ -55,7 +55,7 @@ Pàgina per edició d'unitats orgàniques.
                 </ui:define>
             </ui:decorate>
 
-            <ui:decorate template="/template/field.xhtml">
+            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
                 <ui:define name="label">
                     <p:outputLabel for="dataCreacio" value="#{labels.unitatOrganica_dataCreacio}"/>
                 </ui:define>
@@ -66,7 +66,7 @@ Pàgina per edició d'unitats orgàniques.
                 </ui:define>
             </ui:decorate>
 
-            <ui:decorate template="/template/field.xhtml">
+            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
                 <ui:define name="label">
                     <p:outputLabel for="estat" value="#{labels.unitatOrganica_estat}"/>
                 </ui:define>
@@ -78,7 +78,7 @@ Pàgina per edició d'unitats orgàniques.
                 </ui:define>
             </ui:decorate>
 
-            <ui:decorate template="/template/buttons.xhtml">
+            <ui:decorate template="/WEB-INF/decorations/buttons.xhtml">
                 <ui:define name="buttons">
                     <p:commandButton id="saveOrUpdateButton" action="#{editUnitatOrganica.saveOrUpdate}"
                                      value="#{labels.button_guardar}"

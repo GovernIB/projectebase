@@ -6,7 +6,7 @@
 <!--
 Pàgina per editar procediments
 -->
-<ui:composition template="/template/template.xhtml">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -50,7 +50,7 @@ Pàgina per editar procediments
                 </ui:define>
             </ui:decorate>
 
-            <ui:decorate template="/template/field.xhtml">
+            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
                 <ui:define name="label">
                     <p:outputLabel for="nom" value="#{labels.procediment_nom}"/>
                 </ui:define>
@@ -60,7 +60,7 @@ Pàgina per editar procediments
                 </ui:define>
             </ui:decorate>
 
-            <ui:decorate template="/template/buttons.xhtml">
+            <ui:decorate template="/WEB-INF/decorations/buttons.xhtml">
                 <ui:define name="buttons">
                     <p:commandButton id="saveOrUpdateButton" action="#{editProcediment.saveOrUpdate}"
                                      value="#{labels.button_guardar}"

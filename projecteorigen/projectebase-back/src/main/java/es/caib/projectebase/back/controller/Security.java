@@ -1,0 +1,25 @@
+package es.caib.projectebase.back.controller;
+
+import es.caib.projectebase.commons.utils.Constants;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * Proveeix una forma centralitzada de comprovar els permisos de l'usuari dins l'aplicació web.
+ * 
+ * @author areus
+ */
+@Named
+@ApplicationScoped
+public class Security {
+
+    @Inject
+    private HttpServletRequest request;
+
+    public boolean isAdmin() {
+        return request.isUserInRole(Constants.PBS_ADMIN);
+    }
+}

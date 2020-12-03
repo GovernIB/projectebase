@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
  *
  * @author areus
  */
-@Named("listProcediment")
+@Named
 @ViewScoped
 public class ListProcediment extends AbstractController implements Serializable {
 

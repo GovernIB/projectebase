@@ -99,7 +99,7 @@ Plantilla.
                             </li>
 
                             <li class="nav-item colorVerd">
-                                <p:commandLink action="#{sessionController.logout}"
+                                <p:commandLink action="#{logout.logout}"
                                                ajax="false" immediate="true" styleClass="nav-link mobil"
                                                title="#{labels.sortir_link}">
                                     <span class="oi oi-power-standby" title="#{labels.sortir_link}"
@@ -203,7 +203,7 @@ Plantilla.
         <!--    
         </div>
          FI Contacte -->
-        <ui:include src="footer.xhtml"/>
+        <ui:include src="/WEB-INF/includes/footer.xhtml"/>
     </h:body>
 </f:view>
 </html>

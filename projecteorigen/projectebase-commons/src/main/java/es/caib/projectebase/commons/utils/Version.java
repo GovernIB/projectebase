@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 @ApplicationScoped
 public class Version {
 
-    private static final DateTimeFormatter BUILD_TIME_PATTERN = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+    private static final DateTimeFormatter BUILD_TIME_PATTERN = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     private String version;
     private String buildTime;
