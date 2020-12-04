@@ -11,18 +11,16 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
 <ui:composition template="/WEB-INF/templates/layout.xhtml">
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam id="unitatId" name="unitatId" value="#{listProcediment.unitat}"
-                         required="#{not facesContext.postback}">
-                <t:viewParamValidationFailed redirect="/listUnitatOrganica.xhtml" />
-            </f:viewParam>
+            <f:viewParam id="unitatId" name="unitatId" value="#{unitatModel.value.id}" />
+            <f:viewAction action="#{unitatModel.load}" />
             <f:viewAction action="#{listProcediment.load}" />
         </f:metadata>
     </ui:define>
 
     <ui:define name="pageTitle">
         <h:outputFormat value="#{labels.listProcediment_title}">
-            <f:param value="#{listProcediment.unitat.nom}"/>
-            <f:param value="#{listProcediment.unitat.codiDir3}"/>
+            <f:param value="#{unitatModel.value.nom}"/>
+            <f:param value="#{unitatModel.value.codiDir3}"/>
         </h:outputFormat>
     </ui:define>
 
@@ -31,15 +29,13 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
         <p:menuitem value="#{labels.listProcediment_link}" outcome="/listProcediment" includeViewParams="true"/>
     </ui:define>
 
-    <ui:define name="content">
-        <c:if test="#{security.admin}">
-            <p>
-                <p:button value="#{labels.newProcediment_link}" outcome="/newProcediment">
-                    <f:param name="unitatId" value="#{listProcediment.unitat.id}"/>
-                </p:button>
-                <p:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica"/>
-            </p>
-        </c:if>
+    <ui:define name="content">        
+        <p>
+            <c:if test="#{security.admin}">
+                <p:button value="#{labels.newProcediment_link}" outcome="/admin/newProcediment" includeViewParams="true" />
+            </c:if>
+            <p:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica"/>
+        </p>
         <h:form>
             <p:dataTable id="dataTable" value="#{listProcediment.lazyModel}" var="procediment" 
                          paginator="true" lazy="true" filterDelay="300" widgetVar="procedimentsTable"
@@ -67,11 +63,11 @@ Pàgina amb el llistat de procediments d'una unitat administrativa.
                 <p:column>
                     <f:facet name="header"></f:facet>
                     <p:menuButton value="#{labels.button_opcions}">
-                        <p:menuitem value="#{labels.button_editar}" outcome="/editProcediment">
-                            <f:param name="id" value="#{procediment.id}"/>
-                            <f:param name="unitatId" value="#{listProcediment.unitat.id}"/>
-                        </p:menuitem>
                         <c:if test="#{security.admin}">
+	                        <p:menuitem value="#{labels.button_editar}" outcome="/admin/editProcediment">
+	                            <f:param name="procedimentId" value="#{procediment.id}"/>
+	                            <f:param name="unitatId" value="#{unitatModel.value.id}"/>
+	                        </p:menuitem>                        
                             <p:menuitem value="#{labels.button_eliminar}" action="#{listProcediment.delete(procediment.id)}"
                                         update="messages @form">
                                 <p:confirm message="#{labels.confirm_eliminar}"/>

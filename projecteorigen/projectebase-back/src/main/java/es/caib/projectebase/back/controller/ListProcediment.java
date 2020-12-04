@@ -1,9 +1,9 @@
 package es.caib.projectebase.back.controller;
 
+import es.caib.projectebase.back.model.UnitatModel;
 import es.caib.projectebase.service.facade.ProcedimentServiceFacade;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.ProcedimentDTO;
-import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -36,7 +37,8 @@ public class ListProcediment extends AbstractController implements Serializable 
     @EJB
     ProcedimentServiceFacade procedimentService;
 
-    // PROPIETATS + GETTERS/SETTERS
+    @Inject
+    private UnitatModel unitat;
 
     /**
      * Model de dades emprat pel compoment dataTable de primefaces.
@@ -45,19 +47,6 @@ public class ListProcediment extends AbstractController implements Serializable 
 
     public LazyDataModel<ProcedimentDTO> getLazyModel() {
         return lazyModel;
-    }
-
-    /**
-     * la unitat orgànica de la qual s'estàn llistat els procediments.
-     */
-    private UnitatOrganicaDTO unitat;
-
-    public UnitatOrganicaDTO getUnitat() {
-        return unitat;
-    }
-    
-    public void setUnitat(UnitatOrganicaDTO unitat) {
-        this.unitat = unitat;
     }
 
     // ACCIONS
@@ -74,7 +63,8 @@ public class ListProcediment extends AbstractController implements Serializable 
             @Override
             public List<ProcedimentDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder,
                                              Map<String, FilterMeta> filterBy) {
-                Pagina<ProcedimentDTO> pagina = procedimentService.findByUnitat(first, pageSize, unitat.getId());
+                Pagina<ProcedimentDTO> pagina =
+                        procedimentService.findByUnitat(first, pageSize, unitat.getValue().getId());
                 setRowCount((int) pagina.getTotal());
                 return pagina.getItems();
             }

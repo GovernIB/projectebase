@@ -1,14 +1,14 @@
 package es.caib.projectebase.back.controller;
 
+import es.caib.projectebase.back.model.ProcedimentModel;
+import es.caib.projectebase.back.model.UnitatModel;
 import es.caib.projectebase.service.facade.ProcedimentServiceFacade;
-import es.caib.projectebase.service.model.ProcedimentDTO;
-import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -31,37 +31,11 @@ public class NewProcediment extends AbstractController implements Serializable {
     @EJB
     ProcedimentServiceFacade procedimentService;
 
-    // PROPIETATS + GETTERS/SETTERS
+    @Inject
+    private UnitatModel unitat;
 
-    private UnitatOrganicaDTO unitat;
-    private ProcedimentDTO procediment;
-
-    /**
-     * Obté la unitat orgànica a la que pertany el procediment que s'està editant
-     */
-    public UnitatOrganicaDTO getUnitat() {
-        return unitat;
-    }
-    
-    public void setUnitat(UnitatOrganicaDTO unitat) {
-        this.unitat = unitat;
-    }
-
-    /**
-     * Obté el procediment que s'està editant.
-     */
-    public ProcedimentDTO getProcediment() {
-        return procediment;
-    }
-
-    /**
-     * Inicialitzam el bean amb les dades inicials.
-     */
-    @PostConstruct
-    public void init() {
-        LOG.debug("init");
-        procediment = new ProcedimentDTO();
-    }
+    @Inject
+    private ProcedimentModel procediment;
 
     /**
      * Crea el procediment. Afegeix un missatge si s'ha fet amb èxit
@@ -72,7 +46,7 @@ public class NewProcediment extends AbstractController implements Serializable {
     public String save() {
         LOG.debug("save");
 
-        procedimentService.create(procediment, unitat.getId());
+        procedimentService.create(procediment.getValue(), unitat.getValue().getId());
         
         ResourceBundle labelsBundle = getBundle("labels");
         addGlobalMessage(labelsBundle.getString("msg.creaciocorrecta"));

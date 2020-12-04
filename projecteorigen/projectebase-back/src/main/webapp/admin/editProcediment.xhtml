@@ -11,30 +11,25 @@ Pàgina per editar procediments
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam id="unitatId" name="unitatId" value="#{editProcediment.unitat}" 
-                         required="#{not facesContext.postback}">
-                <t:viewParamValidationFailed redirect="/listUnitatOrganica.xhtml" />
-            </f:viewParam>
-            <f:viewParam id="procedimentId" name="id" value="#{editProcediment.procediment}" 
-                         required="#{not facesContext.postback}">
-                <t:viewParamValidationFailed redirect="/listUnitatOrganica.xhtml" />
-            </f:viewParam>            
+            <f:viewParam id="unitatId" name="unitatId" value="#{unitatModel.value.id}" />
+            <f:viewAction action="#{unitatModel.load}" />
+            <f:viewParam id="procedimentId" name="procedimentId" value="#{procedimentModel.value.id}" />
+            <f:viewAction action="#{procedimentModel.load}" />                    
         </f:metadata>
     </ui:define>
 
     <ui:define name="pageTitle">
         <h:outputFormat value="#{labels.editProcediment_title}">
-            <f:param value="#{editProcediment.unitat.nom}"/>
-            <f:param value="#{editProcediment.unitat.codiDir3}"/>
+            <f:param value="#{unitatModel.value.nom}"/>
+            <f:param value="#{unitatModel.value.codiDir3}"/>
         </h:outputFormat>
     </ui:define>
 
     <ui:define name="breadcrumb">
         <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica"/>
         <p:menuitem value="#{labels.listProcediment_link}" outcome="/listProcediment" includeViewParams="true"/>
-        <p:menuitem value="#{labels.editProcediment_link}" outcome="/editProcediment" includeViewParams="true"/>
+        <p:menuitem value="#{labels.editProcediment_link}" outcome="/admin/editProcediment" includeViewParams="true"/>
     </ui:define>
-
 
     <ui:define name="content">
 
@@ -45,7 +40,7 @@ Pàgina per editar procediments
                     <p:outputLabel for="codiSia" value="#{labels.procediment_codiSia}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="codiSia" value="#{editProcediment.procediment.codiSia}" readonly="true"/>
+                    <p:inputText id="codiSia" value="#{procedimentModel.value.codiSia}" readonly="true"/>
                     <p:message for="codiSia"/>
                 </ui:define>
             </ui:decorate>
@@ -55,7 +50,7 @@ Pàgina per editar procediments
                     <p:outputLabel for="nom" value="#{labels.procediment_nom}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="nom" value="#{editProcediment.procediment.nom}"/>
+                    <p:inputText id="nom" value="#{procedimentModel.value.nom}"/>
                     <p:message for="nom"/>
                 </ui:define>
             </ui:decorate>
@@ -65,9 +60,8 @@ Pàgina per editar procediments
                     <p:commandButton id="updateButton" action="#{editProcediment.update}"
                                      value="#{labels.button_guardar}"
                                      process="@form" update="@form"/>
-                    <p:button value="#{labels.button_tornar}" outcome="/listProcediment" styleClass="float-right">
-                        <f:param name="unitatId" value="#{editProcediment.unitat.id}"/>
-                    </p:button>
+                    <p:button value="#{labels.button_tornar}" outcome="/listProcediment" includeViewParams="true"
+                              styleClass="float-right" />
                 </ui:define>
             </ui:decorate>
 

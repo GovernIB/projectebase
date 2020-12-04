@@ -1,13 +1,13 @@
 package es.caib.projectebase.back.controller;
 
+import es.caib.projectebase.back.model.UnitatModel;
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
-import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -30,28 +30,10 @@ public class NewUnitatOrganica extends AbstractController implements Serializabl
     @EJB
     UnitatOrganicaServiceFacade unitatOrganicaService;
 
-    // PROPIETATS + GETTERS/SETTERS
-
-    private UnitatOrganicaDTO current;
-
-    /**
-     * Obté la unitat orgànica que s'està editant
-     */
-    public UnitatOrganicaDTO getCurrent() {
-        return current;
-    }
-
-    /**
-     * Inicialitzam el bean amb les dades inicials.
-     */
-    @PostConstruct
-    public void init() {
-        LOG.debug("init");
-        current = new UnitatOrganicaDTO();
-    }
+    @Inject
+    private UnitatModel unitat;
 
     // ACCIONS
-
 
     /**
      * Crea o actualitza la unitat orgànica que s'està editant. Afegeix un missatge si s'ha fet
@@ -63,7 +45,7 @@ public class NewUnitatOrganica extends AbstractController implements Serializabl
         LOG.debug("save");
         
         // Feim una creació 
-        unitatOrganicaService.create(current);
+        unitatOrganicaService.create(unitat.getValue());
 
         ResourceBundle labelsBundle = getBundle("labels");
         addGlobalMessage(labelsBundle.getString("msg.creaciocorrecta"));

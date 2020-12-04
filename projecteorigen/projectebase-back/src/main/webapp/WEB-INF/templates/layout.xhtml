@@ -38,38 +38,17 @@ Plantilla.
             <header>
                 <!-- Header -->
                 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark bg-aplicacio">
-
                     <button class="navbar-toggler botoMobil" type="button" data-toggle="collapse"
                             data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                             aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <!-- Logo i nom aplicació -->
-                    <div class="navbar-brand menuGovern">
-                        <div class="logoGovern">
-                            <p:link styleClass="mr-auto" outcome="/index">
-                                <h:graphicImage name="img/STT_logo2.png" styleClass="imatgeGovern"
-                                                alt="Govern de les Illes Balears" />
-                            </p:link>
-                        </div>
-                        <div>
-                            <h1 class="titol">#{version.projectName}</h1>
-                        </div>
-                        <div>
-                            <div>
-                                <strong class="subtitol llevarMobil">#{labels.usuari_label}: </strong>
-                                <span class="subtitolMay">#{request.remoteUser}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FI Logo i nom aplicació -->
+                    <ui:include src="/WEB-INF/includes/logo_nom.xhtml" />
 
                     <!-- Botons -->
                     <div class="collapse navbar-collapse" id="navbarCollapse">
-
                         <ul class="navbar-nav mobil">
-
                             <li class="nav-item colorVerd">
                                 <p:link styleClass="nav-link mobil" outcome="/listUnitatOrganica"
                                             title="#{labels.listUnitatOrganica_link}">                                                                    
@@ -78,7 +57,6 @@ Plantilla.
                                     <span class="mb-0 float-right botoCurt">#{labels.listUnitatOrganica_link}</span>
                                 </p:link>
                             </li>
-
                             <li class="nav-item dropdown colorVerd">
                                 <a class="nav-link dropdown mobil" title="#{labels['idioma_link']}" href="#" id="idiomas"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,7 +75,6 @@ Plantilla.
                                     </p:repeat>
                                 </div>
                             </li>
-
                             <li class="nav-item colorVerd">
                                 <p:commandLink action="#{logout.logout}"
                                                ajax="false" immediate="true" styleClass="nav-link mobil"
@@ -143,14 +120,11 @@ Plantilla.
         <!-- Content -->
         <div class="container p-3aplicacio">
             <div class="my-3 p-3 bg-white rounded box-shadow">
-
                 <!-- Contingut -->
                 <div class="card mb-12 border-0">
-
                     <span class="h5 card-title border-bottom verde">
                         <ui:insert name="pageTitle">Títol per defecte</ui:insert>
                     </span>
-
                     <ui:insert name="content"/>
                 </div>
                 <!-- FI Contingut -->
@@ -158,51 +132,6 @@ Plantilla.
         </div>
         <!-- FI Content -->
 
-        <!-- Contacte 
-        <div class="infoContacte">
-            <strong>Necessita ajuda?</strong>
-
-            <strong>Necessita ajuda? </strong>Contacti amb l'
-            <button type="button" class="btn btn-suport" data-toggle="modal" data-target="#modalContacto">
-                equip de suport
-            </button>
-            -->
-
-            <!-- Modal
-            <div class="modal fade" id="modalContacto" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <span class="modal-title h2" id="exampleModalLongTitle"><span class="oi oi-info" title=""
-                                  aria-hidden="true"></span> Ajuda</span>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row col-12 dadesSuport">
-                                <div class="row col-12">Si necessita ajuda, pot:</div>
-                                <ul class="dades">
-                                    <li>
-                                        Enviar un correu a <a href="mailto:otae@fundaciobit.org" target="_blank">xxx@xxx.xx</a>
-                                    </li>
-                                    <li>
-                                        Crida al telèfon <a href="tel:971784940">971 784 940</a>.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tanca</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
-        <!--    
-        </div>
-         FI Contacte -->
         <ui:include src="/WEB-INF/includes/footer.xhtml"/>
     </h:body>
 </f:view>

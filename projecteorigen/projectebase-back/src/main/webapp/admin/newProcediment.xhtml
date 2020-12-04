@@ -11,24 +11,22 @@ Pàgina per crear procediments
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam id="unitatId" name="unitatId" value="#{newProcediment.unitat}" 
-                         required="#{not facesContext.postback}">
-                <t:viewParamValidationFailed redirect="/listUnitatOrganica.xhtml" />
-            </f:viewParam>
+            <f:viewParam id="unitatId" name="unitatId" value="#{unitatModel.value.id}" />
+            <f:viewAction action="#{unitatModel.load}" />
         </f:metadata>
     </ui:define>
 
     <ui:define name="pageTitle">
         <h:outputFormat value="#{labels.newProcediment_title}">
-            <f:param value="#{newProcediment.unitat.nom}"/>
-            <f:param value="#{newProcediment.unitat.codiDir3}"/>
+            <f:param value="#{unitatModel.value.nom}"/>
+            <f:param value="#{unitatModel.value.codiDir3}"/>
         </h:outputFormat>
     </ui:define>
 
     <ui:define name="breadcrumb">
         <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica"/>
         <p:menuitem value="#{labels.listProcediment_link}" outcome="/listProcediment" includeViewParams="true"/>
-        <p:menuitem value="#{labels.newProcediment_link}" outcome="/newProcediment" includeViewParams="true"/>
+        <p:menuitem value="#{labels.newProcediment_link}" outcome="/admin/newProcediment" includeViewParams="true"/>
     </ui:define>
 
     <ui:define name="content">
@@ -40,7 +38,7 @@ Pàgina per crear procediments
                     <p:outputLabel for="codiSia" value="#{labels.procediment_codiSia}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="codiSia" value="#{newProcediment.procediment.codiSia}" />
+                    <p:inputText id="codiSia" value="#{procedimentModel.value.codiSia}" />
                     <p:message for="codiSia"/>
                 </ui:define>
             </ui:decorate>
@@ -50,7 +48,7 @@ Pàgina per crear procediments
                     <p:outputLabel for="nom" value="#{labels.procediment_nom}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="nom" value="#{newProcediment.procediment.nom}"/>
+                    <p:inputText id="nom" value="#{procedimentModel.value.nom}"/>
                     <p:message for="nom"/>
                 </ui:define>
             </ui:decorate>
@@ -60,9 +58,8 @@ Pàgina per crear procediments
                     <p:commandButton id="saveButton" action="#{newProcediment.save}"
                                      value="#{labels.button_guardar}"
                                      process="@form" update="@form"/>
-                    <p:button value="#{labels.button_tornar}" outcome="/listProcediment" styleClass="float-right">
-                        <f:param name="unitatId" value="#{newProcediment.unitat.id}"/>
-                    </p:button>
+                    <p:button value="#{labels.button_tornar}" outcome="/listProcediment" includeViewParams="true" 
+                              styleClass="float-right" />
                 </ui:define>
             </ui:decorate>
 

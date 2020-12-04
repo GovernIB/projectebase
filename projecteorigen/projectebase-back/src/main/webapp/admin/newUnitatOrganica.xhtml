@@ -2,30 +2,25 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:t="http://back.projectebase.caib.es/tags">
+      xmlns:p="http://primefaces.org/ui">
 <!--
-Pàgina per edició d'unitats orgàniques.
+Pàgina per creació de noves unitats orgàniques.
 -->
 <ui:composition template="/WEB-INF/templates/layout.xhtml">
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam id="unitatId" name="id" value="#{editUnitatOrganica.current}" 
-                         required="#{not facesContext.postback}">
-                <t:viewParamValidationFailed redirect="/listUnitatOrganica.xhtml" />
-            </f:viewParam>
             <f:importConstants type="es.caib.projectebase.service.model.EstatPublicacio" var="estats"/>
         </f:metadata>
     </ui:define>
 
     <ui:define name="pageTitle">
-        #{labels.editUnitatOrganica_title}
+        #{labels.newUnitatOrganica_title}
     </ui:define>
 
     <ui:define name="breadcrumb">
         <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica"/>
-        <p:menuitem value="#{labels.editUnitatOrganica_link}" outcome="/editUnitatOrganica" includeViewParams="true"/>
+        <p:menuitem value="#{labels.newUnitatOrganica_link}" outcome="/admin/newUnitatOrganica" />
     </ui:define>
 
     <ui:define name="content">
@@ -37,7 +32,7 @@ Pàgina per edició d'unitats orgàniques.
                     <p:outputLabel for="codiDir3" value="#{labels.unitatOrganica_codiDir3}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="codiDir3" value="#{editUnitatOrganica.current.codiDir3}" readonly="true"/>
+                    <p:inputText id="codiDir3" value="#{unitatModel.value.codiDir3}" />
                     <p:message for="codiDir3"/>
                 </ui:define>
             </ui:decorate>
@@ -47,7 +42,7 @@ Pàgina per edició d'unitats orgàniques.
                     <p:outputLabel for="nom" value="#{labels.unitatOrganica_nom}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:inputText id="nom" value="#{editUnitatOrganica.current.nom}"/>
+                    <p:inputText id="nom" value="#{unitatModel.value.nom}"/>
                     <p:message for="nom"/>
                 </ui:define>
             </ui:decorate>
@@ -57,7 +52,7 @@ Pàgina per edició d'unitats orgàniques.
                     <p:outputLabel for="dataCreacio" value="#{labels.unitatOrganica_dataCreacio}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:datePicker id="dataCreacio" value="#{editUnitatOrganica.current.dataCreacio}"
+                    <p:datePicker id="dataCreacio" value="#{unitatModel.value.dataCreacio}"
                                   pattern="dd-MM-yyyy"/>
                     <p:message for="dataCreacio"/>
                 </ui:define>
@@ -68,7 +63,7 @@ Pàgina per edició d'unitats orgàniques.
                     <p:outputLabel for="estat" value="#{labels.unitatOrganica_estat}"/>
                 </ui:define>
                 <ui:define name="input">
-                    <p:selectOneMenu id="estat" value="#{editUnitatOrganica.current.estat}">
+                    <p:selectOneMenu id="estat" value="#{unitatModel.value.estat}">
                         <f:selectItems value="#{estats.values()}" var="estat"/>
                     </p:selectOneMenu>
                     <p:message for="estat"/>
@@ -77,7 +72,7 @@ Pàgina per edició d'unitats orgàniques.
 
             <ui:decorate template="/WEB-INF/decorations/buttons.xhtml">
                 <ui:define name="buttons">
-                    <p:commandButton id="updateButton" action="#{editUnitatOrganica.update}"
+                    <p:commandButton id="saveButton" action="#{newUnitatOrganica.save}"
                                      value="#{labels.button_guardar}"
                                      process="@form" update="@form"/>
                     <p:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica"

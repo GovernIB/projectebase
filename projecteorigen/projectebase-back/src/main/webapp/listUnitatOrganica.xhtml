@@ -66,14 +66,14 @@
                     </p:column>
                     <p:column>
                         <f:facet name="header"></f:facet>
-                        <p:menuButton value="#{labels.button_opcions}">
-                            <p:menuitem value="#{labels.button_editar}" outcome="/editUnitatOrganica">
-                                <f:param name="id" value="#{unitatOrganica.id}"/>
-                            </p:menuitem>                        
+                        <p:menuButton value="#{labels.button_opcions}">                       
                             <p:menuitem value="#{labels.listProcediment_link}" outcome="/listProcediment">
                                 <f:param name="unitatId" value="#{unitatOrganica.id}"/>
                             </p:menuitem>
                             <c:if test="#{security.admin}">
+                                <p:menuitem value="#{labels.button_editar}" outcome="/admin/editUnitatOrganica">
+                                    <f:param name="unitatId" value="#{unitatOrganica.id}"/>
+                                </p:menuitem> 
                                 <p:menuitem value="#{labels.button_eliminar}"
                                             action="#{listUnitatOrganica.delete(unitatOrganica.id)}"
                                             update="messages @form">
@@ -87,7 +87,7 @@
             </p>
             <c:if test="#{security.admin}">
                 <p>
-                    <p:button value="#{labels.newUnitatOrganica_link}" outcome="/newUnitatOrganica" />
+                    <p:button value="#{labels.newUnitatOrganica_link}" outcome="/admin/newUnitatOrganica" />
                 </p>
             </c:if>
         </ui:define>

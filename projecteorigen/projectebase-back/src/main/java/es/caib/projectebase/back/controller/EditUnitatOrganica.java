@@ -5,13 +5,14 @@ import java.util.ResourceBundle;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import es.caib.projectebase.back.model.UnitatModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
-import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 
 /**
  * Controlador per l'edició d'Unitats Organiques. El definim a l'scope de view perquè a nivell
@@ -31,23 +32,8 @@ public class EditUnitatOrganica extends AbstractController implements Serializab
     @EJB
     UnitatOrganicaServiceFacade unitatOrganicaService;
 
-    // PROPIETATS + GETTERS/SETTERS
-
-    private UnitatOrganicaDTO current;
-
-    /**
-     * Obté la unitat orgànica que s'està editant
-     */
-    public UnitatOrganicaDTO getCurrent() {
-        LOG.info("getCurrent: {}", current);
-        return current;
-    }
-    
-    public void setCurrent(UnitatOrganicaDTO current) {
-        LOG.info("Is postback? {}", getContext().isPostback());
-        LOG.info("setCurrent: {}", current);
-        this.current = current;
-    }
+    @Inject
+    private UnitatModel unitat;
 
     // ACCIONS
     
@@ -59,9 +45,8 @@ public class EditUnitatOrganica extends AbstractController implements Serializab
      */
     public String update() {
         LOG.debug("update");
-        
-        LOG.info("update iD: {}", current.getId());
-        unitatOrganicaService.update(current);
+
+        unitatOrganicaService.update(unitat.getValue());
             
         ResourceBundle labelsBundle = getBundle("labels");
         addGlobalMessage(labelsBundle.getString("msg.actualitzaciocorrecta"));

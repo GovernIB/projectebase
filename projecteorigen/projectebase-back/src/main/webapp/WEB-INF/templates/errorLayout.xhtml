@@ -8,58 +8,34 @@
 <!--
 Plantilla per pàgines d'error.
 -->
-<h:head>
-    <!-- Necessari perquè PrimeFaces posi aquest tags al principi del HEAD -->
-    <f:facet name="first">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <title><ui:insert name="pageTitle"/></title>
-        <link rel="shortcut icon" href="#{resource['img/GOIB_fav.png']}"/>
-    </f:facet>
-    <h:outputScript name="js/bootstrap.min.js" />
-    <!-- Traduccions personalitzades de PrimeFaces en català i castellà -->
-    <script src="#{resource['js/primefaceslocale_' += userLocale.current.toLanguageTag() += '.js']}"
-                type="text/javascript"></script>
-</h:head>
-<h:body>
-     <!-- 
-    Les declaram aquí enlloc de a HEAD per assegurar que es carreguen després dels de Primefaces 
-    Veure: https://stackoverflow.com/a/8774997/11751648
-    -->
-    <h:outputStylesheet name="css/bootstrap.min.css" />
-    <h:outputStylesheet name="css/open-iconic-bootstrap.css" />
-    <h:outputStylesheet name="css/styles.css" />
-    <!--
-    Si no fixam el locale amb f:view sempre agafarà el valor que correspon al navegador que millor encaixa
-    amb els default/supported locales. Veure 2.5.2.1 de l'especificació JSF
-    -->
-    <f:view locale="#{userLocale.current}">
+<f:view locale="#{userLocale.current}">
+    <h:head>
+        <!-- Necessari perquè PrimeFaces posi aquest tags al principi del HEAD -->
+        <f:facet name="first">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <title><ui:insert name="pageTitle"/></title>
+            <link rel="shortcut icon" href="#{resource['img/GOIB_fav.png']}"/>
+        </f:facet>
+        <h:outputScript name="js/bootstrap.min.js" />
+        <!-- Traduccions personalitzades de PrimeFaces en català i castellà -->
+        <script src="#{resource['js/primefaceslocale_' += userLocale.current.toLanguageTag() += '.js']}"
+                    type="text/javascript"></script>
+    </h:head>
+    <h:body>
+         <!--
+        Les declaram aquí enlloc de a HEAD per assegurar que es carreguen després dels de Primefaces
+        Veure: https://stackoverflow.com/a/8774997/11751648
+        -->
+        <h:outputStylesheet name="css/bootstrap.min.css" />
+        <h:outputStylesheet name="css/open-iconic-bootstrap.css" />
+        <h:outputStylesheet name="css/styles.css" />
 
         <header>
             <!-- Header -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark bg-aplicacio">
-
-                <!-- Logo i nom aplicació -->
-                <div class="navbar-brand menuGovern">
-                    <div class="logoGovern">
-                        <p:link styleClass="mr-auto" outcome="/index">
-                            <h:graphicImage name="img/STT_logo2.png" styleClass="imatgeGovern"
-                                            alt="Govern de les Illes Balears" />
-                        </p:link>
-                    </div>
-                    <div>
-                        <h1 class="titol">#{version.projectName}</h1>
-                    </div>
-                    <div>
-                        <div>
-                            <strong class="subtitol llevarMobil">#{labels.usuari_label}: </strong>
-                            <span class="subtitolMay">#{request.remoteUser}</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- FI Logo i nom aplicació -->
-
+                <ui:include src="/WEB-INF/includes/logo_nom.xhtml" />
             </nav>
             <!-- FI Header -->
         </header>
@@ -69,7 +45,6 @@ Plantilla per pàgines d'error.
             <nav aria-label="breadcrumb" class="miga">
                 <p:breadCrumb styleClass="breadcrumb" homeDisplay="text">
                     <p:menuitem value="#{labels.inici_link}" outcome="/index"/>
-                    <ui:insert name="breadcrumb"/>
                 </p:breadCrumb>
             </nav>
             <!-- FI Breadcrumb -->
@@ -89,6 +64,8 @@ Plantilla per pàgines d'error.
             </div>
         </div>
         <!-- FI Content -->
-    </f:view>
-</h:body>
+    </h:body>
+
+    <ui:include src="/WEB-INF/includes/footer.xhtml"/>
+</f:view>
 </html>

@@ -22,4 +22,12 @@ public class Security {
     public boolean isAdmin() {
         return request.isUserInRole(Constants.PBS_ADMIN);
     }
+    
+    public boolean isUser() {
+        return request.isUserInRole(Constants.PBS_USER);
+    }
+    
+    public boolean isUserOrAdmin() {
+        return isUser() || isAdmin();
+    }
 }

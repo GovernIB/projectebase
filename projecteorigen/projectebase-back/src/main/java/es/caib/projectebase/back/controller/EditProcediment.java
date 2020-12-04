@@ -1,13 +1,13 @@
 package es.caib.projectebase.back.controller;
 
+import es.caib.projectebase.back.model.ProcedimentModel;
 import es.caib.projectebase.service.facade.ProcedimentServiceFacade;
-import es.caib.projectebase.service.model.ProcedimentDTO;
-import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -31,33 +31,8 @@ public class EditProcediment extends AbstractController implements Serializable 
     @EJB
     ProcedimentServiceFacade procedimentService;
 
-    // PROPIETATS + GETTERS/SETTERS
-
-    private UnitatOrganicaDTO unitat;
-    private ProcedimentDTO procediment;
-
-    /**
-     * Obté la unitat orgànica a la que pertany el procediment que s'està editant
-     */
-    public UnitatOrganicaDTO getUnitat() {
-        return unitat;
-    }
-
-    
-    public void setUnitat(UnitatOrganicaDTO unitat) {
-        this.unitat = unitat;
-    }
-
-    /**
-     * Obté el procediment que s'està editant.
-     */
-    public ProcedimentDTO getProcediment() {
-        return procediment;
-    }
-
-    public void setProcediment(ProcedimentDTO procediment) {
-        this.procediment = procediment;
-    }
+    @Inject
+    private ProcedimentModel procediment;
 
     // ACCIONS
 
@@ -70,7 +45,7 @@ public class EditProcediment extends AbstractController implements Serializable 
     public String update() {
         LOG.debug("update");
 
-        procedimentService.update(procediment);
+        procedimentService.update(procediment.getValue());
         
         ResourceBundle labelsBundle = getBundle("labels");
         addGlobalMessage(labelsBundle.getString("msg.actualitzaciocorrecta"));
