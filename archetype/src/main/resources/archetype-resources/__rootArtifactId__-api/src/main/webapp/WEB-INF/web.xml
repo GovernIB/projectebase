@@ -41,8 +41,4 @@
         <realm-name>${symbol_dollar}{webXml.loginConfig.realmName}</realm-name>
     </login-config>
 
-    <security-role>
-        <role-name>${prefixuppercase}_ADMIN</role-name>
-    </security-role>
-
 </web-app>

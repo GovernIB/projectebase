@@ -164,9 +164,14 @@ for(String jpaFile : jpaFiles) {
 def backFiles = [
    "./__rootArtifactId__-back/src/main/webapp/WEB-INF/faces-config.xml",
    "./__rootArtifactId__-back/src/main/webapp/WEB-INF/web.xml",
-   "./__rootArtifactId__-back/src/main/webapp/editUnitatOrganica.xhtml",
+   "./__rootArtifactId__-back/src/main/webapp/admin/editUnitatOrganica.xhtml",
+   "./__rootArtifactId__-back/src/main/webapp/admin/editProcediment.xhtml",
+   "./__rootArtifactId__-back/src/main/webapp/admin/newProcediment.xhtml",
+   "./__rootArtifactId__-back/src/main/webapp/admin/newUnitatOrganica.xhtml",
    "./__rootArtifactId__-back/src/main/webapp/listUnitatOrganica.xhtml",
-   "./__rootArtifactId__-back/src/main/java/back/PrincipalInfoServlet.java"
+   "./__rootArtifactId__-back/src/main/webapp/listProcediment.xhtml",
+   "./__rootArtifactId__-back/src/main/java/back/PrincipalInfoServlet.java",
+   "./__rootArtifactId__-back/src/main/java/back/controller/Security.java"
   ];
 for(String backFile : backFiles) {
   replaceProperties(new File(baseProject, backFile), false);
@@ -260,6 +265,7 @@ def ejbFiles = [
 	"./__rootArtifactId__-ejb/src/test/resources/META-INF/arquillian-ds.xml",
 	"./__rootArtifactId__-ejb/src/test/resources/META-INF/arquillian-persistence.xml",
 	"./__rootArtifactId__-ejb/src/test/java/ejb/facade/AdminManager.java",
+	"./__rootArtifactId__-ejb/src/test/java/ejb/facade/UserManager.java",
 	"./__rootArtifactId__-ejb/src/test/resources/META-INF/sample_data.sql"
 	];
 for(String ejbFile : ejbFiles) {

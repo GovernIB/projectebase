@@ -56,7 +56,7 @@
         <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
         <param-value>true</param-value>
     </context-param>
-
+    
     <!--
         Opcions de configuració de Primefaces
         Veure: https://primefaces.github.io/primefaces/7_0/${symbol_pound}/gettingstarted/configuration
@@ -94,18 +94,42 @@
         <exception-type>${package}.service.exception.ServiceException</exception-type>
         <location>/error/serviceException.xhtml</location>
     </error-page>
+    <error-page>
+        <exception-type>javax.ejb.EJBAccessException</exception-type>
+        <location>/error/accessException.xhtml</location>
+    </error-page>
 
     <security-constraint>
-        <display-name>Permetre recursos CSS, JS, etc</display-name>
+        <display-name>No permetre accés directe als recursos</display-name>
+        <web-resource-collection>
+            <web-resource-name>Accés directe a recursos</web-resource-name>
+            <url-pattern>/resources/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint />
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>Permetre accés als recursos a través de JSF</display-name>
         <web-resource-collection>
             <web-resource-name>Recursos públics</web-resource-name>
             <url-pattern>/javax.faces.resource/*</url-pattern>
         </web-resource-collection>
-        <!-- No especificam constraint -->
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>Accés restringit a administradors</display-name>
+        <web-resource-collection>
+            <web-resource-name>tot</web-resource-name>
+            <description>Pàgines adminstradors</description>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>${prefixuppercase}_ADMIN</role-name>
+        </auth-constraint>
     </security-constraint>
 
     <security-constraint>
-        <display-name>Accés restringit a adminsitradors</display-name>
+        <display-name>Accés restringit a usuaris i administradors</display-name>
         <web-resource-collection>
             <web-resource-name>tot</web-resource-name>
             <description>Tots els recursos</description>
@@ -113,14 +137,16 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>${prefixuppercase}_ADMIN</role-name>
+            <role-name>${prefixuppercase}_USER</role-name>
         </auth-constraint>
-        <!-- Si requerim SSL -->
-        <!--
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-        -->
     </security-constraint>
+    
+    <session-config>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
 
     <login-config>
         <auth-method>${symbol_dollar}{webXml.loginConfig.authMethod}</auth-method>
@@ -128,7 +154,12 @@
     </login-config>
 
     <security-role>
+        <description>Administrador</description>
         <role-name>${prefixuppercase}_ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <description>Usuari</description>
+        <role-name>${prefixuppercase}_USER</role-name>
     </security-role>
 
 </web-app>

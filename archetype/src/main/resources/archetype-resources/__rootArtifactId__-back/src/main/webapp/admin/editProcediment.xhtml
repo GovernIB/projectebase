@@ -1,0 +1,59 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_escape = '\' )
+#set( $symbol_dollar = '$' )
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:t="http://back.${rootArtifactId}.caib.es/tags">
+<!--
+Pàgina per editar procediments
+-->
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam id="unitatId" name="unitatId" value="${symbol_pound}{unitatModel.value.id}" />
+            <f:viewAction action="${symbol_pound}{unitatModel.load}" />
+            <f:viewParam id="procedimentId" name="procedimentId" value="${symbol_pound}{procedimentModel.value.id}" />
+            <f:viewAction action="${symbol_pound}{procedimentModel.load}" />                    
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="pageTitle">
+        <h:outputFormat value="${symbol_pound}{labels.editProcediment_title}">
+            <f:param value="${symbol_pound}{unitatModel.value.nom}"/>
+            <f:param value="${symbol_pound}{unitatModel.value.codiDir3}"/>
+        </h:outputFormat>
+    </ui:define>
+
+    <ui:define name="breadcrumb">
+        <p:menuitem value="${symbol_pound}{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica"/>
+        <p:menuitem value="${symbol_pound}{labels.listProcediment_link}" outcome="/listProcediment" includeViewParams="true"/>
+        <p:menuitem value="${symbol_pound}{labels.editProcediment_link}" outcome="/admin/editProcediment" includeViewParams="true"/>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="form">
+
+            <ui:include src="/WEB-INF/includes/fieldsProcediment.xhtml">
+                <ui:param name="edit" value="true" />
+            </ui:include>
+
+            <ui:decorate template="/WEB-INF/decorations/buttons.xhtml">
+                <ui:define name="buttons">
+                    <p:commandButton id="updateButton" action="${symbol_pound}{editProcediment.update}"
+                                     value="${symbol_pound}{labels.button_guardar}"
+                                     process="@form" update="@form"/>
+                    <p:button value="${symbol_pound}{labels.button_tornar}" outcome="/listProcediment" includeViewParams="true"
+                              styleClass="float-right" />
+                </ui:define>
+            </ui:decorate>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>

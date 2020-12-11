@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:composition>
+    <!-- Logo i nom aplicació -->
+    <div class="navbar-brand menuGovern">
+        <div class="logoGovern">
+            <p:link styleClass="mr-auto" outcome="/index">
+                <h:graphicImage name="img/STT_logo2.png" styleClass="imatgeGovern"
+                                alt="Govern de les Illes Balears" />
+            </p:link>
+        </div>
+        <div>
+            <h1 class="titol">#{version.projectName}</h1>
+        </div>
+        <div>
+            <div>
+                <strong class="subtitol llevarMobil">#{labels.usuari_label}: </strong>
+                <span class="subtitolMay">
+                    #{request.remoteUser}
+                </span>
+                <c:if test="#{security.admin}">(#{labels.admin_label})</c:if>
+            </div>
+        </div>
+    </div>
+    <!-- FI Logo i nom aplicació -->
+</ui:composition>
+</html>

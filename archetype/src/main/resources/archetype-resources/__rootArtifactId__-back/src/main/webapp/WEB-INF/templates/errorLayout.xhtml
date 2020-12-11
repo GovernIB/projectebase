@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      lang="#{userLocale.current.toLanguageTag()}">
+<!--
+Plantilla per pàgines d'error.
+-->
+<f:view locale="#{userLocale.current}">
+    <h:head>
+        <!-- Necessari perquè PrimeFaces posi aquest tags al principi del HEAD -->
+        <f:facet name="first">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <title><ui:insert name="pageTitle"/></title>
+            <link rel="shortcut icon" href="#{resource['img/GOIB_fav.png']}"/>
+        </f:facet>
+        <h:outputScript name="js/bootstrap.min.js" />
+        <!-- Traduccions personalitzades de PrimeFaces en català i castellà -->
+        <script src="#{resource['js/primefaceslocale_' += userLocale.current.toLanguageTag() += '.js']}"
+                    type="text/javascript"></script>
+    </h:head>
+    <h:body>
+         <!--
+        Les declaram aquí enlloc de a HEAD per assegurar que es carreguen després dels de Primefaces
+        Veure: https://stackoverflow.com/a/8774997/11751648
+        -->
+        <h:outputStylesheet name="css/bootstrap.min.css" />
+        <h:outputStylesheet name="css/open-iconic-bootstrap.css" />
+        <h:outputStylesheet name="css/styles.css" />
+
+        <header>
+            <!-- Header -->
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark bg-aplicacio">
+                <ui:include src="/WEB-INF/includes/logo_nom.xhtml" />
+            </nav>
+            <!-- FI Header -->
+        </header>
+
+        <h:form>
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="miga">
+                <p:breadCrumb styleClass="breadcrumb" homeDisplay="text">
+                    <p:menuitem value="#{labels.inici_link}" outcome="/index"/>
+                </p:breadCrumb>
+            </nav>
+            <!-- FI Breadcrumb -->
+        </h:form>
+        
+        <!-- Content -->
+        <div class="container p-3aplicacio">
+            <div class="my-3 p-3 bg-white rounded box-shadow">
+                <!-- Contingut -->
+                <div class="card mb-12 border-0">
+                    <span class="h5 card-title border-bottom verde">
+                        <ui:insert name="pageTitle">Títol per defecte</ui:insert>
+                    </span>
+                    <ui:insert name="content"/>
+                </div>
+                <!-- FI Contingut -->
+            </div>
+        </div>
+        <!-- FI Content -->
+    </h:body>
+
+    <ui:include src="/WEB-INF/includes/footer.xhtml"/>
+</f:view>
+</html>

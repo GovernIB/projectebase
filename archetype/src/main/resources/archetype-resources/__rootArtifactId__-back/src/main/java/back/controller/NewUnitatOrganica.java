@@ -3,22 +3,20 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.controller;
 
-import java.io.Serializable;
-import java.util.ResourceBundle;
+import ${package}.back.model.UnitatModel;
+import ${package}.service.facade.UnitatOrganicaServiceFacade;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import ${package}.back.model.UnitatModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import ${package}.service.facade.UnitatOrganicaServiceFacade;
+import java.io.Serializable;
+import java.util.ResourceBundle;
 
 /**
- * Controlador per l'edició d'Unitats Organiques. El definim a l'scope de view perquè a nivell
+ * Controlador per la creació d'Unitats Organiques. El definim a l'scope de view perquè a nivell
  * de request es reconstruiria per cada petició AJAX, com ara amb els errors de validació. Amb
  * view es manté mentre no es canvii de vista.
  *
@@ -26,11 +24,11 @@ import ${package}.service.facade.UnitatOrganicaServiceFacade;
  */
 @Named
 @ViewScoped
-public class EditUnitatOrganica extends AbstractController implements Serializable {
+public class NewUnitatOrganica extends AbstractController implements Serializable {
 
     private static final long serialVersionUID = -4092311228270716321L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(EditUnitatOrganica.class);
+    private static final Logger LOG = LoggerFactory.getLogger(NewUnitatOrganica.class);
 
     @EJB
     UnitatOrganicaServiceFacade unitatOrganicaService;
@@ -39,21 +37,22 @@ public class EditUnitatOrganica extends AbstractController implements Serializab
     private UnitatModel unitat;
 
     // ACCIONS
-    
+
     /**
-     * Actualitza la unitat orgànica que s'està editant. Afegeix un missatge si s'ha fet
+     * Crea o actualitza la unitat orgànica que s'està editant. Afegeix un missatge si s'ha fet
      * amb èxit i redirecciona cap a la pàgina de llistat.
      *
      * @return navegació cap al llistat d'unitats orgàniques.
      */
-    public String update() {
-        LOG.debug("update");
+    public String save() {
+        LOG.debug("save");
+        
+        // Feim una creació 
+        unitatOrganicaService.create(unitat.getValue());
 
-        unitatOrganicaService.update(unitat.getValue());
-            
         ResourceBundle labelsBundle = getBundle("labels");
-        addGlobalMessage(labelsBundle.getString("msg.actualitzaciocorrecta"));
-
+        addGlobalMessage(labelsBundle.getString("msg.creaciocorrecta"));
+        
         // Els missatges no aguanten una redirecció ja que no es la mateixa petició
         // Així asseguram que es guardin fins la visualització
         keepMessages();

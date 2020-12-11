@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:composition>
+
+    <ui:decorate template="/WEB-INF/decorations/field.xhtml">
+        <ui:define name="label">
+            <p:outputLabel for="codiDir3" value="#{labels.unitatOrganica_codiDir3}"/>
+        </ui:define>
+        <ui:define name="input">
+            <p:inputText id="codiDir3" value="#{unitatModel.value.codiDir3}" readonly="#{edit}"/>
+            <p:message for="codiDir3"/>
+        </ui:define>
+    </ui:decorate>
+
+    <ui:decorate template="/WEB-INF/decorations/field.xhtml">
+        <ui:define name="label">
+            <p:outputLabel for="nom" value="#{labels.unitatOrganica_nom}"/>
+        </ui:define>
+        <ui:define name="input">
+            <p:inputText id="nom" value="#{unitatModel.value.nom}"/>
+            <p:message for="nom"/>
+        </ui:define>
+    </ui:decorate>
+
+    <ui:decorate template="/WEB-INF/decorations/field.xhtml">
+        <ui:define name="label">
+            <p:outputLabel for="dataCreacio" value="#{labels.unitatOrganica_dataCreacio}"/>
+        </ui:define>
+        <ui:define name="input">
+            <p:datePicker id="dataCreacio" value="#{unitatModel.value.dataCreacio}"
+                          pattern="dd-MM-yyyy"/>
+            <p:message for="dataCreacio"/>
+        </ui:define>
+    </ui:decorate>
+
+    <ui:decorate template="/WEB-INF/decorations/field.xhtml">
+        <ui:define name="label">
+            <p:outputLabel for="estat" value="#{labels.unitatOrganica_estat}"/>
+        </ui:define>
+        <ui:define name="input">
+            <p:selectOneMenu id="estat" value="#{unitatModel.value.estat}">
+                <f:selectItems value="#{estats.values()}" var="estat"/>
+            </p:selectOneMenu>
+            <p:message for="estat"/>
+        </ui:define>
+    </ui:decorate>
+    
+</ui:composition>
+</html>

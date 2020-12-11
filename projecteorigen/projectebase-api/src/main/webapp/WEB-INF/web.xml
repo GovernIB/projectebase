@@ -38,8 +38,4 @@
         <realm-name>${webXml.loginConfig.realmName}</realm-name>
     </login-config>
 
-    <security-role>
-        <role-name>PBS_ADMIN</role-name>
-    </security-role>
-
 </web-app>

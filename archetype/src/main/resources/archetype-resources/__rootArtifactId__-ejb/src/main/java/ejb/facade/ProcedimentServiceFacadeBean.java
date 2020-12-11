@@ -36,7 +36,6 @@ import java.util.Optional;
 @ExceptionTranslate
 @Stateless @Local(ProcedimentServiceFacade.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-@RolesAllowed(Constants.${prefixuppercase}_ADMIN)
 public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
 
     @Inject
@@ -49,6 +48,7 @@ public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
     private ProcedimentConverter converter;
 
     @Override
+    @RolesAllowed(Constants.${prefixuppercase}_ADMIN)
     public Long create(ProcedimentDTO dto, Long idUnitat) throws RecursNoTrobatException, ProcedimentDuplicatException {
         // Comprovam que el codiSia no existeix ja
         if (repository.findByCodiSia(dto.getCodiSia()).isPresent()) {
@@ -62,18 +62,21 @@ public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
     }
 
     @Override
+    @RolesAllowed(Constants.${prefixuppercase}_ADMIN)
     public void update(ProcedimentDTO dto) throws RecursNoTrobatException {
         Procediment procediment = repository.getReference(dto.getId());
         converter.updateFromDTO(procediment, dto);
     }
 
     @Override
+    @RolesAllowed(Constants.${prefixuppercase}_ADMIN)
     public void delete(Long id) throws RecursNoTrobatException {
         Procediment procediment = repository.getReference(id);
         repository.delete(procediment);
     }
 
     @Override
+    @RolesAllowed({Constants.${prefixuppercase}_USER, Constants.${prefixuppercase}_ADMIN})
     public Optional<ProcedimentDTO> findById(Long id) {
         Procediment procediment = repository.findById(id);
         ProcedimentDTO procedimentDTO = converter.toDTO(procediment);
@@ -81,6 +84,7 @@ public class ProcedimentServiceFacadeBean implements ProcedimentServiceFacade {
     }
 
     @Override
+    @RolesAllowed({Constants.${prefixuppercase}_USER, Constants.${prefixuppercase}_ADMIN})
     public Pagina<ProcedimentDTO> findByUnitat(int firstResult, int maxResult, Long idUnitat) {
 
         List<ProcedimentDTO> items = repository.findPagedByUnitat(firstResult, maxResult, idUnitat);

@@ -14,6 +14,14 @@
     de serveis així evitam que tengui dependències sobre classes de l'API dels EJBs
     -->
     <assembly-descriptor>
+        <security-role>
+            <description>Administrador</description>
+            <role-name>${prefixuppercase}_ADMIN</role-name>
+        </security-role>
+        <security-role>
+            <description>Usuari</description>
+            <role-name>${prefixuppercase}_USER</role-name>
+        </security-role>
         <application-exception>
             <exception-class>${package}.service.exception.ServiceException</exception-class>
             <rollback>true</rollback>

@@ -15,6 +15,9 @@ public abstract class AbstractFacadeIT {
     @EJB
     protected AdminManager adminManager;
 
+    @EJB
+    protected UserManager userManager;
+
     /**
      * Crea l'arxiu de deploy que es desplegarà sobre JBoss per fer els tests.
      * @return arxiu desplegable.

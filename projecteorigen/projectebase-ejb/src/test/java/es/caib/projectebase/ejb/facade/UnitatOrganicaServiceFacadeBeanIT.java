@@ -213,7 +213,6 @@ public class UnitatOrganicaServiceFacadeBeanIT extends AbstractFacadeIT {;
     @Test(expected = EJBAccessException.class)
     @InSequence(13)
     public void testDeleteSensePermisos() {
-        UnitatOrganicaDTO dto = new UnitatOrganicaDTO();
         userManager.exec(() -> {
             unitatOrganicaServiceFacade.delete(1L);
             Assert.fail("No hauria de poder esborrar");

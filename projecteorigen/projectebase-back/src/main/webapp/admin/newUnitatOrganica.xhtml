@@ -27,48 +27,9 @@ Pàgina per creació de noves unitats orgàniques.
 
         <h:form id="form">
 
-            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
-                <ui:define name="label">
-                    <p:outputLabel for="codiDir3" value="#{labels.unitatOrganica_codiDir3}"/>
-                </ui:define>
-                <ui:define name="input">
-                    <p:inputText id="codiDir3" value="#{unitatModel.value.codiDir3}" />
-                    <p:message for="codiDir3"/>
-                </ui:define>
-            </ui:decorate>
-
-            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
-                <ui:define name="label">
-                    <p:outputLabel for="nom" value="#{labels.unitatOrganica_nom}"/>
-                </ui:define>
-                <ui:define name="input">
-                    <p:inputText id="nom" value="#{unitatModel.value.nom}"/>
-                    <p:message for="nom"/>
-                </ui:define>
-            </ui:decorate>
-
-            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
-                <ui:define name="label">
-                    <p:outputLabel for="dataCreacio" value="#{labels.unitatOrganica_dataCreacio}"/>
-                </ui:define>
-                <ui:define name="input">
-                    <p:datePicker id="dataCreacio" value="#{unitatModel.value.dataCreacio}"
-                                  pattern="dd-MM-yyyy"/>
-                    <p:message for="dataCreacio"/>
-                </ui:define>
-            </ui:decorate>
-
-            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
-                <ui:define name="label">
-                    <p:outputLabel for="estat" value="#{labels.unitatOrganica_estat}"/>
-                </ui:define>
-                <ui:define name="input">
-                    <p:selectOneMenu id="estat" value="#{unitatModel.value.estat}">
-                        <f:selectItems value="#{estats.values()}" var="estat"/>
-                    </p:selectOneMenu>
-                    <p:message for="estat"/>
-                </ui:define>
-            </ui:decorate>
+            <ui:include src="/WEB-INF/includes/fieldsUnitatOrganica.xhtml">
+                <ui:param name="edit" value="false" />
+            </ui:include>
 
             <ui:decorate template="/WEB-INF/decorations/buttons.xhtml">
                 <ui:define name="buttons">

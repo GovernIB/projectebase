@@ -3,20 +3,19 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.controller;
 
+import ${package}.back.model.UnitatModel;
 import ${package}.service.facade.ProcedimentServiceFacade;
-import ${package}.service.facade.UnitatOrganicaServiceFacade;
 import ${package}.service.model.Pagina;
 import ${package}.service.model.ProcedimentDTO;
-import ${package}.service.model.UnitatOrganicaDTO;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -30,7 +29,7 @@ import java.util.ResourceBundle;
  *
  * @author areus
  */
-@Named("listProcediment")
+@Named
 @ViewScoped
 public class ListProcediment extends AbstractController implements Serializable {
 
@@ -39,12 +38,10 @@ public class ListProcediment extends AbstractController implements Serializable 
     private static final Logger LOG = LoggerFactory.getLogger(ListProcediment.class);
 
     @EJB
-    UnitatOrganicaServiceFacade unitatOrganicaService;
-
-    @EJB
     ProcedimentServiceFacade procedimentService;
 
-    // PROPIETATS + GETTERS/SETTERS
+    @Inject
+    private UnitatModel unitat;
 
     /**
      * Model de dades emprat pel compoment dataTable de primefaces.
@@ -55,24 +52,6 @@ public class ListProcediment extends AbstractController implements Serializable 
         return lazyModel;
     }
 
-    /**
-     * la unitat orgànica de la qual s'estàn llistat els procediments.
-     */
-    private UnitatOrganicaDTO unitatOrganica;
-
-    public UnitatOrganicaDTO getUnitatOrganica() {
-        return unitatOrganica;
-    }
-
-    /**
-     * Inicialitzam el bean.
-     */
-    @PostConstruct
-    public void init() {
-        LOG.debug("init");
-        unitatOrganica = new UnitatOrganicaDTO();
-    }
-
     // ACCIONS
 
     /**
@@ -80,10 +59,6 @@ public class ListProcediment extends AbstractController implements Serializable 
      */
     public void load() {
         LOG.debug("load");
-
-        unitatOrganica = unitatOrganicaService.findById(unitatOrganica.getId())
-                .orElseThrow(() -> new RuntimeException("id invàlid"));
-
         lazyModel = new LazyDataModel<>() {
 
             private static final long serialVersionUID = 1L;
@@ -91,7 +66,8 @@ public class ListProcediment extends AbstractController implements Serializable 
             @Override
             public List<ProcedimentDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder,
                                              Map<String, FilterMeta> filterBy) {
-                Pagina<ProcedimentDTO> pagina = procedimentService.findByUnitat(first, pageSize, unitatOrganica.getId());
+                Pagina<ProcedimentDTO> pagina =
+                        procedimentService.findByUnitat(first, pageSize, unitat.getValue().getId());
                 setRowCount((int) pagina.getTotal());
                 return pagina.getItems();
             }
@@ -106,10 +82,10 @@ public class ListProcediment extends AbstractController implements Serializable 
      */
     public void delete(Long id) {
         LOG.debug("delete");
-        // Obtenir el resource bundle d'etiquetes definit a faces-config.xml
-        ResourceBundle labelsBundle = getBundle("labels");
-
+        
         procedimentService.delete(id);
+        
+        ResourceBundle labelsBundle = getBundle("labels");
         addGlobalMessage(labelsBundle.getString("msg.eliminaciocorrecta"));
     }
 }

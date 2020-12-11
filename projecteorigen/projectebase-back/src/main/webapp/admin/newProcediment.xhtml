@@ -33,26 +33,10 @@ Pàgina per crear procediments
 
         <h:form id="form">
 
-            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
-                <ui:define name="label">
-                    <p:outputLabel for="codiSia" value="#{labels.procediment_codiSia}"/>
-                </ui:define>
-                <ui:define name="input">
-                    <p:inputText id="codiSia" value="#{procedimentModel.value.codiSia}" />
-                    <p:message for="codiSia"/>
-                </ui:define>
-            </ui:decorate>
-
-            <ui:decorate template="/WEB-INF/decorations/field.xhtml">
-                <ui:define name="label">
-                    <p:outputLabel for="nom" value="#{labels.procediment_nom}"/>
-                </ui:define>
-                <ui:define name="input">
-                    <p:inputText id="nom" value="#{procedimentModel.value.nom}"/>
-                    <p:message for="nom"/>
-                </ui:define>
-            </ui:decorate>
-
+            <ui:include src="/WEB-INF/includes/fieldsProcediment.xhtml">
+                <ui:param name="edit" value="false" />
+            </ui:include>
+            
             <ui:decorate template="/WEB-INF/decorations/buttons.xhtml">
                 <ui:define name="buttons">
                     <p:commandButton id="saveButton" action="#{newProcediment.save}"

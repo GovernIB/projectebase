@@ -39,7 +39,6 @@ import java.util.Optional;
 @ExceptionTranslate
 @Stateless @Local(UnitatOrganicaServiceFacade.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-@RolesAllowed(Constants.${prefixuppercase}_ADMIN)
 public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFacade {
 
     @Inject
@@ -52,6 +51,7 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
     private UnitatOrganicaConverter converter;
 
     @Override
+    @RolesAllowed(Constants.${prefixuppercase}_ADMIN)
     public Long create(UnitatOrganicaDTO dto) throws UnitatDuplicadaException {
         if (repository.findByCodiDir3(dto.getCodiDir3()).isPresent()) {
             throw new UnitatDuplicadaException(dto.getCodiDir3());
@@ -63,12 +63,14 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
     }
 
     @Override
+    @RolesAllowed(Constants.${prefixuppercase}_ADMIN)
     public void update(UnitatOrganicaDTO dto) throws RecursNoTrobatException {
         UnitatOrganica unitat = repository.getReference(dto.getId());
         converter.updateFromDTO(unitat, dto);
     }
 
     @Override
+    @RolesAllowed(Constants.${prefixuppercase}_ADMIN)
     public void delete(Long id) throws UnitatTeProcedimentsException, RecursNoTrobatException {
         if (procedimentRepository.countByUnitat(id) > 0L) {
             throw new UnitatTeProcedimentsException(id);
@@ -78,6 +80,7 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
     }
 
     @Override
+    @RolesAllowed({Constants.${prefixuppercase}_USER, Constants.${prefixuppercase}_ADMIN})
     public Optional<UnitatOrganicaDTO> findById(Long id) {
         UnitatOrganica unitat = repository.findById(id);
         UnitatOrganicaDTO unitatOrganicaDTO = converter.toDTO(unitat);
@@ -85,6 +88,7 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
     }
 
     @Override
+    @RolesAllowed({Constants.${prefixuppercase}_USER, Constants.${prefixuppercase}_ADMIN})
     public Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<String, Object> filters,
                                                   List<Ordre> ordenacio) {
 

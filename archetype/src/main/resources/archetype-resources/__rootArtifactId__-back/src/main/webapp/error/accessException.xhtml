@@ -4,16 +4,13 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--
-Pàgina d'error 404 NO TROBAT.
-Els atributs disponibles defnits al request són els definits a 10.9.1 de l'especificació del Servlets
+Pàgina d'error específica per les EJBAccessException
 -->
 <ui:composition template="/WEB-INF/templates/errorLayout.xhtml">
-    <ui:define name="pageTitle">#{labels['error.404.title']}</ui:define>
+    <ui:define name="pageTitle">#{labels['error.accessException.title']}</ui:define>
     <ui:define name="content">
         <p class="card-text mb-5 lh15">
-            <h:outputFormat value="#{labels['error.404.desc']}">
-                <f:param value="#{requestScope['javax.servlet.error.request_uri']}" />
-            </h:outputFormat>
+            #{labels['error.accessException.desc']}
         </p>
     </ui:define>
 </ui:composition>
