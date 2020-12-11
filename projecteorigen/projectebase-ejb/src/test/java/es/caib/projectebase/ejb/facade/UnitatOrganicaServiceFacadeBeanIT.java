@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBAccessException;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -75,7 +76,7 @@ public class UnitatOrganicaServiceFacadeBeanIT extends AbstractFacadeIT {;
     @InSequence(3)
     public void testFindById() {
 
-        adminManager.exec(() -> {
+        userManager.exec(() -> {
             Optional<UnitatOrganicaDTO> dto = unitatOrganicaServiceFacade.findById(101L);
 
             Assert.assertTrue(dto.isPresent());
@@ -91,7 +92,7 @@ public class UnitatOrganicaServiceFacadeBeanIT extends AbstractFacadeIT {;
     @InSequence(4)
     public void testFindByIdError() {
 
-        adminManager.exec(() -> {
+        userManager.exec(() -> {
             Optional<UnitatOrganicaDTO> dto = unitatOrganicaServiceFacade.findById(999L);
             Assert.assertTrue(dto.isEmpty());
         });
@@ -180,14 +181,42 @@ public class UnitatOrganicaServiceFacadeBeanIT extends AbstractFacadeIT {;
     @Test
     @InSequence(10)
     public void testLlistat() {
-        adminManager.exec(() -> {
-
+        userManager.exec(() -> {
             Pagina<UnitatOrganicaDTO> llistat = unitatOrganicaServiceFacade.findFiltered(1, 10,
                     Collections.singletonMap("codiDir3", "A"), List.of(Ordre.descendent("codiDir3")));
             Assert.assertEquals(12L, llistat.getTotal());
             Assert.assertEquals(10, llistat.getItems().size());
             Assert.assertEquals("A00000011", llistat.getItems().get(0).getCodiDir3());
+        });
+    }
 
+    @Test(expected = EJBAccessException.class)
+    @InSequence(11)
+    public void testCreateSensePermisos() {
+        UnitatOrganicaDTO dto = new UnitatOrganicaDTO();
+        userManager.exec(() -> {
+            unitatOrganicaServiceFacade.create(dto);
+            Assert.fail("No hauria de poder crear");
+        });
+    }
+
+    @Test(expected = EJBAccessException.class)
+    @InSequence(12)
+    public void testUpdateSensePermisos() {
+        UnitatOrganicaDTO dto = new UnitatOrganicaDTO();
+        userManager.exec(() -> {
+            unitatOrganicaServiceFacade.update(dto);
+            Assert.fail("No hauria de poder actualitzar");
+        });
+    }
+
+    @Test(expected = EJBAccessException.class)
+    @InSequence(13)
+    public void testDeleteSensePermisos() {
+        UnitatOrganicaDTO dto = new UnitatOrganicaDTO();
+        userManager.exec(() -> {
+            unitatOrganicaServiceFacade.delete(1L);
+            Assert.fail("No hauria de poder esborrar");
         });
     }
 }
