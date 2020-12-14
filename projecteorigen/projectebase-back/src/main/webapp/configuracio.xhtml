@@ -19,11 +19,23 @@ Pàgina amb informació d'accessibilitat
 		  <tbody>
 		    <tr>
 		      <th scope="row">Usuari</th>
-		      <td>#{request.remoteUser}</td>
+		      <td>#{userInfo.username}</td>
 		    </tr>
 		    <tr>
-		      <th scope="row">Admin</th>
-		      <td>#{security.admin}</td>
+		      <th scope="row">Nom</th>
+		      <td>#{userInfo.nom}</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">Llinatges</th>
+		      <td>#{userInfo.llinatges}</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">Email</th>
+		      <td>#{userInfo.email}</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">NIF</th>
+		      <td>#{userInfo.nif}</td>
 		    </tr>
 		  </tbody>
 		</table>

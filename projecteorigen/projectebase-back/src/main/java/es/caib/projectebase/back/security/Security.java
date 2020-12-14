@@ -1,4 +1,4 @@
-package es.caib.projectebase.back.controller;
+package es.caib.projectebase.back.security;
 
 import es.caib.projectebase.commons.utils.Constants;
 
@@ -30,4 +30,5 @@ public class Security {
     public boolean isUserOrAdmin() {
         return isUser() || isAdmin();
     }
+
 }
