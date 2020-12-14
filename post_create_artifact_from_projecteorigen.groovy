@@ -170,8 +170,7 @@ def backFiles = [
    "./__rootArtifactId__-back/src/main/webapp/admin/newUnitatOrganica.xhtml",
    "./__rootArtifactId__-back/src/main/webapp/listUnitatOrganica.xhtml",
    "./__rootArtifactId__-back/src/main/webapp/listProcediment.xhtml",
-   "./__rootArtifactId__-back/src/main/java/back/PrincipalInfoServlet.java",
-   "./__rootArtifactId__-back/src/main/java/back/controller/Security.java"
+   "./__rootArtifactId__-back/src/main/java/back/security/Security.java"
   ];
 for(String backFile : backFiles) {
   replaceProperties(new File(baseProject, backFile), false);

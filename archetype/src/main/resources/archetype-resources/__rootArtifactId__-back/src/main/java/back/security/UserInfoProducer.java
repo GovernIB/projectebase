@@ -1,4 +1,7 @@
-package es.caib.projectebase.back.security;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.back.security;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

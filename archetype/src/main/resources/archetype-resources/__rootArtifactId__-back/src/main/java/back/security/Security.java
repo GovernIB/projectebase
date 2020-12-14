@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.back.controller;
+package ${package}.back.security;
 
 import ${package}.commons.utils.Constants;
 
@@ -33,4 +33,5 @@ public class Security {
     public boolean isUserOrAdmin() {
         return isUser() || isAdmin();
     }
+
 }
