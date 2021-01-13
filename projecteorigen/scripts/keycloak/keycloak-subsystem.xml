@@ -11,7 +11,7 @@
         <principal-attribute>preferred_username</principal-attribute>
         <verify-token-audience>true</verify-token-audience>
     </secure-deployment>
-    <secure-deployment name="projectebase-api.war">
+    <secure-deployment name="projectebase-api-interna.war">
         <realm>GOIB</realm>
         <resource>goib-ws</resource>
         <use-resource-role-mappings>true</use-resource-role-mappings>

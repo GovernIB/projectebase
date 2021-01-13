@@ -18,8 +18,6 @@
         <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- No fer els tests per defecte. -->
-        <!-- <maven.test.skip>true</maven.test.skip> -->
         <!-- Versions de JBoss -->
         <jboss-eap.version>7.2.9.GA</jboss-eap.version>
         <jboss-javaee.version>1.0.1.Final-redhat-00003</jboss-javaee.version>
@@ -81,7 +79,7 @@
             </dependency>
             <dependency>
                 <groupId>es.caib.projectebase</groupId>
-                <artifactId>projectebase-api</artifactId>
+                <artifactId>projectebase-api-interna</artifactId>
                 <version>1.0.0</version>
                 <type>war</type>
             </dependency>
@@ -424,7 +422,7 @@
         <module>projectebase-service</module>
         <module>projectebase-back</module>
         <module>projectebase-front</module>
-        <module>projectebase-api</module>
+        <module>projectebase-api-interna</module>
         <module>projectebase-ws</module>
         <module>projectebase-ear</module>
         <module>projectebase-apifirmasimple</module>

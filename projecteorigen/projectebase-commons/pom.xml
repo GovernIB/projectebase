@@ -39,6 +39,12 @@
             <artifactId>microprofile-config-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- Altres mòduls del projecte -->
+        <dependency>
+            <artifactId>projectebase-service</artifactId>
+            <groupId>es.caib.projectebase</groupId>
+            <scope>provided</scope>
+        </dependency>
         <!-- Dependències de test -->
         <dependency>
             <groupId>junit</groupId>
