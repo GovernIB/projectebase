@@ -117,7 +117,7 @@ println " + Directori Generacio: " + baseProject.getAbsolutePath()
 
 
 // POMS
-def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api", "__rootArtifactId__-back", "__rootArtifactId__-service",
+def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api-interna", "__rootArtifactId__-back", "__rootArtifactId__-service",
      "__rootArtifactId__-front", "__rootArtifactId__-apifirmasimple", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
 	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-arxiu", "__rootArtifactId__-registre",
 	 "__rootArtifactId__-notib", "__rootArtifactId__-dir3caib", "__rootArtifactId__-distribucio", "__rootArtifactId__-sistra2", 
@@ -271,19 +271,19 @@ for(String ejbFile : ejbFiles) {
   replaceProperties(new File(baseProject, ejbFile), false);
 }
 
-// REST
-def restFiles = [
-   "./__rootArtifactId__-api/src/main/webapp/WEB-INF/web.xml",
-   "./__rootArtifactId__-api/src/main/java/api/services/ProcedimentResource.java",
-   "./__rootArtifactId__-api/src/main/java/api/services/UnitatOrganicaResource.java",
-   "./__rootArtifactId__-api/src/test/resources/web.xml",
-   "./__rootArtifactId__-api/src/test/resources/ejb-jar.xml",
-   "./__rootArtifactId__-api/src/test/resources/beans.xml",
-   "./__rootArtifactId__-api/src/test/resources/arquillian-ds.xml",
-   "./__rootArtifactId__-api/src/test/resources/META-INF/arquillian-persistence.xml"
+// API Interna
+def apiInternaFiles = [
+   "./__rootArtifactId__-api-interna/src/main/webapp/WEB-INF/web.xml",
+   "./__rootArtifactId__-api-interna/src/main/java/api/interna/services/ProcedimentResource.java",
+   "./__rootArtifactId__-api-interna/src/main/java/api/interna/services/UnitatOrganicaResource.java",
+   "./__rootArtifactId__-api-interna/src/test/resources/web.xml",
+   "./__rootArtifactId__-api-interna/src/test/resources/ejb-jar.xml",
+   "./__rootArtifactId__-api-interna/src/test/resources/beans.xml",
+   "./__rootArtifactId__-api-interna/src/test/resources/arquillian-ds.xml",
+   "./__rootArtifactId__-api-interna/src/test/resources/META-INF/arquillian-persistence.xml"
   ];
-for(String restFile : restFiles) {
-  replaceProperties(new File(baseProject, restFile), false);
+for(String file : apiInternaFiles) {
+  replaceProperties(new File(baseProject, file), false);
 }
 
 // WS

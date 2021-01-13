@@ -419,9 +419,9 @@ if (perfilSistra2.equals("false")) {
     assert new File(rootDir, "scripts/bbdd/postgresql/sistra2_drop_schema.sql").delete()
 
     // Netejar mòdul API
-    def pomApi = new File(rootDir, artifactId + "-api/pom.xml")
+    def pomApi = new File(rootDir, artifactId + "-api-interna/pom.xml")
     removeTextBetweenTwoStrings(pomApi, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->")
     packageDir = properties.get("package").replace(".", "/");
-    assert new File(rootDir, artifactId + "-api/src/main/java/" + packageDir + "/api/sistra2").deleteDir()
-    assert new File(rootDir, artifactId + "-api/src/test/java/" + packageDir + "/api/sistra2").deleteDir()
+    assert new File(rootDir, artifactId + "-api-interna/src/main/java/" + packageDir + "/api/interna/sistra2").deleteDir()
+    assert new File(rootDir, artifactId + "-api-interna/src/test/java/" + packageDir + "/api/interna/sistra2").deleteDir()
 }

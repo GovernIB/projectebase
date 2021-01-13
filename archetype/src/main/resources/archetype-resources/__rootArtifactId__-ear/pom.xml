@@ -103,7 +103,7 @@
         <!-- SISTRA2 END -->
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-api</artifactId>
+            <artifactId>${rootArtifactId}-api-interna</artifactId>
             <type>war</type>
         </dependency>
         <!--
@@ -183,9 +183,9 @@
                         <!-- FRONT END -->
                         <webModule>
                             <groupId>${groupId}</groupId>
-                            <artifactId>${rootArtifactId}-api</artifactId>
-                            <contextRoot>/${rootArtifactId}/api</contextRoot>
-                            <bundleFileName>${rootArtifactId}-api.war</bundleFileName>
+                            <artifactId>${rootArtifactId}-api-interna</artifactId>
+                            <contextRoot>/${rootArtifactId}/api/interna</contextRoot>
+                            <bundleFileName>${rootArtifactId}-api-interna.war</bundleFileName>
                         </webModule>
                         <!-- APIFIRMASIMPLE START -->
                         <webModule>

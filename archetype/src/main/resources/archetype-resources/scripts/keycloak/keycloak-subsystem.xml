@@ -9,12 +9,12 @@
     <secure-deployment name="${rootArtifactId}-back.war">
         <realm>GOIB</realm>
         <resource>goib-default</resource>
-        <use-resource-role-mappings>true</use-resource-role-mappings>
+        <use-resource-role-mappings>false</use-resource-role-mappings>
         <public-client>true</public-client>
         <principal-attribute>preferred_username</principal-attribute>
         <verify-token-audience>true</verify-token-audience>
     </secure-deployment>
-    <secure-deployment name="${rootArtifactId}-api.war">
+    <secure-deployment name="${rootArtifactId}-api-interna.war">
         <realm>GOIB</realm>
         <resource>goib-ws</resource>
         <use-resource-role-mappings>true</use-resource-role-mappings>

@@ -1,0 +1,22 @@
+
+Passes per afegir nou moduls
+
+ 1. Ficar fitxers que es necessiten procesar aquí: 
+ 
+  post_create_artifact_from_projecteorigen.groovy
+ 
+ 2. Ficar descripció del que s'ha de ficar a l'archetype aquí:
+ 
+  archetype/src/main/resources/META-INF/maven/archetype-metadata.xml
+ 
+ 3. Ficar post proces aquí:
+  
+  archetype/src/main/resources/META-INF/archetype-post-generate.groovy
+  
+ 4. Si han de ser opcionals a la generació afegir opció a: 
+  
+	archetype/src/test/resources/projects/basic/archetype.properties
+	generadordecomanda.html
+	generat/projectebase.bat
+	generat/projectebase.sh
+  

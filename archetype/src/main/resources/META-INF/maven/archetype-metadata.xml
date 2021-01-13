@@ -307,7 +307,7 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="${rootArtifactId}-api" dir="__rootArtifactId__-api" name="${rootArtifactId}-api">
+    <module id="${rootArtifactId}-api-interna" dir="__rootArtifactId__-api-interna" name="${rootArtifactId}-api-interna">
       <fileSets>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
           <directory>src/main/java</directory>
