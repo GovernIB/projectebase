@@ -18,6 +18,7 @@ import ${package}.service.model.Ordre;
 import ${package}.service.model.Pagina;
 import ${package}.service.model.UnitatOrganicaDTO;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -88,7 +89,7 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
     }
 
     @Override
-    @RolesAllowed({Constants.${prefixuppercase}_USER, Constants.${prefixuppercase}_ADMIN})
+    @PermitAll
     public Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<String, Object> filters,
                                                   List<Ordre> ordenacio) {
 

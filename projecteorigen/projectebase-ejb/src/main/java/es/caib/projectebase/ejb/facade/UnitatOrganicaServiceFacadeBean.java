@@ -15,6 +15,7 @@ import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -85,7 +86,7 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
     }
 
     @Override
-    @RolesAllowed({Constants.PBS_USER, Constants.PBS_ADMIN})
+    @PermitAll
     public Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<String, Object> filters,
                                                   List<Ordre> ordenacio) {
 

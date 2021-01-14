@@ -121,7 +121,7 @@ def moduleFolders = [ "", "__rootArtifactId__-commons", "__rootArtifactId__-api-
      "__rootArtifactId__-front", "__rootArtifactId__-apifirmasimple", "__rootArtifactId__-ear", "__rootArtifactId__-ejb", "__rootArtifactId__-persistence",
 	 "__rootArtifactId__-ws", "__rootArtifactId__-ws/__rootArtifactId___ws_server", "__rootArtifactId__-arxiu", "__rootArtifactId__-registre",
 	 "__rootArtifactId__-notib", "__rootArtifactId__-dir3caib", "__rootArtifactId__-distribucio", "__rootArtifactId__-sistra2", 
-	 "__rootArtifactId__-ws/__rootArtifactId___ws_api"];
+	 "__rootArtifactId__-ws/__rootArtifactId___ws_api", "__rootArtifactId__-api-externa" ];
 
 for(String moduleDir : moduleFolders) {
   File tmp = new File(baseProject, moduleDir);
@@ -274,8 +274,6 @@ for(String ejbFile : ejbFiles) {
 // API Interna
 def apiInternaFiles = [
    "./__rootArtifactId__-api-interna/src/main/webapp/WEB-INF/web.xml",
-   "./__rootArtifactId__-api-interna/src/main/java/api/interna/services/ProcedimentResource.java",
-   "./__rootArtifactId__-api-interna/src/main/java/api/interna/services/UnitatOrganicaResource.java",
    "./__rootArtifactId__-api-interna/src/test/resources/web.xml",
    "./__rootArtifactId__-api-interna/src/test/resources/ejb-jar.xml",
    "./__rootArtifactId__-api-interna/src/test/resources/beans.xml",
@@ -283,6 +281,14 @@ def apiInternaFiles = [
    "./__rootArtifactId__-api-interna/src/test/resources/META-INF/arquillian-persistence.xml"
   ];
 for(String file : apiInternaFiles) {
+  replaceProperties(new File(baseProject, file), false);
+}
+
+// API Externa
+def apiExternaFiles = [
+   "./__rootArtifactId__-api-externa/src/main/webapp/WEB-INF/web.xml"
+  ];
+for(String file : apiExternaFiles) {
   replaceProperties(new File(baseProject, file), false);
 }
 

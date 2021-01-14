@@ -33,7 +33,7 @@ import javax.ws.rs.core.Application;
 @SecurityScheme(securitySchemeName = "basicAuth", type = SecuritySchemeType.HTTP, scheme = "basic")
 @SecurityScheme(securitySchemeName = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "bearer")
 @OpenAPIDefinition(
-        info = @Info(title = "API REST", version = "1.0.0"),
+        info = @Info(title = "API REST INTERNA", version = "1.0.0"),
         servers = {
                 @Server(url = "/projectebase/api/interna")
         },
@@ -57,6 +57,6 @@ public class JAXRSConfiguration extends Application {
      */
     @PostConstruct
     private void init() {
-        LOG.info("Iniciant API REST");
+        LOG.info("Iniciant API REST INTERNA");
     }
 }

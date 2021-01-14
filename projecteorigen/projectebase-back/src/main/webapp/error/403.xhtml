@@ -14,6 +14,8 @@ Els atributs disponibles defnits al request són els definits a 10.9.1 de l'espe
             <h:outputFormat value="#{labels['error.403.desc']}">
                 <f:param value="#{request.remoteUser}" />
             </h:outputFormat>
+            <br />
+            <p:commandButton action="#{logout.logout}" value="#{labels.sortir_link}" />
         </p>
     </ui:define>
 </ui:composition>

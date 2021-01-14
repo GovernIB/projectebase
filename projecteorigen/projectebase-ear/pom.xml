@@ -103,6 +103,11 @@
         <!-- SISTRA2 END -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-api-externa</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-api-interna</artifactId>
             <type>war</type>
         </dependency>
@@ -181,6 +186,12 @@
                             <bundleFileName>projectebase-front.war</bundleFileName>
                         </webModule>
                         <!-- FRONT END -->
+                        <webModule>
+                            <groupId>es.caib.projectebase</groupId>
+                            <artifactId>projectebase-api-externa</artifactId>
+                            <contextRoot>/projectebase/api/externa</contextRoot>
+                            <bundleFileName>projectebase-api-externa.war</bundleFileName>
+                        </webModule>
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-api-interna</artifactId>

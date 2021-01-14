@@ -5,6 +5,7 @@ package ${package}.api.interna.services;
 
 import ${package}.service.facade.UnitatOrganicaServiceFacade;
 import ${package}.service.model.Pagina;
+import ${package}.service.model.PaginaUnitatOrganica;
 import ${package}.service.model.UnitatOrganicaDTO;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;

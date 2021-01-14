@@ -79,6 +79,12 @@
             </dependency>
             <dependency>
                 <groupId>es.caib.projectebase</groupId>
+                <artifactId>projectebase-api-externa</artifactId>
+                <version>1.0.0</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>es.caib.projectebase</groupId>
                 <artifactId>projectebase-api-interna</artifactId>
                 <version>1.0.0</version>
                 <type>war</type>
@@ -423,6 +429,7 @@
         <module>projectebase-back</module>
         <module>projectebase-front</module>
         <module>projectebase-api-interna</module>
+        <module>projectebase-api-externa</module>
         <module>projectebase-ws</module>
         <module>projectebase-ear</module>
         <module>projectebase-apifirmasimple</module>

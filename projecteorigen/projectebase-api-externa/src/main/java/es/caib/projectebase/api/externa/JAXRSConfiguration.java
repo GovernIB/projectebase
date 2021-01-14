@@ -1,7 +1,4 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package}.api.interna;
+package es.caib.projectebase.api.externa;
 
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeType;
@@ -33,16 +30,10 @@ import javax.ws.rs.core.Application;
  * @author areus
  */
 @ApplicationPath("/services")
-@SecurityScheme(securitySchemeName = "basicAuth", type = SecuritySchemeType.HTTP, scheme = "basic")
-@SecurityScheme(securitySchemeName = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "bearer")
 @OpenAPIDefinition(
-        info = @Info(title = "API REST INTERNA", version = "${version}"),
+        info = @Info(title = "API REST EXTERNA", version = "1.0.0"),
         servers = {
-                @Server(url = "/${parentArtifactId}/api/interna")
-        },
-        security = {
-                @SecurityRequirement(name = "basicAuth"),
-                @SecurityRequirement(name = "bearerAuth")
+                @Server(url = "/projectebase/api/externa")
         }
 )
 public class JAXRSConfiguration extends Application {
@@ -53,6 +44,7 @@ public class JAXRSConfiguration extends Application {
      * Les aplicacions JAX-RS necessiten un constructor buid.
      */
     public JAXRSConfiguration() {
+
     }
 
     /**
@@ -60,6 +52,6 @@ public class JAXRSConfiguration extends Application {
      */
     @PostConstruct
     private void init() {
-        LOG.info("Iniciant API REST INTERNA");
+        LOG.info("Iniciant API REST EXTERNA");
     }
 }

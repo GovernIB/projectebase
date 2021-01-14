@@ -2,6 +2,7 @@ package es.caib.projectebase.api.interna.services;
 
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
 import es.caib.projectebase.service.model.Pagina;
+import es.caib.projectebase.service.model.PaginaUnitatOrganica;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;

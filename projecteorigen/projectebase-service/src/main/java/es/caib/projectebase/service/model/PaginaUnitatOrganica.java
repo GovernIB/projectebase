@@ -1,10 +1,5 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package}.api.interna.services;
+package es.caib.projectebase.service.model;
 
-import ${package}.service.model.Pagina;
-import ${package}.service.model.UnitatOrganicaDTO;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.util.List;
@@ -24,8 +19,4 @@ public class PaginaUnitatOrganica extends Pagina<UnitatOrganicaDTO> {
         super(items, total);
     }
 
-    @Override
-    public List<UnitatOrganicaDTO> getItems() {
-        return super.getItems();
-    }
 }

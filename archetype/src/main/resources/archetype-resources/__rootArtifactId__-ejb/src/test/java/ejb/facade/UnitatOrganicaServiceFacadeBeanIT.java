@@ -184,13 +184,14 @@ public class UnitatOrganicaServiceFacadeBeanIT extends AbstractFacadeIT {;
     @Test
     @InSequence(10)
     public void testLlistat() {
-        userManager.exec(() -> {
+        // No calen permisos
+        //userManager.exec(() -> {
             Pagina<UnitatOrganicaDTO> llistat = unitatOrganicaServiceFacade.findFiltered(1, 10,
                     Collections.singletonMap("codiDir3", "A"), List.of(Ordre.descendent("codiDir3")));
             Assert.assertEquals(12L, llistat.getTotal());
             Assert.assertEquals(10, llistat.getItems().size());
             Assert.assertEquals("A00000011", llistat.getItems().get(0).getCodiDir3());
-        });
+        //});
     }
 
     @Test(expected = EJBAccessException.class)
