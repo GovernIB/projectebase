@@ -197,6 +197,16 @@ String perfilFront = properties.get("perfilFront");
 println " + perfilFront: " + perfilFront;
 checkProperty("^(true|false)\$", perfilFront, "perfilFront");
 
+// perfilApiInterna
+String perfilApiInterna = properties.get("perfilApiInterna");
+println " + perfilApiInterna: " + perfilApiInterna;
+checkProperty("^(true|false)\$", perfilApiInterna, "perfilApiInterna");
+
+// perfilApiExterna
+String perfilApiExterna = properties.get("perfilApiExterna");
+println " + perfilApiExterna: " + perfilApiExterna;
+checkProperty("^(true|false)\$", perfilApiExterna, "perfilApiExterna");
+
 // perfilApiFirmaSimple
 String perfilApiFirmaSimple = properties.get("perfilApiFirmaSimple");
 println " + perfilApiFirmaSimple: " + perfilApiFirmaSimple;
@@ -312,6 +322,9 @@ if (perfilBack.equals("false")) {
     // Llevar WEB de EAR pom
     def pomEar = new File(rootDir, artifactId + "-ear/pom.xml")
     removeTextBetweenTwoStrings(pomEar, "<!-- BACK START -->", "<!-- BACK END -->")
+	def keycloak = new File(rootDir, "scripts/keycloak/keycloak-subsystem.xml")
+	removeTextBetweenTwoStrings(keycloak, "<!-- BACK START -->", "<!-- BACK END -->")
+	
     removeTextBetweenTwoStrings(configProperties, "## BACK START", "## BACK END")
     removeTextBetweenTwoStrings(configSystemProperties, "## BACK START", "## BACK END")
 }
@@ -326,6 +339,34 @@ if (perfilFront.equals("false")) {
     removeTextBetweenTwoStrings(pomEar, "<!-- FRONT START -->", "<!-- FRONT END -->")
     removeTextBetweenTwoStrings(configProperties, "## FRONT START", "## FRONT END")
     removeTextBetweenTwoStrings(configSystemProperties, "## FRONT START", "## FRONT END")
+}
+
+// PerfilApiExterna
+if (perfilApiExterna.equals("false")) {
+    println " + Eliminant Modul Api Externa ..."
+    // Llevar directori
+    removeModule(artifactId + '-api-externa', rootDir)
+    // Llevar WEB de EAR pom
+    def pomEar = new File(rootDir, artifactId + "-ear/pom.xml")
+    removeTextBetweenTwoStrings(pomEar, "<!-- API EXTERNA START -->", "<!-- API EXTERNA END -->")
+	
+    removeTextBetweenTwoStrings(configProperties, "## API EXTERNA START", "## API EXTERNA END")
+    removeTextBetweenTwoStrings(configSystemProperties, "## API EXTERNA START", "## API EXTERNA END")
+}
+
+// PerfilApiInterna
+if (perfilApiInterna.equals("false")) {
+    println " + Eliminant Modul Api Interna ..."
+    // Llevar directori
+    removeModule(artifactId + '-api-interna', rootDir)
+    // Llevar WEB de EAR pom
+    def pomEar = new File(rootDir, artifactId + "-ear/pom.xml")
+    removeTextBetweenTwoStrings(pomEar, "<!-- API INTERNA START -->", "<!-- API INTERNA END -->")
+	def keycloak = new File(rootDir, "scripts/keycloak/keycloak-subsystem.xml")
+	removeTextBetweenTwoStrings(keycloak, "<!-- API INTERNA START -->", "<!-- API INTERNA END -->")
+	
+    removeTextBetweenTwoStrings(configProperties, "## API INTERNA START", "## API INTERNA END")
+    removeTextBetweenTwoStrings(configSystemProperties, "## API INTERNA START", "## API INTERNA END")
 }
 
 // PerfilApiFirmaSimple
@@ -418,10 +459,12 @@ if (perfilSistra2.equals("false")) {
     assert new File(rootDir, "scripts/bbdd/postgresql/sistra2_create_schema.sql").delete()
     assert new File(rootDir, "scripts/bbdd/postgresql/sistra2_drop_schema.sql").delete()
 
-    // Netejar mòdul API
-    def pomApi = new File(rootDir, artifactId + "-api-interna/pom.xml")
-    removeTextBetweenTwoStrings(pomApi, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->")
-    packageDir = properties.get("package").replace(".", "/");
-    assert new File(rootDir, artifactId + "-api-interna/src/main/java/" + packageDir + "/api/interna/sistra2").deleteDir()
-    assert new File(rootDir, artifactId + "-api-interna/src/test/java/" + packageDir + "/api/interna/sistra2").deleteDir()
+    // Netejar mòdul API, només si està activat
+	if (perfilApiInterna.equals("true")) {
+		def pomApi = new File(rootDir, artifactId + "-api-interna/pom.xml")
+		removeTextBetweenTwoStrings(pomApi, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->")
+		packageDir = properties.get("package").replace(".", "/");
+		assert new File(rootDir, artifactId + "-api-interna/src/main/java/" + packageDir + "/api/interna/sistra2").deleteDir()
+		assert new File(rootDir, artifactId + "-api-interna/src/test/java/" + packageDir + "/api/interna/sistra2").deleteDir()
+	}
 }

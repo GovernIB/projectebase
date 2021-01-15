@@ -6,6 +6,7 @@
         <auth-server-url>http://localhost:8180/auth</auth-server-url>
         <ssl-required>EXTERNAL</ssl-required>
     </realm>
+    <!-- BACK START -->
     <secure-deployment name="${rootArtifactId}-back.war">
         <realm>GOIB</realm>
         <resource>goib-default</resource>
@@ -14,6 +15,8 @@
         <principal-attribute>preferred_username</principal-attribute>
         <verify-token-audience>true</verify-token-audience>
     </secure-deployment>
+    <!-- BACK END -->
+    <!-- API INTERNA START -->
     <secure-deployment name="${rootArtifactId}-api-interna.war">
         <realm>GOIB</realm>
         <resource>goib-ws</resource>
@@ -23,4 +26,5 @@
         <principal-attribute>preferred_username</principal-attribute>
         <credential name="secret">e73e8e95-d88c-42bf-a76b-273be6708018</credential>
     </secure-deployment>
+    <!-- API INTERNA END -->
 </subsystem>

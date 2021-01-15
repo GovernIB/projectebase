@@ -45,6 +45,20 @@
             <type>war</type>
         </dependency>
         <!-- FRONT END -->
+        <!-- API EXTERNA START -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-api-externa</artifactId>
+            <type>war</type>
+        </dependency>
+        <!-- API EXTERNA END -->
+        <!-- API INTERNA START -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-api-interna</artifactId>
+            <type>war</type>
+        </dependency>
+        <!-- API INTERNA END -->
         <!-- APIFIRMASIMPLE START -->
         <dependency>
             <groupId>${groupId}</groupId>
@@ -101,16 +115,6 @@
             <type>ejb</type>
         </dependency>
         <!-- SISTRA2 END -->
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-api-externa</artifactId>
-            <type>war</type>
-        </dependency>
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-api-interna</artifactId>
-            <type>war</type>
-        </dependency>
         <!--
         Mòduls que van dins el lib/
         Tenir en compte a l'hora de incloure dependències només si és imprescindible i no està ja dins
@@ -186,18 +190,22 @@
                             <bundleFileName>${rootArtifactId}-front.war</bundleFileName>
                         </webModule>
                         <!-- FRONT END -->
+                        <!-- API EXTERNA START -->
                         <webModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-api-externa</artifactId>
                             <contextRoot>/${rootArtifactId}/api/externa</contextRoot>
                             <bundleFileName>${rootArtifactId}-api-externa.war</bundleFileName>
                         </webModule>
+                        <!-- API EXTERNA END -->
+                        <!-- API INTERNA START -->
                         <webModule>
                             <groupId>${groupId}</groupId>
                             <artifactId>${rootArtifactId}-api-interna</artifactId>
                             <contextRoot>/${rootArtifactId}/api/interna</contextRoot>
                             <bundleFileName>${rootArtifactId}-api-interna.war</bundleFileName>
                         </webModule>
+                        <!-- API INTERNA END -->
                         <!-- APIFIRMASIMPLE START -->
                         <webModule>
                             <groupId>${groupId}</groupId>

@@ -20,6 +20,12 @@
         <requiredProperty key="perfilFront">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
+        <requiredProperty key="perfilApiInterna">
+          <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
+        <requiredProperty key="perfilApiExterna">
+          <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
         <requiredProperty key="perfilApiFirmaSimple">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>

@@ -42,6 +42,8 @@
      var perfilWS = document.getElementById("generarws").checked;
      var perfilBack = document.getElementById("generarback").checked;
      var perfilFront = document.getElementById("generarfront").checked;
+     var perfilApiInterna = document.getElementById("generarapiinterna").checked;
+     var perfilApiExterna = document.getElementById("generarapiexterna").checked;
      var perfilApiFirmaSimple = document.getElementById("generarapifirmasimple").checked;
      var perfilArxiu = document.getElementById("generararxiu").checked;
      var perfilRegistre = document.getElementById("generarregistre").checked;
@@ -85,6 +87,8 @@
       + " -Dprefixuppercase=" + prefix.toUpperCase() 
       + " -DperfilBack=" + perfilBack
       + " -DperfilFront=" + perfilFront
+      + " -DperfilApiInterna=" + perfilApiInterna
+      + " -DperfilApiExterna=" + perfilApiExterna
       + " -DperfilApiFirmaSimple=" + perfilApiFirmaSimple
       + " -DperfilArxiu=" + perfilArxiu
       + " -DperfilRegistre=" + perfilRegistre
@@ -149,6 +153,18 @@
                   <td>Generar Front</td>
                   <td>
                     <input size=35  id="generarfront" checked="true" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Generar Api Interna</td>
+                  <td>
+                    <input size=35  id="generarapiinterna" checked="false" type="checkbox" onchange="projectnameChange()" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Generar Api Externa</td>
+                  <td>
+                    <input size=35  id="generarapiexterna" checked="false" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
                 <tr>

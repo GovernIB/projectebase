@@ -45,6 +45,20 @@
             <type>war</type>
         </dependency>
         <!-- FRONT END -->
+        <!-- API EXTERNA START -->
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-api-externa</artifactId>
+            <type>war</type>
+        </dependency>
+        <!-- API EXTERNA END -->
+        <!-- API INTERNA START -->
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-api-interna</artifactId>
+            <type>war</type>
+        </dependency>
+        <!-- API INTERNA END -->
         <!-- APIFIRMASIMPLE START -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
@@ -101,16 +115,6 @@
             <type>ejb</type>
         </dependency>
         <!-- SISTRA2 END -->
-        <dependency>
-            <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-api-externa</artifactId>
-            <type>war</type>
-        </dependency>
-        <dependency>
-            <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-api-interna</artifactId>
-            <type>war</type>
-        </dependency>
         <!--
         Mòduls que van dins el lib/
         Tenir en compte a l'hora de incloure dependències només si és imprescindible i no està ja dins
@@ -186,18 +190,22 @@
                             <bundleFileName>projectebase-front.war</bundleFileName>
                         </webModule>
                         <!-- FRONT END -->
+                        <!-- API EXTERNA START -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-api-externa</artifactId>
                             <contextRoot>/projectebase/api/externa</contextRoot>
                             <bundleFileName>projectebase-api-externa.war</bundleFileName>
                         </webModule>
+                        <!-- API EXTERNA END -->
+                        <!-- API INTERNA START -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-api-interna</artifactId>
                             <contextRoot>/projectebase/api/interna</contextRoot>
                             <bundleFileName>projectebase-api-interna.war</bundleFileName>
                         </webModule>
+                        <!-- API INTERNA END -->
                         <!-- APIFIRMASIMPLE START -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>

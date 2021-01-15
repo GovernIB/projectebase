@@ -23,12 +23,12 @@ Per provar el plugin:
 
             http://localhost:8080/projectebase-sistra2/BackofficeService/BackofficeServicePort
 
-        Dins el mòdul projectebase-api s'inclou un Domini SISTRA2 que retorna les unitats adminsitratives actives
-        creades dins projectebase-back.
+        Si s'ha generat el projecte amb el mòdul projectebase-api-interna, dins aquest s'inclou un Domini SISTRA2
+        que retorna les unitats adminsitratives actives creades.
 
         Per provar el domini dins SISTRA2 cal emprar la URL:
 
-            http://localhost:8080/projectebase/api/services/sistra2/dominis/unitats
+            http://localhost:8080/projectebase/api/interna/services/sistra2/dominis/unitats
 
         i emprar opcionalment el paràmetre de filtre: "codiDir3"
 
