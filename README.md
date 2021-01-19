@@ -5,6 +5,8 @@
 
 ***Documentació***
 
+[Manual de generació de projectes amb ProjecteBase i migració d'aplicacions a JBoss EAP 7.2 / Java 11](https://www.caib.es/sites/dgtic/ca/estandards_de_desenvolupament/archivopub.do?ctrl=MCRST299ZI339658&id=339658)
+
 [Carpeta de documentació](./doc)
 
 ***Descripció***
