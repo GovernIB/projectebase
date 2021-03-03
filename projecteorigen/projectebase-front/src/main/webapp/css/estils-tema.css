@@ -2005,7 +2005,7 @@ h2{
 		color: #d03333;
 	}
 
-	/*** BARRA DE BUSQUEDA Y AÑOS ***/
+	/*** BARRA DE BUSQUEDA Y AÃ±OS ***/
 
 	.container-noticias-buscador>*{
 		position: relative;
@@ -2889,7 +2889,7 @@ h2{
 			width: 90%;
 		}
 
-		/* BARRA DE BÚSQUEDA Y AÑOS */
+		/* BARRA DE Bï¿½SQUEDA Y Aï¿½OS */
 
 		div.container-noticias-buscador.con>p{
 			width: 100%;
@@ -3233,7 +3233,7 @@ h2{
 		color: #F00;
 	}
 	
-/*** Personalización gusiteMaps****/	
+/*** Personalizaciï¿½n gusiteMaps****/	
 	
 #info div.gMMInfoWindow h3{
 	font-size: 1.5em !important;
@@ -3359,7 +3359,7 @@ footer * , header *, header *:before, header *:after, footer *:before, footer *:
 .imc-peu-opcions li a { color: #000; text-transform: uppercase; padding: 0 .5em; }
 .imc-peu-opcions li a:hover,
 .imc-peu-opcions li a:focus,
-.imc-peu-opcions li a:active { color: #ee013b; background-color: transparent; }
+.imc-peu-opcions li a:active { color: #DF073D; background-color: transparent; }
 
 .imc-en-rss span { display: inline-block; vertical-align: middle; }
 .imc-en-rss svg { display: inline-block; width: .7em; height: .7em; vertical-align: middle; }
@@ -3367,7 +3367,7 @@ footer * , header *, header *:before, header *:after, footer *:before, footer *:
 
 .imc-en-rss:hover path,
 .imc-en-rss:focus path,
-.imc-en-rss:active path { fill: #ee013b; }
+.imc-en-rss:active path { fill: #DF073D; }
 
 /* xarxes */
 
@@ -3381,7 +3381,7 @@ a.imc-bt-xarxa span { position: fixed; top: -999em; left: -999em; }
 
 a.imc-bt-xarxa:hover,
 a.imc-bt-xarxa:focus,
-a.imc-bt-xarxa:active { background-color: #ee013b; border-color: #ee013b; }
+a.imc-bt-xarxa:active { background-color: #DF073D; border-color: #DF073D; }
 a.imc-bt-xarxa:hover path,
 a.imc-bt-xarxa:focus path,
 a.imc-bt-xarxa:active path { fill: #fff; }
