@@ -33,7 +33,7 @@ import javax.ws.rs.core.Application;
 @OpenAPIDefinition(
         info = @Info(title = "API REST EXTERNA", version = "1.0.0"),
         servers = {
-                @Server(url = "/projectebase/api/externa")
+                @Server(url = "/projectebaseapi/externa")
         }
 )
 public class JAXRSConfiguration extends Application {

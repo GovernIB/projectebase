@@ -35,7 +35,7 @@ import javax.ws.rs.core.Application;
 @OpenAPIDefinition(
         info = @Info(title = "API REST INTERNA", version = "1.0.0"),
         servers = {
-                @Server(url = "/projectebase/api/interna")
+                @Server(url = "/projectebaseapi/interna")
         },
         security = {
                 @SecurityRequirement(name = "basicAuth"),

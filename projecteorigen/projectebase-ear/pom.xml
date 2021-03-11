@@ -194,7 +194,7 @@
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-api-externa</artifactId>
-                            <contextRoot>/projectebase/api/externa</contextRoot>
+                            <contextRoot>/projectebaseapi/externa</contextRoot>
                             <bundleFileName>projectebase-api-externa.war</bundleFileName>
                         </webModule>
                         <!-- API EXTERNA END -->
@@ -202,7 +202,7 @@
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>
                             <artifactId>projectebase-api-interna</artifactId>
-                            <contextRoot>/projectebase/api/interna</contextRoot>
+                            <contextRoot>/projectebaseapi/interna</contextRoot>
                             <bundleFileName>projectebase-api-interna.war</bundleFileName>
                         </webModule>
                         <!-- API INTERNA END -->
