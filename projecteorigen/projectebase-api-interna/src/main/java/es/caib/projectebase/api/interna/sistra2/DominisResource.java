@@ -2,11 +2,11 @@ package es.caib.projectebase.api.interna.sistra2;
 
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
 import es.caib.projectebase.service.model.EstatPublicacio;
+import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RFiltroDominio;
 import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RParametroDominio;
-import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RValoresDominio;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -25,6 +25,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,8 +61,8 @@ public class DominisResource {
             responseCode = "200",
             description = "Domini d'unitats",
             content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = RValoresDominio.class)))
-    public RValoresDominio getDominiUnitats(
+                    schema = @Schema(implementation = ValorsDomini.class)))
+    public ValorsDomini getDominiUnitats(
             @RequestBody(
                     required = true,
                     description = "Filtre",
@@ -75,18 +76,19 @@ public class DominisResource {
         for (RParametroDominio parametro : filtro.getFiltro()) {
             if ("codiDir3".equals(parametro.getCodigo())) {
                 filtres.put("codiDir3", parametro.getValor());
+                LOG.info("FITRAR {}", parametro.getValor());
             } else {
                 LOG.warn("Paràmetre de filtre '{}' no soportat", parametro.getCodigo());
             }
         }
 
         Pagina<UnitatOrganicaDTO> filtered = unitatOrganicaService.findFiltered(0, Integer.MAX_VALUE,
-                filtres, Collections.emptyList());
+                filtres, List.of(Ordre.ascendent("codiDir3")));
 
-        RValoresDominio dominio = new RValoresDominio();
-        dominio.getDatos().addAll(converter.toMapList(filtered.getItems()));
+        ValorsDomini domini = new ValorsDomini();
+        domini.setDatos(converter.toMapList(filtered.getItems()));
 
-        return dominio;
+        return domini;
     }
 
 

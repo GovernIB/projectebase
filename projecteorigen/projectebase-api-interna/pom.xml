@@ -82,6 +82,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.wildfly.arquillian</groupId>
+            <artifactId>wildfly-arquillian-common</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-ejb</artifactId>
             <type>ejb</type>
