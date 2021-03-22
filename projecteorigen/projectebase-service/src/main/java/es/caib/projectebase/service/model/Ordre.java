@@ -1,34 +1,34 @@
 package es.caib.projectebase.service.model;
 
+import java.util.Objects;
+
 /**
  * Representa un criteri d'ordenació per una consulta.
  * Immutable.
  *
+ * @param <T> enumeració que conté els camps vàlids per ordenar
  * @author areus
  */
-public class Ordre {
+public class Ordre<T extends Enum<T> & Atribut> {
 
-    private final String atribut;
+    private final T atribut;
     private final boolean ascendent;
 
-    private Ordre(String atribut, boolean ascendent) {
-        if (atribut == null || atribut.isEmpty()) {
-            throw new IllegalArgumentException("Atribut invàlid: " + atribut);
-        }
-
+    private Ordre(T atribut, boolean ascendent) {
+        Objects.requireNonNull(atribut, "Atribut no pot ser null");
         this.atribut = atribut;
         this.ascendent = ascendent;
     }
 
-    public static Ordre ascendent(String atribut) {
-        return new Ordre(atribut, true);
+    public static <T extends Enum<T> & Atribut> Ordre<T> ascendent(T atribut) {
+        return new Ordre<>(atribut, true);
     }
 
-    public static Ordre descendent(String atribut) {
-        return new Ordre(atribut, false);
+    public static <T extends Enum<T> & Atribut> Ordre<T> descendent(T atribut) {
+        return new Ordre<>(atribut, false);
     }
 
-    public String getAtribut() {
+    public T getAtribut() {
         return atribut;
     }
 

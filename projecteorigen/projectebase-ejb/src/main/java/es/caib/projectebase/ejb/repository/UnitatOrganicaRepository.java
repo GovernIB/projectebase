@@ -1,6 +1,7 @@
 package es.caib.projectebase.ejb.repository;
 
 import es.caib.projectebase.persistence.model.UnitatOrganica;
+import es.caib.projectebase.service.model.AtributUnitat;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 
@@ -19,9 +20,9 @@ public interface UnitatOrganicaRepository extends CrudRepository<UnitatOrganica,
     Optional<UnitatOrganica> findByCodiDir3(String codiDir3);
 
     List<UnitatOrganicaDTO> findPagedByFilterAndOrder(int firstResult, int maxResult,
-                                                      Map<String, Object> filters,
-                                                      List<Ordre> ordenacio);
+                                                      Map<AtributUnitat, Object> filter,
+                                                      List<Ordre<AtributUnitat>> ordenacio);
 
-    long countByFilter(Map<String, Object> filters);
+    long countByFilter(Map<AtributUnitat, Object> filter);
 
 }

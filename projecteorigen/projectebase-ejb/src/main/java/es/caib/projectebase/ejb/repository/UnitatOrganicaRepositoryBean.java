@@ -2,6 +2,7 @@ package es.caib.projectebase.ejb.repository;
 
 import es.caib.projectebase.persistence.model.UnitatOrganica;
 import es.caib.projectebase.persistence.model.UnitatOrganica_;
+import es.caib.projectebase.service.model.AtributUnitat;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
 
@@ -43,8 +44,8 @@ public class UnitatOrganicaRepositoryBean extends AbstractCrudRepository<UnitatO
 
     @Override
     public List<UnitatOrganicaDTO> findPagedByFilterAndOrder(int firstResult, int maxResult,
-                                                             Map<String, Object> filters,
-                                                             List<Ordre> ordenacio) {
+                                                             Map<AtributUnitat, Object> filter,
+                                                             List<Ordre<AtributUnitat>> ordenacio) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<UnitatOrganicaDTO> criteriaQuery = builder.createQuery(UnitatOrganicaDTO.class);
         Root<UnitatOrganica> root = criteriaQuery.from(UnitatOrganica.class);
@@ -56,9 +57,9 @@ public class UnitatOrganicaRepositoryBean extends AbstractCrudRepository<UnitatO
                 root.get(UnitatOrganica_.dataCreacio),
                 root.get(UnitatOrganica_.estat)));
 
-        CriteriaHelper helper = CriteriaHelper.getInstance(builder, root);
-        helper.applyFilters(filters, criteriaQuery);
-        helper.applyOrder(ordenacio, criteriaQuery);
+        UnitatCriteriaHelper unitatCriteriaHelper = new UnitatCriteriaHelper(builder, root);
+        criteriaQuery.where(unitatCriteriaHelper.getPredicates(filter));
+        criteriaQuery.orderBy(unitatCriteriaHelper.getOrderList(ordenacio));
 
         TypedQuery<UnitatOrganicaDTO> query = entityManager.createQuery(criteriaQuery);
         query.setFirstResult(firstResult);
@@ -67,15 +68,15 @@ public class UnitatOrganicaRepositoryBean extends AbstractCrudRepository<UnitatO
     }
 
     @Override
-    public long countByFilter(Map<String, Object> filters) {
+    public long countByFilter(Map<AtributUnitat, Object> filter) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
         Root<UnitatOrganica> root = criteriaQuery.from(UnitatOrganica.class);
 
         criteriaQuery.select(builder.count(root));
 
-        CriteriaHelper helper = CriteriaHelper.getInstance(builder, root);
-        helper.applyFilters(filters, criteriaQuery);
+        UnitatCriteriaHelper unitatCriteriaHelper = new UnitatCriteriaHelper(builder, root);
+        criteriaQuery.where(unitatCriteriaHelper.getPredicates(filter));
 
         TypedQuery<Long> query = entityManager.createQuery(criteriaQuery);
         return query.getSingleResult();

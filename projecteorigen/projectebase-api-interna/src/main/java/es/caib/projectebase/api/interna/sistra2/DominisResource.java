@@ -1,6 +1,7 @@
 package es.caib.projectebase.api.interna.sistra2;
 
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
+import es.caib.projectebase.service.model.AtributUnitat;
 import es.caib.projectebase.service.model.EstatPublicacio;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Pagina;
@@ -23,7 +24,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,12 +70,12 @@ public class DominisResource {
                             schema = @Schema(implementation = RFiltroDominio.class)))
             @NotNull RFiltroDominio filtro) {
 
-        Map<String, Object> filtres = new HashMap<>();
-        filtres.put("estat", EstatPublicacio.ACTIU);
+        Map<AtributUnitat, Object> filtres = new HashMap<>();
+        filtres.put(AtributUnitat.estat, EstatPublicacio.ACTIU);
 
         for (RParametroDominio parametro : filtro.getFiltro()) {
             if ("codiDir3".equals(parametro.getCodigo())) {
-                filtres.put("codiDir3", parametro.getValor());
+                filtres.put(AtributUnitat.codiDir3, parametro.getValor());
                 LOG.info("FITRAR {}", parametro.getValor());
             } else {
                 LOG.warn("Paràmetre de filtre '{}' no soportat", parametro.getCodigo());
@@ -83,7 +83,7 @@ public class DominisResource {
         }
 
         Pagina<UnitatOrganicaDTO> filtered = unitatOrganicaService.findFiltered(0, Integer.MAX_VALUE,
-                filtres, List.of(Ordre.ascendent("codiDir3")));
+                filtres, List.of(Ordre.ascendent(AtributUnitat.codiDir3)));
 
         ValorsDomini domini = new ValorsDomini();
         domini.setDatos(converter.toMapList(filtered.getItems()));

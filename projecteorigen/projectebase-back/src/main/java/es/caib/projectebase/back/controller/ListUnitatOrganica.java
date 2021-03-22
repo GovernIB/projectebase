@@ -2,6 +2,7 @@ package es.caib.projectebase.back.controller;
 
 import es.caib.projectebase.back.utils.PFUtils;
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
+import es.caib.projectebase.service.model.AtributUnitat;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
@@ -69,11 +70,12 @@ public class ListUnitatOrganica extends AbstractController implements Serializab
                                                 Map<String, FilterMeta> filterBy) {
                 LOG.info("filterBy: {}", filterBy);
 
-                List<Ordre> ordenacions = PFUtils.sortMetaToOrdre(sortBy.values());
-                Map<String, Object> filtre = PFUtils.filterMetaToFilter(filterBy);
+                // Dins JSF emprarem noms que coincideixin amb els valors de l'enumeració AtributUnitat
+                Map<AtributUnitat, Object> filter = PFUtils.filterMetaToFilter(AtributUnitat.class, filterBy);
+                List<Ordre<AtributUnitat>> ordenacions = PFUtils.sortMetaToOrdre(AtributUnitat.class, sortBy.values());
 
                 Pagina<UnitatOrganicaDTO> pagina = unitatOrganicaService
-                        .findFiltered(first, pageSize, filtre, ordenacions);
+                        .findFiltered(first, pageSize, filter, ordenacions);
 
                 setRowCount((int) pagina.getTotal());
                 return pagina.getItems();

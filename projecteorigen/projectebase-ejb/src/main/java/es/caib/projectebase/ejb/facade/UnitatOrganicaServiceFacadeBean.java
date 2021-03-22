@@ -11,6 +11,7 @@ import es.caib.projectebase.service.exception.RecursNoTrobatException;
 import es.caib.projectebase.service.exception.UnitatDuplicadaException;
 import es.caib.projectebase.service.exception.UnitatTeProcedimentsException;
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
+import es.caib.projectebase.service.model.AtributUnitat;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
@@ -87,11 +88,11 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
 
     @Override
     @PermitAll
-    public Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<String, Object> filters,
-                                                  List<Ordre> ordenacio) {
+    public Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<AtributUnitat, Object> filter,
+                                                  List<Ordre<AtributUnitat>> ordenacio) {
 
-        List<UnitatOrganicaDTO> items = repository.findPagedByFilterAndOrder(firstResult, maxResult, filters, ordenacio);
-        long total = repository.countByFilter(filters);
+        List<UnitatOrganicaDTO> items = repository.findPagedByFilterAndOrder(firstResult, maxResult, filter, ordenacio);
+        long total = repository.countByFilter(filter);
 
         return new Pagina<>(items, total);
     }

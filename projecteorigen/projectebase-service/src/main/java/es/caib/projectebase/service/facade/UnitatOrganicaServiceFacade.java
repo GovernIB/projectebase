@@ -3,6 +3,7 @@ package es.caib.projectebase.service.facade;
 import es.caib.projectebase.service.exception.RecursNoTrobatException;
 import es.caib.projectebase.service.exception.UnitatDuplicadaException;
 import es.caib.projectebase.service.exception.UnitatTeProcedimentsException;
+import es.caib.projectebase.service.model.AtributUnitat;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
@@ -52,10 +53,10 @@ public interface UnitatOrganicaServiceFacade {
      * Retorna una pàgina de unitats que compleixen els filtres i les ordenacions indicades
      * @param firstResult primer resultat del rang de la pàgina
      * @param maxResult nombre d'elements màxim de la pàgina.
-     * @param filters filtres a aplicar
+     * @param filter filtres a aplicar
      * @param ordenacio criteris d'ordenació
      * @return una pàgina amb el nombre d'unitats que compleixen els filtres i la llista d'unitats pel rang indicat.
      */
     Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult,
-                                           Map<String, Object> filters, List<Ordre> ordenacio);
+                                           Map<AtributUnitat, Object> filter, List<Ordre<AtributUnitat>> ordenacio);
 }

@@ -1,15 +1,20 @@
 package es.caib.projectebase.back.utils;
 
+import es.caib.projectebase.service.model.Atribut;
 import es.caib.projectebase.service.model.Ordre;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Utilitats relaconades amb Primefaces
+ * Utilitats relacionades amb Primefaces
  *
  * @author areus
  */
@@ -21,20 +26,27 @@ public final class PFUtils {
     /**
      * Converteix una llista de SortMeta, l'abstracció que empra Primefaces per l'ordenaicó,
      * a la nostra abstracció: Ordre.
+     * Caldrà que el nom del camp dins jsf es correspongui amb el valor de l'enumeració de l'Atribut.
      */
-    public static List<Ordre> sortMetaToOrdre(Collection<SortMeta> multiSortMeta) {
+    public static <T extends Enum<T> & Atribut> List<Ordre<T>> sortMetaToOrdre(Class<T> type,
+                                                                               Collection<SortMeta> multiSortMeta) {
         if (multiSortMeta == null || multiSortMeta.isEmpty()) {
             return Collections.emptyList();
         }
 
         return multiSortMeta.stream().map(
                     sortMeta -> (sortMeta.getSortOrder() == SortOrder.ASCENDING ?
-                            Ordre.ascendent(sortMeta.getSortField()) :
-                            Ordre.descendent(sortMeta.getSortField()))
+                            Ordre.ascendent(Enum.valueOf(type, sortMeta.getSortField())) :
+                            Ordre.descendent(Enum.valueOf(type, sortMeta.getSortField())))
             ).collect(Collectors.toList());
     }
 
-    public static Map<String, Object> filterMetaToFilter(Map<String, FilterMeta> filterBy) {
+    /**
+     * Converteix una map de FilterMeta, l'abstracció que empra Primefaces per el filtratge, amb un map d'atributs.
+     * Caldrà que el nom del camp dins jsf es correspongui amb el valor de l'enumeració de l'Atribut.
+     */
+    public static <T extends Enum<T> & Atribut> Map<T, Object> filterMetaToFilter(Class<T> type,
+                                                                                  Map<String, FilterMeta> filterBy) {
         if (filterBy == null || filterBy.isEmpty()) {
             return Collections.emptyMap();
         }
@@ -42,7 +54,7 @@ public final class PFUtils {
         return filterBy.entrySet().stream()
                 .filter(e -> Objects.nonNull(e.getValue().getFilterValue()))
                 .collect(Collectors.toMap(
-                        Map.Entry::getKey,
+                        e -> Enum.valueOf(type, e.getKey()),
                         e -> e.getValue().getFilterValue()
                 ));
     }

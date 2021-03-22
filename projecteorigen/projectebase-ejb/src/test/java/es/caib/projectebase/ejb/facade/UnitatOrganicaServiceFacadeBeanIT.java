@@ -4,6 +4,7 @@ import es.caib.projectebase.service.exception.RecursNoTrobatException;
 import es.caib.projectebase.service.exception.UnitatDuplicadaException;
 import es.caib.projectebase.service.exception.UnitatTeProcedimentsException;
 import es.caib.projectebase.service.facade.UnitatOrganicaServiceFacade;
+import es.caib.projectebase.service.model.AtributUnitat;
 import es.caib.projectebase.service.model.EstatPublicacio;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Pagina;
@@ -184,7 +185,8 @@ public class UnitatOrganicaServiceFacadeBeanIT extends AbstractFacadeIT {;
         // No calen permisos
         //userManager.exec(() -> {
             Pagina<UnitatOrganicaDTO> llistat = unitatOrganicaServiceFacade.findFiltered(1, 10,
-                    Collections.singletonMap("codiDir3", "A"), List.of(Ordre.descendent("codiDir3")));
+                    Collections.singletonMap(AtributUnitat.codiDir3, "A"),
+                    List.of(Ordre.descendent(AtributUnitat.codiDir3)));
             Assert.assertEquals(12L, llistat.getTotal());
             Assert.assertEquals(10, llistat.getItems().size());
             Assert.assertEquals("A00000011", llistat.getItems().get(0).getCodiDir3());
