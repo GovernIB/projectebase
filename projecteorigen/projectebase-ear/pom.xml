@@ -115,6 +115,14 @@
             <type>ejb</type>
         </dependency>
         <!-- SISTRA2 END -->
+        <!-- PINBAL START -->
+        <dependency>
+            <groupId>es.caib.projectebase</groupId>
+            <artifactId>projectebase-pinbal</artifactId>
+            <version>1.0.0</version>
+            <type>war</type>
+        </dependency>
+        <!-- PINBAL END -->
         <!--
         Mòduls que van dins el lib/
         Tenir en compte a l'hora de incloure dependències només si és imprescindible i no està ja dins
