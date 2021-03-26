@@ -16,6 +16,10 @@ import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * Anotació per validar que els camps del tipus ScspTitular.ScspTipoDocumentacion estan
+ * dins un dels valors possibles.
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Documented
@@ -24,7 +28,7 @@ public @interface TipoDocumentacionSubset {
 
     ScspTitular.ScspTipoDocumentacion[] anyOf();
 
-    String message() default "must be any of {anyOf}";
+    String message() default "ha de ser qualsevol de {anyOf}";
 
     Class<?>[] groups() default {};
 

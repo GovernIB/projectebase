@@ -1,5 +1,6 @@
 package es.caib.projectebase.pinbal;
 
+import es.caib.pinbal.client.recobriment.model.ScspJustificante;
 import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
 import es.caib.pinbal.client.recobriment.svddgpviws02.ClientSvddgpviws02;
 import org.slf4j.Logger;
@@ -11,6 +12,9 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Adapter entorn al client del servei de verificació d'identitat.
+ */
 @ApplicationScoped
 public class ClientServeiVerificacioIdentitat {
 
@@ -35,9 +39,8 @@ public class ClientServeiVerificacioIdentitat {
         return clientSvddgpviws02.peticionSincrona(List.of(solicituds));
     }
 
-    public ScspRespuesta peticioSincrona(List<ClientSvddgpviws02.SolicitudSvddgpviws02> solicituds) throws IOException {
-        return clientSvddgpviws02.peticionSincrona(solicituds);
+    public ScspJustificante getJustificant(String idPeticio) throws IOException {
+        return clientSvddgpviws02.getJustificante(idPeticio);
     }
-
 
 }

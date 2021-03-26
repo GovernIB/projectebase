@@ -58,6 +58,10 @@
                     value="Verificar">
                     <f:ajax execute="@form" render=":messages :resposta @form" />
                 </h:commandButton>
+                <h:commandButton action="#{sviController.init()}" styleClass="btn btn-secondary"
+                    value="Neteja">
+                    <f:ajax render=":messages :resposta @form" />
+                </h:commandButton>
                 </h:form>
             </div>
             <div class="col-md-6" jsf:id="resposta">
@@ -70,6 +74,17 @@
                         <dt>Codi estat</dt><dd>#{sviController.resposta.atributos.estado.codigoEstado}</dd>
                         <dt>Literal Error</dt><dd>#{sviController.resposta.atributos.estado.literalError}</dd>
                     </dl>
+                    <ul>
+                        <ui:repeat var="transmisio" value="#{sviController.resposta.transmisiones}">
+                            <li>
+                                #{transmisio.datosEspecificos}
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                    <h:form id="justificantForm">
+                        <h:commandLink action="#{sviController.descarregarJustificant()}" 
+                                       value="Descarregar justificant"/>
+                    </h:form>
                 </ui:fragment>
             </div>
         </div>

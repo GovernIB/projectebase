@@ -269,6 +269,13 @@
                             <bundleFileName>projectebase-sistra2.jar</bundleFileName>
                         </ejbModule>
                         <!-- SISTRA2 END -->
+                        <!-- PINBAL START -->
+                        <webModule>
+                            <groupId>es.caib.projectebase</groupId>
+                            <artifactId>projectebase-pinbal</artifactId>
+                            <contextRoot>/projectebase/pinbal</contextRoot>
+                            <bundleFileName>projectebase-pinbal.war</bundleFileName>
+                        </webModule>                        <!-- PINBAL END -->
                         <!-- WS START -->
                         <ejbModule>
                             <groupId>es.caib.projectebase</groupId>

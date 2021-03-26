@@ -1,16 +1,16 @@
 package es.caib.projectebase.pinbal;
 
 import es.caib.pinbal.client.recobriment.model.ScspFuncionario;
+import es.caib.pinbal.client.recobriment.model.ScspJustificante;
 import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
 import es.caib.pinbal.client.recobriment.model.ScspSolicitante;
-import es.caib.pinbal.client.recobriment.model.ScspTitular;
-import es.caib.pinbal.client.recobriment.model.ScspTransmisionDatos;
 import es.caib.pinbal.client.recobriment.svddgpviws02.ClientSvddgpviws02;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -18,6 +18,8 @@ import javax.inject.Named;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.io.Serializable;
+
+import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 
 /**
  * Controlador d'exemple per emprar el servei de verificació d'identitat.
@@ -42,9 +44,9 @@ public class ServeiVerificacioIdentitatController implements Serializable {
     private FacesContext context;
 
     @Valid
-    private VerificacioModel model;
+    private TitularModel model;
 
-    public VerificacioModel getModel() {
+    public TitularModel getModel() {
         return model;
     }
 
@@ -57,13 +59,14 @@ public class ServeiVerificacioIdentitatController implements Serializable {
     @PostConstruct
     public void init() {
         LOG.info("init");
-        model = new VerificacioModel();
+        model = new TitularModel();
+        resposta = null;
     }
 
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-    public void verificarIdentitat() throws IOException {
+    public void verificarIdentitat() {
         LOG.info("verificarIdentitat");
 
         ClientSvddgpviws02.SolicitudSvddgpviws02 solicitud = new ClientSvddgpviws02.SolicitudSvddgpviws02();
@@ -72,20 +75,47 @@ public class ServeiVerificacioIdentitatController implements Serializable {
         solicitud.setUnidadTramitadora("Departament de test");
         solicitud.setFinalidad("Test peticionSincrona");
         solicitud.setConsentimiento(ScspSolicitante.ScspConsentimiento.Si);
+
         ScspFuncionario funcionario = new ScspFuncionario();
         funcionario.setNifFuncionario("00000000T");
         funcionario.setNombreCompletoFuncionario("Funcionari CAIB");
         solicitud.setFuncionario(funcionario);
 
-        ScspTitular titular = new ScspTitular();
-        titular.setTipoDocumentacion(model.getTipusDocumentacio());
-        titular.setDocumentacion(model.getDocumentacio());
-        titular.setNombre(model.getNom());
-        titular.setApellido1(model.getPrimerCognom());
-        titular.setApellido2(model.getSegonCognom());
-        solicitud.setTitular(titular);
-        
-        resposta = clientSvi.peticioSincrona(solicitud);
-        LOG.info("idPeticion: {}", resposta.getAtributos().getIdPeticion());
+        solicitud.setTitular(model.toScspTitular());
+
+        try {
+            resposta = clientSvi.peticioSincrona(solicitud);
+        } catch (Exception e) {
+            FacesMessage message = new FacesMessage(SEVERITY_ERROR, "Error al client Pinbal", e.getMessage());
+            context.addMessage(null, message);
+        }
+    }
+
+    public void descarregarJustificant() throws IOException {
+        if (resposta == null) {
+            throw new IllegalStateException("No hi ha resposta");
+        }
+
+        String idPeticio = resposta.getAtributos().getIdPeticion();
+        ScspJustificante justificant = clientSvi.getJustificant(idPeticio);
+        download(justificant.getNom(), justificant.getContentType(), justificant.getContingut());
+    }
+
+    /**
+     * Mètode d'utilitat per descarregar un fitxer
+     *
+     * @param filename Nom del fitxer
+     * @param mimetype tipus mime pel content-type
+     * @param content contingut del fitxer
+     * @throws IOException Si es produeix un error I/O
+     */
+    private void download(String filename, String mimetype, byte[] content) throws IOException {
+        ExternalContext ec = context.getExternalContext();
+        ec.responseReset(); // Hem de resetejar la reposta per si hi ha cap capçalera o res.
+        ec.setResponseContentType(mimetype);
+        ec.setResponseContentLength(content.length);
+        ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+        ec.getResponseOutputStream().write(content);
+        context.responseComplete(); // Important perquè JSF no intenti seguir processant la resposta.
     }
 }

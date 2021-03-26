@@ -8,13 +8,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-public class VerificacioModel implements Serializable {
+/**
+ * Dades emprades al formulari per indicar les dades a verificar.
+ */
+public class TitularModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @NotEmpty
     @Size(max=9) private String documentacio;
 
+    /**
+     * Tipo de documentació. Aquesta enumeració permet molts de valors, però el servei concret de verificació
+     * d'identitat només permet emprar DNI o NIE, per això validam que sigui un d'aquests valors.
+     */
     @NotNull
     @TipoDocumentacionSubset(anyOf = {ScspTitular.ScspTipoDocumentacion.DNI, ScspTitular.ScspTipoDocumentacion.NIE})
     private ScspTitular.ScspTipoDocumentacion tipusDocumentacio;
@@ -61,5 +68,15 @@ public class VerificacioModel implements Serializable {
 
     public void setSegonCognom(String segonCognom) {
         this.segonCognom = segonCognom;
+    }
+
+    public ScspTitular toScspTitular() {
+        ScspTitular titular = new ScspTitular();
+        titular.setTipoDocumentacion(tipusDocumentacio);
+        titular.setDocumentacion(documentacio);
+        titular.setNombre(nom);
+        titular.setApellido1(primerCognom);
+        titular.setApellido2(segonCognom);
+        return titular;
     }
 }

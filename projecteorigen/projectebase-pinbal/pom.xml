@@ -24,14 +24,6 @@
             <artifactId>jboss-javaee-8.0</artifactId>
             <type>pom</type>
             <scope>provided</scope>
-            <!--
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jboss.spec.javax.ws.rs</groupId>
-                    <artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
-                </exclusion>
-            </exclusions>
-            -->
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -51,6 +43,7 @@
             <artifactId>pinbal-client</artifactId>
             <version>${pinbal-client.version}</version>
             <exclusions>
+                <!-- evitar conflicte amb JAX-RS de JBoss -->
                 <exclusion>
                     <groupId>javax.ws.rs</groupId>
                     <artifactId>jsr311-api</artifactId>

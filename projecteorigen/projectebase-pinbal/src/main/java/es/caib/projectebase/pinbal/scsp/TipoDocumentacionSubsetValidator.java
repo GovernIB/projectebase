@@ -6,6 +6,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 
+/**
+ * Permet validar que un camp de tipus ScspTitular.ScspTipoDocumentacion té un dels valors permsos.
+ */
 public class TipoDocumentacionSubsetValidator
         implements ConstraintValidator<TipoDocumentacionSubset, ScspTitular.ScspTipoDocumentacion> {
 
