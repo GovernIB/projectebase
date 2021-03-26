@@ -1,6 +1,5 @@
 package es.caib.projectebase.pinbal;
 
-import es.caib.pinbal.client.recobriment.model.ScspFuncionario;
 import es.caib.pinbal.client.recobriment.model.ScspJustificante;
 import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
 import es.caib.pinbal.client.recobriment.model.ScspSolicitante;
@@ -39,15 +38,25 @@ public class ServeiVerificacioIdentitatController implements Serializable {
      */
     @Inject
     private ClientServeiVerificacioIdentitat clientSvi;
+
+    @Inject
+    private Configuracio configuracio;
     
     @Inject
     private FacesContext context;
 
     @Valid
-    private TitularModel model;
+    private TitularModel titular;
 
-    public TitularModel getModel() {
-        return model;
+    public TitularModel getTitular() {
+        return titular;
+    }
+
+    @Valid
+    private FuncionariModel funcionari;
+
+    public FuncionariModel getFuncionari() {
+        return funcionari;
     }
 
     private ScspRespuesta resposta;
@@ -57,9 +66,16 @@ public class ServeiVerificacioIdentitatController implements Serializable {
     }
 
     @PostConstruct
-    public void init() {
+    protected void init() {
         LOG.info("init");
-        model = new TitularModel();
+        titular = new TitularModel();
+        funcionari = new FuncionariModel();
+    }
+
+    /**
+     * Neteja la resposta
+     */
+    public void neteja() {
         resposta = null;
     }
 
@@ -70,18 +86,14 @@ public class ServeiVerificacioIdentitatController implements Serializable {
         LOG.info("verificarIdentitat");
 
         ClientSvddgpviws02.SolicitudSvddgpviws02 solicitud = new ClientSvddgpviws02.SolicitudSvddgpviws02();
-        solicitud.setIdentificadorSolicitante("S0711001H");
-        solicitud.setCodigoProcedimiento("CODSVDR_GBA_20121107");
-        solicitud.setUnidadTramitadora("Departament de test");
-        solicitud.setFinalidad("Test peticionSincrona");
+        solicitud.setIdentificadorSolicitante(configuracio.getOrganismeSolicitant());
+        solicitud.setUnidadTramitadora(configuracio.getUnitatTramitadora());
+        solicitud.setCodigoProcedimiento(configuracio.getCodiProcediment());
+        solicitud.setFinalidad(configuracio.getFinalitat());
         solicitud.setConsentimiento(ScspSolicitante.ScspConsentimiento.Si);
 
-        ScspFuncionario funcionario = new ScspFuncionario();
-        funcionario.setNifFuncionario("00000000T");
-        funcionario.setNombreCompletoFuncionario("Funcionari CAIB");
-        solicitud.setFuncionario(funcionario);
-
-        solicitud.setTitular(model.toScspTitular());
+        solicitud.setFuncionario(funcionari.toScspFuncionario());
+        solicitud.setTitular(titular.toScspTitular());
 
         try {
             resposta = clientSvi.peticioSincrona(solicitud);
@@ -91,6 +103,10 @@ public class ServeiVerificacioIdentitatController implements Serializable {
         }
     }
 
+    /**
+     * Cridat per obtenir el justificant de la petició en curs.
+     * @throws IOException si es produeix un error de comunicació
+     */
     public void descarregarJustificant() throws IOException {
         if (resposta == null) {
             throw new IllegalStateException("No hi ha resposta");

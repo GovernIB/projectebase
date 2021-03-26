@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
- * Dades emprades al formulari per indicar les dades a verificar.
+ * Dades emprades al formulari per indicar les dades a verificar del titular.
  */
 public class TitularModel implements Serializable {
 
