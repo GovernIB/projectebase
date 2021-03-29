@@ -15,6 +15,12 @@
         <validation-mode>CALLBACK</validation-mode>
 
         <properties>
+            <!--
+            Per un bug a Hibernate, el JBoss EAP 7.2 que no tenen el patch 9 no detecten correctament
+            les versions d'Oracle superiors a la 12. Per això cal definir explicitament el dialect.
+            -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
+
             <property name="hibernate.jdbc.batch_size" value="50"/>
             <property name="hibernate.order_updates" value="true"/>
             <property name="hibernate.order_inserts" value="true"/>

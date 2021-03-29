@@ -47,6 +47,9 @@
         <requiredProperty key="perfilSistra2">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
+        <requiredProperty key="perfilPinbal">
+          <validationRegex>^(true|false)$</validationRegex>
+        </requiredProperty>
         <requiredProperty key="perfilBatSh">
           <validationRegex>^(true|false)$</validationRegex>
           <defaultValue>false</defaultValue>
@@ -337,6 +340,7 @@
           <directory>src/test/resources</directory>
           <includes>
             <include>**/*.xml</include>
+            <include>**/*.sql</include>
 			<include>**/*.properties</include>
           </includes>
         </fileSet>
@@ -698,6 +702,51 @@
           </includes>
         </fileSet>
 		-->
+        <fileSet encoding="UTF-8">
+          <directory>src/main/webapp</directory>
+          <includes>
+            <include>**/*.css</include>
+            <include>**/*.js</include>
+            <include>**/*.map</include>
+            <include>**/*.ttf</include>
+            <include>**/*.svg</include>
+            <include>**/*.png</include>
+            <include>**/*.otf</include>
+            <include>**/*.woff</include>
+            <include>**/*.woff2</include>
+            <include>**/*.eot</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/webapp</directory>
+          <includes>
+            <include>**/*.xhtml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/webapp/WEB-INF</directory>
+          <includes>
+            <include>beans.xml</include>
+            <include>faces-config.xml</include>
+            <include>web.xml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>    
+	<module id="${rootArtifactId}-pinbal" dir="__rootArtifactId__-pinbal" name="${rootArtifactId}-pinbal">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>readme.txt</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
         <fileSet encoding="UTF-8">
           <directory>src/main/webapp</directory>
           <includes>

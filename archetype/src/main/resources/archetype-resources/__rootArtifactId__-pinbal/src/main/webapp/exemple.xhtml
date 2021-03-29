@@ -1,0 +1,106 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:param name="title" value="Exemple SVDDGPVIWS02 - Verificació de dades d'identitat" />
+
+    <ui:define name="metadata">
+        <f:metadata />
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="col">
+                <h:messages id="messages" globalOnly="true" showDetail="true" errorStyle="color: red"
+                    infoStyle="color: green" warnStyle="color: yellow" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h:form id="verificacioForm">
+                <h3>Dades funcionari:</h3>
+                <div class="form-group">
+                    <h:outputLabel for="nif">NIF</h:outputLabel>
+                    <h:inputText id="nif" value="#{sviController.funcionari.nif}"
+                                 styleClass="form-control" />
+                    <h:message for="nif" errorStyle="color: red"/>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="nomComplet">Nom complet</h:outputLabel>
+                    <h:inputText id="nomComplet" value="#{sviController.funcionari.nomComplet}"
+                                 styleClass="form-control" />
+                    <h:message for="nomComplet" errorStyle="color: red"/>
+                </div>                
+                <h3>Dades a verficar:</h3>
+                <div class="form-group">
+                    <h:outputLabel for="tipusDocumentacio">Tipus Documentació</h:outputLabel>
+                    <h:selectOneMenu id="tipusDocumentacio" value="#{sviController.titular.tipusDocumentacio}"
+                                 styleClass="form-control">
+                        <f:selectItem itemLabel="DNI" itemValue="DNI"/>
+                        <f:selectItem itemLabel="NIE" itemValue="NIE"/>
+                    </h:selectOneMenu>
+                    <h:message for="tipusDocumentacio" errorStyle="color: red"/>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="documentacio">Documentació</h:outputLabel>
+                    <h:inputText id="documentacio" value="#{sviController.titular.documentacio}"
+                                 styleClass="form-control" />
+                    <h:message for="documentacio" errorStyle="color: red"/>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="primerCognom">Primer cognom</h:outputLabel>
+                    <h:inputText id="primerCognom" value="#{sviController.titular.primerCognom}"
+                                 styleClass="form-control" />
+                    <h:message for="primerCognom" errorStyle="color: red"/>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="segonCognom">Segon cognom</h:outputLabel>
+                    <h:inputText id="segonCognom" value="#{sviController.titular.segonCognom}"
+                                 styleClass="form-control" />
+                    <h:message for="segonCognom" errorStyle="color: red"/>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="nom">Nom</h:outputLabel>
+                    <h:inputText id="nom" value="#{sviController.titular.nom}"
+                                 styleClass="form-control" />
+                    <h:message for="nom" errorStyle="color: red"/>
+                </div>                    
+                <h:commandButton action="#{sviController.verificarIdentitat()}" styleClass="btn btn-primary"
+                    value="Verificar">
+                    <f:ajax execute="@form" render=":messages :resposta @form" />
+                </h:commandButton>
+                <h:commandButton action="#{sviController.neteja()}" styleClass="btn btn-secondary"
+                    value="Neteja">
+                    <f:ajax render=":messages :resposta" />
+                </h:commandButton>
+                </h:form>
+            </div>
+            <div class="col-md-6" jsf:id="resposta">
+                <ui:fragment rendered="#{not empty sviController.resposta}">
+                    <h3>Resposta</h3>
+                    <dl>
+                        <dt>Id Petició</dt><dd>#{sviController.resposta.atributos.idPeticion}</dd>
+                        <dt>Codi Certificat</dt><dd>#{sviController.resposta.atributos.codigoCertificado}</dd>
+                        <dt>Time stamp</dt><dd>#{sviController.resposta.atributos.timeStamp}</dd>
+                        <dt>Codi estat</dt><dd>#{sviController.resposta.atributos.estado.codigoEstado}</dd>
+                        <dt>Literal Error</dt><dd>#{sviController.resposta.atributos.estado.literalError}</dd>
+                    </dl>
+                    <ul>
+                        <ui:repeat var="transmisio" value="#{sviController.resposta.transmisiones}">
+                            <li>
+                                #{transmisio.datosEspecificos}
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                    <h:form id="justificantForm">
+                        <h:commandLink action="#{sviController.descarregarJustificant()}" 
+                                       value="Descarregar justificant"/>
+                    </h:form>
+                </ui:fragment>
+            </div>
+        </div>
+       
+    </ui:define>
+</ui:composition>

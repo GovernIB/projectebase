@@ -38,7 +38,7 @@ import javax.ws.rs.core.Application;
 @OpenAPIDefinition(
         info = @Info(title = "API REST INTERNA", version = "${version}"),
         servers = {
-                @Server(url = "/${parentArtifactId}/api/interna")
+                @Server(url = "/${parentArtifactId}api/interna")
         },
         security = {
                 @SecurityRequirement(name = "basicAuth"),

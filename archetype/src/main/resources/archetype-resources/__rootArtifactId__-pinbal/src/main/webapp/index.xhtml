@@ -1,0 +1,22 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:param name="title" value="Exemple PINBAL" />
+    <ui:define name="content">
+        <div class="row">
+            <div class="col">
+                <p>
+                    Mòdul d'exemple per realitzar consultes al Servei de Verificació de Dades d'Identitat emprant el
+                    client PINBAL definit a:<br />
+                    <a href="https://github.com/GovernIB/pinbal/blob/pinbal-1.4/pinbal-client/">
+                        https://github.com/GovernIB/pinbal/blob/pinbal-1.4/pinbal-client/
+                    </a>
+                </p>
+                <p>
+                    <h:link outcome="/exemple">Veure l'exemple</h:link>
+                </p>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

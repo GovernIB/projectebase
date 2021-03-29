@@ -31,7 +31,7 @@ Per provar el plugin:
 
         Per provar el domini dins SISTRA2 cal emprar la URL:
 
-            http://localhost:8080/${rootArtifactId}/api/interna/services/sistra2/dominis/unitats
+            http://localhost:8080/${rootArtifactId}api/interna/services/sistra2/dominis/unitats
 
         i emprar opcionalment el paràmetre de filtre: "codiDir3"
 

@@ -14,6 +14,7 @@ import ${package}.service.exception.RecursNoTrobatException;
 import ${package}.service.exception.UnitatDuplicadaException;
 import ${package}.service.exception.UnitatTeProcedimentsException;
 import ${package}.service.facade.UnitatOrganicaServiceFacade;
+import ${package}.service.model.AtributUnitat;
 import ${package}.service.model.Ordre;
 import ${package}.service.model.Pagina;
 import ${package}.service.model.UnitatOrganicaDTO;
@@ -90,11 +91,11 @@ public class UnitatOrganicaServiceFacadeBean implements UnitatOrganicaServiceFac
 
     @Override
     @PermitAll
-    public Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<String, Object> filters,
-                                                  List<Ordre> ordenacio) {
+    public Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult, Map<AtributUnitat, Object> filter,
+                                                  List<Ordre<AtributUnitat>> ordenacio) {
 
-        List<UnitatOrganicaDTO> items = repository.findPagedByFilterAndOrder(firstResult, maxResult, filters, ordenacio);
-        long total = repository.countByFilter(filters);
+        List<UnitatOrganicaDTO> items = repository.findPagedByFilterAndOrder(firstResult, maxResult, filter, ordenacio);
+        long total = repository.countByFilter(filter);
 
         return new Pagina<>(items, total);
     }

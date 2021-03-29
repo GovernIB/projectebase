@@ -7,6 +7,7 @@ import ${package}.service.exception.RecursNoTrobatException;
 import ${package}.service.exception.UnitatDuplicadaException;
 import ${package}.service.exception.UnitatTeProcedimentsException;
 import ${package}.service.facade.UnitatOrganicaServiceFacade;
+import ${package}.service.model.AtributUnitat;
 import ${package}.service.model.EstatPublicacio;
 import ${package}.service.model.Ordre;
 import ${package}.service.model.Pagina;
@@ -187,7 +188,8 @@ public class UnitatOrganicaServiceFacadeBeanIT extends AbstractFacadeIT {;
         // No calen permisos
         //userManager.exec(() -> {
             Pagina<UnitatOrganicaDTO> llistat = unitatOrganicaServiceFacade.findFiltered(1, 10,
-                    Collections.singletonMap("codiDir3", "A"), List.of(Ordre.descendent("codiDir3")));
+                    Collections.singletonMap(AtributUnitat.codiDir3, "A"),
+                    List.of(Ordre.descendent(AtributUnitat.codiDir3)));
             Assert.assertEquals(12L, llistat.getTotal());
             Assert.assertEquals(10, llistat.getItems().size());
             Assert.assertEquals("A00000011", llistat.getItems().get(0).getCodiDir3());

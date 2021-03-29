@@ -6,6 +6,7 @@ package ${package}.service.facade;
 import ${package}.service.exception.RecursNoTrobatException;
 import ${package}.service.exception.UnitatDuplicadaException;
 import ${package}.service.exception.UnitatTeProcedimentsException;
+import ${package}.service.model.AtributUnitat;
 import ${package}.service.model.Ordre;
 import ${package}.service.model.Pagina;
 import ${package}.service.model.UnitatOrganicaDTO;
@@ -55,10 +56,10 @@ public interface UnitatOrganicaServiceFacade {
      * Retorna una pàgina de unitats que compleixen els filtres i les ordenacions indicades
      * @param firstResult primer resultat del rang de la pàgina
      * @param maxResult nombre d'elements màxim de la pàgina.
-     * @param filters filtres a aplicar
+     * @param filter filtres a aplicar
      * @param ordenacio criteris d'ordenació
      * @return una pàgina amb el nombre d'unitats que compleixen els filtres i la llista d'unitats pel rang indicat.
      */
     Pagina<UnitatOrganicaDTO> findFiltered(int firstResult, int maxResult,
-                                           Map<String, Object> filters, List<Ordre> ordenacio);
+                                           Map<AtributUnitat, Object> filter, List<Ordre<AtributUnitat>> ordenacio);
 }

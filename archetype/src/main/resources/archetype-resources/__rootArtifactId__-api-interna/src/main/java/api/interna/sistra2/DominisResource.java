@@ -4,12 +4,13 @@
 package ${package}.api.interna.sistra2;
 
 import ${package}.service.facade.UnitatOrganicaServiceFacade;
+import ${package}.service.model.AtributUnitat;
 import ${package}.service.model.EstatPublicacio;
+import ${package}.service.model.Ordre;
 import ${package}.service.model.Pagina;
 import ${package}.service.model.UnitatOrganicaDTO;
 import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RFiltroDominio;
 import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RParametroDominio;
-import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RValoresDominio;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -26,8 +27,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,8 +64,8 @@ public class DominisResource {
             responseCode = "200",
             description = "Domini d'unitats",
             content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = RValoresDominio.class)))
-    public RValoresDominio getDominiUnitats(
+                    schema = @Schema(implementation = ValorsDomini.class)))
+    public ValorsDomini getDominiUnitats(
             @RequestBody(
                     required = true,
                     description = "Filtre",
@@ -72,24 +73,25 @@ public class DominisResource {
                             schema = @Schema(implementation = RFiltroDominio.class)))
             @NotNull RFiltroDominio filtro) {
 
-        Map<String, Object> filtres = new HashMap<>();
-        filtres.put("estat", EstatPublicacio.ACTIU);
+        Map<AtributUnitat, Object> filtres = new HashMap<>();
+        filtres.put(AtributUnitat.estat, EstatPublicacio.ACTIU);
 
         for (RParametroDominio parametro : filtro.getFiltro()) {
             if ("codiDir3".equals(parametro.getCodigo())) {
-                filtres.put("codiDir3", parametro.getValor());
+                filtres.put(AtributUnitat.codiDir3, parametro.getValor());
+                LOG.info("FITRAR {}", parametro.getValor());
             } else {
                 LOG.warn("Paràmetre de filtre '{}' no soportat", parametro.getCodigo());
             }
         }
 
         Pagina<UnitatOrganicaDTO> filtered = unitatOrganicaService.findFiltered(0, Integer.MAX_VALUE,
-                filtres, Collections.emptyList());
+                filtres, List.of(Ordre.ascendent(AtributUnitat.codiDir3)));
 
-        RValoresDominio dominio = new RValoresDominio();
-        dominio.getDatos().addAll(converter.toMapList(filtered.getItems()));
+        ValorsDomini domini = new ValorsDomini();
+        domini.setDatos(converter.toMapList(filtered.getItems()));
 
-        return dominio;
+        return domini;
     }
 
 

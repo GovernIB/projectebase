@@ -5,6 +5,7 @@ package ${package}.back.controller;
 
 import ${package}.back.utils.PFUtils;
 import ${package}.service.facade.UnitatOrganicaServiceFacade;
+import ${package}.service.model.AtributUnitat;
 import ${package}.service.model.Ordre;
 import ${package}.service.model.Pagina;
 import ${package}.service.model.UnitatOrganicaDTO;
@@ -72,11 +73,12 @@ public class ListUnitatOrganica extends AbstractController implements Serializab
                                                 Map<String, FilterMeta> filterBy) {
                 LOG.info("filterBy: {}", filterBy);
 
-                List<Ordre> ordenacions = PFUtils.sortMetaToOrdre(sortBy.values());
-                Map<String, Object> filtre = PFUtils.filterMetaToFilter(filterBy);
+                // Dins JSF emprarem noms que coincideixin amb els valors de l'enumeració AtributUnitat
+                Map<AtributUnitat, Object> filter = PFUtils.filterMetaToFilter(AtributUnitat.class, filterBy);
+                List<Ordre<AtributUnitat>> ordenacions = PFUtils.sortMetaToOrdre(AtributUnitat.class, sortBy.values());
 
                 Pagina<UnitatOrganicaDTO> pagina = unitatOrganicaService
-                        .findFiltered(first, pageSize, filtre, ordenacions);
+                        .findFiltered(first, pageSize, filter, ordenacions);
 
                 setRowCount((int) pagina.getTotal());
                 return pagina.getItems();

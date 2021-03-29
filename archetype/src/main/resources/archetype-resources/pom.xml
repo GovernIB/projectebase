@@ -163,6 +163,12 @@
             </dependency>
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
+                <artifactId>wildfly-arquillian-common</artifactId>
+                <version>${wildfly-arquillian.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-container-managed</artifactId>
                 <version>${wildfly-arquillian.version}</version>
                 <scope>test</scope>
@@ -221,7 +227,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-ear-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
@@ -235,7 +241,7 @@
                 <plugin>
                     <groupId>com.googlecode.maven-download-plugin</groupId>
                     <artifactId>download-maven-plugin</artifactId>
-                    <version>1.6.0</version>
+                    <version>1.6.1</version>
                 </plugin>
                 <plugin>
                     <groupId>com.google.code.maven-replacer-plugin</groupId>
@@ -246,7 +252,7 @@
                 <plugin>
                     <groupId>org.apache.geronimo</groupId>
                     <artifactId>geronimo-openapi-maven-plugin</artifactId>
-                    <version>1.0.13</version>
+                    <version>1.0.14</version>
                 </plugin>
                 <!-- Plugin per generar la propietat ${buildNumber} amb la versio/revisio de GIT o SVN o CVS... -->
                 <plugin>
@@ -279,7 +285,7 @@
                 <plugin>
                     <groupId>org.codehaus.cargo</groupId>
                     <artifactId>cargo-maven2-plugin</artifactId>
-                    <version>1.8.2</version>
+                    <version>1.9.0</version>
                     <configuration>
                         <!-- Només estarà activat als mòduls que volem que es despleguin, com l'EAR -->
                         <skip>true</skip>

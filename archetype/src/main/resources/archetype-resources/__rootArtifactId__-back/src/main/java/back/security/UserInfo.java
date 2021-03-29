@@ -3,13 +3,16 @@
 #set( $symbol_escape = '\' )
 package ${package}.back.security;
 
+import javax.enterprise.inject.Vetoed;
 import java.io.Serializable;
 
 /**
  * Encapçula la informació d'un usuari.
+ * Està marcada amb @Vetoed per impedir que CDI la instancii directament. Es generarà amb el producer corresponent.
  * 
  * @author areus
  */
+@Vetoed
 public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;

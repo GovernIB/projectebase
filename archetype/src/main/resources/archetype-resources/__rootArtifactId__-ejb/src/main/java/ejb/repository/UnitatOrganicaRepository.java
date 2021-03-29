@@ -4,6 +4,7 @@
 package ${package}.ejb.repository;
 
 import ${package}.persistence.model.UnitatOrganica;
+import ${package}.service.model.AtributUnitat;
 import ${package}.service.model.Ordre;
 import ${package}.service.model.UnitatOrganicaDTO;
 
@@ -22,9 +23,9 @@ public interface UnitatOrganicaRepository extends CrudRepository<UnitatOrganica,
     Optional<UnitatOrganica> findByCodiDir3(String codiDir3);
 
     List<UnitatOrganicaDTO> findPagedByFilterAndOrder(int firstResult, int maxResult,
-                                                      Map<String, Object> filters,
-                                                      List<Ordre> ordenacio);
+                                                      Map<AtributUnitat, Object> filter,
+                                                      List<Ordre<AtributUnitat>> ordenacio);
 
-    long countByFilter(Map<String, Object> filters);
+    long countByFilter(Map<AtributUnitat, Object> filter);
 
 }

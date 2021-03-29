@@ -32,6 +32,8 @@ import java.util.UUID;
 
 /**
  * Clase d'exemple de client de l'api REST. Empra l'api estàndard de Client de JAX-RS 2.1.
+ *
+ * Veure fitxer "META-INF/sample_data.sql" per les dades de prova
  */
 @RunWith(Arquillian.class)
 public class UnitatOrganicaResourceIT {
@@ -63,7 +65,8 @@ public class UnitatOrganicaResourceIT {
                     .addAsWebInfResource("beans.xml")
                     .addAsWebInfResource("ejb-jar.xml")
                     .addAsWebInfResource("arquillian-ds.xml")
-                    .addAsResource("META-INF/arquillian-persistence.xml", "META-INF/persistence.xml");
+                    .addAsResource("META-INF/arquillian-persistence.xml", "META-INF/persistence.xml")
+                    .addAsResource("META-INF/sample_data.sql");
             System.out.println(war.toString(true));
             return war;
         } catch (IllegalArgumentException e) {
@@ -92,7 +95,7 @@ public class UnitatOrganicaResourceIT {
         // Dades de la nova unitat orgànica que crearem
         UnitatOrganicaDTO newUnitat = new UnitatOrganicaDTO();
         //no fixam id perquè és una creació
-        newUnitat.setCodiDir3("A00000001");
+        newUnitat.setCodiDir3("A00000099");
         newUnitat.setNom("Created by test");
         newUnitat.setDataCreacio(LocalDate.now());
         newUnitat.setEstat(EstatPublicacio.ACTIU);
@@ -234,7 +237,7 @@ public class UnitatOrganicaResourceIT {
     @InSequence(5)
     public void testDelete() {
 
-        Response response = client.target(baseUrl + "services/unitats/1")
+        Response response = client.target(baseUrl + "services/unitats/15")
                 .request().delete();
 
         // La resposta quan tot ha anat bé és un 204, ja que no envia contingut.

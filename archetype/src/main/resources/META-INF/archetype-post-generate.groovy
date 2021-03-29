@@ -237,6 +237,11 @@ String perfilDistribucio = properties.get("perfilDistribucio");
 println " + perfilDistribucio: " + perfilDistribucio;
 checkProperty("^(true|false)\$", perfilDistribucio, "perfilDistribucio");
 
+// perfilPinbal
+String perfilPinbal = properties.get("perfilPinbal");
+println " + perfilPinbal: " + perfilPinbal;
+checkProperty("^(true|false)\$", perfilPinbal, "perfilPinbal");
+
 // perfilSistra2
 String perfilSistra2 = properties.get("perfilSistra2");
 println " + perfilSistra2: " + perfilSistra2;
@@ -439,6 +444,18 @@ if (perfilDistribucio.equals("false")) {
     removeTextBetweenTwoStrings(pomEar, "<!-- DISTRIBUCIO START -->", "<!-- DISTRIBUCIO END -->")
     removeTextBetweenTwoStrings(configProperties, "## DISTRIBUCIO START", "## DISTRIBUCIO END")
     removeTextBetweenTwoStrings(configSystemProperties, "## DISTRIBUCIO START", "## DISTRIBUCIO END")
+}
+
+// PerfilPinbal
+if (perfilPinbal.equals("false")) {
+    println " + Eliminant Modul Pinbal ..."
+    // Llevar directori
+    removeModule(artifactId + '-pinbal', rootDir)
+    // Llevar WEB de EAR pom
+    def pomEar = new File(rootDir, artifactId + "-ear/pom.xml")
+    removeTextBetweenTwoStrings(pomEar, "<!-- PINBAL START -->", "<!-- PINBAL END -->")
+    removeTextBetweenTwoStrings(configProperties, "## PINBAL START", "## PINBAL END")
+    removeTextBetweenTwoStrings(configSystemProperties, "## PINBAL START", "## PINBAL END")
 }
 
 // PerfilSistra2
