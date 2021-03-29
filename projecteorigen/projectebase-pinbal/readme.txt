@@ -11,7 +11,8 @@ Per provar el plugin:
         - scripts/configuracio/projectebase.system.properties
         - scripts/configuracio/projectebase.properties
 
-        Indicant les dades necessaries per la connexió a les propietats que estan a la secció del mòdul PINBAL
+        Indicant les dades necessaries per la connexió a les propietats que estan a la secció del mòdul PINBAL.
+        Serà necessari que l'usuari emprat a la integració tengui el rol PBL_WS
       (tenir en compte que si s'accedeix a un servidor https pot necessitar importar el certificat dins el JDK)
 
         Assegurar-se que s'han seguit les passes descrites a scripts/configuracio/readme.txt perquè els fitxers
