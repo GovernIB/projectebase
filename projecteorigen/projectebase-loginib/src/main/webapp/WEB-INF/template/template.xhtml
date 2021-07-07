@@ -14,7 +14,14 @@
     <h:body>
         <div class="container">
             <h1>#{title}</h1>
-            <ui:insert name="content"/>
+            <div class="row">
+                <div class="col-md-6">
+                    <ui:insert name="content"/>
+                </div>
+                <div class="col-md-6">
+                    <ui:include src="/WEB-INF/includes/logindata.xhtml" />
+                </div>
+            </div>
         </div>
     </h:body>
 </f:view>

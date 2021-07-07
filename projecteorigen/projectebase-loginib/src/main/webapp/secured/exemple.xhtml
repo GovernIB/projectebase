@@ -10,18 +10,9 @@
     </ui:define>
 
     <ui:define name="content">
-        <div class="row">
-            <div class="col">
-                <h:messages id="messages" globalOnly="true" showDetail="true" errorStyle="color: red"
-                    infoStyle="color: green" warnStyle="color: yellow" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                Hola!
-            </div>
-        </div>
-       
+        <p>Això és una pàgina dins un apartat protegit</p>
+        <p>
+            <h:link outcome="/index">Anar al a pàgina principal</h:link>
+        </p>       
     </ui:define>
 </ui:composition>

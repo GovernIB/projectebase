@@ -1,7 +1,7 @@
 
 Mòdul d'exemple per per integrar un projecte amb LOGINIB
 
-    https://github.com/GovernIB/loginib.......
+    Veure: https://github.com/GovernIB/LOGINIB/blob/loginib-2.0/doc/LoginIB_Manual_Integracio.odt
 
 Per provar el plugin:
 
@@ -27,5 +27,12 @@ Per provar el plugin:
         El mòdul estarà accessible a:
 
             http://localhost:8080/projectebase/loginib
+            https://localhost:8443/projectebase/loginib
 
-L'aplicació bàsicament permet ....
+L'aplicació bàsicament permet securitzar una part d'una aplicació requerint l'autenticacó amb LoginIB
+
+ - Les URLs a les que s'aplica el filtre "LoginIBFilter" (per defecte /secured/*) estaran protegides.
+ - Mitjançant el "LoginIBModel" (o dins EL #{loginib}), es pot consultar si l'usuari està autenticat
+ i les dades d'autenticació
+ - Veure "/WEB-INF/includes/logindata.xhtml" per veure com es pot emprar la informació anterior.
+ - El servlet "/logout" s'encarrega d'iniciar el logout, que retornarà a la pàgina principal

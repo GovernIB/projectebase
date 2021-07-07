@@ -1,4 +1,4 @@
-package es.caib.projectebase.loginib.authentication;
+package es.caib.projectebase.loginib.client;
 
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;

@@ -33,34 +33,4 @@
         <param-value>true</param-value>
     </context-param>
 
-    <!-- Securització amb LOGINIB -->
-    <security-constraint>
-        <display-name>Accés restringit a usuaris autenticats</display-name>
-        <web-resource-collection>
-            <web-resource-name>secured</web-resource-name>
-            <description>Recursos restringits</description>
-            <url-pattern>/secured/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>NORMAL</role-name>
-        </auth-constraint>
-    </security-constraint>
-
-    <session-config>
-        <cookie-config>
-            <http-only>true</http-only>
-        </cookie-config>
-        <tracking-mode>COOKIE</tracking-mode>
-    </session-config>
-
-    <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>LOGIN IB</realm-name>
-    </login-config>
-
-    <security-role>
-        <description>Usuari</description>
-        <role-name>NORMAL</role-name>
-    </security-role>
-
 </web-app>

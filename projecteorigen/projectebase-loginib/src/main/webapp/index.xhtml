@@ -4,15 +4,12 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     <ui:param name="title" value="Exemple LOGINIB" />
     <ui:define name="content">
-        <div class="row">
-            <div class="col">
-                <p>
-                    Mòdul d'exemple per connectar amb LOGINIB
-                </p>
-                <p>
-                    <h:link outcome="/secured/exemple">Veure l'exemple</h:link>
-                </p>
-            </div>
-        </div>
+	    <p>
+	        Mòdul d'exemple per connectar amb LOGINIB
+	    </p>
+	    <p>
+	        Això és una pàgina no protegida.
+	        <h:link outcome="/secured/exemple">Accedir a part protegida</h:link>
+	    </p>
     </ui:define>
 </ui:composition>
