@@ -446,6 +446,5 @@
         <module>projectebase-distribucio</module>
         <module>projectebase-pinbal</module>
         <module>projectebase-sistra2</module>
-        <module>projectebase-loginib</module>
     </modules>
 </project>

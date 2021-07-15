@@ -1,8 +1,9 @@
-package es.caib.projectebase.loginib.client;
+package es.caib.projectebase.front.loginib.loginib.client;
 
 import es.caib.loginib.rest.api.v1.RDatosAutenticacion;
 import es.caib.loginib.rest.api.v1.RLoginParams;
 import es.caib.loginib.rest.api.v1.RLogoutParams;
+import es.caib.projectebase.commons.rest.client.BasicAuthenticator;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

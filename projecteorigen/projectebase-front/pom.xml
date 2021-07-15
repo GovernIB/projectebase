@@ -12,6 +12,11 @@
     <name>ProjecteBase - FRONT</name>
     <description>Front de ProjecteBase</description>
 
+    <properties>
+        <loginib.version>1.0.1</loginib.version>
+    </properties>
+
+
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
@@ -25,6 +30,19 @@
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--
+        Llibreries per emprar l'api de LoginIB.
+        -->
+        <dependency>
+            <groupId>es.caib.loginib</groupId>
+            <artifactId>loginib-rest-api</artifactId>
+            <version>${loginib.version}</version>
+        </dependency>
         <!-- Altres mòduls del projecte -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
@@ -33,13 +51,7 @@
         </dependency>
         <dependency>
             <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-persistence</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-ejb</artifactId>
-            <type>ejb</type>
+            <artifactId>projectebase-service</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>

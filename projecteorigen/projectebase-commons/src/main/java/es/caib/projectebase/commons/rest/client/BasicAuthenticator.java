@@ -1,4 +1,4 @@
-package es.caib.projectebase.api.util;
+package es.caib.projectebase.commons.rest.client;
 
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;

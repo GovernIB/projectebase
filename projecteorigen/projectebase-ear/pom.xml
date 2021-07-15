@@ -123,14 +123,6 @@
             <type>war</type>
         </dependency>
         <!-- PINBAL END -->
-        <!-- LOGINIB START -->
-        <dependency>
-            <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-loginib</artifactId>
-            <version>1.0.0</version>
-            <type>war</type>
-        </dependency>
-        <!-- LOGINIB END -->
         <!--
         Mòduls que van dins el lib/
         Tenir en compte a l'hora de incloure dependències només si és imprescindible i no està ja dins
@@ -285,14 +277,6 @@
                             <bundleFileName>projectebase-pinbal.war</bundleFileName>
                         </webModule>
                         <!-- PINBAL END -->
-                        <!-- LOGINIB START -->
-                        <webModule>
-                            <groupId>es.caib.projectebase</groupId>
-                            <artifactId>projectebase-loginib</artifactId>
-                            <contextRoot>/projectebase/loginib</contextRoot>
-                            <bundleFileName>projectebase-loginib.war</bundleFileName>
-                        </webModule>
-                        <!-- LOGINIB END -->
                         <!-- WS START -->
                         <ejbModule>
                             <groupId>es.caib.projectebase</groupId>

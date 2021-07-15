@@ -1,6 +1,6 @@
-package es.caib.projectebase.loginib;
+package es.caib.projectebase.front.loginib.loginib;
 
-import es.caib.projectebase.loginib.client.LoginIBService;
+import es.caib.projectebase.front.loginib.loginib.client.LoginIBService;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -18,7 +18,9 @@ import java.io.IOException;
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 
-    @Inject
+	private static final long serialVersionUID = 1L;
+
+	@Inject
     private LoginIBService loginIBService;
 
     @Inject

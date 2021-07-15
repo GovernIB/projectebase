@@ -1,9 +1,7 @@
 
-Mòdul d'exemple per per integrar un projecte amb LOGINIB
+Mòdul d'exemple de web pública FRONT integrada amb LoginIB
 
-    Veure: https://github.com/GovernIB/LOGINIB/blob/loginib-2.0/doc/LoginIB_Manual_Integracio.odt
-
-Per provar el plugin:
+Per provar la integració amb LOGINIB:
 
     1. fixar variable d'entorn JBOSS_HOME
 
@@ -11,7 +9,9 @@ Per provar el plugin:
         - scripts/configuracio/projectebase.system.properties
         - scripts/configuracio/projectebase.properties
 
-        Indicant les dades necessaries per la connexió a les propietats que estan a la secció del mòdul LOGINIB.
+        Indicant les dades necessaries per la connexió a les propietats que estan a la secció del mòdul FRONT que
+        fan referència a LoginIB.
+
         Serà necessari que l'usuari emprat a la integració tengui el rol LIB_API
       (tenir en compte que si s'accedeix a un servidor https pot necessitar importar el certificat dins el JDK)
 
@@ -26,13 +26,13 @@ Per provar el plugin:
 
         El mòdul estarà accessible a:
 
-            http://localhost:8080/projectebase/loginib
-            https://localhost:8443/projectebase/loginib
+            http://localhost:8080/projectebasefront
+            https://localhost:8443/projectebasefront
 
 L'aplicació bàsicament permet securitzar una part d'una aplicació requerint l'autenticacó amb LoginIB
 
  - Les URLs a les que s'aplica el filtre "LoginIBFilter" (per defecte /secured/*) estaran protegides.
- - Mitjançant el "LoginIBModel" (o dins EL #{loginib}), es pot consultar si l'usuari està autenticat
+ - Mitjançant el "LoginIBModel" (o dins EL ${loginib}), es pot consultar si l'usuari està autenticat
  i les dades d'autenticació
- - Veure "/WEB-INF/includes/logindata.xhtml" per veure com es pot emprar la informació anterior.
+ - Veure "/WEB-INF/includes/logindata.jsp" per veure com es pot emprar la informació anterior.
  - El servlet "/logout" s'encarrega d'iniciar el logout, que retornarà a la pàgina principal
