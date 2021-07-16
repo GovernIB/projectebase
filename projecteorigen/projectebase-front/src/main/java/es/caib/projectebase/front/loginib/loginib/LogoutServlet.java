@@ -30,18 +30,22 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Agafam la URL base externa:  requestURL - requestURI
-        String baseUrl = request.getRequestURL()
-                .substring(0, request.getRequestURL().length() - request.getRequestURI().length());
-        // La URL de retonr serà la URL de la pàgina principal
-        String returnUrl = baseUrl + request.getContextPath() + "/";
-
+        // Demanam que ens redireccioni al mateix servlet quan torni
+        String currentUrl = request.getRequestURL().toString();
         String idioma = request.getLocale().getLanguage();
 
-        String redirectUrl = loginIBService.initiateLogout(idioma, returnUrl);
+        String redirectUrl = loginIBService.initiateLogout(idioma, currentUrl);
         response.sendRedirect(redirectUrl);
 
         // Netejam les dades d'autenticació dins el model
         loginIBModel.setDatos(null);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // quan rebem un post és que ens ha crdiat LoginIB retornant de fer un logut, per tant, redireccionam
+        // a la pàgina principal.
+        response.sendRedirect(request.getContextPath());
     }
 }

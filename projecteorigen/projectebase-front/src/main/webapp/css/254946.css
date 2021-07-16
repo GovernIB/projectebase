@@ -95,21 +95,21 @@ input, textarea {
     border: 1px solid #C30045;
   }
 
-/* Podemos eliminar este estilo si no queremos que se adapte al ancho máximo */
+/* Podemos eliminar este estilo si no queremos que se adapte al ancho mï¿½ximo */
 .delimitador{
-    max-width:800px;    /* Ancho máximo */
-    margin:auto;    /* Centramos el vídeo */
+    max-width:800px;    /* Ancho mï¿½ximo */
+    margin:auto;    /* Centramos el vï¿½deo */
 }
 
-/* El contenedorVideo con el padding-top crea el tamaño del vídeo */
+/* El contenedorVideo con el padding-top crea el tamaï¿½o del vï¿½deo */
 .contenedorVideo{
     height:0px;
     width:100%;
-    padding-top:56.25%; /* Relación: 16/9 = 56.25% */
+    padding-top:56.25%; /* Relaciï¿½n: 16/9 = 56.25% */
     position:relative;
 }
 
-/* El iframe se adapta al tamaño del contenedor */
+/* El iframe se adapta al tamaï¿½o del contenedor */
 .contenedorVideo iframe{
     position:absolute;
     height:100%;
@@ -118,7 +118,7 @@ input, textarea {
     left:0px;
 }
 
-/* El ancho de imagen se adapta al tamaño del contenedor */
+/* El ancho de imagen se adapta al tamaï¿½o del contenedor */
 .img{
     width: 100%;
     height: auto;
@@ -1563,6 +1563,29 @@ div#info, div#infoNoMenu{
     margin-right: 0em;
 }
 
+
+/* BotÃ³ color loginib */
+.btn-primary.loginib-btn {
+   background-color: #32814B;
+   border-color: #32814B;
+   border: none !important;
+   color: #ffffff !important;
+}
+.btn-primary.loginib-btn:hover,
+.btn-primary.loginib-btn:active{
+   background-color: #000 !important;
+   border: none #000 !important;
+   outline: none !important;
+   box-shadow: none !important;
+}
+.btn-primary.loginib-btn:focus-visible{
+   outline: 1px solid #32814B !important;
+}
+
+.botoAccedirloginib{
+   margin-top: 30px;
+   margin-bottom: 30px;
+}
 
 /* MEDIA QUERIES RESPONSIVE*/
 

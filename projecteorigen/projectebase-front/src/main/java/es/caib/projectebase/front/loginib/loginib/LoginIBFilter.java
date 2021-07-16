@@ -45,7 +45,7 @@ public class LoginIBFilter extends HttpFilter {
             String ticket = request.getParameter("ticket");
             RDatosAutenticacion datos = loginIBService.checkTicket(ticket);
             loginIBModel.setDatos(datos);
-            chain.doFilter(request, response);
+            response.sendRedirect(request.getRequestURI());
             return;
         }
 

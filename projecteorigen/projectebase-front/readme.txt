@@ -32,7 +32,9 @@ Per provar la integració amb LOGINIB:
 L'aplicació bàsicament permet securitzar una part d'una aplicació requerint l'autenticacó amb LoginIB
 
  - Les URLs a les que s'aplica el filtre "LoginIBFilter" (per defecte /secured/*) estaran protegides.
+ - El filtre redireccionarà a LoginIB perquè res realitzi l'autenticació
  - Mitjançant el "LoginIBModel" (o dins EL ${loginib}), es pot consultar si l'usuari està autenticat
  i les dades d'autenticació
- - Veure "/WEB-INF/includes/logindata.jsp" per veure com es pot emprar la informació anterior.
- - El servlet "/logout" s'encarrega d'iniciar el logout, que retornarà a la pàgina principal
+ - Veure "/secured/index.jsp" per veure com es pot emprar la informació anterior.
+ - El servlet "/logout" s'encarrega d'iniciar el logout, que retornarà a la pàgina principal una vegada retorni de
+ de LoginIB

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" style="" class=" js flexbox flexboxlegacy hashchange backgroundsize boxshadow textshadow opacity cssanimations cssgradients csstransforms csstransitions fontface generatedcontent localstorage svg" lang="ca"><head>
 <title>Nom de l'aplicació - Inici</title>
@@ -9,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
 	
-	<script type="text/javascript" async="" src="js/ga.js"></script><script>
+	<script type="text/javascript" async="" src="../js/ga.js"></script><script>
 	/*<![CDATA[*/
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 
@@ -33,22 +35,22 @@
 	
 	
 	<!-- Bootstrap -->
-	<link href="css/bootstrap.css" rel="stylesheet" media="screen">
-	<script src="js/jquery.js"></script>
-	<script src="js/modernizr.js"></script>
-	<script src="js/jquery-slim.js"></script>
+	<link href="../css/bootstrap.css" rel="stylesheet" media="screen">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/modernizr.js"></script>
+	<script src="../js/jquery-slim.js"></script>
 	<!-- Fin bootstrap -->
 	<!-- Reset default bootstrap elements -->
-	<link href="css/bootstrap-reset.css" rel="stylesheet" media="screen">
+	<link href="../css/bootstrap-reset.css" rel="stylesheet" media="screen">
 	<!-- Fin reset bootstrap -->
-	<link href="css/gusiteMaps.css" rel="stylesheet" media="screen">
+	<link href="../css/gusiteMaps.css" rel="stylesheet" media="screen">
 	
 	<!-- Bootstrap compatibilidad con IE -->
 	
-	<script src="js/respond.js" type="text/javascript"></script>	
+	<script src="../js/respond.js" type="text/javascript"></script>	
 	<!-- Fin de bootstrap compatibilidad con IE -->
 	
-	<script src="js/globales.js" type="text/javascript"></script>
+	<script src="../js/globales.js" type="text/javascript"></script>
 
 	
 	<!--<link th:each="archivoCss : ${MVS_css}" rel="stylesheet" type="text/css" media="all" th:media="${archivoCss.media}" href="resources/css/estils.css"  th:href="@{${archivoCss.src}}"></link>
@@ -57,15 +59,15 @@
 
 	
 	
-	<link rel="stylesheet" type="text/css" href="css/254946.css">
+	<link rel="stylesheet" type="text/css" href="../css/254946.css">
 
 	
 	
-	<link rel="stylesheet" type="text/css" media="print" href="css/estils_print.css">
+	<link rel="stylesheet" type="text/css" media="print" href="../css/estils_print.css">
 
 	
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="css/estils-tema.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../css/estils-tema.css">
 	<!--<link href="resources/css/estils.css" rel="stylesheet" media="all" th:href="@{/resources/hotTemplates/css/estils-tema.css}"></link>-->
 	
 	
@@ -86,11 +88,11 @@
 	</script>
 	
 	<!-- botó desplegable -->
-	<script src="js/imc-menu-desplegable.js" type="text/javascript"></script>
-	<link rel="stylesheet" type="text/css" media="screen" href="css/imc-boto-desplegable.css">
+	<script src="../js/imc-menu-desplegable.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="../css/imc-boto-desplegable.css">
 	
 	<!-- botó especial -->
-	<link rel="stylesheet" type="text/css" media="screen" href="css/imc-boto-especial.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../css/imc-boto-especial.css">
 
 
 
@@ -124,7 +126,7 @@ var nodo='p' + 99021;
 					<a href="javascript:history.back()" class="imc-torna" title="Torna"><span>Torna</span></a>
 						<h1>
 							
-								<span>Nom de l'aplicació - part privada</span>
+								<span>Nom de l'aplicació - Part privada</span>
 							
 						</h1>
 					<ul>
@@ -241,42 +243,36 @@ var nodo='p' + 99021;
 		
     <div class="container-contenido" id="infoNoMenu">
 	<div>
-		<h2>
-			Títol de secció H2
-		</h2>
-		<p>
-			Continguts
-		</p>
-		<p>
-			Continguts
-		</p>
-		<p>
-			Continguts
-		</p>
-		<h3>
-			Títol de secció H3
-		</h3>
-		<p>
-			Continguts
-		</p>
-		<p>
-			Continguts
-		</p>
-		<p>
-			Continguts
-		</p>
-		<p>
-			Continguts
-		</p>
+		<c:choose>
+			<c:when test="${loginib.logged}">
+	            <h2>Dades autenticació:</h2>
+	            <p></p>
+	            <h3>Nom:</h3>
+	            <p>${loginib.datos.nombre}&nbsp;${loginib.datos.apellidos}</p>
+	            <h3>NIF:</h3>
+	            <p>${loginib.datos.nif}</p>
+	            <h3>QAA:</h3>
+	            <p>${loginib.datos.qaa}</p>
+	            <h3>Mètode autenticació:</h3>
+	            <p>${loginib.datos.metodoAutenticacion}</p>
+	            <p>
+	                <c:url value="/logout" var="logoutLink" />
+	                <a href="${logoutLink}">Pitji aquí per sortir</a>
+	            </p>
+	        </c:when>
+	        <c:otherwise>
+	            <p>Usuari no autenticat</p>
+	        </c:otherwise>
+        </c:choose>
 	</div>
     
 	</div>
 	
-	<script></script>
-	<script></script>
-	<!-- footer -->
+
+        
+    
+    </div>
 	
-		
 			<!-- peu -->
 		<footer class="imc-peu" id="imc-peu">
 			<div class="imc--contingut">
@@ -365,13 +361,9 @@ var nodo='p' + 99021;
 			</div>
 	</footer>			
 		
-		
-		
-	
-	</div>
     </div>
-	<script src="js/imc-lta-marc.js" type="text/javascript"></script>	
-	<script src="js/aceptar_cookies.js" type="text/javascript"></script>
+	<script src="../js/imc-lta-marc.js" type="text/javascript"></script>	
+	<script src="../js/aceptar_cookies.js" type="text/javascript"></script>
 
 
 </body></html>

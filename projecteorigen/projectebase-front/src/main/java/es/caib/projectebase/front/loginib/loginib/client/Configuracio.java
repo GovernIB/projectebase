@@ -14,7 +14,7 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class Configuracio {
 
-    @Inject
+	@Inject
     @ConfigProperty(name = "es.caib.projectebase.front.int.loginib.endpoint")
     private String endpoint;
 

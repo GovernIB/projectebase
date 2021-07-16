@@ -13,7 +13,7 @@
     <description>Front de ProjecteBase</description>
 
     <properties>
-        <loginib.version>1.0.1</loginib.version>
+        <loginib-rest-api.version>1.0.1</loginib-rest-api.version>
     </properties>
 
 
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>es.caib.loginib</groupId>
             <artifactId>loginib-rest-api</artifactId>
-            <version>${loginib.version}</version>
+            <version>${loginib-rest-api.version}</version>
         </dependency>
         <!-- Altres mòduls del projecte -->
         <dependency>
