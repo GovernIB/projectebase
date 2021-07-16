@@ -1,4 +1,4 @@
-package es.caib.projectebase.front.loginib.loginib.client;
+package es.caib.projectebase.front.loginib.client;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 

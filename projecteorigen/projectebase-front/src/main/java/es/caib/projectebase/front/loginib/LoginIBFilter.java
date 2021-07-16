@@ -1,7 +1,7 @@
-package es.caib.projectebase.front.loginib.loginib;
+package es.caib.projectebase.front.loginib;
 
 import es.caib.loginib.rest.api.v1.RDatosAutenticacion;
-import es.caib.projectebase.front.loginib.loginib.client.LoginIBService;
+import es.caib.projectebase.front.loginib.client.LoginIBService;
 
 import javax.inject.Inject;
 import javax.servlet.FilterChain;

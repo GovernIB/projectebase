@@ -1,4 +1,4 @@
-package es.caib.projectebase.front.loginib.loginib;
+package es.caib.projectebase.front.loginib;
 
 import es.caib.loginib.rest.api.v1.RDatosAutenticacion;
 
