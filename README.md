@@ -4,15 +4,15 @@
 
 ***Versions***
 
-> - Versió Estable: projectebase-1.0.9 ([Tag projectebase-1.0.9](https://github.com/GovernIB/projectebase/tree/projectebase-1.0.9))<br/>
-> - Versió en Desenvolupament: __projectebase-1.0.10__ (branca [projectebase-1.0](../../tree/projectebase-1.0))
+> - Versió Estable: projectebase-1.0.10 ([Tag projectebase-1.0.10](https://github.com/GovernIB/projectebase/tree/projectebase-1.0.10))<br/>
+> - Versió en Desenvolupament: __projectebase-1.0.11__ (branca [projectebase-1.0](../../tree/projectebase-1.0))
 
 
 ***Documentació***
 
 [Manual de generació de projectes amb ProjecteBase i migració d'aplicacions a JBoss EAP 7.2 / Java 11](https://www.caib.es/sites/dgtic/ca/estandards_de_desenvolupament/archivopub.do?ctrl=MCRST299ZI339658&id=339658)
 
-[Documentació de tag 1.0.9](../../tree/projectebase-1.0.9/README.md#documentaci%C3%B3)
+[Documentació de tag 1.0.10](../../tree/projectebase-1.0.10/README.md#documentaci%C3%B3)
 
 
 ***Descripció***
