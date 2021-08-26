@@ -155,7 +155,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- Altres mòduls del projecte -->
+        <!-- Altres mòduls -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-ws-server</artifactId>

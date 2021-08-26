@@ -156,7 +156,7 @@
     </dependencies>
 
     <build>
-        <!-- El nom del EAR sempre és el nom del projecte d'acord amb un 4.2 de l'Estàndard CAIB -->
+        <!-- El nom del EAR sempre és el codi de l'aplicació d'acord amb el punt 4.2 de l'Estàndard CAIB -->
         <finalName>${project.parent.artifactId}</finalName>
         <plugins>
             <plugin>

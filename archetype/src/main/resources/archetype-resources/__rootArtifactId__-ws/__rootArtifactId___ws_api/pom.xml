@@ -155,7 +155,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- Altres mòduls del projecte -->
+        <!-- Altres mòduls -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-ws-server</artifactId>

@@ -30,7 +30,7 @@
             <artifactId>microprofile-config-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Altres mòduls del projecte -->
+        <!-- Altres mòduls -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-commons</artifactId>

@@ -48,14 +48,14 @@ public class Version {
     }
 
     /**
-     * Obté la versió del projecte
+     * Obté la versió l'aplicació
      */
     public String getVersion() {
         return this.version;
     }
 
     /**
-     * Obté el moment de compilació del projecte
+     * Obté el moment de compilació l'aplicació
      */
     public String getBuildTime() {
         return this.buildTime;
@@ -69,14 +69,14 @@ public class Version {
     }
 
     /**
-     * Obté el JDK amb el que es va compilar el projecte
+     * Obté el JDK amb el que es va compilar l'aplicació
      */
     public String getJdkVersion() {
         return this.jdkVersion;
     }
 
     /**
-     * Obté el nom del projecte
+     * Obté el nom de l'aplicació
      */
     public String getProjectName() {
         return this.projectName;

@@ -43,7 +43,7 @@
             <artifactId>loginib-rest-api</artifactId>
             <version>${loginib-rest-api.version}</version>
         </dependency>
-        <!-- Altres mòduls del projecte -->
+        <!-- Altres mòduls -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-commons</artifactId>

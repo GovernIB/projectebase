@@ -39,7 +39,7 @@
             <artifactId>microprofile-config-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Altres mòduls del projecte -->
+        <!-- Altres mòduls -->
         <dependency>
             <artifactId>${rootArtifactId}-service</artifactId>
             <groupId>${groupId}</groupId>

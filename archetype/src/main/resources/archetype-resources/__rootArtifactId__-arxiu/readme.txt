@@ -15,7 +15,7 @@ Per provar el plugin:
 
     3. Desplegar l'aplicació dins l'EAR
 
-        Desplegar normalment l'EAR executant dins la carpeta arrel del projecte:
+        Desplegar normalment l'EAR executant dins la carpeta arrel:
 
             mvn verify cargo:deploy
 

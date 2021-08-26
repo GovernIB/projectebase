@@ -1,0 +1,31 @@
+## This is a directory/file filter template for WinMerge
+name: Eclipse i Maven
+desc: Eclipse i Maven
+
+## Select if filter is inclusive or exclusive
+## Inclusive (loose) filter lets through all items not matching rules
+## Exclusive filter lets through only items that match to rule
+## include or exclude
+def: include
+
+## Filters for filenames begin with f:
+## Filters for directories begin with d:
+## (Inline comments begin with " ##" and extend to the end of the line)
+
+
+
+
+## Ignore Eclipse files
+f: \.classpath$
+f: \.project$
+
+
+## Ignore eclipse folders
+d: \\.metadata$
+d: \\.settings$
+d: \\bin$
+d: \\build$
+d: \\RemoteSystemsTempFiles$
+
+## Maven target
+d: \\target$

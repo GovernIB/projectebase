@@ -12,6 +12,11 @@
     <name>${projectname} - FRONT</name>
     <description>Front de ${projectname}</description>
 
+    <properties>
+        <loginib-rest-api.version>1.0.1</loginib-rest-api.version>
+    </properties>
+
+
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
@@ -25,7 +30,20 @@
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Altres mòduls del projecte -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--
+        Llibreries per emprar l'api de LoginIB.
+        -->
+        <dependency>
+            <groupId>es.caib.loginib</groupId>
+            <artifactId>loginib-rest-api</artifactId>
+            <version>${loginib-rest-api.version}</version>
+        </dependency>
+        <!-- Altres mòduls -->
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-commons</artifactId>
@@ -33,13 +51,7 @@
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-persistence</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-ejb</artifactId>
-            <type>ejb</type>
+            <artifactId>${rootArtifactId}-service</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>

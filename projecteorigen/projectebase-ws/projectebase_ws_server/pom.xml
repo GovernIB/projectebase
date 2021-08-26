@@ -30,7 +30,7 @@
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Altres mòduls del projecte -->
+        <!-- Altres mòduls -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
             <artifactId>projectebase-commons</artifactId>

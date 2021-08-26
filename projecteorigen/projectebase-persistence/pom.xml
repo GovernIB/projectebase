@@ -25,7 +25,7 @@
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Altres mòduls del projecte -->
+        <!-- Altres mòduls  -->
         <dependency>
             <artifactId>projectebase-commons</artifactId>
             <groupId>es.caib.projectebase</groupId>

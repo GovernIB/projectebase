@@ -15,7 +15,7 @@ Per provar el plugin:
 
     4. Desplegar l'aplicació dins l'EAR
 
-        Desplegar normalment l'EAR executant dins la carpeta ARREL del projecte:
+        Desplegar normalment l'EAR executant dins el directori ARREL:
 
             mvn verify cargo:deploy
 
@@ -23,7 +23,7 @@ Per provar el plugin:
 
             http://localhost:8080/projectebase-sistra2/BackofficeService/BackofficeServicePort
 
-        Si s'ha generat el projecte amb el mòdul projectebase-api-interna, dins aquest s'inclou un Domini SISTRA2
+        Si s'ha generat amb el mòdul projectebase-api-interna, dins aquest s'inclou un Domini SISTRA2
         que retorna les unitats adminsitratives actives creades.
 
         Per provar el domini dins SISTRA2 cal emprar la URL:

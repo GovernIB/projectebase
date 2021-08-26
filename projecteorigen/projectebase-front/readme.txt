@@ -20,7 +20,7 @@ Per provar la integració amb LOGINIB:
 
     3. Desplegar l'aplicació dins l'EAR
 
-        Desplegar normalment l'EAR executant dins la carpeta ARREL del projecte:
+        Desplegar normalment l'EAR executant dins la carpeta ARREL:
 
             mvn verify cargo:deploy
 

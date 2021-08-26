@@ -7,4 +7,4 @@ de <datasources> del fitxer de configuració standalone.xml o equivalent.
 
 També es pot copiar directament dins la carpeta  JBOSS_HOME\standalone\deployments.
 
-Als quaderns de carga s'haurà d'enviar el fitxer renombrat com a nomprojecte-ds.xml.
+Als quaderns de carga s'haurà d'enviar el fitxer renombrat com a projectebase-ds.xml.

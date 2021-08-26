@@ -178,7 +178,9 @@ for(String backFile : backFiles) {
 
 // Front - web
 def frontFiles = [
-   "./__rootArtifactId__-front/src/main/webapp/WEB-INF/web.xml"
+   "./__rootArtifactId__-front/src/main/java/front/loginib/LoginIBFilter.java",
+   "./__rootArtifactId__-front/src/main/webapp/WEB-INF/web.xml",
+   "./__rootArtifactId__-front/readme.txt"
   ];
 for(String frontFile : frontFiles) {
   replaceProperties(new File(baseProject, frontFile), false);
@@ -328,6 +330,7 @@ def scriptsFiles = [
    "./scripts/configuracio/__artifactId__.properties",
    "./scripts/configuracio/__artifactId__.system.properties",
    "./scripts/configuracio/readme.txt",
+   "./scripts/datasources/readme.txt",
    "./scripts/datasources/oracle/__artifactId__-ds.xml",
    "./scripts/datasources/postgresql/__artifactId__-ds.xml", 
    "./scripts/bbdd/oracle/01_create_schema.sql",
@@ -351,6 +354,7 @@ for(String scriptFile : scriptsFiles) {
 File sourceFile = new File(rootDir, "projecteorigen/.gitignore");
 Path sourcePath = sourceFile.toPath();
 File destFile = new File(baseProject, "gitignore");
+destFile.delete();
 Path destPath = destFile.toPath();
 Files.copy( sourcePath, destPath );
 

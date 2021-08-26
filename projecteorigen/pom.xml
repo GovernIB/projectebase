@@ -43,7 +43,7 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-            <!-- Dependències internes dins el projecte -->
+            <!-- Dependències internes -->
             <dependency>
                 <groupId>es.caib.projectebase</groupId>
                 <artifactId>projectebase-commons</artifactId>
