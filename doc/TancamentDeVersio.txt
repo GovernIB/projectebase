@@ -27,5 +27,5 @@ Les tasques següents resumeixen les feines a realitzar pel tancament d'una vers
      - L'apartat del generador apunti al generadordecomanda.html
      - Modificar la versió de l'apartat del generador
 
-
+(8) Revisar document doc/OberturaDeVersio.txt si és vol incialitzar una nova versió.
 
