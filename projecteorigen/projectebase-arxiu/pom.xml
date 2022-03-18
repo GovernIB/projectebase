@@ -13,7 +13,7 @@
     <description>Mòdul web d'exemple d'integració amb PluginsIB-ARXIU</description>
 
     <properties>
-        <pluginsib-arxiu-caib.version>2.0.3</pluginsib-arxiu-caib.version>
+        <pluginsib-arxiu-caib.version>2.0.17</pluginsib-arxiu-caib.version>
     </properties>
 
     <dependencies>
