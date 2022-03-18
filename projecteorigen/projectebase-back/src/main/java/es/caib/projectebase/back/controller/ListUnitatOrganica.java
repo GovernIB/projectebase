@@ -72,7 +72,7 @@ public class ListUnitatOrganica extends AbstractController implements Serializab
 
                 // Dins JSF emprarem noms que coincideixin amb els valors de l'enumeració AtributUnitat
                 Map<AtributUnitat, Object> filter = PFUtils.filterMetaToFilter(AtributUnitat.class, filterBy);
-                List<Ordre<AtributUnitat>> ordenacions = PFUtils.sortMetaToOrdre(AtributUnitat.class, sortBy.values());
+                List<Ordre<AtributUnitat>> ordenacions = PFUtils.sortMetaToOrdre(AtributUnitat.class, sortBy);
 
                 Pagina<UnitatOrganicaDTO> pagina = unitatOrganicaService
                         .findFiltered(first, pageSize, filter, ordenacions);
