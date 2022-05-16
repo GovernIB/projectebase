@@ -5,10 +5,10 @@
     
     <requiredProperties>
         <requiredProperty key="prefix">
-          <validationRegex>^[a-z][a-z][a-z]$</validationRegex>
+          <validationRegex>^[a-z0-9][a-z0-9][a-z0-9]$</validationRegex>
         </requiredProperty>
         <requiredProperty key="prefixuppercase">
-          <validationRegex>[A-Z][A-Z][A-Z]</validationRegex>
+          <validationRegex>^[A-Z0-9][A-Z0-9][A-Z0-9]$</validationRegex>
         </requiredProperty>
         <requiredProperty key="perfilWS">
           <validationRegex>^(true|false)$</validationRegex>

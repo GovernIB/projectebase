@@ -175,12 +175,12 @@ Properties properties = request.properties
 println " + package: " + properties.get("package")
 String prefix = properties.get("prefix");
 println " + prefix: " + prefix
-checkProperty("^[a-z][a-z][a-z]\$", prefix, "prefix");
+checkProperty("^[a-z0-9][a-z0-9][a-z0-9]\$", prefix, "prefix");
 
 // prefixuppercase
 String prefixuppercase = properties.get("prefixuppercase");
 println " + prefixuppercase: " + prefixuppercase
-checkProperty("^[A-Z][A-Z][A-Z]\$", prefixuppercase, "prefixuppercase");
+checkProperty("^[A-Z0-9][A-Z0-9][A-Z0-9]\$", prefixuppercase, "prefixuppercase");
 
 // perfilWS
 String perfilWS = properties.get("perfilWS");

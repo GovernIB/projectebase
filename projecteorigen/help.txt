@@ -6,7 +6,7 @@
 -Previsionnumber  Inclou el numero de la darrera revisio pujada al repositori
                   de Versions.
 
-clean             Neteja els mòduls abans de compilar.
+clean             Neteja els moduls abans de compilar.
 
 --------------------------------------------------------------------------
 
