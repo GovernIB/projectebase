@@ -15,3 +15,7 @@
 /maven-archetype-genapp
 /novaversio.bat
 /projecteorigen/compil.bat
+/test
+/archetype/.project
+/archetype/.settings/org.eclipse.core.resources.prefs
+/archetype/.settings/org.eclipse.m2e.core.prefs
