@@ -31,7 +31,7 @@ prefixuppercase=EXE
      > grep -iR "pbs_" .
    
    (B) Si no apareix res en les cerques podem pasar dels punts següent i anar a (4)
-   (C) Si en algun d'aquests punts apareix alguna cosa en la cerca, llavors s'ha d'editar el fitxer post_create_artifact_from_projecteorigen.groovy i afegir les substitucions oportunes als fitxers 
+   (C) Si en algun d'aquests punts apareix en alguna de les cerques, llavors s'ha d'editar el fitxer post_create_artifact_from_projecteorigen.groovy i afegir les substitucions oportunes als fitxers 
      
    (D) Executar mvn org.codehaus.gmaven:groovy-maven-plugin:2.1.1:execute  -Dsource=post_create_artifact_from_projecteorigen.groovy
    

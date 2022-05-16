@@ -68,6 +68,59 @@
                     <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
                 </configuration>
             </plugin>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<executions>
+				  <execution>
+					<id>auto-clean</id>
+					<phase>initialize</phase>
+					<goals>
+					  <goal>clean</goal>
+					</goals>
+				  </execution>
+				</executions>
+				<configuration>
+				  <filesets>
+					<fileset>
+					  <directory>target/${project.artifactId}/WEB-INF</directory>
+					  <includes>
+						<include>**/*</include>
+					  </includes>
+					  <followSymlinks>false</followSymlinks>
+					</fileset>
+				  </filesets>
+				</configuration>
+		    </plugin>
         </plugins>
     </build>
+	
+	<profiles>
+	  <profile>
+		<!-- Profile per emprar authenticació BASIC sense keycloak -->
+		<id>authBasic</id>
+		<build>
+			<plugins>
+				<plugin>
+					<groupId>com.coderplus.maven.plugins</groupId>
+					<artifactId>copy-rename-maven-plugin</artifactId>
+					<version>1.0</version>
+					<executions>
+						<execution>
+							<id>copy-file</id>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>copy</goal>
+							</goals>
+							<configuration>
+								<sourceFile>jboss-web_template.xml</sourceFile>
+								<destinationFile>target/${project.artifactId}/WEB-INF/jboss-web.xml</destinationFile>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</build>
+      </profile>
+	</profiles>
 </project>

@@ -6,6 +6,10 @@
 -Previsionnumber  Inclou el numero de la darrera revisio pujada al repositori
                   de Versions.
 
+-Pproduccio       Profile per fixar valors de producció als descriptors
+
+-PauthBasic       Profile per emprar authenticació BASIC sense keycloak
+
 clean             Neteja els moduls abans de compilar.
 
 --------------------------------------------------------------------------
