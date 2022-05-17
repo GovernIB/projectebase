@@ -1,19 +1,21 @@
 package es.caib.projectebase.notib;
 
-import es.caib.notib.client.NotificacioRestClient;
-import es.caib.notib.ws.notificacio.Certificacio;
-import es.caib.notib.ws.notificacio.DocumentV2;
-import es.caib.notib.ws.notificacio.EntregaDeh;
-import es.caib.notib.ws.notificacio.Enviament;
-import es.caib.notib.ws.notificacio.EnviamentEstatEnum;
-import es.caib.notib.ws.notificacio.EnviamentTipusEnum;
-import es.caib.notib.ws.notificacio.InteressatTipusEnumDto;
-import es.caib.notib.ws.notificacio.NotificaServeiTipusEnumDto;
-import es.caib.notib.ws.notificacio.NotificacioV2;
-import es.caib.notib.ws.notificacio.Persona;
-import es.caib.notib.ws.notificacio.RespostaAlta;
-import es.caib.notib.ws.notificacio.RespostaConsultaEstatEnviament;
-import es.caib.notib.ws.notificacio.RespostaConsultaEstatNotificacio;
+
+import es.caib.notib.client.NotificacioRestClientV2;
+import es.caib.notib.client.domini.Certificacio;
+import es.caib.notib.client.domini.DocumentV2;
+import es.caib.notib.client.domini.EntregaDeh;
+import es.caib.notib.client.domini.Enviament;
+import es.caib.notib.client.domini.EnviamentEstatEnum;
+import es.caib.notib.client.domini.EnviamentTipusEnum;
+import es.caib.notib.client.domini.InteressatTipusEnumDto;
+import es.caib.notib.client.domini.NotificaServeiTipusEnumDto;
+import es.caib.notib.client.domini.NotificacioV2;
+import es.caib.notib.client.domini.Persona;
+import es.caib.notib.client.domini.RespostaAltaV2;
+import es.caib.notib.client.domini.RespostaConsultaEstatEnviamentV2;
+import es.caib.notib.client.domini.RespostaConsultaEstatNotificacioV2;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,6 +46,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * Controlador per gestionar la creació de notificacions.
  *
  * @author areus
+ * @author anadal (upgrade to Notib client 1.1.19)
  */
 @Named
 @SessionScoped
@@ -60,7 +63,7 @@ public class NotificacioController implements Serializable {
      * Obté el client de Notificacio a través de {@link ClientNotibProducer#getNotificacioRestClient(Configuracio)}
      */
     @Inject
-    private NotificacioRestClient client;
+    private NotificacioRestClientV2 client;
 
     /**
      * Model de dades del formulari
@@ -69,9 +72,9 @@ public class NotificacioController implements Serializable {
     private NotificacioModel model;
 
     /* Mantenim en memòria una llista de les notificacions enviades. */
-    private final List<RespostaAlta> respostes = new ArrayList<>();
+    private final List<RespostaAltaV2> respostes = new ArrayList<>();
 
-    public List<RespostaAlta> getRespostes() {
+    public List<RespostaAltaV2> getRespostes() {
         return respostes;
     }
 
@@ -112,7 +115,7 @@ public class NotificacioController implements Serializable {
         // El dia d'avui + 12 dies.
         XMLGregorianCalendar calendar = DatatypeFactory.newDefaultInstance().newXMLGregorianCalendar(
                 GregorianCalendar.from(ZonedDateTime.now().plusDays(12)));
-        notificacio.setCaducitat(calendar);
+        notificacio.setCaducitat(calendar.toGregorianCalendar().getTime());
         
         DocumentV2 document = new DocumentV2();
         document.setArxiuNom("documentArxiuNom.pdf");
@@ -154,7 +157,7 @@ public class NotificacioController implements Serializable {
         notificacio.getEnviaments().add(enviament);
         
         try {
-            RespostaAlta resposta = client.alta(notificacio);
+            RespostaAltaV2 resposta = client.alta(notificacio);
             if (!resposta.isError()) {
                 LOG.info("Notificacio creada: {}", resposta.getIdentificador());
                 
@@ -189,10 +192,10 @@ public class NotificacioController implements Serializable {
      * @param resposta informació sobre la notificació creada.
      * @return identificador de la vista carregar
      */
-    public String consultaEstatNotificacio(RespostaAlta resposta) {
+    public String consultaEstatNotificacio(RespostaAltaV2 resposta) {
         LOG.info("consultaEstatNotificacio({})", resposta.getIdentificador());
         
-        RespostaConsultaEstatNotificacio estatNotificacio = 
+        RespostaConsultaEstatNotificacioV2 estatNotificacio = 
                 client.consultaEstatNotificacio(resposta.getIdentificador());
         
         if (!estatNotificacio.isError()) {
@@ -217,7 +220,7 @@ public class NotificacioController implements Serializable {
     public String consultaEstatEnviament(String referencia) {
         LOG.info("consultaEstatEnviament({})", referencia);
         
-        RespostaConsultaEstatEnviament estatEnviament =
+        RespostaConsultaEstatEnviamentV2 estatEnviament =
                 client.consultaEstatEnviament(referencia);
         
         if (!estatEnviament.isError()) {
