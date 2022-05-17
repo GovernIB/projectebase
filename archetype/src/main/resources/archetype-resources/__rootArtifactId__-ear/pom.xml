@@ -99,14 +99,6 @@
             <type>war</type>
         </dependency>
         <!-- DIR3CAIB END -->
-        <!-- DISTRIBUCIO START -->
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-distribucio</artifactId>
-            <version>${version}</version>
-            <type>war</type>
-        </dependency>
-        <!-- DISTRIBUCIO END -->
         <!-- SISTRA2 START -->
         <dependency>
             <groupId>${groupId}</groupId>
@@ -254,14 +246,6 @@
                             <bundleFileName>${rootArtifactId}-dir3caib.war</bundleFileName>
                         </webModule>
                         <!-- DIR3CAIB END -->
-                        <!-- DISTRIBUCIO START -->
-                        <webModule>
-                            <groupId>${groupId}</groupId>
-                            <artifactId>${rootArtifactId}-distribucio</artifactId>
-                            <contextRoot>/${rootArtifactId}/distribucio</contextRoot>
-                            <bundleFileName>${rootArtifactId}-distribucio.war</bundleFileName>
-                        </webModule>
-                        <!-- DISTRIBUCIO END -->
                         <!-- SISTRA2 START -->
                         <ejbModule>
                             <groupId>${groupId}</groupId>

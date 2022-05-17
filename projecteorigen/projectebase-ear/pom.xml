@@ -99,14 +99,6 @@
             <type>war</type>
         </dependency>
         <!-- DIR3CAIB END -->
-        <!-- DISTRIBUCIO START -->
-        <dependency>
-            <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-distribucio</artifactId>
-            <version>1.0.0</version>
-            <type>war</type>
-        </dependency>
-        <!-- DISTRIBUCIO END -->
         <!-- SISTRA2 START -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
@@ -254,14 +246,6 @@
                             <bundleFileName>projectebase-dir3caib.war</bundleFileName>
                         </webModule>
                         <!-- DIR3CAIB END -->
-                        <!-- DISTRIBUCIO START -->
-                        <webModule>
-                            <groupId>es.caib.projectebase</groupId>
-                            <artifactId>projectebase-distribucio</artifactId>
-                            <contextRoot>/projectebase/distribucio</contextRoot>
-                            <bundleFileName>projectebase-distribucio.war</bundleFileName>
-                        </webModule>
-                        <!-- DISTRIBUCIO END -->
                         <!-- SISTRA2 START -->
                         <ejbModule>
                             <groupId>es.caib.projectebase</groupId>

@@ -32,16 +32,20 @@ public final class PFUtils {
      * Caldrà que el nom del camp dins jsf es correspongui amb el valor de l'enumeració de l'Atribut.
      */
     public static <T extends Enum<T> & Atribut> List<Ordre<T>> sortMetaToOrdre(Class<T> type,
-                                                                               Collection<SortMeta> multiSortMeta) {
+                                        Map<String, SortMeta> sortBy) {
+        
+        Collection<SortMeta> multiSortMeta = sortBy.values();
+        
         if (multiSortMeta == null || multiSortMeta.isEmpty()) {
             return Collections.emptyList();
         }
 
         return multiSortMeta.stream().map(
-                    sortMeta -> (sortMeta.getSortOrder() == SortOrder.ASCENDING ?
-                            Ordre.ascendent(Enum.valueOf(type, sortMeta.getSortField())) :
-                            Ordre.descendent(Enum.valueOf(type, sortMeta.getSortField())))
+                    sortMeta -> (sortMeta.getOrder() == SortOrder.ASCENDING ?
+                            Ordre.ascendent(Enum.valueOf(type, sortMeta.getField())) :
+                            Ordre.descendent(Enum.valueOf(type, sortMeta.getField())))
             ).collect(Collectors.toList());
+            
     }
 
     /**

@@ -39,12 +39,8 @@
             <artifactId>microprofile-config-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Altres mòduls -->
-        <dependency>
-            <artifactId>${rootArtifactId}-service</artifactId>
-            <groupId>${groupId}</groupId>
-            <scope>provided</scope>
-        </dependency>
+        <!-- Altres mòduls >-->
+
         <!-- Dependències de test -->
         <dependency>
             <groupId>junit</groupId>

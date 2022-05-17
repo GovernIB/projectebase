@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.notib;
 
-import es.caib.notib.client.NotificacioRestClient;
+import es.caib.notib.client.NotificacioRestClientV2;
 import es.caib.notib.client.NotificacioRestClientFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +29,10 @@ public class ClientNotibProducer {
      */
     @Produces
     @ApplicationScoped
-    public NotificacioRestClient getNotificacioRestClient(Configuracio configuracio) {
+    public NotificacioRestClientV2 getNotificacioRestClient(Configuracio configuracio) {
         LOG.info("getNotificacioRestClient");
 
-        NotificacioRestClient client = NotificacioRestClientFactory.getRestClient(
+        NotificacioRestClientV2 client = NotificacioRestClientFactory.getRestClientV2(
 				configuracio.getEndpoint(),
 				configuracio.getUsuari(),
 				configuracio.getSecret());

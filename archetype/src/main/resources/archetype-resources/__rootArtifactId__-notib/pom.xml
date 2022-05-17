@@ -13,7 +13,7 @@
     <description>Mòdul web d'exemple d'integració amb NOTIB</description>
 
     <properties>
-        <notib-client.version>1.1.2</notib-client.version>
+        <notib-client.version>1.1.19</notib-client.version>
     </properties>
 
     <dependencies>
