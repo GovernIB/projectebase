@@ -49,7 +49,6 @@
      var perfilRegistre = document.getElementById("generarregistre").checked;
      var perfilNotib = document.getElementById("generarnotib").checked;
      var perfilDir3Caib = document.getElementById("generardir3caib").checked;
-     var perfilDistribucio = document.getElementById("generardistribucio").checked;
      var perfilPinbal = document.getElementById("generarpinbal").checked;
      var perfilSistra2 = document.getElementById("generarsistra2").checked;
      var perfilBatSh = document.getElementById("generarbatsh").checked;
@@ -95,7 +94,6 @@
       + " -DperfilRegistre=" + perfilRegistre
       + " -DperfilNotib=" + perfilNotib
       + " -DperfilDir3Caib=" + perfilDir3Caib
-      + " -DperfilDistribucio=" + perfilDistribucio
       + " -DperfilPinbal=" + perfilPinbal
       + " -DperfilSistra2=" + perfilSistra2
       + ((perfilWS == true)?" -DperfilWS=true": "")
@@ -199,12 +197,14 @@
                     <input size=35  id="generardir3caib" checked="false" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
+				<!-- XXX
                 <tr>
                   <td>Generar Exemple Distribució</td>
                   <td>
                     <input size=35  id="generardistribucio" checked="false" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
+				-->
                 <tr>
                   <td>Generar Exemple Pinbal</td>
                   <td>

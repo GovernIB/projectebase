@@ -41,9 +41,6 @@
         <requiredProperty key="perfilDir3Caib">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
-        <requiredProperty key="perfilDistribucio">
-          <validationRegex>^(true|false)$</validationRegex>
-        </requiredProperty>
         <requiredProperty key="perfilSistra2">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>

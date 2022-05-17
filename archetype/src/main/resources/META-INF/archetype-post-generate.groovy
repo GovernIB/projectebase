@@ -232,11 +232,6 @@ String perfilDir3Caib = properties.get("perfilDir3Caib");
 println " + perfilDir3Caib: " + perfilDir3Caib;
 checkProperty("^(true|false)\$", perfilDir3Caib, "perfilDir3Caib");
 
-// perfilDistribucio
-String perfilDistribucio = properties.get("perfilDistribucio");
-println " + perfilDistribucio: " + perfilDistribucio;
-checkProperty("^(true|false)\$", perfilDistribucio, "perfilDistribucio");
-
 // perfilPinbal
 String perfilPinbal = properties.get("perfilPinbal");
 println " + perfilPinbal: " + perfilPinbal;
@@ -434,17 +429,7 @@ if (perfilDir3Caib.equals("false")) {
     removeTextBetweenTwoStrings(configSystemProperties, "## DIR3CAIB START", "## DIR3CAIB END")
 }
 
-// PerfilDistribucio
-if (perfilDistribucio.equals("false")) {
-    println " + Eliminant Modul Distribucio ..."
-    // Llevar directori
-    removeModule(artifactId + '-distribucio', rootDir)
-    // Llevar WEB de EAR pom
-    def pomEar = new File(rootDir, artifactId + "-ear/pom.xml")
-    removeTextBetweenTwoStrings(pomEar, "<!-- DISTRIBUCIO START -->", "<!-- DISTRIBUCIO END -->")
-    removeTextBetweenTwoStrings(configProperties, "## DISTRIBUCIO START", "## DISTRIBUCIO END")
-    removeTextBetweenTwoStrings(configSystemProperties, "## DISTRIBUCIO START", "## DISTRIBUCIO END")
-}
+
 
 // PerfilPinbal
 if (perfilPinbal.equals("false")) {
