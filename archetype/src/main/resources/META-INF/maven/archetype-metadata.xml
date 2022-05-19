@@ -192,6 +192,12 @@
 			<include>**/*.properties</include>
           </includes>
         </fileSet>
+		<fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>jboss-ejb3_template.xml</include>
+          </includes>
+        </fileSet>
       </fileSets>
     </module>    
 	<module id="${rootArtifactId}-service" dir="__rootArtifactId__-service" name="${rootArtifactId}-service">
@@ -261,6 +267,12 @@
 			<include>beans.xml</include>
             <include>faces-config.xml</include>
             <include>web.xml</include>
+          </includes>
+        </fileSet>
+	    <fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>jboss-web_template.xml</include>
           </includes>
         </fileSet>
       </fileSets>

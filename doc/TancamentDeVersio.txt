@@ -10,16 +10,24 @@ Les tasques següents resumeixen les feines a realitzar pel tancament d'una vers
 (3) Revisar si generadordecomanda.html conté la versió que s'ha d'alliberar
 
 (4) Revisar si el Readme.md mostra la versió correcta
-	* En desenvolupament, l'enllaç del generador ha de ser projectebase-1.0, en tancar versió projectebase-1.0.x
+    * En desenvolupament, l'enllaç del generador ha de ser projectebase-1.0, en tancar versió projectebase-1.0.x
 
 (5) Fer deploy de archetype: 
            - cd archetype
            - mvn deploy
 
 (6) Provar generació:
-     - Esborrar el archetype i projecteorigen del .m2 
-     - Obrir generador des de github, configurar-lo amb els parametres de projecteorigen i copiar/executar comanda a dins d'una consola. Alt+a
-     - Comparar el projecte generat amb el projecteorigen
+     - Esborrar projectebase del .m2 (carpeta [HOME]\.m2\repository\es\caib\projectebase)
+     - Comparar versions generada i original:
+            (1) Obrir generador des de github (https://github.com/GovernIB/projectebase/tree/projectebase-1.0)
+            (2) Configurar-lo amb els parametres de projecteorigen:
+                       * Nom del projecte: ProjecteBase
+                       * Package Name: es.caib
+                       * Prefic: pbs
+		    (3) Pitjar la combinació de tecles "Alt + a" i seleccionar "Generar WS" i "Generar scripts d'utilitat"
+			(4) Copiar la comanda de la pàgina html: la que apareix al punt (5)
+            (3) Obrir una consola, anar al directori [projectebase]/generat, aferrar la comanda dins de la consola i executar-la.
+     - Comparar el projecte generat amb el projecteorigen. Això es fa executant el fitxer "compare_projecteorigen_i_projectegenerat.WinMerge"
 
 (7) Crear el tag dins de github.com (seguir les normes de versionat)
 
