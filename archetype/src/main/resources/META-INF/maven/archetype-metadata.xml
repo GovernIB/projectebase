@@ -41,7 +41,7 @@
         <requiredProperty key="perfilDir3Caib">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
-        <requiredProperty key="perfilSistra2">
+        <requiredProperty key="perfilDistribucio">
           <validationRegex>^(true|false)$</validationRegex>
         </requiredProperty>
         <requiredProperty key="perfilPinbal">
@@ -744,7 +744,7 @@
         </fileSet>
       </fileSets>
     </module>
-	<module id="${rootArtifactId}-sistra2" dir="__rootArtifactId__-sistra2" name="${rootArtifactId}-sistra2">
+	<module id="${rootArtifactId}-distribucio" dir="__rootArtifactId__-distribucio" name="${rootArtifactId}-distribucio">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
           <directory></directory>

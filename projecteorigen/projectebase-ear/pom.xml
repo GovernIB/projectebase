@@ -99,14 +99,14 @@
             <type>war</type>
         </dependency>
         <!-- DIR3CAIB END -->
-        <!-- SISTRA2 START -->
+        <!-- DISTRIBUCIO START -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
-            <artifactId>projectebase-sistra2</artifactId>
+            <artifactId>projectebase-distribucio</artifactId>
             <version>1.0.0</version>
             <type>ejb</type>
         </dependency>
-        <!-- SISTRA2 END -->
+        <!-- DISTRIBUCIO END -->
         <!-- PINBAL START -->
         <dependency>
             <groupId>es.caib.projectebase</groupId>
@@ -246,13 +246,13 @@
                             <bundleFileName>projectebase-dir3caib.war</bundleFileName>
                         </webModule>
                         <!-- DIR3CAIB END -->
-                        <!-- SISTRA2 START -->
+                        <!-- DISTRIBUCIO START -->
                         <ejbModule>
                             <groupId>es.caib.projectebase</groupId>
-                            <artifactId>projectebase-sistra2</artifactId>
-                            <bundleFileName>projectebase-sistra2.jar</bundleFileName>
+                            <artifactId>projectebase-distribucio</artifactId>
+                            <bundleFileName>projectebase-distribucio.jar</bundleFileName>
                         </ejbModule>
-                        <!-- SISTRA2 END -->
+                        <!-- DISTRIBUCIO END -->
                         <!-- PINBAL START -->
                         <webModule>
                             <groupId>es.caib.projectebase</groupId>

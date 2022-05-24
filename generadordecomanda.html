@@ -50,7 +50,7 @@
      var perfilNotib = document.getElementById("generarnotib").checked;
      var perfilDir3Caib = document.getElementById("generardir3caib").checked;
      var perfilPinbal = document.getElementById("generarpinbal").checked;
-     var perfilSistra2 = document.getElementById("generarsistra2").checked;
+     var perfilDistribucio = document.getElementById("generardistribucio").checked;
      var perfilBatSh = document.getElementById("generarbatsh").checked;
 
      var projectnamelowercase = projectname.toLowerCase();
@@ -95,7 +95,7 @@
       + " -DperfilNotib=" + perfilNotib
       + " -DperfilDir3Caib=" + perfilDir3Caib
       + " -DperfilPinbal=" + perfilPinbal
-      + " -DperfilSistra2=" + perfilSistra2
+      + " -DperfilDistribucio=" + perfilDistribucio
       + ((perfilWS == true)?" -DperfilWS=true": "")
       + ((perfilBatSh == true)?" -DperfilBatSh=true": "");
 
@@ -204,9 +204,9 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Generar Exemple Sistra2</td>
+                  <td>Generar Exemple Distribucio</td>
                   <td>
-                    <input size=35  id="generarsistra2" checked="false" type="checkbox" onchange="projectnameChange()" />
+                    <input size=35  id="generardistribucio" checked="false" type="checkbox" onchange="projectnameChange()" />
                   </td>
                 </tr>
                 </tbody>

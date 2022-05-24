@@ -237,10 +237,10 @@ String perfilPinbal = properties.get("perfilPinbal");
 println " + perfilPinbal: " + perfilPinbal;
 checkProperty("^(true|false)\$", perfilPinbal, "perfilPinbal");
 
-// perfilSistra2
-String perfilSistra2 = properties.get("perfilSistra2");
-println " + perfilSistra2: " + perfilSistra2;
-checkProperty("^(true|false)\$", perfilSistra2, "perfilSistra2");
+// perfilDistribucio
+String perfilDistribucio = properties.get("perfilDistribucio");
+println " + perfilDistribucio: " + perfilDistribucio;
+checkProperty("^(true|false)\$", perfilDistribucio, "perfilDistribucio");
 
 // perfilBatSh
 String perfilBatSh = properties.get("perfilBatSh");
@@ -447,30 +447,30 @@ if (perfilPinbal.equals("false")) {
     removeTextBetweenTwoStrings(configSystemProperties, "## PINBAL START", "## PINBAL END")
 }
 
-// PerfilSistra2
-if (perfilSistra2.equals("false")) {
-    println " + Eliminant Modul Sistra2 ..."
+// PerfilDistribucio
+if (perfilDistribucio.equals("false")) {
+    println " + Eliminant Modul Distribucio ..."
     // Llevar directori
-    removeModule(artifactId + '-sistra2', rootDir)
+    removeModule(artifactId + '-distribucio', rootDir)
     // Llevar EJB de EAR pom
     def pomEar = new File(rootDir, artifactId + "-ear/pom.xml")
-    removeTextBetweenTwoStrings(pomEar, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->")
+    removeTextBetweenTwoStrings(pomEar, "<!-- DISTRIBUCIO START -->", "<!-- DISTRIBUCIO END -->")
     // Netejar fitxers de properties
-    removeTextBetweenTwoStrings(configProperties, "## SISTRA2 START", "## SISTRA2 END")
-    removeTextBetweenTwoStrings(configSystemProperties, "## SISTRA2 START", "## SISTRA2 END")
+    removeTextBetweenTwoStrings(configProperties, "## DISTRIBUCIO START", "## DISTRIBUCIO END")
+    removeTextBetweenTwoStrings(configSystemProperties, "## DISTRIBUCIO START", "## DISTRIBUCIO END")
 
     // Netejar scripts de base de dades
-    assert new File(rootDir, "scripts/bbdd/oracle/sistra2_create_schema.sql").delete()
-    assert new File(rootDir, "scripts/bbdd/oracle/sistra2_drop_schema.sql").delete()
-    assert new File(rootDir, "scripts/bbdd/postgresql/sistra2_create_schema.sql").delete()
-    assert new File(rootDir, "scripts/bbdd/postgresql/sistra2_drop_schema.sql").delete()
+    assert new File(rootDir, "scripts/bbdd/oracle/distribucio_create_schema.sql").delete()
+    assert new File(rootDir, "scripts/bbdd/oracle/distribucio_drop_schema.sql").delete()
+    assert new File(rootDir, "scripts/bbdd/postgresql/distribucio_create_schema.sql").delete()
+    assert new File(rootDir, "scripts/bbdd/postgresql/distribucio_drop_schema.sql").delete()
 
     // Netejar mòdul API, només si està activat
 	if (perfilApiInterna.equals("true")) {
 		def pomApi = new File(rootDir, artifactId + "-api-interna/pom.xml")
-		removeTextBetweenTwoStrings(pomApi, "<!-- SISTRA2 START -->", "<!-- SISTRA2 END -->")
+		removeTextBetweenTwoStrings(pomApi, "<!-- DISTRIBUCIO START -->", "<!-- DISTRIBUCIO END -->")
 		packageDir = properties.get("package").replace(".", "/");
-		assert new File(rootDir, artifactId + "-api-interna/src/main/java/" + packageDir + "/api/interna/sistra2").deleteDir()
-		assert new File(rootDir, artifactId + "-api-interna/src/test/java/" + packageDir + "/api/interna/sistra2").deleteDir()
+		assert new File(rootDir, artifactId + "-api-interna/src/main/java/" + packageDir + "/api/interna/distribucio").deleteDir()
+		assert new File(rootDir, artifactId + "-api-interna/src/test/java/" + packageDir + "/api/interna/distribucio").deleteDir()
 	}
 }

@@ -450,6 +450,6 @@
         <module>projectebase-notib</module>
         <module>projectebase-dir3caib</module>
         <module>projectebase-pinbal</module>
-        <module>projectebase-sistra2</module>
+        <module>projectebase-distribucio</module>
     </modules>
 </project>
