@@ -1,4 +1,4 @@
-# ![Logo](https://github.com/GovernIB/maven/raw/binaris/projectebase/icon.png) Projecte Base 1.0.11
+# ![Logo](https://github.com/GovernIB/maven/raw/binaris/projectebase/icon.png) Projecte Base 1.0.12
 
 *Projecte Base - JBoss 7.2 EAP / JDK 11*
 
