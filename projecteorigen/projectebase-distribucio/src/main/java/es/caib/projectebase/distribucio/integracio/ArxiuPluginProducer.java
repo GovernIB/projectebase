@@ -21,19 +21,19 @@ public class ArxiuPluginProducer {
     private static final Logger LOG = LoggerFactory.getLogger(ArxiuPluginProducer.class);
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.distribucio.int.arxiu.endpoint")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.endpoint")
     private String endpoint;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.distribucio.int.arxiu.aplicacioCodi")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.aplicacioCodi")
     private String aplicacioCodi;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.distribucio.int.arxiu.usuari")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name = "es.caib.projectebase.distribucio.int.arxiu.secret")
+    @ConfigProperty(name = "es.caib.projectebase.int.arxiu.secret")
     private String secret;
 
     /**
