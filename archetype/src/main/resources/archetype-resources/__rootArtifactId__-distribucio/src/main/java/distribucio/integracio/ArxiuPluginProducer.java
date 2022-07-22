@@ -24,19 +24,19 @@ public class ArxiuPluginProducer {
     private static final Logger LOG = LoggerFactory.getLogger(ArxiuPluginProducer.class);
 
     @Inject
-    @ConfigProperty(name = "${package}.distribucio.int.arxiu.endpoint")
+    @ConfigProperty(name = "${package}.int.arxiu.endpoint")
     private String endpoint;
 
     @Inject
-    @ConfigProperty(name = "${package}.distribucio.int.arxiu.aplicacioCodi")
+    @ConfigProperty(name = "${package}.int.arxiu.aplicacioCodi")
     private String aplicacioCodi;
 
     @Inject
-    @ConfigProperty(name = "${package}.distribucio.int.arxiu.usuari")
+    @ConfigProperty(name = "${package}.int.arxiu.usuari")
     private String usuari;
 
     @Inject
-    @ConfigProperty(name = "${package}.distribucio.int.arxiu.secret")
+    @ConfigProperty(name = "${package}.int.arxiu.secret")
     private String secret;
 
     /**
