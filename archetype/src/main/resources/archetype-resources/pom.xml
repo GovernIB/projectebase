@@ -31,7 +31,7 @@
         <junit.version>4.13.1</junit.version>
         <arquillian.version>1.6.0.Final</arquillian.version>
         <wildfly-arquillian.version>3.0.1.Final</wildfly-arquillian.version>
-        <mockito.version>3.5.13</mockito.version>
+        <mockito.version>2.21.0</mockito.version>
         <!-- Propietats emprades als descriptors en mode Desenvolupament. -->
         <!-- Es poden activar els valors de producció activatn el profile -Pproduccio -->
         <webXml.faces.projectStage>Development</webXml.faces.projectStage>
