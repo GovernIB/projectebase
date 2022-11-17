@@ -18,11 +18,15 @@
         <properties>
             <!-- Per les propietats estandard veure punt 8.2.1.9 de l'especificació JPA -->
 
-            <!--
+           <!--
             Per un bug a Hibernate, el JBoss EAP 7.2 que no tenen el patch 9 no detecten correctament
             les versions d'Oracle superiors a la 12. Per això cal definir explicitament el dialect.
-            -->
+
             <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
+
+            -->
+            <property name="hibernate.dialect" value="${es.caib.pbasetest.hibernate.dialect}" />
+            <property name="hibernate.query.substitutions" value="${es.caib.pbasetest.hibernate.query.substitutions}"/>
 
             <!-- Afecta molt al rendiment. A entorn de producció, sempre a false -->
             <property name="hibernate.show_sql" value="${persistenceXml.hibernate.showSql}"/>
