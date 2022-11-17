@@ -20,12 +20,13 @@ public class ClientNotibProducer {
     /**
      * Instancia el client de Notib. Permet que s'injecti onsevulla utilitzant CDI.
      * El definim com a {@link ApplicationScoped} perquè només hi hagi una instància per aplicació.
+     * 11-2002 gdeignacio-fundaciobit. Eliminam anotació ApplicationScoped la línia 29 per evitar conflicte
+     * amb la classe Configuracio, que ja la te.
      *
      * @param configuracio la configuració de l'aplicació. És injectat automàticament per CDI
      * @return instància del client de Notib.
      */
     @Produces
-    @ApplicationScoped
     public NotificacioRestClientV2 getNotificacioRestClient(Configuracio configuracio) {
         LOG.info("getNotificacioRestClient");
 
