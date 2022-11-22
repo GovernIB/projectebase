@@ -5,7 +5,9 @@
 }
 body {
 	padding-top: 4.5rem;
-	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
+	/* font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif; */
+	/* font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif; */
+	font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif;
 	color: #333;
 	background-color: #eaeaea;
 }
@@ -66,6 +68,14 @@ a:hover{
 .lh15{
 	line-height:1.5
 }
+
+.card-title {
+	/* font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif; */
+	/* font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif; */
+	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
+	font-size: 1.25rem;
+}
+
 .clickable-row{
 	cursor: pointer;
 }
@@ -74,6 +84,19 @@ a:hover{
 	margin-left: auto;
 	margin-right: auto;
 }
+
+nav {
+	/* font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif; */
+	/* font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif; */
+	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
+}
+
+footer {
+	/* font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif; */
+	/* font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif; */
+	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
+}
+
 /* FI Estils generals */
 
 /* Motlla de pa */
@@ -451,7 +474,9 @@ a.iconoXarxes{
 	padding:30px 10px;
 	margin:20px 0px;
 	border: thin outset;
-	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
+	/* font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif; */
+	/* font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif; */
+	font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif;;
 	color: #333;
 }
 .box-part:hover{
@@ -476,7 +501,9 @@ a.iconoXarxes{
 	filter: invert(78%) sepia(53%) saturate(428%) hue-rotate(91deg) brightness(96%) contrast(94%);
 }
 .titolMenu{
-	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
+	/* font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif; */
+	/* font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif; */
+	font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif;;
 	color: #4dba79;
 	font-size: 1.5em;
 	display: flow-root;
@@ -504,7 +531,9 @@ a.iconoXarxes{
 	padding-top: 6px;
 }
 .ui-widget {
-	font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif;
+	/* font: normal 100% 'Bariol Regular', Arial, Helvetica, sans-serif; */
+	/* font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif; */
+	font: normal 100% 'Noto Sans', Arial, Helvetica, sans-serif;;
 }
 .ui-breadcrumb a {
 	color: #4dba79;

@@ -3311,7 +3311,7 @@ footer * , header *, header *:before, header *:after, footer *:before, footer *:
 
 .imc-peu { 
 	padding: 4em 0em 2em 1.5em; 
-	font: normal 90% 'Bariol Regular',Arial,Helvetica,sans-serif;
+	font: normal 90% 'Noto Sans',Arial,Helvetica,sans-serif;
   font-size: 90%;
   line-height: normal;
   color: #333;
