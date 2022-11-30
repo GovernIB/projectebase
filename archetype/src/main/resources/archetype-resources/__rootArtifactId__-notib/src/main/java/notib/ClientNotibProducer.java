@@ -16,6 +16,8 @@ import javax.enterprise.inject.Produces;
  *
  * @author areus
  */
+
+@Deprecated
 public class ClientNotibProducer {
 
     private static final Logger LOG = LoggerFactory.getLogger(ClientNotibProducer.class);

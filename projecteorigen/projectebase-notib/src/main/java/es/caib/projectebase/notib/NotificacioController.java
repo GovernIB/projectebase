@@ -1,6 +1,6 @@
 package es.caib.projectebase.notib;
 
-
+import es.caib.notib.client.NotificacioRestClientFactory;
 import es.caib.notib.client.NotificacioRestClientV2;
 import es.caib.notib.client.domini.Certificacio;
 import es.caib.notib.client.domini.DocumentV2;
@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -59,11 +60,21 @@ public class NotificacioController implements Serializable {
     @Inject
     FacesContext context;
 
-    /**
-     * Obté el client de Notificacio a través de {@link ClientNotibProducer#getNotificacioRestClient(Configuracio)}
-     */
     @Inject
+    private Configuracio configuracio;
+
     private NotificacioRestClientV2 client;
+
+    @PostConstruct
+    protected void init() {
+        LOG.info("Iniciant client");
+        client = NotificacioRestClientFactory.getRestClientV2(
+            configuracio.getEndpoint(),
+            configuracio.getUsuari(),
+            configuracio.getSecret());
+        LOG.info("Client creat");
+    }
+
 
     /**
      * Model de dades del formulari
