@@ -4,4 +4,10 @@
     Permet introduïr configuracions relacionades amb el desplegament.
     Com ara ignorar mòduls del servidor si el nostre EAR conté versions més recents.
     -->
+    <deployment>
+        <dependencies>
+            <module name="org.apache.commons.lang3"/>
+            <module name="org.apache.cxf.impl"/>
+        </dependencies>
+    </deployment>
 </jboss-deployment-structure>

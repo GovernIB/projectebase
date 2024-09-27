@@ -26,12 +26,13 @@
         <mp-config.version>1.3</mp-config.version>
         <keycloak.version>6.0.1</keycloak.version>
         <primefaces.version>10.0.0</primefaces.version>
-        <primefaces.theme.version>1.0.10</primefaces.theme.version>
+        <primefaces.theme.version>1.0.11</primefaces.theme.version>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
         <junit.version>4.13.1</junit.version>
         <arquillian.version>1.6.0.Final</arquillian.version>
         <wildfly-arquillian.version>3.0.1.Final</wildfly-arquillian.version>
         <mockito.version>2.21.0</mockito.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
         <!-- Propietats emprades als descriptors en mode Desenvolupament. -->
         <!-- Es poden activar els valors de producció activatn el profile -Pproduccio -->
         <webXml.faces.projectStage>Development</webXml.faces.projectStage>
@@ -420,12 +421,12 @@
             </snapshots>
         </repository>
         <!-- Les llibreries de Primefaces no estan definides als repositoris centrals -->
-        <repository>
+        <!--repository>
             <id>prime-repo</id>
             <name>PrimeFaces Maven Repository</name>
             <url>https://repository.primefaces.org</url>
             <layout>default</layout>
-        </repository>
+        </repository-->
         <!-- Repositori del GovernIB amb llibreries compartides, plugins, clients d'altres eines... -->
         <repository>
             <id>github-governib-maven</id>
