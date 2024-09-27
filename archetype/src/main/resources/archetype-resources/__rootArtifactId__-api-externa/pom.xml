@@ -12,6 +12,15 @@
     <name>${projectname} - API REST - EXTERNA</name>
     <description>API REST EXTERNA de ${projectname}</description>
 
+    <properties>
+        <server.auth.method>BASIC</server.auth.method>
+        <client.default.package>${package}.api.externa</client.default.package>
+        <swagger-ui.version>3.35.1</swagger-ui.version>
+        <cxf.version>3.3.3</cxf.version>
+        <api1.id>API1</api1.id>
+        <api2.id>API2</api2.id>
+    </properties>
+
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
@@ -25,6 +34,17 @@
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Altres mòduls -->
         <dependency>
             <groupId>${groupId}</groupId>
@@ -84,11 +104,181 @@
             <artifactId>${rootArtifactId}-persistence</artifactId>
             <scope>test</scope>
         </dependency>
+
+          <!-- Dependències per als objectes generats -->
+
+
+        <!--Swagger -->
+
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.2.15</version>
+        </dependency>
+
+        <!--Swagger -->
+
+           <!-- JSON processing: jackson -->
+           <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.5.redhat-2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.5.redhat-2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.5.redhat-2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.7.redhat-1</version>
+        </dependency>
+
+        <!-- Fí de dependències per als objectes generats -->
+
+
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+
+            <!-- Genera el servei Rest per Java a partir del fitxer openapi.json -->
+            <!--
+            https://github.com/swagger-api/swagger-codegen/blob/master/modules/swagger-codegen-maven-plugin/README.md#general-configuration-parameters -->
+            <plugin>
+
+                <groupId>io.swagger.codegen.v3</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>3.0.46</version>
+
+                <executions>
+                    <execution>
+                        <id>${api1.id}</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi/${api1.id}/openapi.yaml</inputSpec>
+                            <!--language>java</language-->
+                            <language>jaxrs-resteasy</language>
+                            <output>${project.build.directory}/generated-sources/swagger</output>
+                            <addCompileSourceRoot>false</addCompileSourceRoot>
+                            <configHelp>java</configHelp>
+                            <!--library>resteasy</library-->
+                            <!--library>resttemplate</library-->
+                            <apiPackage>${client.default.package}.${api1.id}.api</apiPackage>
+                            <modelPackage>${client.default.package}.${api1.id}.model</modelPackage>
+                            <invokerPackage>${client.default.package}.${api1.id}.services</invokerPackage>
+                            <generateApis>true</generateApis>
+                            <generateApiTests>true</generateApiTests>
+                            <generateApiDocumentation>true</generateApiDocumentation>
+                            <generateModelTests>true</generateModelTests>
+                            <generateModelDocumentation>true</generateModelDocumentation>
+                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <configOptions>
+                                <groupId>${package}</groupId>
+                                <artifactId>${rootArtifactId}-api-externa</artifactId>
+                                <artifactVersion>1.0.0</artifactVersion>
+                                <dateLibrary>joda</dateLibrary>
+                                <useTags>true</useTags>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                            </configOptions>
+                            <variableNamingConvention>camelCase</variableNamingConvention>
+                            <fullJavaUtil>true</fullJavaUtil>
+                        </configuration>
+                    </execution>
+                 
+                    <execution>
+                        <id>${api2.id}</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi/${api2.id}/openapi.yaml</inputSpec>
+                            <!--language>java</language-->
+                            <language>jaxrs-resteasy</language>
+                            <output>${project.build.directory}/generated-sources/swagger</output>
+                            <addCompileSourceRoot>false</addCompileSourceRoot>
+                            <configHelp>java</configHelp>
+                            <!--library>resteasy</library-->
+                            <!--library>resttemplate</library-->
+                            <apiPackage>${client.default.package}.${api2.id}.api</apiPackage>
+                            <modelPackage>${client.default.package}.${api2.id}.model</modelPackage>
+                            <invokerPackage>${client.default.package}.${api2.id}.services</invokerPackage>
+                            <generateApis>true</generateApis>
+                            <generateApiTests>true</generateApiTests>
+                            <generateApiDocumentation>true</generateApiDocumentation>
+                            <generateModelTests>true</generateModelTests>
+                            <generateModelDocumentation>true</generateModelDocumentation>
+                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <configOptions>
+                                <groupId>${package}</groupId>
+                                <artifactId>${rootArtifactId}-api-externa</artifactId>
+                                <artifactVersion>1.0.0</artifactVersion>
+                                <dateLibrary>joda</dateLibrary>
+                                <useTags>true</useTags>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                            </configOptions>
+                            <variableNamingConvention>camelCase</variableNamingConvention>
+                            <fullJavaUtil>true</fullJavaUtil>
+                        </configuration>
+                    </execution>
+
+                </executions>
+
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add_sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <!--source>target/generated-sources/swagger/src/main/java</source-->
+                                <source>target/generated-sources/swagger/src/gen/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <!--execution>
+                    <id>add_test_sources</id>
+                    <phase>generate-test-sources</phase>
+                    <goals>
+                      <goal>add-test-source</goal>
+                    </goals>
+                    <configuration>
+                      <sources>
+                        <source>target/generated-sources/swagger/src/test/java</source>
+                      </sources>
+                    </configuration>
+                  </execution-->
+                </executions>
+            </plugin>
+
+
+
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
