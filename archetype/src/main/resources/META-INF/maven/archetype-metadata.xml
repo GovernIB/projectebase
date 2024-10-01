@@ -338,6 +338,12 @@
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.yaml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/webapp</directory>
           <includes>
             <include>**/*.xml</include>
@@ -354,7 +360,7 @@
           <includes>
             <include>**/*.xml</include>
             <include>**/*.sql</include>
-			<include>**/*.properties</include>
+			      <include>**/*.properties</include>
           </includes>
         </fileSet>
       </fileSets>
@@ -365,6 +371,12 @@
           <directory>src/main/java</directory>
           <includes>
             <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.yaml</include>
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
