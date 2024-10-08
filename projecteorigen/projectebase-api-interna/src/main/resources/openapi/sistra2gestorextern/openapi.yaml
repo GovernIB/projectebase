@@ -1,0 +1,218 @@
+openapi: 3.0.3
+info:
+  title: Swagger sistra2gestorextern - OpenAPI 3.0
+  description: |-
+    This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
+    You can now help us improve the API whether it's by making changes to the definition itself or to the code.
+    That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+
+    _If you're looking for the Swagger 2.0/OAS 2.0 version of Petstore, then click [here](https://editor.swagger.io/?url=https://petstore.swagger.io/v2/swagger.yaml). Alternatively, you can load via the `Edit > Load Petstore OAS 2.0` menu option!_
+    
+    Some useful links:
+    - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://projectebase.caib.es:8080/projectebaseapi/interna/services
+tags:
+  - name: sistra2gestorextern
+    description: Everything about your Pets
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /sistra2gestorextern/formulari:
+    post:
+      tags:
+        - sistra2gestorextern
+      summary: inicia sessió de formulari en gestor extern de formularis
+      description: inicia sessió de formulari en gestor extern de formularis
+      operationId: iniciaFormulari
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolicitudFormulari'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SolicitudFormulari'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SolicitudFormulari'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/plain; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/UrlResponse'
+        '400':
+           description: Invalid order
+           content:
+            text/plain; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/MsgResponse'
+        '500':
+           description: Internal server error
+           content:
+            text/plain; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/MsgResponse'
+
+  /sistra2gestorextern/resultado/{ticket}:
+    get:
+      tags:
+        - sistra2gestorextern
+      summary: recupera dades del formulari emplenat
+      description: recupera dades del formulari emplenat
+      operationId: resultatFormulari
+      parameters:
+        - name: ticket
+          in: path
+          description: Ticket de accés retornat pel gestor extern de formularis
+          required: true
+          schema:
+            type: string
+            example: 'CFDEKWNL-UHMZR8T8-T8WTFOOR:123456'
+            description: 'Entitat que envia la sol·licitud'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetornFormulari'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RetornFormulari'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Order not found
+components:
+  schemas:
+    UrlResponse:
+      type: string
+      description: "Resposta del servei en format url"
+      xml:
+        name: UrlResponse
+    MsgResponse:
+      type: string
+      description: "Resposta del servei en format lliure"
+      xml:
+        name: MsgResponse
+    SolicitudFormulari:
+      type: object
+      properties:
+        entidad:
+          type: string
+          example: 'A04003003'
+          description: 'Entitat que envia la sol·licitud'
+        idSesionFormulario:
+          type: string
+          example: 'CFDEKWNL-UHMZR8T8-T8WTFOOR'
+          description: 'Id sessió formulari de SISTRA2'
+        idFormularioExterno:
+          type: string
+          example: 'FOR-EXT-1'
+          description: 'Id formulari extern a executar'
+        idioma:
+          type: string
+          example: 'ca'
+          description: 'Idioma (es, ca, en)'
+          enum:
+            - es
+            - ca
+            - en
+        usuario:
+          $ref: '#/components/schemas/Usuario'
+        xmlDatosActuales:
+          type: string
+          format: byte
+          description: 'XML amb les dades actuals del formulari en Base64 (ha de complir el XSD formulario.xsd especificat en l’annexe)'
+        parametrosApertura:
+          $ref: '#/components/schemas/ParametrosApertura'
+        urlCallback:
+          type: string
+          example: 'http://projectebase.caib.es:8080/projectebaseapi/interna/services/sistra2gestorextern/resultado/CFDEKWNL-UHMZR8T8-T8WTFOOR'
+          description: 'URL callback'
+      xml:
+        name: SolicitudFormulari
+
+    Usuario:
+      type: object
+      properties:
+        nif:
+          type: string
+          example: 11111111H
+        nombre:
+          type: string
+          example: Nombre
+        apellido1:
+          type: string
+          example: Apellido1
+        apellido2:
+          type: string
+          example: Apellido2
+      xml:
+        name: Usuario
+    
+
+    ParametrosApertura:
+      type: object
+      properties:
+        parametro:
+          type: array
+          xml:
+            name: Parametre
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/Parametre'
+      xml:
+        name: ParametrosApertura
+
+    Parametre:
+      type: object
+      properties:
+        codigo:
+          type: string
+          example: 'codigo1'
+          description: 'codi paràmetre'
+        valor:
+          type: string
+          example: 'valor1'
+          description: 'valor paràmetre'
+      xml:
+        name: Parametre
+
+
+    RetornFormulari:
+      type: object
+      properties:
+        idSesionFormulario:
+          type: string
+          example: 'CFDEKWNL-UHMZR8T8-T8WTFOOR'
+        cancelado:
+          type: string
+          example: 'false'
+        xml:
+          type: string
+          format: byte
+          description: 'XML amb les dades actuals del formulari en Base64 (ha de complir el XSD formulario.xsd especificat en l’annexe)'
+        pdf:
+          type: string
+          format: byte
+          description: 'PDF amb la visualització del formulari en Base64'
+      xml:
+        name: RetornFormulari
+
