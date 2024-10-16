@@ -16,7 +16,7 @@
         <client.default.package>es.caib.projectebase.api.interna</client.default.package>
         <swagger-ui.version>3.35.1</swagger-ui.version>
         <cxf.version>3.3.3</cxf.version>
-        <api1.id>sistra2gestorextern</api1.id>
+        <api1.id>sistra2extern</api1.id>
         <!--api2.id>API2</api2.id-->
     </properties>
 

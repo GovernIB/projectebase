@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Swagger sistra2gestorextern - OpenAPI 3.0
+  title: Swagger sistra2extern - OpenAPI 3.0
   description: |-
     This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
     Swagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
@@ -25,16 +25,16 @@ externalDocs:
 servers:
   - url: http://projectebase.caib.es:8080/projectebaseapi/interna/services
 tags:
-  - name: sistra2gestorextern
+  - name: sistra2extern
     description: Everything about your Pets
     externalDocs:
       description: Find out more
       url: http://swagger.io
 paths:
-  /sistra2gestorextern/formulari:
+  /sistra2extern/formulari:
     post:
       tags:
-        - sistra2gestorextern
+        - sistra2extern
       summary: inicia sessió de formulari en gestor extern de formularis
       description: inicia sessió de formulari en gestor extern de formularis
       operationId: iniciaFormulari
@@ -69,10 +69,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/MsgResponse'
 
-  /sistra2gestorextern/resultado/{ticket}:
+  /sistra2extern/resultado/{ticket}:
     get:
       tags:
-        - sistra2gestorextern
+        - sistra2extern
       summary: recupera dades del formulari emplenat
       description: recupera dades del formulari emplenat
       operationId: resultatFormulari
@@ -144,7 +144,7 @@ components:
           $ref: '#/components/schemas/ParametrosApertura'
         urlCallback:
           type: string
-          example: 'http://projectebase.caib.es:8080/projectebaseapi/interna/services/sistra2gestorextern/resultado/CFDEKWNL-UHMZR8T8-T8WTFOOR'
+          example: 'http://projectebase.caib.es:8080/projectebaseapi/interna/services/sistra2extern/resultado/CFDEKWNL-UHMZR8T8-T8WTFOOR'
           description: 'URL callback'
       xml:
         name: SolicitudFormulari

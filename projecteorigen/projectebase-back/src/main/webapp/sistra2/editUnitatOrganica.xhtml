@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:t="http://back.projectebase.caib.es/tags">
+<!--
+Pàgina per edició d'unitats orgàniques.
+-->
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam id="unitatId" name="unitatId" value="#{unitatModel.value.id}" />
+            <f:viewAction action="#{unitatModel.load}" />
+            <f:importConstants type="es.caib.projectebase.service.model.EstatPublicacio" var="estats"/>
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="pageTitle">
+        #{labels.editUnitatOrganica_title}
+    </ui:define>
+
+    <ui:define name="breadcrumb">
+        <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica"/>
+        <p:menuitem value="#{labels.editUnitatOrganica_link}" outcome="/admin/editUnitatOrganica" includeViewParams="true"/>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="form">
+
+            <ui:include src="/WEB-INF/includes/fieldsUnitatOrganica.xhtml">
+                <ui:param name="edit" value="true" />
+            </ui:include>
+
+            <ui:decorate template="/WEB-INF/decorations/buttons.xhtml">
+                <ui:define name="buttons">
+                    <p:commandButton id="updateButton" action="#{editUnitatOrganica.update}"
+                                     value="#{labels.button_guardar}"
+                                     process="@form" update="@form"/>
+                    <p:button value="#{labels.button_tornar}" outcome="/listUnitatOrganica"
+                              styleClass="float-right"/>
+                </ui:define>
+            </ui:decorate>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>
