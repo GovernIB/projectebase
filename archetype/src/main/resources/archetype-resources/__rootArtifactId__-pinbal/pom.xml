@@ -14,7 +14,7 @@
     <description>Mòdul web d'exemple d'integració amb PINBAL</description>
 
     <properties>
-        <pinbal-client.version>1.4.24</pinbal-client.version>
+        <pinbal-client.version>1.4.36</pinbal-client.version>
     </properties>
 
     <dependencies>

@@ -13,7 +13,7 @@
     <description>Mòdul web d'exemple d'integració amb REGWEB</description>
 
     <properties>
-        <regweb3-ws-api.version>3.1.3</regweb3-ws-api.version>
+        <regweb3-ws-api.version>3.2.5</regweb3-ws-api.version>
     </properties>
 
     <dependencies>

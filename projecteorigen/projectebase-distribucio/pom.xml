@@ -13,7 +13,7 @@
     <description>Mòdul EJB d'exemple d'integració amb Distribució</description>
 
     <properties>
-        <distribucio-ws-client.version>0.9</distribucio-ws-client.version>
+        <distribucio-ws-client.version>0.9.35</distribucio-ws-client.version>
         <distribucio-backoffice-utils.version>0.9.50</distribucio-backoffice-utils.version>
         <cxf-rt-transports-http-jetty.version>3.2.14</cxf-rt-transports-http-jetty.version>
     </properties>

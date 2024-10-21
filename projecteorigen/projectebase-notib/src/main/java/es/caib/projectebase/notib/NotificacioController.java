@@ -5,13 +5,13 @@ import es.caib.notib.client.NotificacioRestClientV2;
 import es.caib.notib.client.domini.Certificacio;
 import es.caib.notib.client.domini.DocumentV2;
 import es.caib.notib.client.domini.EntregaDeh;
-import es.caib.notib.client.domini.Enviament;
-import es.caib.notib.client.domini.EnviamentEstatEnum;
-import es.caib.notib.client.domini.EnviamentTipusEnum;
-import es.caib.notib.client.domini.InteressatTipusEnumDto;
-import es.caib.notib.client.domini.NotificaServeiTipusEnumDto;
+import es.caib.notib.client.domini.EnviamentV2;
+import es.caib.notib.client.domini.EnviamentEstat;
+import es.caib.notib.client.domini.EnviamentTipus;
+import es.caib.notib.client.domini.InteressatTipus;
+import es.caib.notib.client.domini.ServeiTipus;
 import es.caib.notib.client.domini.NotificacioV2;
-import es.caib.notib.client.domini.Persona;
+import es.caib.notib.client.domini.PersonaV2;
 import es.caib.notib.client.domini.RespostaAltaV2;
 import es.caib.notib.client.domini.RespostaConsultaEstatEnviamentV2;
 import es.caib.notib.client.domini.RespostaConsultaEstatNotificacioV2;
@@ -90,9 +90,9 @@ public class NotificacioController implements Serializable {
     }
 
     /* Mantenim en memòria l'estat dels enviaments */
-    private final Map<String, EnviamentEstatEnum> estatReferencies = new HashMap<>();
+    private final Map<String, EnviamentEstat> estatReferencies = new HashMap<>();
 
-    public Map<String, EnviamentEstatEnum> getEstatReferencies() {
+    public Map<String, EnviamentEstat> getEstatReferencies() {
         return estatReferencies;
     }
 
@@ -119,7 +119,7 @@ public class NotificacioController implements Serializable {
         
         notificacio.setConcepte(model.getConcepte());
         notificacio.setDescripcio(model.getDescripcio());
-        notificacio.setEnviamentTipus(EnviamentTipusEnum.NOTIFICACIO);
+        notificacio.setEnviamentTipus(EnviamentTipus.NOTIFICACIO);
         notificacio.setEnviamentDataProgramada(null);
         notificacio.setRetard(5);
         
@@ -144,16 +144,16 @@ public class NotificacioController implements Serializable {
         document.setNormalitzat(false);
         notificacio.setDocument(document);
         
-        Enviament enviament = new Enviament();
+        EnviamentV2 enviament = new EnviamentV2();
 
         // Titular de la notificació
-        Persona titular = new Persona();
+        PersonaV2 titular = new PersonaV2();
         titular.setNom(model.getTitularNom());
         titular.setLlinatge1(model.getTitularLlinatge1());
         titular.setLlinatge2(model.getTitularLlinatge2());
         titular.setNif(model.getTitularNif());
         titular.setEmail(model.getTitularEmail());
-        titular.setInteressatTipus(InteressatTipusEnumDto.FISICA);
+        titular.setInteressatTipus(InteressatTipus.FISICA);
         enviament.setTitular(titular);
 
         // Entrega a la DEH
@@ -163,7 +163,7 @@ public class NotificacioController implements Serializable {
         enviament.setEntregaDeh(entregaDeh);
 
         // NORMAL o URGENT
-        enviament.setServeiTipus(NotificaServeiTipusEnumDto.NORMAL);
+        enviament.setServeiTipus(ServeiTipus.NORMAL);
 
         notificacio.getEnviaments().add(enviament);
         
@@ -174,7 +174,7 @@ public class NotificacioController implements Serializable {
                 
                 respostes.add(resposta);
                 resposta.getReferencies().forEach(
-                        referencia -> estatReferencies.put(referencia.getReferencia(), EnviamentEstatEnum.PENDENT));
+                        referencia -> estatReferencies.put(referencia.getReferencia(), EnviamentEstat.PENDENT));
                 
                 context.addMessage(null, new FacesMessage(
                     "Creada notificació: [" + resposta.getIdentificador() + "]", ""));
