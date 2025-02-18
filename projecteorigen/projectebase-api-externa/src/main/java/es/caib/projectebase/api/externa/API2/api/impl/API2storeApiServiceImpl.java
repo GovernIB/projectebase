@@ -19,29 +19,24 @@ import javax.ws.rs.core.SecurityContext;
 @RequestScoped
 
 public class API2storeApiServiceImpl implements API2storeApiService {
-      public Response deleteOrder(Long orderId,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response getInventory(SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response getOrderById(Long orderId,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response placeOrder(Order body,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response placeOrder(Long id,Long petId,Integer quantity,DateTime shipDate,String status,Boolean complete,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
+    public Response deleteOrder(Long orderId,SecurityContext securityContext)
+    throws NotFoundException {
+    // do some magic!
+    return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+}
+    public Response getInventory(SecurityContext securityContext)
+    throws NotFoundException {
+    // do some magic!
+    return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+}
+    public Response getOrderById(Long orderId,SecurityContext securityContext)
+    throws NotFoundException {
+    // do some magic!
+    return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+}
+    public Response placeOrder(Order body,SecurityContext securityContext)
+    throws NotFoundException {
+    // do some magic!
+    return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+}
 }
