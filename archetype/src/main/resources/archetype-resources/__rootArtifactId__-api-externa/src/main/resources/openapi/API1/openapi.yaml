@@ -48,13 +48,7 @@ paths:
       requestBody:
         description: Update an existent pet in the store
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Pet'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Pet'
-          application/x-www-form-urlencoded:
+          application/json; charset=utf-8:
             schema:
               $ref: '#/components/schemas/Pet'
         required: true
@@ -62,12 +56,9 @@ paths:
         '200':
           description: Successful operation
           content:
-            application/json:
+            application/json; charset=utf-8:
               schema:
                 $ref: '#/components/schemas/Pet'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Pet'
         '400':
           description: Invalid ID supplied
         '404':
@@ -87,13 +78,7 @@ paths:
       requestBody:
         description: Create a new pet in the store
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Pet'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Pet'
-          application/x-www-form-urlencoded:
+          application/json; charset=utf-8:
             schema:
               $ref: '#/components/schemas/Pet'
         required: true
@@ -101,10 +86,7 @@ paths:
         '200':
           description: Successful operation
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'          
-            application/xml:
+            application/json; charset=utf-8:
               schema:
                 $ref: '#/components/schemas/Pet'
         '400':
@@ -139,12 +121,7 @@ paths:
         '200':
           description: successful operation
           content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'          
-            application/xml:
+            application/json; charset=utf-8:
               schema:
                 type: array
                 items:
@@ -176,16 +153,11 @@ paths:
         '200':
           description: successful operation
           content:
-            application/json:
+            application/json; charset=utf-8:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Pet'          
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
         '400':
           description: Invalid tag value
       security:
@@ -211,10 +183,7 @@ paths:
         '200':
           description: successful operation
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'          
-            application/xml:
+            application/json; charset=utf-8:
               schema:
                 $ref: '#/components/schemas/Pet'
         '400':
@@ -315,7 +284,7 @@ paths:
         '200':
           description: successful operation
           content:
-            application/json:
+            application/json; charset=utf-8:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
       security:
@@ -333,7 +302,7 @@ paths:
         '200':
           description: successful operation
           content:
-            application/json:
+            application/json; charset=utf-8:
               schema:
                 type: object
                 additionalProperties:
@@ -350,20 +319,14 @@ paths:
       operationId: placeOrder
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Order'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Order'
-          application/x-www-form-urlencoded:
+          application/json; charset=utf-8:
             schema:
               $ref: '#/components/schemas/Order'
       responses:
         '200':
           description: successful operation
           content:
-            application/json:
+            application/json; charset=utf-8:
               schema:
                 $ref: '#/components/schemas/Order'
         '400':
@@ -389,10 +352,7 @@ paths:
         '200':
           description: successful operation
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'          
-            application/xml:
+            application/json; charset=utf-8:
               schema:
                 $ref: '#/components/schemas/Order'
         '400':
@@ -428,25 +388,15 @@ paths:
       requestBody:
         description: Created user object
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
+          application/json; charset=utf-8:
             schema:
               $ref: '#/components/schemas/User'
       responses:
         default:
           description: successful operation
           content:
-            application/json:
+            application/json; charset=utf-8:
               schema:
-                $ref: '#/components/schemas/User'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/User'
   /API1user/createWithList:
     post:
       tags:
@@ -456,7 +406,7 @@ paths:
       operationId: createUsersWithListInput
       requestBody:
         content:
-          application/json:
+          application/json; charset=utf-8:
             schema:
               type: array
               items:
@@ -465,12 +415,9 @@ paths:
         '200':
           description: Successful operation
           content:
-            application/json:
+            application/json; charset=utf-8:
               schema:
                 $ref: '#/components/schemas/User'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/User'
         default:
           description: successful operation
   /API1user/login:
@@ -508,10 +455,7 @@ paths:
                 type: string
                 format: date-time
           content:
-            application/xml:
-              schema:
-                type: string
-            application/json:
+            application/json; charset=utf-8:
               schema:
                 type: string
         '400':
@@ -545,10 +489,7 @@ paths:
         '200':
           description: successful operation
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'          
-            application/xml:
+            application/json; charset=utf-8:
               schema:
                 $ref: '#/components/schemas/User'
         '400':
@@ -571,13 +512,7 @@ paths:
       requestBody:
         description: Update an existent user in the store
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
+          application/json; charset=utf-8:
             schema:
               $ref: '#/components/schemas/User'
       responses:
@@ -772,25 +707,7 @@ components:
         message:
           type: string
       xml:
-        name: '##default'
-  requestBodies:
-    Pet:
-      description: Pet object that needs to be added to the store
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Pet'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Pet'
-    UserArray:
-      description: List of user object
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/User'
+        name:  'apiresponse'
   securitySchemes:
     petstore_auth:
       type: oauth2

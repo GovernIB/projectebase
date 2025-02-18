@@ -29,11 +29,7 @@ public class Sistra2externApiServiceImpl implements Sistra2externApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response iniciaFormulari(String entidad,String idSesionFormulario,String idFormularioExterno,String idioma,Usuario usuario,byte[] xmlDatosActuales,ParametrosApertura parametrosApertura,String urlCallback,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
+     
       public Response resultatFormulari(String ticket,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
