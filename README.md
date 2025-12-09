@@ -3,7 +3,7 @@
 
 ***Versions***
 
-> - Versió Estable: projectebase-1.0.14 ([Tag projectebase-1.0.13](https://github.com/GovernIB/projectebase/tree/projectebase-1.0.14))<br/>
+> - Versió Estable: projectebase-1.0.14 ([Tag projectebase-1.0.14](https://github.com/GovernIB/projectebase/tree/projectebase-1.0.14))<br/>
 > - Versió en Desenvolupament: __projectebase-1.0.15__ (branca [projectebase-1.0](../../tree/projectebase-1.0))
 
 
