@@ -6,8 +6,8 @@ import es.caib.projectebase.service.model.EstatPublicacio;
 import es.caib.projectebase.service.model.Ordre;
 import es.caib.projectebase.service.model.Pagina;
 import es.caib.projectebase.service.model.UnitatOrganicaDTO;
-import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RFiltroDominio;
-import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RParametroDominio;
+//import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RFiltroDominio;
+//import es.caib.sistra2.commons.plugins.dominio.rest.api.v1.RParametroDominio;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -67,13 +67,15 @@ public class DominisResource {
                     required = true,
                     description = "Filtre",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RFiltroDominio.class)))
-            @NotNull RFiltroDominio filtro) {
-
+                            schema = @Schema(implementation = ValorsDomini.class)))
+                           // schema = @Schema(implementation = RFiltroDominio.class)))
+            //@NotNull RFiltroDominio filtro) {
+            @NotNull Object filtro) {  // Temporalment canvio el tipus per evitar depèndencies
         Map<AtributUnitat, Object> filtres = new HashMap<>();
         filtres.put(AtributUnitat.estat, EstatPublicacio.ACTIU);
 
-        for (RParametroDominio parametro : filtro.getFiltro()) {
+        //for (RParametroDominio parametro : filtro.getFiltro()) {
+        for (Object parametro : filtro.getFiltro()) {
             if ("codiDir3".equals(parametro.getCodigo())) {
                 filtres.put(AtributUnitat.codiDir3, parametro.getValor());
                 LOG.info("FITRAR {}", parametro.getValor());

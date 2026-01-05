@@ -13,7 +13,7 @@
     <description>Front de ${projectname}</description>
 
     <properties>
-        <loginib-rest-api.version>1.0.1</loginib-rest-api.version>
+        <loginib-rest-api.version>2.5.0</loginib-rest-api.version>
     </properties>
 
 
