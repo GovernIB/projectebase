@@ -78,14 +78,14 @@ public class DominisResource {
         filtres.put(AtributUnitat.estat, EstatPublicacio.ACTIU);
 
         //for (RParametroDominio parametro : filtro.getFiltro()) {
-        for (Object parametro : filtro.getFiltro()) {
-            if ("codiDir3".equals(parametro.getCodigo())) {
-                filtres.put(AtributUnitat.codiDir3, parametro.getValor());
-                LOG.info("FITRAR {}", parametro.getValor());
-            } else {
-                LOG.warn("Paràmetre de filtre '{}' no soportat", parametro.getCodigo());
-            }
-        }
+        // for (Object parametro : filtro.getFiltro()) {
+        //     if ("codiDir3".equals(parametro.getCodigo())) {
+        //         filtres.put(AtributUnitat.codiDir3, parametro.getValor());
+        //         LOG.info("FITRAR {}", parametro.getValor());
+        //     } else {
+        //         LOG.warn("Paràmetre de filtre '{}' no soportat", parametro.getCodigo());
+        //     }
+        // }
 
         Pagina<UnitatOrganicaDTO> filtered = unitatOrganicaService.findFiltered(0, Integer.MAX_VALUE,
                 filtres, List.of(Ordre.ascendent(AtributUnitat.codiDir3)));
