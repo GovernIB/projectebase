@@ -135,6 +135,8 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
             AnotacioRegistreId arId  = anotacioInboxConverter.toAnotacioRegistre(anotacioInbox);
             AnotacioRegistreEntrada anotacio = JAXBUtil.unmarshallAnotacio(anotacioInbox.getContingut());
 
+            es.caib.distribucio.rest.client.integracio.domini.AnotacioRegistreEntrada anotacioDomini = null;
+
             // Potser l'anotació s'ha processant anteriorment i s'ha creat arxiu, per tant no fa falta fer aquesta passa
             if (anotacioInbox.getExpedientArxiu() == null) {
 
@@ -151,7 +153,7 @@ public class ProcessarAnotacioServiceBean implements ProcessarAnotacioService {
                         anotacio.getProcedimentCodi(), // la classificació serà el codi de procediment
                         ExpedientEstatEnumDto.OBERT,
                         serieDocumental,
-                        anotacio);
+                        anotacioDomini);
 
                 if (arxiuResultat.getErrorCodi() != DistribucioArxiuError.NO_ERROR) {
                     LOG.error("S'ha produit un error creant l'expedient a arxiu", arxiuResultat.getException());
