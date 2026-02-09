@@ -20,5 +20,5 @@ Es tracte d'un projecte d'exemple per JBoss 7.2 EAP seguint l'estructura i està
 
 ***Generador de Projectes v1.0.14***
 
-Pitjar sobre el següent enllaç per generar un projecte: [Generador de Projectes](http://htmlpreview.github.io/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0.14/generadordecomanda.html)
+Pitjar sobre el següent enllaç per generar un projecte: [Generador de Projectes](http://fundacio-bit.github.io/htmlpreview/?https://github.com/GovernIB/projectebase/blob/projectebase-1.0.14/generadordecomanda.html)
 
