@@ -13,7 +13,7 @@
     <description>Mòdul web d'exemple d'integració amb NOTIB</description>
 
     <properties>
-        <notib-client.version>2.0.8</notib-client.version>
+        <notib-client.version>2.0.12</notib-client.version>
     </properties>
 
     <dependencies>
@@ -39,6 +39,17 @@
             <groupId>es.caib.notib</groupId>
             <artifactId>notib-client-2</artifactId>
             <version>${notib-client.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>jsr305</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
         </dependency>
     </dependencies>
 
