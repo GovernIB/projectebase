@@ -1,7 +1,7 @@
 package es.caib.projectebase.distribucio.integracio;
 
-import es.caib.plugins.arxiu.api.IArxiuPlugin;
-import es.caib.plugins.arxiu.caib.ArxiuPluginCaib;
+import es.caib.pluginsib.arxiu.api.IArxiuPlugin;
+import es.caib.pluginsib.arxiu.caib.ArxiuPluginCaib;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
